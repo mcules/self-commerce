@@ -1,0 +1,40 @@
+/*** Kompletter Template Inhalt (<div id="body">) ***/
+DIV#body {
+}
+/*** Footer Div ***/
+DIV#copyright {
+  font-family: Tahoma, Verdana, Arial, sans-serif;
+  font-size: 11px;
+  line-height: 1.5;
+  text-align:center;
+}
+DIV#copyright a  {
+  color: #666666;
+}
+DIV#copyright a:hover {
+  color: #fe9f12;
+  text-decoration: underline;
+}
+/*** gnu copyright ***/
+DIV#gnu_copy {
+  font-family: Tahoma, Verdana, Arial, sans-serif;
+  font-size: 11px;
+  line-height: 1.5;
+  text-align:center;
+}
+DIV#gnu_copy a {
+	color: #999999;
+}
+DIV#gnu_copy a:hover {
+	text-decoration: underline;
+}
+DIV#gnu_copy span {
+	color: #fe9f12;
+}
+
+/* Parse Time */
+DIV#parsetime {
+  font-family: Tahoma, Verdana, Arial, sans-serif;
+  font-size: 10px;
+  text-align: center;
+}

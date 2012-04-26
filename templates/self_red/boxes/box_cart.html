@@ -1,0 +1,41 @@
+{config_load file="$language/lang_$language.conf" section="boxes"}
+{if $deny_cart neq 'true'}
+{if $empty=='false'}
+<div class="shopbox">
+<div class="infoBoxHeading_right"><a class="show_right" href="{$LINK_CART}" title="Warenkorb anzeigen">{#heading_cart#}</a></div>
+  <div class="infoBox_right boxText">
+  	<div class="cart_products">
+  	  	{foreach name=aussen item=products_data from=$products}
+				{$products_data.QTY}&nbsp;x&nbsp;<a href="{$products_data.LINK}">{$products_data.NAME|truncate:15:"...":true}</a><br />
+		{/foreach}
+	</div>
+		{if $DISCOUNT}
+		<span class="productDiscountPrice">{#text_discount#}&nbsp;{$DISCOUNT}</span><br />
+		{/if}
+		<div align="right" class="boxText_cart">{$UST}<strong>{#text_total#}&nbsp;{$TOTAL}</strong>{if $SHIPPING_INFO}<br />{$SHIPPING_INFO}{/if}</div>
+	</div>
+</div>
+
+{else} <!-- cart has no content --> 
+<div class="shopbox">
+<div class="infoBoxHeading_right"><a class="show_right" href="{$LINK_CART}" title="Warenkorb anzeigen">{#heading_cart#}</a></div>
+  <div class="infoBox_right boxText">{#text_empty_cart#}</div>
+</div>
+{/if}
+
+{if $ACTIVATE_GIFT=='true'}
+
+{if $GV_AMOUNT neq ''}
+<table width="100%"  border="0" cellpadding="0" cellspacing="2">
+	<tr>
+		<td rowspan="2" class="infoBox_right"><a class="gift_box" href="{$LINK_CART}"></a></td>
+		<td align="center" class="smallText">{#voucher_balance#}</td>
+	</tr>
+	<tr>
+		<td align="center" class="gvBox" valign="middle">{$GV_AMOUNT}</td>
+	</tr>
+</table>
+
+{/if}
+{/if}
+{/if}

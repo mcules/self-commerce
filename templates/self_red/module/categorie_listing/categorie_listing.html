@@ -1,0 +1,33 @@
+{config_load file="$language/lang_$language.conf" section="categorie_listing"}
+<div class="contentsborder">
+<div class="contentsTopics">{$CATEGORIES_NAME}</div>
+<div id="contentsBG">
+	<div id="float_image_right">{if $CATEGORIES_IMAGE}<img src="{$CATEGORIES_IMAGE}" alt="{$CATEGORIES_IMAGE}" />{/if}</div>
+	<span class="moduleHeading">{$CATEGORIES_HEADING_TITLE}</span><br />
+    {if $CATEGORIES_DESCRIPTION}
+      {$CATEGORIES_DESCRIPTION} 
+    {/if}
+<br clear="right" />
+    {if $module_content !=''}
+    <div class="moreHeading">{#heading_more_categories#}</div> 
+      <table width="100%" border="0" cellspacing="5" cellpadding="0">
+        <tr> {foreach name=aussen item=module_data from=$module_content} 
+		{php} 
+          $col++; 
+		{/php} 
+          <td class="products_table" class="main" align="center">
+          	{if $module_data.CATEGORIES_IMAGE}<a href="{$module_data.CATEGORIES_LINK}"><img src="{$module_data.CATEGORIES_IMAGE}" alt="{$module_data.CATEGORIES_NAME}" /></a><br />{/if}
+          	 <a class="catLink" href="{$module_data.CATEGORIES_LINK}">{$module_data.CATEGORIES_NAME}</a><br />
+          	{$module_data.CATEGORIES_DESCRIPTION}
+            </td>
+          {php} 
+		  if ($col>=3) { 
+		  $col=0; 
+		  echo '</tr><tr>';
+		   } 
+		  {/php} 
+		 {/foreach} </tr>
+      </table> 
+       {/if} 
+</div></div>
+{$MODULE_new_products}

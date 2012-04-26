@@ -1,0 +1,29 @@
+{config_load file="$language/lang_$language.conf" section="shopping_cart"}
+<div class="contentsborder">
+<div class="contentsTopics">{#heading_cart#}</div>
+<div id="contentsBG">
+		<div align="center">{$MODULE_gift_cart}</div>
+{if $info_message!=''}
+<br /><div class="errorBox">{$info_message}</div>
+<br />{/if}
+
+{if $cart_empty==true}
+<p class="main" align="center">{#text_empty#}</p>
+<div id="button_right">{$BUTTON_CONTINUE}</div>
+{else}
+{$FORM_ACTION}
+{$HIDDEN_OPTIONS}<br />
+{$MODULE_order_details}
+<br />
+{if $info_message_1!=''}<br />
+<div class="errorBox" align="center">{$info_message_1}{$min_order}{$info_message_2}{$order_amount}</div><br />
+{/if}
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+    <td align="left">{$BUTTON_RELOAD}</td>
+	<td align="right">{$BUTTON_CHECKOUT}</td>
+  </tr>
+</table>
+{$FORM_END}
+{/if}
+</div></div>

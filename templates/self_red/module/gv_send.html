@@ -1,0 +1,35 @@
+{config_load file="$language/lang_$language.conf" section="gv_send"}
+<div class="contentsborder">
+<div class="contentsTopics">{#heading_gvsend#}</div>
+<div id="contentsBG">
+{if $action eq 'process'}
+  <div class="main" align="center">{#text_success#}<br /></div>
+  <div id="button_right">{$LINK_DEFAULT}</div>
+{elseif $action eq 'send'}
+	<div class="main">{$FORM_ACTION}
+		<p class="main">{$MAIN_MESSAGE}</p>
+    	{if $POST_MESSAGE neq ''}
+       	<p class="main"><strong>{$PERSONAL_MESSAGE}</strong><br />
+       	{$POST_MESSAGE}</p>
+      	{/if}
+	    {$HIDDEN_FIELDS}
+	    <table width="100%">
+	    	<tr>
+	    	<td>{$LINK_BACK}</td>
+	    	<td align="right">{$LINK_SUBMIT}</td>
+	    	</tr>
+	    </table>
+	    {$FORM_END}
+	</div>
+{elseif $action eq ''}
+	<div class="main">{#heading_text#}
+	{$FORM_ACTION}
+	<p class="main">{#entry_name#}<br />{$INPUT_TO_NAME}</p>
+	<p class="main">{#entry_email#}<br />{$INPUT_EMAIL} {if $error_email neq ''}<span class="errorText">{$ERROR_EMAIL}</span>{/if}</p>
+    <p class="main">{#entry_amount#}<br />{$INPUT_AMOUNT} {if $error_amount neq ''}<span class="errorText">{$ERROR_AMOUNT}</span>{/if}</p>
+	<p class="main">{#entry_message#}<br />{$TEXTAREA_MESSAGE}</p>
+	<div id="button_right">{$LINK_SUBMIT}</div>
+	{$FORM_END}
+	</div>
+{/if}
+</div></div>

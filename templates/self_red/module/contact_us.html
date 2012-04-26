@@ -1,0 +1,28 @@
+{config_load file="$language/lang_$language.conf" section="contact_us"}
+{if $error_message!=''}
+<div class="main errorBox">{$error_message}</div>
+<br />
+{/if}
+<div class="contentsborder">
+<div class="contentsTopics">{$CONTACT_HEADING}</div>
+{if $success!='1'}
+{$FORM_ACTION}
+<div id="contentsBG" class="main"><div id="contact">
+	{$CONTACT_CONTENT}<br />
+  	{#text_name#}<br />
+    {$INPUT_NAME}<br /><br />
+    {#text_email#}<br />
+    {$INPUT_EMAIL}<br /><br />
+    {#text_message#}<br />
+    {$INPUT_TEXT}</div>
+     <div id="button_right">{$BUTTON_SUBMIT}</div>
+ </div>
+{$FORM_END}
+{else}
+<div id="contentsBG" class="main">
+	<img src="{$tpl_path}img/checkout_success.gif" alt="" />
+     <p align="center">{#text_success#}</p>
+    <div id="button_right">{$BUTTON_CONTINUE}</div>
+</div>
+{/if}
+</div>

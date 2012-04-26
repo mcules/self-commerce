@@ -1,0 +1,22 @@
+{config_load file="$language/lang_$language.conf" section="manufacturerlist"}
+<div class="moduleHeading">{#heading_allmanufacturers#}</div>
+<table width="100%" cellspacing="0" cellpadding="3" border="0">
+<tr>
+{php}$i=0;{/php}
+{foreach name=aussen item=module_data from=$module_content}
+{php}$i++;{/php}
+<td valign="top" width="33%">
+  <table width="100%" cellspacing="0" cellpadding="0" border="0">
+        <!--DWLayoutTable-->
+        <tr> 
+          <td width="1146" height="78" valign="top" align="center" class="manufacturers_heading"> <a href="{$module_data.MAN_LINK}"><img src="{$module_data.MAN_IMAGE}" border="0"></a><br /> 
+            <a href="{$module_data.MAN_LINK}">{$module_data.MAN_NAME}</a> {if 
+            $module_data.PCOUNT != '0' && SHOW_COUNTS=='true'}&nbsp;({$module_data.PCOUNT}){/if} 
+          </td>
+        </tr>
+      </table>
+</td>
+{php}if ($i==3){ echo "</tr><tr>"; $i=0; }{/php}  
+{/foreach}
+</tr>
+</table>

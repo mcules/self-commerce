@@ -1,0 +1,44 @@
+{config_load file="$language/lang_$language.conf" section="account_history_info"}
+<div class="contentsborder">
+<div class="contentsTopics">{#heading_history_info#}</div>
+<div id="contentsBG">
+<div class="checkoutTitle">{#text_oid#}&nbsp;&nbsp;{$ORDER_NUMBER}&nbsp;&nbsp;({$ORDER_STATUS})</div>
+<span class="smallText">{#text_date#}&nbsp;&nbsp;{$ORDER_DATE}</span><br /><br />
+<table class="checkoutTitle" width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td valign="top">{#text_shipping_address#}</td>
+    <td valign="top" >{if $BILLING_LABEL}{#text_payment_address#}{/if}</td>
+  </tr>
+</table>
+<table class="checkoutTable" width="100%" border="0" cellspacing="5" cellpadding="0">
+  <tr>
+  	<td class="main">{$DELIVERY_LABEL}</td>
+  	<td class="main">{if $BILLING_LABEL}{$BILLING_LABEL}{/if}</td>
+  </tr>
+</table>
+<div class="checkoutTitle">{#text_shipping_method#}&nbsp;&nbsp;<span class="checktext">{$SHIPPING_METHOD}</span></div> 
+{if $PAYMENT_METHOD}
+<div class="checkoutTitle">{#text_payment_method#}&nbsp;&nbsp;<span class="checktext">{$PAYMENT_METHOD}</span></div>
+{/if}
+{if $ORDER_COMMENTS!=''}
+<div class="checkoutTitle">{#text_comments#}&nbsp;&nbsp;</div> 
+<div class="checkoutTable main">{$ORDER_COMMENTS}</div>
+{/if} 
+{if $PAYMENT_INFORMATION!=''}
+<div class="checkoutTitle">{#text_payment_info#}</div> 
+<div class="checkoutTable main">{$PAYMENT_INFORMATION}</div>
+{/if} 
+<div class="checkoutTitle">{#title_history#}</div> 
+<div class="checkoutTable main">{$HISTORY_BLOCK}</div>
+<div class="checkoutTitle">{#text_products#}</div>
+<div class="checkoutTable main">{$PRODUCTS_BLOCK}</div>
+<div class="checkoutTable main" align="right">{$TOTAL_BLOCK}</div>
+{if $downloads_content neq ''}
+  {$downloads_content}
+{/if}
+<div class="checkoutTitle">{#title_print#}</div>
+<div class="checkoutTable main">{#text_print#}<br />
+	{$BUTTON_PRINT}
+</div>
+<div id="button_right">{$BUTTON_BACK}</div>
+</div></div>

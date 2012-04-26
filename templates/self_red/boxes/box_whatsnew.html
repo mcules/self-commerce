@@ -1,0 +1,13 @@
+{config_load file="$language/lang_$language.conf" section="boxes"}
+<div class="shopbox">
+<div class="infoBoxHeading_left"><a class="show_left" href="{$LINK_NEW_PRODUCTS}" title="Neue Artikel anzeigen">{#heading_whatsnew#}</a></div>
+  <div class="infoBox_left_center boxText">
+  {if $box_content.PRODUCTS_IMAGE!=''}<a href="{$box_content.PRODUCTS_LINK}"><img src="{$box_content.PRODUCTS_IMAGE}" alt="{$box_content.PRODUCTS_NAME}" /></a><br />
+            {/if} 
+            <a class="boxLink" href="{$box_content.PRODUCTS_LINK}">{$box_content.PRODUCTS_NAME}</a>
+			<br />
+			<div class="boxPrice">{$box_content.PRODUCTS_PRICE}<br />
+			<span class="box_shipping_link">{if $box_content.PRODUCTS_VPE}{$box_content.PRODUCTS_VPE}<br />{/if}{$box_content.PRODUCTS_TAX_INFO}{$box_content.PRODUCTS_SHIPPING_LINK}</span></div></div>
+</div>
+
+
