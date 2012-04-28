@@ -2,7 +2,7 @@
 
 
 /* -----------------------------------------------------------------------------------------
-   $Id: login.php 1143 2005-08-11 11:58:59Z gwinger $   
+   $Id$   
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

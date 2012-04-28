@@ -1,7 +1,7 @@
 <?php
 
 /* -----------------------------------------------------------------------------------------
-   $Id: popup_coupon_help.php 1313 2005-10-18 15:49:15Z mz $
+   $Id$
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

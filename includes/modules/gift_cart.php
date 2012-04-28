@@ -1,7 +1,7 @@
 <?php
 
 /* -----------------------------------------------------------------------------------------
-   $Id: gift_cart.php 842 2005-03-24 14:35:02Z mz $
+   $Id$
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

@@ -1,6 +1,6 @@
 <?php
 /* --------------------------------------------------------------
-   $Id: orders.php 1193 2005-08-28 17:02:03Z matthias $   
+   $Id$   
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

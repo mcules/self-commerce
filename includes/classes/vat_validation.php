@@ -1,7 +1,7 @@
 <?php
 
 /* -----------------------------------------------------------------------------------------
-   $Id: vat_validation.php 1283 2005-10-05 15:42:48Z mz $
+   $Id$
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

@@ -1,7 +1,7 @@
 <?php
 
 /* --------------------------------------------------------------
-   $Id: products_images.php 1166 2005-08-21 00:52:02Z mz $
+   $Id$
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

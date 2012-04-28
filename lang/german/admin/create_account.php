@@ -1,6 +1,6 @@
 <?php
 /* --------------------------------------------------------------
-   $Id: create_account.php 985 2005-06-17 22:35:22Z mz $   
+   $Id$   
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

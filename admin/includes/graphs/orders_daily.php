@@ -1,6 +1,6 @@
 <?php
 /* --------------------------------------------------------------
-   $Id: orders_daily.php 279 2007-03-22 13:49:17Z mzanier $   
+   $Id$   
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

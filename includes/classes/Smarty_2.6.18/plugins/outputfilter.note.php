@@ -1,6 +1,6 @@
 <?php 
 /* ----------------------------------------------------------------------------------------- 
-   $Id: outputfilter.note.php 779 2005-02-19 17:19:28Z novalis $ 
+   $Id$ 
 
    XT-Commerce - community made shopping 
    http://www.xt-commerce.com 

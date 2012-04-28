@@ -1,6 +1,6 @@
 <?php
 /* --------------------------------------------------------------
-   $Id: reviews.php 1129 2005-08-05 11:46:11Z mz $   
+   $Id$   
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

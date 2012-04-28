@@ -1,6 +1,6 @@
 <?php
 /* --------------------------------------------------------------
-   $Id: start.php 890 2005-04-27 11:34:12Z gwinger $   
+   $Id$   
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

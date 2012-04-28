@@ -1,7 +1,7 @@
 <?php
 
 /* --------------------------------------------------------------
-   $Id: campaigns.php 1176 2005-08-22 21:44:28Z mz $
+   $Id$
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

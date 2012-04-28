@@ -1,6 +1,6 @@
 <?php
 /* -----------------------------------------------------------------------------------------
-   $Id: english.php 1260 2005-09-29 17:48:04Z gwinger $
+   $Id$
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

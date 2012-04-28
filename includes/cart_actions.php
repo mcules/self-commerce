@@ -1,7 +1,7 @@
 <?php
 
 /* -----------------------------------------------------------------------------------------
-   $Id: cart_actions.php 1298 2005-10-09 13:14:44Z mz $
+   $Id$
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

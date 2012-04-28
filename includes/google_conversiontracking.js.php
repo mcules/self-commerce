@@ -1,6 +1,6 @@
 <?php
 /* -----------------------------------------------------------------------------------------
-   $Id: google_conversiontracking.js.php 1116 2005-07-25 19:31:14Z mz $
+   $Id$
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

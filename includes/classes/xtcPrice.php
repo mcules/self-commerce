@@ -2,7 +2,7 @@
 
 
 /* -----------------------------------------------------------------------------------------
-   $Id: xtcPrice.php 1316 2005-10-21 15:30:58Z mz $
+   $Id$
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

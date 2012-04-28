@@ -1,7 +1,7 @@
 <?php
 
 /* -----------------------------------------------------------------------------------------
-   $Id: account.php 1124 2005-07-28 08:50:04Z mz $
+   $Id$
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

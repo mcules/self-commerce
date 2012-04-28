@@ -1,7 +1,7 @@
 <?php
 
 /* -----------------------------------------------------------------------------------------
-   $Id: gv_send.php 1034 2005-07-15 15:21:43Z mz $
+   $Id$
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

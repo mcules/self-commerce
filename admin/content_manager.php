@@ -1,6 +1,6 @@
 <?php
 /* --------------------------------------------------------------
-   $Id: content_manager.php 1304 2005-10-12 18:04:43Z mz $
+   $Id$
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

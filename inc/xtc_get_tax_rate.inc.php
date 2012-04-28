@@ -1,6 +1,6 @@
 <?php
 /* -----------------------------------------------------------------------------------------
-   $Id: xtc_get_tax_rate.inc.php 862 2005-04-16 10:26:29Z mz $
+   $Id$
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

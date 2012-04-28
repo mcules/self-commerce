@@ -1,6 +1,6 @@
 <?php
 /* --------------------------------------------------------------
-   $Id: products_attributes.php 1155 2005-08-13 15:47:33Z matthias $   
+   $Id$   
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

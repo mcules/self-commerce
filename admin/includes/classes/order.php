@@ -1,6 +1,6 @@
 <?php
 /* --------------------------------------------------------------
-   $Id: order.php 1037 2005-07-17 15:25:32Z gwinger $   
+   $Id$   
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

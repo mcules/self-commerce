@@ -2,7 +2,7 @@
 
 
 /* --------------------------------------------------------------
-   $Id: categories.php 1318 2005-10-21 19:40:59Z mz $
+   $Id$
   
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

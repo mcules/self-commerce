@@ -1,6 +1,6 @@
 <?php
 /* --------------------------------------------------------------
-   $Id: credits.php 1263 2005-09-30 10:14:08Z mz $   
+   $Id$   
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
    Copyright (c) 2003 XT-Commerce

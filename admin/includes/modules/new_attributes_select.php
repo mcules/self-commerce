@@ -1,6 +1,6 @@
 <?php
 /* --------------------------------------------------------------
-   $Id: new_attributes_select.php 901 2005-04-29 10:32:14Z novalis $
+   $Id$
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

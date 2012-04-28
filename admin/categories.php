@@ -1,7 +1,7 @@
 <?php
 
 /* --------------------------------------------------------------
-   $Id: categories.php 1249 2005-09-27 12:06:40Z gwinger $
+   $Id$
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

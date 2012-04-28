@@ -1,6 +1,6 @@
 <?php
 /* -----------------------------------------------------------------------------------------
-   $Id: sitemap.php 1278 2005-10-02 07:40:25Z mz $
+   $Id$
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

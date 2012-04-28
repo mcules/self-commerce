@@ -1,6 +1,6 @@
 <?php
 /* --------------------------------------------------------------
-   $Id: start.php 1235 2005-09-21 19:11:43Z mz $
+   $Id$
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
    Copyright (c) 2003 XT-Commerce

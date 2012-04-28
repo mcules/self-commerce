@@ -1,6 +1,6 @@
 <?php
 /* -----------------------------------------------------------------------------------------
-   $Id: golem.php 1188 2005-08-28 14:24:34Z matthias $
+   $Id$
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

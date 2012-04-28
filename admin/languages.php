@@ -1,6 +1,6 @@
 <?php
 /* --------------------------------------------------------------
-   $Id: languages.php 1180 2005-08-26 08:44:53Z novalis $   
+   $Id$   
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

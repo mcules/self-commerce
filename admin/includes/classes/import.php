@@ -2,7 +2,7 @@
 
 
 /* --------------------------------------------------------------
-   $Id: import.php 1319 2005-10-23 10:35:15Z mz $
+   $Id$
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

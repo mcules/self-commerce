@@ -1,6 +1,6 @@
 <?
 /* -----------------------------------------------------------------------------------------
-   $Id: invoice.php 1101 2005-07-24 14:51:13Z mz $   
+   $Id$   
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

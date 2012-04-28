@@ -1,6 +1,6 @@
 <?php
 /*
-  $Id: coupon_admin.php 1084 2005-07-23 18:36:08Z matthias $
+  $Id$
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

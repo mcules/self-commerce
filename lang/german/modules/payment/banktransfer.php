@@ -1,7 +1,7 @@
 <?php
 
 /* -----------------------------------------------------------------------------------------
-   $Id: banktransfer.php 998 2005-07-07 14:18:20Z mz $
+   $Id$
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

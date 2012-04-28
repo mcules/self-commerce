@@ -1,6 +1,6 @@
 <?php
 /* -----------------------------------------------------------------------------------------
-   $Id: application_top_export.php 1323 2005-10-27 17:58:08Z mz $
+   $Id$
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

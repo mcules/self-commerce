@@ -1,6 +1,6 @@
 <?php
 /* --------------------------------------------------------------
-   $Id: group_prices.php 1307 2005-10-14 10:36:37Z mz $   
+   $Id$   
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

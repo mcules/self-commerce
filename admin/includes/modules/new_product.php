@@ -1,7 +1,7 @@
 <?php
 
 /* --------------------------------------------------------------
-   $Id: new_product.php 897 2005-04-28 21:36:55Z mz $
+   $Id$
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

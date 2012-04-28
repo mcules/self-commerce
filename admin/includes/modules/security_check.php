@@ -1,7 +1,7 @@
 <?php
 
 /* --------------------------------------------------------------
-   $Id: security_check.php 1221 2005-09-20 16:44:09Z mz $
+   $Id$
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

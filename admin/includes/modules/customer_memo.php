@@ -1,6 +1,6 @@
 <?php
 /* --------------------------------------------------------------
-   $Id: customer_memo.php 955 2005-05-19 09:58:02Z novalis $
+   $Id$
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

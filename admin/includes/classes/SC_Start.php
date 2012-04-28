@@ -1,6 +1,7 @@
 <?php
 /* --------------------------------------------------------------
-   $Id: SC_Start.php 2012-04-26 01:42:43Z mz $
+   $Id$
+
    Self-Commerce - Fresh up your eCommerce
    http://www.self-commerce.de
    Copyright (c) 2012 Self-Commerce

@@ -1,7 +1,7 @@
 <?php
 
 /* -----------------------------------------------------------------------------------------
-   $Id: extra2.php 1302 2005-10-12 16:21:29Z mz $
+   $Id$
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

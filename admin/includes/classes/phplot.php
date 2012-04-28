@@ -1,6 +1,6 @@
 <?php
 
-/* $Id: phplot.php,v 1.95 2004/10/24 16:40:58 migueldb Exp $ */
+/* $Id$ */
 
 /*
  * PHPLOT Version 5.0.rc1

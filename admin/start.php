@@ -1,6 +1,6 @@
 <?php
 /* --------------------------------------------------------------
-   $Id$:
+   $Id$
 
    Self-Commerce - Fresh up your eCommerce
    http://www.self-commerce.de

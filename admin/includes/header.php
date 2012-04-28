@@ -1,6 +1,6 @@
 <?php
 /* --------------------------------------------------------------
-   $Id: header.php 1025 2005-07-14 11:57:54Z gwinger $   
+   $Id$   
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
    Copyright (c) 2003 XT-Commerce

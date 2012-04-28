@@ -1,6 +1,6 @@
 <?php
 /* -----------------------------------------------------------------------------------------
-    $Id: fckconfig.inc.php 923 2005-05-08 03:32:43Z hhgag $   
+    $Id$   
    
     XT-Commerce - community made shopping
     http://www.xt-commerce.com/

@@ -1,6 +1,6 @@
 <?php
 /* -----------------------------------------------------------------------------------------
-   $Id: billiger.php 950 2005-05-14 16:45:21Z mz $
+   $Id$
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

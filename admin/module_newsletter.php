@@ -1,6 +1,6 @@
 <?php
 /* --------------------------------------------------------------
-   $Id: module_newsletter.php 1142 2005-08-11 08:19:55Z matthias $
+   $Id$
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

@@ -1,6 +1,6 @@
 <?php
 /* --------------------------------------------------------------
-   $Id: countries.php 1123 2005-07-27 09:00:31Z novalis $   
+   $Id$   
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

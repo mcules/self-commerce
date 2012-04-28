@@ -1,7 +1,7 @@
 <?php
 
 /* -----------------------------------------------------------------------------------------
-   $Id: afterbuy.php 1287 2005-10-07 10:41:03Z mz $ 
+   $Id$ 
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

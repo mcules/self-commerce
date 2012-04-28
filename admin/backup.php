@@ -1,6 +1,6 @@
 <?php
 /* --------------------------------------------------------------
-   $Id: backup.php 1023 2005-07-14 11:41:37Z novalis $   
+   $Id$   
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

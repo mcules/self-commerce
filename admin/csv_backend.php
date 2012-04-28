@@ -1,6 +1,6 @@
 <?php
 /* --------------------------------------------------------------
-   $Id: csv_backend.php 1030 2005-07-14 20:22:32Z novalis $
+   $Id$
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

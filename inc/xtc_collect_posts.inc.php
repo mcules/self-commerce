@@ -1,6 +1,6 @@
 <?php
 /* -----------------------------------------------------------------------------------------
-   $Id: xtc_collect_posts.inc.php 803 2005-02-26 15:32:50Z mz $
+   $Id$
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

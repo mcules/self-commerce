@@ -1,6 +1,6 @@
 <?php
 /* -----------------------------------------------------------------------------------------
-   $Id: xtc_db_queryCached.inc.php 782 2005-02-19 19:26:00Z khan_thep $
+   $Id$
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

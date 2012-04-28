@@ -1,6 +1,6 @@
 <?php
 /* --------------------------------------------------------------
-   $Id: whos_online.php 1133 2005-08-07 07:47:07Z gwinger $   
+   $Id$   
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
