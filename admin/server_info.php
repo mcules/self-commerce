@@ -54,49 +54,7 @@
                 </table></td>
             </tr>
           </table>
-<?php
-  if (function_exists('ob_start')) {
-ob_start();
-
-phpinfo();
-$php_info .= ob_get_contents();
-
-ob_end_clean();
-$php_info = str_replace("<title>phpinfo()</title>", "", $php_info);
-$php_info = str_replace("</head>", "", $php_info);
-$php_info = str_replace("<body>", "", $php_info);
-$php_info = str_replace(" width=\"600\"", " width=\"786\"", $php_info);
-$php_info = str_replace("</body></html>", "", $php_info);
-
-$php_info = str_replace(";", "; ", $php_info);
-$php_info = str_replace(",", ", ", $php_info);
-
-$offset = strpos($php_info, "<div");
-
-echo '
-<style type="text/css"><!--
-pre {margin: 0px;  font-family: monospace; }
-a:link {color: #000099;  text-decoration: none;  background-color: #ffffff; }
-a:hover {text-decoration: underline; }
-table {border-collapse: collapse; }
-.center {text-align: center; }
-.center table { margin-left: auto;  margin-right: auto;  text-align: left; }
-.center th { text-align: center !important;  }
-
-h1 {font-size: 150%; }
-h2 {font-size: 125%; }
-.p {text-align: left; }
-.e {background-color: #ccccff;  font-weight: bold;  color: #000000; }
-.h {background-color: #9999cc;  font-weight: bold;  color: #000000; }
-.v {background-color: #cccccc;  color: #000000; }
-i {color: #666666;  background-color: #cccccc; }
-
-
-//--></style>
-';
-print substr($php_info, $offset);
-  }
-?>
+<h2>Ausgeblendet im Demoshop</h2>
         </td>
       </tr>
     </table></td>

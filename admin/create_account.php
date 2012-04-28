@@ -363,6 +363,40 @@ return $new_cid;
 
 			xtc_php_mail(EMAIL_SUPPORT_ADDRESS, EMAIL_SUPPORT_NAME, $customers_email_address, $customers_lastname.' '.$customers_firstname, EMAIL_SUPPORT_FORWARDING_STRING, EMAIL_SUPPORT_REPLY_ADDRESS, EMAIL_SUPPORT_REPLY_ADDRESS_NAME, $attachment1, $attachment2, EMAIL_SUPPORT_SUBJECT, $html_mail, $txt_mail);
 		}
+// google maps begin
+if (GOOGLEMAP_APIKEY != ''){
+        $url  = "http://maps.google.com/maps/geo?q=";
+        $url .= $entry_street_address . "," . $entry_postcode . "," . $entry_city . "," . $entry_country;
+        $url .= "&output=csv&key=";
+        $url .= GOOGLEMAP_APIKEY;
+        $url = str_replace (" ", "%20", $url);          // Leerzeichen -> %20
+        $request = fopen($url,'r');
+        $content = fread($request,100000);
+        fclose($request);
+
+        list($statuscode, $accuracy, $lat, $lng) = split(",", $content);
+        
+        if ($statuscode != 200)         //  errors occurred; the address was successfully parsedd.
+        {
+                // Versuch ohne Straße
+                $url  = "http://maps.google.com/maps/geo?q=";
+                $url .= $entry_postcode . "," . $entry_city . "," . $entry_country;
+                $url .= "&output=csv&key=";
+                $url .= GOOGLEMAP_APIKEY;
+                $url = str_replace (" ", "%20", $url);          // Leerzeichen -> %20
+                $request = fopen($url,'r');
+                $content = fread($request,100000);
+                fclose($request);
+
+                list($statuscode, $accuracy, $lat, $lng) = split(",", $content);
+        }
+        if ($statuscode == 200)         // No errors occurred; the address was successfully parsed.
+        {
+                $latlng_query_raw = "insert into customers_to_latlng (customers_id, lat, lng) values ('$cc_id','$lat','$lng')";
+                $latlng_query = xtc_db_query($latlng_query_raw);
+        }
+}                        
+//google maps end		
 		xtc_redirect(xtc_href_link(FILENAME_CUSTOMERS, 'cID='.$cc_id, 'SSL'));
 	}
 }

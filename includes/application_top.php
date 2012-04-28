@@ -565,6 +565,8 @@ if (isset ($_SESSION['customer_id'])) {
 unset ($_SESSION['actual_content']);
 xtc_count_cart();
 
+	
+
 // Wartung
 
 

@@ -21,7 +21,6 @@
                 $meta_keyw=$product->data['products_meta_keywords'];
                 }
             else{
-                //-- Wenigstens die Bezeichnung anhängen
                 $meta_keyw = $product->data['products_name'].', '.$product->data['products_model'].', '.$meta_keyw;
                 }
             if(!empty($product->data['products_meta_description']))
@@ -36,6 +35,7 @@
             $meta_title = $product->data['products_name'].' '.$product->data['products_model'].' / '.TITLE;
             }
         }
+// categorie sites        
     elseif(!empty($_GET['cPath']))
         {
         if (strpos($_GET['cPath'],'_') > 0)

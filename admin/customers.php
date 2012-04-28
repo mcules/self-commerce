@@ -289,7 +289,40 @@ if ($_GET['action']) {
 					$sql_data_array['customers_dob'] = xtc_date_raw($customers_dob);
 
 				xtc_db_perform(TABLE_CUSTOMERS, $sql_data_array, 'update', "customers_id = '".xtc_db_input($customers_id)."'");
+        // google maps begin
+      if (GOOGLEMAP_APIKEY != ''){
+        $url  = "http://maps.google.com/maps/geo?q=";
+        $url .= $entry_street_address . "," . $entry_postcode . "," . $entry_city . "," . $entry_country;
+        $url .= "&output=csv&key=";
+        $url .= GOOGLEMAP_APIKEY;
+        $url = str_replace (" ", "%20", $url);          // Leerzeichen -> %20
+        $request = fopen($url,'r');
+        $content = fread($request,100000);
+        fclose($request);
 
+        list($statuscode, $accuracy, $lat, $lng) = split(",", $content);
+        
+        if ($statuscode != 200)         //  errors occurred; the address was successfully parsedd.
+        {
+                // Versuch ohne Straße
+                $url  = "http://maps.google.com/maps/geo?q=";
+                $url .= $entry_postcode . "," . $entry_city . "," . $entry_country;
+                $url .= "&output=csv&key=";
+                $url .= GOOGLEMAP_APIKEY;
+                $url = str_replace (" ", "%20", $url);          // Leerzeichen -> %20
+                $request = fopen($url,'r');
+                $content = fread($request,100000);
+                fclose($request);
+
+                list($statuscode, $accuracy, $lat, $lng) = split(",", $content);
+        }
+        if ($statuscode == 200)         // No errors occurred; the address was successfully parsed.
+        {
+                $latlng_query_raw = "update customers_to_latlng set lat = '$lat', lng = '$lng' where customers_id = '".xtc_db_input($customers_id)."'";
+                $latlng_query = xtc_db_query($latlng_query_raw);
+        }
+       }                
+        // googlemaps end
 				xtc_db_query("update ".TABLE_CUSTOMERS_INFO." set customers_info_date_account_last_modified = now() where customers_info_id = '".xtc_db_input($customers_id)."'");
 
 				if ($entry_zone_id > 0)
@@ -345,6 +378,9 @@ if ($_GET['action']) {
 			xtc_db_query("delete from ".TABLE_CUSTOMERS_STATUS_HISTORY." where customers_id = '".xtc_db_input($customers_id)."'");
 			xtc_db_query("delete from ".TABLE_CUSTOMERS_IP." where customers_id = '".xtc_db_input($customers_id)."'");
 			xtc_db_query("DELETE FROM ".TABLE_ADMIN_ACCESS." WHERE customers_id = '".xtc_db_input($customers_id)."'");
+			// google maps begin
+			xtc_db_query("DELETE FROM customers_to_latlng WHERE customers_id = '".xtc_db_input($customers_id)."'");			
+			// google maps end
 
 			xtc_redirect(xtc_href_link(FILENAME_CUSTOMERS, xtc_get_all_get_params(array ('cID', 'action'))));
 			break;

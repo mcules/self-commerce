@@ -1,17 +1,25 @@
 <?php
 /* --------------------------------------------------------------
-   $Id: start.php 1235 2005-09-21 19:11:43Z mz $
-   XT-Commerce - community made shopping
-   http://www.xt-commerce.com
-   Copyright (c) 2003 XT-Commerce
+   $Id$:
+
+   Self-Commerce - Fresh up your eCommerce
+   http://www.self-commerce.de
+   Copyright (c) 2012 Self-Commerce
+
    --------------------------------------------------------------
-   based on: 
-   (c) 2000-2001 The Exchange Project 
-   (c) 2002-2003 osCommerce coding standards (a typical file) www.oscommerce.com
-   (c) 2003      nextcommerce (start.php,1.5 2004/03/17); www.nextcommerce.org
+   based on:
+   (c) 2000-2001	The Exchange Project 
+   (c) 2002-2003	osCommerce www.oscommerce.com
+   (c) 2003     	nextcommerce www.nextcommerce.org
+   (c) 2005     	XT-Commerce www.xt-commerce.com
+
    Released under the GNU General Public License 
    --------------------------------------------------------------*/
+
 require ('includes/application_top.php');
+require(DIR_FS_ADMIN . 'includes/classes/SC_Start.php');
+
+$Class_SC_Start = new SC_Start();
 ?>
 <!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html <?php echo HTML_PARAMS; ?>>
@@ -113,7 +121,7 @@ while($row = mysql_fetch_object($ergebnis))
                   </fieldset>                  
 <!--    Geburtstage prüfen - ENDE ------------------------------------------------->
 <br /><br />
-<iframe  src="http://demoshop.ne-xt.de/news_info.php" width="100%" height="400" align="left" scrolling="yes" marginheight="0" marginwidth="0" frameborder="0"></iframe>
+<?php echo $Class_SC_Start->getNews(); ?>
 
 
          

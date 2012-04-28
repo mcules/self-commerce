@@ -1,16 +1,18 @@
 <?php
 /* --------------------------------------------------------------
+   $Id ip_block.php v 1.0 kunigunde
 
-   XT-Commerce - community made shopping
-   http://www.xt-commerce.com
+   Self-Commerce - Fresh up You're Ecommerce
+   http://www.self-commerce.de
 
-   Copyright (c) 2003 XT-Commerce
+   Copyright (c) 2007 Self-Commerce
    --------------------------------------------------------------
    based on: 
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
-   (c) 2002-2003 osCommerce(banned_ips.php,v 1.52 2003/03/22); www.oscommerce.com 
-   (c) 2003	 nextcommerce (banned_ips.php,v 1.9 2003/08/18); www.nextcommerce.org
-
+   (c) 2002-2003 osCommerce www.oscommerce.com 
+   (c) 2003-?	 nextcommerce www.nextcommerce.org
+   (c) ? xt:commerce www.xtcommerce.com
+   
    Released under the GNU General Public License 
    --------------------------------------------------------------*/
 
@@ -27,12 +29,12 @@
       if ($_GET['action'] == 'insert') {
         $insert_sql_data = array('date_added' => 'now()');
         $sql_data_array = xtc_array_merge($sql_data_array, $insert_sql_data);
-        xtc_db_perform('banned', $sql_data_array);
+        xtc_db_perform(TABLE_SELF_BANNED_IP, $sql_data_array);
         $bann_id = xtc_db_insert_id();
       } elseif ($_GET['action'] == 'save') {
         $update_sql_data = array('last_modified' => 'now()');
         $sql_data_array = xtc_array_merge($sql_data_array, $update_sql_data);
-        xtc_db_perform('banned', $sql_data_array, 'update', "bann_id = '" . xtc_db_input($bann_id) . "'");
+        xtc_db_perform(TABLE_SELF_BANNED_IP, $sql_data_array, 'update', "bann_id = '" . xtc_db_input($bann_id) . "'");
       }
 
 
@@ -40,21 +42,21 @@
         xtc_reset_cache_block('banned_ips');
       }
 
-      xtc_redirect(xtc_href_link('ip_block.php', 'page=' . $_GET['page'] . '&bID=' . $bann_id));
+      xtc_redirect(xtc_href_link(FILENAME_IP_BLOCK, 'page=' . $_GET['page'] . '&bID=' . $bann_id));
       break;
 
     case 'deleteconfirm':
       $bann_id = xtc_db_prepare_input($_GET['bID']);
 
 
-      xtc_db_query("delete from banned where bann_id = '" . xtc_db_input($bann_id) . "'");
+      xtc_db_query("delete from ".TABLE_SELF_BANNED_IP." where bann_id = '" . xtc_db_input($bann_id) . "'");
 
  
       if (USE_CACHE == 'true') {
         xtc_reset_cache_block('banned_ips');
       }
 
-      xtc_redirect(xtc_href_link('ip_block.php', 'page=' . $_GET['page']));
+      xtc_redirect(xtc_href_link(FILENAME_IP_BLOCK, 'page=' . $_GET['page']));
       break;
   }
 ?>
@@ -98,7 +100,7 @@
                 <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
               </tr>
 <?php
-  $banned_ips_query_raw = "select bann_id, bann_ip, date_added, last_modified from banned order by bann_ip";
+  $banned_ips_query_raw = "select bann_id, bann_ip, date_added, last_modified from ".TABLE_SELF_BANNED_IP." order by bann_ip";
   $banned_ips_split = new splitPageResults($_GET['page'], '20', $banned_ips_query_raw, $banned_ips_query_numrows);
   $banned_ips_query = xtc_db_query($banned_ips_query_raw);
   while ($banned_ips = xtc_db_fetch_array($banned_ips_query)) {
@@ -109,13 +111,13 @@
     }
 
     if ( (is_object($bannInfo)) && ($banned_ips['bann_id'] == $bannInfo->bann_id) ) {
-      echo '              <tr class="dataTableRowSelected" onmouseover="this.style.cursor=\'hand\'" onclick="document.location.href=\'' . xtc_href_link('ip_block.php', '&bID=' . $banned_ips['bann_id'] . '&action=edit') . '\'">' . "\n";
+      echo '              <tr class="dataTableRowSelected" onmouseover="this.style.cursor=\'hand\'" onclick="document.location.href=\'' . xtc_href_link(FILENAME_IP_BLOCK, '&bID=' . $banned_ips['bann_id'] . '&action=edit') . '\'">' . "\n";
     } else {
-      echo '              <tr class="dataTableRow" onmouseover="this.className=\'dataTableRowOver\';this.style.cursor=\'hand\'" onmouseout="this.className=\'dataTableRow\'" onclick="document.location.href=\'' . xtc_href_link('ip_block.php', 'page=' . $_GET['page'] . '&bID=' . $banned_ips['bann_id']) . '\'">' . "\n";
+      echo '              <tr class="dataTableRow" onmouseover="this.className=\'dataTableRowOver\';this.style.cursor=\'hand\'" onmouseout="this.className=\'dataTableRow\'" onclick="document.location.href=\'' . xtc_href_link(FILENAME_IP_BLOCK, 'page=' . $_GET['page'] . '&bID=' . $banned_ips['bann_id']) . '\'">' . "\n";
     }
 ?>
                 <td class="dataTableContent"><?php echo $banned_ips['bann_ip']; ?></td>
-                <td class="dataTableContent" align="right"><?php if ( (is_object($bannInfo)) && ($banned_ips['bann_id'] == $bannInfo->bann_id) ) { echo xtc_image(DIR_WS_IMAGES . 'icon_arrow_right.gif'); } else { echo '<a href="' . xtc_href_link('ip_block.php', 'page=' . $_GET['page'] . '&bID=' . $banned_ips['bann_id']) . '">' . xtc_image(DIR_WS_IMAGES . 'icon_info.gif', IMAGE_ICON_INFO) . '</a>'; } ?>&nbsp;</td>
+                <td class="dataTableContent" align="right"><?php if ( (is_object($bannInfo)) && ($banned_ips['bann_id'] == $bannInfo->bann_id) ) { echo xtc_image(DIR_WS_IMAGES . 'icon_arrow_right.gif'); } else { echo '<a href="' . xtc_href_link(FILENAME_IP_BLOCK, 'page=' . $_GET['page'] . '&bID=' . $banned_ips['bann_id']) . '">' . xtc_image(DIR_WS_IMAGES . 'icon_info.gif', IMAGE_ICON_INFO) . '</a>'; } ?>&nbsp;</td>
               </tr>
 <?php
   }
@@ -132,7 +134,7 @@
   if ($_GET['action'] != 'new') {
 ?>
               <tr>
-                <td align="right" colspan="2" class="smallText"><?php echo xtc_button_link(BUTTON_INSERT, xtc_href_link('ip_block.php', 'page=' . $_GET['page'] . '&bID=' . $bannInfo->bann_id . '&action=new')); ?></td>
+                <td align="right" colspan="2" class="smallText"><?php echo xtc_button_link(BUTTON_INSERT, xtc_href_link(FILENAME_IP_BLOCK, 'page=' . $_GET['page'] . '&bID=' . $bannInfo->bann_id . '&action=new')); ?></td>
               </tr>
 <?php
   }
@@ -145,39 +147,39 @@
     case 'new':
       $heading[] = array('text' => '<b>' . TEXT_HEADING_NEW_BANNED_IP . '</b>');
 
-      $contents = array('form' => xtc_draw_form('banned_ips', 'ip_block.php', 'action=insert', 'post', 'enctype="multipart/form-data"'));
+      $contents = array('form' => xtc_draw_form('banned_ips', FILENAME_IP_BLOCK, 'action=insert', 'post', 'enctype="multipart/form-data"'));
       $contents[] = array('text' => TEXT_NEW_INTRO);
       $contents[] = array('text' => '<br />' . TEXT_IP_ADRESS . '<br />' . xtc_draw_input_field('bann_ip'));
 
-      $contents[] = array('align' => 'center', 'text' => '<br />' . xtc_button(BUTTON_SAVE) . '&nbsp;' . xtc_button_link(BUTTON_CANCEL, xtc_href_link('ip_block.php', 'page=' . $_GET['page'] . '&bID=' . $_GET['bID'])));
+      $contents[] = array('align' => 'center', 'text' => '<br />' . xtc_button(BUTTON_SAVE) . '&nbsp;' . xtc_button_link(BUTTON_CANCEL, xtc_href_link(FILENAME_IP_BLOCK, 'page=' . $_GET['page'] . '&bID=' . $_GET['bID'])));
       break;
 
     case 'edit':
       $heading[] = array('text' => '<b>' . TEXT_HEADING_EDIT_BANNED_IP . '</b>');
 
-      $contents = array('form' => xtc_draw_form('banned_ips', 'ip_block.php', 'page=' . $_GET['page'] . '&bID=' . $bannInfo->bann_id . '&action=save', 'post', 'enctype="multipart/form-data"'));
+      $contents = array('form' => xtc_draw_form('banned_ips', FILENAME_IP_BLOCK, 'page=' . $_GET['page'] . '&bID=' . $bannInfo->bann_id . '&action=save', 'post', 'enctype="multipart/form-data"'));
       $contents[] = array('text' => TEXT_EDIT_INTRO);
       $contents[] = array('text' => '<br />' . TEXT_IP_ADRESS . '<br />' . xtc_draw_input_field('bann_ip', $bannInfo->bann_ip));
 
-      $contents[] = array('align' => 'center', 'text' => '<br />' . xtc_button(BUTTON_SAVE) . '&nbsp;' . xtc_button_link(BUTTON_CANCEL, xtc_href_link('ip_block.php', 'page=' . $_GET['page'] . '&bID=' . $bannInfo->bann_id)));
+      $contents[] = array('align' => 'center', 'text' => '<br />' . xtc_button(BUTTON_SAVE) . '&nbsp;' . xtc_button_link(BUTTON_CANCEL, xtc_href_link(FILENAME_IP_BLOCK, 'page=' . $_GET['page'] . '&bID=' . $bannInfo->bann_id)));
       break;
 
     case 'delete':
       $heading[] = array('text' => '<b>' . TEXT_HEADING_DELETE_BANNED_IP . '</b>');
 
-      $contents = array('form' => xtc_draw_form('banned_ips', 'ip_block.php', 'page=' . $_GET['page'] . '&bID=' . $bannInfo->bann_id . '&action=deleteconfirm'));
+      $contents = array('form' => xtc_draw_form('banned_ips', FILENAME_IP_BLOCK, 'page=' . $_GET['page'] . '&bID=' . $bannInfo->bann_id . '&action=deleteconfirm'));
       $contents[] = array('text' => TEXT_DELETE_INTRO);
       $contents[] = array('text' => '<br /><b>' . $bannInfo->bann_ip . '</b>');
 
 
-      $contents[] = array('align' => 'center', 'text' => '<br />' . xtc_button(BUTTON_DELETE) . '&nbsp;' . xtc_button_link(BUTTON_CANCEL, xtc_href_link('ip_block.php', 'page=' . $_GET['page'] . '&bID=' . $bannInfo->bann_id)));
+      $contents[] = array('align' => 'center', 'text' => '<br />' . xtc_button(BUTTON_DELETE) . '&nbsp;' . xtc_button_link(BUTTON_CANCEL, xtc_href_link(FILENAME_IP_BLOCK, 'page=' . $_GET['page'] . '&bID=' . $bannInfo->bann_id)));
       break;
 
     default:
       if (is_object($bannInfo)) {
         $heading[] = array('text' => '<b>' . $bannInfo->bann_ip . '</b>');
 
-        $contents[] = array('align' => 'center', 'text' => xtc_button_link(BUTTON_EDIT, xtc_href_link('ip_block.php', 'page=' . $_GET['page'] . '&bID=' . $bannInfo->bann_id . '&action=edit')) . '&nbsp;' . xtc_button_link(BUTTON_DELETE, xtc_href_link('ip_block.php', 'page=' . $_GET['page'] . '&bID=' . $bannInfo->bann_id . '&action=delete')));
+        $contents[] = array('align' => 'center', 'text' => xtc_button_link(BUTTON_EDIT, xtc_href_link(FILENAME_IP_BLOCK, 'page=' . $_GET['page'] . '&bID=' . $bannInfo->bann_id . '&action=edit')) . '&nbsp;' . xtc_button_link(BUTTON_DELETE, xtc_href_link(FILENAME_IP_BLOCK, 'page=' . $_GET['page'] . '&bID=' . $bannInfo->bann_id . '&action=delete')));
         $contents[] = array('text' => '<br />' . TEXT_DATE_ADDED . ' ' . xtc_date_short($bannInfo->date_added));
         if (xtc_not_null($bannInfo->last_modified)) $contents[] = array('text' => TEXT_LAST_MODIFIED . ' ' . xtc_date_short($bannInfo->last_modified));
       }

@@ -52,7 +52,7 @@
   define('SQL_CACHEDIR',DIR_FS_CATALOG.'cache/');
 
   // Define the project version
-  define('PROJECT_VERSION', 'Self-Commerce 2.0');
+  define('PROJECT_VERSION', 'xt:Commerce ne-xt Edition v_1.4.07');
 
   // Set the length of the redeem code, the longer the more secure
   define('SECURITY_CODE_LENGTH', '6');
@@ -138,7 +138,9 @@
   define('FILENAME_XSELL_GROUPS','cross_sell_groups.php');
   define('FILENAME_ADMIN_SQL','admin_sql.php');
   define('FILENAME_STOCK_LIST','stock_list.php'); 
-
+// IP Block
+  define('FILENAME_IP_BLOCK','ip_block.php');
+  
   // define the database table names used in the project
   define('TABLE_ADDRESS_BOOK', 'address_book');
   define('TABLE_ADDRESS_FORMAT', 'address_format');
@@ -217,7 +219,8 @@
   define('TABLE_SHIPPING_STATUS', 'shipping_status');
   define('TABLE_BLACKLIST', 'card_blacklist'); 
   define('TABLE_CAMPAIGNS_IP','campaigns_ip');
-  
+// IP Block
+  define('TABLE_SELF_BANNED_IP','self_banned_ip');  
  
   // include needed functions
   require_once(DIR_FS_INC . 'xtc_db_connect.inc.php');

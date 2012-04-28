@@ -28,7 +28,32 @@
 
                xtc_redirect(FILENAME_CONFIGURATION. '?gID=' . (int)$_GET['gID']);
         break;
-
+    case 'delcache':
+      $path = DIR_FS_CATALOG.'cache/';
+      if ($dir = opendir($path)) {
+        while (($file = readdir($dir)) !== false) {
+          if (is_file($path.$file) and ($file != "index.html") and ($file != ".htaccess")) {
+            unlink($path.$file);
+          } //if
+        } // while
+        closedir($dir);
+      }
+      $messageStack->add_session(DELETE_CACHE_SUCCESSFUL, 'success');
+      xtc_redirect(FILENAME_CONFIGURATION. '?gID=' . (int)$_GET['gID']);
+      break;
+    case 'deltempcache':
+      $path = DIR_FS_CATALOG.'templates_c/';
+      if ($dir = opendir($path)) {
+        while (($file = readdir($dir)) !== false) {
+          if (is_file($path.$file) and ($file != "index.html") and ($file != ".htaccess")) {
+            unlink($path.$file);
+          } //if
+        } // while
+        closedir($dir);
+      }
+      $messageStack->add_session(DELETE_TEMP_CACHE_SUCCESSFUL, 'success');
+      xtc_redirect(FILENAME_CONFIGURATION. '?gID=' . (int)$_GET['gID']);
+      break;
     }
   }
 
@@ -186,6 +211,14 @@
 ?>
             </table>
 <?php echo '<input type="submit" class="button" onClick="this.blur();" value="' . BUTTON_SAVE . '"/>'; ?></form>
+<?php
+if ($_GET['gID']==11) {
+  echo xtc_draw_form('configuration', FILENAME_CONFIGURATION, 'gID=' . (int)$_GET['gID'] . '&action=delcache');
+  echo '<br /><br /><input type="submit" class="button" onClick="this.blur();" value="' . BUTTON_DELETE_CACHE . '"/></form> ';
+  echo xtc_draw_form('configuration', FILENAME_CONFIGURATION, 'gID=' . (int)$_GET['gID'] . '&action=deltempcache');
+  echo '<input type="submit" class="button" onClick="this.blur();" value="' . BUTTON_DELETE_TEMP_CACHE . '"/></form>';
+}
+?>
             </td>
 
           </tr>

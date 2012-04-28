@@ -393,6 +393,7 @@ class product {
 		return array ('PRODUCTS_NAME' => $array['products_name'], 
 				'COUNT'=>$array['ID'],
 				'PRODUCTS_ID'=>$array['products_id'],
+				'PRODUCTS_QUANTITY' =>$array['products_quantity'],
 				'PRODUCTS_VPE' => $this->getVPEtext($array, $products_price['plain']), 
 				'PRODUCTS_IMAGE' => $this->productImage($array['products_image'], $image), 
 				'PRODUCTS_LINK' => xtc_href_link(FILENAME_PRODUCT_INFO, xtc_product_link($array['products_id'], $array['products_name'])), 

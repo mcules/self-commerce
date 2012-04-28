@@ -191,7 +191,45 @@ if (isset ($_POST['action']) && (($_POST['action'] == 'process') || ($_POST['act
 		}
 
 		$messageStack->add_session('addressbook', SUCCESS_ADDRESS_BOOK_ENTRY_UPDATED, 'success');
+// googlemaps begin
+if (GOOGLEMAP_APIKEY != ''){
+  if ((isset ($_POST['primary']) && ($_POST['primary'] == 'on')) || ($_GET['edit'] == $_SESSION['customer_default_address_id'])) {
 
+
+        $url  = "http://maps.google.com/maps/geo?q=";
+        $url .= $street_address . "," . $postcode . "," . $city . "," . $country;
+        $url .= "&output=csv&key=";
+        $url .= GOOGLEMAP_APIKEY;
+        $url = str_replace (" ", "%20", $url);          // Leerzeichen -> %20
+        $request = fopen($url,'r');
+        $content = fread($request,100000);
+        fclose($request);
+
+        list($statuscode, $accuracy, $lat, $lng) = split(",", $content);
+        
+        if ($statuscode != 200)         //  errors occurred; the address was successfully parsedd.
+        {
+                // Versuch ohne Straße
+                $url  = "http://maps.google.com/maps/geo?q=";
+                $url .= $postcode . "," . $city . "," . $country;
+                $url .= "&output=csv&key=";
+                $url .= GOOGLEMAP_APIKEY;
+                $url = str_replace (" ", "%20", $url);          // Leerzeichen -> %20
+                $request = fopen($url,'r');
+                $content = fread($request,100000);
+                fclose($request);
+
+                list($statuscode, $accuracy, $lat, $lng) = split(",", $content);
+        }
+        if ($statuscode == 200)         // No errors occurred; the address was successfully parsed.
+        {
+                $cc_id = $_SESSION['customer_id'];
+                $latlng_query_raw = "update customers_to_latlng set lat = '$lat', lng = '$lng' where customers_id =".$cc_id."";
+                $latlng_query = xtc_db_query($latlng_query_raw);
+        }                
+  }
+}
+//google maps end
 		xtc_redirect(xtc_href_link(FILENAME_ADDRESS_BOOK, '', 'SSL'));
 	}
 }

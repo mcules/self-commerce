@@ -75,7 +75,7 @@ if(isset($_POST['go'])){
 <textarea name="sql_query" cols="120" rows="10"></textarea>
 <br>
 <br>
-<input type="submit" name="go" value="OK" />
+ohne Funktion im Demoshop: <input type="submit" name="" value="absenden" />
 </form>
 
 </span>

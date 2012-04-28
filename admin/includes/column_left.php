@@ -278,7 +278,7 @@
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['customers'] == '1')) $box_customers .= '<a href="' . xtc_href_link(FILENAME_CUSTOMERS, '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_CUSTOMERS . '</a><br>';
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['customers_status'] == '1')) $box_customers .= '<a href="' . xtc_href_link(FILENAME_CUSTOMERS_STATUS, '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_CUSTOMERS_STATUS . '</a><br>';
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['orders'] == '1')) $box_customers .= '<a href="' . xtc_href_link(FILENAME_ORDERS, '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_ORDERS . '</a><br>';
-
+  if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['google_map'] == '1') && (GOOGLEMAP_APIKEY != '')) $box_customers .= '<a href="' . xtc_href_link('google_map.php', '', 'NONSSL') . '" class="menuBoxContentLink"> -GOOGLE MAP</a><br>';
   if(!empty($box_customers)) 
   	echo '
 	<div class="dhtmlgoodies_panel">
@@ -422,11 +422,12 @@
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['configuration'] == '1')) $box_extra_modules .= '<a href="' . xtc_href_link(FILENAME_CONFIGURATION, 'gID=358', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_CONFIGURATION_358 . '</a><br>';
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['configuration'] == '1')) $box_extra_modules .= '<a href="' . xtc_href_link(FILENAME_CONFIGURATION, 'gID=359', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_CONFIGURATION_359 . '</a><br>';
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['configuration'] == '1')) $box_extra_modules .= '<a href="' . xtc_href_link(FILENAME_CONFIGURATION, 'gID=360', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_CONFIGURATION_360 . '</a><br>';
-  if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['configuration'] == '1')) $box_extra_modules .= '<a href="' . xtc_href_link(FILENAME_CONFIGURATION, 'gID=361', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_CONFIGURATION_361 . '</a><br>';  
+  if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['configuration'] == '1')) $box_extra_modules .= '<a href="' . xtc_href_link(FILENAME_CONFIGURATION, 'gID=361', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_CONFIGURATION_361 . '</a><br>';
+  if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['configuration'] == '1')) $box_extra_modules .= '<a href="' . xtc_href_link(FILENAME_CONFIGURATION, 'gID=364', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_CONFIGURATION_364 . '</a><br>';    
   if(!empty($box_extra_modules)) $box_extra_modules .= '<hr>';
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['configuration'] == '1')) $box_extra_modules .= '<a href="' . xtc_href_link(FILENAME_CONFIGURATION, 'gID=362', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_CONFIGURATION_362 . '</a><br>';  
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['admin_sql'] == '1')) $box_extra_modules .= '<a href="' . xtc_href_link(FILENAME_ADMIN_SQL, '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_ADMIN_SQL . '</a><br>';
-  if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['configuration'] == '1')) $box_extra_modules .= '<a href="' . xtc_href_link(FILENAME_CONFIGURATION, 'gID=363', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_CONFIGURATION_363 . '</a><br>';  
+  if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['configuration'] == '1')) $box_extra_modules .= '<a href="' . xtc_href_link(FILENAME_CONFIGURATION, 'gID=363', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_CONFIGURATION_363 . '</a><br>';
   if(!empty($box_extra_modules)) $box_extra_modules .= '<hr>';
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['stock_list'] == '1')) $box_extra_modules .= '<a href="' . xtc_href_link(FILENAME_STOCK_LIST, '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_STOCK_LIST . '</a><br>';        
 

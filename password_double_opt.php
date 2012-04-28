@@ -1,17 +1,17 @@
 <?php
-
 /*------------------------------------------------------------------------------
-   $Id: password_double_opt.php,v 1.0 
+   $Id$:
 
-   XTC-NEWSLETTER_RECIPIENTS RC1 - Contribution for XT-Commerce http://www.xt-commerce.com
-   by Matthias Hinsche http://www.gamesempire.de
+   Self-Commerce - Fresh up your eCommerce
+   http://www.self-commerce.de
+   Copyright (c) 2012 Self-Commerce
 
-   Copyright (c) 2003 XT-Commerce
    -----------------------------------------------------------------------------------------
    based on: 
-   (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
-   (c) 2002-2003 osCommerce www.oscommerce.com 
-   (c) 2003  nextcommerce www.nextcommerce.org
+   (c) 2000-2001	The Exchange Project
+   (c) 2002-2003	osCommerce www.oscommerce.com 
+   (c) 2003			nextcommerce www.nextcommerce.org
+   (c) 2005			XT-Commerce www.xt-commerce.com
 
    Released under the GNU General Public License 
    ---------------------------------------------------------------------------------------*/
@@ -84,7 +84,7 @@ if (isset ($_GET['action']) && ($_GET['action'] == 'verified')) {
 		$newpass = xtc_create_random_value(ENTRY_PASSWORD_MIN_LENGTH);
 		$crypted_password = xtc_encrypt_password($newpass);
 
-		xtc_db_query("update ".TABLE_CUSTOMERS." set customers_password = '".$crypted_password."' where customers_email_address = '".$check_customer['customers_email_address']."'");
+		xtc_db_query("update ".TABLE_CUSTOMERS." set customers_password = '".$crypted_password."' where customers_email_address = '".xtc_db_input($check_customer['customers_email_address'])."'");
 		xtc_db_query("update ".TABLE_CUSTOMERS." set password_request_key = '' where customers_id = '".$check_customer['customers_id']."'");
 		// assign language to template for caching
 		$smarty->assign('language', $_SESSION['language']);

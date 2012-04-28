@@ -1,5 +1,20 @@
+# --------------------------------------------------------------
+# $Id: .htaccess,v 1.2 2004/04/14 19:26:25 fanta2k Exp $
+#
+# Self-Commerce - Fresh up your eCommerce
+# http://www.self-commerce.de
+# Copyright (c) 2012 Self-Commerce
+#
+# --------------------------------------------------------------
+
 AuthType Basic
 AuthName "No access"
 AuthUserFile .htnopasswd
 AuthGroupFile /dev/null
 Require valid-user
+
+RewriteEngine On
+RedirectMatch permanent (.*)\.php$ /error/nophp.html
+RedirectMatch permanent (.*)\.php3$ /error/nophp.html
+RedirectMatch permanent (.*)\.php4$ /error/nophp.html
+RedirectMatch permanent (.*)\.php5$ /error/nophp.html
