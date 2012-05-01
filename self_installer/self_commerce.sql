@@ -38,13 +38,13 @@ CREATE TABLE address_book (
   address_book_id int NOT NULL auto_increment,
   customers_id int NOT NULL,
   entry_gender char(1) NOT NULL,
-  entry_company varchar(32),
+  entry_company varchar(64),
   entry_firstname varchar(32) NOT NULL,
   entry_lastname varchar(32) NOT NULL,
   entry_street_address varchar(64) NOT NULL,
   entry_suburb varchar(32),
   entry_postcode varchar(10) NOT NULL,
-  entry_city varchar(32) NOT NULL,
+  entry_city varchar(50) NOT NULL,
   entry_state varchar(32),
   entry_country_id int DEFAULT '0' NOT NULL,
   entry_zone_id int DEFAULT '0' NOT NULL,
@@ -1515,6 +1515,7 @@ INSERT INTO configuration (configuration_id,  configuration_key, configuration_v
 #configuration_group_id 363, Login Schutz
 INSERT INTO configuration (configuration_id,  configuration_key, configuration_value, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('', 'LOGIN_NUM', '3', '363', '1', NULL, '0000-00-00 00:00:00', NULL, NULL);
 INSERT INTO configuration (configuration_id,  configuration_key, configuration_value, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('', 'LOGIN_TIME', '300',  '363', '2', NULL, '0000-00-00 00:00:00', NULL, NULL);
+INSERT INTO configuration (configuration_key, configuration_value, configuration_group_id, date_added) VALUES ('SELF_VERSION', '2.0.1', 1, NOW());
 
 INSERT INTO configuration_group VALUES ('1', 'My Store', 'General information about my store', '1', '1');
 INSERT INTO configuration_group VALUES ('2', 'Minimum Values', 'The minimum values for functions / data', '2', '1');
