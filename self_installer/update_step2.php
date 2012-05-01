@@ -14,7 +14,6 @@ require_once(DIR_FS_INC.'xtc_redirect.inc.php');
 require_once(DIR_FS_INC.'xtc_href_link.inc.php');
 require_once(DIR_FS_INC.'xtc_not_null.inc.php');
 require_once(DIR_FS_INC.'xtc_db_install_update.inc.php');
-require('../includes/configure.php');
 
 include('language/'.$_SESSION['language'].'.php');
 ?>

@@ -15,11 +15,15 @@ based on:
 
 Released under the GNU General Public License
 --------------------------------------------------------------*/
+
+if (file_exists('../includes/configure.php')) {
+    require('../includes/configure.php');
+    $Update = true;
+}
 // Some FileSystem Directories
-if (!defined('DIR_FS_DOCUMENT_ROOT')) {
+if (!defined('DIR_FS_DOCUMENT_ROOT') || $Update) {
     define('DIR_FS_DOCUMENT_ROOT', $_SERVER['DOCUMENT_ROOT']);
     $local_install_path=str_replace('/self_installer','',$_SERVER['PHP_SELF']);
-    $local_install_path=str_replace('/bak.self_installer','',$_SERVER['PHP_SELF']);
     $local_install_path=str_replace('index.php','',$local_install_path);
     $local_install_path=str_replace('install_step1.php','',$local_install_path);
     $local_install_path=str_replace('install_step2.php','',$local_install_path);
@@ -34,6 +38,7 @@ if (!defined('DIR_FS_DOCUMENT_ROOT')) {
     $local_install_path=str_replace('update_step2.php','',$local_install_path);
     $local_install_path=str_replace('update_finished.php','',$local_install_path);
     define('DIR_FS_CATALOG', DIR_FS_DOCUMENT_ROOT . $local_install_path);
+    define('INSTALLER_PATH', 'self_installer/');
 }
 define('DIR_FS_INC', DIR_FS_CATALOG.'inc/');
 

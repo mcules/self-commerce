@@ -9,8 +9,6 @@
 
 require('includes/application.php');
 
-$query = file_get_contents("update_2.0.sql");
-
 // include needed functions
 require_once(DIR_FS_INC.'xtc_image.inc.php');
 require_once(DIR_FS_INC.'xtc_draw_separator.inc.php');
@@ -22,7 +20,6 @@ include('language/english.php');
 define('HTTP_SERVER','');
 define('HTTPS_SERVER','');
 define('DIR_WS_CATALOG','');
-require('../includes/configure.php');
 
 $messageStack = new messageStack();
 
@@ -37,7 +34,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
         $messageStack->add('index', SELECT_LANGUAGE_ERROR);
     }
     if ($error == false) {
-        xtc_redirect(xtc_href_link('update_step1.php', '', 'NONSSL'));
+        xtc_redirect(xtc_href_link(INSTALLER_PATH.'update_step1.php', '', 'NONSSL'));
     }
 }
 ?>

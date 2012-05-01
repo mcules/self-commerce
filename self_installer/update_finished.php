@@ -8,7 +8,6 @@
    --------------------------------------------------------------*/
 
 require('includes/application.php');
-require('../admin/includes/configure.php');
 
 include('language/'.$_SESSION['language'].'.php');
 ?>
