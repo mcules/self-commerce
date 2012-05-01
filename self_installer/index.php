@@ -1,18 +1,21 @@
 <?php
-  /* --------------------------------------------------------------
-   $Id: index.php 1220 2005-09-16 15:53:13Z mz $   
+/* --------------------------------------------------------------
+   $Id: start.php 10 2012-04-28 03:21:05Z deisold $
 
-   XT-Commerce - community made shopping
-   http://www.xt-commerce.com
-
-   Copyright (c) 2003 XT-Commerce
+   Self-Commerce - Fresh up your eCommerce
+   http://www.self-commerce.de
+   Copyright (c) 2012 Self-Commerce
    --------------------------------------------------------------
    based on:
-   (c) 2003	 nextcommerce (index.php,v 1.18 2003/08/17); www.nextcommerce.org
+   (c) 2003 nextcommerce (index.php,v 1.18 2003/08/17); www.nextcommerce.org
+   (c) 2005 XT-Commerce www.xt-commerce.com
    
    Released under the GNU General Public License 
    --------------------------------------------------------------*/
    
+if (file_exists('../includes/configure.php')) {
+    header("Location:update.php");
+}
   require('includes/application.php');
 
   // include needed functions
@@ -59,7 +62,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<title>XT-Commerce Installer - Welcome</title>
+<title>Self-Commerce Installer - Welcome</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <style type="text/css">
 <!--

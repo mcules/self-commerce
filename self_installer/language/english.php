@@ -1,19 +1,19 @@
 <?php
 /* --------------------------------------------------------------
-   $Id: english.php 1213 2005-09-14 11:34:50Z mz $   
+   $Id: start.php 10 2012-04-28 03:21:05Z deisold $
 
-   Self-Commerce - community made shopping
-   http://www.xt-commerce.com
-
-   Copyright (c) 2003 Self-Commerce
+   Self-Commerce - Fresh up your eCommerce
+   http://www.self-commerce.de
+   Copyright (c) 2012 Self-Commerce
    --------------------------------------------------------------
    based on:
-   (c) 2003	 nextcommerce (english.php,v 1.8 2003/08/13); www.nextcommerce.org
+   (c) 2003	nextcommerce (english.php,v 1.8 2003/08/13); www.nextcommerce.org
+   (c) 2005 XT-Commerce www.xt-commerce.com
    
    Released under the GNU General Public License 
    --------------------------------------------------------------*/
 // Global
-define('TEXT_FOOTER','Copyright  &copy; 2007 <a href="http://www.self-commerce.de">Self-Commerce</a> based on <a href="http://www.xtcommerce.de" target="_blank">XT:Commerce</a><br />Self-Commerce provides no warranty and is redistributable under the <a href="http://www.fsf.org/licenses/gpl.txt" target="_blank">GNU General Public License</a>'); 
+define('TEXT_FOOTER','Copyright  &copy; '.date('Y', time()).' <a href="http://www.self-commerce.de">Self-Commerce</a> based on <a href="http://www.xtcommerce.de" target="_blank">XT:Commerce</a><br />Self-Commerce provides no warranty and is redistributable under the <a href="http://www.fsf.org/licenses/gpl.txt" target="_blank">GNU General Public License</a>');
    
 // Box names
 define('BOX_LANGUAGE','Language');
@@ -23,59 +23,62 @@ define('BOX_DB_IMPORT','DB Import');
 define('BOX_WRITE_CONFIG','Write config files');
 define('BOX_ADMIN_CONFIG','Administrator config');
 define('BOX_USERS_CONFIG','User config');
-
+define('BOX_UPDATE','Update');
+define('BOX_UPDATE_DB','Database update');
+define('BOX_UPDATE_DONE','Update finished');
 define('PULL_DOWN_DEFAULT','Please select a Country!');
 
+// update_step1.php
+define('TEXT_UPDATE_1','Please continue the installation process to execute the database update procedure.');
+define('TEXT_UPDATE_2', 'After your click on "continue" the Database will be updated.');
+define('TEXT_UPDATE_STEP2_TITLE', 'Database updated');
 
 // Error messages
- 	// index.php
-	define('SELECT_LANGUAGE_ERROR','Please select a language!');
-	// install_step2,5.php
-	define('TEXT_CONNECTION_ERROR','A test connection made to the database was NOT successful.');
-	define('TEXT_CONNECTION_SUCCESS','A test connection made to the database was successful.');
-	define('TEXT_DB_ERROR','The error message returned is:');
-	define('TEXT_DB_ERROR_1','Please click on the <i>Back</i> graphic to review your database server settings.');
-	define('TEXT_DB_ERROR_2','If you require help with your database server settings, please consult your hosting company.');
-	// install_step6.php
-	define('ENTRY_FIRST_NAME_ERROR','Firstname to short');
-	define('ENTRY_LAST_NAME_ERROR','Lastname to short');
-	define('ENTRY_EMAIL_ADDRESS_ERROR','Email to short');
-	define('ENTRY_EMAIL_ADDRESS_CHECK_ERROR','Check Email Format');
-	define('ENTRY_STREET_ADDRESS_ERROR','Street to short');
-	define('ENTRY_POST_CODE_ERROR','Post Code to short');
-	define('ENTRY_CITY_ERROR','City to short');
-	define('ENTRY_COUNTRY_ERROR','Check Country');
-	define('ENTRY_STATE_ERROR','Check State');
-	define('ENTRY_TELEPHONE_NUMBER_ERROR','Telephone number to short');
-	define('ENTRY_PASSWORD_ERROR','Check Password');
-	define('ENTRY_STORE_NAME_ERROR','Store name to short');
-	define('ENTRY_COMPANY_NAME_ERROR','Company name to short');
-	define('ENTRY_EMAIL_ADDRESS_FROM_ERROR','Email-From to short');
-	define('ENTRY_EMAIL_ADDRESS_FROM_CHECK_ERROR','Check Email-From Format');
-	define('SELECT_ZONE_SETUP_ERROR','Select Zone setup');
-	// install_step7.php
-	define('ENTRY_DISCOUNT_ERROR','Product discount -Guest');
-	define('ENTRY_OT_DISCOUNT_ERROR','Discount on ot -Guest');
-	define('SELECT_OT_DISCOUNT_ERROR','Discount on ot -Guest');
-	define('SELECT_GRADUATED_ERROR','Graduated Prices -Guest');
-	define('SELECT_PRICE_ERROR','Show Price -Guest');
-	define('SELECT_TAX_ERROR','Show Tax -Guest');
-	define('ENTRY_DISCOUNT_ERROR2','Product discount -Default');
-	define('ENTRY_OT_DISCOUNT_ERROR2','Discount on ot -Default');
-	define('SELECT_OT_DISCOUNT_ERROR2','Discount on ot -Default');
-	define('SELECT_GRADUATED_ERROR2','Graduated Prices -Default');
-	define('SELECT_PRICE_ERROR2','Show Price -Default');
-	define('SELECT_TAX_ERROR2','Show Tax -Default');
-	
-	
+// index.php
+define('SELECT_LANGUAGE_ERROR','Please select a language!');
 
+// install_step2,5.php
+define('TEXT_CONNECTION_ERROR','A test connection made to the database was NOT successful.');
+define('TEXT_CONNECTION_SUCCESS','A test connection made to the database was successful.');
+define('TEXT_DB_ERROR','The error message returned is:');
+define('TEXT_DB_ERROR_1','Please click on the <i>Back</i> graphic to review your database server settings.');
+define('TEXT_DB_ERROR_2','If you require help with your database server settings, please consult your hosting company.');
 
-	
-	
+// install_step6.php
+define('ENTRY_FIRST_NAME_ERROR','Firstname to short');
+define('ENTRY_LAST_NAME_ERROR','Lastname to short');
+define('ENTRY_EMAIL_ADDRESS_ERROR','Email to short');
+define('ENTRY_EMAIL_ADDRESS_CHECK_ERROR','Check Email Format');
+define('ENTRY_STREET_ADDRESS_ERROR','Street to short');
+define('ENTRY_POST_CODE_ERROR','Post Code to short');
+define('ENTRY_CITY_ERROR','City to short');
+define('ENTRY_COUNTRY_ERROR','Check Country');
+define('ENTRY_STATE_ERROR','Check State');
+define('ENTRY_TELEPHONE_NUMBER_ERROR','Telephone number to short');
+define('ENTRY_PASSWORD_ERROR','Check Password');
+define('ENTRY_STORE_NAME_ERROR','Store name to short');
+define('ENTRY_COMPANY_NAME_ERROR','Company name to short');
+define('ENTRY_EMAIL_ADDRESS_FROM_ERROR','Email-From to short');
+define('ENTRY_EMAIL_ADDRESS_FROM_CHECK_ERROR','Check Email-From Format');
+define('SELECT_ZONE_SETUP_ERROR','Select Zone setup');
+
+// install_step7.php
+define('ENTRY_DISCOUNT_ERROR','Product discount -Guest');
+define('ENTRY_OT_DISCOUNT_ERROR','Discount on ot -Guest');
+define('SELECT_OT_DISCOUNT_ERROR','Discount on ot -Guest');
+define('SELECT_GRADUATED_ERROR','Graduated Prices -Guest');
+define('SELECT_PRICE_ERROR','Show Price -Guest');
+define('SELECT_TAX_ERROR','Show Tax -Guest');
+define('ENTRY_DISCOUNT_ERROR2','Product discount -Default');
+define('ENTRY_OT_DISCOUNT_ERROR2','Discount on ot -Default');
+define('SELECT_OT_DISCOUNT_ERROR2','Discount on ot -Default');
+define('SELECT_GRADUATED_ERROR2','Graduated Prices -Default');
+define('SELECT_PRICE_ERROR2','Show Price -Default');
+define('SELECT_TAX_ERROR2','Show Tax -Default');
+
 // index.php
 define('TITLE_SELECT_LANGUAGE','Select your language!');
-
-define('TEXT_WELCOME_INDEX','<b>Welcome to Self-Commerce</b><br /><br />Self-Commerce is an open source e-commerce solution under on going development by the Self-Commerce Team and its <a href="http://www.self-commerce.de">community.</a><br /> Its feature packed out-of-the-box installation allows store owners to setup, run, and maintain their online stores with minimum effort and with no costs involved.<br /> Self-Commerce combines open source solutions to provide a free and open development platform, which includes the powerful PHP web scripting language, the stable Apache web server, and the fast MySQL database server.<br /><br />With no restrictions or special requirements, Self-Commerce can be installed on any PHP4 enabled web server, on any environment that PHP and MySQL supports, which includes Linux, Solaris, BSD, and Microsoft Windows environments.<br /><br /><b>Willkommen zu Self-Commerce</b><br /><br />Self-Commerce ist eine Open-Source e-commerce Lösung, die ständig vom Self-Commerce Team und einer grossen <a href="http://www.self-commerce.de">Gemeinschaft</a> weiterentwickelt wird.<br /> Seine out-of-the-box Installation erlaubt es dem Shop-Besitzer seinen Online-Shop mit einem Minimum an Aufwand und Kosten zu installieren, zu betreiben und zu verwalten.<br /><br />Self-Commerce ist auf jedem System lauffähig, welches eine PHP Umgebung (ab PHP 4.1) und mySQL zur Verfügung stellt, wie zum Beispiel Linux, Solaris, BSD, und Microsoft Windows.');
+define('TEXT_WELCOME_INDEX','<b>Welcome to Self-Commerce</b><br /><br />Self-Commerce is an open source e-commerce solution under on going development by the Self-Commerce Team and its <a href="http://www.self-commerce.de">community.</a><br /> Its feature packed out-of-the-box installation allows store owners to setup, run, and maintain their online stores with minimum effort and with no costs involved.<br /> Self-Commerce combines open source solutions to provide a free and open development platform, which includes the powerful PHP web scripting language, the stable Apache web server, and the fast MySQL database server.<br /><br />With no restrictions or special requirements, Self-Commerce can be installed on any PHP4 enabled web server, on any environment that PHP and MySQL supports, which includes Linux, Solaris, BSD, and Microsoft Windows environments.<br /><br /><b>Willkommen zu Self-Commerce</b><br /><br />Self-Commerce ist eine Open-Source e-commerce Lï¿½sung, die stï¿½ndig vom Self-Commerce Team und einer grossen <a href="http://www.self-commerce.de">Gemeinschaft</a> weiterentwickelt wird.<br /> Seine out-of-the-box Installation erlaubt es dem Shop-Besitzer seinen Online-Shop mit einem Minimum an Aufwand und Kosten zu installieren, zu betreiben und zu verwalten.<br /><br />Self-Commerce ist auf jedem System lauffï¿½hig, welches eine PHP Umgebung (ab PHP 4.1) und mySQL zur Verfï¿½gung stellt, wie zum Beispiel Linux, Solaris, BSD, und Microsoft Windows.');
 define('TEXT_WELCOME_STEP1','<b>Main database and webserver settings</b><br /><br />Please enter your Database and webserver settings.<br />');
 define('TEXT_WELCOME_STEP2','<b>Install database</b><br /><br />The Self-Commerce installer will automatically install the Self-Commerce database.');
 define('TEXT_WELCOME_STEP3','<b>Database import.</b><br /><br />');
@@ -98,8 +101,8 @@ user group 3 -> a special group price on product Y<br />
 user group 4 -> netto price on product Y<br />
 ');
 define('TEXT_WELCOME_FINISHED','<b>Self-Commerce installation successful!</b>');
-// install_step1.php
 
+// install_step1.php
 define('TITLE_CUSTOM_SETTINGS','Custom Settings');
 define('TEXT_IMPORT_DB','Import Self-Commerce Database');
 define('TEXT_IMPORT_DB_LONG','Import the Self-Commerce database structure which includes tables and sample data.');
@@ -127,14 +130,11 @@ define('TEXT_WS_ADMINTOOL','WWW Administration Tool Directory');
 define('TEXT_WS_ADMINTOOL_LONG','The virtual directory where the Self-Commerce Administration Tool resides, usually <i>/selfcommerce/admin/</i>');
 
 // install_step2.php
-
 define('TEXT_PROCESS_1','Please continue the installation process to execute the database import procedure.');
 define('TEXT_PROCESS_2','It is important this procedure is not interrupted, otherwise the database may end up corrupt.');
 define('TEXT_PROCESS_3','The file to import must be located and named at: ');
 
-
 // install_step3.php
-
 define('TEXT_TITLE_ERROR','The following error has occurred:');
 define('TEXT_TITLE_SUCCESS','The database import was successful!');
 
@@ -160,11 +160,9 @@ define('TEXT_SESS_DB','Store Sessions in the Database');
 define('TEXT_SESS_LONG','The location to store PHPs sessions files.');
 
 // install_step5.php
-
 define('TEXT_WS_CONFIGURATION_SUCCESS','<strong>Self-Commerce</strong> Webserver configuration was successful');
 
 // install_step6.php
-
 define('TITLE_ADMIN_CONFIG','Administrator configuration');
 define('TEXT_REQU_INFORMATION','* required information');
 define('TEXT_FIRSTNAME','First Name:');
@@ -194,8 +192,6 @@ define('TEXT_ZONE_NO','No');
 define('TEXT_ZONE_YES','Yes');
 define('TEXT_COMPANY','Company name');
 
-
-
 // install_step7
 define('TITLE_GUEST_CONFIG','Guest configuration');
 define('TITLE_GUEST_CONFIG_NOTE','*Note; Settings for standard user (non-regristrated customer)');
@@ -213,12 +209,9 @@ define('TEXT_STATUS_SHOW_PRICE','Show price');
 define('TEXT_STATUS_SHOW_PRICE_LONG','allow user to see product-price in shop');
 define('TEXT_STATUS_SHOW_TAX','Show tax');
 define('TEXT_STATUS_SHOW_TAX_LONG','Display prices with tax included (Yes) or without any tax (No)');
-
-
 define('TITLE_CHMOD','Setting rights on files');
-// install_fnished.php
 
+// install_fnished.php
 define('TEXT_SHOP_CONFIG_SUCCESS','<strong>Self-Commerce</strong> Shop configuration was successful.');
 define('TEXT_TEAM','The Self-Commerce dev Team.<br /><a href="http://www.xt-commerce.com">Self-Commerce support site</a>');
-   
- ?>
+?>

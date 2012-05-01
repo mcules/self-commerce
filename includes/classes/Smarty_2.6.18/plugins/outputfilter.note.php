@@ -20,7 +20,7 @@ function smarty_outputfilter_note($tpl_output, &$smarty) {
     appropriately.*/ 
 $cop=' 
     <div id="copyright"> 
-      Copyright  &copy; 2007 <a href="http://www.self-commerce.de">Self-Commerce</a> based on <a href="http://www.xtcommerce.de" target="_blank">XT:Commerce</a><br />
+      Copyright  &copy; '.date('Y', time()).' <a href="http://www.self-commerce.de">Self-Commerce</a> v'.SELF_VERSION.' based on <a href="http://www.xtcommerce.de" target="_blank">XT:Commerce</a><br />
     </div>
     <div id="gnu_copy">
       Self-Commerce provides no warranty and is redistributable under the <a href="http://www.fsf.org/licenses/gpl.txt" target="_blank">GNU General Public License</a>
