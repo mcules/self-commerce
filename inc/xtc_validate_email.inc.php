@@ -7,6 +7,7 @@
 
    Copyright (c) 2003 XT-Commerce
    -----------------------------------------------------------------------------------------
+   (c) 2012	 Self-Commerce www.self-commerce.de
    based on: 
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
    (c) 2002-2003 osCommerce(validations.php,v 1.11 2003/02/11); www.oscommerce.com 
@@ -48,6 +49,12 @@
 
   function xtc_validate_email($email) {
     $valid_address = true;
+
+    // sql injection fix 16.02.2011
+    if (strpos($email,"\0")!==false) {return false;}
+
+	## Bugfix for nullbyte injection. More: http://www.monkey-business.biz/1586/xtcommerce-v3-0-x-eregi-nullbyte-injection-sql-injection/
+	str_replace(array("\0", "\x00", "\u0000", "\000"), '', $email, $count); if ($count > 0) return false;
 
     $mail_pat = '^(.+)@(.+)$';
     $valid_chars = "[^] \(\)<>@,;:\.\\\"\[]";

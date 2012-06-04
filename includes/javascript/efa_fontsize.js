@@ -5,7 +5,7 @@ var max_zoom = 115;
 var min_zoom = 59;
 
 var efa_bigger = ['<div class="textzoom"><p style="padding: 0; margin: 0; line-height: 15px;">',
-'<img class="margsmall" src="images/textzoomin_button.gif" />',
+'<img class="margsmall" src="templates/textzoomin_button.gif" />',
 'Schrift gr&ouml;sser stellen',
 '',
 '',
@@ -18,7 +18,7 @@ var efa_bigger = ['<div class="textzoom"><p style="padding: 0; margin: 0; line-h
 ]
 
 var efa_reset = ['',
-'<img class="margsmall" src="images/textzoomreset_button.gif" />',
+'<img class="margsmall" src="templates/textzoomreset_button.gif" />',
 'Schrift zur&uuml;cksetzen',
 '',
 '',
@@ -31,7 +31,7 @@ var efa_reset = ['',
 ]
 
 var efa_smaller = ['',
-'<img class="margsmall" src="images/textzoomout_button.gif" />',
+'<img class="margsmall" src="templates/textzoomout_button.gif" />',
 'Schrift kleiner stellen',
 '',
 '',

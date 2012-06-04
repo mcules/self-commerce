@@ -1,0 +1,11 @@
+{config_load file="$language/lang_$language.conf" section="boxes"}
+<div class="boxInfoLS" id="box_search">
+	<h4>{#heading_search#}</h4>
+	<div class="boxInfoBodyLS">
+	{$FORM_ACTION}
+	<p>{$INPUT_SEARCH} {$BUTTON_SUBMIT}</p>
+	
+	<p><a href="{$LINK_ADVANCED}">{#text_advanced_search#}</a></p>
+	{$FORM_END}
+	</div>
+</div>

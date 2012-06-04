@@ -1,0 +1,69 @@
+{config_load file="$language/lang_$language.conf" section="address_book_process"}
+
+{if #heading_password# !=''}<h2>{#heading_password#}</h2>{/if}
+	{$FORM_ACTION}
+
+	{if $error!=''}
+		<p><strong class="error">{$error}</strong></p>
+	{/if}
+
+	<p>{#title_address#}</p>
+
+	<p class="must">{#text_must#}</p>
+
+	{if $gender=='1'}
+		<fieldset>
+		  <legend>{#text_gender#}</legend>
+			{$INPUT_MALE}
+			{$INPUT_FEMALE}
+		</fieldset>
+	{/if}
+
+	<fieldset>
+		<legend>{#title_address#}</legend>
+
+	<div class="floatbox"><label>{#text_firstname#}</label>
+		{$INPUT_FIRSTNAME}</div>
+
+	  <div class="floatbox"><label>{#text_lastname#}</label>
+		{$INPUT_LASTNAME}</div>
+
+	{if $company=='1'}
+	  <div class="floatbox"><label>{#text_company#}</label>
+		{$INPUT_COMPANY}</div>
+
+	{/if}
+
+	  <div class="floatbox"><label>{#text_street#}</label>
+		{$INPUT_STREET}</div>
+
+	{if $suburb=='1'}
+	  <div class="floatbox"><label>{#text_suburb#}</label>
+		{$INPUT_SUBURB}</div>
+
+	{/if}
+
+	  <div class="floatbox"><label>{#text_code#}</label>
+		{$INPUT_CODE}</div>
+
+	  <div class="floatbox"><label>{#text_city#}</label>
+		{$INPUT_CITY}</div>
+
+	{if $state=='1'}
+	  <div class="floatbox"><label>{#text_state#}</label>
+		{$INPUT_STATE}</div>
+
+	{/if}
+	  <div class="floatbox"><label>{#text_country#}</label>
+		{$SELECT_COUNTRY}</div>
+
+	{if $new=='1'}
+	  <div class="floatbox"><label>{#text_standard#}</label>
+		{$CHECKBOX_PRIMARY}</div>
+
+	 {/if}
+	</fieldset>
+
+
+{$FORM_END}
+

@@ -21,6 +21,7 @@
                 $meta_keyw=$product->data['products_meta_keywords'];
                 }
             else{
+                //-- Wenigstens die Bezeichnung anhängen
                 $meta_keyw = $product->data['products_name'].', '.$product->data['products_model'].', '.$meta_keyw;
                 }
             if(!empty($product->data['products_meta_description']))
@@ -32,10 +33,15 @@
                                 $product->data['products_description'].', '.
                                 $meta_descr;
                 }
-            $meta_title = $product->data['products_name'].' '.$product->data['products_model'].' / '.TITLE;
+            if(!empty($product->data['products_meta_title']))
+              {
+            $meta_title = $product->data['products_meta_title'].' / '.TITLE;              
+              }else{
+            $meta_title = $product->data['products_name'].' '.$product->data['products_model'].' / '.TITLE;              
+              }                
+
             }
         }
-// categorie sites        
     elseif(!empty($_GET['cPath']))
         {
         if (strpos($_GET['cPath'],'_') > 0)
@@ -92,7 +98,7 @@
                                             content_text,
                                             content_meta_keywords
                                             FROM ".TABLE_CONTENT_MANAGER."
-                                            WHERE content_group ='".$_GET['coID']."' and
+                                            WHERE content_group ='".(int)$_GET['coID']."' and
                                             languages_id='".$_SESSION['languages_id']."'");
         $contents_meta = xtc_db_fetch_array($contents_meta_query,true);
 

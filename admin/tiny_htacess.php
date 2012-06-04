@@ -9,36 +9,27 @@
    (c) 2000-2001 The Exchange Project 
    (c) 2002-2003 osCommerce coding standards (a typical file) www.oscommerce.com
    (c) 2003      nextcommerce (start.php,1.5 2004/03/17); www.nextcommerce.org
-   Released under the GNU General Public License 
+   Released under the GNU General Public License
    --------------------------------------------------------------*/
 require ('includes/application_top.php');
+require ('includes/application_top_1.php');
 ?>
-<!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html <?php echo HTML_PARAMS; ?>>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=<?php echo $_SESSION['language_charset']; ?>">
-    <title>
-      <?php echo TITLE; ?>
-    </title>
-    <link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
-    <style type="text/css">.h2 { font-family: Trebuchet MS,Palatino,Times New Roman,serif; font-size: 13pt; font-weight: bold; }.h3 { font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 9pt; font-weight: bold; }
-    </style>
-  </head>
-  <body marginwidth="0" marginheight="0" topmargin="0" bottommargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFFF">
-    <!-- header //-->
-    <?php require(DIR_WS_INCLUDES . 'header.php'); ?>
-    <!-- header_eof //-->
-    <!-- body //-->
-    <table border="0" width="100%" cellspacing="2" cellpadding="2">
-      <tr>
-        <td class="columnLeft2" width="<?php echo BOX_WIDTH; ?>" valign="top">
-          <table border="0" width="<?php echo BOX_WIDTH; ?>" cellspacing="1" cellpadding="1" class="columnLeft">
-            <!-- left_navigation //-->
-            <?php require(DIR_WS_INCLUDES . 'column_left.php'); ?>
-            <!-- left_navigation_eof //-->
-          </table></td>
-        <!-- body_text //-->
-        <td class="boxCenter" width="100%" valign="top">
+          <table border="0" width="100%" cellspacing="0" cellpadding="2">
+            <tr>
+              <td>
+                <table border="0" width="100%" cellspacing="0" cellpadding="2">
+                  <tr>
+                    <td width="80" rowspan="2">
+<?php echo xtc_image(DIR_WS_ICONS.'heading_configuration.gif'); ?>
+                    </td>
+                    <td class="pageHeading">
+.htaccess
+                    </td>
+                  </tr>
+                </table></td>
+            </tr>
+          </table>
+<!-- content -->
 <?php
 extract($_REQUEST);
 
@@ -51,8 +42,6 @@ $cfg['header'] = "
 &nbsp;<a href='?action=neuerBereich2'>Schutz erstellen</a><br>
 &nbsp;<a href='?action=editBereich'>Bereich editieren</a><br>
 &nbsp;<a href='?action=delBereich'>Bereich löschen</a><br>
-
-
 </td>
 <td valign='top' width='75%' >
 ";
@@ -118,7 +107,6 @@ if ($action == "neuerBereich3") {
 			@unlink ($htpasswd);
 			echo "<b>Passwortgeschützten Bereich erstellen</b><br><br>";
 			echo "Bereich wird angelegt.<br><br>Benutzername: $benutzerName<br>Passwort: *****";
-			
 
 			$fp = @fopen($htpasswd, "w") or die($filerights);
 			fwrite($fp,"$benutzerName:".crypt($benutzerPasswort)."\n");
@@ -132,7 +120,6 @@ if ($action == "neuerBereich3") {
 			fclose($fp);
 			
 			echo "<br><br>Sie können nun weitere Benutzer hinzufügen (Editierung).";
-
 		}
 	}
 }
@@ -149,7 +136,6 @@ if ($action == "neuerBereich2") {
 				echo "<font color='#ff0000'>$fehler</font><br>";
 			}
 			echo "Benutzer hinzufügen:";
-
 			echo "<form action='".$_SERVER['PHP_SELF'] ."' method='post'>
 <INPUT TYPE='hidden' NAME='action' VALUE='neuerBereich3'>
 <input TYPE='hidden' NAME='bereichName' size='12' class='input' value='".$bereichName."'><br><br>
@@ -160,10 +146,8 @@ Passwort:<br>
 Passwort (Wiederholung):<br>
 <input TYPE='password' NAME='benutzerPasswort2' size='12' class='input' value='".$benutzerPasswort2."'><br><br>
 <input TYPE='submit' VALUE='Weiter &raquo;' class='button'></form>";
-		
 	}
 }
-
 
 if ($action == "editName2") {
 	if (!file_exists($htaccess)) {
@@ -249,21 +233,16 @@ if ($action == "editBenutzer2") {
 		{
 			echo "<b>Passwortgeschützten Bereich editieren</b><br><br>";
 			echo "Benutzer wird geändert. Benutzername: <b>$name</b>";
-			
+
 			$neuesPW = crypt($benutzerPasswort);
 			echo "<br><br>Das Passwort wird ersetzt.";
 
 			$datei = @file($htpasswd, "r");
-			
 			unlink ($htpasswd) or die("Die Datei .htpasswd kann nicht geloescht werden.");
-			
 		 	$fp = @fopen($htpasswd, "w") or die($filerights1);
-
 		 	$drin = array();
-
 			foreach ($datei as $zeile) {
 				$zeile = explode(":",$zeile);
-				
 				if ($zeile[0] != $name) {
 					fwrite($fp,implode(":",$zeile));
 				}
@@ -271,15 +250,11 @@ if ($action == "editBenutzer2") {
 				{
 					$neueZeile=$name.":";
 					$neueZeile .= $neuesPW;
-
 					fwrite($fp,"$neueZeile\n");
 				}
 			}
 			fclose($fp);
-
-			
 			echo "<br><br>Fertig.";
-
 		}
 	}
 }
@@ -289,11 +264,9 @@ if ($action == "editBenutzer") {
 	if ($fehler) {
 		echo "<font color='#ff0000'>$fehler</font><br>";
 	}
-
 	if (file_exists($htaccess)) {
 			echo "Benutzer editieren:";
 			if (!$benutzerName) $benutzerName = $name;
-			
 			echo "<form action='".$_SERVER['PHP_SELF'] ."' method='post'>
 <INPUT TYPE='hidden' NAME='action' VALUE='editBenutzer2'>
 <INPUT TYPE='hidden' NAME='name' VALUE='$name'>
@@ -318,7 +291,6 @@ if ($action == "hinzuBenutzer2") {
 	else
 	{
 		$fehler = "";
-
 		$datei = @file($htpasswd, "r");
 		foreach ($datei as $zeile) {
 			$zeile = explode(":",$zeile);
@@ -346,11 +318,8 @@ if ($action == "hinzuBenutzer2") {
 		{
 			echo "<b>Passwortgeschützten Bereich editieren</b><br><br>";
 			echo "Benutzer wird hinzugefügt.<br><br>Benutzername: <b>$benutzerName</b>";
-
 			$datei = @file($htpasswd, "r");
-			
 			unlink ($htpasswd) or die("Die Datei .htpasswd kann nicht geloescht werden.");
-			
 		 	$fp = @fopen($htpasswd, "w") or die($filerights1);
 			foreach ($datei as $zeile) {
 				fwrite($fp,$zeile);
@@ -358,9 +327,7 @@ if ($action == "hinzuBenutzer2") {
 			fwrite($fp,"$benutzerName:".crypt($benutzerPasswort)."\n");
 			fclose($fp);
 
-			
 			echo "<br><br>Fertig.";
-
 		}
 	}
 }
@@ -373,7 +340,6 @@ if ($action == "hinzuBenutzer") {
 
 	if (file_exists($htaccess)) {
 			echo "Benutzer hinzufügen:";
-			
 			echo "<form action='".$_SERVER['PHP_SELF'] ."' method='post'>
 <INPUT TYPE='hidden' NAME='action' VALUE='hinzuBenutzer2'>
 Benutzername:<br>
@@ -383,7 +349,6 @@ Passwort:<br>
 Passwort (Wiederholung):<br>
 <input TYPE='password' NAME='benutzerPasswort2' size='12' class='input' value='".$benutzerPasswort2."'><br><br>
 <input TYPE='submit' VALUE='Weiter &raquo;' class='button'></form>";
-
 			echo "Lassen Sie das Passwortfeld leer, falls das alte Passwort erhalten bleiben soll.";
 	}
 	else
@@ -405,7 +370,6 @@ if ($action == "editBereich") {
 			$bez = array_pop($zeile);
 			$zeile = array_reverse($zeile);
 			$zeile = implode(" ", $zeile);
-			
 			$typ[$bez] = $zeile;			
 		}
 		$typ['AuthName'] = str_replace($cfg['ad'],"",$typ['AuthName']);
@@ -451,7 +415,6 @@ if ($action == "delBenutzer2") {
 
 if ($action == "delBenutzer") {
 	echo "<b>Benutzer löschen</b><br><br>";
-
 	if (file_exists($htaccess)) {
 		echo "Möchten Sie den Benutzer <b>$name</b> wirklich entfernen?<br><br><a href='?action=delBenutzer2&name=$name'>Ja!</a>";
 	}
@@ -460,7 +423,6 @@ if ($action == "delBenutzer") {
 		echo $filenoexist;
 	}
 }
-
 
 if ($action == "delBereich2") {
 	echo "<b>Passwortgeschützten Bereich löschen</b><br><br>";
@@ -480,22 +442,11 @@ if ($action == "delBereich") {
 	}
 }
 
-
 echo $cfg['footer'];
 exit;
-
 ?>
-
-
-
-        </td>
-        <!-- body_text_eof //-->
-      </tr>
-    </table>
-    <!-- body_eof //-->
-    <!-- footer //-->
-    <?php require(DIR_WS_INCLUDES . 'footer.php'); ?>
-    <!-- footer_eof //-->
-  </body>
-</html>
-<?php require(DIR_WS_INCLUDES . 'application_bottom.php'); ?>
+<!-- end content -->
+<?php 
+require(DIR_WS_INCLUDES . 'application_bottom.php'); 
+require(DIR_WS_INCLUDES . 'application_bottom_0.php');
+?>

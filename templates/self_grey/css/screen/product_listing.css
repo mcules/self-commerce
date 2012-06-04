@@ -1,0 +1,225 @@
+@charset "UTF-8";
+/**
+* YAML-based Template for xt:Commerce
+*
+* (en) product listing
+* (de) Produktauflistung
+*
+* @copyright       Copyright 2006-2007, Björn Teßmann (tessmann@zerosoft.de)
+*                  Based on YAML, Copyright 2005-2007, Dirk Jesse
+* @link            http://www.zs-ecommerce.com
+* @package         yaml for xt:Commerce
+* @version         1.6.0   
+*/
+
+@media all
+{
+
+/* #################################################################################################### */
+/* ### product listing 1 col                                                                        ### */
+/* ### also for modules: crossselling, reverse_crossselling, also purached, specials, new_products, ### */
+/* ### new_products_default, new_products_overview , account , reviews                              ### */
+/* #################################################################################################### */
+
+#col3_content h1.productListing1ColHead  {
+  padding:1px 3px 1px 0px;
+  border-top: 0px  solid #ccc;
+  border-left: 0px  solid #ccc;
+  border-right: 0px  solid #ccc;
+  font-weight: bold;
+  font-size:1.2em;
+}
+#col3_content h1.productListing1ColHead a{
+  
+}
+
+.productListing1ColBody {
+  
+  border-bottom:1px solid #9F9F9F;
+  font-size:0.9em;
+  margin-bottom:15px;
+  padding-bottom:15px;
+}
+
+.productListing1ColBodyImg {
+float:left;
+padding-right:3px;
+}
+
+/* define distance for thumbnails , default: 130 for 120px width thumbnails*/
+.productListing1ColBodyTxt {
+  margin-left:150px; /* */
+}
+
+
+.productListing1ColDesc {
+  /* show or hide short description */
+  /* display:none; */
+}
+
+/* price */
+.productListing1ColPriceInfo {
+  font-size:1.1em;
+  font-weight:bold;
+  text-align:right;
+  padding-top:3px;
+}
+
+/* TaxInfo */
+.productListing1ColTaxInfo {
+  font-size:0.8em;
+  text-align:right;
+}
+
+/* ShippingInfo */
+.productListing1ColShiptime {
+  font-size:0.9em;
+  text-align:right;
+  /* show or hide shipping time */
+  /* display:none; */
+}
+
+/* Buttons */
+.productListing1ColButtons {
+  padding-top:3px;
+  /* display:none; */
+}
+
+/* show or hide display view-Button*/
+.productListing1ColViewButton {
+  /* display:none; */
+}
+
+/* show or hide display buy-Button*/
+.productListing1ColBuyButton {
+  /* display:none; */
+}
+/* ################################################################################################################## */
+/* ### productListing2col ########################################################################################### */
+/* ################################################################################################################## */
+
+
+.containerProdListing2col .subcolumns {
+	text-align:center;
+	margin:0 0 0px 0;
+	padding:0 0 0px 0;
+	
+	font-size:0.8em;
+}
+.productListing3colBuyNow {
+	margin-top:5px;
+}
+
+.containerProdListing2col h1 {
+	background:transparent;
+	color:#000;
+	font-size:1.2em;
+}
+.containerProdListing2col h1 a{
+	color:#000;
+
+}
+
+
+.containerProdListing2col .subcl, .containerProdListing2col .subcr {
+padding:2px;
+}
+
+/* Abstand zwischen Beschreibung+Bild und Button für Detailseite */
+.ProdListing2colSpacer {
+	height:21em;
+}
+.ProdListing2colBorder {
+  border:1px solid #CCCCCC;
+  padding:4px;
+} 
+
+.ProdListing2colBorderOver {
+  border:1px solid #000;
+  padding:4px;
+}
+
+.containerProdListing2col img.imgCenter {
+  padding:4px;
+  border:1px solid #CCCCCC;
+  background:#fff;
+}
+.prodPriceInfo2col {
+  font-size:1.1em;
+  font-weight:bold;
+}
+
+.prodShiptime2col {
+  font-size:1.0em;
+  font-weight:bold;
+}
+
+.prodTaxShipInfo2col {
+  font-size:0.9em;
+}
+
+/* ################################################################################################################## */
+/* ### productListing3col ########################################################################################### */
+/* ################################################################################################################## */
+
+
+.containerProdListing3col .subcolumns {
+	text-align:center;
+	margin:0 0 0px 0;
+	padding:0 0 0px 0;
+	
+	font-size:0.8em;
+}
+.productListing3colBuyNow {
+	margin-top:5px;
+}
+
+.containerProdListing3col h1 {
+	background:transparent;
+	color:#000;
+	font-size:1.2em;
+}
+.containerProdListing3col h1 a{
+	color:#000;
+
+}
+
+
+.containerProdListing3col .subcl, .containerProdListing3col .subc, .containerProdListing3col .subcr {
+padding:2px;
+}
+
+/* Abstand zwischen Beschreibung+Bild und Button für Detailseite */
+.ProdListing3colSpacer {
+	height:21em;
+}
+.ProdListing3colBorder {
+  border:1px solid #CCCCCC;
+  padding:4px;
+} 
+
+.ProdListing3colBorderOver {
+  border:1px solid #000;
+  padding:4px;
+}
+
+.containerProdListing3col img.imgCenter {
+  padding:4px;
+  border:1px solid #CCCCCC;
+  background:#fff;
+}
+.prodPriceInfo3col {
+  font-size:1.1em;
+  font-weight:bold;
+}
+
+.prodShiptime3col {
+  font-size:1.0em;
+  font-weight:bold;
+}
+
+.prodTaxShipInfo3col {
+  font-size:0.9em;
+}
+
+}

@@ -451,13 +451,13 @@ define('SHIPPING_EXCL','exkl.');
 define('SHIPPING_COSTS','Versandkosten');
 
 define('IMAGE_BUTTON_REMOVE_PRODUCT','Artikel aus Warenkorb löschen?');
-define ('BOX_HEADING_SEARCH','Suchen');
+define('BOX_HEADING_SEARCH','Suchen');
 // kdn sortierfeld
-define ('SORT_CHANGE','Sortierung w&auml;hlen');
-define ('A_Z','A -> Z');
-define ('Z_A','Z -> A');
-define ('PRICE_UP','Preis - auf');
-define ('PRICE_DOWN','Preis - ab');
-define ('MANU_UP','Hersteller - auf');
-define ('MANU_DOWN','Hersteller - ab');
+define('SORT_CHANGE','Sortierung w&auml;hlen');
+define('A_Z','A -> Z');
+define('Z_A','Z -> A');
+define('PRICE_UP','Preis - auf');
+define('PRICE_DOWN','Preis - ab');
+define('MANU_UP','Hersteller - auf');
+define('MANU_DOWN','Hersteller - ab');
 ?>

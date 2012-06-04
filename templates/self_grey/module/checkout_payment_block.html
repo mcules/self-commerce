@@ -1,0 +1,28 @@
+{foreach name=aussen item=module_data from=$module_content}
+<div class="{cycle values="container,container2"}">
+
+    <div class="floatbox">
+  	  {$module_data.selection}
+  		{$module_data.module} {if $module_data.module_cost != ''}<em>{$module_data.module_cost}</em>{/if}
+		</div>
+		{if $module_data.description}<p class="optionsBg">{$module_data.description}</p>{/if}
+
+	  {if $module_data.error}
+		  <p><strong class="error">{$module_data.error}</strong></p>
+	  {else}
+	  
+		{foreach name=aussen item=method_data from=$module_data.fields}
+			  
+        <div class="optionsBg">
+		      <div class="floatbox">{$method_data.title}<br class="clearHere" />{$method_data.field}</div>
+			  </div>
+			  
+		{/foreach}
+	  {/if}
+</div>
+{/foreach}
+
+<hr class="dis" />
+
+
+

@@ -20,47 +20,28 @@ $content_string = '';
 
 $box_smarty->assign('language', $_SESSION['language']);
 // set cache ID
-if (!CacheCheck()) {
+//if (!CacheCheck()) {
 	$cache=false;
 	$box_smarty->caching = 0;
-} else {
-	$cache=true;
-	$box_smarty->caching = 1;
-	$box_smarty->cache_lifetime = CACHE_LIFETIME;
-	$box_smarty->cache_modified_check = CACHE_CHECK;
-	$cache_id = $_SESSION['language'].$_SESSION['customers_status']['customers_status_id'];
-}
+//} else {
+//	$cache=true;
+//	$box_smarty->caching = 1;
+//	$box_smarty->cache_lifetime = CACHE_LIFETIME;
+//	$box_smarty->cache_modified_check = CACHE_CHECK;
+//	$cache_id = $_SESSION['language'].$_SESSION['customers_status']['customers_status_id'];
+//}
 
-$content_string = '<ul  id="box_extra2">';
-
-if (!$box_smarty->is_cached(CURRENT_TEMPLATE.'/boxes/box_extra2.html', $cache_id) || !$cache) {
+if (!$box_smarty->iscached(CURRENT_TEMPLATE.'/boxes/box_extra2.html', $cache_id) || !$cache) {
 	$box_smarty->assign('tpl_path', 'templates/'.CURRENT_TEMPLATE.'/');
 
-	if (GROUP_CHECK == 'true') {
-		$group_check = "and group_ids LIKE '%c_".$_SESSION['customers_status']['customers_status_id']."_group%'";
-	}
-
-	$content_query = "SELECT
-	 					content_id,
-	 					categories_id,
-	 					parent_id,
-	 					content_title,
-	 					content_group
-	 					FROM ".TABLE_CONTENT_MANAGER."
-	 					WHERE languages_id='".(int) $_SESSION['languages_id']."'
-	 					and file_flag=3 ".$group_check." and content_status=1 order by sort_order";
-
-	$content_query = xtDBquery($content_query);
-
-	while ($content_data = xtc_db_fetch_array($content_query, true)) {
-		$SEF_parameter = '';
-		if (SEARCH_ENGINE_FRIENDLY_URLS == 'true')
-			$SEF_parameter = '&product='.xtc_cleanName($content_data['content_title']);
-
-		$content_string .= '<li> <a href="'.xtc_href_link(FILENAME_CONTENT, 'coID='.$content_data['content_group'].$SEF_parameter).'">'.$content_data['content_title'].'</a></li>';
-	}
-
-$content_string .= '</ul>';
+// NEW LINES FOR CONTENT WITH CHILDREN
+require_once (DIR_FS_INC . 'shop_content.php');
+                 /* shop_content(lang, box_flag, parent, css_id, $show_sub) 
+                    $show_sub is optional 
+                    when you will see sub content let it empty, 
+                    write 0 when subchilds not visible
+                 */
+$content_string .= shop_content($_SESSION['languages_id'], 4, 0, 'box_extra2', MODULE_CONTENT_MANAGER_CHILDREN_SHOW);
 
 	if ($content_string != '')
 		$box_smarty->assign('BOX_CONTENT', $content_string);

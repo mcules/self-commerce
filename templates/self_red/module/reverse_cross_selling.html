@@ -6,7 +6,7 @@
   		{foreach name=aussen item=module_data from=$module_content}
   		{php} $col++; 
   		{/php}
-			<td class="products_table" class="main" align="center">
+			<td class="products_table" align="center">
         	{if $module_data.PRODUCTS_IMAGE}<a href="{$module_data.PRODUCTS_LINK}"><img src="{$module_data.PRODUCTS_IMAGE}" alt="{$module_data.PRODUCTS_NAME}" /></a><br />{/if}
             <a class="products_link" href="{$module_data.PRODUCTS_LINK}">{$module_data.PRODUCTS_NAME}</a><br />
         	<span class="products_price">{$module_data.PRODUCTS_PRICE}</span><br />

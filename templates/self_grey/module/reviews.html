@@ -1,0 +1,28 @@
+{config_load file="$language/lang_$language.conf" section="reviews"}
+
+	<h2>{#heading_reviews#}</h2>
+	{foreach name=aussen item=module_data from=$module_content}
+	
+	<h1 class="productListing1ColHead"><a href="{$module_data.PRODUCTS_LINK}">{$module_data.PRODUCTS_NAME}</a></h1>
+  <div class="productListing1ColBody">
+  
+  
+    <div class="floatbox">
+  			  <div class="productListing1ColBodyImg">
+      					{if $module_data.PRODUCTS_IMAGE}
+                  <a href="{$module_data.PRODUCTS_LINK}"><img src="{$module_data.PRODUCTS_IMAGE}" alt="{$module_data.PRODUCTS_NAME}" class="thumb_img" /></a>
+                {else}{* if no picture available  *}
+                  &nbsp; 
+                {/if}  
+				  </div>
+        <div class="productListing1ColBodyTxt"> 
+    			{#text_product#} <a href="{$module_data.PRODUCTS_LINK}">{$module_data.PRODUCTS_NAME}</a><br />
+    			{#text_author#} {$module_data.AUTHOR}<br /><br />
+    			{#text_text#}
+    			{$module_data.TEXT}<br /><br />
+    			{#text_rating#}{$module_data.RATING}
+        </div></div>
+    </div>
+	
+	{/foreach}
+	<div class="modReviewsFooter">{$NAVBAR}</div>

@@ -1,5 +1,5 @@
 <?php
-/*------------------------------------------------------------------------------
+/* --------------------------------------------------------------
   $Id: stock_list.php,v 1.00 2006/05/21 GERMANN.NEWMEDIA
 
   XTC - Contribution for XT-Commerce http://www.xt-commerce.com
@@ -9,46 +9,22 @@
   http://www.internetauftritte.ch
 
   Released under the GNU General Public License
-------------------------------------------------------------------------------*/
-
-  require('includes/application_top.php');
-
-
-
-
+   --------------------------------------------------------------*/
+require ('includes/application_top.php');
+require ('includes/application_top_1.php');
 ?>
-<!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html <?php echo HTML_PARAMS; ?>>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=<?php echo CHARSET; ?>">
-<title><?php echo TITLE; ?></title>
-<link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
+<!-- content -->
 <link rel="stylesheet" type="text/css" href="includes/stylesheet_stocklist.css" media="screen">
 <link rel="stylesheet" type="text/css" href="includes/stylesheet_stocklist_print.css" media="print">
-<script type="text/javascript" src="includes/general.js"></script>
-</head>
-<body marginwidth="0" marginheight="0" topmargin="0" bottommargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFFF" onLoad="SetFocus();">
-<!-- header //-->
-<?php require(DIR_WS_INCLUDES . 'header.php'); ?>
-<!-- header_eof //-->
 
-<!-- body //-->
-<table border="0" width="100%" cellspacing="2" cellpadding="2">
-  <tr>
-    <td width="<?php echo BOX_WIDTH; ?>" valign="top" id="BlockLeft"><table border="0" width="<?php echo BOX_WIDTH; ?>" cellspacing="1" cellpadding="1" class="columnLeft">
-<!-- left_navigation //-->
-<?php require(DIR_WS_INCLUDES . 'column_left.php'); ?>
-<!-- left_navigation_eof //-->
-    </table></td>
-<!-- body_text //-->
-    <td class="boxCenter" width="100%" valign="top"><table border="0" width="100%" cellspacing="0" cellpadding="2">
+<table border="0" width="100%" cellspacing="0" cellpadding="2">
       <tr>
         <td width="100%"><table border="0" width="100%" cellspacing="0" cellpadding="0">
           <tr>
             <td class="pageHeading"><?php echo HEADING_TITLE; ?></td>
              
 			 <td class="smallText" align="right">
-			 	<? 
+			 	<?php 
 				// how many products on the page
 				echo xtc_draw_form('formpaging', FILENAME_STOCK_LIST, '', 'get');
 				echo xtc_draw_pull_down_menu('paging', $pages_array, $_GET['paging'], 'onChange="this.form.submit();"'); 
@@ -139,11 +115,11 @@
 				$prodsort   = 'p.products_quantity DESC';            
 				break;                                              
 			default             :
-				$prodsort   = 'p.products_model ASC';
+				$prodsort   = 'p.products_quantity ASC';
 				break;
 		}
 		} else {
-				$prodsort   = 'p.products_model ASC';
+				$prodsort   = 'p.products_quantity ASC';
 		}       
 			
 			
@@ -189,32 +165,32 @@
 
 	  ?>    
 		<tr class="dataTableRow2" onMouseOver="this.className='dataTableRowOver2'" onMouseOut="this.className='dataTableRow2'" valign="top">
-			<td class="dataTableContent2"><? echo $products['products_id']; ?></td>
-			<td class="dataTableContent2"><?
+			<td class="dataTableContent2"><?php echo $products['products_id']; ?></td>
+			<td class="dataTableContent2"><?php
 			if ($products['products_status'] == '1') {
                 echo xtc_image(DIR_WS_IMAGES . 'icon_status_green.gif', IMAGE_ICON_STATUS_GREEN, 10, 10) . '&nbsp;&nbsp;' . xtc_image(DIR_WS_IMAGES . 'icon_status_red_light.gif', IMAGE_ICON_STATUS_RED_LIGHT, 10, 10);
             } else {
                 echo xtc_image(DIR_WS_IMAGES . 'icon_status_green_light.gif', IMAGE_ICON_STATUS_GREEN_LIGHT, 10, 10) . '&nbsp;&nbsp;' . xtc_image(DIR_WS_IMAGES . 'icon_status_red.gif', IMAGE_ICON_STATUS_RED, 10, 10);
             } ?>
 		  	</td>
-			<td class="dataTableContent2"><? echo $products['products_model']; ?>&nbsp;</td>
-			<td class="dataTableContent2"><a href="categories.php?search=<? echo $products['products_name']; ?>" title="<?php echo TEXT_SHOW_PRODUCTS; ?>"><? echo $products['products_name']; ?></a>
+			<td class="dataTableContent2"><?php echo $products['products_model']; ?>&nbsp;</td>
+			<td class="dataTableContent2"><a href="categories.php?search=<? echo $products['products_name']; ?>" title="<?php echo TEXT_SHOW_PRODUCTS; ?>"><?php echo $products['products_name']; ?></a>
 				<table border="0" width="100%" cellspacing="0" cellpadding="2">			
-				<? 
+				<?php 
 				// output options
 				while ($attributes = xtc_db_fetch_array($attributes_query)) {
 				?>
 				<tr class="dataTableRow3" onMouseOver="this.className='dataTableRowOver3'" onMouseOut="this.className='dataTableRow3'">
-				<td class="dataTableContent3" width="20%"><? echo $attributes['products_options_name'].":&nbsp;"; ?></td>
-				<td class="dataTableContent3" width="50%"><? echo $attributes['products_options_values_name']; ?></td>
-				<td class="dataTableContent3" align="right"><? echo $attributes['attributes_stock']; ?>&nbsp;</td>			
+				<td class="dataTableContent3" width="20%"><?php echo $attributes['products_options_name'].":&nbsp;"; ?></td>
+				<td class="dataTableContent3" width="50%"><?php echo $attributes['products_options_values_name']; ?></td>
+				<td class="dataTableContent3" align="right"><?php echo $attributes['attributes_stock']; ?>&nbsp;</td>			
 				</tr>
 				<?
 				} // end while options
 				?>
 				</table>
 			</td>
-			<td class="dataTableContent2"><? echo $products['products_quantity']; ?></td>
+			<td class="dataTableContent2"><?php echo $products['products_quantity']; ?></td>
 		</tr>
 <?
  } // while end product loop
@@ -237,12 +213,8 @@
 <!-- body_text_eof //-->
   </tr>
 </table>
-<!-- body_eof //-->
-
-<!-- footer //-->
-<?php require(DIR_WS_INCLUDES . 'footer.php'); ?>
-<!-- footer_eof //-->
-<br />
-</body>
-</html>
-<?php require(DIR_WS_INCLUDES . 'application_bottom.php'); ?>
+<!-- end content -->
+<?php 
+require(DIR_WS_INCLUDES . 'application_bottom.php'); 
+require(DIR_WS_INCLUDES . 'application_bottom_0.php');
+?>

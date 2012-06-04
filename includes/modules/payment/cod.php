@@ -44,6 +44,16 @@ class cod {
 		if ($_SESSION['shipping']['id'] == 'selfpickup_selfpickup') {
 			$this->enabled = false;
 		}
+		// Bugfix by SNC-JANSEN
+    if (MODULE_PAYMENT_COD_ALLOWED != '') { 
+      $cod_allowed_zones = split("[:,]", MODULE_PAYMENT_COD_ALLOWED); 
+      if (in_array($order->delivery['country']['iso_code_2'], $cod_allowed_zones)) { 
+        // SOMETHING TO DO, IF IN THERE? AT THIS TIME: NO 
+      } else { 
+        $this->enabled = false; 
+      } 
+    } 		
+		
 		if (($this->enabled == true) && ((int) MODULE_PAYMENT_COD_ZONE > 0)) {
 			$check_flag = false;
 			$check_query = xtc_db_query("select zone_id from ".TABLE_ZONES_TO_GEO_ZONES." where geo_zone_id = '".MODULE_PAYMENT_COD_ZONE."' and zone_country_id = '".$order->delivery['country']['id']."' order by zone_id");

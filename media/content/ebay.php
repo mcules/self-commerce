@@ -3,6 +3,9 @@
 # php eBay List 1.2.1
 # Grab and Display your eBay auctions on your web site
 # --------------------------------------------------                  
+#
+# (c) 2012	 Self-Commerce www.self-commerce.de
+#
 # Written by: Chrispian H. Burks
 # email: chris@aeoninteractive.com                                       
 # website: http://www.aeoninteractive.net                                  
@@ -104,14 +107,14 @@ else {
 
 
 // Grab just the contents we want
-$stuff = eregi("$Start(.*)$GrabEnd", $r, $content);
+$stuff = preg_match("~$Start(.*)$GrabEnd~", $r, $content);
 
 // Get rid of some rubbish we don't need.
 // And set things up to be split into lines and items.
 
-$content[1] = ereg_replace("</a><table border=\"1\" cellpadding=\"3\".*</td><br /></tr>","",$content[1]);
-$content[1] = ereg_replace("<tr bgcolor=\"#CCCCFF\">.*Höchstbietender\/Status","",$content[1]);
-$content[1] = ereg_replace("<tr bgcolor=\"#CCCCFF\">.*Höchstbietender\/Status","",$content[1]);
+$content[1] = str_replace('</a><table border="1" cellpadding="3".*</td><br /></tr>', "", $content[1]);
+$content[1] = str_replace('<tr bgcolor="#CCCCFF">.*Höchstbietender\/Status', "", $content[1]);
+$content[1] = str_replace('<tr bgcolor="#CCCCFF">.*Höchstbietender\/Status', "", $content[1]);
 $content[1] = str_replace("</table>", "", $content[1]);
 $content[1] = str_replace("</th>", "", $content[1]);
 $content[1] = str_replace("\r\n", "", $content[1]);
@@ -154,20 +157,7 @@ foreach ($items as $listing) {
 
 	//Use a countdown to get Time Left
 	//We first need to break apart End and convert the months to numbers
-	$seperate = split('[. :]', $End);
-
-//	$seperate[0] = str_replace("Jan", "1", $seperate[0]);
-//	$seperate[0] = str_replace("Feb", "2", $seperate[0]);
-//  $seperate[0] = str_replace("Mar", "3", $seperate[0]);
-//	$seperate[0] = str_replace("Apr", "4", $seperate[0]);
-//	$seperate[0] = str_replace("May", "5", $seperate[0]);
-//  $seperate[0] = str_replace("Jun", "6", $seperate[0]);
-//  $seperate[0] = str_replace("Jul", "7", $seperate[0]);
-//	$seperate[0] = str_replace("Aug", "8", $seperate[0]);
-//	$seperate[0] = str_replace("Sep", "9", $seperate[0]);
-//	$seperate[0] = str_replace("Oct", "10", $seperate[0]);
-//	$seperate[0] = str_replace("Nov", "11", $seperate[0]);
-//	$seperate[0] = str_replace("Dec", "12", $seperate[0]);
+	$seperate = explode('[. :]', $End);
 		
     	$day = $seperate[0];
     	$month = $seperate[1];

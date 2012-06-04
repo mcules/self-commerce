@@ -1,14 +1,13 @@
 <?php
 /* --------------------------------------------------------------
-   $Id$
-
-   Self-Commerce - Fresh up your eCommerce
-   http://www.self-commerce.de
-   Copyright (c) 2012 Self-Commerce
-   --------------------------------------------------------------
+   SCStart.php
+   Eisold EDV UG
+   http://www.eisold-edv.de
+   Copyright (c) 2012 Eisold EDV UG
    Released under the GNU General Public License (Version 2)
    [http://www.gnu.org/licenses/gpl-2.0.html]
-   --------------------------------------------------------------*/
+   --------------------------------------------------------------
+*/
 	require_once(DIR_FS_CATALOG . 'inc/sc_xtc_href_link.inc.php');
 	
 	class SC_Start {

@@ -6,7 +6,6 @@ We created an account for you.
 
 {if $COMMENTS}Comments:{$COMMENTS}{/if}
 
-Login with following account/password:
+Login with following account:
 
 mail:{$EMAIL}
-password: {$PASSWORD}

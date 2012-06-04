@@ -1,0 +1,12 @@
+{config_load file="$language/lang_$language.conf" section="boxes"}
+<div class="boxInfoRS" id="box_login">
+  <h4>{#heading_login#}</h4>
+	<div class="boxInfoBodyRS">
+	{$FORM_ACTION}
+		<p>{#text_email#}:
+		{$FIELD_EMAIL}</p>
+		<p>{$FIELD_PWD}{$BUTTON}</p>
+		<p><a href="{$LINK_LOST_PASSWORD}">{#text_password_forgotten#}</a></p>
+	{$FORM_END}
+	</div>
+</div>

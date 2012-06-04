@@ -626,34 +626,39 @@ define('TINY_CSS_TITLE','Stylesheet Auswahl:');
 define('TINY_CSS_DESC','Geben Sie hier an, welche stylesheet Datei verwendet wird um im Editor in der Style Auswahl zu erscheinen.<br />Die Datei <b>muß</b> im Ordner Ihres Templates liegen!<br />Beispiel: tiny.css');
 
 // Mail Attachments
-define ('ATTACH_ORDER_1_TITLE','Bestellung Anhang 1:');
-define ('ATTACH_ORDER_1_DESC','Geben Sie hier den Dateinamen für den Anhang der Mail an.<br />Die Datei muß sich im Ordner <b>attachments</b> befinden.<br />Wenn kein Anhang gewünscht wird einfach das Feld leer lassen.');
-define ('ATTACH_ORDER_2_TITLE','Bestellung Anhang 2:');
-define ('ATTACH_ORDER_2_DESC','Geben Sie hier den Dateinamen für den Anhang der Mail an.<br />Die Datei muß sich im Ordner <b>attachments</b> befinden.<br />Wenn kein Anhang gewünscht wird einfach das Feld leer lassen.');
-define ('ATTACH_CREATE_1_TITLE','Kundenerstellung Anhang 1:');
-define ('ATTACH_CREATE_1_DESC','Geben Sie hier den Dateinamen für den Anhang der Mail an.<br />Die Datei muß sich im Ordner <b>attachments</b> befinden.<br />Wenn kein Anhang gewünscht wird einfach das Feld leer lassen.');
-define ('ATTACH_CREATE_2_TITLE','Kundenerstellung Anhang 2:');
-define ('ATTACH_CREATE_2_DESC','Geben Sie hier den Dateinamen für den Anhang der Mail an.<br />Die Datei muß sich im Ordner <b>attachments</b> befinden.<br />Wenn kein Anhang gewünscht wird einfach das Feld leer lassen.');
-define ('ATTACH_ORDER_STATUS_1_TITLE','Bestellung Statusänderung Anhang 1:');
-define ('ATTACH_ORDER_STATUS_1_DESC','Geben Sie hier den Dateinamen für den Anhang der Mail an.<br />Die Datei muß sich im Ordner <b>attachments</b> befinden.<br />Wenn kein Anhang gewünscht wird einfach das Feld leer lassen.');
-define ('ATTACH_ORDER_STATUS_2_TITLE','Bestellung Statusänderung Anhang 2:');
-define ('ATTACH_ORDER_STATUS_2_DESC','Geben Sie hier den Dateinamen für den Anhang der Mail an.<br />Die Datei muß sich im Ordner <b>attachments</b> befinden.<br />Wenn kein Anhang gewünscht wird einfach das Feld leer lassen.');
+define('ATTACH_ORDER_1_TITLE','Bestellung Anhang 1:');
+define('ATTACH_ORDER_1_DESC','Geben Sie hier den Dateinamen für den Anhang der Mail an.<br />Die Datei muß sich im Ordner <b>attachments</b> befinden.<br />Wenn kein Anhang gewünscht wird einfach das Feld leer lassen.');
+define('ATTACH_ORDER_2_TITLE','Bestellung Anhang 2:');
+define('ATTACH_ORDER_2_DESC','Geben Sie hier den Dateinamen für den Anhang der Mail an.<br />Die Datei muß sich im Ordner <b>attachments</b> befinden.<br />Wenn kein Anhang gewünscht wird einfach das Feld leer lassen.');
+define('ATTACH_CREATE_1_TITLE','Kundenerstellung Anhang 1:');
+define('ATTACH_CREATE_1_DESC','Geben Sie hier den Dateinamen für den Anhang der Mail an.<br />Die Datei muß sich im Ordner <b>attachments</b> befinden.<br />Wenn kein Anhang gewünscht wird einfach das Feld leer lassen.');
+define('ATTACH_CREATE_2_TITLE','Kundenerstellung Anhang 2:');
+define('ATTACH_CREATE_2_DESC','Geben Sie hier den Dateinamen für den Anhang der Mail an.<br />Die Datei muß sich im Ordner <b>attachments</b> befinden.<br />Wenn kein Anhang gewünscht wird einfach das Feld leer lassen.');
+define('ATTACH_ORDER_STATUS_1_TITLE','Bestellung Statusänderung Anhang 1:');
+define('ATTACH_ORDER_STATUS_1_DESC','Geben Sie hier den Dateinamen für den Anhang der Mail an.<br />Die Datei muß sich im Ordner <b>attachments</b> befinden.<br />Wenn kein Anhang gewünscht wird einfach das Feld leer lassen.');
+define('ATTACH_ORDER_STATUS_2_TITLE','Bestellung Statusänderung Anhang 2:');
+define('ATTACH_ORDER_STATUS_2_DESC','Geben Sie hier den Dateinamen für den Anhang der Mail an.<br />Die Datei muß sich im Ordner <b>attachments</b> befinden.<br />Wenn kein Anhang gewünscht wird einfach das Feld leer lassen.');
 
 // Google Analytics
-define ('GOOGLE_ANAL_ON_TITLE','Google Analytics einschalten');
-define ('GOOGLE_ANAL_ON_DESC','Einschalten: true<br />Ausschalten: false');
-define ('GOOGLE_ANAL_CODE_TITLE','Analytics code:');
-define ('GOOGLE_ANAL_CODE_DESC','Geben Sie hier ihren Analytics Code an.<br />Beispiel: UA-XXXXXXX-1');
+define('GOOGLE_ANAL_ON_TITLE','Google Analytics einschalten');
+define('GOOGLE_ANAL_ON_DESC','Einschalten: true<br />Ausschalten: false');
+define('GOOGLE_ANAL_CODE_TITLE','Analytics code:');
+define('GOOGLE_ANAL_CODE_DESC','Geben Sie hier ihren Analytics Code an.<br />Beispiel: UA-XXXXXXX-1');
 
 // Wartung
-define ('WARTUNG_TITLE','Wartung ein/ausschalten:');
-define ('WARTUNG_DESC','<b><font color="red">ACHTUNG! hiermit schalten Sie den Shop in den Wartungszustand.<br />true = offline, false = online</font></b>');
-define ('WARTUNG_TEXT_TITLE','Inhalt der Wartungs-Seite:');
-define ('WARTUNG_TEXT_DESC','Geben Sie hier den Inhalt der Wartungs-Seite an.<br />Es ist HTML Code möglich.');
+define('WARTUNG_TITLE','Wartung ein/ausschalten:');
+define('WARTUNG_DESC','<b><font color="red">ACHTUNG! hiermit schalten Sie den Shop in den Wartungszustand.<br />true = offline, false = online</font></b>');
+define('WARTUNG_TEXT_TITLE','Inhalt der Wartungs-Seite:');
+define('WARTUNG_TEXT_DESC','Geben Sie hier den Inhalt der Wartungs-Seite an.<br />Es ist HTML Code möglich.');
 
 // Login Safe
-define ('LOGIN_NUM_TITLE','Anzahl der erlaubten Loginversuche:');
-define ('LOGIN_NUM_DESC','Stellen Sie hier ein, nach wieviel falschen Versuchen die Grafikcode abfrage erscheinen soll.<br /><b>default: 3</b>');
-define ('LOGIN_TIME_TITLE','Zeit zwischen den Logins:');
-define ('LOGIN_TIME_DESC','Wenn diese Zeit vergangen ist, wird die Grafikcode abfrage abgeschalten, und es ist wieder ein normales Login möglich. (in sekunden!)<br /><b>default: 300</b>');
+define('LOGIN_NUM_TITLE','Anzahl der erlaubten Loginversuche:');
+define('LOGIN_NUM_DESC','Stellen Sie hier ein, nach wieviel falschen Versuchen die Grafikcode abfrage erscheinen soll.<br /><b>default: 3</b>');
+define('LOGIN_TIME_TITLE','Zeit zwischen den Logins:');
+define('LOGIN_TIME_DESC','Wenn diese Zeit vergangen ist, wird die Grafikcode abfrage abgeschalten, und es ist wieder ein normales Login möglich. (in sekunden!)<br /><b>default: 300</b>');
+// erweiterter contentmanager
+define('MODULE_CONTENT_MANAGER_CHILDREN_CENTERBOX_TITLE', 'Centerbox-Modus');
+define('MODULE_CONTENT_MANAGER_CHILDREN_CENTERBOX_DESC', 'Nur die nächste Seite (children) in der Centerbox anzeigen, oder alle folgenden Seiten (sisters)?');
+define('MODULE_CONTENT_MANAGER_CHILDREN_SHOW_TITLE', 'Children anzeigen?');
+define('MODULE_CONTENT_MANAGER_CHILDREN_SHOW_DESC', 'Die Nachfahren der einzelen Dokumente in den Boxen anzeigen?');
 ?>

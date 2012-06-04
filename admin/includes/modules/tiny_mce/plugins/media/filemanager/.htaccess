@@ -1,4 +1,0 @@
-AuthType Basic
-AuthName "safed"
-AuthUserFile /var/www/web9/html/admin/includes/modules/tiny_mce/plugins/media/filemanager/.htpasswd
-require valid-user

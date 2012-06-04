@@ -8,6 +8,7 @@
 
    Copyright (c) 2003 XT-Commerce
    -----------------------------------------------------------------------------------------
+   (c) 2012	 Self-Commerce www.self-commerce.de
    based on:
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
    (c) 2002-2003 osCommerce(checkout_payment.php,v 1.110 2003/03/14); www.oscommerce.com
@@ -240,7 +241,7 @@ $smarty->assign('language', $_SESSION['language']);
 $smarty->assign('main_content', $main_content);
 $smarty->caching = 0;
 if (!defined(RM))
-        $smarty->load_filter('output', 'note');
+        $smarty->loadfilter('output', 'note');
 $smarty->display(CURRENT_TEMPLATE.'/index.html');
 include ('includes/application_bottom.php');
 ?>

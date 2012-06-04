@@ -123,4 +123,8 @@ define('TEXT_DO_STATUS_CHANGE','Status really change?');
 define('HEADING_MULTI_ORDER_STATUS','Order Fast Progress');
 define('WARNING_ORDER_NOT_UPDATED_ALL','Order not updated all pleas check your entry');
 
+//BEGIN NEXT AND PREVIOUS ORDERS DISPLAY IN ADMIN 
+define('PREV_ORDER', '<b><<Previous Order</b>'); 
+define('NEXT_ORDER', '<b>Next Order>></b>'); 
+//END NEXT AND PREVIOUS ORDERS DISPLAY IN ADMIN
 ?>

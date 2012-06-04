@@ -12,11 +12,9 @@
    (c) 2002-2003 osCommerce(manufacturers.php,v 1.52 2003/03/22); www.oscommerce.com 
    (c) 2003	 nextcommerce (manufacturers.php,v 1.9 2003/08/18); www.nextcommerce.org
 
-   Released under the GNU General Public License 
+   Released under the GNU General Public License
    --------------------------------------------------------------*/
-
-  require('includes/application_top.php');
-
+require ('includes/application_top.php');
 function xtc_remove_product($product_id) {
     $product_image_query = xtc_db_query("select products_image from " . TABLE_PRODUCTS . " where products_id = '" . xtc_db_input($product_id) . "'");
     $product_image = xtc_db_fetch_array($product_image_query);
@@ -111,7 +109,17 @@ function xtc_remove_product($product_id) {
         $manufacturers_url_array = $_POST['manufacturers_url'];
         $language_id = $languages[$i]['id'];
 
-        $sql_data_array = array('manufacturers_url' => xtc_db_prepare_input($manufacturers_url_array[$language_id]));
+// http:// muß vor maufacturer url
+if($manufacturers_url_array[$language_id] != ''){
+  if (preg_match('~^http://~', $manufacturers_url_array[$language_id])){
+    $post_manu_url = xtc_db_prepare_input($manufacturers_url_array[$language_id]);
+  }else{
+    // nicht vorhanden anfügen
+    $post_manu_url = xtc_db_prepare_input('http://'.$manufacturers_url_array[$language_id]);
+  }
+}
+// end http://
+        $sql_data_array = array('manufacturers_url' => $post_manu_url);
 
         if ($_GET['action'] == 'insert') {
           $insert_sql_data = array('manufacturers_id' => $manufacturers_id,
@@ -159,40 +167,30 @@ function xtc_remove_product($product_id) {
       xtc_redirect(xtc_href_link(FILENAME_MANUFACTURERS, 'page=' . $_GET['page']));
       break;
   }
+require ('includes/application_top_1.php');
 ?>
-<!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html <?php echo HTML_PARAMS; ?>>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=<?php echo $_SESSION['language_charset']; ?>"> 
-<title><?php echo TITLE; ?></title>
-<link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
-<script type="text/javascript" src="includes/general.js"></script>
-</head>
-<body marginwidth="0" marginheight="0" topmargin="0" bottommargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFFF" onload="SetFocus();">
-<!-- header //-->
-<?php require(DIR_WS_INCLUDES . 'header.php'); ?>
-<!-- header_eof //-->
+          <table border="0" width="100%" cellspacing="0" cellpadding="2">
+            <tr>
+              <td>
+                <table border="0" width="100%" cellspacing="0" cellpadding="2">
+                  <tr>
+                    <td width="80" rowspan="2">
+<?php echo xtc_image(DIR_WS_ICONS.'heading_news.gif'); ?>
+                    </td>
+                    <td class="pageHeading">
+<?php echo HEADING_TITLE; ?>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="main" valign="top">
 
-<!-- body //-->
-<table border="0" width="100%" cellspacing="2" cellpadding="2">
-  <tr>
-    <td class="columnLeft2" width="<?php echo BOX_WIDTH; ?>" valign="top"><table border="0" width="<?php echo BOX_WIDTH; ?>" cellspacing="1" cellpadding="1" class="columnLeft">
-<!-- left_navigation //-->
-<?php require(DIR_WS_INCLUDES . 'column_left.php'); ?>
-<!-- left_navigation_eof //-->
-    </table></td>
-<!-- body_text //-->
-    <td class="boxCenter" width="100%" valign="top"><table border="0" width="100%" cellspacing="0" cellpadding="2">
-      <tr>
-        <td width="100%"><table border="0" width="100%" cellspacing="0" cellpadding="0">
-          <tr>
-            <td class="pageHeading"><?php echo HEADING_TITLE; ?></td>
-            <td class="pageHeading" align="right"><?php echo xtc_draw_separator('pixel_trans.gif', HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT); ?></td>
-          </tr>
-        </table></td>
-      </tr>
-      <tr>
-        <td><table border="0" width="100%" cellspacing="0" cellpadding="0">
+                    </td>
+                  </tr>
+                </table></td>
+            </tr>
+          </table>
+<!-- content -->
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
           <tr>
             <td valign="top"><table border="0" width="100%" cellspacing="0" cellpadding="2">
               <tr class="dataTableHeadingRow">
@@ -324,18 +322,9 @@ function xtc_remove_product($product_id) {
   }
 ?>
           </tr>
-        </table></td>
-      </tr>
-    </table></td>
-<!-- body_text_eof //-->
-  </tr>
-</table>
-<!-- body_eof //-->
-
-<!-- footer //-->
-<?php require(DIR_WS_INCLUDES . 'footer.php'); ?>
-<!-- footer_eof //-->
-<br />
-</body>
-</html>
-<?php require(DIR_WS_INCLUDES . 'application_bottom.php'); ?>
+        </table>
+<!-- end content -->
+<?php 
+require(DIR_WS_INCLUDES . 'application_bottom.php'); 
+require(DIR_WS_INCLUDES . 'application_bottom_0.php');
+?>

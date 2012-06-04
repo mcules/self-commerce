@@ -37,7 +37,7 @@
 
   
   // define the project version
-  define('PROJECT_VERSION', 'Self-Commerce 2.0');
+  define('PROJECT_VERSION', 'Self-Commerce 2.1');
 
   // set the type of request (secure or not)
   $request_type = (getenv('HTTPS') == '1' || getenv('HTTPS') == 'on') ? 'SSL' : 'NONSSL';
@@ -94,7 +94,7 @@
   }
 
     // Include Template Engine
-  require(DIR_WS_CLASSES . 'Smarty_2.6.18/Smarty.class.php');
+  require(DIR_WS_CLASSES . 'Smarty/Smarty.class.php');
 
 
 ?>

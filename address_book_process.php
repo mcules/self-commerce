@@ -8,6 +8,7 @@
 
    Copyright (c) 2003 XT-Commerce
    -----------------------------------------------------------------------------------------
+   (c) 2012	 Self-Commerce www.self-commerce.de
    based on: 
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
    (c) 2002-2003 osCommerce(address_book_process.php,v 1.77 2003/05/27); www.oscommerce.com
@@ -191,45 +192,7 @@ if (isset ($_POST['action']) && (($_POST['action'] == 'process') || ($_POST['act
 		}
 
 		$messageStack->add_session('addressbook', SUCCESS_ADDRESS_BOOK_ENTRY_UPDATED, 'success');
-// googlemaps begin
-if (GOOGLEMAP_APIKEY != ''){
-  if ((isset ($_POST['primary']) && ($_POST['primary'] == 'on')) || ($_GET['edit'] == $_SESSION['customer_default_address_id'])) {
 
-
-        $url  = "http://maps.google.com/maps/geo?q=";
-        $url .= $street_address . "," . $postcode . "," . $city . "," . $country;
-        $url .= "&output=csv&key=";
-        $url .= GOOGLEMAP_APIKEY;
-        $url = str_replace (" ", "%20", $url);          // Leerzeichen -> %20
-        $request = fopen($url,'r');
-        $content = fread($request,100000);
-        fclose($request);
-
-        list($statuscode, $accuracy, $lat, $lng) = split(",", $content);
-        
-        if ($statuscode != 200)         //  errors occurred; the address was successfully parsedd.
-        {
-                // Versuch ohne Straße
-                $url  = "http://maps.google.com/maps/geo?q=";
-                $url .= $postcode . "," . $city . "," . $country;
-                $url .= "&output=csv&key=";
-                $url .= GOOGLEMAP_APIKEY;
-                $url = str_replace (" ", "%20", $url);          // Leerzeichen -> %20
-                $request = fopen($url,'r');
-                $content = fread($request,100000);
-                fclose($request);
-
-                list($statuscode, $accuracy, $lat, $lng) = split(",", $content);
-        }
-        if ($statuscode == 200)         // No errors occurred; the address was successfully parsed.
-        {
-                $cc_id = $_SESSION['customer_id'];
-                $latlng_query_raw = "update customers_to_latlng set lat = '$lat', lng = '$lng' where customers_id =".$cc_id."";
-                $latlng_query = xtc_db_query($latlng_query_raw);
-        }                
-  }
-}
-//google maps end
 		xtc_redirect(xtc_href_link(FILENAME_ADDRESS_BOOK, '', 'SSL'));
 	}
 }
@@ -330,7 +293,7 @@ $smarty->assign('language', $_SESSION['language']);
 $smarty->assign('main_content', $main_content);
 $smarty->caching = 0;
 if (!defined(RM))
-	$smarty->load_filter('output', 'note');
+	$smarty->loadfilter('output', 'note');
 $smarty->display(CURRENT_TEMPLATE.'/index.html');
 include ('includes/application_bottom.php');
 ?>

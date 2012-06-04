@@ -37,6 +37,7 @@
 {/if}
 {if $PAYMENT_METHOD!=''}
 <div class="checkoutTitle">{#text_payment_method#}&nbsp;&nbsp;<span class="checktext">{$PAYMENT_METHOD}</span>&nbsp;&nbsp;<a href="{$PAYMENT_EDIT}" class="confirmationEdit">{#text_edit#}</a></div>
+{if $MODULE_BUTTONS!=''} {$MODULE_BUTTONS}<br />{/if}
 {/if}
 {if $ORDER_COMMENTS!=''}
 <div class="checkoutTitle">{#text_comments#}&nbsp;&nbsp;<a href="{$PAYMENT_EDIT}" class="confirmationEdit">{#text_edit#}</a></div> 
@@ -49,7 +50,7 @@
 <div class="checkoutTitle">{#text_products#}&nbsp;&nbsp;<a href="{$PRODUCTS_EDIT}" class="confirmationEdit">{#text_edit#}</a></div> 
 <div class="checkoutTable main">{$PRODUCTS_BLOCK}</div>
 <div class="checkoutTable main" align="right">{$TOTAL_BLOCK}</div>
-<div id="button_right">{$CHECKOUT_FORM} {if $MODULE_BUTTONS!=''} {$MODULE_BUTTONS}<br />{/if} {$CHECKOUT_BUTTON}<br /><br /></div>
+<div id="button_right">{$CHECKOUT_FORM} {$CHECKOUT_BUTTON}<br /><br /></div>
 <table class="tableabstand" border="0" width="100%" cellspacing="0" cellpadding="0">
 	<tr>            
 		<td width="20%" align="center" class="checkoutBarTo">{#text_shipping_info#}</td>

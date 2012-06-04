@@ -21,6 +21,7 @@
    if (substr(basename($PHP_SELF), 0,8) != 'advanced') {require(DIR_WS_BOXES . 'whats_new.php'); }
   require(DIR_WS_BOXES . 'search.php');
   require(DIR_WS_BOXES . 'content.php');
+  include(DIR_WS_BOXES . 'centerbox.php');
   require(DIR_WS_BOXES . 'information.php');
   include(DIR_WS_BOXES . 'languages.php');
   if ($_SESSION['customers_status']['customers_status_id'] == 0) include(DIR_WS_BOXES . 'admin.php');
@@ -49,4 +50,7 @@
   }
 
 $smarty->assign('tpl_path','templates/'.CURRENT_TEMPLATE.'/');
+if (isset($_SESSION['customer_id'])) {
+	$smarty->assign('customer_id', (int)$_SESSION['customer_id']);
+}
 ?>

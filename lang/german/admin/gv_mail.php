@@ -7,6 +7,7 @@
 
    Copyright (c) 2003 XT-Commerce
    -----------------------------------------------------------------------------------------
+   (c) 2012	 Self-Commerce www.self-commerce.de
    based on:
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
    (c) 2002-2003 osCommerce(gv_mail.php,v 1.1.2.1 2003/05/15); www.oscommerce.com
@@ -36,7 +37,7 @@ define('TEXT_MESSAGE', 'Nachricht:');
 define('TEXT_SINGLE_EMAIL', '<span class="smallText">Benutzen Sie dieses Feld nur für einzelne eMails, ansonsten bitte das Feld '.TEXT_CUSTOMER.' benutzen</span>');
 define('TEXT_SELECT_CUSTOMER', 'Kunde ausw&auml;hlen');
 define('TEXT_ALL_CUSTOMERS', 'Alle Kunden');
-define('TEXT_NEWSLETTER_CUSTOMERS', 'An alle Rundschreiben-Abonnenten');
+define('TEXT_NEWSLETTER_CUSTOMERS', 'An alle Newsletter-Abonnenten');
 
 define('NOTICE_EMAIL_SENT_TO', 'Hinweis: eMail wurde versandt an: %s');
 define('ERROR_NO_CUSTOMER_SELECTED', 'Fehler: Es wurde kein Kunde ausgew&auml;hlt.');
@@ -49,8 +50,8 @@ define('TEXT_IN_CASE', ' Falls es wider Erwarten zu Problemen beim verbuchen kom
 define('TEXT_OR_VISIT', 'besuchen Sie unsere Webseite ');
 define('TEXT_ENTER_CODE', ' und geben den Gutschein-Code bitte manuell ein ');
 
-define ('TEXT_REDEEM_COUPON_MESSAGE_HEADER', 'Sie haben k&uuml;rzlich in unserem Online-Shop einen Gutschein gekauft, welcher aus Sicherheitsgr&uuml;nden nicht sofort freigeschaltet wurde. Dieses Guthaben steht Ihnen nun zur Verf&uuml;gung.');
-define ('TEXT_REDEEM_COUPON_MESSAGE_AMOUNT', "\n\n" . 'Der Wert Ihres Gutscheines betr&auml;gt %s');
-define ('TEXT_REDEEM_COUPON_MESSAGE_BODY', "\n\n" . 'Sie k&ouml;nnen nun &uuml;ber Ihr pers&ouml;nliches Konto den Gutschein an jemanden versenden.');
-define ('TEXT_REDEEM_COUPON_MESSAGE_FOOTER', "\n\n");
+define('TEXT_REDEEM_COUPON_MESSAGE_HEADER', 'Sie haben k&uuml;rzlich in unserem Online-Shop einen Gutschein gekauft, welcher aus Sicherheitsgr&uuml;nden nicht sofort freigeschaltet wurde. Dieses Guthaben steht Ihnen nun zur Verf&uuml;gung.');
+define('TEXT_REDEEM_COUPON_MESSAGE_AMOUNT', "\n\n" . 'Der Wert Ihres Gutscheines betr&auml;gt %s');
+define('TEXT_REDEEM_COUPON_MESSAGE_BODY', "\n\n" . 'Sie k&ouml;nnen nun &uuml;ber Ihr pers&ouml;nliches Konto den Gutschein an jemanden versenden.');
+define('TEXT_REDEEM_COUPON_MESSAGE_FOOTER', "\n\n");
 ?>

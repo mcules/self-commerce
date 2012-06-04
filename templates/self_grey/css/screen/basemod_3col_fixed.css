@@ -1,0 +1,49 @@
+@charset "UTF-8";
+/**
+* YAML-based Template for xt:Commerce
+*
+* (en) Variation of screen layout (basemod.css) for layout example "3col_fixed"
+* (de) Variation des Screenlayouts (basemod.css) für Layoutbeispiel "3col_fixed"
+*
+* @copyright       Copyright 2006-2007, Björn Teßmann (tessmann@zerosoft.de)               
+* @link            http://www.zs-ecommerce.com
+* @package         yaml for xt:commve
+* @version         1.6.0
+   
+*/
+
+@media screen
+{
+  /**
+  * (en) 
+  * (de) 
+  *
+  * |-------------------------------|
+  * | #header                       |
+  * | 980px                         |
+  * |-------------------------------|
+  * | #col1   | #col3     | #col2   |
+  * | 185px   | 595px     | 200px   |
+  * |-------------------------------|
+  * | #footer                       |
+  * |-------------------------------|
+  */
+.page_margins {
+	width:980px;
+	margin-left: auto;
+ 	margin-right: auto;
+	max-width:inherit;  /* min-width für fixes Layout abschalten */
+	min-width:inherit;  /* max-width für fixes Layout abschalten */
+}
+
+/* Korrektur von Randabständen */
+#main { margin: 0; padding: 0; }
+#footer {margin:0; padding: 1em; border-color: #aaa; }
+
+/* Himtergrundgrafik für linke Spalte - Grafikbreite 200 Pixel */
+#main { background: #fff /*url(../../img/xxx.gif) repeat-y top left;*/ }
+
+
+
+
+}

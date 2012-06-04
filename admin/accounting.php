@@ -14,39 +14,27 @@
 
    Released under the GNU General Public License 
    --------------------------------------------------------------*/
-
-  require('includes/application_top.php');
-
+require ('includes/application_top.php');
+require ('includes/application_top_1.php');
   if ($_GET['action']) {
     switch ($_GET['action']) {
       case 'save':
-
-
       // reset values before writing
        $admin_access_query = xtc_db_query("select * from " . TABLE_ADMIN_ACCESS . " where customers_id = '" . (int)$_GET['cID'] . "'");
        $admin_access = xtc_db_fetch_array($admin_access_query);
-
        $fields = mysql_list_fields(DB_DATABASE, TABLE_ADMIN_ACCESS);
        $columns = mysql_num_fields($fields);
-
 		for ($i = 0; $i < $columns; $i++) {
              $field=mysql_field_name($fields, $i);
                     if ($field!='customers_id') {
-
                     xtc_db_query("UPDATE ".TABLE_ADMIN_ACCESS." SET
                                   ".$field."=0 where customers_id='".(int)$_GET['cID']."'");
     		}
         }
-
-
-
       $access_ids='';
         if(isset($_POST['access'])) foreach($_POST['access'] as $key){
-
         xtc_db_query("UPDATE ".TABLE_ADMIN_ACCESS." SET ".$key."=1 where customers_id='".(int)$_GET['cID']."'");
-
         }
-
         xtc_redirect(xtc_href_link(FILENAME_CUSTOMERS, 'cID=' . (int)$_GET['cID'], 'NONSSL'));
         break;
       }
@@ -63,93 +51,86 @@
       }
     }
 ?>
-<!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html <?php echo HTML_PARAMS; ?>>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=<?php echo $_SESSION['language_charset']; ?>"> 
-<title><?php echo TITLE; ?></title>
-<link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
-</head>
-<body marginwidth="0" marginheight="0" topmargin="0" bottommargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFFF">
-<!-- header //-->
-<?php require(DIR_WS_INCLUDES . 'header.php'); ?>
 <script type="text/javascript">
-	<!-- //
-	function selectAll(field)
-	{
-	  var loop;
-	  for (loop = 0; loop < field.length; loop++)
-		  field[loop].checked = document.getElementsByName('checkAll')[0].checked;
-	}
-	// -->
+<!-- //
+function selectAll(field)
+{
+var loop;
+for (loop = 0; loop < field.length; loop++)
+field[loop].checked = document.getElementsByName('checkAll')[0].checked;
+}
+// -->
 </script>
-<!-- header_eof //-->
-
-<!-- body //-->
-<table border="0" width="100%" cellspacing="2" cellpadding="2">
+<table border="0" width="100%" cellspacing="0" cellpadding="2">
   <tr>
-    <td class="columnLeft2" width="<?php echo BOX_WIDTH; ?>" valign="top"><table border="0" width="<?php echo BOX_WIDTH; ?>" cellspacing="1" cellpadding="1" class="columnLeft">
-<!-- left_navigation //-->
-<?php require(DIR_WS_INCLUDES . 'column_left.php'); ?>
-<!-- left_navigation_eof //-->
-    </table></td>
-<!-- body_text //-->
-    <td class="boxCenter" width="100%" valign="top"><table border="0" width="100%" cellspacing="0" cellpadding="0">
-      <tr>
-        <td><table border="0" width="100%" cellspacing="0" cellpadding="0">
-          <tr>
-            <td class="pageHeading"><?php echo TEXT_ACCOUNTING.' '.$allow_edit['customers_lastname'].' '.$allow_edit['customers_firstname']; ?></td>
-            <td class="pageHeading" align="right"><?php echo xtc_draw_separator('pixel_trans.gif', HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT); ?><br /><br /></td>
-          </tr>
-        </table></td>
-      </tr>
-      <tr>
-      <td colspan="2" class="main"> <br /><?php echo TXT_GROUPS; ?><br />
-
-      <table width="100%" cellpadding="0" cellspacing="2">
-      <tr>
-       <td style="border: 1px solid; border-color: #000000;" width="10" bgcolor="FF6969" ><?php echo xtc_draw_separator('pixel_trans.gif',15, 15); ?></td>
-       <td width="100%" class="main"><?php echo TXT_SYSTEM; ?></td>
-      </tr>
-      <tr>
-       <td style="border: 1px solid; border-color: #000000;" width="10" bgcolor="69CDFF" ><?php echo xtc_draw_separator('pixel_trans.gif',10, 15); ?></td>
-       <td width="100%" class="main"><?php echo TXT_CUSTOMERS; ?></td>
-      </tr>
-      <tr>
-       <td style="border: 1px solid; border-color: #000000;" width="10" bgcolor="6BFF7F" ><?php echo xtc_draw_separator('pixel_trans.gif',15, 15); ?></td>
-       <td width="100%" class="main"><?php echo TXT_PRODUCTS; ?></td>
-      </tr>
-      <tr>
-       <td style="border: 1px solid; border-color: #000000;" width="10" bgcolor="BFA8FF" ><?php echo xtc_draw_separator('pixel_trans.gif',15, 15); ?></td>
-       <td width="100%" class="main"><?php echo TXT_STATISTICS; ?></td>
-      </tr>
-      <tr>
-       <td style="border: 1px solid; border-color: #000000;" width="10" bgcolor="FFE6A8" ><?php echo xtc_draw_separator('pixel_trans.gif',15, 15); ?></td>
-       <td width="100%" class="main"><?php echo TXT_TOOLS; ?></td>
-      </tr>
-      </table>
-      <br />
-      </td>
-      </tr>
-      <tr>
-        <td><table valign="top" width="100%" border="0" cellpadding="0" cellspacing="0">
+    <td>
+      <table border="0" width="100%" cellspacing="0" cellpadding="2">
+        <tr>
+          <td width="80" rowspan="2">
+            <?php echo xtc_image(DIR_WS_ICONS.'heading_configuration.gif'); ?></td>
+          <td class="pageHeading">
+            <?php echo TEXT_ACCOUNTING.' '.$allow_edit['customers_lastname'].' '.$allow_edit['customers_firstname']; ?></td>
+        </tr>
+        <tr>
+          <td class="main" valign="top">
+            <table width="100%" cellpadding="0" cellspacing="2">
+              <tr>
+                <td colspan="2">
+                  <?php echo TXT_GROUPS; ?></td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid; border-color: #000000;" width="10" bgcolor="FF6969" >
+                  <?php echo xtc_draw_separator('pixel_trans.gif',15, 15); ?></td>
+                <td width="100%" class="main">
+                  <?php echo TXT_SYSTEM; ?></td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid; border-color: #000000;" width="10" bgcolor="69CDFF" >
+                  <?php echo xtc_draw_separator('pixel_trans.gif',10, 15); ?></td>
+                <td width="100%" class="main">
+                  <?php echo TXT_CUSTOMERS; ?></td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid; border-color: #000000;" width="10" bgcolor="6BFF7F" >
+                  <?php echo xtc_draw_separator('pixel_trans.gif',15, 15); ?></td>
+                <td width="100%" class="main">
+                  <?php echo TXT_PRODUCTS; ?></td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid; border-color: #000000;" width="10" bgcolor="BFA8FF" >
+                  <?php echo xtc_draw_separator('pixel_trans.gif',15, 15); ?></td>
+                <td width="100%" class="main">
+                  <?php echo TXT_STATISTICS; ?></td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid; border-color: #000000;" width="10" bgcolor="FFE6A8" >
+                  <?php echo xtc_draw_separator('pixel_trans.gif',15, 15); ?></td>
+                <td width="100%" class="main">
+                  <?php echo TXT_TOOLS; ?></td>
+              </tr>
+            </table></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="2">
+<?php
+ echo xtc_draw_form('accounting', FILENAME_ACCOUNTING, 'cID=' . $_GET['cID']  . '&action=save', 'post', 'enctype="multipart/form-data"');
+  ?>
+  <tr>
+    <td class="dataTableHeadingContent" colspan="2">
+      <?php echo SELECT_ALL; ?>
+      <input type="checkbox" name="checkAll" onClick="selectAll(document.getElementsByName('access[]'));"></td>
+  </tr>
           <tr class="dataTableHeadingRow">
             <td class="dataTableHeadingContent"><?php echo TEXT_ACCESS; ?></td>
             <td class="dataTableHeadingContent"><?php echo TEXT_ALLOWED; ?></td>
-          </tr>
-        </table></td>
-      </tr>
-      <tr><table border="0" cellpadding="0" cellspacing="2">
-<?php
- echo xtc_draw_form('accounting', FILENAME_ACCOUNTING, 'cID=' . $_GET['cID']  . '&action=save', 'post', 'enctype="multipart/form-data"');
-?>
-<tr><td class="dataTableHeadingContent" colspan="2"><?php echo SELECT_ALL; ?><input type="checkbox" name="checkAll" onClick="selectAll(document.getElementsByName('access[]'));"></td></tr>
+          </tr>  
 <?php
    $admin_access='';
     $customers_id = xtc_db_prepare_input($_GET['cID']);
     $admin_access_query = xtc_db_query("select * from " . TABLE_ADMIN_ACCESS . " where customers_id = '" . (int)$_GET['cID'] . "'");
     $admin_access = xtc_db_fetch_array($admin_access_query);
-
     $group_query=xtc_db_query("select * from " . TABLE_ADMIN_ACCESS . " where customers_id = 'groups'");
     $group_access = xtc_db_fetch_array($group_query);
     if ($admin_access == '') {
@@ -159,16 +140,13 @@
       $group_access = xtc_db_fetch_array($admin_access_query);
       $admin_access = xtc_db_fetch_array($admin_access_query);
     }
-
 $fields = mysql_list_fields(DB_DATABASE, TABLE_ADMIN_ACCESS);
 $columns = mysql_num_fields($fields);
-
 for ($i = 0; $i < $columns; $i++) {
     $field=mysql_field_name($fields, $i);
     if ($field!='customers_id') {
     $checked='';
     if ($admin_access[$field] == '1') $checked='checked';
-
     // colors
     switch ($group_access[$field]) {
             case '1':
@@ -185,7 +163,6 @@ for ($i = 0; $i < $columns; $i++) {
             break;
             case '5':
             $color='#FFE6A8';
-
     }
     echo '<tr class="dataTable">
     <td style="border: 1px solid; border-color: #000000;" width="10" bgcolor="'.$color.'" >'.xtc_draw_separator('pixel_trans.gif',15, 15).'</td>
@@ -195,19 +172,10 @@ for ($i = 0; $i < $columns; $i++) {
         </tr>';
     }
 }
-?>
-    </table>
-<input type="submit" class="button" onClick="return confirm('<?php echo SAVE_ENTRY; ?>')" value="<?php echo BUTTON_SAVE; ?>">
-</td>
-
-<!-- body_text_eof //-->
-  </tr>
+  ?>
 </table>
-<!-- body_eof //-->
-
-<!-- footer //-->
-<?php require(DIR_WS_INCLUDES . 'footer.php'); ?>
-<!-- footer_eof //-->
-</body>
-</html>
-<?php require(DIR_WS_INCLUDES . 'application_bottom.php'); ?>
+<input type="submit" class="button" onClick="return confirm('<?php echo SAVE_ENTRY; ?>')" value="<?php echo BUTTON_SAVE; ?> ">
+<?php 
+require(DIR_WS_INCLUDES . 'application_bottom.php'); 
+require(DIR_WS_INCLUDES . 'application_bottom_0.php');
+?>

@@ -1,0 +1,68 @@
+{config_load file="$language/lang_$language.conf" section="product_info"}
+{$PRODUCT_NAVIGATOR}
+{$FORM_ACTION}
+<h1 class="productInfo1Name">{$PRODUCTS_NAME}</h1> 
+<div class="productInfo1">
+<div class="floatbox">
+  {if $PRODUCTS_IMAGE !=''}<a href="{$PRODUCTS_IMAGE|replace:"info_images":"popup_images"}" title="{$PRODUCTS_NAME}" rel="lightbox-productimg"><img src="{$PRODUCTS_IMAGE}" alt="{$PRODUCTS_NAME}" class="imgLeft"/></a>{/if}
+    <div class="basicData">
+      <div class="prodPriceInfo1">{$PRODUCTS_PRICE}</div>
+    	<div class="prodTaxShipInfo1">{$PRODUCTS_TAX_INFO}{if $PRODUCTS_SHIPPING_LINK}{$PRODUCTS_SHIPPING_LINK}{/if}</div>
+    	{if $PRODUCTS_VPE}{$PRODUCTS_VPE}<br />{/if}
+    	{if $PRODUCTS_MODEL!=''}{#model#}{$PRODUCTS_MODEL}<br />{/if}{$PRODUCTS_DISCOUNT}
+    	{if $SHIPPING_NAME}{#text_shippingtime#}{if $SHIPPING_IMAGE}<img src="{$SHIPPING_IMAGE}" alt="{$SHIPPING_NAME}" />{/if} {$SHIPPING_NAME}<br />{/if}
+    	<div style="margin-top:3px;">{$PRODUCTS_PRINT|replace:"cursor:hand":"cursor:pointer"}</div>
+    </div>
+  </div>
+
+{if $PRODUCTS_DESCRIPTION !=''}<div class="desc">{$PRODUCTS_DESCRIPTION}</div><br class="clearHere" />{/if}
+
+{if $MODULE_product_options !=''}<div class="options">{$MODULE_product_options}</div><br class="clearHere" />{/if}
+{* BOF Included xs:booster *}
+	{if $XTB_REDIRECT_USER_TO=='product'}<div style='width:400px;padding:10px;color:white;background-color:green;'><strong>Sie haben die eBay Auktion gewonnen!</strong><br/>Bitte w&auml;hlen Sie nun noch die gew&uuml;nschten Produkteigenschaften und legen Sie den Artikel danach in den Warenkorb, um mit der Zahlung fortzufahren und das Produkt versandfertig zu machen!</div>{/if}
+{* EOF Included xs:booster *}
+
+<div class="addCart">
+	<table>
+		<tr>
+			<td style="width: 100%; padding-right: 5px;">{$ADD_QTY}</td><td>{$ADD_CART_BUTTON}</td>
+		</tr>
+	</table>
+</div>
+{if $smarty.const.TPL_CLIENT == 'xtcmod' }{* additional pics xtcmodified *}
+	{if $more_images|@count > 0}
+		<!-- More Pictures -->
+		<div class="morepics"><div class="floatbox">
+			{foreach item=more_images_data from=$more_images} 
+				<a href="{$more_images_data.PRODUCTS_IMAGE|replace:"info_images":"popup_images"}" rel="lightbox-productimg" title="{$PRODUCTS_NAME}"><img src="{$more_images_data.PRODUCTS_IMAGE}" alt="{$PRODUCTS_NAME}" /></a>                          
+			{/foreach}
+		</div></div>
+	{/if}
+{else}{* additional pics xtc3.04 *}
+<div class="morePics"><div class="floatbox">
+	{if $PRODUCTS_IMAGE_1 != ''}<a href="{$PRODUCTS_IMAGE_1|replace:"info_images":"popup_images"}" rel="lightbox-productimg" title="{$PRODUCTS_NAME}"><img src="{$PRODUCTS_IMAGE_1}" alt="{$PRODUCTS_NAME}" class="imgLeft" /></a>{/if}
+	{if $PRODUCTS_IMAGE_2 != ''}<a href="{$PRODUCTS_IMAGE_2|replace:"info_images":"popup_images"}" rel="lightbox-productimg" title="{$PRODUCTS_NAME}"><img src="{$PRODUCTS_IMAGE_2}" alt="{$PRODUCTS_NAME}" class="imgLeft" /></a>{/if}
+	{if $PRODUCTS_IMAGE_3 != ''}<a href="{$PRODUCTS_IMAGE_3|replace:"info_images":"popup_images"}" rel="lightbox-productimg" title="{$PRODUCTS_NAME}"><img src="{$PRODUCTS_IMAGE_3}" alt="{$PRODUCTS_NAME}" class="imgLeft" /></a>{/if}
+	{if $PRODUCTS_IMAGE_4 != ''}<a href="{$PRODUCTS_IMAGE_4|replace:"info_images":"popup_images"}" rel="lightbox-productimg" title="{$PRODUCTS_NAME}"><img src="{$PRODUCTS_IMAGE_4}" alt="{$PRODUCTS_NAME}" class="imgLeft" /></a>{/if}
+	{if $PRODUCTS_IMAGE_5 != ''}<a href="{$PRODUCTS_IMAGE_5|replace:"info_images":"popup_images"}" rel="lightbox-productimg" title="{$PRODUCTS_NAME}"><img src="{$PRODUCTS_IMAGE_5}" alt="{$PRODUCTS_NAME}" class="imgLeft" /></a>{/if}
+	{if $PRODUCTS_IMAGE_6 != ''}<a href="{$PRODUCTS_IMAGE_6|replace:"info_images":"popup_images"}" rel="lightbox-productimg" title="{$PRODUCTS_NAME}"><img src="{$PRODUCTS_IMAGE_6}" alt="{$PRODUCTS_NAME}" class="imgLeft" /></a>{/if}
+	{if $PRODUCTS_IMAGE_7 != ''}<a href="{$PRODUCTS_IMAGE_7|replace:"info_images":"popup_images"}" rel="lightbox-productimg" title="{$PRODUCTS_NAME}"><img src="{$PRODUCTS_IMAGE_7}" alt="{$PRODUCTS_NAME}" class="imgLeft" /></a>{/if}
+	{if $PRODUCTS_IMAGE_LINK!=''}<a href="{$PRODUCTS_IMAGE_LINK}" onclick="window.open(this.href); return false;">{$PRODUCTS_TEXT_ZOOM}</a>{/if}
+	{if $PRODUCTS_FSK18=='true'}<img src="{$tpl_path}img/fsk18.gif" alt="" />{/if}
+</div></div>
+<br />
+{/if}
+
+
+{if $MODULE_graduated_price !=''}{$MODULE_graduated_price}{/if}
+</div>
+{if $PRODUCTS_URL != ''}<p>{$PRODUCTS_URL}</p>{/if}
+{if $PRODUCTS_DATE_AVIABLE != ''}<p>{$PRODUCTS_DATE_AVIABLE}</p>{/if}
+{if $PRODUCTS_ADDED != ''}<p>{$PRODUCTS_ADDED}</p>{/if}
+{if $MODULE_products_reviews != ''}<div class="prodInfo1Spacer">{$MODULE_products_reviews}</div>{/if}
+{if $MODULE_products_media != ''}<div class="prodInfo1Spacer">{$MODULE_products_media}</div>{/if}
+{if $MODULE_cross_selling != ''}<div class="prodInfo1Spacer">{$MODULE_cross_selling}</div>{/if}
+{if $MODULE_reverse_cross_selling != ''}<div class="prodInfo1Spacer">{$MODULE_reverse_cross_selling}</div>{/if}
+{if $MODULE_also_purchased != ''}<div class="prodInfo1Spacer">{$MODULE_also_purchased}</div>{/if}
+
+{$FORM_END}

@@ -1,0 +1,83 @@
+@charset "UTF-8";
+/**
+* YAML-based Template for xt:Commerce
+*
+* (en) Example of a patch stylesheet for the Internet Explorer
+* (de) Beispiel für ein Anpassungs-Stylesheet für den Internet Explorer
+*
+* @copyright       Copyright 2006-2007, Björn Teßmann (tessmann@zerosoft.de)
+*                  Based on YAML, Copyright 2005-2007, Dirk Jesse
+* @link            http://www.zs-ecommerce.com
+* @package         yaml for xt:Commerce
+* @version         1.6.0
+*/
+
+/* Layout independent adjustmenst | Layout-unabhängige Anpassungen ----------------------------------- */
+@import url(../../yaml/core/slim_iehacks.css);
+
+/* Box modell adjustments for vlist navigation | Box-Modell-Anpassungen für vlist-Navigation */
+@import url(patch_nav_vlist.css);
+
+/* Layout dependent adjustments | Layout-abhängige Anpassungen --------------------------------------- */
+@media screen
+{
+  /* add your adjustments here | Fügen Sie Ihre Anpassungen hier ein */
+  /* fix for Guillotine-Bug | Fix für Guillotine-Bug */
+.boxInfoLS , .boxInfoRS , .boxInfoBodyLS , .boxInfoBodyRS , #col1_content h4 , #col2_content h4 , 
+.optionsBg , .container , .moduleRow , .container2 , .productListing1ColHead ,.productListing1ColBody , .moduleRowOver , .moduleRowSelected , .productNavigator , .productInfo1 , .productInfo2 , #col3_content h2 , #col3_content h1 ,
+.productInfo1 .addCart , .productInfo2 , .addCart , .productInfo3 ,.catListBody ,#box_categories ul ,
+.optionSelectionBody , .optionSelectionHead ,.optionSelection , .productListing1ColBodyImg ,.productListing1ColBodyTxt {
+  height:1%;
+}
+
+* html .clearHere { clear:none }; 
+
+   * html #col3 {height: 1%}  
+   * html #col1 {margin-right: -3px}  
+   * html #col2 {margin-left: -3px}  
+   * html #col3 {margin-left: 197px; margin-right: 197px } 
+
+ /* FORMS */
+ /**
+  * Global fixes for YAML's form construction set
+  *
+  * @workaround
+  * @affected IE 5.x/Win, IE6, IE7
+  * @css-for IE 5.x/Win, IE6, IE7
+  * @valid no
+  */
+
+  .yform, 
+  .yform div,
+  .yform div * { zoom:1; }
+
+ /**
+  * Forms Fieldset/Legend-Bug in IE
+  * @see http://www.mattheerema.com/web-design/2006/04/getting-fieldset-backgrounds-and-legends-to-behave-in-ie/
+  *
+  * @workaround
+  * @affected IE 5.x/Win, IE6, IE7, IE8
+  * @css-for IE 5.x/Win, IE6, IE7, IE8
+  * @valid no
+  */
+  
+  /* all IE */
+  .yform { padding-top:0\9; }
+  .yform fieldset { padding:0 5px\9; padding-top:1em\9; }
+  .yform legend { position:absolute\9; top:-.5em\9; *left:0\9; }
+  .yform fieldset { position:relative\9; overflow:visible\9;  margin-top:1.5em\9; zoom:1; }
+
+  /* IE5.x, IE6 & IE7 */
+  .yform legend { *padding:0 5px; }
+  .yform fieldset { *padding-top:1.5em; }
+  
+  /* IE5.x & IE6 */
+  * html .yform { padding-top:10px; }
+  
+  * html .checkoutConfirmation table {
+	width:98%;
+  }
+  
+  /*-----------------------------------------------------------------------------------------------------*/
+
+}

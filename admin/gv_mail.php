@@ -1,5 +1,5 @@
 <?php
-/* -----------------------------------------------------------------------------------------
+/* --------------------------------------------------------------
    $Id$
 
    XT-Commerce - community made shopping
@@ -24,10 +24,8 @@
 
 
    Released under the GNU General Public License
-   ---------------------------------------------------------------------------------------*/
-
-
-  require('includes/application_top.php');
+   --------------------------------------------------------------*/
+require ('includes/application_top.php');
   require_once(DIR_FS_INC . 'xtc_wysiwyg.inc.php'); 
 
   require(DIR_WS_CLASSES . 'currencies.php');
@@ -154,44 +152,36 @@
   if ($_GET['mail_sent_to']) {
     $messageStack->add(sprintf(NOTICE_EMAIL_SENT_TO, $_GET['mail_sent_to']), 'notice');
   }
-?>
-<!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html <?php echo HTML_PARAMS; ?>>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=<?php echo $_SESSION['language_charset']; ?>"> 
-<title><?php echo TITLE; ?></title>
-<link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
-<?php if (USE_WYSIWYG=='true') {
+require ('includes/application_top_1.php');
+
+ if (USE_WYSIWYG=='true') {
  $query=xtc_db_query("SELECT code FROM ". TABLE_LANGUAGES ." WHERE languages_id='".$_SESSION['languages_id']."'");
  $data=xtc_db_fetch_array($query);
  echo xtc_wysiwyg('gv_mail',$data['code']);
- } ?>
-</head>
-<body marginwidth="0" marginheight="0" topmargin="0" bottommargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFFF">
-<!-- header //-->
-<?php require(DIR_WS_INCLUDES . 'header.php'); ?>
-<!-- header_eof //-->
+ } 
+?>
+          <table border="0" width="100%" cellspacing="0" cellpadding="2">
+            <tr>
+              <td>
+                <table border="0" width="100%" cellspacing="0" cellpadding="2">
+                  <tr>
+                    <td width="80" rowspan="2">
+<?php echo xtc_image(DIR_WS_ICONS.'heading_news.gif'); ?>
+                    </td>
+                    <td class="pageHeading">
+<?php echo HEADING_TITLE; ?>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="main" valign="top">
 
-<!-- body //-->
-<table border="0" width="100%" cellspacing="2" cellpadding="2">
-  <tr>
-    <td width="<?php echo BOX_WIDTH; ?>" valign="top"><table border="0" width="<?php echo BOX_WIDTH; ?>" cellspacing="1" cellpadding="1" class="columnLeft">
-<!-- left_navigation //-->
-<?php require(DIR_WS_INCLUDES . 'column_left.php'); ?>
-<!-- left_navigation_eof //-->
-    </table></td>
-<!-- body_text //-->
-    <td class="boxCenter" width="100%" valign="top"><table border="0" width="100%" cellspacing="0" cellpadding="0">
-      <tr>
-        <td width="100%"><table border="0" width="100%" cellspacing="0" cellpadding="0">
-          <tr>
-            <td class="pageHeading"><?php echo HEADING_TITLE; ?></td>
-            <td class="pageHeading" align="right"><?php echo xtc_draw_separator('pixel_trans.gif', HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT); ?></td>
-          </tr>
-        </table></td>
-      </tr>
-      <tr>
-        <td><table border="0" width="100%" cellspacing="0" cellpadding="2">
+                    </td>
+                  </tr>
+                </table></td>
+            </tr>
+          </table>
+<!-- content -->
+<table border="0" width="100%" cellspacing="0" cellpadding="2">
 <?php
   if ( ($_GET['action'] == 'preview') && ($_POST['customers_email_address'] || $_POST['email_to']) ) {
     switch ($_POST['customers_email_address']) {
@@ -338,17 +328,9 @@
   }
 ?>
 <!-- body_text_eof //-->
-        </table></td>
-      </tr>
-    </table></td>
-  </tr>
-</table>
-<!-- body_eof //-->
-
-<!-- footer //-->
-<?php require(DIR_WS_INCLUDES . 'footer.php'); ?>
-<!-- footer_eof //-->
-<br />
-</body>
-</html>
-<?php require(DIR_WS_INCLUDES . 'application_bottom.php'); ?>
+        </table>
+<!-- end content -->
+<?php 
+require(DIR_WS_INCLUDES . 'application_bottom.php'); 
+require(DIR_WS_INCLUDES . 'application_bottom_0.php');
+?>

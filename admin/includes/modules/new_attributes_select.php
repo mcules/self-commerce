@@ -21,16 +21,16 @@
    Released under the GNU General Public License 
    --------------------------------------------------------------*/
 defined('_VALID_XTC') or die('Direct Access to this location is not allowed.');
+echo xtc_image(DIR_WS_ICONS.'heading_categories.gif');
+echo $pageTitle; 
 ?>
-                  <tr>
-                    <td class="pageHeading">
-                      <?php echo xtc_image(DIR_WS_ICONS.'heading_categories.gif'); ?> <?php echo $pageTitle; ?></td>
-                  </tr>  
-<form action="<?php echo $_SERVER['PHP_SELF']; ?>" name="SELECT_PRODUCT" method="post"><input type="hidden" name="action" value="edit">
+  
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" name="SELECT_PRODUCT" method="post">
+<input type="hidden" name="action" value="edit">
 <?php
 echo xtc_draw_hidden_field(xtc_session_name(), xtc_session_id());
   echo "<TR>";
-  echo "<TD class=\"main\"><br /><B>".SELECT_PRODUCT."<br /></TD>";
+  echo "<TD class=\"main\">".SELECT_PRODUCT."</TD>";
   echo "</TR>";
   echo "<TR>";
   echo "<TD class=\"main\"><SELECT NAME=\"current_product_id\">";
@@ -102,6 +102,5 @@ echo xtc_draw_hidden_field(xtc_session_name(), xtc_session_id());
   echo "<TR>";
   echo "<TD class=\"main\">".xtc_button(BUTTON_EDIT)."</TD>";
   echo "</TR>";
-
 ?>
 </form>

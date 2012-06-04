@@ -4,8 +4,7 @@ Dear Customer ,
 
 You successful created your Customer Account, now you got following featues in our shop.
 
-Username: {$USERNAME4MAIL} 
-Password: {$PASSWORT4MAIL}
+Username: {$USERNAME4MAIL}
 
 -Customer shopping cart - Every item remains registered until you go to the cash box, or the products are deleted from the shopping cart.
 -Addressbook - Now we can send the products to the postal address selected by you. The perfect way to get a birthday present.

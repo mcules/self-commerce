@@ -1,24 +1,19 @@
 <?php
 /* --------------------------------------------------------------
    $Id$   
-
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
-
    Copyright (c) 2003 XT-Commerce
    --------------------------------------------------------------
    based on: 
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
    (c) 2002-2003 osCommerce(currencies.php,v 1.46 2003/05/02); www.oscommerce.com 
    (c) 2003	 nextcommerce (currencies.php,v 1.9 2003/08/18); www.nextcommerce.org
-
-   Released under the GNU General Public License 
+   Released under the GNU General Public License
    --------------------------------------------------------------*/
-  require('includes/application_top.php');
-
+require ('includes/application_top.php');
   require(DIR_WS_CLASSES . 'currencies.php');
   $currencies = new currencies();
-
   if ($_GET['action']) {
     switch ($_GET['action']) {
       case 'insert':
@@ -32,7 +27,6 @@
         $thousands_point = xtc_db_prepare_input($_POST['thousands_point']);
         $decimal_places = xtc_db_prepare_input($_POST['decimal_places']);
         $value = xtc_db_prepare_input($_POST['value']);
-
         $sql_data_array = array('title' => $title,
                                 'code' => $code,
                                 'symbol_left' => $symbol_left,
@@ -41,34 +35,27 @@
                                 'thousands_point' => $thousands_point,
                                 'decimal_places' => $decimal_places,
                                 'value' => $value);
-
         if ($_GET['action'] == 'insert') {
           xtc_db_perform(TABLE_CURRENCIES, $sql_data_array);
           $currency_id = xtc_db_insert_id();
         } elseif ($_GET['action'] == 'save') {
           xtc_db_perform(TABLE_CURRENCIES, $sql_data_array, 'update', "currencies_id = '" . xtc_db_input($currency_id) . "'");
         }
-
         if ($_POST['default'] == 'on') {
           xtc_db_query("update " . TABLE_CONFIGURATION . " set configuration_value = '" . xtc_db_input($code) . "' where configuration_key = 'DEFAULT_CURRENCY'");
         }
         xtc_redirect(xtc_href_link(FILENAME_CURRENCIES, 'page=' . $_GET['page'] . '&cID=' . $currency_id));
         break;
-
       case 'deleteconfirm':
         $currencies_id = xtc_db_prepare_input($_GET['cID']);
-
         $currency_query = xtc_db_query("select currencies_id from " . TABLE_CURRENCIES . " where code = '" . DEFAULT_CURRENCY . "'");
         $currency = xtc_db_fetch_array($currency_query);
         if ($currency['currencies_id'] == $currencies_id) {
           xtc_db_query("update " . TABLE_CONFIGURATION . " set configuration_value = '' where configuration_key = 'DEFAULT_CURRENCY'");
         }
-
         xtc_db_query("delete from " . TABLE_CURRENCIES . " where currencies_id = '" . xtc_db_input($currencies_id) . "'");
-
         xtc_redirect(xtc_href_link(FILENAME_CURRENCIES, 'page=' . $_GET['page']));
         break;
-
       case 'update':
         $currency_query = xtc_db_query("select currencies_id, code, title from " . TABLE_CURRENCIES);
         while ($currency = xtc_db_fetch_array($currency_query)) {
@@ -87,13 +74,10 @@
         }
         xtc_redirect(xtc_href_link(FILENAME_CURRENCIES, 'page=' . $_GET['page'] . '&cID=' . $_GET['cID']));
         break;
-
       case 'delete':
         $currencies_id = xtc_db_prepare_input($_GET['cID']);
-
         $currency_query = xtc_db_query("select code from " . TABLE_CURRENCIES . " where currencies_id = '" . xtc_db_input($currencies_id) . "'");
         $currency = xtc_db_fetch_array($currency_query);
-
         $remove_currency = true;
         if ($currency['code'] == DEFAULT_CURRENCY) {
           $remove_currency = false;
@@ -102,51 +86,40 @@
         break;
     }
   }
+require ('includes/application_top_1.php');
 ?>
-<!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html <?php echo HTML_PARAMS; ?>>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=<?php echo $_SESSION['language_charset']; ?>"> 
-<title><?php echo TITLE; ?></title>
-<link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
-<script type="text/javascript" src="includes/general.js"></script>
-</head>
-<body marginwidth="0" marginheight="0" topmargin="0" bottommargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFFF" onload="SetFocus();">
-<!-- header //-->
-<?php require(DIR_WS_INCLUDES . 'header.php'); ?>
-<!-- header_eof //-->
-
-<!-- body //-->
-<table border="0" width="100%" cellspacing="2" cellpadding="2">
+<table border="0" width="100%" cellspacing="0" cellpadding="2">
   <tr>
-    <td class="columnLeft2" width="<?php echo BOX_WIDTH; ?>" valign="top"><table border="0" width="<?php echo BOX_WIDTH; ?>" cellspacing="1" cellpadding="1" class="columnLeft">
-<!-- left_navigation //-->
-<?php require(DIR_WS_INCLUDES . 'column_left.php'); ?>
-<!-- left_navigation_eof //-->
-    </table></td>
-<!-- body_text //-->
-    <td class="boxCenter" width="100%" valign="top"><table border="0" width="100%" cellspacing="0" cellpadding="2">
-      <tr>
-        <td><table border="0" width="100%" cellspacing="0" cellpadding="0">
-  <tr>
-    <td width="80" rowspan="2"><?php echo xtc_image(DIR_WS_ICONS.'heading_configuration.gif'); ?></td>
-    <td class="pageHeading"><?php echo HEADING_TITLE; ?></td>
+    <td>
+      <table border="0" width="100%" cellspacing="0" cellpadding="2">
+        <tr>
+          <td width="80" rowspan="2">
+            <?php echo xtc_image(DIR_WS_ICONS.'heading_configuration.gif'); ?></td>
+          <td class="pageHeading">
+            <?php echo HEADING_TITLE; ?></td>
+        </tr>
+        <tr>
+          <td class="main" valign="top"> XT Configuration</td>
+        </tr>
+      </table></td>
   </tr>
+</table>
+<!-- content -->
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
   <tr>
-    <td class="main" valign="top">XT Configuration</td>
-  </tr>
-</table></td>
-      </tr>
-      <tr>
-        <td><table border="0" width="100%" cellspacing="0" cellpadding="0">
-          <tr>
-            <td valign="top"><table border="0" width="100%" cellspacing="0" cellpadding="2">
-              <tr class="dataTableHeadingRow">
-                <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_CURRENCY_NAME; ?></td>
-                <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_CURRENCY_CODES; ?></td>
-                <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_CURRENCY_VALUE; ?></td>
-                <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
-              </tr>
+    <td valign="top">
+      <table border="0" width="100%" cellspacing="0" cellpadding="2">
+        <tr class="dataTableHeadingRow">
+          <td class="dataTableHeadingContent">
+            <?php echo TABLE_HEADING_CURRENCY_NAME; ?></td>
+          <td class="dataTableHeadingContent">
+            <?php echo TABLE_HEADING_CURRENCY_CODES; ?></td>
+          <td class="dataTableHeadingContent" align="right">
+            <?php echo TABLE_HEADING_CURRENCY_VALUE; ?></td>
+          <td class="dataTableHeadingContent" align="right">
+            <?php echo TABLE_HEADING_ACTION; ?>
+            &nbsp;</td>
+        </tr>
 <?php
   $currency_query_raw = "select currencies_id, title, code, symbol_left, symbol_right, decimal_point, thousands_point, decimal_places, last_updated, value from " . TABLE_CURRENCIES . " order by title";
   $currency_split = new splitPageResults($_GET['page'], '20', $currency_query_raw, $currency_query_numrows);
@@ -155,52 +128,58 @@
     if (((!$_GET['cID']) || (@$_GET['cID'] == $currency['currencies_id'])) && (!$cInfo) && (substr($_GET['action'], 0, 3) != 'new')) {
       $cInfo = new objectInfo($currency);
     }
-
     if ( (is_object($cInfo)) && ($currency['currencies_id'] == $cInfo->currencies_id) ) {
       echo '                  <tr class="dataTableRowSelected" onmouseover="this.style.cursor=\'hand\'" onclick="document.location.href=\'' . xtc_href_link(FILENAME_CURRENCIES, 'page=' . $_GET['page'] . '&cID=' . $cInfo->currencies_id . '&action=edit') . '\'">' . "\n";
     } else {
       echo '                  <tr class="dataTableRow" onmouseover="this.className=\'dataTableRowOver\';this.style.cursor=\'hand\'" onmouseout="this.className=\'dataTableRow\'" onclick="document.location.href=\'' . xtc_href_link(FILENAME_CURRENCIES, 'page=' . $_GET['page'] . '&cID=' . $currency['currencies_id']) . '\'">' . "\n";
     }
-
     if (DEFAULT_CURRENCY == $currency['code']) {
       echo '                <td class="dataTableContent"><b>' . $currency['title'] . ' (' . TEXT_DEFAULT . ')</b></td>' . "\n";
     } else {
       echo '                <td class="dataTableContent">' . $currency['title'] . '</td>' . "\n";
     }
-?>
-                <td class="dataTableContent"><?php echo $currency['code']; ?></td>
-                <td class="dataTableContent" align="right"><?php echo number_format($currency['value'], 8); ?></td>
-                <td class="dataTableContent" align="right"><?php if ( (is_object($cInfo)) && ($currency['currencies_id'] == $cInfo->currencies_id) ) { echo xtc_image(DIR_WS_IMAGES . 'icon_arrow_right.gif'); } else { echo '<a href="' . xtc_href_link(FILENAME_CURRENCIES, 'page=' . $_GET['page'] . '&cID=' . $currency['currencies_id']) . '">' . xtc_image(DIR_WS_IMAGES . 'icon_info.gif', IMAGE_ICON_INFO) . '</a>'; } ?>&nbsp;</td>
-              </tr>
+        ?>
+        <td class="dataTableContent">
+          <?php echo $currency['code']; ?></td>
+        <td class="dataTableContent" align="right">
+          <?php echo number_format($currency['value'], 8); ?></td>
+        <td class="dataTableContent" align="right">
+          <?php if ( (is_object($cInfo)) && ($currency['currencies_id'] == $cInfo->currencies_id) ) { echo xtc_image(DIR_WS_IMAGES . 'icon_arrow_right.gif'); } else { echo '<a href="' . xtc_href_link(FILENAME_CURRENCIES, 'page=' . $_GET['page'] . '&cID=' . $currency['currencies_id']) . '">' . xtc_image(DIR_WS_IMAGES . 'icon_info.gif', IMAGE_ICON_INFO) . '</a>'; } ?>
+          &nbsp;</td>
+  </tr>
 <?php
   }
-?>
-              <tr>
-                <td colspan="4"><table border="0" width="100%" cellspacing="0" cellpadding="2">
-                  <tr>
-                    <td class="smallText" valign="top"><?php echo $currency_split->display_count($currency_query_numrows, '20', $_GET['page'], TEXT_DISPLAY_NUMBER_OF_CURRENCIES); ?></td>
-                    <td class="smallText" align="right"><?php echo $currency_split->display_links($currency_query_numrows, '20', MAX_DISPLAY_PAGE_LINKS, $_GET['page']); ?></td>
-                  </tr>
+  ?>
+  <tr>
+    <td colspan="4">
+      <table border="0" width="100%" cellspacing="0" cellpadding="2">
+        <tr>
+          <td class="smallText" valign="top">
+            <?php echo $currency_split->display_count($currency_query_numrows, '20', $_GET['page'], TEXT_DISPLAY_NUMBER_OF_CURRENCIES); ?></td>
+          <td class="smallText" align="right">
+            <?php echo $currency_split->display_links($currency_query_numrows, '20', MAX_DISPLAY_PAGE_LINKS, $_GET['page']); ?></td>
+        </tr>
 <?php
   if (!$_GET['action']) {
-?>
-                  <tr>
-                    <td><?php if (CURRENCY_SERVER_PRIMARY) { echo '<a class="button" onClick="this.blur();" href="' . xtc_href_link(FILENAME_CURRENCIES, 'page=' . $_GET['page'] . '&cID=' . $cInfo->currencies_id . '&action=update') . '">' . BUTTON_UPDATE . '</a>'; } ?></td>
-                    <td align="right"><?php echo '<a class="button" onClick="this.blur();" href="' . xtc_href_link(FILENAME_CURRENCIES, 'page=' . $_GET['page'] . '&cID=' . $cInfo->currencies_id . '&action=new') . '">' . BUTTON_NEW_CURRENCY . '</a>'; ?></td>
-                  </tr>
+        ?>
+        <tr>
+          <td>
+            <?php if (CURRENCY_SERVER_PRIMARY) { echo '<a class="button" onClick="this.blur();" href="' . xtc_href_link(FILENAME_CURRENCIES, 'page=' . $_GET['page'] . '&cID=' . $cInfo->currencies_id . '&action=update') . '">' . BUTTON_UPDATE . '</a>'; } ?></td>
+          <td align="right">
+            <?php echo '<a class="button" onClick="this.blur();" href="' . xtc_href_link(FILENAME_CURRENCIES, 'page=' . $_GET['page'] . '&cID=' . $cInfo->currencies_id . '&action=new') . '">' . BUTTON_NEW_CURRENCY . '</a>'; ?></td>
+        </tr>
 <?php
   }
-?>
-                </table></td>
-              </tr>
-            </table></td>
+        ?>
+      </table></td>
+  </tr>
+</table></td>
 <?php
   $heading = array();
   $contents = array();
   switch ($_GET['action']) {
     case 'new':
       $heading[] = array('text' => '<b>' . TEXT_INFO_HEADING_NEW_CURRENCY . '</b>');
-
       $contents = array('form' => xtc_draw_form('currencies', FILENAME_CURRENCIES, 'page=' . $_GET['page'] . '&cID=' . $cInfo->currencies_id . '&action=insert'));
       $contents[] = array('text' => TEXT_INFO_INSERT_INTRO);
       $contents[] = array('text' => '<br />' . TEXT_INFO_CURRENCY_TITLE . '<br />' . xtc_draw_input_field('title'));
@@ -214,10 +193,8 @@
       $contents[] = array('text' => '<br />' . xtc_draw_checkbox_field('default') . ' ' . TEXT_INFO_SET_AS_DEFAULT);
       $contents[] = array('align' => 'center', 'text' => '<br /><input type="submit" class="button" onClick="this.blur();" value="' . BUTTON_INSERT . '"/> <a class="button" onClick="this.blur();" href="' . xtc_href_link(FILENAME_CURRENCIES, 'page=' . $_GET['page'] . '&cID=' . $_GET['cID']) . '">' . BUTTON_CANCEL . '</a>');
       break;
-
     case 'edit':
       $heading[] = array('text' => '<b>' . TEXT_INFO_HEADING_EDIT_CURRENCY . '</b>');
-
       $contents = array('form' => xtc_draw_form('currencies', FILENAME_CURRENCIES, 'page=' . $_GET['page'] . '&cID=' . $cInfo->currencies_id . '&action=save'));
       $contents[] = array('text' => TEXT_INFO_EDIT_INTRO);
       $contents[] = array('text' => '<br />' . TEXT_INFO_CURRENCY_TITLE . '<br />' . xtc_draw_input_field('title', $cInfo->title));
@@ -231,19 +208,15 @@
       if (DEFAULT_CURRENCY != $cInfo->code) $contents[] = array('text' => '<br />' . xtc_draw_checkbox_field('default') . ' ' . TEXT_INFO_SET_AS_DEFAULT);
       $contents[] = array('align' => 'center', 'text' => '<br /><input type="submit" class="button" onClick="this.blur();" value="' . BUTTON_UPDATE . '"/> <a class="button" onClick="this.blur();" href="' . xtc_href_link(FILENAME_CURRENCIES, 'page=' . $_GET['page'] . '&cID=' . $cInfo->currencies_id) . '">' . BUTTON_CANCEL . '</a>');
       break;
-
     case 'delete':
       $heading[] = array('text' => '<b>' . TEXT_INFO_HEADING_DELETE_CURRENCY . '</b>');
-
       $contents[] = array('text' => TEXT_INFO_DELETE_INTRO);
       $contents[] = array('text' => '<br /><b>' . $cInfo->title . '</b>');
       $contents[] = array('align' => 'center', 'text' => '<br />' . (($remove_currency) ? '<a class="button" onClick="this.blur();" href="' . xtc_href_link(FILENAME_CURRENCIES, 'page=' . $_GET['page'] . '&cID=' . $cInfo->currencies_id . '&action=deleteconfirm') . '">' . BUTTON_DELETE . '</a>' : '') . ' <a class="button" onClick="this.blur();" href="' . xtc_href_link(FILENAME_CURRENCIES, 'page=' . $_GET['page'] . '&cID=' . $cInfo->currencies_id) . '">' . BUTTON_CANCEL . '</a>');
       break;
-
     default:
       if (is_object($cInfo)) {
         $heading[] = array('text' => '<b>' . $cInfo->title . '</b>');
-
         $contents[] = array('align' => 'center', 'text' => '<a class="button" onClick="this.blur();" href="' . xtc_href_link(FILENAME_CURRENCIES, 'page=' . $_GET['page'] . '&cID=' . $cInfo->currencies_id . '&action=edit') . '">' . BUTTON_EDIT . '</a> <a class="button" onClick="this.blur();" href="' . xtc_href_link(FILENAME_CURRENCIES, 'page=' . $_GET['page'] . '&cID=' . $cInfo->currencies_id . '&action=delete') . '">' . BUTTON_DELETE . '</a>');
         $contents[] = array('text' => '<br />' . TEXT_INFO_CURRENCY_TITLE . ' ' . $cInfo->title);
         $contents[] = array('text' => TEXT_INFO_CURRENCY_CODE . ' ' . $cInfo->code);
@@ -258,29 +231,17 @@
       }
       break;
   }
-
   if ( (xtc_not_null($heading)) && (xtc_not_null($contents)) ) {
     echo '            <td width="25%" valign="top">' . "\n";
-
     $box = new box;
     echo $box->infoBox($heading, $contents);
-
     echo '            </td>' . "\n";
   }
 ?>
-          </tr>
-        </table></td>
-      </tr>
-    </table></td>
-<!-- body_text_eof //-->
-  </tr>
+</tr>
 </table>
-<!-- body_eof //-->
-
-<!-- footer //-->
-<?php require(DIR_WS_INCLUDES . 'footer.php'); ?>
-<!-- footer_eof //-->
-<br />
-</body>
-</html>
-<?php require(DIR_WS_INCLUDES . 'application_bottom.php'); ?>
+<!-- end content -->
+<?php 
+require(DIR_WS_INCLUDES . 'application_bottom.php'); 
+require(DIR_WS_INCLUDES . 'application_bottom_0.php');
+?>

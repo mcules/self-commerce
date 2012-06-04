@@ -121,17 +121,25 @@ if (!is_object($product) || !$product->isProduct()) { // product not found in da
 		}
 		$info_smarty->assign('PRODUCTS_POPUP_LINK', 'javascript:popupWindow(\''.xtc_href_link(FILENAME_POPUP_IMAGE, 'pID='.$product->data['products_id'].$connector.'imgID=0').'\')');
 		$mo_images = xtc_get_products_mo_images($product->data['products_id']);
-		if ($mo_images != false) {
-			foreach ($mo_images as $img) {
-				$mo_img = DIR_WS_INFO_IMAGES.$img['image_name'];
-            //self-commerce.de 
-            $mo_image_info = DIR_WS_POPUP_IMAGES.$img['image_name']; 
-            $info_smarty->assign('PRODUCTS_IMAGE_POPUP_'.$img['image_nr'], $mo_image_info); 
-            //self-commerce.de 				
-				$info_smarty->assign('PRODUCTS_IMAGE_'.$img['image_nr'], $mo_img);
-				$info_smarty->assign('PRODUCTS_POPUP_LINK_'.$img['image_nr'], 'javascript:popupWindow(\''.xtc_href_link(FILENAME_POPUP_IMAGE, 'pID='.$product->data['products_id'].$connector.'imgID='.$img['image_nr']).'\')');
-			}
-		}
+      $mo_count = 0; 
+      $last_image = 0; 
+
+      if ($mo_images != false) { 
+         foreach ($mo_images as $img) { 
+            if ( ( $img['image_nr'] != $last_image ) && ( $img['image_nr'] != '' ) ) { 
+               $mo_img = DIR_WS_INFO_IMAGES.$img['image_name']; 
+  
+               $mo_images_disp[$mo_count]['mo_img'] = DIR_WS_INFO_IMAGES.$img['image_name']; 
+  
+               $mo_images_disp[$mo_count]['PRODUCTS_IMAGE_POPUP'] = DIR_WS_POPUP_IMAGES.$img['image_name']; 
+               $mo_images_disp[$mo_count]['PRODUCTS_IMAGE'] = $mo_images_disp[$mo_count]['mo_img']; 
+               $mo_images_temp_link = xtc_href_link( FILENAME_POPUP_IMAGE, 'pID='.$product->data['products_id'].$connector.'imgID='.$img['image_nr']); 
+               $last_image = $img['image_nr']; 
+               $mo_count = $mo_count + 1; 
+            } 
+         } 
+         $info_smarty->assign('images', $mo_images_disp); 
+      } 
 		//mo_images EOF
 		$discount = 0.00;
 		if ($_SESSION['customers_status']['customers_status_public'] == 1 && $_SESSION['customers_status']['customers_status_discount'] != '0.00') {

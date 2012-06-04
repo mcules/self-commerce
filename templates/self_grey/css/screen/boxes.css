@@ -1,0 +1,241 @@
+@charset "UTF-8";
+/**
+* YAML-based Template for xt:Commerce
+*
+* (en) CSS for boxes
+* (de) CSS-Definitionen für die Boxen
+*
+* @copyright       Copyright 2006-2007, Björn Teßmann (tessmann@zerosoft.de)
+*                  Based on YAML, Copyright 2005-2007, Dirk Jesse
+* @link            http://www.zs-ecommerce.com
+* @package         yaml for xt:Commerce
+* @version         1.6.0
+    
+*/
+
+@media all
+{
+
+  /* ######################################################################################################
+  ** # Spezielle Inhaltselemente ##########################################################################
+  ** ######################################################################################################
+  
+  /* ### Boxen allgemein ###################################################################### */
+  
+  /* ### Kopf der Infoboxen ################################################################### */
+  #col1_content h4 , #col2_content h4 {
+  	background: #363636 url(../../img/boxhead.gif) repeat-x top;
+  	color: #fff;
+  	padding:5px;
+  	width:auto;
+  	border:0px;
+  }
+  
+  /* ### Körper der Infoboxen */
+  .boxInfoLS , .boxInfoRS {
+  	 margin-bottom:20px; /* Abstand der Boxen */
+  	/* border-bottom: 1px #000 solid;*/ /* Rahmen Boxkörper unten */
+  }
+  
+  /* ### Innenabstand linke Boxen*/
+  .boxInfoBodyLS {
+  	padding:8px;
+  	font-size: 0.8em;
+  	border-bottom:1px solid #9F9F9F;
+    border-left:1px solid #9F9F9F;
+    border-right:1px solid #9F9F9F;
+  }
+  
+  /* ### Innenabstand rechte Boxen*/
+  .boxInfoBodyRS {
+  	padding:8px;
+  	font-size: 0.8em;
+  	border-bottom:1px solid #9F9F9F;
+    border-left:1px solid #9F9F9F;
+    border-right:1px solid #9F9F9F;
+  }
+  
+  /* ### Abschnitte in den Boxen ### */
+  #col1_content p , #col2_content p {
+  	margin:0;
+  	line-height:1.2em;
+  }
+  
+  /* ### Abstand für Inputs (Eingabefelder / Buttons in den Boxen ### */
+  #col1_content input , #col2_content input {
+  	margin:2px;
+  	font-size: 1.2em;
+  }
+  
+  /* ### Einzug für Text in den Boxen ### */
+  p.boxTxtInd {
+  	padding-left:12px;
+  	font-size:0.9em;
+  }
+  
+  /* ### Highlight in den Boxen ### */
+  .boxTxtInd span{
+  	color:#990000;
+  }
+  
+  p.boxTxtRight {
+  	text-align:right;
+  	font-size:0.9em;
+  }
+  
+  p.boxTxtLeft {
+  	font-size:0.9em;
+  }
+  
+  #col1_content h1 , #col2_content h1 {
+  	margin-bottom:0px;
+  	margin-top:0px;
+  	font-size:0.9em;
+  }
+  
+  /* ### Listenformatierung für Boxen ### */
+  #col1_content ul.conandinfo  ,#col2_content ul.conandinfo {
+  	list-style-type:none;
+  	margin:0;
+  	padding:0;
+  }
+  
+  /* ### Anpassen der Linkdarstellung für die Köpfe der Boxen ### */
+  #col1_content h4 a, #col2_content h4 a {
+  	color:#fff;
+  	text-decoration:underline;
+  }
+  
+  #col1_content li ,#col2_content li {
+  	margin:0;
+  	padding:0;
+  }
+  
+  /* ################################################################################################### */
+  /* ### Bildpositionierung in Boxen ################################################################### */
+  /* ################################################################################################### */
+  /* ### Bild links ### */
+  img.imgRight {
+  	float: right;
+   	margin: 2px 0px 2px 10px;
+   	position: relative;
+  }
+  
+  /* ### Bild rechts ### */
+  img.imgLeft {
+  	float: left;
+  	margin: 2px 10px 2px 0px;
+  	position: relative;
+  }
+  
+  /* ### Bild zentriert in Boxen ### */
+  #col1_content img.imgCenter , #col2_content img.imgCenter  { background: #fff; padding: 4px; border:1px #9A9999 solid; }
+  p.centerContent { text-align:center; }
+  p.rightContent { text-align:right; }
+  
+  /* ############################################################################################ */
+  /* ### Boxen speziell ######################################################################### */
+  /* ############################################################################################ */
+  
+  /* ### Box cart ############################################################################### */
+  
+  .cartBox h4 {
+  	border-bottom: 0px;
+  }
+  
+  .cartBoxLine {
+    border-top:1px solid #9F9F9F;
+    border-bottom:1px solid #9F9F9F;
+    padding-top:1px;
+    padding-bottom:1px;
+    margin-top:1px;
+    margin-bottom:1px;
+  }
+  
+  /* ### Box Bestseller ######################################################################### */
+  
+  #box_best_sellers ol {
+    margin:0px;
+    list-style-type:none;
+  }
+  
+  #box_best_sellers li {
+    line-height:1.2em;
+  }
+  
+  #box_best_sellers h1 a {
+    font-size:1.2em;
+    text-indent:-5px;
+  }
+  
+  #box_best_sellers h1{
+    padding-left:20px;
+    text-indent:-22px;
+  }
+  
+  .bestSellersPrice {
+    padding-left:20px;
+    padding-top:2px;
+  }
+  .bestSellersProduct {
+    /*border-bottom:1px solid #9F9F9F;*/
+    padding-bottom:2px;
+    margin-bottom:2px;
+  }
+  
+  .bestSellerImage {
+    text-align:center;
+    padding-top:2px;
+  }
+    
+  
+  /* ############################################################################################ */
+  /* ### Box für die Kategorie (Kategorienavigation) ############################################ */
+  /* ############################################################################################ */
+  
+  .catListBody {
+  	
+  	font-family: Verdana, Arial, Helvetica, sans-serif;
+  	padding:3px;
+  	border-bottom:1px solid #9F9F9F;
+    border-left:1px solid #9F9F9F;
+    border-right:1px solid #9F9F9F;
+  	margin:0px 0px 20px 0px;
+  	font-size:0.8em;
+  	overflow:hidden;
+  	
+  }
+  
+  .catListBody li ul {
+  	list-style-type: none; margin:0; padding: 0;
+  }
+  
+  .catListBody ul {
+  	list-style-type:none;
+  	padding:0;
+  	border:0;
+  	margin:0;
+  }
+  
+  .catListBody a {
+  	display:block;
+  	text-decoration: none;
+  }
+  
+  .catListBody li {
+  	
+  	width: 100%;
+  	margin:0;
+  }
+  
+  #col1_content .catListBody img {
+  	margin-right:0.7em;
+  }
+  
+  /* ############################################################################################ */
+  /* ### Dropdown für Herstellerbox ############################################################# */
+  /* ############################################################################################ */
+  .manuDropdown {
+    width: 80%
+  }
+}

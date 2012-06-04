@@ -12,11 +12,9 @@
    (c) 2002-2003 osCommerce(banner_manager.php,v 1.70 2003/03/22); www.oscommerce.com 
    (c) 2003	 nextcommerce (banner_manager.php,v 1.9 2003/08/18); www.nextcommerce.org
 
-   Released under the GNU General Public License 
+   Released under the GNU General Public License
    --------------------------------------------------------------*/
-
-  require('includes/application_top.php');
-
+require ('includes/application_top.php');
   $banner_extension = xtc_banner_image_extension();
 
   if ($_GET['action']) {
@@ -177,43 +175,34 @@
       $messageStack->add(ERROR_GRAPHS_DIRECTORY_DOES_NOT_EXIST, 'error');
     }
   }
+require ('includes/application_top_1.php');
 ?>
-<!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html <?php echo HTML_PARAMS; ?>>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=<?php echo $_SESSION['language_charset']; ?>"> 
-<title><?php echo TITLE; ?></title>
-<link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
 <script type="text/javascript"><!--
 function popupImageWindow(url) {
   window.open(url,'popupImageWindow','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=yes,copyhistory=no,width=100,height=100,screenX=150,screenY=150,top=150,left=150')
 }
 //--></script>
-</head>
-<body marginwidth="0" marginheight="0" topmargin="0" bottommargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFFF">
 <div id="spiffycalendar" class="text"></div>
-<!-- header //-->
-<?php require(DIR_WS_INCLUDES . 'header.php'); ?>
-<!-- header_eof //-->
+          <table border="0" width="100%" cellspacing="0" cellpadding="2">
+            <tr>
+              <td>
+                <table border="0" width="100%" cellspacing="0" cellpadding="2">
+                  <tr>
+                    <td width="80" rowspan="2">
+<?php echo xtc_image(DIR_WS_ICONS.'heading_configuration.gif'); ?>
+                    </td>
+                    <td class="pageHeading">
+<?php echo HEADING_TITLE; ?>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="main" valign="top">
 
-<!-- body //-->
-<table border="0" width="100%" cellspacing="2" cellpadding="2">
-  <tr>
-    <td class="columnLeft2" width="<?php echo BOX_WIDTH; ?>" valign="top"><table border="0" width="<?php echo BOX_WIDTH; ?>" cellspacing="1" cellpadding="1" class="columnLeft">
-<!-- left_navigation //-->
-<?php require(DIR_WS_INCLUDES . 'column_left.php'); ?>
-<!-- left_navigation_eof //-->
-    </table></td>
-<!-- body_text //-->
-    <td class="boxCenter" width="100%" valign="top"><table border="0" width="100%" cellspacing="0" cellpadding="2">
-      <tr>
-        <td><table border="0" width="100%" cellspacing="0" cellpadding="0">
-          <tr>
-            <td class="pageHeading"><?php echo HEADING_TITLE; ?></td>
-            <td class="pageHeading" align="right"><?php echo xtc_draw_separator('pixel_trans.gif', HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT); ?></td>
-          </tr>
-        </table></td>
-      </tr>
+                    </td>
+                  </tr>
+                </table></td>
+            </tr>
+          </table>
 <?php
   if ($_GET['action'] == 'new') {
     $form_action = 'insert';
@@ -243,11 +232,9 @@ function popupImageWindow(url) {
   var dateExpires = new ctlSpiffyCalendarBox("dateExpires", "new_banner", "expires_date","btnDate1","<?php echo $bInfo->expires_date; ?>",scBTNMODE_CUSTOMBLUE);
   var dateScheduled = new ctlSpiffyCalendarBox("dateScheduled", "new_banner", "date_scheduled","btnDate2","<?php echo $bInfo->date_scheduled; ?>",scBTNMODE_CUSTOMBLUE);
 </script>
-      <tr>
-        <td><?php echo xtc_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
-      </tr>
-      <tr><?php echo xtc_draw_form('new_banner', FILENAME_BANNER_MANAGER, 'page=' . $_GET['page'] . '&action=' . $form_action, 'post', 'enctype="multipart/form-data"'); if ($form_action == 'update') echo xtc_draw_hidden_field('banners_id', $bID); ?>
-        <td><table border="0" cellspacing="0" cellpadding="2">
+
+      <?php echo xtc_draw_form('new_banner', FILENAME_BANNER_MANAGER, 'page=' . $_GET['page'] . '&action=' . $form_action, 'post', 'enctype="multipart/form-data"'); if ($form_action == 'update') echo xtc_draw_hidden_field('banners_id', $bID); ?>
+        <table border="0" cellspacing="0" cellpadding="2">
           <tr>
             <td class="main"><?php echo TEXT_BANNERS_TITLE; ?></td>
             <td class="main"><?php echo xtc_draw_input_field('banners_title', $bInfo->banners_title, '', true); ?></td>
@@ -295,24 +282,18 @@ function popupImageWindow(url) {
             <td valign="top" class="main"><?php echo TEXT_BANNERS_EXPIRES_ON; ?><br /><small>(dd/mm/yyyy)</small></td>
             <td class="main"><script type="text/javascript">dateExpires.writeControl(); dateExpires.dateFormat="dd/MM/yyyy";</script><?php echo TEXT_BANNERS_OR_AT . '<br />' . xtc_draw_input_field('impressions', $bInfo->expires_impressions, 'maxlength="7" size="7"') . ' ' . TEXT_BANNERS_IMPRESSIONS; ?></td>
           </tr>
-        </table></td>
-      </tr>
-      <tr>
-        <td><?php echo xtc_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
-      </tr>
-      <tr>
-        <td><table border="0" width="100%" cellspacing="0" cellpadding="2">
+        </table>
+        <table border="0" width="100%" cellspacing="0" cellpadding="2">
           <tr>
             <td class="main"><?php echo TEXT_BANNERS_BANNER_NOTE . '<br />' . TEXT_BANNERS_INSERT_NOTE . '<br />' . TEXT_BANNERS_EXPIRCY_NOTE . '<br />' . TEXT_BANNERS_SCHEDULE_NOTE; ?></td>
             <td class="main" align="right" valign="top" nowrap><?php echo (($form_action == 'insert') ? '<input type="submit" class="button" onClick="this.blur();" value="' . BUTTON_INSERT . '"/>' : '<input type="submit" class="button" onClick="this.blur();" value="' . BUTTON_UPDATE . '"/>'). '&nbsp;&nbsp;<a class="button" onClick="this.blur();" href="' . xtc_href_link(FILENAME_BANNER_MANAGER, 'page=' . $_GET['page'] . '&bID=' . $_GET['bID']) . '">' . BUTTON_CANCEL . '</a>'; ?></td>
           </tr>
-        </table></td>
-      </form></tr>
+        </table>
+      </form>
 <?php
   } else {
 ?>
-      <tr>
-        <td><table border="0" width="100%" cellspacing="0" cellpadding="0">
+        <table border="0" width="100%" cellspacing="0" cellpadding="0">
           <tr>
             <td valign="top"><table border="0" width="100%" cellspacing="0" cellpadding="2">
               <tr class="dataTableHeadingRow">
@@ -427,21 +408,11 @@ function popupImageWindow(url) {
   }
 ?>
           </tr>
-        </table></td>
-      </tr>
+        </table>
 <?php
   }
 ?>
-    </table></td>
-<!-- body_text_eof //-->
-  </tr>
-</table>
-<!-- body_eof //-->
-
-<!-- footer //-->
-<?php require(DIR_WS_INCLUDES . 'footer.php'); ?>
-<!-- footer_eof //-->
-<br />
-</body>
-</html>
-<?php require(DIR_WS_INCLUDES . 'application_bottom.php'); ?>
+<?php 
+require(DIR_WS_INCLUDES . 'application_bottom.php'); 
+require(DIR_WS_INCLUDES . 'application_bottom_0.php');
+?>

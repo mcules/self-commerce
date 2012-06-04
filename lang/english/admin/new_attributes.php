@@ -13,7 +13,6 @@
    Released under the GNU General Public License
    --------------------------------------------------------------*/
 
-
    define('SORT_ORDER','Sort order');
    define('ATTR_MODEL','Attribute Model');
    define('ATTR_STOCK','Stock');
@@ -27,5 +26,7 @@
    define('TITLE_UPDATED','Product Attributes Updated.');
    define('SELECT_PRODUCT','Please select a product to edit:');
    define('SELECT_COPY','Please select a product to copy attributes from:');
-
+   define('TABLE_HEADING_OPT_VALUE','Option value');
+   define('TEXT_INSERT_NEW_OPTION','Insert new Option:');   
+   define('TEXT_AKTIV_OPTIONS','<strong>Active Options:</strong>');
 ?>

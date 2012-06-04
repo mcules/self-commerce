@@ -8,6 +8,7 @@
 
    Copyright (c) 2003 XT-Commerce
    -----------------------------------------------------------------------------------------
+   (c) 2012	 Self-Commerce www.self-commerce.de
    based on: 
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
    (c) 2002-2003 osCommerce(shopping_cart.php,v 1.71 2003/02/14); www.oscommerce.com 
@@ -28,7 +29,7 @@ require (DIR_FS_CATALOG.'templates/'.CURRENT_TEMPLATE.'/source/boxes.php');
 // include needed functions
 require_once (DIR_FS_INC.'xtc_array_to_string.inc.php');
 require_once (DIR_FS_INC.'xtc_image_submit.inc.php');
-require_once (DIR_FS_INC.'xtc_recalculate_price.inc.php');
+
 
 $breadcrumb->add(NAVBAR_TITLE_SHOPPING_CART, xtc_href_link(FILENAME_SHOPPING_CART));
 
@@ -37,7 +38,8 @@ include (DIR_WS_MODULES.'gift_cart.php');
 
 if ($_SESSION['cart']->count_contents() > 0) {
 
-	$smarty->assign('FORM_ACTION', xtc_draw_form('cart_quantity', xtc_href_link(FILENAME_SHOPPING_CART, 'action=update_product')));
+  $smarty->assign('FORM_ACTION', xtc_draw_form('cart_quantity', xtc_href_link(FILENAME_SHOPPING_CART, 'action=update_product', 'SSL')));
+
 	$smarty->assign('FORM_END', '</form>');
 	$hidden_options = '';
 	$_SESSION['any_out_of_stock'] = 0;
@@ -133,6 +135,21 @@ if ($_SESSION['cart']->show_total() > 0 ) {
 	$smarty->assign('BUTTON_CONTINUE', '<a href="'.xtc_href_link(FILENAME_DEFAULT).'">'.xtc_image_button('button_continue.gif', IMAGE_BUTTON_CONTINUE).'</a>');
 
 }
+global $breadcrumb, $cPath_array, $actual_products_id;
+if(!empty($cPath_array)) {
+	$smarty->assign('CONTINUE_NAME',$breadcrumb->_trail[count($breadcrumb->_trail)-2]['title']);
+	$smarty->assign('CONTINUE_LINK',$breadcrumb->_trail[count($breadcrumb->_trail)-2]['link']);
+	$ct_shopping = $breadcrumb->_trail[count($breadcrumb->_trail)-2]['link'];
+}
+if(!empty($actual_products_id)) {
+	$smarty->assign('CONTINUE_NAME',$breadcrumb->_trail[count($breadcrumb->_trail)-2]['title']);
+	$smarty->assign('CONTINUE_LINK',$breadcrumb->_trail[count($breadcrumb->_trail)-2]['link']);
+	$ct_shopping = $breadcrumb->_trail[count($breadcrumb->_trail)-2]['link'];
+}
+if(!empty($ct_shopping)) $_SESSION['continue_link'] = $ct_shopping;
+if(!empty($_SESSION['continue_link'])) $smarty->assign('CONTINUE_LINK',$_SESSION['continue_link']);
+$smarty->assign('BUTTON_CONTINUE_SHOPPING', xtc_image_button('button_continue_shopping.gif', IMAGE_BUTTON_CONTINUE_SHOPPING));
+
 $smarty->assign('language', $_SESSION['language']);
 $smarty->caching = 0;
 $main_content = $smarty->fetch(CURRENT_TEMPLATE.'/module/shopping_cart.html');
@@ -141,7 +158,7 @@ $smarty->assign('main_content', $main_content);
 $smarty->assign('language', $_SESSION['language']);
 $smarty->caching = 0;
 if (!defined(RM))
-	$smarty->load_filter('output', 'note');
+	$smarty->loadfilter('output', 'note');
 $smarty->display(CURRENT_TEMPLATE.'/index.html');
 include ('includes/application_bottom.php');
 ?>

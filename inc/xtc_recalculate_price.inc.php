@@ -15,11 +15,8 @@
    Released under the GNU General Public License 
    ---------------------------------------------------------------------------------------*/
    
-function xtc_recalculate_price($price, $discount) 
-	{	  
-	
-	  $price=-100*$price/($discount-100)/100*$discount;
-	  return $price;
-      
-	  }
- ?>
+function xtc_recalculate_price($price, $discount) {
+	$price=-100*$price/($discount-100)/100*$discount;
+	return $price;
+}
+?>

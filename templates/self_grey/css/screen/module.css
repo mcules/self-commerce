@@ -1,0 +1,277 @@
+@charset "UTF-8";
+/**
+* YAML-based Template for xt:Commerce
+*
+* (en) modules
+* (de) Module
+*
+* @copyright       Copyright 2006-2007, Björn Teßmann (tessmann@zerosoft.de)
+*                  Based on YAML, Copyright 2005-2007, Dirk Jesse
+* @link            http://www.zs-ecommerce.com
+* @package         yaml for xt:Commerce
+* @version         1.6.0   
+*/
+
+@media all
+{
+
+/* ################################################################################################################### */
+/* ### Spezielle Anweisungen für einzelne Module ##################################################################### */
+/* ################################################################################################################### */
+
+/* #################################################################################################### */
+/* ### for product listing 1 col css go to product_listing.css                                      ### */
+/* ### used in crossselling, reverse_crossselling, also purached, specials, new_products,           ### */
+/* ### new_products_default, new_products_overview ,account ,reviewes                               ### */
+/* #################################################################################################### */
+
+/* ### orderDetails ################################################################################################## */
+#col3_content .orderDetailsTab .quantity input {
+	width: 25px ;
+}
+
+thead.orderDetailsTab td  {
+	background-color:#CCCCCC;
+}
+
+/* ### productNavigator ############################################################################################## */
+
+.productNavigator {
+	background-color:#EDEDED;
+	padding:8px;
+	border:#9F9F9F 1px solid;
+	font-size:0.75em;
+	margin-bottom:3px;
+}
+
+/* ### processCheckout: Bestellverlauf ########################################################################### */
+
+.processCheckoutGreen {
+	background-color:#D5FFBF;
+	text-align:center;
+	height:35px;
+	width:24%;
+	float:left;
+	border:1px #9F9F9F solid;
+	padding:1px;
+	margin-right:1px;
+	font-size:10px;
+	color:#000;
+	line-height:15px;
+}
+
+.processCheckoutRed {
+	background-color:#FFDDDD;
+	text-align:center;
+	height:35px;
+	width:24%;
+	float:left;
+	border:1px #9F9F9F solid;
+	padding:1px;
+	margin-right:1px;
+	font-size:10px;
+	color:#000;
+	line-height:15px;
+}
+
+.processCheckoutYellow {
+	background-color:#FFFF91;
+	text-align:center;
+	height:35px;
+	width:24%;
+	float:left;
+	border:1px #9F9F9F solid;
+	padding:1px;
+	margin-right:1px;
+	font-size:10px;
+	color:#000;
+	line-height:15px;
+}
+
+/* ### advanced_search #################################################################################################### */
+
+#advanced_search input[type="text"] {
+	width:40% !important;
+	margin-right:4px;
+}
+
+#advanced_search label {
+	width: 18em;
+}
+
+/* ### error_message ####################################################################################################### */
+table#errorSearch {
+  width:400px;
+}
+/* ### Auswahl für Anrede in diversen Eingabeformularen ################################################################################################ */
+
+#checkout_address input[type="radio"] , #addressbook input[type="radio"] ,#create_account input[type="radio"]  {
+	float:none;
+	margin-left:5px;
+	margin-right:10px;
+}
+
+/*  ### Bearbeiten-Link im CheckoutConfirmation  ### */
+a.checkoutLink {
+	color:#009933;
+	font-style:italic;
+}
+/*  ### Tabelle CheckoutConfirmation  ### */
+.checkoutConfirmation table{
+	border:#9F9F9F 1px solid;
+	margin-left:1px;
+	width:100%;
+}
+
+
+
+/* ### Warenkorb total ### */
+
+.orderDetailsTable {
+  border-left:1px solid #9F9F9F;
+  border-right:1px solid #9F9F9F;
+  border-top:1px solid #9F9F9F;
+}
+
+.orderDetailsTable td , .orderDetailsTable tfoot td , .orderDetailsTable thead th{ 
+  margin: 0; 
+  border: 0; 
+  padding: 5px 10px; 
+  color: #333; 
+  border-bottom:1px solid #9F9F9F;
+}
+
+.orderDetailsTable thead th {
+  color:#000;
+  background:#CFCFCF;
+} 
+
+.orderDetailsTable tfoot td {
+  color:#000;
+  background:#CFCFCF;
+} 
+
+
+.orderDetailsTable td.subTotal { 
+  text-align: right; 
+}
+
+/* ### Hintergrundfarbe Warenkorb Zeilen ### */
+tbody tr.prodRow1   {
+  background:#fff;
+}
+
+tbody tr.prodRow2   {
+  background:#EFEFEF;
+}
+
+.productAttributes tbody tr.attribute {
+  background:transparent;
+}
+
+.orderDetailsTable tbody td.singlePrice, tbody td.totalPrice { font-size:0.8em; vertical-align: top; }
+.orderDetailsTable tbody td.delete { padding:0; vertical-align:middle; line-height:20px; }
+.orderDetailsTable tbody td.delete input { margin-left:35px; }
+
+#col3_content .quantity input[type="text"] {
+  width:35px;
+  margin:0;
+  padding:0;
+}
+
+
+/* ### Inhalt: Tabelle für Adressauswahl checkout_shipping_address.html und checkout_payment_address.html ### */
+.adressBlockContainer td {
+	border-left: 1px dotted #fff; padding: 3px;
+}
+
+.adressBlockContainer  tbody td,.adressBlockContainer th {
+	border: 0px ; vertical-align: top; padding: 0px;
+}
+
+/* #################################################################################################### */
+/* ### Layoutelement Container ######################################################################## */
+/* #################################################################################################### */
+
+.container , .moduleRow { 
+  margin-bottom: 10px; 
+  padding: 5px; 
+  background: #f1f1f1;
+	border-color: #3C3C3C;
+	border-style: solid;
+	border-width: 1px;
+}
+  
+.container2 { 
+  margin-bottom: 10px; 
+  padding: 5px; 
+  background: #fff;
+	border-color: #3C3C3C;
+	border-style: solid;
+	border-width: 1px;
+}
+
+
+.moduleRowOver {
+	background-color: #CCCCCC;
+	border: 1px solid;
+	border-color: #000000;
+  margin-bottom: 10px; 
+  padding: 5px; 
+
+	}
+.moduleRowSelected {
+	background-color: #CCCCCC;
+	margin: 0;
+	padding: 5px;
+}
+
+#col3_content h1.containerHead  {
+  padding:1px 3px 1px 6px;
+  background:#3C3C3C;
+  color:#fff;
+}
+#col3_content h1.containerHead a{
+  color:#fff;
+}
+
+/* SITEMAP */
+.sitemapwrap {
+}
+.sitemapwrap .sitemapleft {
+	background-color:#f8f8f8;
+	border: #ccc 1px solid;
+	display:table;
+	float:left;
+	width:235px;
+	margin-bottom:15px;
+}
+.sitemapwrap .sitemapright {
+	background-color:#f8f8f8;
+	border: #ccc 1px solid;
+	display:table;
+	float:right;
+	width:235px;
+	margin-bottom:15px;
+}
+.sitemapheader {
+	padding:3px;
+	background-color:#ccc;
+	color:#fff;
+	font-weight:bold;
+}
+.sitemapheader a:link, .sitemapheader a:visited, .sitemapheader a:hover {
+	color:#fff;
+	text-decoration:none;
+	outline: none;
+}
+.sitemapcontent {
+	padding:6px;
+}
+.sitemapcontent li {
+	list-style-type:none;
+}
+
+
+
+}

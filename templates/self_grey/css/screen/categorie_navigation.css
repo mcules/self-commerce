@@ -1,0 +1,139 @@
+@charset "UTF-8";
+/**
+* YAML-based Template for xt:Commerce
+*
+* (en) Navigation for product categories 
+* (de) Navigation für die Produktkategorien
+*
+* @copyright       Copyright 2006-2007, Björn Teßmann (tessmann@zerosoft.de)
+*                  Based on YAML, Copyright 2005-2007, Dirk Jesse
+* @link            http://www.zs-ecommerce.com
+* @package         yaml for xt:Commerce
+* @version         1.6.0 
+*/
+
+@media all
+{
+
+/* ################################################################################################################### */
+/* ### Definition des Randes für die einzelnen Kategorieebenen + Text- und Hintergrundfarbe (Werte werden vererbt) ### */
+/* ### width + padding-left = 100% ################################################################################### */
+/* ################################################################################################################### */
+
+/* ### 1.Ebene ### */
+.catListBody ul li a {
+	width: 95%;
+	padding: 2px 0px 2px 5%;
+	color: #444;
+	border-bottom: 1px #eee solid;
+	background-color:#E1E1E1;
+}
+
+/* ### 2.Ebene ### */
+.catListBody ul li ul li a, .catListBody li.activeCat ul li a {
+	width: 90%;
+	padding: 2px 0px 2px 10%;
+	color: #444;
+	border-bottom: 1px #eee solid;
+	background-color:#CCCCCC;
+}
+
+/* ### 3.Ebene ### */
+.catListBody ul li ul li ul li a , .catListBody li.activeCat li.activeCat ul li a {
+	width: 85%;
+	padding: 2px 0px 2px 15%;
+	color: #444;
+	border-bottom: 1px #eee solid;
+	background-color:#CFCFCF;
+}
+
+/* ### 4.Ebene ### */
+.catListBody ul li ul li ul li ul li a , .catListBody li.activeCat li.activeCat li.activeCat ul li a {
+	width: 80%;
+	padding: 2px 0px 2px 20%;
+	color: #444;
+	border-bottom: 1px #eee solid;
+	background-color:#BFBFBF;
+}
+
+/* ### 5.Ebende ### */
+.catListBody ul li ul li ul li ul li ul li a , .catListBody li.activeCat li.activeCat li.activeCat li.activeCat ul li a {
+	width: 75%;
+	padding: 2px 0px 2px 25%;
+	color: #444;
+	border-bottom: 1px #eee solid;
+	background-color:#BFBFBF;
+}
+
+/* ### 6.Ebende ### */
+.catListBody ul li ul li ul li ul li ul li ul li a , .catListBody li.activeCat li.activeCat li.activeCat li.activeCat li.activeCat ul li a {
+	width: 70%;
+	padding: 1px 0px 1px 30%;
+	color: #444;
+	border-bottom: 1px #eee solid;
+	background-color:#BFBFBF;
+}
+
+.catListBody li.activeCat li.activeCat li.activeCat li.activeCat li.activeCat li.activeCat ul li a  {
+  color: #000;
+	border-bottom: 1px #eee solid;
+	background-color:#BFBFBF;
+}
+
+/* ############################################################################################ */
+/* ### MouseOver ############################################################################## */
+/* ############################################################################################ */
+
+/* ### 1.Ebene ### */
+.catListBody li a:hover {
+	background-color:#CA513E; color: #fff;
+	text-decoration: none;
+}
+
+/* ### 2.Ebene ### */
+.catListBody li li a:hover , .catListBody li.activeCat li a:hover {
+	background-color:#CA513E; color: #fff;
+	text-decoration: none;
+}
+
+/* ### 3.Ebene ### */
+.catListBody li li li a:hover , .catListBody li.activeCat li.activeCat li a:hover {
+	background-color:#CA513E; color: #fff;
+	text-decoration: none;
+}
+
+/* ### 4.Ebene ### */
+.catListBody li li li li a:hover , .catListBody li.activeCat li.activeCat li.activeCat li a:hover {
+	background-color:#CA513E; color: #fff;
+	text-decoration: none;
+}
+
+/* ### 5.Ebende ### */
+.catListBody li li li li li a:hover , .catListBody li.activeCat li.activeCat li.activeCat li.activeCat li a:hover{
+	background-color:#CA513E; color: #fff;
+	text-decoration: none;
+}
+
+/* ### 6.Ebende ### */
+.catListBody li li li li li li a:hover , .catListBody li.activeCat li.activeCat li.activeCat li.activeCat li.activeCat li a:hover{
+	background-color:#CA513E; color: #fff;
+	text-decoration: none;
+}
+
+/* ############################################################################################ */
+/* ### Aktive Kategorie ####################################################################### */
+/* ############################################################################################ */
+
+.catListBody li.activeCat a,
+.catListBody li.activeCat li.activeCat a ,
+.catListBody li.activeCat li.activeCat li.activeCat a ,
+.catListBody li.activeCat li.activeCat li.activeCat li.activeCat a ,
+.catListBody li.activeCat li.activeCat li.activeCat li.activeCat li.activeCat a ,
+.catListBody li.activeCat li.activeCat li.activeCat li.activeCat li.activeCat li.activeCat a {
+	background-color:#000;
+	color: #fff;
+}
+
+
+
+}

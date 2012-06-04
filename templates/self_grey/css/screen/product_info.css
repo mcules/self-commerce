@@ -1,0 +1,107 @@
+@charset "UTF-8";
+/**
+* YAML-based Template for xt:Commerce
+*
+* (en)  CSS for product informations
+* (de)  CSS für die Produktinformationsseiten
+*
+* @copyright       Copyright 2006-2007, Björn Teßmann (tessmann@zerosoft.de)
+*                  Based on YAML, Copyright 2005-2007, Dirk Jesse
+* @link            http://www.zs-ecommerce.com
+* @package         yaml for xt:Commerce
+* @version         1.6.0
+*/
+
+@media all
+{
+
+/* ################################################################################################################### */
+/* ### productInfo allgemein ################################################################################################ */
+/* ################################################################################################################### */
+
+.productInfo1  {
+	color: #444;
+}
+
+/* ### Bilder ###*/
+.productInfo1 img.imgLeft  {
+	background: #fff;
+	padding: 15px;
+	border:1px #9A9999 solid;
+}
+
+
+
+#col3_content .productInfo1 input[type=text] {
+	width: 2em;
+	float:none;
+}
+
+.productInfo1 .addCart {
+	text-align:right;
+}
+
+.prodInfo1Spacer {
+	margin-bottom: 15px;
+}
+.prodInfo1Spacer h2 {
+	font-size:0.9em;
+
+}
+.desc {
+	margin:10px 0 10px 0;
+}
+
+#col3_content h1.productInfo1Name  {
+  padding:1px 3px 1px 6px;
+  /*background:#3C3C3C;*/
+  color: #3C3C3C;
+  border-bottom: 1px solid #9A9999;
+  padding: 10px 0px;
+  font-size: 1.2em;
+}
+#col3_content h1.productInfo1Name a{
+  color:#fff;
+}
+
+.productInfo1 {
+  margin-bottom: 10px; 
+  padding: 15px 0px; 
+  background: #fff;
+	/*border-color: #3C3C3C;
+	border-style: solid;
+	border-width: 1px;*/
+}
+
+/* ### Skalierung der zusätzlichen Bilder durch Setzen der Höhe ### */
+.productInfo1 .morePics img.imgLeft {
+	height:55px;
+}
+
+.tabbedBody .morepics img {
+	padding: 5px;
+	background: #fff;
+	border:1px solid #9A9999;
+}
+
+.prodPriceInfo1 {
+  text-align:right;
+  font-size:1.1em;
+  font-weight:bold;
+}
+
+.prodTaxShipInfo1 {
+  font-size:0.8em;
+  text-align:right;
+}
+
+.productInfo1 .basicData {
+	line-height:1.5em;
+	text-align:right;
+}
+
+/* ################################################################################################################### */
+/* ### productInfo X ################################################################################################## */
+/* ################################################################################################################### */
+
+}

@@ -15,10 +15,10 @@
    Released under the GNU General Public License 
    ---------------------------------------------------------------------------------------*/
 
-  define('MODULE_PAYMENT_IPAYMENT_TEXT_TITLE', 'iPayment');
+  define('MODULE_PAYMENT_IPAYMENT_TEXT_TITLE', 'Kreditkartenzahlung');
   define('MODULE_PAYMENT_IPAYMENT_TEXT_DESCRIPTION', 'Kreditkarten Test Info:<br /><br />CC#: 4111111111111111<br />G&uuml;ltig bis: Any');
-    define('MODULE_PAYMENT_IPAYMENT_TEXT_INFO','');
-  define('IPAYMENT_ERROR_HEADING', 'Folgender Fehler wurde von iPayment w&auml;hrend des Prozesses gemeldet:');
+  define('MODULE_PAYMENT_IPAYMENT_TEXT_INFO', 'Die Kreditkarteneingabe erfolgt auf der Bestell&uuml;bersichtsseite.');
+  define('IPAYMENT_ERROR_HEADING', 'Bei der Verarbeitung Ihrer Kreditkartendaten ist ein Fehler aufgetreten:');
   define('IPAYMENT_ERROR_MESSAGE', 'Bitte kontrollieren Sie die Daten Ihrer Kreditkarte!');
   define('MODULE_PAYMENT_IPAYMENT_TEXT_CREDIT_CARD_OWNER', 'Kreditkarteninhaber');
   define('MODULE_PAYMENT_IPAYMENT_TEXT_CREDIT_CARD_NUMBER', 'Kreditkarten-Nr.:');
@@ -39,7 +39,9 @@ define('MODULE_PAYMENT_IPAYMENT_PASSWORD_TITLE' , 'Benutzer-Passwort');
 define('MODULE_PAYMENT_IPAYMENT_PASSWORD_DESC' , 'Benutzer-Passwort welches f&uuml;r iPayment verwendet wird');
 define('MODULE_PAYMENT_IPAYMENT_USER_ID_TITLE' , 'Benutzer ID');
 define('MODULE_PAYMENT_IPAYMENT_USER_ID_DESC' , 'Benutzer ID welche f&uuml;r iPayment verwendet wird');
-define('MODULE_PAYMENT_IPAYMENT_CURRENCY_TITLE' , 'Transaktionswährung');
+define('MODULE_PAYMENT_IPAYMENT_SECURITY_KEY_TITLE', 'Security Key');
+define('MODULE_PAYMENT_IPAYMENT_SECURITY_KEY_DESC', 'Falls in der iPayment-Anwendung ein Transaktions-Security-Key hinterlegt wurde, bitte diesen hier eingeben um Manipulationen zu verhindern.');
+define('MODULE_PAYMENT_IPAYMENT_CURRENCY_TITLE' , 'Transaktionsw&auml;hrung');
 define('MODULE_PAYMENT_IPAYMENT_CURRENCY_DESC' , 'W&auml;hrung, welche f&uuml;r Kreditkartentransaktionen verwendet wird');
 define('MODULE_PAYMENT_IPAYMENT_SORT_ORDER_TITLE' , 'Anzeigereihenfolge');
 define('MODULE_PAYMENT_IPAYMENT_SORT_ORDER_DESC' , 'Reihenfolge der Anzeige. Kleinste Ziffer wird zuerst angezeigt.');

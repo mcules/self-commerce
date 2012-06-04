@@ -1,5 +1,4 @@
 <?php
-
 /* --------------------------------------------------------------
    $Id$   
 
@@ -20,7 +19,6 @@
 
    Released under the GNU General Public License
    --------------------------------------------------------------*/
-
 require ('includes/application_top.php');
 require_once (DIR_FS_INC.'xtc_validate_vatid_status.inc.php');
 require_once (DIR_FS_INC.'xtc_get_geo_zone_code.inc.php');
@@ -289,40 +287,7 @@ if ($_GET['action']) {
 					$sql_data_array['customers_dob'] = xtc_date_raw($customers_dob);
 
 				xtc_db_perform(TABLE_CUSTOMERS, $sql_data_array, 'update', "customers_id = '".xtc_db_input($customers_id)."'");
-        // google maps begin
-      if (GOOGLEMAP_APIKEY != ''){
-        $url  = "http://maps.google.com/maps/geo?q=";
-        $url .= $entry_street_address . "," . $entry_postcode . "," . $entry_city . "," . $entry_country;
-        $url .= "&output=csv&key=";
-        $url .= GOOGLEMAP_APIKEY;
-        $url = str_replace (" ", "%20", $url);          // Leerzeichen -> %20
-        $request = fopen($url,'r');
-        $content = fread($request,100000);
-        fclose($request);
 
-        list($statuscode, $accuracy, $lat, $lng) = split(",", $content);
-        
-        if ($statuscode != 200)         //  errors occurred; the address was successfully parsedd.
-        {
-                // Versuch ohne Straße
-                $url  = "http://maps.google.com/maps/geo?q=";
-                $url .= $entry_postcode . "," . $entry_city . "," . $entry_country;
-                $url .= "&output=csv&key=";
-                $url .= GOOGLEMAP_APIKEY;
-                $url = str_replace (" ", "%20", $url);          // Leerzeichen -> %20
-                $request = fopen($url,'r');
-                $content = fread($request,100000);
-                fclose($request);
-
-                list($statuscode, $accuracy, $lat, $lng) = split(",", $content);
-        }
-        if ($statuscode == 200)         // No errors occurred; the address was successfully parsed.
-        {
-                $latlng_query_raw = "update customers_to_latlng set lat = '$lat', lng = '$lng' where customers_id = '".xtc_db_input($customers_id)."'";
-                $latlng_query = xtc_db_query($latlng_query_raw);
-        }
-       }                
-        // googlemaps end
 				xtc_db_query("update ".TABLE_CUSTOMERS_INFO." set customers_info_date_account_last_modified = now() where customers_info_id = '".xtc_db_input($customers_id)."'");
 
 				if ($entry_zone_id > 0)
@@ -378,9 +343,6 @@ if ($_GET['action']) {
 			xtc_db_query("delete from ".TABLE_CUSTOMERS_STATUS_HISTORY." where customers_id = '".xtc_db_input($customers_id)."'");
 			xtc_db_query("delete from ".TABLE_CUSTOMERS_IP." where customers_id = '".xtc_db_input($customers_id)."'");
 			xtc_db_query("DELETE FROM ".TABLE_ADMIN_ACCESS." WHERE customers_id = '".xtc_db_input($customers_id)."'");
-			// google maps begin
-			xtc_db_query("DELETE FROM customers_to_latlng WHERE customers_id = '".xtc_db_input($customers_id)."'");			
-			// google maps end
 
 			xtc_redirect(xtc_href_link(FILENAME_CUSTOMERS, xtc_get_all_get_params(array ('cID', 'action'))));
 			break;
@@ -391,15 +353,7 @@ if ($_GET['action']) {
 			$cInfo = new objectInfo($customers);
 	}
 }
-?>
-<!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html <?php echo HTML_PARAMS; ?>>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=<?php echo $_SESSION['language_charset']; ?>"> 
-<title><?php echo TITLE; ?></title>
-<link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
-<script type="text/javascript" src="includes/general.js"></script>
-<?php
+require ('includes/application_top_1.php');
 
 if ($_GET['action'] == 'edit' || $_GET['action'] == 'update') {
 ?>
@@ -502,22 +456,29 @@ function check_form() {
 
 }
 ?>
-</head>
-<body marginwidth="0" marginheight="0" topmargin="0" bottommargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFFF" onload="SetFocus();">
-<!-- header //-->
-<?php require(DIR_WS_INCLUDES . 'header.php'); ?>
-<!-- header_eof //-->
 
-<!-- body //-->
-<table border="0" width="100%" cellspacing="2" cellpadding="2">
-  <tr>
-    <td class="columnLeft2" width="<?php echo BOX_WIDTH; ?>" valign="top"><table border="0" width="<?php echo BOX_WIDTH; ?>" cellspacing="1" cellpadding="1" class="columnLeft">
-<!-- left_navigation //-->
-<?php require(DIR_WS_INCLUDES . 'column_left.php'); ?>
-<!-- left_navigation_eof //-->
-    </table></td>
-<!-- body_text //-->
-    <td class="boxCenter" width="100%" valign="top"><table border="0" width="100%" cellspacing="0" cellpadding="2">
+          <table border="0" width="100%" cellspacing="0" cellpadding="2">
+            <tr>
+              <td>
+                <table border="0" width="100%" cellspacing="0" cellpadding="2">
+                  <tr>
+                    <td width="80" rowspan="2">
+<?php echo xtc_image(DIR_WS_ICONS.'heading_news.gif'); ?>
+                    </td>
+                    <td class="pageHeading">
+<?php echo HEADING_TITLE; ?>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="main" valign="top">
+XT Customers
+                    </td>
+                  </tr>
+                </table></td>
+            </tr>
+          </table>
+<!-- content -->
+<table border="0" width="100%" cellspacing="0" cellpadding="2">
 <?php
 
 if ($_GET['action'] == 'edit' || $_GET['action'] == 'update') {
@@ -529,15 +490,7 @@ if ($_GET['action'] == 'edit' || $_GET['action'] == 'update') {
 ?>
       <tr>
         <td>
-        <table border="0" width="100%" cellspacing="0" cellpadding="0">
-  <tr> 
-    <td width="80" rowspan="2"><?php echo xtc_image(DIR_WS_ICONS.'heading_customers.gif'); ?></td>
-    <td class="pageHeading"><?php echo $cInfo->customers_lastname.' '.$cInfo->customers_firstname; ?></td>
-  </tr>
-  <tr> 
-    <td class="main" valign="top">XT Customers</td>
-  </tr>
-</table>
+
         <table border="0" width="100%" cellspacing="0" cellpadding="0">
           <tr>
             <td valign="middle" class="pageHeading"><?php if ($customers_statuses_array[$customers['customers_status']]['csa_image'] != '') { echo xtc_image(DIR_WS_ICONS . $customers_statuses_array[$customers['customers_status']]['csa_image'], ''); } ?></td>
@@ -946,7 +899,7 @@ if ($error == true) {
         <td><?php echo xtc_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
       </tr>
       <tr>
-        <td align="right" class="main"><input type="submit" class="button" onClick="this.blur();" value="<? echo BUTTON_UPDATE; ?>"><?php echo ' <a class="button" onClick="this.blur();" href="' . xtc_href_link(FILENAME_CUSTOMERS, xtc_get_all_get_params(array('action'))) .'">' . BUTTON_CANCEL . '</a>'; ?></td>
+        <td align="right" class="main"><input type="submit" class="button" onClick="this.blur();" value="<?php echo BUTTON_UPDATE; ?>"><?php echo ' <a class="button" onClick="this.blur();" href="' . xtc_href_link(FILENAME_CUSTOMERS, xtc_get_all_get_params(array('action'))) .'">' . BUTTON_CANCEL . '</a>'; ?></td>
       </tr></form>
 <?php
 
@@ -954,15 +907,7 @@ if ($error == true) {
 ?>
       <tr>
         <td>
-        <table border="0" width="100%" cellspacing="0" cellpadding="0">
-  <tr> 
-    <td width="80" rowspan="2"><?php echo xtc_image(DIR_WS_ICONS.'heading_customers.gif'); ?></td>
-    <td class="pageHeading"><?php echo HEADING_TITLE; ?></td>
-  </tr>
-  <tr> 
-    <td class="main" valign="top">XT Customers</td>
-  </tr>
-</table>
+        
 <?php
 
 	$select_data = array ();
@@ -1277,16 +1222,9 @@ echo '<div class="navigationSelection"><ul class="navigationList">'.xtcIndexNavi
 
 }
 ?>
-    </table></td>
-<!-- body_text_eof //-->
-  </tr>
-</table>
-<!-- body_eof //-->
-
-<!-- footer //-->
-<?php require(DIR_WS_INCLUDES . 'footer.php'); ?>
-<!-- footer_eof //-->
-<br />
-</body>
-</html>
-<?php require(DIR_WS_INCLUDES . 'application_bottom.php'); ?>
+    </table>
+<!-- end content -->
+<?php 
+require(DIR_WS_INCLUDES . 'application_bottom.php'); 
+require(DIR_WS_INCLUDES . 'application_bottom_0.php');
+?>

@@ -92,13 +92,37 @@
     } else {
             $catsort    = 'c.sort_order, cd.categories_name ASC';
             $prodsort   = 'p.products_sort, pd.products_name ASC';
-    }       
+    }
+// schnell bearbeiten
+if($_GET['action'] == 'fast_update' && $_GET['pID'] != ''){
+	 xtc_db_query("update ".TABLE_PRODUCTS." 
+                  set
+                    products_ean = '".$_POST['products_ean']."', 
+                    products_quantity = '".$_POST['quantity']."',
+                    products_shippingtime = '".$_POST['shipping_status']."',
+                    products_model = '".$_POST['model']."',
+                    products_sort = '".$_POST['products_sort']."',
+                    products_last_modified = now(),
+                    products_weight = '".$_POST['products_weight']."',
+                    manufacturers_id = '".$_POST['manufacturers_id']."',
+                    products_fsk18 = '".$_POST['products_fsk18']."',
+                    products_vpe = '".$_POST['products_vpe']."',
+                    products_vpe_status = '".$_POST['products_vpe_status']."',
+                    products_vpe_value = '".$_POST['products_vpe_value']."',
+                    products_startpage_sort = '".$_POST['products_startpage_sort']."'                                                                                                    
+                  where 
+                    products_id = '".$_GET['pID']."'");
+$message .= '<div class="ok">'. TEXT_UPDATE_OK .'</div>';
+}
 ?>
 
     <!-- categories_view HTML part begin -->
 
     <tr>
      <td>
+     <?php
+     echo $message;
+     ?>
         <table border="0" width="100%" cellspacing="0" cellpadding="0">
                   <tr>
                     <td width="80" rowspan="2">
@@ -147,11 +171,11 @@
                 <?php echo TABLE_HEADING_EDIT; ?>
                 <input type="checkbox" onClick="javascript:CheckAll(this.checked);">
              </td>
-<!-- <? /* ------- ARTNR-LIST anfang --------- */ ?> -->
+<!-- <?php /* ------- ARTNR-LIST anfang --------- */ ?> -->
              <td class="dataTableHeadingContent" width="5%" align="center">                   
                 <?php echo TABLE_HEADING_ARTNR.xtc_sorting(FILENAME_CATEGORIES,'artnr');; ?>                                            
              </td>                                                                            
-<!-- <? /* ------- ARTNR-LIST ende --------- */ ?> -->
+<!-- <?php /* ------- ARTNR-LIST ende --------- */ ?> -->
              <td class="dataTableHeadingContent" align="center" width="7%">
                 <?php echo TABLE_HEADING_SORT.xtc_sorting(FILENAME_CATEGORIES,'sort'); ?>
              </td>
@@ -222,9 +246,9 @@
         }
     ?>              
              <td class="categories_view_data"><input type="checkbox" name="multi_categories[]" value="<?php echo $categories['categories_id'] . '" '; if (is_array($_POST['multi_categories'])) { if (in_array($categories['categories_id'], $_POST['multi_categories'])) { echo 'checked="checked"'; } } ?>></td>
-<!-- <? /* ------- ARTNR-LIST anfang --------- */ ?> -->
+<!-- <?php /* ------- ARTNR-LIST anfang --------- */ ?> -->
              <td class="categories_view_data">&nbsp;</td>
-<!-- <? /* ------- ARTNR-LIST ende --------- */ ?> -->
+<!-- <?php /* ------- ARTNR-LIST ende --------- */ ?> -->
              <td class="categories_view_data"><?php echo $categories['sort_order']; ?></td>
              <td class="categories_view_data" style="text-align: left; padding-left: 5px;">
              <?php 
@@ -278,17 +302,25 @@
         SELECT
         p.products_tax_class_id,
         p.products_id,
+        p.products_ean,
         p.products_model,
         pd.products_name,
         p.products_sort,
         p.products_quantity,
+        p.products_shippingtime,
         p.products_image,
         p.products_price,
         p.products_discount_allowed,
         p.products_date_added,
         p.products_last_modified,
         p.products_date_available,
+        p.products_weight,
         p.products_status,
+        p.manufacturers_id,
+        p.products_fsk18,
+        p.products_vpe,
+        p.products_vpe_status,
+        p.products_vpe_value,
         p.products_startpage,
         p.products_startpage_sort,
         p2c.categories_id FROM " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_DESCRIPTION . " pd, " . TABLE_PRODUCTS_TO_CATEGORIES . " p2c
@@ -301,17 +333,25 @@
         SELECT 
         p.products_tax_class_id,
         p.products_sort, 
-        p.products_id, 
+        p.products_id,
+        p.products_ean, 
         p.products_model,
         pd.products_name, 
-        p.products_quantity, 
+        p.products_quantity,
+        p.products_shippingtime, 
         p.products_image, 
         p.products_price, 
         p.products_discount_allowed, 
         p.products_date_added, 
         p.products_last_modified, 
-        p.products_date_available, 
+        p.products_date_available,
+        p.products_weight, 
         p.products_status,
+        p.manufacturers_id,
+        p.products_fsk18,
+        p.products_vpe,
+        p.products_vpe_status,
+        p.products_vpe_value,
         p.products_startpage,
         p.products_startpage_sort FROM " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_DESCRIPTION . " pd, " . TABLE_PRODUCTS_TO_CATEGORIES . " p2c 
         WHERE p.products_id = pd.products_id AND pd.language_id = '" . (int)$_SESSION['languages_id'] . "' AND 
@@ -358,13 +398,13 @@
       <td class="categories_view_data">        
         <input type="checkbox" name="multi_products[]" value="<?php echo $products['products_id']; ?>" <?php echo $is_checked; ?>>
       </td>
-<!-- <? /* ------- ARTNR-LIST anfang --------- */ ?> -->
+<!-- <?php /* ------- ARTNR-LIST anfang --------- */ ?> -->
       <td class="categories_view_data">        
       <?
         echo $products['products_model'];
       ?>
       </td>
-<!-- <? /* ------- ARTNR-LIST ende --------- */ ?> -->
+<!-- <?php /* ------- ARTNR-LIST ende --------- */ ?> -->
       <td class="categories_view_data">
         <?php 
         if ($current_category_id == 0){
@@ -375,7 +415,7 @@
          ?>
       </td>
       <td class="categories_view_data" style="text-align: left; padding-left: 8px;">
-        <?php echo '<a href="' . xtc_href_link(FILENAME_CATEGORIES, xtc_get_all_get_params(array('cPath', 'action', 'pID', 'cID')) . 'cPath=' . $cPath . '&pID=' . $products['products_id'] ) . '">' . xtc_image(DIR_WS_ICONS . 'preview.gif', ICON_PREVIEW) . '&nbsp;</a><a href="'.xtc_href_link(FILENAME_CATEGORIES, xtc_get_all_get_params(array('cPath', 'action', 'pID', 'cID')) . 'cPath=' . $cPath . '&pID=' . $products['products_id']) .'">' . $products['products_name']; ?></a>
+        <?php echo '<a href="' . xtc_href_link(FILENAME_CATEGORIES, xtc_get_all_get_params(array('cPath', 'action', 'pID', 'cID')) . 'cPath=' . $cPath . '&pID=' . $products['products_id'] ) . '">' . xtc_image(DIR_WS_ICONS . 'preview.gif', ICON_PREVIEW) .' '. $products['products_name'] .'</a>';?>
       </td>          
       <?php
       // check product and attributes stock
@@ -416,6 +456,7 @@
       ?>
       </td>
       <td class="categories_view_data">
+      <?php echo '<a href="' . xtc_href_link(FILENAME_CATEGORIES, xtc_get_all_get_params(array('cPath', 'action', 'pID', 'cID')) . 'cPath=' . $cPath . '&pID=' . $products['products_id'] ) . '&action=new_product">' . xtc_image(DIR_WS_ICONS . 'edit.png', ICON_EDIT) . '&nbsp;</a>'; ?>      
       <?php 
         if ( (is_object($pInfo)) && ($products['products_id'] == $pInfo->products_id) ) { echo xtc_image(DIR_WS_IMAGES . 'icon_arrow_right.gif', ''); } else { echo '<a href="' . xtc_href_link(FILENAME_CATEGORIES, xtc_get_all_get_params(array('cPath', 'action', 'pID', 'cID')) . 'cPath=' . $cPath . '&pID=' . $products['products_id']) . '">' . xtc_image(DIR_WS_IMAGES . 'icon_info.gif', IMAGE_ICON_INFO) . '</a>'; } 
       ?>
@@ -696,13 +737,99 @@
                 $price = ($price*($tax[tax_rate]+100)/100);
                 $price_string = '' . TEXT_PRODUCTS_PRICE_INFO . '&nbsp;' . $currencies->format($price) . ' - ' . TXT_NETTO . $currencies->format($price_netto);
             }
-            $contents[] = array('text' => '<div style="padding-left: 30px;">' . $price_string.  '</div><div style="padding-left: 30px;">' . TEXT_PRODUCTS_DISCOUNT_ALLOWED_INFO . '&nbsp;' . $pInfo->products_discount_allowed . '</div><div style="padding-left: 30px;">' .  TEXT_PRODUCTS_QUANTITY_INFO . '&nbsp;' . $pInfo->products_quantity . '</div>');            
+            $contents[] = array('text' => '<div style="padding-left: 30px;">' . $price_string.  '</div><div style="padding-left: 30px;">' . TEXT_PRODUCTS_DISCOUNT_ALLOWED_INFO . '&nbsp;' . $pInfo->products_discount_allowed . '</div>');            
             // END IN-SOLUTION
 
             //$contents[] = array('text' => '<br />' . TEXT_PRODUCTS_PRICE_INFO . ' ' . $currencies->format($pInfo->products_price) . '<br />' . TEXT_PRODUCTS_QUANTITY_INFO . ' ' . $pInfo->products_quantity);
             $contents[] = array('text' => '<div style="padding-left: 30px; padding-bottom: 10px;">' . TEXT_PRODUCTS_AVERAGE_RATING . ' ' . number_format($pInfo->average_rating, 2) . ' %</div>');
             $contents[] = array('text' => '<div style="padding-left: 30px; padding-bottom: 10px;">' . TEXT_PRODUCT_LINKED_TO . '<br />' . xtc_output_generated_category_path($pInfo->products_id, 'product') . '</div>');
             $contents[] = array('align' => 'center', 'text' => '<div style="padding: 10px;">' . xtc_product_thumb_image($pInfo->products_image, $pInfo->products_name)  . '</div><div style="padding-bottom: 10px;">' . $pInfo->products_image.'</div>');
+            // schnell bearbeiten
+                if($current_category_id == 0){ 
+                  $fast_sort_update = xtc_draw_input_field('products_startpage_sort', $pInfo->products_startpage_sort,'size=1' ).
+                  xtc_draw_hidden_field('products_sort', $pInfo->products_sort);
+                }else{
+                  $fast_sort_update = xtc_draw_input_field('products_sort', $pInfo->products_sort,'size=1' ).
+                  xtc_draw_hidden_field('products_startpage_sort', $pInfo->products_startpage_sort);                   
+                 }
+                $manufacturers_array = array (array ('id' => '', 'text' => TEXT_NONE));
+                $manufacturers_query = xtc_db_query("select manufacturers_id, manufacturers_name from ".TABLE_MANUFACTURERS." order by manufacturers_name");
+                while ($manufacturers = xtc_db_fetch_array($manufacturers_query)) {
+	               $manufacturers_array[] = array ('id' => $manufacturers['manufacturers_id'], 'text' => $manufacturers['manufacturers_name']);
+                }
+                $vpe_array = array (array ('id' => '', 'text' => TEXT_NONE));
+                $vpe_query = xtc_db_query("select products_vpe_id, products_vpe_name from ".TABLE_PRODUCTS_VPE." WHERE language_id='".$_SESSION['languages_id']."' order by products_vpe_name");
+                while ($vpe = xtc_db_fetch_array($vpe_query)) {
+	               $vpe_array[] = array ('id' => $vpe['products_vpe_id'], 'text' => $vpe['products_vpe_name']);
+                }
+                $fsk18_array=array(array('id'=>0,'text'=>NO),array('id'=>1,'text'=>YES));
+                if (ACTIVATE_SHIPPING_STATUS=='true') {
+                  $shipping_statuses = array ();
+                  $shipping_statuses = xtc_get_shipping_status();
+                  $fast_ship_update = '
+                    <tr>
+                      <td class="smallText">'.BOX_SHIPPING_STATUS.'</td>
+                      <td class="smallText">'.xtc_draw_pull_down_menu('shipping_status', $shipping_statuses, $pInfo->products_shippingtime) .'</td>
+                    </tr>                  
+                  ';
+                }                                             
+            $contents[] = array('text'  => '
+              <div class="infoBoxHeading" align="center">Artikel Schnellbearbeitung</div>
+              '.xtc_draw_form('fast_update', FILENAME_CATEGORIES, xtc_get_all_get_params(array('cPath', 'action', 'pID', 'cID')) . 'action=fast_update&pID=' . $pInfo->products_id . '&cPath=' . $cPath).'
+              <table>
+              <!-- Lagermenge -->
+                <tr>
+                  <td class="smallText">'.TEXT_PRODUCTS_QUANTITY_INFO.'</td>
+                  <td class="smallText">'.xtc_draw_input_field('quantity', $pInfo->products_quantity,'size=4' ).'</td>
+                </tr>
+              <!-- Art.-Nr -->                
+                <tr>
+                  <td class="smallText">'.TEXT_PRODUCTS_MODEL.'</td>
+                  <td class="smallText">'.xtc_draw_input_field('model', $pInfo->products_model,'size=4' ).'</td>
+                </tr>
+              <!-- Sortierung -->                
+                <tr>
+                  <td class="smallText">'.TEXT_PRODUCTS_SORT.'</td>
+                  <td class="smallText">'.$fast_sort_update.'</td>
+                </tr>
+              <!-- EAN Code -->                
+                <tr>
+                  <td class="smallText">'.TEXT_PRODUCTS_EAN.'</td>
+                  <td class="smallText">'.xtc_draw_input_field('products_ean', $pInfo->products_ean).'</td>
+                </tr>
+              <!-- Hersteller -->                
+                <tr>
+                  <td class="smallText">'. TEXT_PRODUCTS_MANUFACTURER .'</td>
+                  <td class="smallText">'. xtc_draw_pull_down_menu('manufacturers_id', $manufacturers_array, $pInfo->manufacturers_id) .'</td>
+                </tr>
+              <!-- VPE -->
+                <tr>
+                  <td class="smallText" colspan="2">'. TEXT_PRODUCTS_VPE_VISIBLE.xtc_draw_selection_field('products_vpe_status', 'checkbox', '1',$pInfo->products_vpe_status==1 ? true : false) .'</td>
+                </tr>
+                <tr>                  
+                  <td class="smallText">'.TEXT_PRODUCTS_VPE_VALUE.xtc_draw_input_field('products_vpe_value', $pInfo->products_vpe_value,'size=5') .'</td>
+                  <td class="smallText">'. TEXT_PRODUCTS_VPE. xtc_draw_pull_down_menu('products_vpe', $vpe_array, $pInfo->products_vpe='' ?  DEFAULT_PRODUCTS_VPE_ID : $pInfo->products_vpe) .'</td>
+                </tr>
+              <!-- FSK18 -->                
+                <tr>
+                  <td class="smallText">'.TEXT_FSK18.'</td>
+                  <td class="smallText">'.xtc_draw_pull_down_menu('products_fsk18', $fsk18_array, $pInfo->products_fsk18) .'</td>
+                </tr>
+              <!-- Gewicht -->                
+                <tr>
+                  <td class="smallText">'.TEXT_PRODUCTS_WEIGHT.'</td>
+                  <td class="smallText">'.xtc_draw_input_field('products_weight', $pInfo->products_weight,'size=4').TEXT_PRODUCTS_WEIGHT_INFO .'</td>
+                </tr>
+              <!-- Lieferstatus -->                
+                  '.$fast_ship_update.'                
+              <!-- Update Button -->                
+                <tr>                                                
+                  <td class="smallText" colspan="2">'.xtc_button(BUTTON_UPDATE).'</td>
+                </tr>
+              </table>
+              </form>
+            ');
+            // end schnell bearbeiten
           }          
         } else { 
           // create category/product info

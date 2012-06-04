@@ -99,18 +99,26 @@ if ($pInfo->products_startpage == '1') { $startpage_checked = true; } else { $st
 <span class="pageHeading"><?php echo sprintf(TEXT_NEW_PRODUCT, xtc_output_generated_category_path($current_category_id)); ?></span><br />
 <table width="100%"  border="0">
   <tr>
-    <td><span class="main"><?php echo TEXT_PRODUCTS_STATUS; ?> <?php echo xtc_draw_separator('pixel_trans.gif', '24', '15') . '&nbsp;' . xtc_draw_radio_field('products_status', '1', $status) . '&nbsp;' . TEXT_PRODUCT_AVAILABLE . '&nbsp;' . xtc_draw_radio_field('products_status', '0', $out_status) . '&nbsp;' . TEXT_PRODUCT_NOT_AVAILABLE; ?><br />
-    </span>
-      <table width="100%" border="0">
+    <td>
+<?php
+// ### MOD admin_specials - Modules
+	require_once("includes/modules/categories_specials.php");
+	showSpecialsBox();
+?>      
+    </td><td>
+      <table border="0">
         <tr>
-          <td class="main" width="127"><?php echo TEXT_PRODUCTS_DATE_AVAILABLE; ?><br />
+          <td class="main"><?php echo TEXT_PRODUCTS_STATUS; ?></td>
+          <td class="main"><?php echo xtc_draw_radio_field('products_status', '1', $status) . '&nbsp;' . TEXT_PRODUCT_AVAILABLE . '&nbsp;' . xtc_draw_radio_field('products_status', '0', $out_status) . '&nbsp;' . TEXT_PRODUCT_NOT_AVAILABLE; ?></td>
+        </tr>
+        <tr>
+          <td class="main"><?php echo TEXT_PRODUCTS_DATE_AVAILABLE; ?><br />
               <small>(YYYY-MM-DD)</small></td>
           <td class="main"><?php echo xtc_draw_separator('pixel_trans.gif', '24', '15') . '&nbsp;'; ?>
               <script type="text/javascript">dateAvailable.writeControl(); dateAvailable.dateFormat="yyyy-MM-dd";</script></td>
         </tr>
       </table>
-      <span class="main"><br /></span>
-    </td><td>
+   
     <table bgcolor="f3f3f3" style="border: 1px solid; border-color: #cccccc;" "width="100%"  border="0">
     <tr>
         <td><span class="main"><?php echo TEXT_PRODUCTS_STARTPAGE; ?> <?php echo TEXT_PRODUCTS_STARTPAGE_YES . xtc_draw_radio_field('products_startpage', '1', $startpage_checked) . '&nbsp;' . TEXT_PRODUCTS_STARTPAGE_NO . xtc_draw_radio_field('products_startpage', '0', !$startpage_checked) ?></span></td>

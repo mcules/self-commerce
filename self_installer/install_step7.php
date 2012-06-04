@@ -214,31 +214,31 @@ UL.liste {font-family: Verdana, Arial, Helvetica, san-serif; font-size: 10px; co
 					<td colspan="2" height="17" class="blocktitle" align="center">Self-Commerce Install</td>
 				</tr>
         		<tr> 
-					<td class="left_top2" width="135" ><img src="images/icons/arrow02.gif" width="13" height="6"><?php echo BOX_LANGUAGE; ?></td>
-                	<td class="left_top2" width="35"><img src="images/icons/ok.gif"></td>
+					<td class="left_top2" width="135" ><img src="images/icons/arrow02.gif" width="13" height="6" alt="Arrow" /><?php echo BOX_LANGUAGE; ?></td>
+                	<td class="left_top2" width="35"><img src="images/icons/ok.gif" alt="OK" /></td>
               	</tr>
               	<tr> 
-                	<td class="left_top2" width="135" ><img src="images/icons/arrow02.gif" width="13" height="6"><?php echo BOX_DB_CONNECTION; ?></td>
-               		<td class="left_top2" width="35"><img src="images/icons/ok.gif"></td>
+                	<td class="left_top2" width="135" ><img src="images/icons/arrow02.gif" width="13" height="6" alt="Arrow" /><?php echo BOX_DB_CONNECTION; ?></td>
+               		<td class="left_top2" width="35"><img src="images/icons/ok.gif" alt="OK" /></td>
               	</tr>
               	<tr> 
-                	<td class="left_top2">&nbsp;&nbsp;&nbsp;<img src="images/icons/arrow02.gif" width="13" height="6"><?php echo BOX_DB_IMPORT; ?></td>
-                	<td class="left_top2"><img src="images/icons/ok.gif"></td>
+                	<td class="left_top2">&nbsp;&nbsp;&nbsp;<img src="images/icons/arrow02.gif" width="13" height="6" alt="arrow" /><?php echo BOX_DB_IMPORT; ?></td>
+                	<td class="left_top2"><img src="images/icons/ok.gif" alt="Ok" /></td>
               	</tr>
               	<tr> 
-                	<td class="left_top2"><img src="images/icons/arrow02.gif" width="13" height="6"><?php echo BOX_WEBSERVER_SETTINGS; ?></td>
-                	<td class="left_top2"><img src="images/icons/ok.gif"></td>
+                	<td class="left_top2"><img src="images/icons/arrow02.gif" width="13" height="6" alt="Arrow" /><?php echo BOX_WEBSERVER_SETTINGS; ?></td>
+                	<td class="left_top2"><img src="images/icons/ok.gif" alt="Ok" /></td>
                 </tr>
               	<tr>
-                	<td class="left_top2"><img src="images/icons/arrow02.gif" width="13" height="6"><?php echo BOX_WRITE_CONFIG; ?></td>
-                	<td class="left_top2"><img src="images/icons/ok.gif"></td>
+                	<td class="left_top2"><img src="images/icons/arrow02.gif" width="13" height="6" alt="Arrow" /><?php echo BOX_WRITE_CONFIG; ?></td>
+                	<td class="left_top2"><img src="images/icons/ok.gif" alt="Ok" /></td>
 	            </tr>
 	            <tr>
-                	<td class="left_top2"><img src="images/icons/arrow02.gif" width="13" height="6"><?php echo BOX_ADMIN_CONFIG; ?></td>
-                	<td class="left_top2"><img src="images/icons/ok.gif"></td>
+                	<td class="left_top2"><img src="images/icons/arrow02.gif" width="13" height="6" alt="Arrow" /><?php echo BOX_ADMIN_CONFIG; ?></td>
+                	<td class="left_top2"><img src="images/icons/ok.gif" alt="Ok" /></td>
 	            </tr>
 				<tr>
-                	<td colspan="2" class="left_top"><img src="images/icons/arrow02.gif" width="13" height="6"><?php echo BOX_USERS_CONFIG; ?></font></td>
+                	<td colspan="2" class="left_top"><img src="images/icons/arrow02.gif" width="13" height="6" alt="Arrow" /><?php echo BOX_USERS_CONFIG; ?></td>
                </tr>
                <?php
 				  if ($messageStack->size('install_step7') > 0) {
@@ -309,7 +309,7 @@ UL.liste {font-family: Verdana, Arial, Helvetica, san-serif; font-size: 10px; co
                       	   <span class="note"><?php echo TEXT_STATUS_SHOW_TAX_LONG; ?></span></p>
                           <br /><br />
 			              <center>
-			                <input name="image" type="image" src="images/button_continue.gif" alt="Continue" align="middle" border="0">
+			                <input name="image" type="image" src="images/button_continue.gif" alt="Continue" align="middle" />
 			                <br />
 			              </center>
             			</form>

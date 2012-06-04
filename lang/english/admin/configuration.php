@@ -636,4 +636,10 @@ define ('LOGIN_NUM_TITLE','Number of permitted Login:');
 define ('LOGIN_NUM_DESC','Adjust here, after how much wrong attempts the diagram code queries to appear is.<br /><b>default: 3</b>');
 define ('LOGIN_TIME_TITLE','Time between log in:');
 define ('LOGIN_TIME_DESC','If this time passed, is again a normal Login possible. (in seconds!)<br /><b>default: 300</b>');
+
+// erweiterter contentmanager
+define ('MODULE_CONTENT_MANAGER_CHILDREN_CENTERBOX_TITLE', 'Centerbox-Modus');
+define ('MODULE_CONTENT_MANAGER_CHILDREN_CENTERBOX_DESC', 'show only the next Page (children) in Centerbox or all follow Pages (sisters?)');
+define ('MODULE_CONTENT_MANAGER_CHILDREN_SHOW_TITLE', 'Show Children?');
+define ('MODULE_CONTENT_MANAGER_CHILDREN_SHOW_DESC', 'Show Children from Documents in the Boxes?');
 ?>

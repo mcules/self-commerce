@@ -9,6 +9,7 @@
 
    Copyright (c) 2003 XT-Commerce
    -----------------------------------------------------------------------------------------
+   (c) 2012	 Self-Commerce www.self-commerce.de
    based on: 
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
    (c) 2002-2003 osCommerce(login.php,v 1.79 2003/05/19); www.oscommerce.com 
@@ -76,7 +77,7 @@ if (!xtc_db_num_rows($check_customer_query)) {
     require_once (DIR_FS_INC.'xtc_random_charcode.inc.php');
     $vlcode = xtc_random_charcode(32);
     $smarty->assign('VVIMG', '<img src="'.FILENAME_DISPLAY_VVCODES.'" alt="" />');    
-    $smarty->assign('INPUT_CODE', xtc_draw_input_field('vvcode', '', 'size="6" maxlength="6"', 'text', false));
+    $smarty->assign('INPUT_CODE', xtc_draw_input_field('vvcode', '', 'size="6"', 'text', false));
     if ($_POST['vvcode'] == $_SESSION['vvcode']){
     // code ok
 		// Check that password is good
@@ -191,7 +192,7 @@ $smarty->assign('main_content', $main_content);
 $smarty->assign('language', $_SESSION['language']);
 $smarty->caching = 0;
 if (!defined(RM))
-	$smarty->load_filter('output', 'note');
+	$smarty->loadfilter('output', 'note');
 $smarty->display(CURRENT_TEMPLATE.'/index.html');
 include ('includes/application_bottom.php');
 ?>

@@ -1,0 +1,42 @@
+{config_load file="$language/lang_$language.conf" section="login"}
+<h2>{#heading_login#}</h2>
+
+{if $info_message!=''}<p>{$info_message}</p>{/if}
+
+		{if $account_option=='account' or $account_option=='both'}
+		{$FORM_ACTION|replace:'"post"':'"post" class="yform"'}
+		<h3>{#title_returning#}</h3>
+		    <fieldset>
+  		
+		{if #text_returning#!=''}{#text_returning#}:{/if}
+		
+<div class="type-text">
+	   <label for="email_address">{#text_email#}</label>{$INPUT_MAIL|replace:'name="email_address"':'name="email_address" id="email_address"'}
+	</div>
+
+<div class="type-text">
+		<label for="password">{#text_password#}</label>{$INPUT_PASSWORD|replace:'name="password"':'name="password" id="password"'}
+	</div>
+
+
+<div class="floatbox">
+    <p>{$BUTTON_LOGIN}</p>
+	<p><a href="{$LINK_LOST_PASSWORD}">{#text_lost_password#}</a></p>
+</div>
+</fieldset>
+{$FORM_END}
+		
+<div class="yform">
+<h3>{#title_new#}</h3>
+<p>{#text_new#}</p>
+<p>{$BUTTON_NEW_ACCOUNT}</p>
+</div>
+{/if}
+
+{if $account_option=='both' or $account_option=='guest'}
+<div class="yform">
+<h3>{#title_guest#}</h3>
+<p>{#text_guest#}</p>
+{$BUTTON_GUEST}
+</div>
+{/if}

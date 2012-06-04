@@ -2,7 +2,7 @@
 <div class="shopbox">
 <div class="infoBoxHeading_right">{#heading_best_sellers#}</div>
 	<div class="infoBox_right boxText">
-		<marquee behavior= "scroll" align="left" direction="up" height="100" scrollamount= "1" scrolldelay= "30" onMouseOver='this.stop()' onMouseOut='this.start()'>
+
   	   {foreach name=aussen item=box_data from=$box_content}
 	    <div class="bestsellers">{$box_data.COUNT}. &nbsp;&nbsp;<a class="boxLink" href="{$box_data.PRODUCTS_LINK}">{$box_data.PRODUCTS_NAME}</a><br />
 	    <div class="boxTextPrice">{$box_data.PRODUCTS_PRICE}<br />
@@ -10,6 +10,6 @@
 	       
 	     </div>
      {/foreach}
-    	</marquee>
+
 	</div>
 </div>

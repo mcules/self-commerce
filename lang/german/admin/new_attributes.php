@@ -26,6 +26,7 @@
    define('TITLE_UPDATED','Produktattribute erfolgreich aktualisiert.');
    define('SELECT_PRODUCT','Bitte wählen Sie ein Produkt aus der Liste zum Editieren:');
    define('SELECT_COPY','Bestehende Attribute können ebenfalls auf andere Produkte kopiert werden, wählen Sie hierzu das Originalprodukt aus:');
-
-
+   define('TABLE_HEADING_OPT_VALUE','Optionswert');
+   define('TEXT_INSERT_NEW_OPTION','weitere Option hinzufügen:');   
+   define('TEXT_AKTIV_OPTIONS','<strong>Bereits aktivierte Optionen:</strong>');
 ?>

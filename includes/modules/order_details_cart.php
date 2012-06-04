@@ -8,6 +8,7 @@
 
    Copyright (c) 2003 XT-Commerce
    -----------------------------------------------------------------------------------------
+   (c) 2012	 Self-Commerce www.self-commerce.de
    based on: 
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
    (c) 2002-2003 osCommerce(order_details.php,v 1.8 2003/05/03); www.oscommerce.com 
@@ -56,7 +57,7 @@ for ($i = 0, $n = sizeof($products); $i < $n; $i ++) {
 		$image = DIR_WS_THUMBNAIL_IMAGES.$products[$i]['image'];
 	}
 
-	$module_content[$i] = array ('PRODUCTS_NAME' => $products[$i]['name'].$mark_stock, 'PRODUCTS_QTY' => xtc_draw_input_field('cart_quantity[]', $products[$i]['quantity'], 'size="2"').xtc_draw_hidden_field('products_id[]', $products[$i]['id']), 'PRODUCTS_MODEL' => $products[$i]['model'], 'PRODUCTS_TAX' => number_format($products[$i]['tax'], TAX_DECIMAL_PLACES), 'PRODUCTS_IMAGE' => $image, 'IMAGE_ALT' => $products[$i]['name'], 'BOX_DELETE' => '<a href="' . xtc_href_link(FILENAME_SHOPPING_CART, 'action=remove_product&products_id='.$products[$i]['id']). '">' . xtc_image('templates/'.CURRENT_TEMPLATE. '/img/trash.gif', IMAGE_BUTTON_REMOVE_PRODUCT, '', '') . '</a>' , 'PRODUCTS_LINK' => xtc_href_link(FILENAME_PRODUCT_INFO, xtc_product_link($products[$i]['id'], $products[$i]['name'])), 'PRODUCTS_PRICE' => $xtPrice->xtcFormat($products[$i]['price'] * $products[$i]['quantity'], true), 'PRODUCTS_SINGLE_PRICE' => $xtPrice->xtcFormat($products[$i]['price'], true), 'PRODUCTS_SHORT_DESCRIPTION' => xtc_get_short_description($products[$i]['id']), 'ATTRIBUTES' => '');
+	$module_content[$i] = array ('PRODUCTS_NAME' => $products[$i]['name'].$mark_stock, 'PRODUCTS_QTY' => xtc_draw_input_field('cart_quantity[]', $products[$i]['quantity'], 'size="2"').xtc_draw_hidden_field('products_id[]', $products[$i]['id']), 'PRODUCTS_MODEL' => $products[$i]['model'], 'PRODUCTS_TAX' => number_format($products[$i]['tax'], TAX_DECIMAL_PLACES), 'PRODUCTS_IMAGE' => $image, 'IMAGE_ALT' => $products[$i]['name'], 'BOX_DELETE' => '<a href="' . xtc_href_link(FILENAME_SHOPPING_CART, 'action=remove_product&products_id='.$products[$i]['id']). '">' . xtc_image('templates/'.CURRENT_TEMPLATE. '/buttons/'.$_SESSION['language'].'/button_delete.gif', IMAGE_BUTTON_REMOVE_PRODUCT, '', '') . '</a>' , 'PRODUCTS_LINK' => xtc_href_link(FILENAME_PRODUCT_INFO, xtc_product_link($products[$i]['id'], $products[$i]['name'])), 'PRODUCTS_PRICE' => $xtPrice->xtcFormat($products[$i]['price'] * $products[$i]['quantity'], true), 'PRODUCTS_SINGLE_PRICE' => $xtPrice->xtcFormat($products[$i]['price'], true), 'PRODUCTS_SHORT_DESCRIPTION' => xtc_get_short_description($products[$i]['id']), 'ATTRIBUTES' => '');
 
 	// Product options names
 	$attributes_exist = ((isset ($products[$i]['attributes'])) ? 1 : 0);

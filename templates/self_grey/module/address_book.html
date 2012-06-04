@@ -1,0 +1,32 @@
+{config_load file="$language/lang_$language.conf" section="address_book"}
+
+
+<h2>{#heading_address#}</h2>
+	{$FORM_ACTION}
+	{if $error!=''}<p><strong class="error">{$error}</strong></p>{/if}
+
+	{#text_standard#}
+
+	<h3>{#title_standard#}:</h3>
+	<p>{$ADDRESS_DEFAULT}</p>
+
+	<h3 class="dis">{#title_addresses#}:</h3>
+	{foreach name=aussen item=addresses from=$addresses_data}
+  <div class="moduleRow" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)">
+	  <h3>{$addresses.NAME} {if $addresses.PRIMARY=='1'} ({#title_standard#}) {/if}</h3>
+	  <p>
+		  {$addresses.ADDRESS}
+	  </p>
+	  <p>
+	   {$addresses.BUTTON_EDIT} <span class="dontShow">.</span>
+		 {$addresses.BUTTON_DELETE}
+	</p>
+	</div>
+	{/foreach}
+
+	<div class="floatbox">
+			<div class="leftCol">{$BUTTON_BACK}</div>
+			<div class="rightCol">{$BUTTON_NEW}</div>
+	</div>
+
+	<p>{$ADDRESS_COUNT}</p>

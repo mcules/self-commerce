@@ -8,6 +8,7 @@
 
    Copyright (c) 2003 XT-Commerce
    -----------------------------------------------------------------------------------------
+   (c) 2012	 Self-Commerce www.self-commerce.de
    based on: 
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
    (c) 2002-2003 osCommerce(shopping_cart.php,v 1.32 2003/02/11); www.oscommerce.com
@@ -459,7 +460,7 @@ class shoppingCart {
 				$no_count = false;
 				$gv_query = xtc_db_query("select products_model from ".TABLE_PRODUCTS." where products_id = '".$products_id."'");
 				$gv_result = xtc_db_fetch_array($gv_query);
-				if (ereg('^GIFT', $gv_result['products_model'])) {
+				if (preg_match('/^GIFT/', $gv_result['products_model'])) {
 					$no_count = true;
 				}
 				if (NO_COUNT_ZERO_WEIGHT == 1) {

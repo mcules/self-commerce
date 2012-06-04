@@ -1,0 +1,15 @@
+{config_load file="$language/lang_$language.conf" section="account_newsletter"}
+<br />
+
+	<h2>{#heading_newsletter#}</h2>
+	{#title_newsletter#}<br />
+
+	{$FORM_ACTION}
+		<div onclick="checkBox('newsletter_general')">{$CHECKBOX} <strong>{#text_newsletter#}</strong></div>
+		{#text_newsletter_desc#}
+
+	<div class="floatbox">
+			<div class="leftCol">{$BUTTON_BACK}</div>
+			<div class="rightCol">{$BUTTON_SUBMIT}</div>
+	</div>
+		{$FORM_END}

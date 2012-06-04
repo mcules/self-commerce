@@ -1,0 +1,66 @@
+{config_load file="$language/lang_$language.conf" section="product_info"}
+{$PRODUCT_NAVIGATOR}
+{$FORM_ACTION}
+<h1 class="productInfo1Name">{$PRODUCTS_NAME}</h1> 
+<div class="productInfo1">
+<div class="floatbox">
+  {if $PRODUCTS_IMAGE !=''}<a href="{$PRODUCTS_IMAGE|replace:"info_images":"popup_images"}" title="{$PRODUCTS_NAME}" rel="lightbox-productimg"><img src="{$PRODUCTS_IMAGE}" alt="{$PRODUCTS_NAME}" class="imgLeft"/></a>{/if}
+    <div class="basicData">
+      <div class="prodPriceInfo1">{$PRODUCTS_PRICE}</div>
+    	<div class="prodTaxShipInfo1">{$PRODUCTS_TAX_INFO}{if $PRODUCTS_SHIPPING_LINK}{$PRODUCTS_SHIPPING_LINK}{/if}</div>
+    	{if $PRODUCTS_VPE}{$PRODUCTS_VPE}<br />{/if}
+    	{if $PRODUCTS_MODEL!=''}{#model#}{$PRODUCTS_MODEL}<br />{/if}{$PRODUCTS_DISCOUNT}
+    	{if $SHIPPING_NAME}{#text_shippingtime#}{if $SHIPPING_IMAGE}<img src="{$SHIPPING_IMAGE}" alt="{$SHIPPING_NAME}" />{/if} {$SHIPPING_NAME}<br />{/if}
+    	<div style="margin-top:3px;">{$PRODUCTS_PRINT|replace:"cursor:hand":"cursor:pointer"}</div>
+    	{if $PRODUCTS_DATE_AVIABLE != ''}<div style="margin-top:3px;">{$PRODUCTS_DATE_AVIABLE}</div>{/if}
+    </div>
+  </div>
+
+
+{if $MODULE_product_options !=''}<div class="options">{$MODULE_product_options}</div><br class="clearHere" />{/if}
+{* BOF Included xs:booster *}
+	{if $XTB_REDIRECT_USER_TO=='product'}<div style='width:400px;padding:10px;color:white;background-color:green;'><strong>Sie haben die eBay Auktion gewonnen!</strong><br/>Bitte w&auml;hlen Sie nun noch die gew&uuml;nschten Produkteigenschaften und legen Sie den Artikel danach in den Warenkorb, um mit der Zahlung fortzufahren und das Produkt versandfertig zu machen!</div>{/if}
+{* EOF Included xs:booster *}
+
+<div class="addCart">
+	<table>
+		<tr>
+			<td style="width: 100%; padding-right: 5px;">{$ADD_QTY}</td><td>{$ADD_CART_BUTTON}</td>
+		</tr>
+	</table>
+</div>
+</div>
+{$FORM_END}
+
+{*BEGIN TABS => fuer xtc3.04 Die Beschriftung der Tabs muss in den lang-Files hinzugefuegt werden *}
+<div id="tabbedProductInfo">
+
+	<ul class="tabbedHeading">
+		{if $PRODUCTS_DESCRIPTION !=''}<li><a href="#tab_description">{#description#}</a></li>{/if}
+		{if $MODULE_cross_selling != '' || $MODULE_reverse_cross_selling != ''}<li><a href="#tab_cross_selling">{#cross_selling#}</a></li>{/if}
+		{if $MODULE_also_purchased != ''}<li><a href="#tab_also_purchased">{#also_purchased#}</a></li>{/if}
+		{if $MODULE_products_reviews != ''}<li><a href="#tab_reviews">{#products_reviews#}</a></li>{/if}
+		{if $MODULE_products_media != ''}<li><a href="#tab_media">{#products_media#}</a></li>{/if}
+		{if $more_images|@count > 0}<li><a href="#tab_more_images">{#more_images#}</a></li>{/if}
+	</ul>
+	
+	<div class="tabbedBody">
+		{if $PRODUCTS_DESCRIPTION !=''}<div id="tab_description" class="tabContentElement">{$PRODUCTS_DESCRIPTION}</div>{/if}
+		{if $more_images|@count > 0}<div id="tab_more_images" class="tabContentElement">
+			<!-- More Pictures -->
+		<div class="morepics"><div class="floatbox">
+			{foreach item=more_images_data from=$more_images} 
+				<a href="{$more_images_data.PRODUCTS_IMAGE|replace:"info_images":"popup_images"}" rel="lightbox-productimg" title="{$PRODUCTS_NAME}"><img src="{$more_images_data.PRODUCTS_IMAGE}" alt="{$PRODUCTS_NAME}" /></a>                          
+			{/foreach}
+		</div></div>
+			</div>
+		{/if}
+		{if $MODULE_products_media != ''}<div id="tab_media" class="tabContentElement">{$MODULE_products_media}</div>{/if}
+		{if $MODULE_products_reviews != ''}<div id="tab_reviews" class="tabContentElement">{$MODULE_products_reviews}</div>{/if}
+		{if $MODULE_cross_selling != '' || $MODULE_reverse_cross_selling != ''}<div id="tab_cross_selling" class="tabContentElement">{$MODULE_cross_selling}{if $MODULE_reverse_cross_selling != ''}{$MODULE_reverse_cross_selling}{/if}</div>{/if}
+		{if $MODULE_also_purchased != ''}<div id="tab_also_purchased" class="tabContentElement">{$MODULE_also_purchased}</div>{/if}
+	</div>
+
+</div>
+{*END TABS*}
+

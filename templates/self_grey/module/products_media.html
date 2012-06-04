@@ -1,0 +1,14 @@
+{config_load file="$language/lang_$language.conf" section="products_media"}
+<!-- Da die Tabelle auschließlich der Ausgabe einer Tabelle dient und nicht für Layoutzwecke, wird diese hier übernommen. -->
+
+{config_load file="$language/lang_$language.conf" section="products_media"}
+<h2>{#file#}:</h2>
+<table class="proMedia" border="0" width="100%" cellspacing="0" cellpadding="4">
+	   {foreach name=aussen item=module_data from=$module_content}
+      <tr class="{cycle values="prodRow1,prodRow2"}">
+        <td width="100%"><strong>{$module_data.FILENAME}</strong><br />{$module_data.DESCRIPTION}</td>
+        <td>{$module_data.FILESIZE}</td>
+        <td>{$module_data.BUTTON}</td>
+      </tr>
+	  {/foreach}
+</table>

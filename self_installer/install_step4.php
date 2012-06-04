@@ -78,37 +78,37 @@ UL.liste {font-family: Verdana, Arial, Helvetica, san-serif; font-size: 10px; co
 					<td colspan="2" height="17" class="blocktitle" align="center">Self-Commerce Install</td>
 				</tr>
         		<tr> 
-					<td class="left_top2" width="135" ><img src="images/icons/arrow02.gif" width="13" height="6"><?php echo BOX_LANGUAGE; ?></td>
-                	<td class="left_top2" width="35"><img src="images/icons/ok.gif"></td>
+					<td class="left_top2" width="135" ><img src="images/icons/arrow02.gif" width="13" height="6" alt="Arrow" /><?php echo BOX_LANGUAGE; ?></td>
+                	<td class="left_top2" width="35"><img src="images/icons/ok.gif" alt="OK" /></td>
               	</tr>
               	<tr> 
-                	<td class="left_top2" width="135" ><img src="images/icons/arrow02.gif" width="13" height="6"><?php echo BOX_DB_CONNECTION; ?></td>
-               		<td class="left_top2" width="35"><img src="images/icons/ok.gif"></td>
+                	<td class="left_top2" width="135" ><img src="images/icons/arrow02.gif" width="13" height="6" alt="Arrow" /><?php echo BOX_DB_CONNECTION; ?></td>
+               		<td class="left_top2" width="35"><img src="images/icons/ok.gif" alt="OK" /></td>
               	</tr>
               	<tr> 
-                	<td class="left_top2">&nbsp;&nbsp;&nbsp;<img src="images/icons/arrow02.gif" width="13" height="6"><?php echo BOX_DB_IMPORT; ?></td>
-                	<td class="left_top2"><img src="images/icons/ok.gif"></td>
+                	<td class="left_top2">&nbsp;&nbsp;&nbsp;<img src="images/icons/arrow02.gif" width="13" height="6" alt="Arrow" /><?php echo BOX_DB_IMPORT; ?></td>
+                	<td class="left_top2"><img src="images/icons/ok.gif" alt="OK" /></td>
               	</tr>
               	<tr> 
-                	<td colspan="2" class="left_top2"><img src="images/icons/arrow02.gif" width="13" height="6"><?php echo BOX_WEBSERVER_SETTINGS; ?></td>
+                	<td colspan="2" class="left_top2"><img src="images/icons/arrow02.gif" width="13" height="6" alt="Arrow" /><?php echo BOX_WEBSERVER_SETTINGS; ?></td>
                 </tr>
               	<tr>
-                	<td colspan="2" class="left_top"><img src="images/icons/arrow02.gif" width="13" height="6"><?php echo BOX_WRITE_CONFIG; ?></td>
+                	<td colspan="2" class="left_top"><img src="images/icons/arrow02.gif" width="13" height="6" alt="Arrow" /><?php echo BOX_WRITE_CONFIG; ?></td>
 	            </tr>
            </table>
 		</td>
 		<td align="right" valign="top" class="frame2"> 
       		
-      		<h2 class="welcome"><?php echo TEXT_WELCOME_STEP4; ?></h2><hr class="lineBlue">
+      		<h2 class="welcome"><?php echo TEXT_WELCOME_STEP4; ?></h2><hr class="lineBlue" />
 			<table width="98%" border="0" cellpadding="0" cellspacing="0">
         		<tr>
           			<td>
           			
-	          			<span class="title"><?php echo TITLE_WEBSERVER_CONFIGURATION; ?></span><hr class="lineRed">
+	          			<span class="title"><?php echo TITLE_WEBSERVER_CONFIGURATION; ?></span><hr class="lineRed" />
 			            <?php
 			 				 if ( ( (file_exists(DIR_FS_CATALOG . 'includes/configure.php')) && (!is_writeable(DIR_FS_CATALOG . 'includes/configure.php')) ) || ( (file_exists(DIR_FS_CATALOG . 'admin/includes/configure.php')) && (!is_writeable(DIR_FS_CATALOG . 'admin/includes/configure.php')) ) || ( (file_exists(DIR_FS_CATALOG . 'admin/includes/local/configure.php')) && (!is_writeable(DIR_FS_CATALOG . 'admin/includes/local/configure.php')) ) || ( (file_exists(DIR_FS_CATALOG . 'includes/local/configure.php')) && (!is_writeable(DIR_FS_CATALOG . 'includes/local/configure.php')) )) {
 						?>
-	            		<h2 class="normal"><img src="images/icons/error.gif" width="16" height="16"><strong><font color="#FF0000" size="2"><?php echo TITLE_STEP4_ERROR; ?></font></strong></h2><hr class="lineRed">
+	            		<h2 class="normal"><img src="images/icons/error.gif" width="16" height="16" alt="Error" /><strong><font color="#FF0000" size="2"><?php echo TITLE_STEP4_ERROR; ?></font></strong></h2><hr class="lineRed" />
 	            		<p class="small"><?php echo TEXT_STEP4_ERROR; ?>
 			            	<ul class="liste">
 				                <li>cd <?php echo DIR_FS_CATALOG; ?>admin/includes/</li>
@@ -128,7 +128,7 @@ UL.liste {font-family: Verdana, Arial, Helvetica, san-serif; font-size: 10px; co
 			            <p class="noteBox"><?php echo TEXT_STEP4_ERROR_2; ?></p>
             
 						<form name="install" action="install_step4.php" method="post">
-							<span class="small">
+							<p class="small">
 			              <?php
 			    reset($_POST);
 			    while (list($key, $value) = each($_POST)) {
@@ -143,11 +143,11 @@ UL.liste {font-family: Verdana, Arial, Helvetica, san-serif; font-size: 10px; co
 			      }
 			    }
 			?>
-							</span>
+							</p>
 							<table border="0" width="100%" cellspacing="0" cellpadding="0">
 			                	<tr> 
-			                  		<td align="center"><a href="index.php"><img src="images/button_cancel.gif" border="0" alt="Cancel"></a></td>
-			                  		<td align="center"><input type="image" src="images/button_retry.gif" border="0" alt="Retry"></td>
+			                  		<td align="center"><a href="index.php"><img src="images/button_cancel.gif" border="0" alt="Cancel" /></a></td>
+			                  		<td align="center"><input type="image" src="images/button_retry.gif" alt="Retry" /></td>
 			                	</tr>
 			              	</table>
 						</form>
@@ -163,7 +163,7 @@ UL.liste {font-family: Verdana, Arial, Helvetica, san-serif; font-size: 10px; co
 				                admin/includes/configure.php<br />
 				                admin/includes/configure.org.php<br />
 							</p>
-							<span class="title"><?php echo TITLE_CHECK_CONFIGURATION; ?></span><hr class="lineRed">
+							<span class="title"><?php echo TITLE_CHECK_CONFIGURATION; ?></span><hr class="lineRed" />
 				            <p class="small"><strong><?php echo TEXT_HTTP; ?></strong><br />
 				            	<?php echo xtc_draw_input_field_installer('HTTP_SERVER', 'http://' . getenv('HTTP_HOST')); ?><br />
 				                <span class="note"><?php echo TEXT_HTTP_LONG; ?></span></p>
@@ -189,7 +189,7 @@ UL.liste {font-family: Verdana, Arial, Helvetica, san-serif; font-size: 10px; co
 				                <?php echo xtc_draw_input_field_installer('DIR_WS_ADMIN'); ?><br />
 				                <span class="note"><?php echo TEXT_WS_ADMINTOOL_LONG; ?></span></p>
 			              
-							<span class="title"><?php echo TITLE_CHECK_DATABASE; ?></span><hr class="lineRed">
+							<span class="title"><?php echo TITLE_CHECK_DATABASE; ?></span><hr class="lineRed" />
 			              	<p class="small"><strong><?php echo TEXT_DATABASE_SERVER; ?></strong><br />
 			                	<?php echo xtc_draw_input_field_installer('DB_SERVER'); ?><br />
 			                	<span class="note"><?php echo TEXT_DATABASE_SERVER_LONG; ?></span></p>
@@ -213,8 +213,9 @@ UL.liste {font-family: Verdana, Arial, Helvetica, san-serif; font-size: 10px; co
 			
 							<table border="0" width="100%" cellspacing="0" cellpadding="0">
 								<tr>
-							  		<td align="center"><a href="index.php"><img src="images/button_cancel.gif" border="0" alt="Cancel"></a></td>
-							    	<td align="center"><input type="hidden" name="install[]" value="configure"><input type="image" src="images/button_continue.gif" border="0" alt="Continue"></td>
+							  		<td align="center"><a href="index.php"><img src="images/button_cancel.gif" border="0" alt="Cancel" /></a></td>
+							    	<td align="center"><input type="hidden" name="install[]" value="configure" />
+                                    <input type="image" src="images/button_continue.gif" alt="Continue" /></td>
 							  	</tr>
 							</table>
 			

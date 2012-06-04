@@ -314,7 +314,7 @@ class xtcImport {
 				$prices = explode('::', $prices);
 				for ($ii = 0; $ii < count($prices); $ii ++) {
 					$values = explode(':', $prices[$ii]);
-					$group_array = array ('products_id' => $prod_data['products_id'], 'quantity' => $values[0], 'personal_offer' => $values[1]);
+					$group_array = array ('products_id' => $products_id, 'quantity' => $values[0], 'personal_offer' => $values[1]);
 
 					xtc_db_perform(TABLE_PERSONAL_OFFERS_BY.$this->Groups[$i +1]['id'], $group_array);
 				}

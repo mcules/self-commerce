@@ -1,5 +1,4 @@
 <?php
-
 /* --------------------------------------------------------------
    $Id: orders_edit.php,v 1.1
 
@@ -17,10 +16,7 @@
 
    To do: Rabatte berücksichtigen
    --------------------------------------------------------------*/
-
-// Benötigte Funktionen und Klassen Anfang:
 require ('includes/application_top.php');
-
 require (DIR_WS_CLASSES.'order.php');
 if (!$_GET['oID'])
 	$_GET['oID'] = $_POST['oID'];
@@ -35,7 +31,7 @@ require_once (DIR_FS_INC.'xtc_get_tax_rate.inc.php');
 require_once (DIR_FS_INC.'xtc_oe_get_options_name.inc.php');
 require_once (DIR_FS_INC.'xtc_oe_get_options_values_name.inc.php');
 require_once (DIR_FS_INC.'xtc_oe_customer_infos.inc.php');
-// Ben�tigte Funktionen und Klassen Ende
+// Ben?tigte Funktionen und Klassen Ende
 
 // Adressbearbeitung Anfang
 if ($_GET['action'] == "address_edit") {
@@ -45,6 +41,25 @@ if ($_GET['action'] == "address_edit") {
 
 	$status_query = xtc_db_query("select customers_status_name from ".TABLE_CUSTOMERS_STATUS." where customers_status_id = '".$_POST['customers_status']."' and language_id = '".$lang['languages_id']."' ");
 	$status = xtc_db_fetch_array($status_query);
+// kunigunde Self-Commerce.de ########################################
+  // vorherige menge
+	$quantity_query = xtc_db_query("select products_quantity, products_id from ".TABLE_ORDERS_PRODUCTS." where products_id = '".$_POST['products_id']."' and orders_id = '".$_POST['oID']."' ");
+	$quantity = xtc_db_fetch_array($quantity_query);
+  // neue menge
+  $new_quantity = array('products_quantity' => $_POST['products_quantity'], 'products_id' => $_POST['products_id']);
+
+if($quantity['products_quantity'] != $new_quantity['products_quantity']){
+  // unterschied
+  if($quantity['products_quantity'] < $new_quantity['products_quantity']){ // lagermenge verringern
+    $diff = $new_quantity['products_quantity'] - $quantity['products_quantity'];
+	 xtc_db_query("update ".TABLE_PRODUCTS." set products_quantity = products_quantity - ".$diff." where products_id = '".$_POST['products_id']."'");  
+  }
+  if($quantity['products_quantity'] > $new_quantity['products_quantity']){ // lagermenge vergrößern
+    $diff = $quantity['products_quantity'] - $new_quantity['products_quantity'];
+	 xtc_db_query("update ".TABLE_PRODUCTS." set products_quantity = products_quantity + ".$diff." where products_id = '".$_POST['products_id']."'");  
+  }
+}
+// kunigunde Self-Commerce.de ########################################
 
 	$sql_data_array = array ('customers_vat_id' => xtc_db_prepare_input($_POST['customers_vat_id']), 'customers_status' => xtc_db_prepare_input($_POST['customers_status']), 'customers_status_name' => xtc_db_prepare_input($status['customers_status_name']), 'customers_company' => xtc_db_prepare_input($_POST['customers_company']), 'customers_name' => xtc_db_prepare_input($_POST['customers_name']), 'customers_street_address' => xtc_db_prepare_input($_POST['customers_street_address']), 'customers_city' => xtc_db_prepare_input($_POST['customers_city']), 'customers_postcode' => xtc_db_prepare_input($_POST['customers_postcode']), 'customers_country' => xtc_db_prepare_input($_POST['customers_country']), 'customers_telephone' => xtc_db_prepare_input($_POST['customers_telephone']), 'customers_email_address' => xtc_db_prepare_input($_POST['customers_email_address']), 'delivery_company' => xtc_db_prepare_input($_POST['delivery_company']), 'delivery_name' => xtc_db_prepare_input($_POST['delivery_name']), 'delivery_street_address' => xtc_db_prepare_input($_POST['delivery_street_address']), 'delivery_city' => xtc_db_prepare_input($_POST['delivery_city']), 'delivery_postcode' => xtc_db_prepare_input($_POST['delivery_postcode']), 'delivery_country' => xtc_db_prepare_input($_POST['delivery_country']), 'billing_company' => xtc_db_prepare_input($_POST['billing_company']), 'billing_name' => xtc_db_prepare_input($_POST['billing_name']), 'billing_street_address' => xtc_db_prepare_input($_POST['billing_street_address']), 'billing_city' => xtc_db_prepare_input($_POST['billing_city']), 'billing_postcode' => xtc_db_prepare_input($_POST['billing_postcode']), 'billing_country' => xtc_db_prepare_input($_POST['billing_country']));
 
@@ -97,7 +112,9 @@ if ($_GET['action'] == "product_ins") {
 	$insert_sql_data = array ('products_model' => xtc_db_prepare_input($product['products_model']));
 	$sql_data_array = xtc_array_merge($sql_data_array, $insert_sql_data);
 	xtc_db_perform(TABLE_ORDERS_PRODUCTS, $sql_data_array);
-
+// kunigunde Self-Commerce.de ########################################
+	 xtc_db_query("update ".TABLE_PRODUCTS." set products_quantity = products_quantity - ".$_POST['products_quantity']." where products_id = '".$_POST['products_id']."'");
+// kunigunde Self-Commerce.de ########################################
 	xtc_redirect(xtc_href_link(FILENAME_ORDERS_EDIT, 'edit_action=products&oID='.$_POST['oID']));
 }
 // Artikel einfügen Ende
@@ -163,6 +180,35 @@ if ($_GET['action'] == "product_option_ins") {
 		$options_values_price += $products_a['price_prefix'].$products_a['options_values_price'];
 	};
 
+	if (DOWNLOAD_ENABLED == 'true') {
+		$attributes_query = "select popt.products_options_name,
+										                               poval.products_options_values_name,
+										                               pa.options_values_price,
+										                               pa.price_prefix,
+										                               pad.products_attributes_maxdays,
+										                               pad.products_attributes_maxcount,
+										                               pad.products_attributes_filename
+										                               from ".TABLE_PRODUCTS_OPTIONS." popt, ".TABLE_PRODUCTS_OPTIONS_VALUES." poval, ".TABLE_PRODUCTS_ATTRIBUTES." pa
+										                               left join ".TABLE_PRODUCTS_ATTRIBUTES_DOWNLOAD." pad
+										                                on pa.products_attributes_id=pad.products_attributes_id
+										                               where pa.products_id = '".$products['products_id']."'
+										                                and pa.options_id = '".$products_attributes['options_id']."'
+										                                and pa.options_id = popt.products_options_id
+										                                and pa.options_values_id = '".$products_attributes['options_values_id']."'
+										                                and pa.options_values_id = poval.products_options_values_id
+										                                and popt.language_id = '".$_SESSION['languages_id']."'
+										                                and poval.language_id = '".$_SESSION['languages_id']."'";
+		$attributes = xtc_db_query($attributes_query);
+
+		$attributes_values = xtc_db_fetch_array($attributes);
+
+		if (isset ($attributes_values['products_attributes_filename']) && xtc_not_null($attributes_values['products_attributes_filename'])) {
+			$sql_data_array = array ('orders_id' => xtc_db_prepare_input($_POST['oID']), 'orders_products_id' => xtc_db_prepare_input($_POST['opID']), 'orders_products_filename' => $attributes_values['products_attributes_filename'], 'download_maxdays' => $attributes_values['products_attributes_maxdays'], 'download_count' => $attributes_values['products_attributes_maxcount']);
+
+			xtc_db_perform(TABLE_ORDERS_PRODUCTS_DOWNLOAD, $sql_data_array);
+		}
+
+	}
 	$products_old_price = $xtPrice->xtcGetPrice($products['products_id'], $format = false, $products['products_quantity'], '', '', '', $order->customer['ID']);
 
 	$products_price = ($products_old_price + $options_values_price);
@@ -252,7 +298,7 @@ if ($_GET['action'] == "lang_edit") {
 	// Daten für Sprache wählen
 	$lang_query = xtc_db_query("select languages_id, name, directory from ".TABLE_LANGUAGES." where languages_id = '".$_POST['lang']."'");
 	$lang = xtc_db_fetch_array($lang_query);
-	// Daten für Sprache w�hlen Ende	
+	// Daten für Sprache w?hlen Ende	
 
 	// Produkte
 	$order_products_query = xtc_db_query("select orders_products_id , products_id from ".TABLE_ORDERS_PRODUCTS." where orders_id = '".$_POST['oID']."'");
@@ -372,7 +418,9 @@ if ($_GET['action'] == "curr_edit") {
 
 // Löschen eines Artikels aus der Bestellung Anfang:
 if ($_GET['action'] == "product_delete") {
-
+// kunigunde Self-Commerce.de ########################################
+	xtc_db_query("update ".TABLE_PRODUCTS." set products_quantity = products_quantity + ".$_POST['products_quantity']." where products_id = '".$_POST['products_id']."'");
+// kunigunde Self-Commerce.de ########################################
 	xtc_db_query("delete from ".TABLE_ORDERS_PRODUCTS_ATTRIBUTES." where orders_products_id = '".xtc_db_input($_POST['opID'])."'");
 	xtc_db_query("delete from ".TABLE_ORDERS_PRODUCTS." where orders_id = '".xtc_db_input($_POST['oID'])."' and orders_products_id = '".xtc_db_input($_POST['opID'])."'");
 
@@ -456,7 +504,7 @@ if ($_GET['action'] == "save_order") {
 	$subtotal_final = $subtotal['value'];
 	$subtotal_text = $xtPrice->xtcFormat($subtotal_final, true);
 	xtc_db_query("update ".TABLE_ORDERS_TOTAL." set text = '".$subtotal_text."', value = '".$subtotal_final."' where orders_id = '".$_POST['oID']."' and class = 'ot_total'");
-	// Errechne neue Zwischensumme f�r Artikel Ende
+	// Errechne neue Zwischensumme f?r Artikel Ende
 
 	// Errechne neue MwSt. für die Bestellung Anfang
 	// Produkte
@@ -572,56 +620,38 @@ if ($_GET['action'] == "save_order") {
 // Rückberechnung Ende
 
 //--------------------------------------------------------------------------------------------------------------------------------------
+
+require ('includes/application_top_1.php');
 ?>
-<!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html <?php echo HTML_PARAMS; ?>>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=<?php echo CHARSET; ?>">
-<title><?php echo TITLE; ?></title>
-<link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
-</head>
-<body marginwidth="0" marginheight="0" topmargin="0" bottommargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFFF">
-<!-- header //-->
-<?php require(DIR_WS_INCLUDES . 'header.php'); ?>
-<!-- header_eof //-->
-
-<!-- body //-->
-<table border="0" width="100%" cellspacing="2" cellpadding="2">
-  <tr>
-    <td width="<?php echo BOX_WIDTH; ?>" valign="top"><table border="0" width="<?php echo BOX_WIDTH; ?>" cellspacing="1" cellpadding="1" class="columnLeft">
-<!-- left_navigation //-->
-<?php require(DIR_WS_INCLUDES . 'column_left.php'); ?>
-<!-- left_navigation_eof //-->
-    </table></td>
-<!-- body_text //-->
-    <td width="100%" valign="top"><table border="0" width="100%" cellspacing="0" cellpadding="0">
-      <tr>
-        <td width="100%" colspan="2"><table border="0" width="100%" cellspacing="0" cellpadding="0">
-          <tr>
-            <td class="pageHeading"><?php echo TABLE_HEADING;?></td>
-            <td class="pageHeading" align="right"></td>
-          </tr>
-        </table></td>
-      </tr>
-  <tr>
-<td>
-<!-- Anfang //-->
-<br /><br />
-
-<table border="0" width="100%" cellspacing="0" cellpadding="2">
-<tr>
-<td class="main">
-<b>
+          <table border="0" width="100%" cellspacing="0" cellpadding="2">
+            <tr>
+              <td>
+                <table border="0" width="100%" cellspacing="0" cellpadding="2">
+                  <tr>
+                    <td width="80" rowspan="2">
+<?php echo xtc_image(DIR_WS_ICONS.'heading_customers.gif'); ?>
+                    </td>
+                    <td class="pageHeading">
+<?php echo TABLE_HEADING; ?>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="main" valign="top">
+Customers
+                    </td>
+                  </tr>
+                </table></td>
+            </tr>
+          </table>
+<!-- content -->
+<p class="main">
 <?php
 
 if ($_GET['text'] == 'address') {
 	echo TEXT_EDIT_ADDRESS_SUCCESS;
 }
 ?>
-</b>
-</td>
-</tr>
-</table>
+</p>
 
 <!-- Meldungen Ende //-->
 <?php
@@ -664,7 +694,7 @@ echo '<input type="submit" class="button" onClick="this.blur();" value="' . BUTT
 
 
 <!-- Ende //-->
-</td>
+
 <?php
 
 $heading = array ();
@@ -692,20 +722,12 @@ if ((xtc_not_null($heading)) && (xtc_not_null($contents))) {
 	echo '            </td>'."\n";
 }
 ?>
-  </tr>
+  </td></tr>
 
 <!-- body_text_eof //-->
-        </table></td>
-      </tr>
-    </table></td>
-  </tr>
-</table>
-<!-- body_eof //-->
-
-<!-- footer //-->
-<?php require(DIR_WS_INCLUDES . 'footer.php'); ?>
-<!-- footer_eof //-->
-<br />
-</body>
-</html>
-<?php require(DIR_WS_INCLUDES . 'application_bottom.php'); ?>
+        </table>
+<!-- end content -->
+<?php 
+require(DIR_WS_INCLUDES . 'application_bottom.php'); 
+require(DIR_WS_INCLUDES . 'application_bottom_0.php');
+?>

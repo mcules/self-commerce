@@ -1,0 +1,67 @@
+{config_load file="$language/lang_$language.conf" section="index"}
+{config_load file="$language/lang_$language.conf" section="account"}
+
+<h2>{#heading_account#}{$error_message}</h2>
+	{if $products_history}
+		<h3>{#title_viewed_products#}</h3>
+		{foreach $products_history as $history_products}
+			<h1 class="productListing1ColHead"><a href="{$products_history.PRODUCTS_LINK}">{$products_history.PRODUCTS_NAME}</a> (<a href="{$products_history.PRODUCTS_CATEGORY_URL}">{#text_goto_cat#}</a>)</h1>
+			<div class="productListing1ColBody">
+				<div class="floatbox">
+					<div class="productListing1ColBodyImg">
+						{if $products_history.PRODUCTS_IMAGE}
+							<a href="{$products_history.PRODUCTS_LINK}"><img src="{$products_history.PRODUCTS_IMAGE}" alt="{$products_history.PRODUCTS_NAME}" class="thumb_img" /></a>
+						{else}{* if no picture available  *}
+							&nbsp;
+						{/if}
+					</div>
+					<div class="productListing1ColBodyTxt">
+						{if $products_history.PRODUCTS_SHORT_DESCRIPTION!=''}{$products_history.PRODUCTS_SHORT_DESCRIPTION}<br />{/if}
+						<div class="productListing1ColPriceInfo">
+							{$products_history.PRODUCTS_PRICE}<br />
+							{if $products_history.PRODUCTS_VPE}{$products_history.PRODUCTS_VPE}<br />{/if}
+							<span class="productListing1ColTaxInfo">{$products_history.PRODUCTS_TAX_INFO}{$products_history.PRODUCTS_SHIPPING_LINK}</span>
+						</div>
+						{if $products_history.PRODUCTS_SHIPPING_NAME}
+							<div class="productListing1ColShiptime">
+								{#text_shippingtime#}
+								{if $products_history.PRODUCTS_SHIPPING_IMAGE}<img src="{$products_history.PRODUCTS_SHIPPING_IMAGE}" alt="{$products_history.PRODUCTS_SHIPPING_NAME}" />{/if}
+								{$products_history.PRODUCTS_SHIPPING_NAME}
+							</div>
+						{/if}
+						<a href="{$products_history.PRODUCTS_LINK}"><img src="{$tpl_path}buttons/{$language}/small_view.gif" alt="{$products_history.PRODUCTS_NAME}" /></a> {$products_history.PRODUCTS_BUTTON_BUY_NOW}
+					</div>
+				</div>
+			</div>
+		{/foreach}
+	{else}
+		<h3>{#title_welcome#}</h3>
+		<p>{#text_welcome#}</p>
+	{/if}
+	{if $LINK_LOGIN}
+		<p><a href="{$LINK_LOGIN}">{#text_login#}</a></p>
+	{/if}
+	<hr class="dis" />
+	<h3>{#title_account#}</h3>
+	<ul>
+		<li><a href="{$LINK_EDIT}">{#text_edit#}</a> <span class="dontShow">.</span></li>
+		<li><a href="{$LINK_ADDRESS}">{#text_address#}</a> <span class="dontShow">.</span></li>
+		<li><a href="{$LINK_PASSWORD}">{#text_password#}</a> <span class="dontShow">.</span></li>
+		{if $LINK_DELETE && $smarty.const.TPL_CLIENT == 'xtcmod'}
+			<li><a href="{$LINK_DELETE}">{#text_delete#}</a> <span class="dontShow">.</span></li>
+		{/if}
+	</ul>
+
+	{if $order_content}
+		<h3>{#title_orders#} {$LINK_ALL}</h3>
+		{foreach name=aussen item=order_data from=$order_content}
+			<p class="trennlinie">
+				<a href="{$order_data.ORDER_LINK}">{$order_data.ORDER_DATE} {#order_nr#}{$order_data.ORDER_ID}</a><br />
+				{#order_total#}{$order_data.ORDER_TOTAL}<br />
+				{#order_status#}{$order_data.ORDER_STATUS}<br />
+				{$order_data.ORDER_BUTTON}
+			</p>
+		{/foreach}
+	{/if}
+	<h3>{#title_notification#}</h3>
+		<p><a href="{$LINK_NEWSLETTER}">{#text_newsletter#}</a></p>

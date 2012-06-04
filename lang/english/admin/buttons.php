@@ -57,6 +57,7 @@ define('BUTTON_MODULE_REMOVE', 'Uninstall');
 define('BUTTON_MODULE_INSTALL', 'Install');
 define('BUTTON_START', 'Start');
 define('BUTTON_NEW_CONTENT', 'New Content');
+define('BUTTON_NEW_SUB_CONTENT', 'New Sub Content');
 define('BUTTON_BACKUP', 'Backup');
 define('BUTTON_RESTORE', 'Restore');
 define('BUTTON_NEW_BANNER', 'New Banner');

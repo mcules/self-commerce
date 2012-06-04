@@ -8,6 +8,7 @@
 
    Copyright (c) 2003 XT-Commerce
    -----------------------------------------------------------------------------------------
+   (c) 2012	 Self-Commerce www.self-commerce.de
    based on: 
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
    (c) 2002-2003 osCommerce(product_info.php,v 1.94 2003/05/04); www.oscommerce.com 
@@ -60,7 +61,7 @@ require (DIR_WS_INCLUDES.'header.php');
 $smarty->assign('language', $_SESSION['language']);
 $smarty->caching = 0;
 if (!defined(RM))
-	$smarty->load_filter('output', 'note');
+	$smarty->loadfilter('output', 'note');
 $smarty->display(CURRENT_TEMPLATE.'/index.html');
 include ('includes/application_bottom.php');
 ?>

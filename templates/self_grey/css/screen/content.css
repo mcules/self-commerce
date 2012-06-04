@@ -1,0 +1,314 @@
+@charset "UTF-8";
+/**
+* "Yet Another Multicolum Layout" - (X)HTML/CSS Framework
+*
+* (en) Uniform design of standard content elements
+* (de) Einheitliche Standardformatierungen für die wichtigten Inhalts-Elemente
+*
+* @copyright       Copyright 2006-2007, Björn Teßmann (tessmann@zerosoft.de)
+*                  Based on YAML, Copyright 2005-2007, Dirk Jesse
+* @link            http://www.zs-ecommerce.com
+* @package         yaml for xt:Commerce
+* @version         1.6.0
+*/
+
+@media all
+{
+  /**
+  * Fonts
+  * (en) font-family and font-size selection for headings and standard text elements
+  * (de) Zeichensatz und Schriftgrößen für Überschriften und übliche Text-Elemente
+  *
+  * @section content-fonts
+  */
+
+  /* (en) reset font size for all elements to standard (16 Pixel) */
+  /* (de) Alle Schriftgrößen auf Standardgröße (16 Pixel) zurücksetzen */
+  html * { font-size: 100.01% }
+
+  /* (en) base layout gets standard font size 12px */
+  /* (de) Basis-Layout erhält Standardschriftgröße von 12 Pixeln */
+  body {
+    font-family: Verdana, Helvetica, Arial, sans-serif;
+    font-size: 83.00%; 
+  }
+
+ /* ######################################################################################################
+** # Standard-Vorgaben ##################################################################################
+** ######################################################################################################
+**
+*/
+h1,h2,h3,h4 { font-family: Verdana, Arial, Sans-Serif; font-weight:normal;}
+
+h1 {font-size: 1.00em; color: #000; margin: 0 0 0 0;  font-weight:bold; }
+h2 {font-size: 1.05em; color: #000; margin: 0 0 0.30em 0; font-weight:bold; border-bottom: 1px #ddd solid;}
+h3 {font-size: 1.0em; color: #000; margin: 0 0 0.30em 0; padding-top: 1em; font-weight:bold; border-bottom: 1px #ddd solid;}
+h4 {color: #000; padding-top: 0.3em; font-weight:bold; border-bottom: 1px #C5C5C5 solid;}
+
+#teaser h1 { font-size: 1.2em; border: 0; }
+#teaser a {
+	color:#333333;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+
+p,ul,dd,dt { line-height: 1.5em;}
+p { line-height: 1.5em; margin: 0 0 1em 0; }
+
+
+strong,b { font-weight: bold; }
+em,i { font-style:italic; }
+pre, code {	font-family: "Courier New", Courier, monospace; }
+address { font-style:normal; line-height: 1.5em; margin: 0 0 1em 0; }
+
+#col3_content h4 {font-size: 1.05em; color: #000; margin: 0 0 0.30em 0; padding-top:1em; font-weight:bold; border-bottom: 1px #ddd solid;}
+
+
+/* ######################################################################################################
+** # YAML für xt:commerce (c) by Björn Teßmann http://www.zerosoftware.de  ######
+** ######################################################################################################
+**
+**  YAML für xt:commerce Version: 1.0.2
+**  Dateiversion: 18.05.07
+**  Datei       : content.css
+**  Funktion    : Formatierung der Inhalte (Texte, Grafiken, Links, Listen, Tabellen usw.)
+**
+*/
+/* ###################################################################################################### */
+/* ### Allgemeine Angaben ############################################################################### */
+/* ###################################################################################################### */
+
+/* ### beende Umfluß in Abschnitt ### */
+.clearHere { clear: both; }
+
+/* ### CSS für floatende Inhaltselemente ### */
+/* ### DIV-Tags ### */
+.leftCol {
+	margin-top:4px;
+	float:left;
+}
+
+.rightCol {
+	position:absolute;
+	margin-top:4px;
+	right:0;
+	padding-right:4px;
+}
+
+/* ### Ausblenden von underline und Rahmen bei Bildern als Link  ### */
+a.imgLink {
+	border: 0px none; text-decoration: none;
+}
+
+.dontShow {
+ 	position: absolute;
+    left: -3000px;
+    top: -3000px;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    display: inline;
+}
+
+.optionsBg { background-color: #F1F1F1;  margin: 0; padding: 5px;}
+
+#col3_content .longInput, #col3_content .longTextarea textarea {
+	width: 99%;
+}
+
+#col3_content label.longLabel {
+	width: 99%;
+	float: none;
+}
+
+
+
+/* ### Auszeichnung lokaler und externer Links ######################################################## */
+a, a em.file {color: #222; text-decoration:none;}
+a:hover {text-decoration:underline;}
+
+#topnav a { color: #fff; background:transparent; text-decoration:none; }
+#topnav a:hover{ text-decoration:underline; background-color: transparent;}
+
+#footer a { color: #fff; }
+#footer a:hover { text-decoration:underline; }
+/* ### Stehen lassen ### */
+#main a.imagelink {
+	padding-left: 0;
+	background: transparent;
+}
+
+/* ### Formatierung "benötigte Felder"-Anzeige ### */
+.inputRequirement { font-size: 11px; color: #ff0000; }
+/* ### Copyright-Vermerk von xt:C #### */
+.copyright {
+  font-size: 11px;
+  line-height: 1.5;
+  text-align:center;
+}
+
+A.copyright {
+  color: #000000;
+}
+
+A.copyright:hover {
+  color: #0000ff;
+  text-decoration: underline;
+}
+/* ### Parse-Time-Anzeige von xt:C #### */
+.parseTime {
+  font-size: 11px;
+  line-height: 1.5;
+  text-align:center;
+}
+
+/* ### Stehen lassen ###*/
+TD.main, P.main {
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* ### Formatierung für Anzeige ausverkaufte Artikel ### */
+SPAN.markProductOutOfStock {
+  font-size: 12px;
+  color: #c76170;
+  font-weight: bold;
+}
+/* ### Formatierung Sonderpreis ### */
+SPAN.productSpecialPrice {
+  color: #ff0000;
+}
+/* ### Formatierung alter Preis ### */
+SPAN.productOldPrice {
+	color: #ff0000;
+	text-decoration: line-through;
+}
+
+SPAN.errorText {
+  color: #ff0000;
+}
+
+SPAN.productDiscountPrice {
+  color: #ff0000;
+  font-weight: bold;
+}
+
+
+/* ######################################################################################################
+** ### Tabellen #############################################################################
+** ######################################################################################################
+*/
+
+
+
+
+/* ### Inhalt: Tabelle ### */
+table { width: 100%; margin-bottom:0.5em; }
+caption { border-bottom: 4px solid #fff; padding: 10px; background: #F79430; text-align: left; color: #fff; }
+/*tbody { background: #fff; }*/
+tbody td, th { border-bottom: 0px solid #fff; border-left: 0px dotted #fff; vertical-align: top; padding:5px; }
+thead th { padding: 5px; text-align: left; background: #CCCCCC; color: #333; font-weight: bold; }
+tbody th { padding: 5px; text-align: left; color: #000; line-height: 1.5em; font-weight: normal; }
+tbody tr.odd, tbody tr.odd th { background: #FEE9BD; }
+tbody tr.odd2, tbody tr.odd2 th { background: #D0FFD0; }
+
+tfoot th, tfoot td { margin: 0; border-top: 2px solid #fff; padding: 5px 10px; text-align: left; background: #CCCCCC; color: #333; }
+tfoot th { border: none; }
+tfoot td { padding-left: 10px; }
+
+tbody td.main { border-bottom: 0px solid #fff; border-left: 1px dotted #fff; vertical-align: top; padding:2px; }
+
+tbody td.attribute , tbody td.value{
+	margin:0;
+	padding:0;
+	border:0;
+	font-size:0.9em;
+	line-height:1.5em;
+}
+
+
+
+
+
+
+
+#col3_content td.prodRow1 {
+	background-color:#CCCCCC;
+}
+
+hr.dis {
+    color: #D0D0D0; /* IE */
+    border: 1px solid #D0D0D0; /* Opera */
+    background-color: #D0D0D0; /* Mozilla */
+    margin-bottom: 1em;
+}
+
+hr {
+    color: #D0D0D0; /* IE */
+    border: 1px solid #D0D0D0; /* Opera */
+    background-color: #D0D0D0; /* Mozilla */
+    height:2px; /* Mozilla, Opera */
+}
+
+hr.cart {
+	color: #333333;
+	background-color:#333333;
+	height:1px;
+  	margin-right:0;
+	text-align:right;
+	width:80%;
+	margin: 0;
+	padding: 0;
+	border:0;
+}
+
+.hrDiv {
+	padding-bottom: 1px;
+	padding-top: 1px;
+	height: 0pt;
+	margin-top: 0pt;
+	margin-right: 0pt;
+	margin-bottom: 0pt;
+	margin-left: 0pt;
+	line-height: 0px;
+	background-color: #999999;
+}
+
+.hrDiv {
+	margin-top:3px;
+	margin-bottom:3px;
+}
+
+
+.error { color: #FF0000; }
+.must { color: #FF0000; }
+
+acronym, abbr {
+	letter-spacing: .07em;
+	border-bottom: 1px dashed #c00;
+	cursor: help;
+}
+
+
+img.float_left { float: left; margin-right: 1em; margin-bottom: 0.15em; border:0; }
+img.float_right { float: right; margin-left: 1em; margin-bottom: 0.15em; border:0; }
+img.center { text-align:center; background: #fff; padding: 4px; border:1px #ddd solid; }
+
+div.agbframe {
+    /*width:100%;*/
+    height:200px;
+    overflow:auto;
+    padding:10px;
+    background:url(../../img/input_bg.gif) no-repeat;
+    border:1px solid #666;
+ }
+ 
+/* popup content shipping info*/ 
+ 
+.ship_overlay tbody td.main {
+	border-left:0px;
+}
+
+/* ### stehen lassen ### */
+}
+

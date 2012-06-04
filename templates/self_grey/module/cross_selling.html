@@ -1,0 +1,37 @@
+{config_load file="$language/lang_$language.conf" section="cross_selling"}
+<h2>{#heading_text#}</h2>
+{foreach name=aussen item=module_data from=$module_content}
+	{foreach item=products_data from=$module_data.PRODUCTS}
+  <h1 class="productListing1ColHead"><a href="{$products_data.PRODUCTS_LINK}">{$products_data.PRODUCTS_NAME}</a></h1>
+  <div class="productListing1ColBody">
+  
+  
+    <div class="floatbox">
+  			<div class="productListing1ColBodyImg">
+      					{if $products_data.PRODUCTS_IMAGE}
+                  <a href="{$products_data.PRODUCTS_LINK}"><img src="{$products_data.PRODUCTS_IMAGE}" alt="{$products_data.PRODUCTS_NAME}" class="thumb_img" /></a>
+                {else}{* if no picture available  *}
+                  &nbsp; 
+                {/if}  
+				</div>
+        <div class="productListing1ColBodyTxt"> 
+    					
+    				{if $products_data.PRODUCTS_SHORT_DESCRIPTION!=''}<div class="productListing1ColDesc">{$products_data.PRODUCTS_SHORT_DESCRIPTION}</div>{/if}
+						<div class="productListing1ColPriceInfo">{$products_data.PRODUCTS_PRICE}<br />{if $products_data.PRODUCTS_VPE}{$products_data.PRODUCTS_VPE}<br />{/if}
+						<span class="productListing1ColTaxInfo">{$products_data.PRODUCTS_TAX_INFO}{$products_data.PRODUCTS_SHIPPING_LINK}</span></div>
+						{if $products_data.PRODUCTS_SHIPPING_NAME}
+						<div class="productListing1ColShiptime">
+  						{#text_shippingtime#}
+  						{if $products_data.PRODUCTS_SHIPPING_IMAGE}<img src="{$products_data.PRODUCTS_SHIPPING_IMAGE}" alt="{$products_data.PRODUCTS_SHIPPING_NAME}" />{/if}
+  						{$products_data.PRODUCTS_SHIPPING_NAME}
+  					</div>
+            {/if}
+            <div class="productListing1ColButtons">
+							<span class="productListing1ColViewButton"><a href="{$products_data.PRODUCTS_LINK}"><img src="{$tpl_path}buttons/{$language}/small_view.gif" alt="{$products_data.PRODUCTS_NAME}" /></a></span>
+              <span class="productListing1ColBuyButton">{$products_data.PRODUCTS_BUTTON_BUY_NOW}</span>
+     	      </div>
+     	</div></div>
+  </div>
+  {/foreach}
+{/foreach}
+

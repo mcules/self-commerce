@@ -30,10 +30,10 @@
   Copyright announcement changed due to the permissions
   from LG Hamburg from 28th February 2003 / AZ 308 O 70/03
 */
-?>E-Commerce Engine Copyright &copy; 2003 <a href="http://www.xt-commerce.com" target="_blank">XT-Commerce</a>
-<br>XT-Commerce provides no warranty and is redistributable under the <a href="http://www.fsf.org/licenses/gpl.txt" target="_blank">GNU General Public License</a>
-<br /><?php echo xtc_image(DIR_WS_IMAGES . 'pixel_trans.gif', '', '1', '5'); ?>
-<br />Powered by <a href="http://www.self-commerce.de" target="_blank">Self-Commerce</a>
+?>
+      Copyright  &copy; 2008 <a href="http://www.self-commerce.de">Self-Commerce</a> based on <a href="http://www.xtcommerce.de" target="_blank">XT:Commerce</a>
+<br />
+      Self-Commerce provides no warranty and is redistributable under the <a href="http://www.fsf.org/licenses/gpl.txt" target="_blank">GNU General Public License</a>
 </div>
 <?php
 /*

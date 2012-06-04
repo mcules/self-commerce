@@ -1,0 +1,15 @@
+{config_load file="$language/lang_$language.conf" section="boxes"}
+<div class="boxInfoRS" id="box_whatsnew">
+	<h4><a href="{$LINK_NEW_PRODUCTS}">{#heading_whatsnew#}</a></h4>
+	<div class="boxInfoBodyRS">
+	{if $box_content.PRODUCTS_IMAGE!=''}
+		<p class="centerContent"><a href="{$box_content.PRODUCTS_LINK}"><img src="{$box_content.PRODUCTS_IMAGE}" alt="{$box_content.PRODUCTS_NAME}" class="imgCenter" /></a></p>
+	{/if}
+	<h1><a href="{$box_content.PRODUCTS_LINK}">{$box_content.PRODUCTS_NAME}</a></h1>
+	<p class="boxTxtInd">{$box_content.PRODUCTS_PRICE}
+	{if $box_content.PRODUCTS_VPE}
+		{$box_content.PRODUCTS_VPE}
+	{/if}</p>
+	<p class="boxTxtInd">{$box_content.PRODUCTS_TAX_INFO}{$box_content.PRODUCTS_SHIPPING_LINK}</p>
+	</div>
+</div>

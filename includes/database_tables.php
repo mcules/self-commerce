@@ -83,6 +83,4 @@
   define('TABLE_COUPONS_DESCRIPTION', 'coupons_description');
   define('TABLE_BLACKLIST', 'card_blacklist');
   define('TABLE_CAMPAIGNS_IP','campaigns_ip');
-// IP Block
-    define('TABLE_SELF_BANNED_IP','self_banned_ip');  
 ?>

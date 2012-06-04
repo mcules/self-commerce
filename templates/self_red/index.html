@@ -9,11 +9,20 @@
 			<ul id="top_navigation">
 				<li><a href="{$checkout}">{#link_checkout#}</a></li>
 				<li><a href="{$cart}">{#link_cart#}</a></li>
-				{php} if (isset($_SESSION['customer_id'])) { {/php}<li><a href="{$account}">{#link_account#}</a></li>
-				{php} } {/php}<li><a href="{$logoff}">{php} if (isset($_SESSION['customer_id'])) { {/php}{#link_logoff#}{php} } else { {/php}{#link_login#}{php} } {/php}</a></li>
-				<li class="nav_spacer"></li>
+				{if isset($customer_id)}
+					<li><a href="{$account}">{#link_account#}</a></li>
+				{/if}
+				<li>
+					<a href="{$logoff}">
+					{if isset($customer_id)}
+						{#link_logoff#}
+					{else}
+						{#link_login#}
+					{/if}
+				</a></li>
+				<li class="nav_spacer">&nbsp;</li>
 				<li><script type="text/javascript">	if (efa_fontSize) document.write(efa_fontSize.allLinks); </script></li>
-				<li class="nav_spacer"></li>
+				<li class="nav_spacer">&nbsp;</li>
 				<li>{$box_SEARCH}</li>
 				</ul>
 		</td>
@@ -26,7 +35,7 @@
 			<table width="100%" cellpadding="0" cellspacing="0">
 				<tr>
 					<td id="left_col">{$box_CATEGORIES}{$box_ADD_QUICKIE}{$box_CONTENT}{$box_INFORMATION}{$box_LAST_VIEWED}{$box_REVIEWS}{$box_SPECIALS}{$box_WHATSNEW}</td>
-					<td id="main_col" class="main"><div class="mainborder">{$main_content}</div></td>
+					<td id="main_col" class="main"><div class="mainborder">{$main_content}{$box_CENTERBOX}</div></td>
 					<td id="right_col">{$box_CART}{$box_LOGIN}{$box_ADMIN}{$box_EXTRA1}{$box_EXTRA2}{$box_BESTSELLERS}{$box_INFOBOX} {$box_CURRENCIES} {$box_LANGUAGES}{$box_MANUFACTURERS_INFO}{$box_MANUFACTURERS}</td>
 				</tr>
 			

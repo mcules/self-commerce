@@ -20,7 +20,7 @@ $box_smarty->assign('tpl_path', 'templates/'.CURRENT_TEMPLATE.'/');
 $box_content = '';
 $box_price_string = '';
 // include needed files
-require_once (DIR_FS_INC.'xtc_recalculate_price.inc.php');
+
 
 if (strstr($PHP_SELF, FILENAME_CHECKOUT_PAYMENT) or strstr($PHP_SELF, FILENAME_CHECKOUT_CONFIRMATION) or strstr($PHP_SELF, FILENAME_CHECKOUT_SHIPPING))
 	$box_smarty->assign('deny_cart', 'true');

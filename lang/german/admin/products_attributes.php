@@ -15,26 +15,33 @@
    Released under the GNU General Public License 
    --------------------------------------------------------------*/
 
-define('HEADING_TITLE_OPT', 'Artikelmerkmale');
-define('HEADING_TITLE_VAL', 'Optionswert');
-define('HEADING_TITLE_ATRIB', 'Artikelmerkmale');
+define('HEADING_TITLE', 'Artikelmerkmale');
 
 define('TABLE_HEADING_ID', 'ID');
-define('TABLE_HEADING_PRODUCT', 'Artikelname');
-define('TABLE_HEADING_OPT_NAME', 'Optionsname');
 define('TABLE_HEADING_OPT_VALUE', 'Optionswert');
-define('TABLE_HEADING_OPT_PRICE', 'Preis');
-define('TABLE_HEADING_OPT_PRICE_PREFIX', 'Vorzeichen (+/-)');
 define('TABLE_HEADING_ACTION', 'Aktion');
-define('TABLE_HEADING_DOWNLOAD', 'Downloadbare Artikel:');
-define('TABLE_TEXT_FILENAME', 'Dateiname:');
-define('TABLE_TEXT_MAX_DAYS', 'Zeitspanne:');
-define('TABLE_TEXT_MAX_COUNT', 'Maximale Anzahl des herunterladens:');
 
 define('MAX_ROW_LISTS_OPTIONS', 10);
 
-define('TEXT_WARNING_OF_DELETE', 'Mit dieser Option sind Artikel, sowie Optionsmerkmale verbunden - L&ouml;schen wird nicht empfohlen.');
-define('TEXT_OK_TO_DELETE', 'Mit dieser Option sind keine Artikel, sowie Optionsmerkmale verbunden - Sie kann gel&ouml;scht werden.');
-define('TEXT_OPTION_ID', 'Options ID');
-define('TEXT_OPTION_NAME', 'Optionsname');
+define('TEXT_WARNING_OF_DELETE', 'Mit dieser Option sind Artikel, sowie Optionsmerkmale verbunden - L&ouml;schen nicht m&ouml;glich.');
+
+define('HEADING_TITLE_SEARCH','Suchen:');
+define('TEXT_INSERT_OK','Eintrag erfolgreich hinzugef&uuml;gt');
+define('TEXT_UPDATE_OK','Erfolgreich ge&auml;ndert');
+define('TEXT_DELETE_OK','Erfolgreich gel&ouml;scht');
+define('FOUND','gefunden:');
+define('NOT_FOUND','Keine Eintr&auml;ge vorhanden');
+
+define('INSERT_NEW_VALUE_TEXT', 'Neuen Optionswert hinzufügen:');
+define('INSERT_NEW_OPTION_TEXT', 'Neue Option hinzufügen:');
+define('OPTION_COUNT','benutzt: ');
+define('VALUE_COUNT', 'benutzt: ');
+
+define('CONFIRM_DELETE', 'Löschen bestätigen');
+define('CONFIRM_DELETE1', 'Achtung, die Option wird mit allen evtl. enthaltenen Werten gelöscht!');
+define('CONFIRM_DELETE2', 'Sind Sie sicher?');
+define('CONFIRM_VAL_DELETE1', 'Achtung der Optionswert wird gelöscht.');
+define('CONFIRM_VAL_DELETE2', 'Sind Sie sicher?');
+
+define('USED_FROM_PRODUCTS', 'Verwendet von:')
 ?>

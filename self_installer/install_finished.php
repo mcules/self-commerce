@@ -79,32 +79,32 @@ UL.liste {font-family: Verdana, Arial, Helvetica, san-serif; font-size: 10px; co
 					<td colspan="2" height="17" class="blocktitle" align="center">Self-Commerce Install</td>
 				</tr>
         		<tr> 
-					<td class="left_top2" width="135" ><img src="images/icons/arrow02.gif" width="13" height="6"><?php echo BOX_LANGUAGE; ?></td>
-                	<td class="left_top2" width="35"><img src="images/icons/ok.gif"></td>
+					<td class="left_top2" width="135" ><img src="images/icons/arrow02.gif" width="13" height="6" alt="Arrow" /><?php echo BOX_LANGUAGE; ?></td>
+                	<td class="left_top2" width="35"><img src="images/icons/ok.gif" alt="OK" /></td>
               	</tr>
               	<tr> 
-                	<td class="left_top2" width="135" ><img src="images/icons/arrow02.gif" width="13" height="6"><?php echo BOX_DB_CONNECTION; ?></td>
-               		<td class="left_top2" width="35"><img src="images/icons/ok.gif"></td>
+                	<td class="left_top2" width="135" ><img src="images/icons/arrow02.gif" width="13" height="6" alt="Arrow" /><?php echo BOX_DB_CONNECTION; ?></td>
+               		<td class="left_top2" width="35"><img src="images/icons/ok.gif" alt="OK" /></td>
               	</tr>
               	<tr> 
-                	<td class="left_top2">&nbsp;&nbsp;&nbsp;<img src="images/icons/arrow02.gif" width="13" height="6"><?php echo BOX_DB_IMPORT; ?></td>
-                	<td class="left_top2"><img src="images/icons/ok.gif"></td>
+                	<td class="left_top2">&nbsp;&nbsp;&nbsp;<img src="images/icons/arrow02.gif" width="13" height="6" alt="Arrow" /><?php echo BOX_DB_IMPORT; ?></td>
+                	<td class="left_top2"><img src="images/icons/ok.gif" alt="OK" /></td>
               	</tr>
               	<tr> 
-                	<td class="left_top2"><img src="images/icons/arrow02.gif" width="13" height="6"><?php echo BOX_WEBSERVER_SETTINGS; ?></td>
-                	<td class="left_top2"><img src="images/icons/ok.gif"></td>
+                	<td class="left_top2"><img src="images/icons/arrow02.gif" width="13" height="6" alt="Arrow" /><?php echo BOX_WEBSERVER_SETTINGS; ?></td>
+                	<td class="left_top2"><img src="images/icons/ok.gif" alt="OK" /></td>
                 </tr>
               	<tr>
-                	<td class="left_top2"><img src="images/icons/arrow02.gif" width="13" height="6"><?php echo BOX_WRITE_CONFIG; ?></td>
-                	<td class="left_top2"><img src="images/icons/ok.gif"></td>
+                	<td class="left_top2"><img src="images/icons/arrow02.gif" width="13" height="6" alt="Arrow" /><?php echo BOX_WRITE_CONFIG; ?></td>
+                	<td class="left_top2"><img src="images/icons/ok.gif" alt="Ok" /></td>
 	            </tr>
 	            <tr>
-                	<td class="left_top2"><img src="images/icons/arrow02.gif" width="13" height="6"><?php echo BOX_ADMIN_CONFIG; ?></td>
-                	<td class="left_top2"><img src="images/icons/ok.gif"></td>
+                	<td class="left_top2"><img src="images/icons/arrow02.gif" width="13" height="6" alt="Arrow" /><?php echo BOX_ADMIN_CONFIG; ?></td>
+                	<td class="left_top2"><img src="images/icons/ok.gif" alt="Ok" /></td>
 	            </tr>
 				<tr>
-                	<td class="left_top"><img src="images/icons/arrow02.gif" width="13" height="6"><?php echo BOX_USERS_CONFIG; ?></td>
-                	<td class="left_top"><img src="images/icons/ok.gif"></td>
+                	<td class="left_top"><img src="images/icons/arrow02.gif" width="13" height="6" alt="Arrow" /><?php echo BOX_USERS_CONFIG; ?></td>
+                	<td class="left_top"><img src="images/icons/ok.gif" alt="Ok" /></td>
                </tr>
 			</table>
 		</td>
@@ -114,10 +114,10 @@ UL.liste {font-family: Verdana, Arial, Helvetica, san-serif; font-size: 10px; co
         		<tr>
           			<td>
           				<span class="title"><?php echo TITLE_SHOP_CONFIG; ?></span><hr class="lineRed">
-            			<p class="h1" align="center"><img src="images/logo_step5.png" width="283" height="100"><br />
+            			<p class="h1" align="center"><img src="images/logo_step5.png" width="283" height="100" alt="Logo Step 5" /><br />
 	              			<?php echo TEXT_SHOP_CONFIG_SUCCESS; ?><br /><br />
 	              			<?php echo TEXT_TEAM; ?><br /><br /><br />
-	              			<a href="<?php echo HTTP_CATALOG_SERVER . DIR_WS_CATALOG . 'index.php'; ?>" target="_blank"><img src="images/button_catalog.gif" border="0" alt="Catalog"></a><br /><br /><br />
+	              			<a href="<?php echo HTTP_CATALOG_SERVER . DIR_WS_CATALOG . 'index.php'; ?>" target="_blank"><img src="images/button_catalog.gif" border="0" alt="Catalog" /></a><br /><br /><br />
 	              		</p>
 				</tr>
             </table>

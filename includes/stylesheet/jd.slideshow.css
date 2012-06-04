@@ -40,7 +40,6 @@
 	background-color: #000;
 	background-repeat: no-repeat;
 	background-position: center center;
-	background-image: url('img/loading-bar-black.gif');
 }
 
 .jdSlideshow .slideInfoZone
@@ -114,16 +113,11 @@
 {
 	left: 0;
 	top: 0;
-	background: url('img/fleche1.png') no-repeat top left;
 }
 
-* html .jdSlideshow a.left { background: url('img/fleche1.gif') no-repeat top left; }
 
 .jdSlideshow a.right
 {
 	right: 0;
 	top: 0;
-	background: url('img/fleche2.png') no-repeat top right;
 }
-
-* html .jdSlideshow a.right { background: url('img/fleche2.gif') no-repeat top right; }

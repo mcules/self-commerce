@@ -105,6 +105,7 @@ class InputFilter {
 	function filterTags($source) {
 		// filter pass setup
 		$preTag = NULL;
+		$source = str_replace('<>','',$source);
 		$postTag = $source;
 		// find initial tag's position
 		$tagOpen_start = strpos($source, '<');

@@ -1,18 +1,3 @@
-# --------------------------------------------------------------
-# $Id$
-#
-# Self-Commerce - Fresh up your eCommerce
-# http://www.self-commerce.de
-# Copyright (c) 2012 Self-Commerce
-#
-# --------------------------------------------------------------
-
-RewriteEngine On
-RedirectMatch permanent (.*)\.php$ /error/nophp.html
-RedirectMatch permanent (.*)\.php3$ /error/nophp.html
-RedirectMatch permanent (.*)\.php4$ /error/nophp.html
-RedirectMatch permanent (.*)\.php5$ /error/nophp.html
-
 AuthType Basic
 AuthName "No access"
 AuthUserFile .htnopasswd

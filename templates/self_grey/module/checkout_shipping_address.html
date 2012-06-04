@@ -1,0 +1,41 @@
+{config_load file="$language/lang_$language.conf" section="checkout_shipping_address"}
+{config_load file="$language/lang_$language.conf" section="checkout_navigation"}
+
+<div class="floatbox">
+		<div class="processCheckoutYellow"><strong>{#text_shipping_info#}</strong><br /><img src="{$tpl_path}img/icons/now.gif" height="16" width="16" alt="" /></div>
+		<div class="processCheckoutRed">{#text_payment_info#}<br /><img src="{$tpl_path}img/icons/cross.gif" height="16" width="16" alt="" /></div>
+		<div class="processCheckoutRed">{#text_confirm#}<br /><img src="{$tpl_path}img/icons/cross.gif" height="16" width="16" alt="" /></div>
+		<div class="processCheckoutRed">{#text_finished#}<br /><img src="{$tpl_path}img/icons/cross.gif" height="16" width="16" alt="" /></div>
+</div>
+
+<h4>{#heading_address#}</h4>
+<div class="cart">
+{$FORM_ACTION}
+
+	{if $error!=''}<p><strong class="error">{$error}</strong></p>{/if}
+{if #title_new_address# !=''}<p>{#title_new_address#}</p>{/if}
+	<h3>{#title_current_address#}</h3>
+	<p>{#text_current_address#}</p>
+	<p class="container">{$ADDRESS_LABEL}</p>
+
+	{if $BLOCK_ADDRESS}
+	  <h3>{#title_old_addresses#}</h3>
+	  <p>{#text_old_addresses#}</p>
+	  <div class="adressBlockContainer">{$BLOCK_ADDRESS}</div>
+	{/if}
+
+	{if $MODULE_new_address}
+	  {$MODULE_new_address}
+	{/if}
+
+	  <h3>{#title_continue#}</h3>
+	  <p>{#text_continue#}</p>
+
+<div class="floatbox">
+	<div class="leftCol">{$BUTTON_BACK}</div>
+	<div class="rightCol">{$BUTTON_CONTINUE}</div>
+</div><br class="clearHere" /><br class="clearHere" />
+
+{$FORM_END}
+
+</div>

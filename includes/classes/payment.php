@@ -1,16 +1,15 @@
 <?php
-/* -----------------------------------------------------------------------------------------
-   $Id$   
-
-   XT-Commerce - community made shopping
-   http://www.xt-commerce.com
-
-   Copyright (c) 2003 XT-Commerce
+/* --------------------------------------------------------------
+   $Id$
+   Self-Commerce - Fresh up your eCommerce
+   http://www.self-commerce.de
+   Copyright (c) 2012 Self-Commerce
    -----------------------------------------------------------------------------------------
    based on: 
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
    (c) 2002-2003 osCommerce(payment.php,v 1.36 2003/02/11); www.oscommerce.com 
    (c) 2003	 nextcommerce (payment.php,v 1.11 2003/08/17); www.nextcommerce.org
+   (c) 2005      XT-Commerce (payment.php, 1235 2005/08/07); www.xt-commerce.com
 
    Released under the GNU General Public License
    -----------------------------------------------------------------------------------------
@@ -111,7 +110,7 @@
               $GLOBALS[$this->selected_module]->update_status();
             }
           } else { // PHP3 compatibility
-            @call_user_method('update_status', $GLOBALS[$this->selected_module]);
+            @call_user_func('update_status', $GLOBALS[$this->selected_module]);
           }
         }
       }

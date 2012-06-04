@@ -8,6 +8,7 @@
 
    Copyright (c) 2003 XT-Commerce
    -----------------------------------------------------------------------------------------
+   (c) 2012	 Self-Commerce www.self-commerce.de
    based on: 
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
    (c) 2002-2003 osCommerce(account_edit.php,v 1.63 2003/05/19); www.oscommerce.com 
@@ -73,16 +74,15 @@ if (isset ($_POST['action']) && ($_POST['action'] == 'process')) {
 		}
 	}
 
-	// New VAT Check
-	$country = xtc_get_customers_country($_SESSION['customer_id']);
+// New VAT Check
 	require_once(DIR_WS_CLASSES.'vat_validation.php');
-	$vatID = new vat_validation($vat, $_SESSION['customer_id'], '', $country);
-
+	$vatID = new vat_validation($vat, '', '', $country);
+	
 	$customers_status = $vatID->vat_info['status'];
 	$customers_vat_id_status = $vatID->vat_info['vat_id_status'];
-	$error = $vatID->vat_info['error'];
-
-	if($error==1){
+	$error_vat = $vatID->vat_info['error'];
+	
+	if($error_vat==1){
 	$messageStack->add('create_account', ENTRY_VAT_ERROR);
 	$error = true;
   }
@@ -178,7 +178,7 @@ $smarty->assign('language', $_SESSION['language']);
 $smarty->assign('main_content', $main_content);
 $smarty->caching = 0;
 if (!defined(RM))
-	$smarty->load_filter('output', 'note');
+	$smarty->loadfilter('output', 'note');
 $smarty->display(CURRENT_TEMPLATE.'/index.html');
 include ('includes/application_bottom.php');
 ?>

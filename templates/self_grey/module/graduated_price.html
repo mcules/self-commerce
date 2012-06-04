@@ -1,0 +1,10 @@
+{config_load file="$language/lang_$language.conf" section="graduated_price"}
+<h2>{#heading_text#}:</h2>
+<p>
+{foreach name=aussen item=module_data from=$module_content}
+		{$module_data.QUANTITY} {#unit#}
+		{#pieces#} {$module_data.PRICE}{if $module_data.VPE}<br />{$module_data.VPE}{/if}
+		<br />
+{/foreach}
+</p>
+

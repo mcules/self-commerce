@@ -1,0 +1,49 @@
+<div class="containerProdListing2col">
+{foreach name=aussen item=module_data from=$module_content}
+{* Spalten *}
+	{if $smarty.foreach.aussen.iteration % 2 != 0 }
+	<div class="subcolumns">
+		<div class="c50l">
+			<div class="subcl">
+	{else}
+	 	<div class="c50r">
+			<div class="subcr">
+	{/if}
+{* Content *}
+		<div class="ProdListing2colBorder">{* Div damit Button auf einer Höhe stehen *}
+			<div class="ProdListing2colSpacer">
+			
+				{if $module_data.PRODUCTS_IMAGE}<a href="{$module_data.PRODUCTS_LINK}"><img src="{$module_data.PRODUCTS_IMAGE}" alt="{$module_data.PRODUCTS_NAME}" class="imgCenter" /></a>{/if}
+			
+				<h1><a href="{$module_data.PRODUCTS_LINK}">{$module_data.PRODUCTS_NAME}</a></h1><br />
+		
+				{if $module_data.PRODUCTS_SHORT_DESCRIPTION}{$module_data.PRODUCTS_SHORT_DESCRIPTION|truncate:60}<br /><br />{/if}
+				<div class="prodPriceInfo2col">{$module_data.PRODUCTS_PRICE}{if $module_data.PRODUCTS_VPE}<br />{$module_data.PRODUCTS_VPE}{/if}<br />
+					<span class="prodTaxShipInfo2col">{$module_data.PRODUCTS_TAX_INFO}{$module_data.PRODUCTS_SHIPPING_LINK}</span>
+				</div>
+				{if $module_data.PRODUCTS_SHIPPING_NAME}
+				<div class="prodShiptime2col">
+		  			{#text_shippingtime#}
+		  			{if $module_data.PRODUCTS_SHIPPING_IMAGE}<img src="{$module_data.PRODUCTS_SHIPPING_IMAGE}" alt="{$module_data.PRODUCTS_SHIPPING_NAME}" />{/if}
+		  			{$module_data.PRODUCTS_SHIPPING_NAME}
+				</div>
+				{/if}
+			</div>
+			<div class="productListing2colBuyNow"><a href="{$module_data.PRODUCTS_LINK}"><img src="{$tpl_path}buttons/{$language}/small_view.gif" alt="{$module_data.PRODUCTS_NAME}" /></a> {*$module_data.PRODUCTS_BUTTON_BUY_NOW*}</div>
+		</div>
+	{* EOF Content - Innere Container Subcolums schließen *}
+	</div>
+</div>
+{* Subcolums schließen *}
+{if $smarty.foreach.aussen.iteration%2 == 0 }
+	</div>
+{else}
+	{if $smarty.foreach.aussen.total%2 != 0 && $smarty.foreach.aussen.total == $smarty.foreach.aussen.iteration }{* 1 Zelle einfügen wenn in der ersten Spalte und letzter Schleifendurchlauf *}
+		<div class="c50r"><div class="subcr">&nbsp;</div></div>
+		</div>
+	{/if}
+	
+{/if}
+{/foreach}
+
+</div>

@@ -1,0 +1,32 @@
+<div class="catListing2Col">
+{foreach name=aussen item=module_data from=$module_content}
+{* Spalten *}
+	{if $smarty.foreach.aussen.iteration % 2 != 0 }
+	<div class="subcolumns">
+		<div class="c50l">
+			<div class="subcl">
+	{else}
+	 	<div class="c50r">
+			<div class="subcr">
+	{/if}
+{* Content *}
+	<div class="catListing2ColBody"><div class="floatbox">
+			{if $module_data.CATEGORIES_IMAGE}<a href="{$module_data.CATEGORIES_LINK}"><img src="{$module_data.CATEGORIES_IMAGE}" alt="{$module_data.CATEGORIES_NAME}" /></a><br/>{/if}
+			<a href="{$module_data.CATEGORIES_LINK}">{$module_data.CATEGORIES_NAME}</a>
+	</div></div>
+{* EOF Content - Innere Container Subcolums schließen *}
+	</div>
+</div>
+{* Subcolums schließen *}
+{if $smarty.foreach.aussen.iteration%2 == 0 }
+	</div>
+{else}
+	{if $smarty.foreach.aussen.total%2 != 0 && $smarty.foreach.aussen.total == $smarty.foreach.aussen.iteration }{* 1 Zelle einfügen wenn in der ersten Spalte und letzter Schleifendurchlauf *}
+		<div class="c50r"><div class="subcr">&nbsp;</div></div>
+		</div>
+	{/if}
+	
+{/if}
+{/foreach}
+
+</div>

@@ -7,6 +7,7 @@
 
    Copyright (c) 2003 XT-Commerce
    -----------------------------------------------------------------------------------------
+   (c) 2012	 Self-Commerce www.self-commerce.de
    based on: 
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
    (c) 2002-2003 osCommerce(sessions.php,v 1.16 2003/04/02); www.oscommerce.com 
@@ -85,7 +86,7 @@
   }
 
   function xtc_session_is_registered($variable) {
-    return session_is_registered($variable);
+    return isset($_SESSION[$variable]);
   }
 
   function xtc_session_unregister($variable) {

@@ -1,0 +1,30 @@
+{config_load file="$language/lang_$language.conf" section="sitemap"}
+
+{if $herror}
+	<div class="error">{$herror}</div><br />
+{/if}
+<div class="sitemapwrap">
+	{assign var=i value='0'}
+	{foreach name=aussen item=module_data from=$module_content}
+		{assign var=i value=$i+1}
+		{if $i=1}
+			<div class="sitemapleft">
+		{else}
+			<div class="sitemapright">
+		{/if}
+		<div class="sitemapheader"><a href="{$module_data.CAT_LINK}">{$module_data.CAT_NAME}</a></div>
+		<div class="sitemapcontent">
+			<ul>
+				{foreach key=key_data item=item_data from=$module_data.SCATS}
+					<li><a href="{$item_data.link}">{$item_data.text}</a></li>
+				{/foreach}
+			</ul>
+		</div>
+	</div>
+	{if $i=2}
+		<div style="clear:both;"></div>
+		{assign var=i value='0'}
+	{/if}  
+	{/foreach}
+	<div style="clear:both;"></div>
+</div>

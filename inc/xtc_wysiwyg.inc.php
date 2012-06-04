@@ -19,6 +19,7 @@ $js_src = DIR_WS_MODULES .'tiny_mce/tiny_mce.js';
 $filemanager = DIR_WS_ADMIN.DIR_WS_MODULES .'tiny_mce/plugins/media/filemanager/file_manager.php';
 
 $plugins = 'advlink,advimage,media,table';
+$theme_advanced_buttons1_add = 'styleselect,formatselect,fontselect,fontsizeselect';
 $theme_advanced_buttons3_add = 'media,tablecontrols';
 
 	switch($type) {
@@ -30,6 +31,7 @@ $theme_advanced_buttons3_add = 'media,tablecontrols';
 									mode : "textareas",
 									plugins : \''.$plugins.'\',
 									document_base_url : \''.HTTP_SERVER.DIR_WS_CATALOG.'\',
+									theme_advanced_buttons1_add : \''.$theme_advanced_buttons1_add.'\',									
 									theme_advanced_buttons3_add : \''.$theme_advanced_buttons3_add.'\',
 									theme : "'.TINY_MODUS.'",
 									language : "'.$lang.'",
@@ -68,6 +70,7 @@ $theme_advanced_buttons3_add = 'media,tablecontrols';
 									mode : "textareas",
 									plugins : \''.$plugins.'\',
 									document_base_url : \''.HTTP_SERVER.DIR_WS_CATALOG.'\',
+									theme_advanced_buttons1_add : \''.$theme_advanced_buttons1_add.'\',									
 									theme_advanced_buttons3_add : \''.$theme_advanced_buttons3_add.'\',
 									theme : "'.TINY_MODUS.'",
 									language : "'.$lang.'",
@@ -106,6 +109,7 @@ $theme_advanced_buttons3_add = 'media,tablecontrols';
 									mode : "textareas",
 									plugins : \''.$plugins.'\',
 									document_base_url : \''.HTTP_SERVER.DIR_WS_CATALOG.'\',
+									theme_advanced_buttons1_add : \''.$theme_advanced_buttons1_add.'\',									
 									theme_advanced_buttons3_add : \''.$theme_advanced_buttons3_add.'\',
 									theme : "'.TINY_MODUS.'",
 									language : "'.$lang.'",
@@ -144,6 +148,7 @@ $theme_advanced_buttons3_add = 'media,tablecontrols';
 									mode : "textareas",
 									plugins : \''.$plugins.'\',
 									document_base_url : \''.HTTP_SERVER.DIR_WS_CATALOG.'\',
+									theme_advanced_buttons1_add : \''.$theme_advanced_buttons1_add.'\',									
 									theme_advanced_buttons3_add : \''.$theme_advanced_buttons3_add.'\',
 									theme : "'.TINY_MODUS.'",
 									language : "'.$lang.'",
@@ -182,6 +187,7 @@ $theme_advanced_buttons3_add = 'media,tablecontrols';
 									mode : "textareas",
 									plugins : \''.$plugins.'\',
 									document_base_url : \''.HTTP_SERVER.DIR_WS_CATALOG.'\',
+									theme_advanced_buttons1_add : \''.$theme_advanced_buttons1_add.'\',									
 									theme_advanced_buttons3_add : \''.$theme_advanced_buttons3_add.'\',
 									theme : "'.TINY_MODUS.'",
 									language : "'.$lang.'",
@@ -221,6 +227,7 @@ $theme_advanced_buttons3_add = 'media,tablecontrols';
 									elements : "abshosturls",
 									plugins : \''.$plugins.'\',
 									document_base_url : \''.HTTP_SERVER.DIR_WS_CATALOG.'\',
+									theme_advanced_buttons1_add : \''.$theme_advanced_buttons1_add.'\',									
 									theme_advanced_buttons3_add : \''.$theme_advanced_buttons3_add.'\',
 									theme : "'.TINY_MODUS.'",
 									language : "'.$lang.'",
@@ -261,6 +268,7 @@ $theme_advanced_buttons3_add = 'media,tablecontrols';
 									mode : "textareas",
 									plugins : \''.$plugins.'\',
 									document_base_url : \''.HTTP_SERVER.DIR_WS_CATALOG.'\',
+									theme_advanced_buttons1_add : \''.$theme_advanced_buttons1_add.'\',									
 									theme_advanced_buttons3_add : \''.$theme_advanced_buttons3_add.'\',
 									theme : "'.TINY_MODUS.'",
 									language : "'.$lang.'",
@@ -299,6 +307,7 @@ $theme_advanced_buttons3_add = 'media,tablecontrols';
 									mode : "textareas",
 									plugins : \''.$plugins.'\',
 									document_base_url : \''.HTTP_SERVER.DIR_WS_CATALOG.'\',
+									theme_advanced_buttons1_add : \''.$theme_advanced_buttons1_add.'\',									
 									theme_advanced_buttons3_add : \''.$theme_advanced_buttons3_add.'\',
 									theme : "'.TINY_MODUS.'",
 									language : "'.$lang.'",

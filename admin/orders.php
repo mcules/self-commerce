@@ -1,5 +1,4 @@
 <?php
-
 /* --------------------------------------------------------------
    $Id$
 
@@ -26,7 +25,6 @@
 
    Released under the GNU General Public License
    --------------------------------------------------------------*/
-
 require ('includes/application_top.php');
 require_once (DIR_FS_CATALOG.DIR_WS_CLASSES.'class.phpmailer.php');
 require_once (DIR_FS_INC.'xtc_php_mail.inc.php');
@@ -170,7 +168,7 @@ switch ($_GET['action']) {
 				for ($i=0; $i<count($_GET['change_status_oID']);$i++)
 				{
 					$oID = xtc_db_prepare_input($_GET['change_status_oID'][$i]);
-					xtc_remove_order($oID, ($_GET['restock']=='on'));
+					xtc_remove_order($oID);
 				}
 				$order_updated = TRUE;
 			}
@@ -407,7 +405,7 @@ switch ($_GET['action']) {
 	case 'deleteconfirm' :
 		$oID = xtc_db_prepare_input($_GET['oID']);
 
-		xtc_remove_order($oID, $_POST['restock']);
+		xtc_remove_order($oID);
 
 		xtc_redirect(xtc_href_link(FILENAME_ORDERS, xtc_get_all_get_params(array ('oID', 'action'))));
 		break;
@@ -436,39 +434,8 @@ switch ($_GET['action']) {
 
 		// BMC Delete CC Info End
 }
-?>
-<!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html <?php echo HTML_PARAMS; ?>>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=<?php echo $_SESSION['language_charset']; ?>">
-<title><?php echo TITLE; ?></title>
-<link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
-</head>
-<body marginwidth="0" marginheight="0" topmargin="0" bottommargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFFF">
-<!-- header //-->
-<?php
+require ('includes/application_top_1.php');
 
-require (DIR_WS_INCLUDES.'header.php');
-// XTC-DELUXE.DE multi_order_status
-
-// print_order
-/*
-if (xtc_not_null($_GET['print_oID']))
-{
-	$print_oID = explode(',',$_GET['print_oID']);
-	for ($i=0; $i<count($print_oID);$i++)
-	{
-		if ($_GET['print_invoice'] == 'on')
-		{
-			echo '<script>var invoice'.$i.' = window.open(\''.xtc_href_link(FILENAME_PRINT_ORDER,'oID='.$print_oID[$i]).'\', \'invoice'.$i.'\', \'toolbar=0, width=640, height=600\')</script>';
-		}
-		if ($_GET['print_packingslip'] == 'on')
-		{
-			echo '<script>var packingslip'.$i.' = window.open(\''.xtc_href_link(FILENAME_PRINT_PACKINGSLIP,'oID='.$print_oID[$i]).'\', \'packingslip'.$i.'\', \'toolbar=0, width=640, height=600\')</script>';
-		}
-	}
-}
-*/
 if (xtc_not_null($_GET['print_oID']))
 {
 
@@ -492,20 +459,8 @@ if (xtc_not_null($_GET['print_oID']))
 	}
 	// -->
 </script>
-<?php // XTC-DELUXE.DE multi_order_status END ?>
-
-<!-- header_eof //-->
-
-<!-- body //-->
-<table border="0" width="100%" cellspacing="2" cellpadding="2">
-  <tr>
-    <td class="columnLeft2" width="<?php echo BOX_WIDTH; ?>" valign="top"><table border="0" width="<?php echo BOX_WIDTH; ?>" cellspacing="1" cellpadding="1" class="columnLeft">
-<!-- left_navigation //-->
-<?php require(DIR_WS_INCLUDES . 'column_left.php'); ?>
-<!-- left_navigation_eof //-->
-    </table></td>
-<!-- body_text //-->
-    <td  class="boxCenter" width="100%" valign="top"><table border="0" width="100%" cellspacing="0" cellpadding="2">
+<!-- content -->
+<table border="0" width="100%" cellspacing="0" cellpadding="2">
 <?php
 
 if (($_GET['action'] == 'edit') && ($order_exists)) {
@@ -516,7 +471,7 @@ if (($_GET['action'] == 'edit') && ($order_exists)) {
 <table border="0" width="100%" cellspacing="0" cellpadding="0">
   <tr>
     <td width="80" rowspan="2"><?php echo xtc_image(DIR_WS_ICONS.'heading_customers.gif'); ?></td>
-    <td class="pageHeading"><?php echo HEADING_TITLE . ' Nr : ' . $oID . ' - ' . $order->info['date_purchased'] ; ?></td>
+    <td class="pageHeading"><?php echo HEADING_TITLE . ' Nr : <font color="blue">' . $oID . '</font> - ' . $order->info['date_purchased'] ; ?></td>
   </tr>
   <tr>
     <td class="main" valign="top">XT Customers</td>
@@ -531,9 +486,18 @@ if (($_GET['action'] == 'edit') && ($order_exists)) {
       </tr>
       <tr>
         <td><table width="100%" border="0" cellspacing="0" cellpadding="2">
-          <tr>
-            <td colspan="3"><?php echo xtc_draw_separator(); ?></td>
-          </tr>
+<!-- BEGIN NEXT AND PREVIOUS ORDERS DISPLAY IN ADMIN -->
+<tr> 
+<td colspan="3" width="100%">
+<table border="0" style="border: 1px solid #5F5F5F;" width="100%" cellspacing="0" cellpadding="2"> 
+<tr valign="top" height="20" class="dataTableHeadingRow"> 
+<td bgcolor="#BAD4F5" class="main"><?php if( $nextid = get_order_id($oID,'prev')) { echo '<a href="' .xtc_href_link(FILENAME_ORDERS, xtc_get_all_get_params(array('oID', 'action')) . 'oID=' . $nextid . '&action=edit') . '">&nbsp;' . PREV_ORDER . '</a>'; } ?></td> 
+<td bgcolor="#BAD4F5" class="main" align="right"><?php echo xtc_draw_separator('pixel_trans.gif', '1', '3'); ?></td> 
+<td bgcolor="#BAD4F5" class="main" align="right"><?php if( $previd = get_order_id($oID)) echo '<a href="' .xtc_href_link(FILENAME_ORDERS, xtc_get_all_get_params(array('oID', 'action')) . 'oID=' . $previd . '&action=edit') . '">' . NEXT_ORDER . '&nbsp;</a>'; ?></td> 
+</tr> 
+</table>
+</td> </tr>
+<!-- END NEXT AND PREVIOUS ORDERS DISPLAY IN ADMIN -->
           <tr>
             <td valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="2">
             <?php if ($order->customer['csID']!='') { ?>
@@ -1041,7 +1005,7 @@ elseif ($_GET['action'] == 'custom_action') {
 
 			$contents = array ('form' => xtc_draw_form('orders', FILENAME_ORDERS, xtc_get_all_get_params(array ('oID', 'action')).'oID='.$oInfo->orders_id.'&action=deleteconfirm'));
 			$contents[] = array ('text' => TEXT_INFO_DELETE_INTRO.'<br /><br /><b>'.$cInfo->customers_firstname.' '.$cInfo->customers_lastname.'</b>');
-			$contents[] = array ('text' => '<br />'.xtc_draw_checkbox_field('restock').' '.TEXT_INFO_RESTOCK_PRODUCT_QUANTITY);
+//			$contents[] = array ('text' => '<br />'.xtc_draw_checkbox_field('restock').' '.TEXT_INFO_RESTOCK_PRODUCT_QUANTITY);
 			$contents[] = array ('align' => 'center', 'text' => '<br /><input type="submit" class="button" value="'. BUTTON_DELETE .'"><a class="button" href="'.xtc_href_link(FILENAME_ORDERS, xtc_get_all_get_params(array ('oID', 'action')).'oID='.$oInfo->orders_id).'">' . BUTTON_CANCEL . '</a>');
 			break;
 		default :
@@ -1091,7 +1055,7 @@ elseif ($_GET['action'] == 'custom_action') {
 			$content_multi_order_status[] = array ('text' => ENTRY_PRINTABLE.xtc_draw_checkbox_field('print_invoice', 'on', ($_GET['print_invoice']=='on')));
 			$content_multi_order_status[] = array ('text' => BUTTON_PACKINGSLIP.xtc_draw_checkbox_field('print_packingslip', 'on', ($_GET['print_packingslip']=='on')));
 			$content_multi_order_status[] = array ('text' => '<span class="errorText"><b>'.BUTTON_DELETE.'?</b></span>'.xtc_draw_checkbox_field('delete1', '1', FALSE).xtc_draw_checkbox_field('delete2', '1', FALSE).xtc_draw_checkbox_field('delete3', '1', FALSE));
-			$content_multi_order_status[] = array ('text' => '<br />('.TEXT_INFO_RESTOCK_PRODUCT_QUANTITY.xtc_draw_checkbox_field('restock', 'on', ($_GET['restock']=='on')).')');
+//			$content_multi_order_status[] = array ('text' => '<br />('.TEXT_INFO_RESTOCK_PRODUCT_QUANTITY.xtc_draw_checkbox_field('restock', 'on', ($_GET['restock']=='on')).')');
 			$content_multi_order_status[] = array ('align' => 'right', 'text' => '<input type="submit" class="button" value="'. BUTTON_CONFIRM .'"></form>');
 			// XTC-DELUXE.DE multi_order_status END
 			break;
@@ -1123,19 +1087,9 @@ elseif ($_GET['action'] == 'custom_action') {
 
 }
 ?>
-    </table></td>
-<!-- body_text_eof //-->
-  </tr>
-</table>
-<!-- body_eof //-->
-
-<!-- footer //-->
-<?php
-
-require (DIR_WS_INCLUDES.'footer.php');
+    </table>
+<!-- end content -->
+<?php 
+require(DIR_WS_INCLUDES . 'application_bottom.php'); 
+require(DIR_WS_INCLUDES . 'application_bottom_0.php');
 ?>
-<!-- footer_eof //-->
-<br />
-</body>
-</html>
-<?php require(DIR_WS_INCLUDES . 'application_bottom.php'); ?>

@@ -8,6 +8,7 @@
 
    Copyright (c) 2003 XT-Commerce
    -----------------------------------------------------------------------------------------
+   (c) 2012	 Self-Commerce www.self-commerce.de
    based on: 
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
    (c) 2002-2003 osCommerce(create_account.php,v 1.63 2003/05/28); www.oscommerce.com
@@ -114,9 +115,9 @@ if (isset ($_POST['action']) && ($_POST['action'] == 'process')) {
 	
 	$customers_status = $vatID->vat_info['status'];
 	$customers_vat_id_status = $vatID->vat_info['vat_id_status'];
-	$error = $vatID->vat_info['error'];
+	$error_vat = $vatID->vat_info['error'];
 	
-	if($error==1){
+	if($error_vat==1){
 	$messageStack->add('create_account', ENTRY_VAT_ERROR);
 	$error = true;
   }
@@ -383,46 +384,10 @@ if (isset ($_SESSION['tracking']['refID'])){
 		xtc_php_mail(EMAIL_SUPPORT_ADDRESS, EMAIL_SUPPORT_NAME, $email_address, $name, EMAIL_SUPPORT_FORWARDING_STRING, EMAIL_SUPPORT_REPLY_ADDRESS, EMAIL_SUPPORT_REPLY_ADDRESS_NAME, $attachment1, $attachment2, EMAIL_SUPPORT_SUBJECT, $html_mail, $txt_mail);
 
 		if (!isset ($mail_error)) {
-// googlemaps begin
-if (GOOGLEMAP_APIKEY != ''){
-        $url  = "http://maps.google.com/maps/geo?q=";
-        $url .= $street_address . "," . $postcode . "," . $city . "," . $country;
-        $url .= "&output=csv&key=";
-        $url .= GOOGLEMAP_APIKEY;
-        $url = str_replace (" ", "%20", $url);          // Leerzeichen -> %20
-        $request = fopen($url,'r');
-        $content = fread($request,100000);
-        fclose($request);
-
-        list($statuscode, $accuracy, $lat, $lng) = split(",", $content);
-        
-        if ($statuscode != 200)         //  errors occurred; the address was successfully parsedd.
-        {
-                // Versuch ohne Straße
-                $url  = "http://maps.google.com/maps/geo?q=";
-                $url .= $postcode . "," . $city . "," . $country;
-                $url .= "&output=csv&key=";
-                $url .= GOOGLEMAP_APIKEY;
-                $url = str_replace (" ", "%20", $url);          // Leerzeichen -> %20
-                $request = fopen($url,'r');
-                $content = fread($request,100000);
-                fclose($request);
-
-                list($statuscode, $accuracy, $lat, $lng) = split(",", $content);
-        }
-        if ($statuscode == 200)         // No errors occurred; the address was successfully parsed.
-        {
-                $cc_id = $_SESSION['customer_id'];
-                $latlng_query_raw = "insert into customers_to_latlng (customers_id, lat, lng) values ('$cc_id','$lat','$lng')";
-                $latlng_query = xtc_db_query($latlng_query_raw);
-        }
-}                        
-//google maps end		
 			xtc_redirect(xtc_href_link(FILENAME_SHOPPING_CART, '', 'SSL'));
 		} else {
 			echo $mail_error;
 		}
-		
 	}
 }
 
@@ -536,19 +501,17 @@ $shop_content_data = xtc_db_fetch_array($shop_content_query);
     $datensg = '<textarea name="blubblub" cols="60" rows="10" readonly="readonly">'.strip_tags(str_replace('<br />', "\n", $shop_content_data['content_text'])).'</textarea>';
   }
 $smarty->assign('DSG', $datensg);
-$smarty->assign('DATENSG_CHECKBOX', '<input type="checkbox" value="datensg" name="datensg" /> *');
+$smarty->assign('DATENSG_CHECKBOX', xtc_draw_checkbox_field('datensg', 'datensg', ''));
 
 $smarty->assign('FORM_END', '</form>');
 $smarty->assign('language', $_SESSION['language']);
 $smarty->caching = 0;
 $smarty->assign('BUTTON_SUBMIT', xtc_image_submit('button_continue.gif', IMAGE_BUTTON_CONTINUE));
 $main_content = $smarty->fetch(CURRENT_TEMPLATE.'/module/create_account.html');
-
-$smarty->assign('language', $_SESSION['language']);
 $smarty->assign('main_content', $main_content);
-$smarty->caching = 0;
+
 if (!defined(RM))
-	$smarty->load_filter('output', 'note');
+	$smarty->loadfilter('output', 'note');
 $smarty->display(CURRENT_TEMPLATE.'/index.html');
 include ('includes/application_bottom.php');
 ?>

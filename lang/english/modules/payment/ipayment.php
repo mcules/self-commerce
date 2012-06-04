@@ -15,7 +15,7 @@
    Released under the GNU General Public License 
    ---------------------------------------------------------------------------------------*/
 
-  define('MODULE_PAYMENT_IPAYMENT_TEXT_TITLE', 'iPayment');
+  define('MODULE_PAYMENT_IPAYMENT_TEXT_TITLE', 'Credit Card Payment');
   define('MODULE_PAYMENT_IPAYMENT_TEXT_DESCRIPTION', 'Credit Card Test Info:<br /><br />CC#: 4111111111111111<br />Expiry: Any');
   define('IPAYMENT_ERROR_HEADING', 'There has been an error processing your credit card:');
   define('IPAYMENT_ERROR_MESSAGE', 'Please check your credit card details!');
@@ -24,7 +24,7 @@
   define('MODULE_PAYMENT_IPAYMENT_TEXT_CREDIT_CARD_EXPIRES', 'Credit Card Expiry Date:');
   define('MODULE_PAYMENT_IPAYMENT_TEXT_CREDIT_CARD_CHECKNUMBER', 'Credit Card Checknumber');
   define('MODULE_PAYMENT_IPAYMENT_TEXT_CREDIT_CARD_CHECKNUMBER_LOCATION', '(located at the back of the credit card)');
-define('MODULE_PAYMENT_IPAYMENT_TEXT_INFO','');
+define('MODULE_PAYMENT_IPAYMENT_TEXT_INFO','Enter your credit card data on the confirmation page.');
   define('MODULE_PAYMENT_IPAYMENT_TEXT_JS_CC_OWNER', '* The owner\'s name of the credit card must be at least ' . CC_OWNER_MIN_LENGTH . ' characters.\n');
   define('MODULE_PAYMENT_IPAYMENT_TEXT_JS_CC_NUMBER', '* The credit card number must be at least ' . CC_NUMBER_MIN_LENGTH . ' characters.\n');
 
@@ -38,6 +38,8 @@ define('MODULE_PAYMENT_IPAYMENT_PASSWORD_TITLE' , 'User Password');
 define('MODULE_PAYMENT_IPAYMENT_PASSWORD_DESC' , 'The user password for the iPayment service');
 define('MODULE_PAYMENT_IPAYMENT_USER_ID_TITLE' , 'User ID');
 define('MODULE_PAYMENT_IPAYMENT_USER_ID_DESC' , 'The user ID for the iPayment service');
+define('MODULE_PAYMENT_IPAYMENT_SECURITY_KEY_TITLE', 'Security Key');
+define('MODULE_PAYMENT_IPAYMENT_SECURITY_KEY_DESC', 'If a transaction security key is set for your ipayment application, you have to enter it here to prevent manipulations.');
 define('MODULE_PAYMENT_IPAYMENT_CURRENCY_TITLE' , 'Transaction Currency');
 define('MODULE_PAYMENT_IPAYMENT_CURRENCY_DESC' , 'The currency to use for credit card transactions');
 define('MODULE_PAYMENT_IPAYMENT_SORT_ORDER_TITLE' , 'Sort order of display');

@@ -1052,9 +1052,8 @@ function xtc_del_image_file($image) {
 	}
 }
 
-function xtc_remove_order($order_id, $restock = false) {
-	if ($restock == 'on') 
-	{
+function xtc_remove_order($order_id) {
+
 		$order_query = xtc_db_query("
 			select 
 				orders_products_id,
@@ -1101,7 +1100,7 @@ function xtc_remove_order($order_id, $restock = false) {
 			}
 		}
 		//nc_patch restock_attributes EOF
-	}
+
 
 	xtc_db_query("delete from ".TABLE_ORDERS." where orders_id = '".xtc_db_input($order_id)."'");
 	xtc_db_query("delete from ".TABLE_ORDERS_PRODUCTS." where orders_id = '".xtc_db_input($order_id)."'");
@@ -1774,5 +1773,28 @@ function nc_get_products_attributes_id($products_id, $products_options, $product
 	return mysql_result($result, 0, 'products_attributes_id');
 }
 
+//BEGIN NEXT AND PREVIOUS ORDERS DISPLAY IN ADMIN 
+function get_order_id($orderid,$mode='next'){ 
+if ($mode=='prev') 
+$op = '<'; 
+elseif ($mode=='next') 
+$op = '>'; 
+if($op == '<' or $op == '>') 
+if (isset($_GET['status']))
+    $status =  "orders_status = '" . (int)$_GET['status'] . "' and ";
+$nextprev_resource = xtc_db_query("select orders_id from " . TABLE_ORDERS . " where " . $status . " orders_id $op '" . (int)$orderid . "' order by orders_id"); 
+if($mode == 'prev'){ 
+while($nextprev_values = xtc_db_fetch_array($nextprev_resource)){ 
+$nextprev_value = $nextprev_values; 
+} 
+}else if($mode == 'next') 
+$nextprev_value = xtc_db_fetch_array($nextprev_resource); 
+if(!empty($nextprev_value[orders_id])) 
+return $nextprev_value[orders_id]; 
+else 
+return false; 
+} 
+
+//END NEXT AND PREVIOUS ORDERS DISPLAY IN ADMIN
 //--------------------------------------------------------------------------------------Ende 
 ?>

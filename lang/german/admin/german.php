@@ -7,6 +7,7 @@
 
    Copyright (c) 2003 XT-Commerce
    --------------------------------------------------------------
+   (c) 2012	 Self-Commerce www.self-commerce.de
    based on: 
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
    (c) 2002-2003 osCommerce(german.php,v 1.99 2003/05/28); www.oscommerce.com 
@@ -138,7 +139,7 @@ define('BOX_CACHE', 'Cache Steuerung');
 define('BOX_DEFINE_LANGUAGE', 'Sprachen definieren');
 define('BOX_FILE_MANAGER', 'Datei-Manager');
 define('BOX_MAIL', 'eMail versenden');
-define('BOX_NEWSLETTERS', 'Rundschreiben Manager');
+define('BOX_NEWSLETTERS', 'Newsletter Manager');
 define('BOX_SERVER_INFO', 'Server Info');
 define('BOX_WHOS_ONLINE', 'Wer ist Online');
 define('BOX_TPL_BOXES','Box Reihenfolge');
@@ -180,7 +181,7 @@ define('BOX_HEADING_TOOLS', 'Hilfsprogramme');
 define('BOX_HEADING_LOCATION_AND_TAXES', 'Land / Steuer');
 define('BOX_HEADING_CUSTOMERS', 'Kunden');
 define('BOX_HEADING_CATALOG', 'Katalog');
-define('BOX_MODULE_NEWSLETTER','Rundschreiben');
+define('BOX_MODULE_NEWSLETTER','Newsletter');
 
 // javascript messages
 define('JS_ERROR', 'W&auml;hrend der Eingabe sind Fehler aufgetreten!\nBitte korrigieren Sie folgendes:\n\n');
@@ -247,7 +248,7 @@ define('ENTRY_COUNTRY', 'Land:');
 define('ENTRY_TELEPHONE_NUMBER', 'Telefonnummer:');
 define('ENTRY_TELEPHONE_NUMBER_ERROR', '&nbsp;<span class="errorText">mindestens ' . ENTRY_TELEPHONE_MIN_LENGTH . ' Zahlen</span>');
 define('ENTRY_FAX_NUMBER', 'Telefaxnummer:');
-define('ENTRY_NEWSLETTER', 'Rundschreiben:');
+define('ENTRY_NEWSLETTER', 'Newsletter:');
 define('ENTRY_CUSTOMERS_STATUS', 'Kundengruppe:');
 define('ENTRY_NEWSLETTER_YES', 'abonniert');
 define('ENTRY_NEWSLETTER_NO', 'nicht abonniert');
@@ -289,7 +290,7 @@ define('TEXT_DISPLAY_NUMBER_OF_CUSTOMERS', 'Angezeigt werden <b>%d</b> bis <b>%d
 define('TEXT_DISPLAY_NUMBER_OF_CURRENCIES', 'Angezeigt werden <b>%d</b> bis <b>%d</b> (von insgesamt <b>%d</b> W&auml;hrungen)');
 define('TEXT_DISPLAY_NUMBER_OF_LANGUAGES', 'Angezeigt werden <b>%d</b> bis <b>%d</b> (von insgesamt <b>%d</b> Sprachen)');
 define('TEXT_DISPLAY_NUMBER_OF_MANUFACTURERS', 'Angezeigt werden <b>%d</b> bis <b>%d</b> (von insgesamt <b>%d</b> Herstellern)');
-define('TEXT_DISPLAY_NUMBER_OF_NEWSLETTERS', 'Angezeigt werden <b>%d</b> bis <b>%d</b> (von insgesamt <b>%d</b> Rundschreiben)');
+define('TEXT_DISPLAY_NUMBER_OF_NEWSLETTERS', 'Angezeigt werden <b>%d</b> bis <b>%d</b> (von insgesamt <b>%d</b> Newsletter)');
 define('TEXT_DISPLAY_NUMBER_OF_ORDERS', 'Angezeigt werden <b>%d</b> bis <b>%d</b> (von insgesamt <b>%d</b> Bestellungen)');
 define('TEXT_DISPLAY_NUMBER_OF_ORDERS_STATUS', 'Angezeigt werden <b>%d</b> bis <b>%d</b> (von insgesamt <b>%d</b> Bestellstatus)');
 define('TEXT_DISPLAY_NUMBER_OF_XSELL_GROUP', 'Angezeigt werden <b>%d</b> bis <b>%d</b> (von insgesamt <b>%d</b> Cross-Marketing Gruppen)');

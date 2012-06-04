@@ -22,8 +22,10 @@
   define('MODULE_PAYMENT_TYPE_PERMISSION', 'bt');
 
   define('MODULE_PAYMENT_IPAYMENTELV_TEXT_TITLE', 'Lastschriftverfahren');
-  define('MODULE_PAYMENT_IPAYMENTELV_TEXT_DESCRIPTION', 'Lastschriftverfahren über Ipayment Gateway');
-    define('MODULE_PAYMENT_IPAYMENTELV_TEXT_INFO','');
+  define('MODULE_PAYMENT_IPAYMENTELV_TEXT_DESCRIPTION', 'Lastschriftverfahren &uuml;ber Ipayment Gateway');
+  define('MODULE_PAYMENT_IPAYMENTELV_TEXT_INFO','');
+  define('IPAYMENTELV_ERROR_HEADING', 'Bei der Verarbeitung Ihrer Bankdaten ist ein Fehler aufgetreten:');
+  define('IPAYMENTELV_ERROR_MESSAGE', 'Bitte kontrollieren Sie Ihrer Bankdaten!');
   define('MODULE_PAYMENT_IPAYMENTELV_TEXT_BANK', 'Bankeinzug');
   define('MODULE_PAYMENT_IPAYMENTELV_TEXT_EMAIL_FOOTER', 'Hinweis: Sie k&ouml;nnen sich unser Faxformular unter ' . HTTP_SERVER . DIR_WS_CATALOG . MODULE_PAYMENT_IPAYMENTELV_URL_NOTE . ' herunterladen und es ausgef&uuml;llt an uns zur&uuml;cksenden.');
   define('MODULE_PAYMENT_IPAYMENTELV_TEXT_BANK_INFO', 'Bitte beachten Sie, dass das Lastschriftverfahren <b>nur</b> von einem <b>deutschen Girokonto</b> aus m&ouml;glich ist');
@@ -35,7 +37,7 @@
 
   define('MODULE_PAYMENT_IPAYMENTELV_TEXT_BANK_ERROR', '<font color="#FF0000">FEHLER: </font>');
   define('MODULE_PAYMENT_IPAYMENTELV_TEXT_BANK_ERROR_1', 'Kontonummer und BLZ stimmen nicht &uuml;berein!<br />Bitte &uuml;berpr&uuml;fen Sie Ihre Angaben nochmals.');
-  define('MODULE_PAYMENT_IPAYMENTELV_TEXT_BANK_ERROR_2', 'Für diese Kontonummer ist kein Pr&uuml;fziffernverfahren definiert!');
+  define('MODULE_PAYMENT_IPAYMENTELV_TEXT_BANK_ERROR_2', 'F&uuml;r diese Kontonummer ist kein Pr&uuml;fziffernverfahren definiert!');
   define('MODULE_PAYMENT_IPAYMENTELV_TEXT_BANK_ERROR_3', 'Kontonummer nicht pr&uuml;fbar!');
   define('MODULE_PAYMENT_IPAYMENTELV_TEXT_BANK_ERROR_4', 'Kontonummer nicht pr&uuml;fbar!<br />Bitte &uuml;berpr&uuml;fen Sie Ihre Angaben nochmals.');
   define('MODULE_PAYMENT_IPAYMENTELV_TEXT_BANK_ERROR_5', 'Bankleitzahl nicht gefunden!<br />Bitte &uuml;berpr&uuml;fen Sie Ihre Angaben nochmals.');
@@ -43,7 +45,7 @@
   define('MODULE_PAYMENT_IPAYMENTELV_TEXT_BANK_ERROR_9', 'Keine Kontonummer angegeben!');
 
   define('MODULE_PAYMENT_IPAYMENTELV_TEXT_NOTE', 'Hinweis:');
-  define('MODULE_PAYMENT_IPAYMENTELV_TEXT_NOTE2', 'Wenn Sie aus Sicherheitsbedenken keine Bankdaten über das Internet<br />&uuml;bertragen wollen, k&ouml;nnen Sie sich unser ');
+  define('MODULE_PAYMENT_IPAYMENTELV_TEXT_NOTE2', 'Wenn Sie aus Sicherheitsbedenken keine Bankdaten &uuml;ber das Internet<br />&uuml;bertragen wollen, k&ouml;nnen Sie sich unser ');
   define('MODULE_PAYMENT_IPAYMENTELV_TEXT_NOTE3', 'Faxformular');
   define('MODULE_PAYMENT_IPAYMENTELV_TEXT_NOTE4', ' herunterladen und uns ausgef&uuml;llt zusenden.');
 
@@ -74,10 +76,12 @@ define('MODULE_PAYMENT_IPAYMENTELV_PASSWORD_TITLE' , 'Benutzer-Passwort');
 define('MODULE_PAYMENT_IPAYMENTELV_PASSWORD_DESC' , 'Benutzer-Passwort welches f&uuml;r iPayment verwendet wird');
 define('MODULE_PAYMENT_IPAYMENTELV_USER_ID_TITLE' , 'Benutzer ID');
 define('MODULE_PAYMENT_IPAYMENTELV_USER_ID_DESC' , 'Benutzer ID welche f&uuml;r iPayment verwendet wird');
-define('MODULE_PAYMENT_IPAYMENTELV_CURRENCY_TITLE' , 'Transaktionswährung');
+define('MODULE_PAYMENT_IPAYMENTELV_SECURITY_KEY_TITLE', 'Security Key');
+define('MODULE_PAYMENT_IPAYMENTELV_SECURITY_KEY_DESC', 'Falls in der iPayment-Anwendung ein Transaktions-Security-Key hinterlegt wurde, bitte diesen hier eingeben um Manipulationen zu verhindern.');
+define('MODULE_PAYMENT_IPAYMENTELV_CURRENCY_TITLE' , 'Transaktionsw&auml;hrung');
 define('MODULE_PAYMENT_IPAYMENTELV_CURRENCY_DESC' , 'W&auml;hrung, welche f&uuml;r Transaktionen verwendet wird');
 define('MODULE_PAYMENT_IPAYMENTELV_TEXT_BANK_IBAN','IBAN: (optional)');
-define('MODULE_PAYMENT_IPAYMENTELV_TEXT_IBAN','Falls Sie über Einen IBAN Ihres Bankkontos verfügen, können BLZ + Konto ohne Eintrag bleiben.');
+define('MODULE_PAYMENT_IPAYMENTELV_TEXT_IBAN','Falls Sie &uuml;ber Einen IBAN Ihres Bankkontos verf&uuml;gen, k&ouml;nnen BLZ + Konto ohne Eintrag bleiben.');
 
 // error messages
 define('MODULE_PAYMENT_IPAYMENTELV_TEXT_JS_BANK_NAME','Bitte geben Sie einen Banknamen ein!\n');

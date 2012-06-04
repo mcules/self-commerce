@@ -1,0 +1,55 @@
+{config_load file="$language/lang_$language.conf" section="account_edit"}
+
+<h2>{#heading_account#}</h2>
+	{$FORM_ACTION}<br />
+	<p class="must">{#text_must#}</p>
+
+		{if $error!=''}
+		<p><strong class="error">{$error}</strong></p>
+		{/if}
+
+		{if $gender=='1'}
+		<fieldset>
+		  <legend>{#text_gender#}</legend>
+			<div class="floatbox">{$INPUT_MALE}</div>
+			<div class="floatbox">{$INPUT_FEMALE}</div>
+		</fieldset>
+		{/if}
+
+		<fieldset>
+		  <legend>{#title_personal#}:</legend>
+
+		{if $csID}
+		  <div class="floatbox"><label>{#csID#}</label>{$csID}</div>
+		{/if}
+
+		<div class="floatbox"><label>{#text_firstname#}</label>{$INPUT_FIRSTNAME}</div>
+
+		<div class="floatbox"><label>{#text_lastname#}</label>{$INPUT_LASTNAME}</div>
+
+		{if $birthdate=='1'}
+		  <div class="floatbox"><label>{#text_birthdate#}</label>{$INPUT_DOB}</div>
+		{/if}
+
+		<div class="floatbox"><label>{#text_email#}</label>{$INPUT_EMAIL}</div>
+		{if $smarty.const.TPL_CLIENT == 'xtcmod' }
+		<div class="floatbox"><label>{#text_confirm_email#}</label>{$INPUT_CONFIRM_EMAIL}</div>
+		{/if}
+
+		<div class="floatbox"><label>{#text_tel#}</label>{$INPUT_TEL}</div>
+
+		<div class="floatbox"><label>{#text_fax#}</label>{$INPUT_FAX}</div>
+
+	  {if $vat=='1'}
+		  <div class="floatbox"><label>{#text_ustid#}</label>{$INPUT_VAT}</div>
+		{/if}
+		<div class="floatbox">
+			<div class="leftCol">{$BUTTON_BACK}</div>
+			<div class="rightCol">{$BUTTON_SUBMIT}</div>
+		</div></div>
+
+
+
+	</fieldset>
+	{$FORM_END}
+<br />

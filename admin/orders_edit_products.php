@@ -66,6 +66,10 @@ echo '<input type="submit" class="button" onClick="this.blur();" value="' . BUTT
 echo xtc_draw_form('product_delete', FILENAME_ORDERS_EDIT, 'action=product_delete', 'post');
 echo xtc_draw_hidden_field('oID', $_GET['oID']);
 echo xtc_draw_hidden_field('opID', $order->products[$i]['opid']);
+// kunigunde Self-Commerce.de ########################################
+echo xtc_draw_hidden_field('products_id', $order->products[$i]['id']);
+echo xtc_draw_hidden_field('products_quantity', $order->products[$i]['qty']);
+// kunigunde Self-Commerce.de ########################################
 echo '<input type="submit" class="button" onClick="this.blur();" value="' . BUTTON_DELETE . '"/>';
 ?>
 </form>

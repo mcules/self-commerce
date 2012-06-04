@@ -1,0 +1,77 @@
+@charset "UTF-8";
+/**
+* YAML-based Template for xt:Commerce
+*
+* (en) Categories listing
+* (de) Kategorieauflistung
+*
+* @copyright       Copyright 2006-2007, Björn Teßmann (tessmann@zerosoft.de)
+* @license         CC-A 2.0 (http://creativecommons.org/licenses/by/2.0/)
+*                  
+* @copyright       Copyright 2006-2007, Björn Teßmann (tessmann@zerosoft.de)
+*                  Based on YAML, Copyright 2005-2007, Dirk Jesse
+* @link            http://www.zs-ecommerce.com
+* @package         yaml for xt:Commerce
+* @version         1.6.0  
+*/
+
+@media all
+{
+
+/* Kopf für Kategorien, verwendet bei allen product_listing und categorie_listing */
+#frameListHead {
+	border-bottom:1px solid #ccc;
+	margin-bottom:5px;
+	padding-bottom:5px;
+}
+
+/* ################################################################################################################### */
+/* ### catListing1Col ################################################################################################### */
+/* ################################################################################################################### */
+.catListing1ColBodyImg {
+	float:left;
+	padding-right:5px;
+}
+
+.catListing1ColBodyName {
+	margin-left:200px;
+}
+
+.catListing1ColBody {
+	border-bottom:1px solid #DDDDDD;
+	margin-bottom: 5px;
+	padding-bottom: 5px;
+}
+
+
+/* ################################################################################################################### */
+/* ### catListing2Col ################################################################################################### */
+/* ################################################################################################################### */
+.catListing2Col .subcolumns {
+	text-align:center;
+	padding-top:10px;
+	padding-bottom:10px;
+	border-bottom:1px solid #DDDDDD;
+}
+
+.catListing2Col .subcl , .catListing2Col .subcr {
+	padding:0;
+}
+
+
+/* ################################################################################################################### */
+/* ### catListing3Col ################################################################################################### */
+/* ################################################################################################################### */
+.catListing3Col .subcolumns {
+	text-align:center;
+	padding-top:10px;
+	padding-bottom:10px;
+	border-bottom:1px solid #DDDDDD;
+}
+
+.catListing3Col .subcl , .catListing3Col .subc ,.catListing3Col .subcr {
+	padding:0;
+}
+
+
+}

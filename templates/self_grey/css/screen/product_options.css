@@ -1,0 +1,52 @@
+@charset "UTF-8";
+/**
+* YAML-based Template for xt:Commerce
+*
+* (en) Productoptions
+* (de) Produktoptionen
+*
+* @copyright       Copyright 2006-2007, Björn Teßmann (tessmann@zerosoft.de)
+*                  Based on YAML, Copyright 2005-2007, Dirk Jesse
+* @link            http://www.zs-ecommerce.com
+* @package         yaml for xt:Commerce
+* @version         1.6.0   
+*/
+
+@media all
+{
+
+/* ### prodOptionsDropdown ################################################################################################## */
+
+.prodOptionsDrop {
+	font-size:0.9em;
+	padding:3px;
+	background-color: #E6E6E6;
+}
+
+.prodOptionsDropName {
+	float:left;
+	width:48%;;
+
+}
+.prodOptionsDropSel{
+	margin-left:48%;
+}
+
+/* ### prodOptionsSelection ################################################################################################## */
+.optionSelection {
+  border:1px solid #9F9F9F;
+  margin-bottom:10px;
+}
+
+.optionSelectionHead {
+  padding:3px 3px 3px 6px;
+  background:#9F9F9F;
+  color:#fff;
+}
+
+.optionSelectionBody {
+   padding:3px 3px 3px 6px;
+   background:#F1F1F1;
+}
+
+}

@@ -5,8 +5,7 @@ Sehr geehrter Kunde,
 Sie haben soeben Ihr Kundenkonto erfolgreich erstellt, als registrierter Kunde haben sie folgende Vorteile in unserem Shop. 
 
     
-Ihr Username: {$USERNAME4MAIL} 
-Ihr Passwort: {$PASSWORT4MAIL} 
+Ihr Username: {$USERNAME4MAIL}
 
 
 -Kundenwarenkorb - Jeder Artikel bleibt registriert bis Sie zur Kasse gehen, oder die Produkte aus dem Warenkorb entfernen.

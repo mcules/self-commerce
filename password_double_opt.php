@@ -1,17 +1,18 @@
 <?php
+
 /*------------------------------------------------------------------------------
-   $Id$:
+   $Id: password_double_opt.php,v 1.0 
 
-   Self-Commerce - Fresh up your eCommerce
-   http://www.self-commerce.de
-   Copyright (c) 2012 Self-Commerce
+   XTC-NEWSLETTER_RECIPIENTS RC1 - Contribution for XT-Commerce http://www.xt-commerce.com
+   by Matthias Hinsche http://www.gamesempire.de
 
+   Copyright (c) 2003 XT-Commerce
    -----------------------------------------------------------------------------------------
+   (c) 2012	 Self-Commerce www.self-commerce.de
    based on: 
-   (c) 2000-2001	The Exchange Project
-   (c) 2002-2003	osCommerce www.oscommerce.com 
-   (c) 2003			nextcommerce www.nextcommerce.org
-   (c) 2005			XT-Commerce www.xt-commerce.com
+   (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
+   (c) 2002-2003 osCommerce www.oscommerce.com 
+   (c) 2003  nextcommerce www.nextcommerce.org
 
    Released under the GNU General Public License 
    ---------------------------------------------------------------------------------------*/
@@ -131,7 +132,7 @@ switch ($case) {
 		break;
 	case code_error :
 
-		$smarty->assign('VVIMG', '<img src="'.FILENAME_DISPLAY_VVCODES.'">');
+		$smarty->assign('VVIMG', '<img src="'.FILENAME_DISPLAY_VVCODES.'" alt ="" />');
 		$smarty->assign('text_heading', HEADING_PASSWORD_FORGOTTEN);
 		$smarty->assign('info_message', $info_message);
 		$smarty->assign('message', TEXT_PASSWORD_FORGOTTEN);
@@ -147,7 +148,7 @@ switch ($case) {
 		break;
 	case wrong_mail :
 
-		$smarty->assign('VVIMG', '<img src="'.FILENAME_DISPLAY_VVCODES.'">');
+		$smarty->assign('VVIMG', '<img src="'.FILENAME_DISPLAY_VVCODES.'" alt ="" />');
 		$smarty->assign('text_heading', HEADING_PASSWORD_FORGOTTEN);
 		$smarty->assign('info_message', $info_message);
 		$smarty->assign('message', TEXT_PASSWORD_FORGOTTEN);
@@ -171,7 +172,7 @@ switch ($case) {
 		break;
 	case double_opt :
 
-		$smarty->assign('VVIMG', '<img src="'.FILENAME_DISPLAY_VVCODES.'">');
+		$smarty->assign('VVIMG', '<img src="'.FILENAME_DISPLAY_VVCODES.'" alt ="" />');
 		$smarty->assign('text_heading', HEADING_PASSWORD_FORGOTTEN);
 		//    $smarty->assign('info_message', $info_message);
 		$smarty->assign('message', TEXT_PASSWORD_FORGOTTEN);
@@ -192,7 +193,7 @@ $smarty->assign('main_content', $main_content);
 $smarty->assign('language', $_SESSION['language']);
 $smarty->caching = 0;
 if (!defined(RM))
-	$smarty->load_filter('output', 'note');
+	$smarty->loadfilter('output', 'note');
 $smarty->display(CURRENT_TEMPLATE.'/index.html');
 include ('includes/application_bottom.php');
 ?>

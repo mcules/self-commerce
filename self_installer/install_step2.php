@@ -114,11 +114,11 @@ h2 {font-family: Verdana, Arial, Helvetica, san-serif; font-size: 10px; font-wei
 					<td colspan="2" height="17" class="blocktitle" align="center">Self-Commerce Install</td>
 				</tr>
         		<tr> 
-					<td class="left_top2" width="135" ><img src="images/icons/arrow02.gif" width="13" height="6"><?php echo BOX_LANGUAGE; ?></td>
-               		<td class="left_top2" width="35"><img src="images/icons/ok.gif"></td>
+					<td class="left_top2" width="135" ><img src="images/icons/arrow02.gif" width="13" height="6" alt="arrow" /><?php echo BOX_LANGUAGE; ?></td>
+               		<td class="left_top2" width="35"><img src="images/icons/ok.gif" alt="OK" /></td>
               	</tr>
               	<tr> 
-                	<td class="left_top2"><img src="images/icons/arrow02.gif" width="13" height="6"><?php echo BOX_DB_CONNECTION; ?></td>
+                	<td class="left_top2"><img src="images/icons/arrow02.gif" width="13" height="6" alt="arrow" /><?php echo BOX_DB_CONNECTION; ?></td>
                 	<td class="left_top2">
 		                <?php                
 		                // test database connection and write permissions                                            
@@ -140,7 +140,7 @@ h2 {font-family: Verdana, Arial, Helvetica, san-serif; font-size: 10px; font-wei
 		                   if ($db_error) {
 		                        echo ('<img src="images/icons/x.gif">');        
 		                       } else {
-		                        echo ('<img src="images/icons/ok.gif">');
+		                        echo ('<img src="images/icons/ok.gif" alt="OK" />');
 		                       }
 		                }
 		                
@@ -148,10 +148,10 @@ h2 {font-family: Verdana, Arial, Helvetica, san-serif; font-size: 10px; font-wei
 	                </td>
 				</tr>
               	<tr> 
-                	<td colspan="2" class="left_top2"><img src="images/icons/arrow02.gif" width="13" height="6"><?php echo BOX_DB_IMPORT; ?></td>
+                	<td colspan="2" class="left_top2"><img src="images/icons/arrow02.gif" width="13" height="6" alt="arrow" /><?php echo BOX_DB_IMPORT; ?></td>
                 </tr>
               	<tr> 
-                    <td colspan="2" class="left_top"><img src="images/icons/arrow02.gif" width="13" height="6"><?php echo BOX_WEBSERVER_SETTINGS; ?></td>
+                    <td colspan="2" class="left_top"><img src="images/icons/arrow02.gif" width="13" height="6" alt="arrow" /><?php echo BOX_WEBSERVER_SETTINGS; ?></td>
                 </tr>
             </table>
             
@@ -180,7 +180,7 @@ h2 {font-family: Verdana, Arial, Helvetica, san-serif; font-size: 10px; font-wei
 					    if ($db_error) {
 					?>
 	      				<br />
-	            		<h2 class="normal"><img src="images/icons/error.gif" width="16" height="16">&nbsp;<strong><?php echo TEXT_CONNECTION_ERROR; ?></strong></h2><hr class="lineRed">
+	            		<h2 class="normal"><img src="images/icons/error.gif" width="16" height="16" alt="arrow" />&nbsp;<strong><?php echo TEXT_CONNECTION_ERROR; ?></strong></h2><hr class="lineRed">
 						<p class="normal"><?php echo TEXT_DB_ERROR; ?></p>
 	          			<p class="h1 warning"><strong><?php echo $db_error; ?></strong></p> 
 	          			<p class="small"><?php echo TEXT_DB_ERROR_1; ?></p>
@@ -205,10 +205,11 @@ h2 {font-family: Verdana, Arial, Helvetica, san-serif; font-size: 10px; font-wei
 
 						<table border="0" width="100%" cellspacing="0" cellpadding="0">
 						  <tr>
-						    <td align="center"><a href="index.php"><img src="images/button_cancel.gif" border="0" alt="Cancel"></a></td>
-						    <td align="center"><input type="image" src="images/button_back.gif" border="0" alt="Back"></td>
+						    <td align="center"><a href="index.php"><img src="images/button_cancel.gif" border="0" alt="Cancel" /></a></td>
+						    <td align="center"><input type="image" src="images/button_back.gif" border="0" alt="Back" /></td>
 						  </tr>
-						</table></form>
+						</table>
+					  </form>
 					</td>
 				</tr>
 			</table>
@@ -240,8 +241,8 @@ h2 {font-family: Verdana, Arial, Helvetica, san-serif; font-size: 10px; font-wei
 
 			<table border="0" width="100%" cellspacing="0" cellpadding="0">
 				<tr>
-					<td align="center"><a href="install_step1.php"><img src="images/button_cancel.gif" border="0" alt="Cancel"></a></td>
-				    <td align="center"><input type="image" src="images/button_continue.gif" border="0" alt="Continue"></td>
+					<td align="center"><a href="install_step1.php"><img src="images/button_cancel.gif" border="0" alt="Cancel" /></a></td>
+				    <td align="center"><input type="image" src="images/button_continue.gif" alt="Continue"></td>
 				</tr>
 			</table>
 

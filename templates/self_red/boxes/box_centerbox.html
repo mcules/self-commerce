@@ -1,0 +1,7 @@
+{config_load file="$language/lang_$language.conf" section="boxes"}
+{if $BOX_CONTENT != ''}
+	<div class="shopbox">
+	<div class="infoBoxHeading_right">{#heading_centerbox#}<div class="box_top_left"></div><div class="box_top_right"></div></div>
+	  <div class="infoBox_right_center boxText">{$BOX_CONTENT}</div>
+	</div>
+{/if}

@@ -1,17 +1,15 @@
 <?php
-
 /* -----------------------------------------------------------------------------------------
    $Id$
-
-   XT-Commerce - community made shopping
-   http://www.xt-commerce.com
-
-   Copyright (c) 2003 XT-Commerce
+   Self-Commerce - Fresh up your eCommerce
+   http://www.self-commerce.de
+   Copyright (c) 2012 Self-Commerce
    -----------------------------------------------------------------------------------------
    based on:
-   (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
-   (c) 2002-2003 osCommerce(application_top.php,v 1.273 2003/05/19); www.oscommerce.com
-   (c) 2003	 nextcommerce (application_top.php,v 1.54 2003/08/25); www.nextcommerce.org
+   (c) 2000-2001	The Exchange Project  (earlier name of osCommerce)
+   (c) 2002-2003	osCommerce(application_top.php,v 1.273 2003/05/19); www.oscommerce.com
+   (c) 2003			nextcommerce (application_top.php,v 1.54 2003/08/25); www.nextcommerce.org
+   (c) 2003			XT-Commerce www.xt-commerce.com
 
    Released under the GNU General Public License
    -----------------------------------------------------------------------------------------
@@ -20,17 +18,16 @@
 
    Credit Class/Gift Vouchers/Discount Coupons (Version 5.10)
    http://www.oscommerce.com/community/contributions,282
-   Copyright (c) Strider | Strider@oscworks.com
-   Copyright (c  Nick Stanko of UkiDev.com, nick@ukidev.com
-   Copyright (c) Andre ambidex@gmx.net
-   Copyright (c) 2001,2002 Ian C Wilson http://www.phesis.org
-
+   Copyright (c) 			Strider | Strider@oscworks.com
+   Copyright (c  			Nick Stanko of UkiDev.com, nick@ukidev.com
+   Copyright (c) 			Andre ambidex@gmx.net
+   Copyright (c) 2001,2002	Ian C Wilson http://www.phesis.org
 
    Released under the GNU General Public License
    ---------------------------------------------------------------------------------------*/
 
-
-
+// Seite von Extern nicht als iFrame einbinden lassen
+header("X-Frame-Options: SAMEORIGIN");
 
 // start the timer for the page parse time log
 define('PAGE_PARSE_START_TIME', microtime());
@@ -49,7 +46,7 @@ if (file_exists('includes/local/configure.php')) {
 $php4_3_10 = (0 == version_compare(phpversion(), "4.3.10"));
 define('PHP4_3_10', $php4_3_10);
 // define the project version
-define('PROJECT_VERSION', 'Self-Commerce 2.0');
+define('PROJECT_VERSION', 'Self-Commerce 2.1');
 
 // set the type of request (secure or not)
 $request_type = (getenv('HTTPS') == '1' || getenv('HTTPS') == 'on') ? 'SSL' : 'NONSSL';
@@ -204,7 +201,7 @@ function xtDBquery($query) {
 
 function CacheCheck() {
 	if (USE_CACHE == 'false') return false;
-	if (!isset($_COOKIE['XTCsid'])) return false;
+	if (!isset($_COOKIE['SCsid'])) return false;
 	return true;
 }
 
@@ -216,28 +213,29 @@ if ((GZIP_COMPRESSION == 'true') && ($ext_zlib_loaded = extension_loaded('zlib')
 		ini_set('zlib.output_compression_level', GZIP_LEVEL);
 	}
 }
-
+// Fix from HHGAG Forum
 // set the HTTP GET parameters manually if search_engine_friendly_urls is enabled
 if (SEARCH_ENGINE_FRIENDLY_URLS == 'true') {
-	if (strlen(getenv('PATH_INFO')) > 1) {
-		$GET_array = array ();
-		$PHP_SELF = str_replace(getenv('PATH_INFO'), '', $PHP_SELF);
-		$vars = explode('/', substr(getenv('PATH_INFO'), 1));
-		for ($i = 0, $n = sizeof($vars); $i < $n; $i ++) {
-			if (strpos($vars[$i], '[]')) {
-				$GET_array[substr($vars[$i], 0, -2)][] = $vars[$i +1];
-			} else {
-				$_GET[$vars[$i]] = htmlspecialchars($vars[$i +1]);
-			}
-			$i ++;
-		}
-
-		if (sizeof($GET_array) > 0) {
-			while (list ($key, $value) = each($GET_array)) {
-				$_GET[$key] = htmlspecialchars($value);
-			}
-		}
-	}
+    if (strlen(getenv('PATH_INFO')) > 1) {
+        $GET_array = array();
+        $PHP_SELF = str_replace(getenv('PATH_INFO') , '', $PHP_SELF);
+        $vars = explode('/', substr(getenv('PATH_INFO') , 1));
+        for ($i = 0, $n = sizeof($vars); $i < $n; $i++) {
+            if (strpos($vars[$i], '[]')) {
+                $GET_array[substr($vars[$i], 0, -2) ][] = $vars[$i+1];
+            } else {
+                $_GET[$vars[$i]] = htmlspecialchars($vars[$i+1]);
+                if((bool) get_magic_quotes_gpc()) $_GET[$vars[$i]] = addslashes($_GET[$vars[$i]]);
+            }
+            $i++;
+        }
+        if (sizeof($GET_array) > 0) {
+            while (list($key, $value) = each($GET_array)) {
+                $_GET[$key] = htmlspecialchars($value);
+                if((bool) get_magic_quotes_gpc()) $_GET[$key] = addslashes($_GET[$key]);
+            }
+        }
+    }
 }
 // check GET/POST/COOKIE VARS
 require (DIR_WS_CLASSES.'class.inputfilter.php');
@@ -263,7 +261,7 @@ require (DIR_WS_FUNCTIONS.'compatibility.php');
 require (DIR_WS_FUNCTIONS.'sessions.php');
 
 // set the session name and save path
-session_name('XTCsid');
+session_name('SCsid');
 if (STORE_SESSIONS != 'mysql') session_save_path(SESSION_WRITE_DIRECTORY);
 
 // set the session cookie parameters
@@ -535,7 +533,7 @@ define('WARN_SESSION_AUTO_START', 'true');
 define('WARN_DOWNLOAD_DIRECTORY_NOT_READABLE', 'true');
 
 // Include Template Engine
-require (DIR_WS_CLASSES.'Smarty_2.6.18/Smarty.class.php');
+require (DIR_WS_CLASSES.'Smarty/Smarty.class.php');
 
 if (isset ($_SESSION['customer_id'])) {
 	$account_type_query = xtc_db_query("SELECT
@@ -565,11 +563,11 @@ if (isset ($_SESSION['customer_id'])) {
 unset ($_SESSION['actual_content']);
 xtc_count_cart();
 
-	
+include_once(DIR_WS_CLASSES.'StopWatch.inc.php');
+include_once(DIR_WS_CLASSES.'Registry.inc.php');
+include_once(DIR_WS_CLASSES.'ClassRegistry.inc.php');
 
 // Wartung
-
-
 if (WARTUNG == 'true'){
   if ($_SESSION['customers_status']['customers_status_id'] == 0) {
   } else if (substr(basename($PHP_SELF), 0, 5) != 'login') {

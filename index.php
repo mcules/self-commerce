@@ -8,6 +8,7 @@
 
    Copyright (c) 2003 XT-Commerce
    -----------------------------------------------------------------------------------------
+   (c) 2012	 Self-Commerce www.self-commerce.de
    based on:
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
    (c) 2002-2003 osCommerce(default.php,v 1.84 2003/05/07); www.oscommerce.com
@@ -44,7 +45,7 @@ if (isset ($cPath) && xtc_not_null($cPath)) {
 		$category_parent_query = xtDBquery($category_parent_query);
 		$category_parent = xtc_db_fetch_array($category_parent_query, true);
 		if ($category_parent['total'] > 0) {
-			$category_depth = 'nested'; // navigate through the categories
+			$category_depth = 'categories'; // navigate through the categories
 		} else {
 			$category_depth = 'products'; // category has no products, but display the 'no products' message
 		}
@@ -58,7 +59,7 @@ $smarty->assign('language', $_SESSION['language']);
 
 $smarty->caching = 0;
 if (!defined(RM))
-	$smarty->load_filter('output', 'note');
+	$smarty->loadfilter('output', 'note');
 $smarty->display(CURRENT_TEMPLATE.'/index.html');
 
 include ('includes/application_bottom.php');  

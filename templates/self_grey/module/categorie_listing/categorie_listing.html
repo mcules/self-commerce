@@ -1,0 +1,18 @@
+{config_load file="$language/lang_$language.conf" section="categorie_listing"}
+{assign var="multi_col_dir" value=$smarty.const.MULTI_COL_LISTING_DIR}
+
+{if $CATEGORIES_NAME}<h2>{$CATEGORIES_NAME}</h2>{/if}
+{if $CATEGORIES_HEADING_TITLE || $CATEGORIES_DESCRIPTION || $CATEGORIES_IMAGE}
+	<div id="frameListHead" class="floatbox" >
+		{if $CATEGORIES_IMAGE}<img src="{$CATEGORIES_IMAGE}" alt="{$CATEGORIES_NAME}" class="imgLeft" />{/if}
+		{$CATEGORIES_HEADING_TITLE}<br />
+		{if $CATEGORIES_DESCRIPTION}{$CATEGORIES_DESCRIPTION}{/if}<br class="clearHere" />
+	</div>
+{/if}
+<br />
+
+{if $module_content !=''}
+	{include file="$multi_col_dir/2col_category.html" kind="category"}
+{/if}
+<br />
+{$MODULE_new_products}

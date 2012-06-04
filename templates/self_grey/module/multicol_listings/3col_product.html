@@ -1,0 +1,56 @@
+<div class="containerProdListing3col">
+{foreach name=aussen item=module_data from=$module_content}
+{* Spalten *}
+	{if ($smarty.foreach.aussen.iteration + 2) %3 == 0 }
+	<div class="subcolumns">
+		<div class="c33l">
+			<div class="subcl">
+	{elseif ($smarty.foreach.aussen.iteration + 1) %3 == 0}
+		<div class="c33l">
+			<div class="subc">
+	{elseif $smarty.foreach.aussen.iteration %3 == 0}
+	 	<div class="c33r">
+			<div class="subcr">
+	{/if}
+{* Content *}
+		<div class="ProdListing3colBorder">{* Div damit Button auf einer Höhe stehen *}
+			<div class="ProdListing3colSpacer">
+			
+				{if $module_data.PRODUCTS_IMAGE}<a href="{$module_data.PRODUCTS_LINK}"><img src="{$module_data.PRODUCTS_IMAGE}" alt="{$module_data.PRODUCTS_NAME}" class="imgCenter" /></a>{/if}
+			
+				<h1><a href="{$module_data.PRODUCTS_LINK}">{$module_data.PRODUCTS_NAME}</a></h1><br />
+		
+				{if $module_data.PRODUCTS_SHORT_DESCRIPTION}{$module_data.PRODUCTS_SHORT_DESCRIPTION|truncate:60}<br /><br />{/if}
+				<div class="prodPriceInfo3col">{$module_data.PRODUCTS_PRICE}{if $module_data.PRODUCTS_VPE}<br />{$module_data.PRODUCTS_VPE}{/if}<br />
+					<span class="prodTaxShipInfo3col">{$module_data.PRODUCTS_TAX_INFO}{$module_data.PRODUCTS_SHIPPING_LINK}</span>
+				</div>
+				{if $module_data.PRODUCTS_SHIPPING_NAME}
+				<div class="prodShiptime3col">
+		  			{#text_shippingtime#}
+		  			{if $module_data.PRODUCTS_SHIPPING_IMAGE}<img src="{$module_data.PRODUCTS_SHIPPING_IMAGE}" alt="{$module_data.PRODUCTS_SHIPPING_NAME}" />{/if}
+		  			{$module_data.PRODUCTS_SHIPPING_NAME}
+				</div>
+				{/if}
+			</div>
+			<div class="productListing3colBuyNow"><a href="{$module_data.PRODUCTS_LINK}"><img src="{$tpl_path}buttons/{$language}/small_view.gif" alt="{$module_data.PRODUCTS_NAME}" /></a> {*$module_data.PRODUCTS_BUTTON_BUY_NOW*}</div>
+		</div>
+	{* EOF Content - Innere Container Subcolums schließen *}
+	</div>
+</div>
+{* Subcolums schließen *}
+{if $smarty.foreach.aussen.iteration%3 == 0 }
+		</div>
+{else}
+	{* Leere Zellen einfügen *}
+	{if ($smarty.foreach.aussen.total + 2)%3 == 0 && $smarty.foreach.aussen.total == $smarty.foreach.aussen.iteration }{* 2 Zellen einfügen wenn in der ersten Spalte und letzter Schleifendurchlauf *}
+			<div class="c33l"><div class="subc">&nbsp;</div></div>
+			<div class="c33r"><div class="subcr">&nbsp;</div></div>
+		</div>
+	{elseif ($smarty.foreach.aussen.total + 1)%3 == 0 && $smarty.foreach.aussen.total == $smarty.foreach.aussen.iteration }{* 1 Zelle einfügen wenn in der zweiten Spalte und letzter Schleifendurchlauf *}
+			<div class="c33r"><div class="subcr">&nbsp;</div></div>
+		</div>
+	{/if}
+{/if}
+{/foreach}
+
+</div>

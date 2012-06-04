@@ -124,6 +124,8 @@ define('TEXT_DO_STATUS_CHANGE','Status wirklich &auml;ndern?');
 define('HEADING_MULTI_ORDER_STATUS','Bestell Schnell Bearbeitung');
 define('WARNING_ORDER_NOT_UPDATED_ALL','Es wurde nicht alles korrekt ge&auml;ndert, pr&uuml;fen Sie Ihre Eingabe');
 
-
-
+//BEGIN NEXT AND PREVIOUS ORDERS DISPLAY IN ADMIN 
+define('PREV_ORDER', '<b><< vorherige Bestellung</b>'); 
+define('NEXT_ORDER', '<b>nächste Bestellung >></b>'); 
+//END NEXT AND PREVIOUS ORDERS DISPLAY IN ADMIN
 ?>

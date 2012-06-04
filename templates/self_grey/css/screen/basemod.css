@@ -1,0 +1,102 @@
+@charset "UTF-8";
+/**
+* YAML-based Template for xt:Commerce
+*
+* (en) Variation of screen layout (basemod.css)
+* (de) Variation des Screenlayouts (basemod.css)
+*
+* @copyright       Copyright 2006-2007, Björn Teßmann (tessmann@zerosoft.de)
+*                  Based on YAML, Copyright 2005-2007, Dirk Jesse
+* @link            http://www.zs-ecommerce.com
+* @package         yaml for xt:Commerce
+* @version         1.6.0
+   
+*/
+
+@media all
+{
+ /*------------------------------------------------------------------------------------------------------*/
+
+ /**
+  * Design of the Basic Layout | Gestaltung des YAML Basis-Layouts
+  *
+  * @section layout-basics
+  */
+
+  /* Page margins and background | Randbereiche & Seitenhintergrund */
+  body { background: #F1F1F1; padding: 10px; background-image: url(../../img/background.gif);background-repeat: repeat-x;	}
+
+  /* Layout: Width, Background, Border | Layout: Breite, Hintergrund, Rahmen */
+  .page{ border: 1px #667 solid;  }
+  .page_margins {border:0; min-width: 756px; max-width: 80em; margin:auto;}
+
+  /* Design of the Main Layout Elements | Gestaltung der Hauptelemente des Layouts */
+  #header { position:relative; height: 120px; color: #fff; background: #363636 url(../../img/header.gif) repeat-x top; }
+  img#companyLogo {position:absolute; top: 15px; left: 10px; font-size:208%;}
+
+  #main { background: #fff ; margin: 0; padding: 0;}
+
+  #footer { color:#9A9A9A; background: #363636 url(../../img/footer.gif) repeat-x center; padding: 1em 0 0 0; border-top: 1px #ddd solid; line-height: 1.5em; font-size:0.8em;text-align:center;}
+  
+  #teaser {
+	margin:0;
+	background: #ffffff;
+	padding:4px 4px 4px 18px;
+	color: #5f5d75;
+  }
+ /*------------------------------------------------------------------------------------------------------*/
+
+ /**
+  * Formatting of the Content Area | Formatierung der Inhaltsbereichs
+  *
+  * @section layout-main
+  */
+
+
+  #col1 {	width: 200px; }
+  #col1_content { 
+    margin-left:0pt;
+    margin-right:0pt;
+    padding-left:10px;
+    padding-top:20px; 
+  }
+
+
+  #col2 {	width:200px; }
+  #col2_content {	
+    margin-left:0pt;
+    margin-right:0pt;
+    padding-right:10px;
+    padding-top:20px;
+  }
+
+
+  #col3 {
+  margin-left: 200px;
+  margin-right: 200px;
+	border-left: 0px dotted #ddd;
+	border-right: 0px dotted #ddd;
+  }
+
+  #col3_content { margin-left: 17px; margin-right: 17px;padding-top:20px; }
+
+  #navigation , #content {
+  height:1px;
+  left:-1000em;
+  position:absolute;
+  top:-1000em;
+  width:1px;
+  }
+
+ /*------------------------------------------------------------------------------------------------------*/
+
+ /**
+  * Design of Additional Layout Elements | Gestaltung weiterer Layoutelemente
+  *
+  * @section layout-misc
+  */
+  
+  /* ### Anpassung für die Ausblendung der Boxen bei Checkout (entsprechende index.html muss verwendet werden) ### */
+  #main_checkout {	background:#ffffff; }
+  #col3_checkout {	width:100%; }
+}

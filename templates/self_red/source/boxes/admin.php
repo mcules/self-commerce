@@ -47,13 +47,69 @@ $box_smarty->assign('tpl_path','templates/'.CURRENT_TEMPLATE.'/');
   $admin_image = '<a href="' . xtc_href_link_admin(FILENAME_START,'', 'SSL').'">'.xtc_image_button('button_admin.gif', IMAGE_BUTTON_ADMIN).'</a>';
    if ($product->isProduct()) {
     $admin_link='<a href="' . xtc_href_link_admin(FILENAME_EDIT_PRODUCTS, 'cPath=' . $cPath . '&pID=' . $product->data['products_id']) . '&action=new_product' . '" onclick="window.open(this.href); return false;">' . xtc_image_button('edit_product.gif', IMAGE_BUTTON_PRODUCT_EDIT) . '</a>';
-  }
+		$admin_attributes = //"<br />\n".
+		'<br /><form action="admin/new_attributes.php" name="edit_attributes" method="post">'."\n".
+		'<input type="hidden" name="action" value="edit" />'."\n".
+		'<input type="hidden" name="current_product_id" value="'.$product->data['products_id'].'" />'."\n".
+		'<input type="hidden" name="cpath" value="'.$cPath.'" />'."\n".
+		'<input type="submit" class="button" value="Attribute editieren" />'."\n".
+		'</form>';
 
-  $box_content= '<b>' . BOX_TITLE_STATISTICS . '</b><br />' . $orders_contents . '<br />' .
-                                         BOX_ENTRY_CUSTOMERS . ' ' . $customers['count'] . '<br />' .
-                                         BOX_ENTRY_PRODUCTS . ' ' . $products['count'] . '<br />' .
-                                         BOX_ENTRY_REVIEWS . ' ' . $reviews['count'] .'<br />' .
-                                         $admin_image . '<br />' .$admin_link;
+		$admin_cross_selling = //"<br />\n".
+    '<br /><a href="' . xtc_href_link_admin(FILENAME_EDIT_PRODUCTS, 'current_product_id=' . $product->data['products_id']) . '&action=edit_crossselling&cpath='.$cPath . '" onclick="window.open(this.href); return false;">' . xtc_image_button('edit_cross_sell.gif', IMAGE_BUTTON_CROSS_EDIT) . '</a>';
+		
+    $special_query = "select specials_id from ".TABLE_SPECIALS." where products_id = '".$product->data['products_id']."' and status=1";
+		$special_query = xtDBquery($special_query);
+		$special = xtc_db_fetch_array($special_query);
+    if($special){
+    $admin_specials = //"<br />\n".
+    '<br /><a href="' . xtc_href_link_admin('admin/'.FILENAME_SPECIALS, 'sID=' . $special['specials_id']) . '&action=edit' . '" onclick="window.open(this.href); return false;">' . xtc_image_button('edit_special.gif', IMAGE_BUTTON_SPECIAL_EDIT) . '</a>';
+    } 
+  }
+// -----------------------------------------------------------------------------------
+	
+	if(basename($_SERVER[SCRIPT_NAME])=='index.php' && isset($_GET['cat'])) {
+
+		global $current_category_id;
+		$admin_category = //"<br />\n".
+    '<a href="' . xtc_href_link_admin(FILENAME_EDIT_PRODUCTS, 'cPath=' . $cPath) . '&action=edit_category&cID='.$current_category_id . '" onclick="window.open(this.href); return false;">' . xtc_image_button('edit_categorie.gif', IMAGE_BUTTON_CATEGORIE_EDIT) . '</a>';     
+	}
+	
+// -----------------------------------------------------------------------------------
+
+	if(basename($_SERVER[SCRIPT_NAME])=='shop_content.php' && isset($_GET['coID'])) {
+		
+		$dbQuery = xtDBquery("
+			SELECT 	content_id   
+		 	FROM 	".TABLE_CONTENT_MANAGER."
+		 	WHERE 	content_group = '".intval($_GET['coID'])."'
+		 	AND 	languages_id='".(int)$_SESSION['languages_id']."' "
+		);
+		
+		$dbQuery = xtc_db_fetch_array($dbQuery);
+
+		if(!empty($dbQuery)) {
+	
+		$admin_content = //"<br />\n".
+    '<a href="' . xtc_href_link_admin('admin/content_manager.php', 'coID=' . intval($dbQuery['content_id'])) . '&action=edit' . '" onclick="window.open(this.href); return false;">' . xtc_image_button('edit_content.gif', IMAGE_BUTTON_CONTENT_EDIT) . '</a>';     
+		}
+
+	}
+// -----------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------
+// 	BoxContent zusammensetzen
+// -----------------------------------------------------------------------------------
+	$box_content = '<b>'.BOX_TITLE_STATISTICS."</b><br />\n".$orders_contents."<br />\n".
+					BOX_ENTRY_CUSTOMERS.' '.$customers['count']."<br />\n".
+					BOX_ENTRY_PRODUCTS.' '.$products['count']."<br />\n".
+					BOX_ENTRY_REVIEWS.' '.$reviews['count']."<br />\n".
+					$admin_image."<br />\n".$admin_link.
+					$admin_cross_selling.
+					$admin_specials.
+					$admin_category.
+					$admin_attributes.					
+					$admin_content;
+// -----------------------------------------------------------------------------------
 
     if ($flag==true) define('SEARCH_ENGINE_FRIENDLY_URLS',true);
     $box_smarty->assign('BOX_CONTENT', $box_content);

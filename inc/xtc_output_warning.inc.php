@@ -16,7 +16,7 @@
    ---------------------------------------------------------------------------------------*/
    
   function xtc_output_warning($warning) {
-    new errorBox(array(array('text' => '<div background-color: #ff0000>' . xtc_image(DIR_WS_ICONS . 'output_warning.gif', ICON_WARNING) . ' ' . $warning . '</div')));
+    new errorBox(array(array('text' => '<div style="background-color: #ff0000;">' . xtc_image(DIR_WS_ICONS . 'output_warning.gif', ICON_WARNING) . ' ' . $warning . '</div>')));
   }
 
  ?>

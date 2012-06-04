@@ -1,0 +1,20 @@
+{config_load file="$language/lang_$language.conf" section="address_book_process"}
+
+<h2>{#heading_address#}</h2>
+        {$FORM_ACTION}
+        {if $error!=''}<p><strong class="error">{$error}</strong></p>{/if}
+
+        {$MODULE_address_book_details}
+        {if $delete=='1'}
+          <h3>{#title_delete#}</h3>
+          <p><strong>{#text_delete#}</strong></p>
+
+                <p class="container">{$ADDRESS}</p>
+        {/if}
+
+		<div class="floatbox">
+			<div class="leftCol">{$BUTTON_BACK}</div>
+			<div class="rightCol">{$BUTTON_UPDATE}{$BUTTON_DELETE}</div>
+		</div>
+
+	{$FORM_END}

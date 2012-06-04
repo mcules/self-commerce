@@ -18,15 +18,15 @@
 // Define the webserver and path parameters
 // * DIR_FS_* = Filesystem directories (local/physical)
 // * DIR_WS_* = Webserver directories (virtual/URL)
-  define('HTTP_SERVER', 'http://demo.self-commerce.de.dd25328.kasserver.com'); // eg, http://localhost or - https://localhost should not be empty for productive servers
-  define('HTTP_CATALOG_SERVER', 'http://demo.self-commerce.de.dd25328.kasserver.com');
-  define('HTTPS_CATALOG_SERVER', 'https://demo.self-commerce.de.dd25328.kasserver.com');
+  define('HTTP_SERVER', 'http://devshop.eisold-edv.de'); // eg, http://localhost or - https://localhost should not be empty for productive servers
+  define('HTTP_CATALOG_SERVER', 'http://devshop.eisold-edv.de');
+  define('HTTPS_CATALOG_SERVER', 'https://devshop.eisold-edv.de');
   define('ENABLE_SSL_CATALOG', 'false'); // secure webserver for catalog module
-  define('DIR_FS_DOCUMENT_ROOT', '/www/htdocs/w00cd82d/demoshop/'); // where the pages are located on the server
+  define('DIR_FS_DOCUMENT_ROOT', '/var/www/devshop.eisold-edv.de/web/'); // where the pages are located on the server
   define('DIR_WS_ADMIN', '/admin/'); // absolute path required
-  define('DIR_FS_ADMIN', '/www/htdocs/w00cd82d/demoshop/admin/'); // absolute pate required
+  define('DIR_FS_ADMIN', '/var/www/devshop.eisold-edv.de/web/admin/'); // absolute pate required
   define('DIR_WS_CATALOG', '/'); // absolute path required
-  define('DIR_FS_CATALOG', '/www/htdocs/w00cd82d/demoshop/'); // absolute path required
+  define('DIR_FS_CATALOG', '/var/www/devshop.eisold-edv.de/web/'); // absolute path required
   define('DIR_WS_IMAGES', 'images/');
   define('DIR_FS_CATALOG_IMAGES', DIR_FS_CATALOG . 'images/');
   define('DIR_FS_CATALOG_ORIGINAL_IMAGES', DIR_FS_CATALOG_IMAGES .'product_images/original_images/');
@@ -53,9 +53,9 @@
 
 // define our database connection
   define('DB_SERVER', 'localhost'); // eg, localhost - should not be empty for productive servers
-  define('DB_SERVER_USERNAME', 'd00e4aee');
-  define('DB_SERVER_PASSWORD', 'IVvXlCfo');
-  define('DB_DATABASE', 'd00e4aee');
+  define('DB_SERVER_USERNAME', 'c2_pbXUkjtEr3A');
+  define('DB_SERVER_PASSWORD', '8E$)F32CXmNNe5qx');
+  define('DB_DATABASE', 'c2_sc_21');
   define('USE_PCONNECT', 'false'); // use persisstent connections?
   define('STORE_SESSIONS', 'mysql'); // leave empty '' for default handler or set to 'mysql'
 

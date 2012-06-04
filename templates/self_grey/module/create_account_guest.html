@@ -1,0 +1,116 @@
+{config_load file="$language/lang_$language.conf" section="create_account"}
+<h2>{#heading_create_account#}</h2>
+	{$FORM_ACTION|replace:'"post"':'"post" class="yform columnar"'}
+	{if $error!=''}{$error}{/if}
+
+{if $gender=='1'}
+	<fieldset>
+			<legend>{#text_gender#}</legend>
+            <div class="type-check">{$INPUT_MALE}</div>
+            <div class="type-check">{$INPUT_FEMALE}</div>
+	</fieldset>
+{/if}
+
+	<fieldset>
+		<legend>{#title_personal#}:</legend>
+	
+	<div class="type-text">
+	   <label for="firstname">{#text_firstname#}</label>{$INPUT_FIRSTNAME|replace:'name="firstname"':'name="firstname" id="firstname"'}
+	</div>	
+		
+    <div class="type-text">
+	   <label for="lastname">{#text_lastname#}</label>{$INPUT_LASTNAME|replace:'name="lastname"':'name="lastname" id="lastname"'}
+	</div>	    
+    
+	{if $birthdate=='1'}
+    <div class="type-text">
+	   <label for="dob">{#text_birthdate#}</label>{$INPUT_DOB|replace:'name="dob"':'name="dob" id="dob"'}
+	</div>	  
+	{/if}
+    
+    <div class="type-text">
+	   <label for="email_address">{#text_email#}</label>{$INPUT_EMAIL|replace:'name="email_address"':'name="email_address" id="email_address"'}
+	</div>	
+	
+	{if $smarty.const.TPL_CLIENT == 'xtcmod' }
+	<div class="type-text">
+	   <label for="confirm_email_address">{#text_confirm_email#}</label>{$INPUT_CONFIRM_EMAIL|replace:'name="confirm_email_address"':'name="confirm_email_address" id="confirm_email_address"'}
+	</div>	
+	{/if}
+
+    <div class="type-text">
+	   <label for="telephone">{#text_tel#}</label>{$INPUT_TEL|replace:'name="telephone"':'name="telephone" id="telephone"'}
+	</div>	
+	
+    <div class="type-text">
+	   <label for="fax">{#text_fax#}</label>{$INPUT_FAX|replace:'name="fax"':'name="fax" id="fax"'}
+	</div>	
+    
+	</fieldset>
+
+<fieldset>
+	<legend>{#title_address#}:</legend>
+	     
+	<div class="type-text">
+	   <label for="street_address">{#text_street#}</label>{$INPUT_STREET|replace:'name="street_address"':'name="street_address" id="street_address"'}
+	</div>	
+
+    {if $suburb=='1'}
+	<div class="type-text">
+	   <label for="suburb">{#text_suburb#}</label>{$INPUT_SUBURB|replace:'name="suburb"':'name="suburb" id="suburb"'}
+	</div>	
+    {/if}
+
+	<div class="type-text">
+	   <label for="postcode">{#text_code#}</label>{$INPUT_CODE|replace:'name="postcode"':'name="postcode" id="postcode"'}
+	</div>
+
+	<div class="type-text">
+	   <label for="city">{#text_city#}</label>{$INPUT_CITY|replace:'name="city"':'name="city" id="city"'}
+	</div>	
+	
+	{if $state=='1'}
+	<div class="type-text">
+	   <label for="state">{#text_state#}</label>{$INPUT_STATE|replace:'name="state"':'name="state" id="state"'}
+	</div>	
+    {/if}
+    
+    <div class="type-select">
+			<label for="country">{#text_country#}</label>{$SELECT_COUNTRY|replace:'name="country"':'name="country" id="country"'}
+    </div>
+	
+	</fieldset>
+
+	{if $company=='1'}
+	<fieldset>
+			<legend>{#title_company#}:</legend>
+
+	<div class="type-text">
+	   <label for="company">{#text_company#}</label>{$INPUT_COMPANY|replace:'name="company"':'name="company" id="company"'}
+	</div>	
+
+    {if $vat=='1'}
+	   <div class="type-text">
+	       <label for="vat">{#text_ustid#}</label>{$INPUT_VAT|replace:'name="vat"':'name="vat" id="vat"'|replace:'<span class="inputRequirement">':'<span style="display:block;float:left;" class="inputRequirement">'}
+	   </div>	
+    {/if}
+    </fieldset>
+    {/if}
+  
+  {if $PRIVACY_CHECKBOX && $smarty.const.TPL_CLIENT == 'xtcmod' }
+  	<table border="0" cellpadding="0" cellspacing="0">
+  		{*<tr>
+  			<td style="width:20px;padding:0;">{$CHECKBOX_NEWSLETTER|replace:'name="newsletter"':'name="newsletter" id="newsletter" style="margin:0;margin-top:4px;"'}</td>
+  			<td style="padding:0;"><label style="width:auto;" for="newsletter">{#text_newsletter#}</label></td>
+  		</tr>
+  		*}
+  		<tr>
+   			<td style="width:20px;padding:0;">{$PRIVACY_CHECKBOX|replace:'name="privacy"':'name="privacy" id="privacy" style="margin:0;margin-top:4px;"'}</td>
+   			<td style="padding:0;"><label for="privacy" style="width:auto;font-weight:bold;">{#text_privacy_accept#}</label>{$PRIVACY_LINK}</td>
+  		</tr>
+  	</table>
+  {/if}
+
+  {$BUTTON_SUBMIT}
+
+  {$FORM_END}

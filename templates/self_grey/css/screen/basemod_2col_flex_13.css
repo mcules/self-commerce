@@ -1,0 +1,42 @@
+@charset "UTF-8";
+/**
+* YAML-based Template for xt:Commerce
+*
+* (en) Variation of screen layout (basemod.css) for layout example "2col_flex"
+* (de) Variation des Screenlayouts (basemod.css) für Layoutbeispiel "2col_flex"
+*
+* @copyright       Copyright 2006-2007, Björn Teßmann (tessmann@zerosoft.de)               
+* @link            http://www.zs-ecommerce.com
+* @package         yaml for xt:commve
+* @version         1.6.0
+   
+*/
+
+@media screen
+{
+  /**
+   * (en) Repositioning content container
+   * (de) Neupositionierung der Content Container
+   *
+   * |-------------------------------|
+   * | #header                      |
+   * |-------------------------------|
+   * | #col1   | #col3               |
+   * |   |                     |
+   * |-------------------------------|
+   * | #footer                       |
+   * |-------------------------------|
+   */
+
+  .page_margins { width: auto;  min-width: 740px; max-width: 90em; background: #fff; }  
+
+
+  /* Hide right column | Rechte Spalte abschalten */
+  #col1 { float: left; width: 200px;}  
+  #col2 { display:none;}  
+  #col3 { width: auto; margin: 0 0 0 200px;}  
+  
+  #main { margin: 0; padding: 0; }
+  #footer {margin:0; padding: 1em; border-color: #aaa; }
+  #main { background: #fff /*url(../../img/bg_main_2col.gif) repeat-y top left*/; }
+}

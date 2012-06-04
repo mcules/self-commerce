@@ -1,0 +1,16 @@
+{config_load file="$language/lang_$language.conf" section="reviews"}
+
+{if $module_content != ''}<h3>{#heading_reviews#}</h3>{/if}
+{foreach name=aussen item=module_data from=$module_content}
+  {if $module_data.TEXT != ''}
+  <p class="container">
+    {#text_author#}{$module_data.AUTHOR} {$module_data.DATE}<br />
+    {#text_rating#}{$module_data.RATING}<br />
+    {$module_data.TEXT}
+  </p>
+  {/if}
+
+  <p>
+    {$BUTTON_WRITE}
+  </p>
+{/foreach}

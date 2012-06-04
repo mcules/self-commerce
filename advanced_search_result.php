@@ -8,6 +8,7 @@
 
    Copyright (c) 2005 XT-Commerce
    -----------------------------------------------------------------------------------------
+   (c) 2012	 Self-Commerce www.self-commerce.de
    based on: 
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
    (c) 2002-2003 osCommerce(advanced_search_result.php,v 1.68 2003/05/14); www.oscommerce.com 
@@ -137,29 +138,42 @@ if ($error == 1 && $keyerror != 1) {
 		}
 	}
 
-	if ($_GET['pfrom'] || $_GET['pto']) {
-		$rate = xtc_get_currencies_values($_SESSION['currency']);
-		$rate = $rate['value'];
-		if ($rate && $_GET['pfrom'] != '') {
-			$pfrom = $_GET['pfrom'] / $rate;
-		}
-		if ($rate && $_GET['pto'] != '') {
-			$pto = $_GET['pto'] / $rate;
-		}
+$NeedTax = false;
+if ($_GET['pfrom'] || $_GET['pto']) {
+	$rate = xtc_get_currencies_values($_SESSION['currency']);
+	$rate = $rate['value'];
+	if ($rate && $_GET['pfrom'] != '') {
+		$pfrom = $_GET['pfrom'] / $rate;
 	}
+	if ($rate && $_GET['pto'] != '') {
+		$pto = $_GET['pto'] / $rate;
+	}
+	if($_SESSION['customers_status']['customers_status_show_price_tax']) {
+		$NeedTax = true;
+	}
+}
 
-	//price filters
-	if (($pfrom != '') && (is_numeric($pfrom))) {
-		$pfrom_check = " AND (IF(s.status = '1' AND p.products_id = s.products_id, s.specials_new_products_price, p.products_price) >= ".$pfrom.") ";
-	} else {
-		unset ($pfrom_check);
-	}
 
-	if (($pto != '') && (is_numeric($pto))) {
-		$pto_check = " AND (IF(s.status = '1' AND p.products_id = s.products_id, s.specials_new_products_price, p.products_price) <= ".$pto." ) ";
-	} else {
-		unset ($pto_check);
-	}
+//price filters
+if (($pfrom != '') && (is_numeric($pfrom))) {
+	if($NeedTax)
+		$pfrom_check = " AND (IF(s.status = '1' AND p.products_id = s.products_id, s.specials_new_products_price, p.products_price) >= round((".$pfrom."/(1+tax_rate/100)),".PRICE_PRECISION.") ) ";
+	else
+		$pfrom_check = " AND (IF(s.status = '1' AND p.products_id = s.products_id, s.specials_new_products_price, p.products_price) >= round(".$pfrom.",".PRICE_PRECISION.") ) ";
+
+} else {
+	unset ($pfrom_check);
+}
+
+if (($pto != '') && (is_numeric($pto))) {
+	if($NeedTax)
+		$pto_check = " AND (IF(s.status = '1' AND p.products_id = s.products_id, s.specials_new_products_price, p.products_price) <= round((".$pto."/(1+tax_rate/100)),".PRICE_PRECISION.") ) ";
+	else
+		$pto_check = " AND (IF(s.status = '1' AND p.products_id = s.products_id, s.specials_new_products_price, p.products_price) <= round(".$pto.",".PRICE_PRECISION.") ) ";
+} else {
+	unset ($pto_check);
+}
+
 
 	//build query
 	$select_str = "SELECT distinct
@@ -177,20 +191,22 @@ if ($error == 1 && $keyerror != 1) {
 	                  pd.products_description ";
 
 	$from_str  = "FROM ".TABLE_PRODUCTS." AS p LEFT JOIN ".TABLE_PRODUCTS_DESCRIPTION." AS pd ON (p.products_id = pd.products_id) ";
-	$from_str .= $subcat_join;
+	$from_str .= "left join ".TABLE_MANUFACTURERS." as m on p.manufacturers_id = m.manufacturers_id";
+  $from_str .= $subcat_join;
 	if (SEARCH_IN_ATTR == 'true') { $from_str .= " LEFT OUTER JOIN ".TABLE_PRODUCTS_ATTRIBUTES." AS pa ON (p.products_id = pa.products_id) LEFT OUTER JOIN ".TABLE_PRODUCTS_OPTIONS_VALUES." AS pov ON (pa.options_values_id = pov.products_options_values_id) "; }
 	$from_str .= "LEFT OUTER JOIN ".TABLE_SPECIALS." AS s ON (p.products_id = s.products_id) AND s.status = '1'";
 
-	if ((DISPLAY_PRICE_WITH_TAX == 'true') && ((isset ($_GET['pfrom']) && xtc_not_null($_GET['pfrom'])) || (isset ($_GET['pto']) && xtc_not_null($_GET['pto'])))) {
-		if (!isset ($_SESSION['customer_country_id'])) {
-			$_SESSION['customer_country_id'] = STORE_COUNTRY;
-			$_SESSION['customer_zone_id'] = STORE_ZONE;
-		}
-		$from_str .= " LEFT OUTER JOIN ".TABLE_TAX_RATES." tr ON (p.products_tax_class_id = tr.tax_class_id) LEFT OUTER JOIN ".TABLE_ZONES_TO_GEO_ZONES." gz ON (tr.tax_zone_id = gz.geo_zone_id) ";
-		$tax_where = " AND (gz.zone_country_id IS NULL OR gz.zone_country_id = '0' OR gz.zone_country_id = '".(int) $_SESSION['customer_country_id']."') AND (gz.zone_id is null OR gz.zone_id = '0' OR gz.zone_id = '".(int) $_SESSION['customer_zone_id']."')";
-	} else {
-		unset ($tax_where);
+if($NeedTax) {
+	if (!isset ($_SESSION['customer_country_id'])) {
+		$_SESSION['customer_country_id'] = STORE_COUNTRY;
+		$_SESSION['customer_zone_id'] = STORE_ZONE;
 	}
+	$from_str .= " LEFT OUTER JOIN ".TABLE_TAX_RATES." tr ON (p.products_tax_class_id = tr.tax_class_id) LEFT OUTER JOIN ".TABLE_ZONES_TO_GEO_ZONES." gz ON (tr.tax_zone_id = gz.geo_zone_id) ";
+	$tax_where = " AND (gz.zone_country_id IS NULL OR gz.zone_country_id = '0' OR gz.zone_country_id = '".(int) $_SESSION['customer_country_id']."') AND (gz.zone_id is null OR gz.zone_id = '0' OR gz.zone_id = '".(int) $_SESSION['customer_zone_id']."')";
+} else {
+	unset ($tax_where);
+}
+
 
 	//where-string
 	$where_str = " WHERE p.products_status = '1' "." AND pd.language_id = '".(int) $_SESSION['languages_id']."'".$subcat_where.$fsk_lock.$manu_check.$group_check.$tax_where.$pfrom_check.$pto_check;
@@ -247,13 +263,14 @@ if (isset($_GET['categories_id']))
 $sorting_dropdown.= xtc_draw_hidden_field('categories_id', $_GET['categories_id']);
 if (isset($_GET['keywords'])) 
 $sorting_dropdown.= xtc_draw_hidden_field('keywords', $_GET['keywords']);
-$options_sort = array(array('text' => 'Sortierung w&auml;hlen'));
-$options_sort[] = array('id' => '1', 'text' => 'A -> Z');
-$options_sort[] = array('id' => '2', 'text' => 'Z -> A');
-$options_sort[] = array('id' => '3', 'text' => 'Preis - auf');
-$options_sort[] = array('id' => '4', 'text' => 'Preis - ab');
-$options_sort[] = array('id' => '5', 'text' => 'Hersteller - auf');
-$options_sort[] = array('id' => '6', 'text' => 'Hersteller - ab');
+$options_sort = array(array('text' => SORT_CHANGE));
+      $options_sort[] = array('id' => '1', 'text' => A_Z); 
+      $options_sort[] = array('id' => '2', 'text' => Z_A); 
+      $options_sort[] = array('id' => '3', 'text' => PRICE_UP); 
+      $options_sort[] = array('id' => '4', 'text' => PRICE_DOWN); 
+      $options_sort[] = array('id' => '5', 'text' => MANU_UP); 
+      $options_sort[] = array('id' => '6', 'text' => MANU_DOWN); 
+ 
 $sorting_dropdown.= xtc_draw_pull_down_menu('sorting_id', $options_sort, $_GET['sorting_id'], 'onchange="this.form.submit()"');
 $sorting_dropdown.= '</form>' . "\n";
 //sorting_dropdown END
@@ -277,13 +294,16 @@ case 6:
 $order_str = ' group by pd.products_name ORDER BY m.manufacturers_name DESC';
 break;
 }	
-	$listing_sql = $select_str.$from_str.$where_str.$order_str;
+   $join_p2c = " LEFT OUTER JOIN " . TABLE_PRODUCTS_TO_CATEGORIES . " AS p2c ON (p.products_id = p2c.products_id)";
+   $join_cat = "LEFT OUTER JOIN " . TABLE_CATEGORIES . " AS cat ON (p2c.categories_id = cat.categories_id)";
+   $where_cat = " AND cat.categories_status = '1'";
+   $listing_sql = $select_str.$from_str.$join_p2c.$join_cat.$where_str.$where_cat.$order_str; 
 	require (DIR_WS_MODULES.FILENAME_PRODUCT_LISTING);
 }
 $smarty->assign('language', $_SESSION['language']);
 $smarty->caching = 0;
 if (!defined(RM))
-	$smarty->load_filter('output', 'note');
+	$smarty->loadfilter('output', 'note');
 $smarty->display(CURRENT_TEMPLATE.'/index.html');
 include ('includes/application_bottom.php');
 ?>

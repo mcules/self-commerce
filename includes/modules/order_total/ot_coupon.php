@@ -175,7 +175,7 @@ class ot_coupon {
 						for ($i = 0; $i < sizeof($order->products); $i ++) {
 							if ($get_result['restrict_to_products']) {
 								$pr_ids = split("[,]", $get_result['restrict_to_products']);
-								for ($ii = 0; $p < count($pr_ids); $ii ++) {
+								for ($ii = 0; $ii < count($pr_ids); $ii ++) {
 									if ($pr_ids[$ii] == xtc_get_prid($order->products[$i]['id'])) {
 										if ($get_result['coupon_type'] == 'P') {
 											

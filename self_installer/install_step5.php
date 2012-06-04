@@ -75,23 +75,23 @@ UL.liste {font-family: Verdana, Arial, Helvetica, san-serif; font-size: 10px; co
 					<td colspan="2" height="17" class="blocktitle" align="center">Self-Commerce Install</td>
 				</tr>
         		<tr> 
-					<td class="left_top2" width="135" ><img src="images/icons/arrow02.gif" width="13" height="6"><?php echo BOX_LANGUAGE; ?></td>
-                	<td class="left_top2" width="35"><img src="images/icons/ok.gif"></td>
+					<td class="left_top2" width="135" ><img src="images/icons/arrow02.gif" width="13" height="6" alt="Arrow" /><?php echo BOX_LANGUAGE; ?></td>
+                	<td class="left_top2" width="35"><img src="images/icons/ok.gif" alt="OK" /></td>
               	</tr>
               	<tr> 
-                	<td class="left_top2" width="135" ><img src="images/icons/arrow02.gif" width="13" height="6"><?php echo BOX_DB_CONNECTION; ?></td>
-               		<td class="left_top2" width="35"><img src="images/icons/ok.gif"></td>
+                	<td class="left_top2" width="135" ><img src="images/icons/arrow02.gif" width="13" height="6" alt="Arrow" /><?php echo BOX_DB_CONNECTION; ?></td>
+               		<td class="left_top2" width="35"><img src="images/icons/ok.gif" alt="OK" /></td>
               	</tr>
               	<tr> 
-                	<td class="left_top2">&nbsp;&nbsp;&nbsp;<img src="images/icons/arrow02.gif" width="13" height="6"><?php echo BOX_DB_IMPORT; ?></td>
-                	<td class="left_top2"><img src="images/icons/ok.gif"></td>
+                	<td class="left_top2">&nbsp;&nbsp;&nbsp;<img src="images/icons/arrow02.gif" width="13" height="6" alt="Arrow" /><?php echo BOX_DB_IMPORT; ?></td>
+                	<td class="left_top2"><img src="images/icons/ok.gif" alt="OK" /></td>
               	</tr>
               	<tr> 
-                	<td class="left_top2"><img src="images/icons/arrow02.gif" width="13" height="6"><?php echo BOX_WEBSERVER_SETTINGS; ?></td>
-                	<td class="left_top2"><img src="images/icons/ok.gif"></td>
+                	<td class="left_top2"><img src="images/icons/arrow02.gif" width="13" height="6" alt="Arrow" /><?php echo BOX_WEBSERVER_SETTINGS; ?></td>
+                	<td class="left_top2"><img src="images/icons/ok.gif" alt="OK" /></td>
                 </tr>
               	<tr>
-                	<td colspan="2" class="left_top"><img src="images/icons/arrow02.gif" width="13" height="6"><?php echo BOX_WRITE_CONFIG; ?></td>
+                	<td colspan="2" class="left_top"><img src="images/icons/arrow02.gif" width="13" height="6" alt="Arrow" /><?php echo BOX_WRITE_CONFIG; ?></td>
 	            </tr>
            </table>
 		</td>
@@ -115,7 +115,7 @@ UL.liste {font-family: Verdana, Arial, Helvetica, san-serif; font-size: 10px; co
 							  }
 							  if ($db_error) {
 							?>
-							<h2 class="normal"><img src="images/icons/error.gif" width="16" height="16"><strong><?php echo TEXT_CONNECTION_ERROR; ?></strong></h2><hr class="lineRed">
+							<h2 class="normal"><img src="images/icons/error.gif" width="16" height="16" alt="Error" /><strong><?php echo TEXT_CONNECTION_ERROR; ?></strong></h2><hr class="lineRed" />
           					<p class="small"><strong><?php echo TEXT_DB_ERROR; ?></strong></p>
 							<p class="h1 warning"><strong><?php echo $db_error; ?></strong></p>
 							<p class="small"><?php echo TEXT_DB_ERROR_1; ?></p>
@@ -137,8 +137,8 @@ UL.liste {font-family: Verdana, Arial, Helvetica, san-serif; font-size: 10px; co
 							?>
 							<table border="0" width="100%" cellspacing="0" cellpadding="0">
 							  	<tr>
-							    	<td align="center"><a href="index.php"><img src="images/button_cancel.gif" border="0" alt="Cancel"></a></td>
-							    	<td align="center"><input type="image" src="images/button_back.gif" border="0" alt="Back"></td>
+							    	<td align="center"><a href="index.php"><img src="images/button_cancel.gif" border="0" alt="Cancel" /></a></td>
+							    	<td align="center"><input type="image" src="images/button_back.gif" alt="Back" /></td>
 							  	</tr>
 							</table>
 							</form>
@@ -389,10 +389,10 @@ UL.liste {font-family: Verdana, Arial, Helvetica, san-serif; font-size: 10px; co
 
 ?>
 						<center>
-						<img src="images/logo_step5.png" width="283" height="100"><br />
-            			<span class="h1"><?php echo TEXT_WS_CONFIGURATION_SUCCESS; ?></h1> </center>
-            			<p align="center"><a href="install_step6.php"><img src="images/button_continue.gif" width="77" height="23" border="0"></a></p>
-						</form>
+						<img src="images/logo_step5.png" width="283" height="100" alt="Logo Step5" /><br />
+            			<span class="h1"><?php echo TEXT_WS_CONFIGURATION_SUCCESS; ?></span> </center>
+            			<p align="center"><a href="install_step6.php"><img src="images/button_continue.gif" width="77" height="23" border="0" alt="Continue" /></a></p>
+						
 <?php
   }
 ?>

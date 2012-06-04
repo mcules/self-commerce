@@ -8,6 +8,7 @@
 
    Copyright (c) 2003 XT-Commerce
    -----------------------------------------------------------------------------------------
+   (c) 2012	 Self-Commerce www.self-commerce.de
    based on: 
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
    (c) 2002-2003 osCommerce(checkout_confirmation.php,v 1.137 2003/05/07); www.oscommerce.com 
@@ -73,7 +74,7 @@ if (isset ($_POST['cot_gv']))
 // if conditions are not accepted, redirect the customer to the payment method selection page
 
 if (DISPLAY_CONDITIONS_ON_CHECKOUT == 'true') {
-	if ($_POST['conditions'] == false){
+	if ($_REQUEST['conditions'] == false) {
   $error = str_replace( '\n', '<br />', ERROR_CONDITIONS_NOT_ACCEPTED );
 	xtc_redirect(xtc_href_link(FILENAME_CHECKOUT_PAYMENT, 'error_message='.urlencode($error), 'SSL', true, false));
   }
@@ -193,6 +194,8 @@ $smarty->assign('PRODUCTS_BLOCK', $data_products);
 if ($order->info['payment_method'] != 'no_payment' && $order->info['payment_method'] != '') {
 	include (DIR_WS_LANGUAGES.'/'.$_SESSION['language'].'/modules/payment/'.$order->info['payment_method'].'.php');
 	$smarty->assign('PAYMENT_METHOD', constant(MODULE_PAYMENT_.strtoupper($order->info['payment_method'])._TEXT_TITLE));
+	if (isset($_GET['payment_error']) && is_object(${$_GET['payment_error']}) && ($error = ${$_GET['payment_error']}->get_error()))
+		$smarty->assign('error', $error['title'].'<br />'.htmlspecialchars($error['error']));
 }
 $smarty->assign('PAYMENT_EDIT', xtc_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL'));
 
@@ -251,7 +254,7 @@ $smarty->assign('language', $_SESSION['language']);
 $smarty->assign('main_content', $main_content);
 $smarty->caching = 0;
 if (!defined(RM))
-	$smarty->load_filter('output', 'note');
+	$smarty->loadfilter('output', 'note');
 $smarty->display(CURRENT_TEMPLATE.'/index.html');
 include ('includes/application_bottom.php');
 ?>

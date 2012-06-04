@@ -5,7 +5,7 @@
 	{foreach name=aussen item=module_data from=$module_content} 
 		<tr class="products_table"> 
 			<td class="line_bottom" width="1">{if $module_data.PRODUCTS_IMAGE}<a href="{$module_data.PRODUCTS_LINK}"><img src="{$module_data.PRODUCTS_IMAGE}" border="0" alt="{$module_data.PRODUCTS_NAME}" /></a>{/if}</td>
-            <td class="line_bottom" class="main"><a class="products_link" href="{$module_data.PRODUCTS_LINK}">{$module_data.PRODUCTS_NAME}</a>
+            <td class="line_bottom"><a class="products_link" href="{$module_data.PRODUCTS_LINK}">{$module_data.PRODUCTS_NAME}</a>
          		<br />{$module_data.PRODUCTS_DESCRIPTION}<br /> 
 				<span class="products_price">{$module_data.PRODUCTS_PRICE}</span><br />
 				{$module_data.PRODUCTS_TAX_INFO}{$module_data.PRODUCTS_SHIPPING_LINK}<br />

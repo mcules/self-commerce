@@ -3,8 +3,9 @@
 <table width="100%" cellspacing="0" cellpadding="3" border="0">
 <tr>
 {php}$i=0;{/php}
+{assign var=i value='0'}
 {foreach name=aussen item=module_data from=$module_content}
-{php}$i++;{/php}
+{assign var=i value=$i+1}
 <td valign="top">
   <table width="100%" cellspacing="0" cellpadding="0" border="0">
   <tr>
@@ -23,7 +24,9 @@
     </table></td>
   </tr>
 </table></td>
-{php}if ($i==3){ echo "</tr><tr>"; $i=0; }{/php}  
+{if ($i==3)}</tr><tr>
+{assign var=i value='0'}
+{/if}
 {/foreach}
 </tr>
 </table>

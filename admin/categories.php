@@ -1,18 +1,14 @@
 <?php
-
 /* --------------------------------------------------------------
    $Id$
-
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
-
    Copyright (c) 2003 XT-Commerce
    --------------------------------------------------------------
    based on:
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
    (c) 2002-2003 osCommerce(categories.php,v 1.140 2003/03/24); www.oscommerce.com
    (c) 2003  nextcommerce (categories.php,v 1.37 2003/08/18); www.nextcommerce.org
-
    Released under the GNU General Public License
    --------------------------------------------------------------
    Third Party contribution:
@@ -20,21 +16,17 @@
    New Attribute Manager v4b                   Autor: Mike G | mp3man@internetwork.net | http://downloads.ephing.com
    Category Descriptions (Version: 1.5 MS2)    Original Author:   Brian Lowe <blowe@wpcusrgrp.org> | Editor: Lord Illicious <shaolin-venoms@illicious.net>
    Customers Status v3.x  (c) 2002-2003 Copyright Elari elari@free.fr | www.unlockgsm.com/dload-osc/ | CVS : http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/elari/?sortby=date#dirlist
-
    Released under the GNU General Public License
    --------------------------------------------------------------*/
-
-require_once ('includes/application_top.php');
+require ('includes/application_top.php');
 require_once ('includes/classes/'.FILENAME_IMAGEMANIPULATOR);
 require_once ('includes/classes/categories.php');
 require_once (DIR_FS_INC.'xtc_get_tax_rate.inc.php');
 require_once (DIR_FS_INC.'xtc_get_products_mo_images.inc.php');
 require_once (DIR_WS_CLASSES.'currencies.php');
 require_once (DIR_FS_INC.'xtc_wysiwyg.inc.php');
-
 $currencies = new currencies();
 $catfunc = new categories();
-
 //this is used only by group_prices
 if ($_GET['function']) {
 	switch ($_GET['function']) {
@@ -46,7 +38,6 @@ if ($_GET['function']) {
 	}
 	xtc_redirect(xtc_href_link(FILENAME_CATEGORIES, 'cPath='.$_GET['cPath'].'&action=new_product&pID='.(int) $_GET['pID']));
 }
-
 // Multi-Status Change, separated from $_GET['action']
 // --- MULTI STATUS ---
 if (isset ($_POST['multi_status_on'])) {
@@ -64,7 +55,6 @@ if (isset ($_POST['multi_status_on'])) {
 	}
 	xtc_redirect(xtc_href_link(FILENAME_CATEGORIES, 'cPath='.$_GET['cPath'].'&'.xtc_get_all_get_params(array ('cPath', 'action', 'pID', 'cID'))));
 }
-
 if (isset ($_POST['multi_status_off'])) {
 	//set multi_categories status=off
 	if (is_array($_POST['multi_categories'])) {
@@ -81,11 +71,9 @@ if (isset ($_POST['multi_status_off'])) {
 	xtc_redirect(xtc_href_link(FILENAME_CATEGORIES, 'cPath='.$_GET['cPath'].'&'.xtc_get_all_get_params(array ('cPath', 'action', 'pID', 'cID'))));
 }
 // --- MULTI STATUS ENDS ---
-
 //regular actions
 if ($_GET['action']) {
 	switch ($_GET['action']) {
-
 		case 'setcflag' :
 			if (($_GET['flag'] == '0') || ($_GET['flag'] == '1')) {
 				if ($_GET['cID']) {
@@ -95,7 +83,6 @@ if ($_GET['action']) {
 			xtc_redirect(xtc_href_link(FILENAME_CATEGORIES, 'cPath='.$_GET['cPath'].'&cID='.$_GET['cID']));
 			break;
 			//EOB setcflag
-
 		case 'setpflag' :
 			if (($_GET['flag'] == '0') || ($_GET['flag'] == '1')) {
 				if ($_GET['pID']) {
@@ -124,29 +111,22 @@ if ($_GET['action']) {
 			}
 			break;
 			//EOB setsflag
-
 		case 'update_category' :
 			$catfunc->insert_category($_POST, '', 'update');
 			break;
-
 		case 'insert_category' :
 			$catfunc->insert_category($_POST, $current_category_id);
 			break;
-
 		case 'update_product' :
 			$catfunc->insert_product($_POST, '', 'update');
 			break;
-
 		case 'insert_product' :
 			$catfunc->insert_product($_POST, $current_category_id);
 			break;
-
 		case 'edit_crossselling' :
 			$catfunc->edit_cross_sell($_GET);
 			break;
-
 		case 'multi_action_confirm' :
-
 			// --- MULTI DELETE ---
 			if (isset ($_POST['multi_delete_confirm'])) {
 				//delete multi_categories
@@ -163,7 +143,6 @@ if ($_GET['action']) {
 				}
 			}
 			// --- MULTI DELETE ENDS ---
-
 			// --- MULTI MOVE ---
 			if (isset ($_POST['multi_move_confirm'])) {
 				//move multi_categories
@@ -187,7 +166,6 @@ if ($_GET['action']) {
 				xtc_redirect(xtc_href_link(FILENAME_CATEGORIES, 'cPath='.$dest_category_id.'&'.xtc_get_all_get_params(array ('cPath', 'action', 'pID', 'cID'))));
 			}
 			// --- MULTI MOVE ENDS ---	
-
 			// --- MULTI COPY ---
 			if (isset ($_POST['multi_copy_confirm'])) {
 				//copy multi_categories
@@ -252,14 +230,11 @@ if ($_GET['action']) {
 				xtc_redirect(xtc_href_link(FILENAME_CATEGORIES, 'cPath='.$dest_category_id.'&'.xtc_get_all_get_params(array ('cPath', 'action', 'pID', 'cID'))));
 			}
 			// --- MULTI COPY ENDS ---					
-
 			xtc_redirect(xtc_href_link(FILENAME_CATEGORIES, 'cPath='.$_GET['cPath'].'&'.xtc_get_all_get_params(array ('cPath', 'action', 'pID', 'cID'))));
 			break;
 			#EOB multi_action_confirm			
-
 	} //EOB switch action
 } //EOB if action
-
 // check if the catalog image directory exists
 if (is_dir(DIR_FS_CATALOG_IMAGES)) {
 	if (!is_writeable(DIR_FS_CATALOG_IMAGES))
@@ -267,21 +242,12 @@ if (is_dir(DIR_FS_CATALOG_IMAGES)) {
 } else {
 	$messageStack->add(ERROR_CATALOG_IMAGE_DIRECTORY_DOES_NOT_EXIST, 'error');
 }
-
 // end of pre-checks and actions, HTML output follows
+require ('includes/application_top_1.php');
 ?>
-
-<!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html <?php echo HTML_PARAMS; ?>>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=<?php echo $_SESSION['language_charset']; ?>">
-		<title><?php echo TITLE; ?></title>
-		<link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
-		<script type="text/javascript" src="includes/general.js"></script>
-		<script type="text/javascript" src="includes/javascript/categories.js"></script>
+<script type="text/javascript" src="includes/general.js"></script>
+<script type="text/javascript" src="includes/javascript/categories.js"></script>
 <?php
-
-
 // Include WYSIWYG if is activated
 if (USE_WYSIWYG == 'true') {
 	$query = xtc_db_query("SELECT code FROM ".TABLE_LANGUAGES." WHERE languages_id='".$_SESSION['languages_id']."'");
@@ -303,28 +269,11 @@ if (USE_WYSIWYG == 'true') {
 	}
 }
 ?>
-</head>
-<body style="margin: 0; background-color: #FFFFFF">
-
-		<div id="spiffycalendar" class="text"></div>
-		<!-- header //-->
-		<?php require(DIR_WS_INCLUDES . 'header.php'); ?>
-		<!-- header_eof //-->
-
-		<!-- body //-->
-		<table style="border:none; width:100%;" cellspacing="2" cellpadding="2">
-			<tr>
-				<td class="columnLeft2" width="<?php echo BOX_WIDTH; ?>" valign="top">
-    				<table style="border: none; width: <?php echo BOX_WIDTH; ?>;" cellspacing="1" cellpadding="1" class="columnLeft">
-    					<!-- left_navigation //-->
-                        <?php require(DIR_WS_INCLUDES . 'column_left.php'); ?>
-    					<!-- left_navigation_eof //-->
-    				</table>
-				</td>
-				<!-- body_text //-->
-				<td class="boxCenter" width="100%" valign="top"><table width="100%" cellspacing="0" cellpadding="2">
-                    <?php
-
+<div id="spiffycalendar" class="text">
+</div>
+<!-- content -->
+<table width="100%" cellspacing="0" cellpadding="2">
+<?php
 //----- new_category / edit_category (when ALLOW_CATEGORY_DESCRIPTIONS is 'true') -----
 if ($_GET['action'] == 'new_category' || $_GET['action'] == 'edit_category') {
 	include (DIR_WS_MODULES.'new_category.php');
@@ -339,17 +288,11 @@ elseif ($_GET['action'] == 'edit_crossselling') {
 	if (!$cPath) { $cPath = '0'; }
 	include (DIR_WS_MODULES.'categories_view.php');
 }
+  ?>
+  <!-- close tables from above modules //-->
+</table>
+<!-- end content -->
+<?php 
+require(DIR_WS_INCLUDES . 'application_bottom.php'); 
+require(DIR_WS_INCLUDES . 'application_bottom_0.php');
 ?>
-                <!-- close tables from above modules //-->
-				</table></td>
-				<!-- body_text_eof //-->
-			</tr>
-		</table>
-		<!-- body_eof //-->
-
-		<!-- footer //-->
-        <?php require(DIR_WS_INCLUDES . 'footer.php'); ?>
-		<!-- footer_eof //-->
-	</body>
-</html>
-<?php require(DIR_WS_INCLUDES . 'application_bottom.php'); ?>

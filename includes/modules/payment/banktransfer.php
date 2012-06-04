@@ -142,59 +142,87 @@ $this->info=MODULE_PAYMENT_BANKTRANSFER_TEXT_INFO;
 
     function pre_confirmation_check(){
 
-      if ($_POST['banktransfer_fax'] == false) {
+
+      if ($_POST['banktransfer_fax'] == false  && $_POST['recheckok'] != 'true') {
         include(DIR_WS_CLASSES . 'banktransfer_validation.php');
 
         $banktransfer_validation = new AccountCheck;
         $banktransfer_result = $banktransfer_validation->CheckAccount($_POST['banktransfer_number'], $_POST['banktransfer_blz']);
 
-        if ($banktransfer_result > 0 ||  $_POST['banktransfer_owner'] == '') {
-          if ($_POST['banktransfer_owner'] == '') {
-            $error = 'Name des Kontoinhabers fehlt!';
-            $recheckok = '';
-          } else {
-            switch ($banktransfer_result) {
-              case 1: // number & blz not ok
-                $error = MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_ERROR_1;
-                $recheckok = 'true';
-                break;
-              case 5: // BLZ not found
-                $error = MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_ERROR_5;
-                $recheckok = 'true';
-                break;
-              case 8: // no blz entered
-                $error = MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_ERROR_8;
-                $recheckok = '';
-                break;
-              case 9: // no number entered
-                $error = MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_ERROR_9;
-                $recheckok = '';
-                break;
-              default:
-                $error = MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_ERROR_4;
-                $recheckok = 'true';
-                break;
-            }
-          }
 
-          if ($_POST['recheckok'] != 'true') {
+		if ($banktransfer_validation->Bankname != '') {
+                       $this->banktransfer_bankname =  $banktransfer_validation->Bankname;
+                } else {
+                         $this->banktransfer_bankname = xtc_db_prepare_input($_POST['banktransfer_bankname']);
+                }
+
+                if ($_POST['banktransfer_owner'] == '') {
+                        $banktransfer_result = 10;
+                }
+
+          
+          
+          switch ($banktransfer_result) {
+                        case 0: // payment o.k.
+                                $error = 'O.K.';
+                                $recheckok = 'false';
+                                break;
+                        case 1: // number & blz not ok
+                                $error = MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_ERROR_1;
+                                $recheckok = 'false';
+                                break;
+                        case 2: // account number has no calculation method
+                                $error = MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_ERROR_2;
+                                $recheckok = 'true';
+                                break;
+                        case 3: // No calculation method implemented
+                                $error = MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_ERROR_3;
+                                $recheckok = 'true';
+                                break;
+                        case 4: // Number cannot be checked
+                                $error = MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_ERROR_4;
+                                $recheckok = 'true';
+                                break;
+                        case 5: // BLZ not found
+                                $error = MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_ERROR_5;
+                                $recheckok = 'false'; // Set "true" if you have not the latest BLZ table!
+                                break;
+                        case 8: // no BLZ entered
+                                $error = MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_ERROR_8;
+                                $recheckok = 'false';
+                                break;
+                        case 9: // no number entered
+                                $error = MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_ERROR_9;
+                                $recheckok = 'false';
+                                break;
+                        case 10: // no account holder entered
+                                $error = MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_ERROR_10;
+                                $recheckok = 'false';
+                                break;
+                        case 128: // Internal error
+                                $error = 'Internal error, please check again to process your payment';
+                                $recheckok = 'true';
+                                break;
+                        default:
+                                $error = MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_ERROR_4;
+                                $recheckok = 'true';
+                                break;
+                }
+         
+          
+
+          if ($banktransfer_result > 0 && $_POST['recheckok'] != 'true') {
             $payment_error_return = 'payment_error=' . $this->code . '&error=' . urlencode($error) . '&banktransfer_owner=' . urlencode($_POST['banktransfer_owner']) . '&banktransfer_number=' . urlencode($_POST['banktransfer_number']) . '&banktransfer_blz=' . urlencode($_POST['banktransfer_blz']) . '&banktransfer_bankname=' . urlencode($_POST['banktransfer_bankname']) . '&recheckok=' . $recheckok;
-
             xtc_redirect(xtc_href_link(FILENAME_CHECKOUT_PAYMENT, $payment_error_return, 'SSL', true, false));
           }
-        }
-        $this->banktransfer_owner = $_POST['banktransfer_owner'];
-        $this->banktransfer_blz = $_POST['banktransfer_blz'];
-        $this->banktransfer_number = $_POST['banktransfer_number'];
+     	$this->banktransfer_owner = xtc_db_prepare_input($_POST['banktransfer_owner']);
+        $this->banktransfer_blz = xtc_db_prepare_input($_POST['banktransfer_blz']);
+        $this->banktransfer_number = xtc_db_prepare_input($_POST['banktransfer_number']);
         $this->banktransfer_prz = $banktransfer_validation->PRZ;
         $this->banktransfer_status = $banktransfer_result;
-        if ($banktransfer_validation->Bankname != '')
-          $this->banktransfer_bankname = $banktransfer_validation->Bankname;
-        else
-          $this->banktransfer_bankname = $_POST['banktransfer_bankname'];
+
       }
     }
-
     function confirmation() {
       global $banktransfer_val, $banktransfer_owner, $banktransfer_bankname, $banktransfer_blz, $banktransfer_number, $checkout_form_action, $checkout_form_submit;
 
@@ -233,15 +261,18 @@ $this->info=MODULE_PAYMENT_BANKTRANSFER_TEXT_INFO;
     }
 
     function before_process() {
-      return false;
+    	//fp implement checking the post vars
+    	 $this->pre_confirmation_check();
+    	 $this->banktransfer_bankname = xtc_db_prepare_input($_POST['banktransfer_bankname']);
+    	 $this->banktransfer_fax = xtc_db_prepare_input($_POST['banktransfer_fax']);
+    	return false;
     }
 
     function after_process() {
       global $insert_id, $_POST, $banktransfer_val, $banktransfer_owner, $banktransfer_bankname, $banktransfer_blz, $banktransfer_number, $banktransfer_status, $banktransfer_prz, $banktransfer_fax, $checkout_form_action, $checkout_form_submit;
-      xtc_db_query("INSERT INTO banktransfer (orders_id, banktransfer_blz, banktransfer_bankname, banktransfer_number, banktransfer_owner, banktransfer_status, banktransfer_prz) VALUES ('" . $insert_id . "', '" . $_POST['banktransfer_blz'] . "', '" . $_POST['banktransfer_bankname'] . "', '" . $_POST['banktransfer_number'] . "', '" . $_POST['banktransfer_owner'] ."', '" . $_POST['banktransfer_status'] ."', '" . $_POST['banktransfer_prz'] ."')");
+      xtc_db_query("INSERT INTO banktransfer (orders_id, banktransfer_blz, banktransfer_bankname, banktransfer_number, banktransfer_owner, banktransfer_status, banktransfer_prz) VALUES ('" . $insert_id . "', '" . $this->banktransfer_blz . "', '" . $this->banktransfer_bankname . "', '" . $this->banktransfer_number . "', '" . $this->banktransfer_owner ."', '" . $this->banktransfer_status ."', '" . $this->banktransfer_prz ."')");
       if ($_POST['banktransfer_fax'])
-        xtc_db_query("update banktransfer set banktransfer_fax = '" . $_POST['banktransfer_fax'] ."' where orders_id = '" . $insert_id . "'");
-
+        xtc_db_query("update banktransfer set banktransfer_fax = '" . $this->banktransfer_fax ."' where orders_id = '" . $insert_id . "'");
         if ($this->order_status) xtc_db_query("UPDATE ". TABLE_ORDERS ." SET orders_status='".$this->order_status."' WHERE orders_id='".$insert_id."'");
     }
 

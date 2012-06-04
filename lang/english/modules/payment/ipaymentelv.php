@@ -23,6 +23,8 @@
 
   define('MODULE_PAYMENT_IPAYMENTELV_TEXT_TITLE', 'Lastschriftverfahren');
   define('MODULE_PAYMENT_IPAYMENTELV_TEXT_DESCRIPTION', 'Lastschriftverfahren über Ipayment Gateway');
+  define('IPAYMENTELV_ERROR_HEADING', 'There has been an error processing your bank account data:');
+  define('IPAYMENTELV_ERROR_MESSAGE', 'Please check your bank account details!');
   define('MODULE_PAYMENT_IPAYMENTELV_TEXT_BANK', 'Bankeinzug');
   define('MODULE_PAYMENT_IPAYMENTELV_TEXT_EMAIL_FOOTER', 'Hinweis: Sie k&ouml;nnen sich unser Faxformular unter ' . HTTP_SERVER . DIR_WS_CATALOG . MODULE_PAYMENT_IPAYMENTELV_URL_NOTE . ' herunterladen und es ausgef&uuml;llt an uns zur&uuml;cksenden.');
   define('MODULE_PAYMENT_IPAYMENTELV_TEXT_BANK_INFO', 'Bitte beachten Sie, dass das Lastschriftverfahren <b>nur</b> von einem <b>deutschen Girokonto</b> aus m&ouml;glich ist');
@@ -73,6 +75,8 @@ define('MODULE_PAYMENT_IPAYMENTELV_PASSWORD_TITLE' , 'Benutzer-Passwort');
 define('MODULE_PAYMENT_IPAYMENTELV_PASSWORD_DESC' , 'Benutzer-Passwort welches f&uuml;r iPayment verwendet wird');
 define('MODULE_PAYMENT_IPAYMENTELV_USER_ID_TITLE' , 'Benutzer ID');
 define('MODULE_PAYMENT_IPAYMENTELV_USER_ID_DESC' , 'Benutzer ID welche f&uuml;r iPayment verwendet wird');
+define('MODULE_PAYMENT_IPAYMENT_SECURITY_KEY_TITLE', 'Security Key');
+define('MODULE_PAYMENT_IPAYMENT_SECURITY_KEY_DESC', 'If a transaction security key is set for your ipayment application, you have to enter it here to prevent manipulations.');
 define('MODULE_PAYMENT_IPAYMENTELV_CURRENCY_TITLE' , 'Transaktionswährung');
 define('MODULE_PAYMENT_IPAYMENTELV_CURRENCY_DESC' , 'W&auml;hrung, welche f&uuml;r Transaktionen verwendet wird');
 define('MODULE_PAYMENT_IPAYMENTELV_TEXT_BANK_IBAN','IBAN: (optional)');

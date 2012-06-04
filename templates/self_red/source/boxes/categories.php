@@ -8,6 +8,7 @@
 
    Copyright (c) 2003 XT-Commerce
    -----------------------------------------------------------------------------------------
+   (c) 2012	 Self-Commerce www.self-commerce.de
    based on: 
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
    (c) 2002-2003 osCommerce(categories.php,v 1.23 2002/11/12); www.oscommerce.com 
@@ -38,7 +39,7 @@ if (!CacheCheck()) {
 	$cache_id = $_SESSION['language'].$_SESSION['customers_status']['customers_status_id'].$cPath;
 }
 
-if(!$box_smarty->is_cached(CURRENT_TEMPLATE.'/boxes/box_categories.html', $cache_id) || !$cache){
+if(!$box_smarty->iscached(CURRENT_TEMPLATE.'/boxes/box_categories.html', $cache_id) || !$cache){
 
 $box_smarty->assign('tpl_path', 'templates/'.CURRENT_TEMPLATE.'/');
 
@@ -80,7 +81,7 @@ while ($categories = xtc_db_fetch_array($categories_query, true)) {
 //------------------------
 if ($cPath) {
 	$new_path = '';
-	$id = split('_', $cPath);
+	$id = explode('_', $cPath);
 	reset($id);
 	while (list ($key, $value) = each($id)) {
 		unset ($prev_id);

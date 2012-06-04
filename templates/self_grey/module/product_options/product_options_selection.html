@@ -1,0 +1,16 @@
+{if $options!=''}
+
+{foreach name=outer item=options_data from=$options}
+  <div class="optionSelection"> 
+    <div class="optionSelectionHead">{$options_data.NAME}:</div>
+     
+  {foreach key=key_data item=item_data from=$options_data.DATA}
+    <div class="optionSelectionBody">
+    <input type="radio" name="id[{$options_data.ID}]" value="{$item_data.ID}" checked="checked" />
+    {$item_data.TEXT} {if $item_data.PRICE!=''}( {$item_data.PREFIX}{$item_data.PRICE} ){/if}
+    </div>
+  {/foreach}
+  </div>
+{/foreach} 
+
+{/if}

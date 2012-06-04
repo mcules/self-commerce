@@ -8,6 +8,7 @@
 
    Copyright (c) 2003 XT-Commerce
    -----------------------------------------------------------------------------------------
+   (c) 2012	 Self-Commerce www.self-commerce.de
    based on: 
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
    (c) 2002-2003 osCommerce(create_account.php,v 1.63 2003/05/28); www.oscommerce.com
@@ -110,16 +111,17 @@ if (isset ($_POST['action']) && ($_POST['action'] == 'process')) {
 
 // New VAT Check
 	require_once(DIR_WS_CLASSES.'vat_validation.php');
-	$vatID = new vat_validation($vat, '', '', $country,true);
-
+	$vatID = new vat_validation($vat, '', '', $country);
+	
 	$customers_status = $vatID->vat_info['status'];
 	$customers_vat_id_status = $vatID->vat_info['vat_id_status'];
-	$error = $vatID->vat_info['error'];
-
-	if($error==1){
+	$error_vat = $vatID->vat_info['error'];
+	
+	if($error_vat==1){
 	$messageStack->add('create_account', ENTRY_VAT_ERROR);
 	$error = true;
   }
+
 // New VAT CHECK END
 	if (strlen($email_address) < ENTRY_EMAIL_ADDRESS_MIN_LENGTH) {
 		$error = true;
@@ -130,7 +132,15 @@ if (isset ($_POST['action']) && ($_POST['action'] == 'process')) {
 		$error = true;
 
 		$messageStack->add('create_account', ENTRY_EMAIL_ADDRESS_CHECK_ERROR);
-	}
+	}else {
+        $check_email_query = xtc_db_query("select count(*) as total from ".TABLE_CUSTOMERS." where customers_email_address = '".xtc_db_input($email_address)."' and account_type = '0'");
+        $check_email = xtc_db_fetch_array($check_email_query);
+        if ($check_email['total'] > 0) {
+            $error = true;
+
+            $messageStack->add('create_account', ENTRY_EMAIL_ADDRESS_ERROR_EXISTS);
+        }
+    }
 
 	if (strlen($street_address) < ENTRY_STREET_ADDRESS_MIN_LENGTH) {
 		$error = true;
@@ -418,7 +428,7 @@ $smarty->assign('language', $_SESSION['language']);
 $smarty->assign('main_content', $main_content);
 $smarty->caching = 0;
 if (!defined(RM))
-	$smarty->load_filter('output', 'note');
+	$smarty->loadfilter('output', 'note');
 $smarty->display(CURRENT_TEMPLATE.'/index.html');
 include ('includes/application_bottom.php');
 ?>

@@ -1,0 +1,22 @@
+{config_load file="$language/lang_$language.conf" section="reviews"}
+
+<h2>{#heading_reviews_write#}</h2>
+{if $error}<p class="error">{$error}</p>
+{else}
+{$FORM_ACTION}
+<p>
+<strong>{#text_product#}</strong> {$PRODUCTS_NAME}<br />
+<strong>{#text_author#}</strong> {$AUTHOR}
+</p>
+<div class="container">
+<h3>{#text_rating#}</h3>
+<p>{#text_bad#}&nbsp;{$INPUT_RATING}{#text_good#}</p>
+<h3>{#text_input#}</h3>
+<div class="floatbox">
+  <p class="longTextarea">{$INPUT_TEXT}</p>
+</div>
+<p>{#text_note#}</p>
+</div><br class="clearHere" />
+<p>{$BUTTON_BACK}&nbsp;{$BUTTON_SUBMIT}</p>
+{$FORM_END}
+{/if}

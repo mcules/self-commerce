@@ -391,8 +391,8 @@ class categories {
 
 		$customers_status_array = xtc_get_customers_statuses();
 		for ($i = 0, $n = sizeof($customers_status_array); $i < $n; $i ++) {
-			if (isset($customers_statuses_array[$i]['id']))
-				xtc_db_query("delete from personal_offers_by_customers_status_".$customers_statuses_array[$i]['id']." where products_id = '".xtc_db_input($product_id)."'");
+			if (isset($customers_status_array[$i]['id']))
+				xtc_db_query("delete from personal_offers_by_customers_status_".$customers_status_array[$i]['id']." where products_id = '".xtc_db_input($product_id)."'");
 		}
 
 		$product_reviews_query = xtc_db_query("select reviews_id from ".TABLE_REVIEWS." where products_id = '".xtc_db_input($product_id)."'");
@@ -625,7 +625,10 @@ class categories {
 			$sql_data_array = xtc_array_merge($sql_data_array, $update_sql_data);
 			xtc_db_perform(TABLE_PRODUCTS, $sql_data_array, 'update', 'products_id = \''.xtc_db_input($products_id).'\'');
 		}
-
+// ### MOD admin_specials - Modules
+		require_once("includes/modules/categories_specials.php");
+		saveSpecialsData($products_id);
+		
 		$languages = xtc_get_languages();
 		// Here we go, lets write Group prices into db
 		// start

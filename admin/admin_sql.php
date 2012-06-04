@@ -12,45 +12,27 @@
    Released under the GNU General Public License 
    --------------------------------------------------------------*/
 require ('includes/application_top.php');
+require ('includes/application_top_1.php');
 ?>
-<!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html <?php echo HTML_PARAMS; ?>>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=<?php echo $_SESSION['language_charset']; ?>">
-    <title>
-      <?php echo TITLE; ?>
-    </title>
-    <link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
-    <style type="text/css">.h2 { font-family: Trebuchet MS,Palatino,Times New Roman,serif; font-size: 13pt; font-weight: bold; }.h3 { font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 9pt; font-weight: bold; }
-    </style>
-  </head>
-  <body marginwidth="0" marginheight="0" topmargin="0" bottommargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFFF">
-    <!-- header //-->
-    <?php require(DIR_WS_INCLUDES . 'header.php'); ?>
-    <!-- header_eof //-->
-    <!-- body //-->
-    <table border="0" width="100%" cellspacing="2" cellpadding="2">
-      <tr>
-        <td class="columnLeft2" width="<?php echo BOX_WIDTH; ?>" valign="top">
-          <table border="0" width="<?php echo BOX_WIDTH; ?>" cellspacing="1" cellpadding="1" class="columnLeft">
-            <!-- left_navigation //-->
-            <?php require(DIR_WS_INCLUDES . 'column_left.php'); ?>
-            <!-- left_navigation_eof //-->
-          </table></td>
-        <!-- body_text //-->
-        <td class="boxCenter" width="100%" valign="top">
- <table border="0" width="100%" cellspacing="0" cellpadding="0">
+<table border="0" width="100%" cellspacing="0" cellpadding="2">
   <tr>
-    <td width="80" rowspan="2"><?php echo xtc_image(DIR_WS_ICONS.'heading_configuration.gif'); ?></td>
-    <td class="pageHeading"><?php echo ADMIN_SQL; ?></td>
-  </tr>
-  <tr>
-    <td class="main" valign="top"><?php echo ADMIN_SQL_DESC; ?></td>
+    <td>
+      <table border="0" width="100%" cellspacing="0" cellpadding="2">
+        <tr>
+          <td width="80" rowspan="2">
+            <?php echo xtc_image(DIR_WS_ICONS.'heading_news.gif'); ?></td>
+          <td class="pageHeading">
+            <?php echo ADMIN_SQL; ?></td>
+        </tr>
+        <tr>
+          <td class="main" valign="top">
+            <?php echo ADMIN_SQL_DESC; ?></td>
+        </tr>
+      </table></td>
   </tr>
 </table>
 <!-- sql test -->
 <span class="main">
-
 <?php
 if(isset($_POST['go'])){
 	if(ini_get('magic_quotes_gpc') == 1){
@@ -64,31 +46,20 @@ if(isset($_POST['go'])){
 		echo "<br /><font color=\"red\"><b>" . mysql_error() ."</b></font>";
 	}
 }
-?>
-
-<form name="sql_editor" action="admin_sql.php" method="post">
-
-<br>
-<br>
-
-<?php echo ADMIN_SQL_TEXT ?><br>
+  ?>
+  <form name="sql_editor" action="admin_sql.php" method="post">
+    <br>
+    <br>
+    <?php echo ADMIN_SQL_TEXT ?>
+    <br>
 <textarea name="sql_query" cols="120" rows="10"></textarea>
-<br>
-<br>
-ohne Funktion im Demoshop: <input type="submit" name="" value="absenden" />
-</form>
-
+    <br>
+    <br>
+    <input type="submit" name="go" value="OK" />
+  </form>
 </span>
 <!--sql test -->
-         
-          </td>
-        <!-- body_text_eof //-->
-      </tr>
-    </table>
-    <!-- body_eof //-->
-    <!-- footer //-->
-    <?php require(DIR_WS_INCLUDES . 'footer.php'); ?>
-    <!-- footer_eof //-->
-  </body>
-</html>
-<?php require(DIR_WS_INCLUDES . 'application_bottom.php'); ?>
+<?php 
+require(DIR_WS_INCLUDES . 'application_bottom.php'); 
+require(DIR_WS_INCLUDES . 'application_bottom_0.php');
+?>

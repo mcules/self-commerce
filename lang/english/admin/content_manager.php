@@ -12,7 +12,16 @@
    
    Released under the GNU General Public License 
    --------------------------------------------------------------*/
-   
+  /* <!-- CONTENT-MANAGER WITH CHILDREN BY RENE JANSEN --> */
+ define('TABLE_HEADING_CONTENT_CHILDS', 'Children');
+ define('TABLE_HEADING_CONTENT_TYP','Link:');
+ define('TABLE_HEADING_CONTENT_URL','URL');
+ define('TABLE_HEADING_LINK_TARGET','Target');
+ define('TEXT_TYP','Content as Link:');
+ define('TEXT_URL','URL');
+ define('TEXT_LINK_TARGET','Target');
+ define('TEXT_TYP_DESCRIPTION','Check this for Linkfunction on.');
+  
  define('HEADING_TITLE','Content Manager');
  define('HEADING_CONTENT','Site content');
  define('HEADING_PRODUCTS_CONTENT','Products content');

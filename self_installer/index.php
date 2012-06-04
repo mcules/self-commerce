@@ -1,21 +1,18 @@
 <?php
-/* --------------------------------------------------------------
-   $Id: start.php 10 2012-04-28 03:21:05Z deisold $
+  /* --------------------------------------------------------------
+   $Id: index.php 1220 2005-09-16 15:53:13Z mz $   
 
-   Self-Commerce - Fresh up your eCommerce
-   http://www.self-commerce.de
-   Copyright (c) 2012 Self-Commerce
+   XT-Commerce - community made shopping
+   http://www.xt-commerce.com
+
+   Copyright (c) 2003 XT-Commerce
    --------------------------------------------------------------
    based on:
-   (c) 2003 nextcommerce (index.php,v 1.18 2003/08/17); www.nextcommerce.org
-   (c) 2005 XT-Commerce www.xt-commerce.com
+   (c) 2003	 nextcommerce (index.php,v 1.18 2003/08/17); www.nextcommerce.org
    
    Released under the GNU General Public License 
    --------------------------------------------------------------*/
    
-if (file_exists('../includes/configure.php')) {
-    header("Location:update.php");
-}
   require('includes/application.php');
 
   // include needed functions
@@ -62,7 +59,7 @@ if (file_exists('../includes/configure.php')) {
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<title>Self-Commerce Installer - Welcome</title>
+<title>XT-Commerce Installer - Welcome</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <style type="text/css">
 <!--
@@ -75,8 +72,8 @@ if (file_exists('../includes/configure.php')) {
 .left_top {background-color: #d9e7f9; border-bottom: 1px solid #cbcfde; font-family: Verdana, Arial, san-serif; font-size: 10px; padding: 20px 10px 20px 10px;}
 .left_top2 {background-color: #d9e7f9; font-family: Verdana, Arial, san-serif; font-size: 10px; padding: 20px 10px 20px 10px;}
 .frame2 {border: 1px solid #d9e7f9; border-left: 0px;}
-.green {border: 1px solid #66CC33; background-color: #CCFF99; padding: 2px;}
-.red {border: 1px solid #ff6600; background-color: #FFCC99; padding: 2px;}
+.green {border: 1px solid #66CC33; background-color: #CCFF99; padding: 2px; font-family: Verdana, Arial, Helvetica, san-serif; font-size: 10px;}
+.red {border: 1px solid #ff6600; background-color: #FFCC99; padding: 2px; font-family: Verdana, Arial, Helvetica, san-serif; font-size: 10px;}
 .h1 {font-family: Verdana, Arial, Helvetica, san-serif; font-size: 12px;}
 .h1:hover {color: #ff6600;}
 h2 {font-family: Verdana, Arial, Helvetica, san-serif; font-size: 10px; font-weight: normal;}
@@ -109,7 +106,7 @@ h2 {font-family: Verdana, Arial, Helvetica, san-serif; font-size: 10px; font-wei
 					<td height="17" class="blocktitle" align="center">Self-Commerce Install</td>
 				</tr>
 				<tr>
-					<td class="left_top" ><img src="images/icons/arrow02.gif" width="13" height="6">&nbsp;<?php echo BOX_LANGUAGE; ?></td>
+					<td class="left_top" ><img src="images/icons/arrow02.gif" width="13" height="6" alt="Arrow" />&nbsp;<?php echo BOX_LANGUAGE; ?></td>
 				</tr>
 			</table>
 		</td>
@@ -121,7 +118,7 @@ h2 {font-family: Verdana, Arial, Helvetica, san-serif; font-size: 10px; font-wei
 						<br />
 						<table width="100%" class="green"  border="0" cellpadding="2" cellspacing="2">
 							<tr>
-								<td width="1"><img src="images/install.gif" border="0"></td>
+								<td width="1"><img src="images/install.gif" border="0" alt="install" /></td>
 								<td><a class="h1" href="http://selfxtc.ne-xt.de" target="_blank">Installationsanleitung auf selfxtc.ne-xt.de</a></td>
                   			</tr>
                 		</table>
@@ -166,7 +163,7 @@ $block7=false;
  if ($block1 == true) $message .= '<hr class="lineRed">';
  
  $status='OK';
- if ($error_flag==true) $status='<strong><font color="ff0000">ERROR</font></strong>';
+ if ($error_flag==true) $status='<strong><font color="#ff0000">ERROR</font></strong>';
  $ok_message.='FILE Permissions .............................. '.$status.'<hr class="lineGreen">';
 
 // neu anordnung folder permissions
@@ -297,7 +294,7 @@ $block7=false;
  if ($block7 == true) $message .= '<hr class="lineRed">';
 
  $status='OK';
- if ($folder_flag==true) $status='<strong><font color="ff0000">ERROR</font></stong>';
+ if ($folder_flag==true) $status='<strong><font color="#ff0000">ERROR</font></stong>';
  $ok_message.='FOLDER Permissions .............................. '.$status.'<hr class="lineGreen">';
 
  // check PHP-Version
@@ -312,13 +309,13 @@ $block7=false;
  }
 
  $status='OK';
- if ($php_flag==true) $status='<strong><font color="ff0000">ERROR</font></strong>';
+ if ($php_flag==true) $status='<strong><font color="#ff0000">ERROR</font></strong>';
  $ok_message.='PHP VERSION .............................. '.$status.'<hr class="lineGreen">';
 
 
  $gd=gd_info();
 
- if ($gd['GD Version']=='') $gd['GD Version']='<strong><font color="ff0000">ERROR NO GDLIB FOUND!</font></strong>';
+ if ($gd['GD Version']=='') $gd['GD Version']='<strong><font color="#ff0000">ERROR NO GDLIB FOUND!</font></strong>';
 
  $status=$gd['GD Version'].' <br />  if GDlib Version < 2+ , klick here for further instructions';
 
@@ -328,28 +325,30 @@ $block7=false;
  if ($gd['GIF Read Support']==1 or $gd['GIF Support']==1) {
  $status='OK';
  } else {
- $status='<strong><font color="ff0000">ERROR</font></strong><br />You don\'t have GIF support within your GDlib, you won\'t be able to use GIF images, and GIF overlayfunctions in XT-Commerce!';
+ $status='<strong><font color="#ff0000">ERROR</font></strong><br />You don\'t have GIF support within your GDlib, you won\'t be able to use GIF images, and GIF overlayfunctions in XT-Commerce!';
  }
  $ok_message.='GDlib GIF-Support .............................. '.$status.'<hr class="lineGreen">';
-
+?>
+<td class="red">
+<?php
 if ($error_flag==true) {
 ?>
-        <td class="red">
-<span class="small"><strong>Attention:</strong><br />
+        
+<strong>Attention:</strong><br />
 <?php echo $message; ?>
-</span>
-</td>
+
+
 <?php } ?>
-</tr>
+</td></tr>
 <tr>
 <?php
 if ($ok_message!='') {
 ?>
 <td height="20"></td></tr><tr>
 <td class="green">
-<span class="small"><strong>Checking:</strong><br />
+<strong>Checking:</strong><br />
 <?php echo $ok_message; ?>
-</span>
+
 </td>
 <?php } ?>
 </tr>
@@ -376,24 +375,24 @@ if ($ok_message!='') {
 <?php
   }
 ?>
-            </font> <form name="language" method="post" action="index.php">
+            <form name="language" method="post" action="index.php">
 
               <table width="300" border="0" cellpadding="0" cellspacing="4">
                 <tr>
-                  <td width="98" class="small"><img src="images/icons/arrow02.gif" width="13" height="6">German</td>
-                  <td width="192"><img src="../lang/german/icon.gif" width="24" height="16">
+                  <td width="98" class="small"><img src="images/icons/arrow02.gif" width="13" height="6" alt="arrow" />German</td>
+                  <td width="192"><img src="../lang/german/icon.gif" width="24" height="16" alt="arrow" />
                     <?php echo xtc_draw_radio_field_installer('LANGUAGE', 'german'); ?>
                   </td>
                 </tr>
                 <tr>
-                  <td class="small"><img src="images/icons/arrow02.gif" width="13" height="6">English</td>
-                  <td><img src="../lang/english/icon.gif" width="24" height="16">
+                  <td class="small"><img src="images/icons/arrow02.gif" width="13" height="6" alt="arrow" />English</td>
+                  <td><img src="../lang/english/icon.gif" width="24" height="16" alt="icon" />
                     <?php echo xtc_draw_radio_field_installer('LANGUAGE', 'english'); ?> </td>
                 </tr>
               </table>
 
               <input type="hidden" name="action" value="process">
-              <p> <?php if ($error_flag==false) { ?><input type="image" src="images/button_continue.gif" border="0" alt="Continue"> <?php } ?><br />
+              <p> <?php if ($error_flag==false) { ?><input type="image" src="images/button_continue.gif" alt="Continue" /> <?php } ?><br />
                 <br />
               </p>
             </form>

@@ -52,7 +52,7 @@
 	Self-Commerce is a free open source e-Commerce System.
 	Based on XT:Commerce http://www.xtcommerce.de
 	xt:c created by Mario Zanier & Guido Winger and licensed under GNU/GPL.
-	modified to Self-Copmmerce by Maik Schmidt http://www.self-commerce.de and Tina Klassen http://www.insideoutside.de 
+	modified to Self-Commerce by Maik Schmidt http://www.self-commerce.de and Tina Klassen http://www.insideoutside.de 
 	Information and contribution of SELF-Commerce at http://www.self-commerce.de
 -->
 <meta name="generator" content="(c) by <?php echo PROJECT_VERSION; ?> , http://www.self-commerce.de" />
@@ -286,14 +286,14 @@ if (strstr($PHP_SELF, FILENAME_PRODUCT_REVIEWS_INFO )) {
 ?>
 <script type="text/javascript" src="<?php echo 'includes/javascript/mootool.js'; ?>"></script>
 <script type="text/javascript" src="<?php echo 'includes/javascript/slimbox.js'; ?>"></script>
-<link rel="stylesheet" type="text/css" href="<?php echo 'includes/stylesheet/slimbox.css'; ?>" />
+<link rel="stylesheet" type="text/css" href="<?php echo 'templates/'.CURRENT_TEMPLATE.'/slimbox.css'; ?>" />
 <?php }
 
 if (strstr($PHP_SELF, FILENAME_PRODUCT_INFO )) {
 ?>
 <script type="text/javascript" src="<?php echo 'includes/javascript/mootool.js'; ?>"></script>
 <script type="text/javascript" src="<?php echo 'includes/javascript/slimbox.js'; ?>"></script>
-<link rel="stylesheet" type="text/css" href="<?php echo 'includes/stylesheet/slimbox.css'; ?>" />
+<link rel="stylesheet" type="text/css" href="<?php echo 'templates/'.CURRENT_TEMPLATE.'/slimbox.css'; ?>" />
 <?php } 
 // slideshow topangebote
 if (strstr($PHP_SELF, FILENAME_DEFAULT )) {
@@ -402,8 +402,10 @@ $smarty->assign('store_name',TITLE);
 		$handle = opendir(DIR_FS_CATALOG."templates/");
 		$t_array = array();
 		while (false !== ($file = readdir($handle))) {
-			if(!preg_match("/^\./", $file)) {
-			$t_array[] = $file;
+		  if(is_dir(DIR_FS_CATALOG."templates/".$file)){
+			 if(!preg_match("/^\./", $file)) {
+			   $t_array[] = $file;
+			 }
 			}
 		}
 		sort($t_array);
@@ -416,7 +418,7 @@ $smarty->assign('store_name',TITLE);
 		for(reset($para); $k = key($para); next($para)) {
 			$hidden .= sprintf("<input type='hidden' name='%s' value='%s' />", $k, $para[$k]);
 		}
-		$t_select = xtc_draw_pull_down_menu('tpl', $tpls, CURRENT_TEMPLATE, 'onchange=this.form.submit()');
+		$t_select = xtc_draw_pull_down_menu('tpl', $tpls, CURRENT_TEMPLATE, 'onchange="this.form.submit()"');
 		$smarty->assign('TEMPLATE_SWITCHER', sprintf("%s%s <noscript>%s</noscript>%s</form>", xtc_draw_form('template-switcher', $_SERVER['PHP_SELF'], 'get'), $t_select,  xtc_image_submit('button_continue.gif', IMAGE_BUTTON_CONTINUE), $hidden));
     
 
