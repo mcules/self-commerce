@@ -136,7 +136,7 @@ define('ENTRY_PASSWORD_CURRENT_ERROR', 'Ihr Passwort muss aus mindestens ' . ENT
 define('ENTRY_PASSWORD_NEW_TEXT', '*');
 define('ENTRY_PASSWORD_NEW_ERROR', 'Ihr neues Passwort muss aus mindestens ' . ENTRY_PASSWORD_MIN_LENGTH . ' Zeichen bestehen.');
 define('ENTRY_PASSWORD_NEW_ERROR_NOT_MATCHING', 'Ihre Passw&ouml;rter stimmen nicht &uuml;berein.');
-define('ERROR_DATENSG_NOT_ACCEPTED', 'Sofern Sie die Kenntnisnahme unserer Informationen zu den Datenschutzbestimmung nicht bestätigen, können wir Ihren Account nicht einrichten!');
+define('ERROR_DATENSG_NOT_ACCEPTED', 'Sofern Sie die Kenntnisnahme unserer Informationen zu den Datenschutzbestimmung nicht bestï¿½tigen, kï¿½nnen wir Ihren Account nicht einrichten!');
 /*
  * 
  *  RESTULTPAGES
@@ -181,7 +181,7 @@ define('IMAGE_BUTTON_ADD_ADDRESS', 'Neue Adresse');
 define('IMAGE_BUTTON_BACK', 'Zur&uuml;ck');
 define('IMAGE_BUTTON_CHANGE_ADDRESS', 'Adresse &auml;ndern');
 define('IMAGE_BUTTON_CHECKOUT', 'Kasse');
-define('IMAGE_BUTTON_CONFIRM_ORDER', 'Bestellung best&auml;tigen');
+define('IMAGE_BUTTON_CONFIRM_ORDER', 'Jetzt kaufen');
 define('IMAGE_BUTTON_CONTINUE', 'Weiter');
 define('IMAGE_BUTTON_DELETE', 'L&ouml;schen');
 define('IMAGE_BUTTON_LOGIN', 'Anmelden');
@@ -257,6 +257,7 @@ define('SUB_TITLE_OT_DISCOUNT','Rabatt:');
 
 define('TAX_ADD_TAX','inkl. ');
 define('TAX_NO_TAX','zzgl. ');
+define('TAX_SHORT_DISPLAY',' MwSt. ');
 
 define('NOT_ALLOWED_TO_SEE_PRICES','Sie k&ouml;nnen als Gast (bzw mit Ihrem derzeitigen Status) keine Preise sehen');
 define('NOT_ALLOWED_TO_SEE_PRICES_TEXT','Sie haben keine Erlaubnis Preise zu sehen, erstellen Sie bitte ein Kundenkonto.');
@@ -280,7 +281,7 @@ define('JS_AT_LEAST_ONE_INPUT', '* Eines der folgenden Felder muss ausgef&uuml;l
 define('AT_LEAST_ONE_INPUT', 'Eines der folgenden Felder muss ausgef&uuml;llt werden:<br />Stichworte mit mindestens drei Zeichen<br />Preis ab<br />Preis bis<br />');
 define('JS_INVALID_FROM_DATE', '* ung&uuml; Datum (von)\n');
 define('JS_INVALID_TO_DATE', '* ung&uuml; Datum (bis)\n');
-define('JS_TO_DATE_LESS_THAN_FROM_DATE', '* Das Datum(von) muß größer oder gleich sein als das Datum (bis)\n');
+define('JS_TO_DATE_LESS_THAN_FROM_DATE', '* Das Datum(von) muï¿½ grï¿½ï¿½er oder gleich sein als das Datum (bis)\n');
 define('JS_PRICE_FROM_MUST_BE_NUM', '* \"Preis ab\" muss eine Zahl sein\n\n');
 define('JS_PRICE_TO_MUST_BE_NUM', '* \"Preis bis\" muss eine Zahl sein\n\n');
 define('JS_PRICE_TO_LESS_THAN_PRICE_FROM', '* Preis bis muss gr&ouml;sser oder gleich Preis ab sein.\n');
@@ -450,7 +451,15 @@ define('TAX_INFO_ADD','zzgl. %s MwSt');
 define('SHIPPING_EXCL','exkl.');
 define('SHIPPING_COSTS','Versandkosten');
 
-define('IMAGE_BUTTON_REMOVE_PRODUCT','Artikel aus Warenkorb löschen?');
+define('SHIPPING_TIME','Lieferzeit: ');
+define('MORE_INFO','[Mehr]');
+
+define('HEADER_QTY', 'Anzahl');
+define('HEADER_ARTICLE', 'Artikel');
+define('HEADER_SINGLE', 'Einzelpreis');
+define('HEADER_TOTAL','Summe');
+
+define('IMAGE_BUTTON_REMOVE_PRODUCT','Artikel aus Warenkorb lï¿½schen?');
 define('BOX_HEADING_SEARCH','Suchen');
 // kdn sortierfeld
 define('SORT_CHANGE','Sortierung w&auml;hlen');

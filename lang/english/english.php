@@ -181,7 +181,7 @@ define('IMAGE_BUTTON_ADD_ADDRESS', 'New address');
 define('IMAGE_BUTTON_BACK', 'Back');
 define('IMAGE_BUTTON_CHANGE_ADDRESS', 'Change address');
 define('IMAGE_BUTTON_CHECKOUT', 'Checkout');
-define('IMAGE_BUTTON_CONFIRM_ORDER', 'Confirm order');
+define('IMAGE_BUTTON_CONFIRM_ORDER', 'Buy now');
 define('IMAGE_BUTTON_CONTINUE', 'Next');
 define('IMAGE_BUTTON_DELETE', 'Delete');
 define('IMAGE_BUTTON_LOGIN', 'Login');
@@ -257,6 +257,7 @@ define('SUB_TITLE_OT_DISCOUNT','Discount:');
 
 define('TAX_ADD_TAX','incl. ');
 define('TAX_NO_TAX','plus ');
+define('TAX_SHORT_DISPLAY',' VAT ');
 
 define('NOT_ALLOWED_TO_SEE_PRICES','You do not have the permission to see the prices ');
 define('NOT_ALLOWED_TO_SEE_PRICES_TEXT','You do not have the permission to see the prices, please create an account.');
@@ -449,6 +450,9 @@ define('TAX_INFO_EXCL','excl. %s Tax');
 define('TAX_INFO_ADD','plus. %s Tax');
 define('SHIPPING_EXCL','excl.');
 define('SHIPPING_COSTS','Shipping costs');
+
+define('SHIPPING_TIME','Delivery Time: ');
+define('MORE_INFO','[More]');
 
 define('IMAGE_BUTTON_REMOVE_PRODUCT','Remove Product from Cart?');
 define ('BOX_HEADING_SEARCH','Search');
