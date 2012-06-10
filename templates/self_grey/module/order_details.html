@@ -4,7 +4,9 @@
 <table class="orderDetailsTable" width="100%" border="0" cellspacing="0" cellpadding="6">
 	<thead>
 		<tr>
+			<th class="center"></th>
 			<th class="left">{#text_qty#}</th>
+			<th class="center"></th>
 			<th class="left">{#text_article#}</th>
 			<th class="right">{#text_single#}</th>
 			<th class="right">{#text_total#}</th>
@@ -14,9 +16,9 @@
 	<tbody>
 		{foreach name=aussen item=module_data from=$module_content}
 			<tr class="{cycle values="prodRow1,prodRow2"}">
-				<td valign="top" class="main" align="center" width="21">{$module_data.MINUS}</td>
+				<td class="quantity">{$module_data.MINUS}</td>
 				<td class="quantity">{$module_data.PRODUCTS_QTY}</td>
-				<td valign="top" class="main" align="center" width="21">{$module_data.PLUS}</td>
+				<td class="quantity">{$module_data.PLUS}</td>
 				<td class="productName">
 					<strong><a href="{$module_data.PRODUCTS_LINK}">{$module_data.PRODUCTS_NAME}</a></strong>
 					{if $module_data.ATTRIBUTES!=''}
@@ -25,7 +27,7 @@
 								<tr>
 									<td class="attribute"><strong>{$item_data.NAME}:</strong></td>
 									<td class="value">{$item_data.VALUE_NAME}</td>
-									<td class="main" align="left" width="1%">{$item_data.ALTER}</td> 
+									<td class="value" width="1%">{$item_data.ALTER}</td> 
 								</tr>
 							{/foreach}
 						</table>
@@ -39,8 +41,7 @@
 	</tbody>
 	<tfoot>
 		<tr>
-			<td colspan="4" class="subTotal">{$UST_CONTENT}<strong>{$TOTAL_CONTENT}</strong>{if $SHIPPING_INFO}{$SHIPPING_INFO}{/if}</td>
-			<td class="subTotal">&nbsp;</td>
+			<td colspan="7" class="subTotal">{$UST_CONTENT}<strong>{$TOTAL_CONTENT}</strong>{if $SHIPPING_INFO}{$SHIPPING_INFO}{/if}</td>
 		</tr>
 	</tfoot>
 </table>
