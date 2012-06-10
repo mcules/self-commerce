@@ -2,41 +2,45 @@
 {config_load file="$language/lang_$language.conf" section="product_info"}
 {* Da die Tabelle auschließlich der Ausgabe einer Tabelle dient und nicht für Layoutzwecke, wird diese hier übernommen. *}
 <table class="orderDetailsTable" width="100%" border="0" cellspacing="0" cellpadding="6">
-<thead>
-  <tr>
-    <th class="left">{#text_qty#}</th>
-    <th class="left">{#text_article#}</th>
-    <th class="right">{#text_single#}</th>
-    <th class="right">{#text_total#}</th>
-    <th class="center">{#text_remove#}</th>
-  </tr>
-</thead>
-<tbody>
-  {foreach name=aussen item=module_data from=$module_content}
-  <tr class="{cycle values="prodRow1,prodRow2"}">
-    <td class="quantity">{$module_data.PRODUCTS_QTY}</td>
-    <td class="productName">
-		<strong><a href="{$module_data.PRODUCTS_LINK}">{$module_data.PRODUCTS_NAME}</a></strong>
-		{if $module_data.ATTRIBUTES!=''}
-      		<table class="productAttributes" width="100%" border="0" cellspacing="0" cellpadding="0">
-        	{foreach key=key_data item=item_data from=$module_data.ATTRIBUTES}
-        	<tr>
-          		<td class="attribute"><strong>{$item_data.NAME}:</strong></td>
-          		<td class="value">{$item_data.VALUE_NAME}</td>
-        	</tr>
-        	{/foreach}
-      		</table>
-       {/if}</td>
-    <td class="singlePrice">{$module_data.PRODUCTS_SINGLE_PRICE}</td>
-    <td class="totalPrice">{$module_data.PRODUCTS_PRICE}</td>
-    <td class="delete">{$module_data.BOX_DELETE}</td>
-  </tr>
-  {/foreach}
-  </tbody>
-  <tfoot>
-  <tr>
-    <td colspan="4" class="subTotal">{$UST_CONTENT}<strong>{$TOTAL_CONTENT}</strong>{if $SHIPPING_INFO}{$SHIPPING_INFO}{/if}</td>
-    <td class="subTotal">&nbsp;</td>
-  </tr>
-  </tfoot>
+	<thead>
+		<tr>
+			<th class="left">{#text_qty#}</th>
+			<th class="left">{#text_article#}</th>
+			<th class="right">{#text_single#}</th>
+			<th class="right">{#text_total#}</th>
+			<th class="center">{#text_remove#}</th>
+		</tr>
+	</thead>
+	<tbody>
+		{foreach name=aussen item=module_data from=$module_content}
+			<tr class="{cycle values="prodRow1,prodRow2"}">
+				<td valign="top" class="main" align="center" width="21">{$module_data.MINUS}</td>
+				<td class="quantity">{$module_data.PRODUCTS_QTY}</td>
+				<td valign="top" class="main" align="center" width="21">{$module_data.PLUS}</td>
+				<td class="productName">
+					<strong><a href="{$module_data.PRODUCTS_LINK}">{$module_data.PRODUCTS_NAME}</a></strong>
+					{if $module_data.ATTRIBUTES!=''}
+						<table class="productAttributes" width="100%" border="0" cellspacing="0" cellpadding="0">
+							{foreach key=key_data item=item_data from=$module_data.ATTRIBUTES}
+								<tr>
+									<td class="attribute"><strong>{$item_data.NAME}:</strong></td>
+									<td class="value">{$item_data.VALUE_NAME}</td>
+									<td class="main" align="left" width="1%">{$item_data.ALTER}</td> 
+								</tr>
+							{/foreach}
+						</table>
+					{/if}
+				</td>
+				<td class="singlePrice">{$module_data.PRODUCTS_SINGLE_PRICE}</td>
+				<td class="totalPrice">{$module_data.PRODUCTS_PRICE}</td>
+				<td class="delete">{$module_data.BOX_DELETE}</td>
+			</tr>
+		{/foreach}
+	</tbody>
+	<tfoot>
+		<tr>
+			<td colspan="4" class="subTotal">{$UST_CONTENT}<strong>{$TOTAL_CONTENT}</strong>{if $SHIPPING_INFO}{$SHIPPING_INFO}{/if}</td>
+			<td class="subTotal">&nbsp;</td>
+		</tr>
+	</tfoot>
 </table>

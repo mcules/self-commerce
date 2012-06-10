@@ -121,6 +121,27 @@ if ($_SESSION['cart']->show_total() > 0 ) {
   }
  }
 }
+$special_query = xtc_db_query("SELECT p.products_id, pd.products_name, p.products_image, p.products_tax_class_id, p.products_price
+                               FROM products_to_categories ptc, categories_description cd, products p, products_description pd
+                               WHERE cd.categories_name='Warenkorb'
+                               AND cd.language_id=2
+                               AND ptc.categories_id=cd.categories_id
+                               AND p.products_id=ptc.products_id
+                               AND pd.products_id=p.products_id
+                               AND pd.language_id='".$_SESSION['languages_id']."'");
+
+if (xtc_db_num_rows($special_query)) {
+	$module_content = array ();
+	while ($special = xtc_db_fetch_array($special_query)) {
+		$special_image = '<a href="'.xtc_href_link(basename($PHP_SELF), xtc_get_all_get_params(array ('action')).'action=buy_now&BUYproducts_id='.$special['products_id'], 'NONSSL').'">'.xtc_image(DIR_WS_THUMBNAIL_IMAGES.$special['products_image'], $special['products_name']).'</a>';
+		$special_buy_now = '<a href="'.xtc_href_link(basename($PHP_SELF), xtc_get_all_get_params(array ('action')).'action=buy_now&BUYproducts_id='.$special['products_id'], 'NONSSL').'">'.xtc_image_button('button_buy_now.gif', TEXT_BUY.$special['products_name'].TEXT_NOW).'</a>';
+		$module_content[] = array ('SPECIAL_NAME' => $special['products_name'], 'SPECIAL_ID' => $special['products_id'], 'SPECIAL_IMAGE' => $special_image, 'SPECIAL_PRICE' => $xtPrice->xtcGetPrice($special['products_id'], $format = true, 1, $special['products_tax_class_id'], $special['products_price']), 'SPECIAL_BUY_NOW' => $special_buy_now);
+	}
+} else {
+	$module_content = false;
+}
+$smarty->assign('module_content', $module_content);
+
 	if ($_GET['info_message'])
 		$smarty->assign('info_message', str_replace('+', ' ', htmlspecialchars($_GET['info_message'])));
 	$smarty->assign('BUTTON_RELOAD', xtc_image_submit('button_update_cart.gif', IMAGE_BUTTON_UPDATE_CART));

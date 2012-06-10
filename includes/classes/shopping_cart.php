@@ -249,6 +249,39 @@ class shoppingCart {
         $this->cartID = $this->generate_cart_id();
     }
 
+	function modify_attributes($products_id, $qty = '1', $attributes = '', $notify = true) {
+		$contemp = array();
+		$new_key = '';
+		while (list ($key, $value) = each($this->contents)) {
+			if ($key === $products_id) {
+				$temp = preg_split("(\{|\})",$products_id);
+				$new_key = $temp[0];
+				for ($i = 1; $i < sizeof($temp); $i=$i+2) {
+					if ($attributes[$temp[$i+1]]) {
+						$new_key .= "{" . $temp[$i] . "}" . $attributes[$temp[$i+1]];
+						$changed_key = $temp[$i];
+						$changed_value = $attributes[$temp[$i+1]];
+					} else {
+						$new_key .= "{" . $temp[$i] . "}" . $temp[$i+1];
+					}
+				}
+				if ($contemp[$new_key]['qty']) {
+					$contemp[$new_key]['qty'] += $value['qty'];
+				} else {
+					$contemp[$new_key] = $value;
+					$contemp[$new_key]['attributes'][$changed_key] = $changed_value;
+				}
+			} else {
+				if ($key != $new_key) {
+					$contemp[$key] = $value;
+				} else {
+					$contemp[$key]['qty'] += $value['qty'];
+				}
+			}
+		}
+		$this->contents = $contemp;
+	}
+
     /**
      * update_quantity
      *

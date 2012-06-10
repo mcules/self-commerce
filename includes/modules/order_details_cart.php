@@ -57,27 +57,78 @@ for ($i = 0, $n = sizeof($products); $i < $n; $i ++) {
 		$image = DIR_WS_THUMBNAIL_IMAGES.$products[$i]['image'];
 	}
 
-	$module_content[$i] = array ('PRODUCTS_NAME' => $products[$i]['name'].$mark_stock, 'PRODUCTS_QTY' => xtc_draw_input_field('cart_quantity[]', $products[$i]['quantity'], 'size="2"').xtc_draw_hidden_field('products_id[]', $products[$i]['id']), 'PRODUCTS_MODEL' => $products[$i]['model'], 'PRODUCTS_TAX' => number_format($products[$i]['tax'], TAX_DECIMAL_PLACES), 'PRODUCTS_IMAGE' => $image, 'IMAGE_ALT' => $products[$i]['name'], 'BOX_DELETE' => '<a href="' . xtc_href_link(FILENAME_SHOPPING_CART, 'action=remove_product&products_id='.$products[$i]['id']). '">' . xtc_image('templates/'.CURRENT_TEMPLATE. '/buttons/'.$_SESSION['language'].'/button_delete.gif', IMAGE_BUTTON_REMOVE_PRODUCT, '', '') . '</a>' , 'PRODUCTS_LINK' => xtc_href_link(FILENAME_PRODUCT_INFO, xtc_product_link($products[$i]['id'], $products[$i]['name'])), 'PRODUCTS_PRICE' => $xtPrice->xtcFormat($products[$i]['price'] * $products[$i]['quantity'], true), 'PRODUCTS_SINGLE_PRICE' => $xtPrice->xtcFormat($products[$i]['price'], true), 'PRODUCTS_SHORT_DESCRIPTION' => xtc_get_short_description($products[$i]['id']), 'ATTRIBUTES' => '');
+	$module_content[$i] = array(
+								'PRODUCTS_NAME' => $products[$i]['name'].$mark_stock,
+								'PRODUCTS_QTY' => xtc_draw_input_field('cart_quantity[]', $products[$i]['quantity'], 'size="2"').xtc_draw_hidden_field('products_id[]', $products[$i]['id']),
+								'PRODUCTS_MODEL' => $products[$i]['model'],
+								'PRODUCTS_TAX' => number_format($products[$i]['tax'], TAX_DECIMAL_PLACES),
+								'PRODUCTS_IMAGE' => $image,
+								'IMAGE_ALT' => $products[$i]['name'],
+								'DELETE' => xtc_draw_checkbox_field('cart_delete[]', $products[$i]['id']),
+								'PLUS' => '<input type="image" name="plus['.$i.']" src="templates/'.CURRENT_TEMPLATE.'/img/plus.gif" />',
+								'MINUS' => '<input type="image" name="minus['.$i.']" src="templates/'.CURRENT_TEMPLATE.'/img/minus.gif" />',
+								'BOX_DELETE' => '<input type="image" name="delete['.$i.']" src="templates/'.CURRENT_TEMPLATE.'/img/delete.gif" //>', 
+								'PRODUCTS_LINK' => xtc_href_link(FILENAME_PRODUCT_INFO, xtc_product_link($products[$i]['id'], $products[$i]['name'])),
+								'PRODUCTS_PRICE' => $xtPrice->xtcFormat($products[$i]['price'] * $products[$i]['quantity'], true),
+								'PRODUCTS_SINGLE_PRICE' => $xtPrice->xtcFormat($products[$i]['price'], true),
+								'PRODUCTS_SHORT_DESCRIPTION' => xtc_get_short_description($products[$i]['id']),
+								'ATTRIBUTES' => ''
+							);
 
 	// Product options names
 	$attributes_exist = ((isset ($products[$i]['attributes'])) ? 1 : 0);
 
 	if ($attributes_exist == 1) {
 		reset($products[$i]['attributes']);
-
 		while (list ($option, $value) = each($products[$i]['attributes'])) {
-
 			if (ATTRIBUTE_STOCK_CHECK == 'true' && STOCK_CHECK == 'true') {
 				$attribute_stock_check = xtc_check_stock_attributes($products[$i][$option]['products_attributes_id'], $products[$i]['quantity']);
-				if ($attribute_stock_check)
+				if ($attribute_stock_check) {
 					$_SESSION['any_out_of_stock'] = 1;
+				}
 			}
+            if ($_SESSION['alter'] && $_SESSION['alter_prod']==$i."-".$option) {
+                $_SESSION['alter'] = false;
+                unset($_SESSION['alter_prod']);
+                $temp=preg_split("(\{|\})",$products[$i]['id']);
+                $products_id=$temp[0];
+                for ($j = 1; $j<sizeof($temp); $j=$j+2) {
+					if ($option == (int) $temp[$j]) {
+						$opt = (int) $temp[$j+1];
+					}
+                }
+                $attr_query=xtc_db_query("SELECT products_options_values_id,products_options_values_name FROM ". TABLE_PRODUCTS_OPTIONS_VALUES." pov, ".TABLE_PRODUCTS_ATTRIBUTES." pa
+                                          WHERE pa.products_id = ".$products_id."
+                                          AND pa.options_values_id = pov.products_options_values_id
+                                          AND pov.language_id = ". $_SESSION['languages_id'] ."
+                                          AND pa.options_id = " . $option . "
+                                          ORDER BY pov.products_options_values_id");
+                $select='<select name="attributes" onChange="this.form.submit()">';
 
-			$module_content[$i]['ATTRIBUTES'][] = array ('ID' => $products[$i][$option]['products_attributes_id'], 'MODEL' => xtc_get_attributes_model(xtc_get_prid($products[$i]['id']), $products[$i][$option]['products_options_values_name']), 'NAME' => $products[$i][$option]['products_options_name'], 'VALUE_NAME' => $products[$i][$option]['products_options_values_name'].$attribute_stock_check);
+                while ($attr_res=xtc_db_fetch_array($attr_query)) {
+                    $selected=$products[$i]['attributes'][$option]==$attr_res['products_options_values_id']?' selected="selected"':'';
+                    $select.='<option value="'.$i.'-'.$products[$i]['attributes'][$option].'-'.$attr_res['products_options_values_id'].'-'.$opt.'"'.$selected.'>'.$attr_res['products_options_values_name'].'</option>';
+                } //EOWHILE
 
+                $select.='</select>';
+                $module_content[$i]['ATTRIBUTES'][] = array(
+															'ID' =>$products[$i][$option]['products_attributes_id'],
+															'MODEL'=>xtc_get_attributes_model(xtc_get_prid($products[$i]['id']), $products[$i][$option]['products_options_values_name'],$products[$i][$option]['products_options_name']),
+															'NAME' => $products[$i][$option]['products_options_name'],
+															'VALUE_NAME' => $select, //$products[$i][$option]['products_options_values_name'].$attribute_stock_check,
+															'ALTER' => '<input type="submit" name="alter" value="send" class="alter">'
+														);
+            } else {
+                $module_content[$i]['ATTRIBUTES'][] = array(
+															'ID' =>$products[$i][$option]['products_attributes_id'],
+															'MODEL'=>xtc_get_attributes_model(xtc_get_prid($products[$i]['id']), $products[$i][$option]['products_options_values_name'],$products[$i][$option]['products_options_name']),
+															'NAME' => $products[$i][$option]['products_options_name'],
+															'VALUE_NAME' => $products[$i][$option]['products_options_values_name'].$attribute_stock_check,
+															'ALTER' => '<input type="submit" name="alter" value="' . $i . '-' . $option . '" class="alter">'
+														);
+            }
 		}
 	}
-
 }
 
 $total_content = '';

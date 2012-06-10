@@ -50,18 +50,60 @@ if (isset ($_GET['action'])) {
 	switch ($_GET['action']) {
 		// customer wants to update the product quantity in their shopping cart
 		case 'update_product' :
-			for ($i = 0, $n = sizeof($_POST['products_id']); $i < $n; $i ++) {
-				if (in_array($_POST['products_id'][$i], (is_array($_POST['cart_delete']) ? $_POST['cart_delete'] : array ()))) {
-					$_SESSION['cart']->remove($_POST['products_id'][$i]);
-				} else {
-					if ($_POST['cart_quantity'][$i] > MAX_PRODUCTS_QTY)
-						$_POST['cart_quantity'][$i] = MAX_PRODUCTS_QTY;
-					$attributes = ($_POST['id'][$_POST['products_id'][$i]]) ? $_POST['id'][$_POST['products_id'][$i]] : '';
-					$_SESSION['cart']->add_cart($_POST['products_id'][$i], xtc_remove_non_numeric($_POST['cart_quantity'][$i]), $attributes, false);
-				}
-			}
-			xtc_redirect(xtc_href_link($goto, xtc_get_all_get_params($parameters)));
-			break;
+            $_SESSION['alter'] = false;
+            if (isset ($_POST['plus']) && array_sum($_POST['plus']) > 0) {
+                foreach($_POST['plus'] as $key => $value) {
+                    $attributes = ($_POST['id'][$_POST['products_id'][$key]]) ? $_POST['id'][$_POST['products_id'][$key]] : '';
+                    $_SESSION['cart']->add_cart($_POST['products_id'][$key], xtc_remove_non_numeric($_POST['cart_quantity'][$key] + 1), $attributes, false);
+                }
+            } elseif (isset ($_POST['minus']) && array_sum($_POST['minus']) > 0) {
+                foreach($_POST['minus'] as $key => $value) {
+                    if ($_POST['cart_quantity'][$key] == '1') {
+                        $_SESSION['cart']->remove($_POST['products_id'][$key]);
+                    } else {
+                        $attributes = ($_POST['id'][$_POST['products_id'][$key]]) ? $_POST['id'][$_POST['products_id'][$key]] : '';
+                        $_SESSION['cart']->add_cart($_POST['products_id'][$key], xtc_remove_non_numeric($_POST['cart_quantity'][$key] - 1), $attributes, false);
+                    }
+                }
+            } elseif (isset ($_POST['delete']) && array_sum($_POST['delete']) > 0) {
+                foreach($_POST['delete'] as $key => $value) {
+                    $_SESSION['cart']->remove($_POST['products_id'][$key]);
+                }
+            } elseif (isset ($_POST['alter'])) {
+                $_SESSION['alter'] = true;
+                $_SESSION['alter_prod'] = $_POST['alter'];
+            } elseif (isset ($_POST['attributes'])) {
+              $temp=explode("-",$_POST['attributes']);
+              $prod_id = $temp[0];
+              $alt = $temp[1];
+              $neu = $temp[2];
+              $attr_id = $temp[3];
+              $attributes = array($attr_id => $neu); //$_POST['id'][$_POST['products_id'][$prod_id]] : '';
+              $_SESSION['cart']->modify_attributes($_POST['products_id'][$prod_id], xtc_remove_non_numeric($_POST['cart_quantity'][$prod_id]), $attributes, false);
+            } else {
+              for ($i = 0, $n = sizeof($_POST['products_id']); $i < $n; $i++) {
+                if (in_array($_POST['products_id'][$i], (is_array($_POST['cart_delete']) ? $_POST['cart_delete'] : array ()))) {
+                  $_SESSION['cart']->remove($_POST['products_id'][$i]);
+
+                  if (is_object($econda))
+                    $econda->_delArticle($_POST['products_id'][$i], $_POST['cart_quantity'][$i], $_POST['old_qty'][$i]);
+
+                } else {
+                  if ($_POST['cart_quantity'][$i] > MAX_PRODUCTS_QTY)
+                    $_POST['cart_quantity'][$i] = MAX_PRODUCTS_QTY;
+                  $attributes = ($_POST['id'][$_POST['products_id'][$i]]) ? $_POST['id'][$_POST['products_id'][$i]] : '';
+
+                  if (is_object($econda)) {
+                    $old_quantity = $_SESSION['cart']->get_quantity(xtc_get_uprid($_POST['products_id'][$i], $_POST['id'][$i]));
+                    $econda->_updateProduct($_POST['products_id'][$i], $_POST['cart_quantity'][$i], $old_quantity);
+                  }
+
+                  $_SESSION['cart']->add_cart($_POST['products_id'][$i], xtc_remove_non_numeric($_POST['cart_quantity'][$i]), $attributes, false);
+                }
+              }
+            }
+            xtc_redirect(xtc_href_link($goto, xtc_get_all_get_params($parameters)));
+            break;
 			// customer adds a product from the products page
 		case 'add_product' :
 			if (isset ($_POST['products_id']) && is_numeric($_POST['products_id'])) {

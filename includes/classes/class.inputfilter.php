@@ -13,10 +13,8 @@
 class InputFilter {
 	var $tagsArray; // default = empty array
 	var $attrArray; // default = empty array
-
 	var $tagsMethod; // default = 0
 	var $attrMethod; // default = 0
-
 	var $xssAuto; // default = 1
 	var $tagBlacklist = array ('applet', 'body', 'bgsound', 'base', 'basefont', 'embed', 'frame', 'frameset', 'head', 'html', 'id', 'iframe', 'ilayer', 'layer', 'link', 'meta', 'name', 'object', 'script', 'style', 'title', 'xml');
 	var $attrBlacklist = array ('action', 'background', 'codebase', 'dynsrc', 'lowsrc'); // also will strip ALL event handlers
@@ -52,32 +50,32 @@ class InputFilter {
 	  */
 // xss behoben	  
 	function process($source) {
-       // clean all elements in this array
+        // clean all elements in this array
         if (is_array($source)) {
-            foreach ($source as $key => $value) { 
-                // filter element for XSS and other 'bad' code etc. 
+            foreach ($source as $key => $value) {
+                // filter element for XSS and other 'bad' code etc.
                 $tmp_key = $key;
                 unset ($source[$key]);
-                $key = $this->remove($this->decode($key)); 
+                $key = $this->remove($this->decode($key));
                 if ($key != $tmp_key) {
                     return $source;
                 } else {
-                    if (is_string($value)) { 
-                        $source[$key] = $this->remove($this->decode($value)); 
-                    } elseif (is_array($value)) { 
-                        $source[$key] = $this->process($value); 
-                    } 
-                } 
-            } 
-            return $source; 
-            // clean this string 
-        } else 
-        if (is_string($source)) { 
-            // filter source for XSS and other 'bad' code etc. 
-            return $this->remove($this->decode($source)); 
-            // return parameter as given 
-        } else 
-        return $source; 
+                    if (is_string($value)) {
+                        $source[$key] = $this->remove($this->decode($value));
+                    } elseif (is_array($value)) {
+                        $source[$key] = $this->process($value);
+                    }
+                }
+            }
+            return $source;
+            // clean this string
+        } else
+        if (is_string($source)) {
+            // filter source for XSS and other 'bad' code etc.
+            return $this->remove($this->decode($source));
+            // return parameter as given
+        } else
+        return $source;
     }
 
 	/** 

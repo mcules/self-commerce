@@ -18,3 +18,27 @@
 	{$FORM_END}
 	{$MODULE_gift_cart}
 {/if}
+{if $module_content}
+	<table width="100%" border="0" background="{$tpl_path}images/bg_light_grey.gif" bgcolor="#EDEDED" class="main">
+		<tr>
+			{foreach name=aussen item=module_data from=$module_content}
+				<td align="center">
+					<table border="0" cellspacing="0" cellpadding="0">
+						<tr>
+							<td width="100%" align="center" background="{$tpl_path}images/bg_light_grey.gif" bgcolor="#EDEDED" class="main"><strong>{$module_data.SPECIAL_NAME}</strong></td>
+						</tr>
+						<tr>
+							<td width="100%" align="center" background="{$tpl_path}images/bg_light_grey.gif" bgcolor="#EDEDED" class="main">{$module_data.SPECIAL_IMAGE}</td>
+						</tr>
+						<tr>
+							<td align="center" background="{$tpl_path}images/bg_light_grey.gif" bgcolor="#EDEDED" class="main" style="padding-top:3px;"><strong>{$module_data.SPECIAL_PRICE}</strong></td>
+						</tr>
+						<tr>
+							<td align="center" background="{$tpl_path}images/bg_light_grey.gif" bgcolor="#EDEDED" class="main">{$module_data.SPECIAL_BUY_NOW}</td>
+						</tr>
+					</table>
+				</td>
+            {/foreach}
+        </tr>
+    </table>
+{/if}
