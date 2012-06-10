@@ -65,10 +65,10 @@ class shoppingCart {
             reset($this->contents);
             while (list ($products_id,) = each($this->contents)) {
                 $qty = $this->contents[$products_id]['qty'];
-                $product_query = xtc_db_query("select products_id
-                                      from ".TABLE_CUSTOMERS_BASKET."
-                                      where customers_id = '".(int)$_SESSION['customer_id']."'
-                                      and products_id = '".xtc_db_input($products_id)."'");
+                $product_query = xtc_db_query("	SELECT products_id
+												FROM ".TABLE_CUSTOMERS_BASKET."
+												WHERE customers_id = '".(int)$_SESSION['customer_id']."'
+												AND products_id = '".xtc_db_input($products_id)."'");
                 if (!xtc_db_num_rows($product_query)) {
                     xtc_db_query("insert into ".TABLE_CUSTOMERS_BASKET."
                         (
@@ -483,10 +483,22 @@ class shoppingCart {
                                     from ".TABLE_PRODUCTS."
                                     where products_id='".xtc_get_prid($products_id)."'");
             if ($product = xtc_db_fetch_array($product_query)) {
-                $products_price = $xtPrice->xtcGetPrice($product['products_id'],
-                    $format = false,
-                    $qty, $product['products_tax_class_id'],
-                    $product['products_price']);
+				// Einrichtungsgebuehr
+				if($product['products_model'] == 'GIFT_products_setup') {
+					$p_price = $products_price * $qty;
+				} else {
+					if($product['products_setup'] == 1) {
+						$setup_price = $xtPrice->xtcGetPrice($product['products_id'], $format = false, $qty, $product['products_tax_class_id'], $product['setup_price']);			
+						if($qty > 1) {
+							$p_price = ($products_price * $qty) + $setup_price;
+						} else {
+							$p_price = ($products_price + $setup_price) * $qty;
+						}
+					} else {
+						$p_price = $products_price * $qty;
+					}
+				}
+				// Einrichtungsgebuehr eof
                 $this->total += $products_price * $qty;
                 $this->weight += ($qty * $product['products_weight']);
 
@@ -509,13 +521,20 @@ class shoppingCart {
                 // Nur weiterrechnen, falls Product nicht ohne Steuer
                 // $this->total + $this->tax wird berechnet
                 if ($product['products_tax_class_id'] != 0) {
-
-                    if ($_SESSION['customers_status']['customers_status_ot_discount_flag'] == 1) {
-                        // Rabatt für die Steuerberechnung
-                        // der eigentliche Rabatt wird im order-details_cart abgezogen
-                        $products_price_tax = $products_price - ($products_price / 100 * $_SESSION['customers_status']['customers_status_ot_discount']);
-                        $attribute_price_tax = $attribute_price - ($attribute_price / 100 * $_SESSION['customers_status']['customers_status_ot_discount']);
-                    }
+					if ($_SESSION['customers_status']['customers_status_ot_discount_flag'] == 1) {
+						// Einrichtungsgebuehr
+						if($product['products_model'] == 'GIFT_products_setup') {
+							if($qty > 1) {								
+								$s_price = $s_price / $qty;
+							}
+							$products_price_tax = $s_price - ($s_price / 100 * $_SESSION['customers_status']['customers_status_ot_discount']);
+							$attribute_price_tax = $attribute_price - ($attribute_price / 100 * $_SESSION['customers_status']['customers_status_ot_discount']);
+						} else {
+							$products_price_tax = $products_price - ($products_price / 100 * $_SESSION['customers_status']['customers_status_ot_discount']);
+							$attribute_price_tax = $attribute_price - ($attribute_price / 100 * $_SESSION['customers_status']['customers_status_ot_discount']);
+						}
+						// Einrichtungsgebuehr eof
+					}
 
                     $products_tax = $xtPrice->TAX[$product['products_tax_class_id']];
                     $products_tax_description = xtc_get_tax_description($product['products_tax_class_id']);
@@ -603,11 +622,12 @@ class shoppingCart {
                 if ($products = xtc_db_fetch_array($products_query)) {
                     $prid = $products['products_id'];
 
-                    $products_price = $xtPrice->xtcGetPrice($products['products_id'],
-                        $format = false,
-                        $this->contents[$products_id]['qty'],
-                        $products['products_tax_class_id'],
-                        $products['products_price']);
+                    $products_price = $xtPrice->xtcGetPrice($products['products_id'], $format = false, $this->contents[$products_id]['qty'], $products['products_tax_class_id'], $products['products_price']);
+					// Einrichtungsgebuehr
+					if($products['products_setup'] == 1) {
+						$setup_price = $xtPrice->xtcGetPrice($products['products_id'], $format = false, $this->contents[$products_id]['qty'], $products['products_tax_class_id'], $products['setup_price']);
+					}
+					// Einrichtungsgebuehr eof
 
                     $products_array[] = array (
                         'id' => $products_id,
@@ -631,6 +651,30 @@ class shoppingCart {
 
         return $products_array;
     }
+
+	// Einrichtungsgebuehr
+	function show_setup_price() {
+		global $xtPrice,$main;
+		if (!is_array($this->contents))
+			return false;
+
+		$products_array = array ();
+		reset($this->contents);
+		while (list ($products_id,) = each($this->contents)) {
+			
+			if($this->contents[$products_id]['qty'] != 0 || $this->contents[$products_id]['qty'] !='') {			
+				$products_setup_query = xtc_db_query("select products_setup, setup_price, products_tax_class_id from ".TABLE_PRODUCTS." 
+													  where products_id = '".xtc_get_prid($products_id)."'");
+				$products_setup = xtc_db_fetch_array($products_setup_query);
+				
+				if($products_setup['products_setup'] == 1)
+					$setup_price += $xtPrice->xtcGetPrice(xtc_get_prid($products_id), $format = false, $this->contents[$products_id]['qty'], $products_setup['products_tax_class_id'], $products_setup['setup_price']);
+			}
+		}
+		
+		return $setup_price;
+	}
+	// Einrichtungsgebuehr eof
 
     /**
      * show_total

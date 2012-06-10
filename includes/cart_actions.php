@@ -1,5 +1,4 @@
 <?php
-
 /* -----------------------------------------------------------------------------------------
    $Id$
 
@@ -24,7 +23,6 @@
    Copyright (c  Nick Stanko of UkiDev.com, nick@ukidev.com
    Copyright (c) Andre ambidex@gmx.net
    Copyright (c) 2001,2002 Ian C Wilson http://www.phesis.org
-
 
    Released under the GNU General Public License
    ---------------------------------------------------------------------------------------*/
@@ -73,61 +71,112 @@ if (isset ($_GET['action'])) {
                 $_SESSION['alter'] = true;
                 $_SESSION['alter_prod'] = $_POST['alter'];
             } elseif (isset ($_POST['attributes'])) {
-              $temp=explode("-",$_POST['attributes']);
-              $prod_id = $temp[0];
-              $alt = $temp[1];
-              $neu = $temp[2];
-              $attr_id = $temp[3];
-              $attributes = array($attr_id => $neu); //$_POST['id'][$_POST['products_id'][$prod_id]] : '';
-              $_SESSION['cart']->modify_attributes($_POST['products_id'][$prod_id], xtc_remove_non_numeric($_POST['cart_quantity'][$prod_id]), $attributes, false);
+				$temp=explode("-",$_POST['attributes']);
+				$prod_id = $temp[0];
+				$alt = $temp[1];
+				$neu = $temp[2];
+				$attr_id = $temp[3];
+				$attributes = array($attr_id => $neu); //$_POST['id'][$_POST['products_id'][$prod_id]] : '';
+				$_SESSION['cart']->modify_attributes($_POST['products_id'][$prod_id], xtc_remove_non_numeric($_POST['cart_quantity'][$prod_id]), $attributes, false);
             } else {
-              for ($i = 0, $n = sizeof($_POST['products_id']); $i < $n; $i++) {
-                if (in_array($_POST['products_id'][$i], (is_array($_POST['cart_delete']) ? $_POST['cart_delete'] : array ()))) {
-                  $_SESSION['cart']->remove($_POST['products_id'][$i]);
+				for ($i = 0, $n = sizeof($_POST['products_id']); $i < $n; $i++) {
+					if (in_array($_POST['products_id'][$i], (is_array($_POST['cart_delete']) ? $_POST['cart_delete'] : array ()))) {
+						$_SESSION['cart']->remove($_POST['products_id'][$i]);
+						// Einrichtungsgebühr
+						$products_setup_query = xtc_db_query("select products_setup from ".TABLE_PRODUCTS." where products_id = '".$_POST['products_id'][$i]."'");
+						$products_setup = xtc_db_fetch_array($products_setup_query);
+						if($products_setup['products_setup'] == 1) {
+							$setup_query = xtc_db_query("select products_id from ".TABLE_PRODUCTS." where products_model = 'GIFT_products_setup'");
+							$setup = xtc_db_fetch_array($setup_query);
+							if (in_array($_POST['products_id'][$i], (is_array($_POST['cart_delete']) ? $_POST['cart_delete'] : array ()))) {
+								if($_SESSION['cart']->get_quantity(xtc_get_uprid($setup['products_id'], $_POST['id'][$i])) > '1') {
+									$old_qty = $_SESSION['cart']->get_quantity(xtc_get_uprid($setup['products_id'], $_POST['id'][$i]));
+									$_SESSION['cart']->update_quantity($setup['products_id'], $old_qty-1);
+									xtc_redirect(xtc_href_link($goto, xtc_get_all_get_params($parameters)));
+								} else {
+									$_SESSION['cart']->remove($setup['products_id']);
+									xtc_redirect(xtc_href_link($goto, xtc_get_all_get_params($parameters)));
+								}
+							}
+						}
+						// Einrichtungsgebühr eof
 
-                  if (is_object($econda))
-                    $econda->_delArticle($_POST['products_id'][$i], $_POST['cart_quantity'][$i], $_POST['old_qty'][$i]);
+						if (is_object($econda)) {
+							$econda->_delArticle($_POST['products_id'][$i], $_POST['cart_quantity'][$i], $_POST['old_qty'][$i]);
+						}
+					} else {
+						if ($_POST['cart_quantity'][$i] > MAX_PRODUCTS_QTY) {
+							$_POST['cart_quantity'][$i] = MAX_PRODUCTS_QTY;
+						}
+						$attributes = ($_POST['id'][$_POST['products_id'][$i]]) ? $_POST['id'][$_POST['products_id'][$i]] : '';
 
-                } else {
-                  if ($_POST['cart_quantity'][$i] > MAX_PRODUCTS_QTY)
-                    $_POST['cart_quantity'][$i] = MAX_PRODUCTS_QTY;
-                  $attributes = ($_POST['id'][$_POST['products_id'][$i]]) ? $_POST['id'][$_POST['products_id'][$i]] : '';
-
-                  if (is_object($econda)) {
-                    $old_quantity = $_SESSION['cart']->get_quantity(xtc_get_uprid($_POST['products_id'][$i], $_POST['id'][$i]));
-                    $econda->_updateProduct($_POST['products_id'][$i], $_POST['cart_quantity'][$i], $old_quantity);
-                  }
-
-                  $_SESSION['cart']->add_cart($_POST['products_id'][$i], xtc_remove_non_numeric($_POST['cart_quantity'][$i]), $attributes, false);
-                }
-              }
+						if (is_object($econda)) {
+							$old_quantity = $_SESSION['cart']->get_quantity(xtc_get_uprid($_POST['products_id'][$i], $_POST['id'][$i]));
+							$econda->_updateProduct($_POST['products_id'][$i], $_POST['cart_quantity'][$i], $old_quantity);
+						}
+						$_SESSION['cart']->add_cart($_POST['products_id'][$i], xtc_remove_non_numeric($_POST['cart_quantity'][$i]), $attributes, false);
+					}
+				}
             }
             xtc_redirect(xtc_href_link($goto, xtc_get_all_get_params($parameters)));
-            break;
-			// customer adds a product from the products page
-		case 'add_product' :
+        break;
+
+		case 'add_product':
 			if (isset ($_POST['products_id']) && is_numeric($_POST['products_id'])) {
 				if ($_POST['products_qty'] > MAX_PRODUCTS_QTY)
 					$_POST['products_qty'] = MAX_PRODUCTS_QTY;
+
+				if (is_object($econda)) {
+					$econda->_emptyCart();
+					$old_quantity = $_SESSION['cart']->get_quantity(xtc_get_uprid($_POST['products_id'], $_POST['id']));
+					$econda->_addProduct($_POST['products_id'], $_POST['products_qty'], $old_quantity);
+				}
+				
+				// Einrichtungsgebühr
+				$old_quantity = $_SESSION['cart']->get_quantity(xtc_get_uprid($_POST['products_id'], $_POST['id']));
+				// Einrichtungsgebühr eof
+
 				$_SESSION['cart']->add_cart((int) $_POST['products_id'], $_SESSION['cart']->get_quantity(xtc_get_uprid($_POST['products_id'], $_POST['id'])) + xtc_remove_non_numeric($_POST['products_qty']), $_POST['id']);
+				
+				// Einrichtungsgebühr
+				$products_setup_query = xtc_db_query("select products_setup from ".TABLE_PRODUCTS." 
+													  where products_id = '".$_POST['products_id']."'");
+				$products_setup = xtc_db_fetch_array($products_setup_query);
+					
+				if($products_setup['products_setup'] == 1) {
+					$setup_query = xtc_db_query("select products_id from ".TABLE_PRODUCTS." 
+												 where products_model = 'GIFT_products_setup'");
+					$setup = xtc_db_fetch_array($setup_query);
+					
+					$pids = explode(',', $_SESSION['cart']->get_product_id_list());
+					
+					for ($i = 0, $n = sizeof($pids); $i < $n; $i++) {
+						if(xtc_get_prid($pids[$i]) == $_POST['products_id']) { 
+							if($old_quantity >= 1) {
+								// il dolce fa niente... das süße nichts tun!
+							} else {
+								$_SESSION['cart']->add_cart($setup['products_id'], $_SESSION['cart']->get_quantity(xtc_get_uprid($setup['products_id'], '')) + xtc_remove_non_numeric(1), '');
+							}
+						}
+					}
+				}
+				// Einrichtungsgebühr eof
 			}
-			xtc_redirect(xtc_href_link($goto, 'products_id='.(int) $_POST['products_id'].'&'.xtc_get_all_get_params($parameters)));
-			break;
-			
+			xtc_redirect(xtc_href_link($goto, 'products_id=' . (int) $_POST['products_id'] . '&' . xtc_get_all_get_params($parameters)));
+		break;
 
-    case 'remove_product': if ($_GET['products_id']) {
-            $_SESSION['cart']->remove($_GET['products_id']);
-            } 
-            xtc_redirect(xtc_href_link($goto, xtc_get_all_get_params($parameters)));
-            break;
-                              			
-
+		case 'remove_product': if ($_GET['products_id']) {
+			$_SESSION['cart']->remove($_GET['products_id']);
+			} 
+			xtc_redirect(xtc_href_link($goto, xtc_get_all_get_params($parameters)));
+		break;
+											
 		case 'check_gift' :
 			require_once (DIR_FS_INC.'xtc_collect_posts.inc.php');
 			xtc_collect_posts();
-			break;
+		break;
 
-			// customer wants to add a quickie to the cart (called from a box)
+		// customer wants to add a quickie to the cart (called from a box)
 		case 'add_a_quickie' :
 			$quicky = addslashes($_POST['quickie']);
 			if (GROUP_CHECK == 'true') {
@@ -135,18 +184,18 @@ if (isset ($_GET['action'])) {
 			}
 
 			$quickie_query = xtc_db_query("select
-			                                        products_fsk18,
-			                                        products_id from ".TABLE_PRODUCTS."
-			                                        where products_model = '".$quicky."' "."AND products_status = '1' ".$group_check);
+													products_fsk18,
+													products_id from ".TABLE_PRODUCTS."
+													where products_model = '".$quicky."' "."AND products_status = '1' ".$group_check);
 
 			if (!xtc_db_num_rows($quickie_query)) {
 				if (GROUP_CHECK == 'true') {
 					$group_check = "and group_permission_".$_SESSION['customers_status']['customers_status_id']."=1 ";
 				}
 				$quickie_query = xtc_db_query("select
-				                                                 products_fsk18,
-				                                                 products_id from ".TABLE_PRODUCTS."
-				                                                 where products_model LIKE '%".$quicky."%' "."AND products_status = '1' ".$group_check);
+																 products_fsk18,
+																 products_id from ".TABLE_PRODUCTS."
+																 where products_model LIKE '%".$quicky."%' "."AND products_status = '1' ".$group_check);
 			}
 			if (xtc_db_num_rows($quickie_query) != 1) {
 				xtc_redirect(xtc_href_link(FILENAME_ADVANCED_SEARCH_RESULT, 'keywords='.$quicky, 'NONSSL'));
@@ -171,9 +220,8 @@ if (isset ($_GET['action'])) {
 					xtc_redirect(xtc_href_link(FILENAME_ADVANCED_SEARCH_RESULT, 'keywords='.$quicky, 'NONSSL'));
 				}
 			}
-			break;
-
-			// performed by the 'buy now' button in product listings and review page
+		break;
+		// performed by the 'buy now' button in product listings and review page
 		case 'buy_now' :
 			if (isset ($_GET['BUYproducts_id'])) {
 				// check permission to view product
@@ -199,14 +247,14 @@ if (isset ($_GET['action'])) {
 					xtc_redirect(xtc_href_link(FILENAME_PRODUCT_INFO, 'products_id='.(int) $_GET['BUYproducts_id']));
 				} else {
 				   if (isset($_SESSION['cart'])){
-					    $_SESSION['cart']->add_cart((int) $_GET['BUYproducts_id'], $_SESSION['cart']->get_quantity((int) $_GET['BUYproducts_id']) + 1);
+						$_SESSION['cart']->add_cart((int) $_GET['BUYproducts_id'], $_SESSION['cart']->get_quantity((int) $_GET['BUYproducts_id']) + 1);
 				   } else {
-					    xtc_redirect(xtc_href_link(FILENAME_DEFAULT));
+						xtc_redirect(xtc_href_link(FILENAME_DEFAULT));
 				   }
 				}
 			}
 			xtc_redirect(xtc_href_link($goto, xtc_get_all_get_params(array ('action', 'BUYproducts_id'))));
-			break;
+		break;
 		case 'cust_order' :
 			if (isset ($_SESSION['customer_id']) && isset ($_GET['pid'])) {
 				if (xtc_has_product_attributes((int) $_GET['pid'])) {
@@ -216,7 +264,7 @@ if (isset ($_GET['action'])) {
 				}
 			}
 			xtc_redirect(xtc_href_link($goto, xtc_get_all_get_params($parameters)));
-			break;
+		break;
 	}
 }
 ?>

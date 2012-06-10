@@ -743,10 +743,10 @@ CREATE TABLE products (
   products_startpage int(1) NOT NULL DEFAULT '0',
   products_startpage_sort int(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (products_id),
-  KEY idx_products_date_added (products_date_added)
+  KEY idx_products_date_added (products_date_added),
+  products_setup int(1) default '0',
+  setup_price decimal(15,4) NOT NULL default '0.0000'
 );
-
-
 
 DROP TABLE IF EXISTS products_attributes;
 CREATE TABLE products_attributes (

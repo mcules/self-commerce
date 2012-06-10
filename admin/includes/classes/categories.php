@@ -445,26 +445,26 @@ class categories {
 
 		$products_id = xtc_db_prepare_input($products_data['products_id']);
 		$products_date_available = xtc_db_prepare_input($products_data['products_date_available']);
-
 		$products_date_available = (date('Y-m-d') < $products_date_available) ? $products_date_available : 'null';
- 
-         if ($products_data['products_startpage'] == 1 ) {
-         	$this->link_product($products_data['products_id'], 0);
-         	$products_status = 1;
-         } else {
-         	$products_status = xtc_db_prepare_input($products_data['products_status']);
-         	}
-         	
-         if ($products_data['products_startpage'] == 0 ) {
- 			$products_status = xtc_db_prepare_input($products_data['products_status']);
-         }
-         
+		if ($products_data['products_startpage'] == 1 ) {
+			$this->link_product($products_data['products_id'], 0);
+			$products_status = 1;
+		} else {
+			$products_status = xtc_db_prepare_input($products_data['products_status']);
+		}
+
+		if ($products_data['products_startpage'] == 0 ) {
+			$products_status = xtc_db_prepare_input($products_data['products_status']);
+		}
+
 		if (PRICE_IS_BRUTTO == 'true' && $products_data['products_price']) {
 			$products_data['products_price'] = round(($products_data['products_price'] / (xtc_get_tax_rate($products_data['products_tax_class_id']) + 100) * 100), PRICE_PRECISION);
 		}
 
+		if (PRICE_IS_BRUTTO == 'true' && $products_data['setup_price']) {
+			$products_data['setup_price'] = round(($products_data['setup_price'] / (xtc_get_tax_rate($products_data['products_tax_class_id']) + 100) * 100), PRICE_PRECISION);
+		}
 
-		
 		//
 		$customers_statuses_array = xtc_get_customers_statuses();
 
@@ -499,7 +499,30 @@ class categories {
 			}
 		}
 		//
-		$sql_data_array = array ('products_quantity' => xtc_db_prepare_input($products_data['products_quantity']), 'products_model' => xtc_db_prepare_input($products_data['products_model']), 'products_ean' => xtc_db_prepare_input($products_data['products_ean']), 'products_price' => xtc_db_prepare_input($products_data['products_price']), 'products_sort' => xtc_db_prepare_input($products_data['products_sort']), 'products_shippingtime' => xtc_db_prepare_input($products_data['shipping_status']), 'products_discount_allowed' => xtc_db_prepare_input($products_data['products_discount_allowed']), 'products_date_available' => $products_date_available, 'products_weight' => xtc_db_prepare_input($products_data['products_weight']), 'products_status' => $products_status, 'products_startpage' => xtc_db_prepare_input($products_data['products_startpage']), 'products_startpage_sort' => xtc_db_prepare_input($products_data['products_startpage_sort']), 'products_tax_class_id' => xtc_db_prepare_input($products_data['products_tax_class_id']), 'product_template' => xtc_db_prepare_input($products_data['info_template']), 'options_template' => xtc_db_prepare_input($products_data['options_template']), 'manufacturers_id' => xtc_db_prepare_input($products_data['manufacturers_id']), 'products_fsk18' => xtc_db_prepare_input($products_data['fsk18']), 'products_vpe_value' => xtc_db_prepare_input($products_data['products_vpe_value']), 'products_vpe_status' => xtc_db_prepare_input($products_data['products_vpe_status']), 'products_vpe' => xtc_db_prepare_input($products_data['products_vpe']));
+		$sql_data_array = array(
+								'products_quantity' => xtc_db_prepare_input($products_data['products_quantity']),
+								'products_model' => xtc_db_prepare_input($products_data['products_model']),
+								'products_ean' => xtc_db_prepare_input($products_data['products_ean']),
+								'products_price' => xtc_db_prepare_input($products_data['products_price']),
+								'products_sort' => xtc_db_prepare_input($products_data['products_sort']),
+								'products_shippingtime' => xtc_db_prepare_input($products_data['shipping_status']),
+								'products_discount_allowed' => xtc_db_prepare_input($products_data['products_discount_allowed']),
+								'products_date_available' => $products_date_available,
+								'products_weight' => xtc_db_prepare_input($products_data['products_weight']),
+								'products_status' => $products_status,
+								'products_startpage' => xtc_db_prepare_input($products_data['products_startpage']),
+								'products_startpage_sort' => xtc_db_prepare_input($products_data['products_startpage_sort']),
+								'products_tax_class_id' => xtc_db_prepare_input($products_data['products_tax_class_id']),
+								'product_template' => xtc_db_prepare_input($products_data['info_template']),
+								'options_template' => xtc_db_prepare_input($products_data['options_template']),
+								'manufacturers_id' => xtc_db_prepare_input($products_data['manufacturers_id']),
+								'products_fsk18' => xtc_db_prepare_input($products_data['fsk18']),
+								'products_vpe_value' => xtc_db_prepare_input($products_data['products_vpe_value']),
+								'products_vpe_status' => xtc_db_prepare_input($products_data['products_vpe_status']),
+								'products_vpe' => xtc_db_prepare_input($products_data['products_vpe']),
+								'products_setup' => xtc_db_prepare_input($products_data['products_setup']),
+								'setup_price' => xtc_db_prepare_input($products_data['setup_price'])
+							);
 		$sql_data_array = array_merge($sql_data_array, $permission_array);
 		//get the next ai-value from table products if no products_id is set
 		if (!$products_id || $products_id == '') {

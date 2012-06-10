@@ -84,6 +84,7 @@ switch ($pInfo->products_status) {
 }
 
 if ($pInfo->products_startpage == '1') { $startpage_checked = true; } else { $startpage_checked = false; }
+if ($pInfo->products_setup == '1') { $setup_checked = true; } else { $setup_checked = false; }  // Einrichtungsgebühr
 
 ?>
 <link rel="stylesheet" type="text/css" href="includes/javascript/spiffyCal/spiffyCal_v2_1.css">
@@ -128,7 +129,7 @@ if ($pInfo->products_startpage == '1') { $startpage_checked = true; } else { $st
         <td><span class="main"><?php echo TEXT_PRODUCTS_SORT; ?>&nbsp;<?php echo  xtc_draw_input_field('products_sort', $pInfo->products_sort,'size=3'); ?></span></td>
         <td><span class="main"><?php echo TEXT_PRODUCTS_QUANTITY; ?>&nbsp;<?php echo xtc_draw_input_field('products_quantity', $pInfo->products_quantity,'size=5'); ?></span></td>
       </tr>
-              <tr>
+      <tr>
         <td><span class="main"><?php echo TEXT_PRODUCTS_MODEL; ?></span></td>
         <td><span class="main"><?php echo  xtc_draw_input_field('products_model', $pInfo->products_model); ?></span></td>
       </tr>
@@ -212,8 +213,46 @@ echo '<td class="main">'.TEXT_CHOOSE_OPTIONS_TEMPLATE.':'.'</td>';
 echo '<td><span class="main">'.xtc_draw_pull_down_menu('options_template', $files, $default_value);
 ?>
         </span></td>
+      </tr>      
+    </table><br />
+    <table bgcolor="f3f3f3" style="border: 1px solid; border-color: #cccccc;" "width="100%"  border="0">
+      <tr>  
+        <td><span class="main"><strong>Vertrags / Einrichtungsgeb&uuml;hr</strong></span></td> 
       </tr>
-    </table></td>
+      <tr>  
+        <td>
+        	<span class="main">			
+			<?php echo 'Vertrags / Einrichtungsgeb&uuml;hr: '; ?> <?php echo 'Ja' . xtc_draw_radio_field('products_setup', '1', $setup_checked) . '&nbsp;' . 'Nein' . xtc_draw_radio_field('products_setup', '0', !$setup_checked) ?>                   
+            </span>
+        </td> 
+      </tr>
+      <tr>  
+        <td>
+        	<span class="main">
+			<?php require (DIR_FS_CATALOG.DIR_WS_CLASSES.'xtcPrice.php');
+			$xtPrice = new xtcPrice(DEFAULT_CURRENCY, $_SESSION['customers_status']['customers_status_id']); ?>
+            
+            <?php 
+			if (PRICE_IS_BRUTTO == 'true') {
+				$setup_price = xtc_round($pInfo->setup_price * ((100 + xtc_get_tax_rate($pInfo->products_tax_class_id)) / 100), PRICE_PRECISION);
+			} else {
+				$setup_price = xtc_round($pInfo->setup_price, PRICE_PRECISION);
+			}
+			?>
+            
+            <?php echo 'Vertrags / Einrichtungsgeb&uuml;hr: '; ?> <?php echo xtc_draw_input_field('setup_price', $setup_price); ?>
+            
+            <?php 
+			if (PRICE_IS_BRUTTO == 'true') {
+				echo TEXT_NETTO.'<b>'.$xtPrice->xtcFormat($pInfo->setup_price, false).'</b>  ';
+			}
+			?>
+            </span>
+        </td> 
+      </tr>
+    </table>
+    
+    </td>
   </tr>
 </table>
   <br /><br />
@@ -281,6 +320,7 @@ include (DIR_WS_MODULES.'products_images.php');
 if (GROUP_CHECK == 'true') {
 	$customers_statuses_array = xtc_get_customers_statuses();
 	$customers_statuses_array = array_merge(array (array ('id' => 'all', 'text' => TXT_ALL)), $customers_statuses_array);
+
 ?>
 <tr>
 <td style="border-top: 1px solid; border-color: #ff0000;" valign="top" class="main" ><?php echo ENTRY_CUSTOMERS_STATUS; ?></td>

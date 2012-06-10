@@ -492,12 +492,12 @@ class order {
                 'tax_class_id'=> $products[$i]['tax_class_id'],
                 'tax' => xtc_get_tax_rate($products[$i]['tax_class_id'], $tax_address['entry_country_id'], $tax_address['entry_zone_id']),
                 'tax_description' => xtc_get_tax_description($products[$i]['tax_class_id'], $tax_address['entry_country_id'], $tax_address['entry_zone_id']),
-                'price' => $products_price,
+                'price' => $products[$i]['model'] == 'GIFT_products_setup' ? $_SESSION['cart']->show_setup_price() : $products_price,
                 'price_formated' => $xtPrice->xtcFormat($products_price,true), // PayPal API Modul / Paypal Express Modul
-                'final_price' => $products_price*$products[$i]['quantity'],
-                'final_price_formated' => $xtPrice->xtcFormat($products_price*$products[$i]['quantity'],true), // PayPal API Modul / Paypal Express Modul
+				'final_price' => $products[$i]['model'] == 'GIFT_products_setup' ? $_SESSION['cart']->show_setup_price() : $products_price * $products[$i]['quantity'],
+				'final_price_formated' => $xtPrice->xtcFormat($products_price*$products[$i]['quantity'],true), // PayPal API Modul / Paypal Express Modul
                 'shipping_time'=>$products[$i]['shipping_time'],
-                'weight' => $products[$i]['weight'],
+				'weight' => $products[$i]['weight'],
                 'id' => $products[$i]['id']);
 
             if ($products[$i]['attributes']) {

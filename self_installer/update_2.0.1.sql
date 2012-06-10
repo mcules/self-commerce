@@ -3,3 +3,4 @@ INSERT INTO `categories` (`categories_id`, `categories_image`, `parent_id`, `cat
 INSERT INTO `categories_description` (`categories_id`, `language_id`, `categories_name`, `categories_heading_title`, `categories_description`, `categories_meta_title`, `categories_meta_description`, `categories_meta_keywords`) VALUES
 (1, 1, 'Warenkorb', '', '', '', '', ''),
 (1, 2, 'Warenkorb', '', '', '', '', '');
+ALTER TABLE products ADD (products_setup int(1) default '0', setup_price decimal(15,4) NOT NULL default '0.0000');
