@@ -257,6 +257,9 @@ CREATE TABLE categories (
   KEY idx_categories_parent_id (parent_id)
 );
 
+INSERT INTO `categories` (`categories_id`, `categories_image`, `parent_id`, `categories_status`, `categories_template`, `group_permission_0`, `group_permission_1`, `group_permission_2`, `group_permission_3`, `listing_template`, `sort_order`, `products_sorting`, `products_sorting2`, `date_added`, `last_modified`) VALUES
+(1, NULL, 0, 0, 'categorie_listing.html', 0, 0, 0, 0, 'product_listing_v2.html', 0, 'p.products_price', 'ASC', NOW(), NULL);
+
 DROP TABLE IF EXISTS categories_description;
 CREATE TABLE categories_description (
   categories_id int DEFAULT '0' NOT NULL,
@@ -270,6 +273,10 @@ CREATE TABLE categories_description (
   PRIMARY KEY (categories_id, language_id),
   KEY idx_categories_name (categories_name)
 );
+
+INSERT INTO `categories_description` (`categories_id`, `language_id`, `categories_name`, `categories_heading_title`, `categories_description`, `categories_meta_title`, `categories_meta_description`, `categories_meta_keywords`) VALUES
+(1, 1, 'Warenkorb', '', '', '', '', ''),
+(1, 2, 'Warenkorb', '', '', '', '', '');
 
 DROP TABLE IF EXISTS configuration;
 CREATE TABLE configuration (
