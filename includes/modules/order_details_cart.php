@@ -58,21 +58,21 @@ for ($i = 0, $n = sizeof($products); $i < $n; $i ++) {
 	}
 
 	$module_content[$i] = array (
-								'PRODUCTS_NAME' => $products[$i]['name'].$mark_stock, 
-								'PRODUCTS_QTY' => xtc_draw_input_field('cart_quantity[]', $products[$i]['quantity'], ($products[$i]['model'] == 'GIFT_products_setup' ? 'readonly="readonly"':'').' size="2"').xtc_draw_hidden_field('products_id[]', $products[$i]['id']), 
+								'PRODUCTS_NAME' => $products[$i]['name'].$mark_stock,
+								'PRODUCTS_QTY' => xtc_draw_input_field('cart_quantity[]', $products[$i]['quantity'], ($products[$i]['model'] == 'GIFT_products_setup' ? 'readonly="readonly"':'').' size="2"').xtc_draw_hidden_field('products_id[]', $products[$i]['id']),
 								'PRODUCTS_MODEL' => $products[$i]['model'],
 								'PRODUCTS_SHIPPING_TIME'=>$products[$i]['shipping_time'], 
-								'PRODUCTS_TAX' => number_format($products[$i]['tax'], TAX_DECIMAL_PLACES), 
-								'PRODUCTS_IMAGE' => $image, 
-								'IMAGE_ALT' => $products[$i]['name'], 
-								'DELETE' => xtc_draw_checkbox_field('cart_delete[]', $products[$i]['id']),
-								'PLUS' => '<input type="image" name="plus['.$i.']" src="templates/'.CURRENT_TEMPLATE.'/img/plus.gif" />',
-								'MINUS' => '<input type="image" name="minus['.$i.']" src="templates/'.CURRENT_TEMPLATE.'/img/minus.gif" />',
-								'BOX_DELETE' => $products[$i]['model'] == 'GIFT_products_setup' ? '' : xtc_draw_checkbox_field('cart_delete[]', $products[$i]['id']),
-								'PRODUCTS_LINK' => $products[$i]['model'] == 'GIFT_products_setup' ? xtc_href_link(FILENAME_SHOPPING_CART) : xtc_href_link(FILENAME_PRODUCT_INFO, xtc_product_link($products[$i]['id'], $products[$i]['name'])), 
+								'PRODUCTS_TAX' => number_format($products[$i]['tax'], TAX_DECIMAL_PLACES),
+								'PRODUCTS_IMAGE' => $image,
+								'IMAGE_ALT' => $products[$i]['name'],
+								'DELETE' => $products[$i]['model'] == 'GIFT_products_setup' ? '' : xtc_draw_checkbox_field('cart_delete[]', $products[$i]['id']),
+								'PLUS' => $products[$i]['model'] == 'GIFT_products_setup' ? '' : '<input type="image" name="plus['.$i.']" src="templates/'.CURRENT_TEMPLATE.'/img/plus.gif" />',
+								'MINUS' => $products[$i]['model'] == 'GIFT_products_setup' ? '' : '<input type="image" name="minus['.$i.']" src="templates/'.CURRENT_TEMPLATE.'/img/minus.gif" />',
+								'BOX_DELETE' => $products[$i]['model'] == 'GIFT_products_setup' ? '' : '<input type="image" name="delete['.$i.']" src="templates/'.CURRENT_TEMPLATE.'/img/delete.gif" //>',
+								'PRODUCTS_LINK' => $products[$i]['model'] == 'GIFT_products_setup' ? xtc_href_link(FILENAME_SHOPPING_CART) : xtc_href_link(FILENAME_PRODUCT_INFO, xtc_product_link($products[$i]['id'], $products[$i]['name'])),
 								'PRODUCTS_PRICE' => $xtPrice->xtcFormat(($products[$i]['model'] == 'GIFT_products_setup' ? $_SESSION['cart']->show_setup_price() : $products[$i]['price'] * $products[$i]['quantity']), true),
-								'PRODUCTS_SINGLE_PRICE' => $xtPrice->xtcFormat(($products[$i]['model'] == 'GIFT_products_setup' ? $_SESSION['cart']->show_setup_price() : $products[$i]['price']), true), 
-								'PRODUCTS_SHORT_DESCRIPTION' => xtc_get_short_description($products[$i]['id']), 
+								'PRODUCTS_SINGLE_PRICE' => $xtPrice->xtcFormat(($products[$i]['model'] == 'GIFT_products_setup' ? $_SESSION['cart']->show_setup_price() : $products[$i]['price']), true),
+								'PRODUCTS_SHORT_DESCRIPTION' => xtc_get_short_description($products[$i]['id']),
 								'ATTRIBUTES' => '');
 
 	// Product options names
