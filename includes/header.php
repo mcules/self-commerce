@@ -285,16 +285,14 @@ function resize() {
 if (strstr($PHP_SELF, FILENAME_PRODUCT_REVIEWS_INFO )) {
 ?>
 <script type="text/javascript" src="<?php echo 'includes/javascript/mootool.js'; ?>"></script>
-<script type="text/javascript" src="<?php echo 'includes/javascript/slimbox.js'; ?>"></script>
-<link rel="stylesheet" type="text/css" href="<?php echo 'templates/'.CURRENT_TEMPLATE.'/slimbox.css'; ?>" />
-<?php }
+<?php
+}
 
 if (strstr($PHP_SELF, FILENAME_PRODUCT_INFO )) {
 ?>
 <script type="text/javascript" src="<?php echo 'includes/javascript/mootool.js'; ?>"></script>
-<script type="text/javascript" src="<?php echo 'includes/javascript/slimbox.js'; ?>"></script>
-<link rel="stylesheet" type="text/css" href="<?php echo 'templates/'.CURRENT_TEMPLATE.'/slimbox.css'; ?>" />
-<?php } 
+<?php
+} 
 // slideshow topangebote
 if (strstr($PHP_SELF, FILENAME_DEFAULT )) {
 ?>
