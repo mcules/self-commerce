@@ -354,13 +354,17 @@ if (!isset($_SESSION['language']) || isset($_GET['language'])) {
 // include the language translations
 require (DIR_FS_LANGUAGES . $_SESSION['language'] . '/admin/' . $_SESSION['language'] . '.php');
 require (DIR_FS_LANGUAGES . $_SESSION['language'] . '/admin/buttons.php');
-$current_page = preg_split('/\?/', basename($_SERVER['PHP_SELF']));
-$current_page = $current_page[0];
+$current_page = basename($_SERVER['SCRIPT_NAME']);
+
 if (file_exists(DIR_FS_LANGUAGES . $_SESSION['language'] . '/admin/' . $current_page)) {
    include (DIR_FS_LANGUAGES . $_SESSION['language'] . '/admin/' . $current_page);
 }
 // write customers status in session
 require ('../' . DIR_WS_INCLUDES . 'write_customers_status.php');
+if(file_exists($current_page) == false || $_SESSION['customers_status']['customers_status_id'] !== '0') {
+	xtc_redirect(xtc_href_link(FILENAME_LOGIN));
+}
+
 // for tracking of customers
 $_SESSION['user_info'] = array();
 if (!$_SESSION['user_info']['user_ip']) {

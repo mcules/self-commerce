@@ -28,7 +28,7 @@ require ('includes/application_top.php');
       break;
     case 'insert':
       // insert a product on special
-      if (substr($_POST['specials_price'], -1) == '%') {
+      if (substr($_POST['specials_price'], 0, -1) == '%') {
         $new_special_insert_query = xtc_db_query("select products_id,products_tax_class_id, products_price from " . TABLE_PRODUCTS . " where products_id = '" . (int)$_POST['products_id'] . "'");
         $new_special_insert = xtc_db_fetch_array($new_special_insert_query);
         $_POST['products_price'] = $new_special_insert['products_price'];
@@ -62,7 +62,7 @@ require ('includes/application_top.php');
      }
 
       if (substr($_POST['specials_price'], -1) == '%')  {
-      $_POST['specials_price'] = ($_POST['products_price'] - (($_POST['specials_price'] / 100) * $_POST['products_price']));
+		$_POST['specials_price'] = ($_POST['products_price'] - (($_POST['specials_price'] / 100) * $_POST['products_price']));
       }
       $expires_date = '';
       if ($_POST['day'] && $_POST['month'] && $_POST['year']) {
