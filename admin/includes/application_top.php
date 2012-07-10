@@ -55,7 +55,15 @@ define('LOCAL_EXE_GZIP', '/usr/bin/gzip');
 define('LOCAL_EXE_GUNZIP', '/usr/bin/gunzip');
 define('LOCAL_EXE_ZIP', '/usr/local/bin/zip');
 define('LOCAL_EXE_UNZIP', '/usr/local/bin/unzip');
+
 // define the filenames used in the project
+/* Prüfsummenscanner START */
+define('TABLE_FILE_CHECK_php', 'self_commerce_filechk_php');
+define('TABLE_FILE_CHECK_html', 'self_commerce_filechk_html');  
+define('FILENAME_FILE_CHK','file_chk.php');
+define('BOX_FILE_CHK','Prüfsummenscanner');
+/* Prüfsummenscanner END */
+
 define('FILENAME_ACCOUNTING', 'accounting.php');
 define('FILENAME_BACKUP', 'backup.php');
 define('FILENAME_BANNER_MANAGER', 'banner_manager.php');
