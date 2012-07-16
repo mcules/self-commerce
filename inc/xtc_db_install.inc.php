@@ -71,12 +71,18 @@ function xtc_db_install($database, $sql_file) {
           if ($next == '') { // get the last insert query
             $next = 'insert';
           }
-          if ( (eregi('create', $next)) || (eregi('insert', $next)) || (eregi('drop t', $next)) ) {
-            $next = '';
-            $sql_array[] = substr($restore_query, 0, $i);
-            $restore_query = ltrim(substr($restore_query, $i+1));
-            $sql_length = strlen($restore_query);
-            $i = strpos($restore_query, ';')-1;
+            if ((strtoupper($next) == 'DROP T')
+                || (strtoupper($next) == 'CREATE')
+                || (strtoupper($next) == 'INSERT')
+                || (strtoupper($next) == 'DELETE')
+                || (strtoupper($next) == 'ALTER ')
+                || (strtoupper($next) == 'UPDATE')) {
+                $next = '';
+                $sql_query = substr($restore_query, 0, $i);
+                $sql_array[] = trim($sql_query);
+                $restore_query = ltrim(substr($restore_query, $i+1));
+                $sql_length = strlen($restore_query);
+                $i = strpos($restore_query, ';')-1;
           }
         }
       }
