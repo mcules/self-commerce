@@ -563,10 +563,6 @@ if (isset ($_SESSION['customer_id'])) {
 unset ($_SESSION['actual_content']);
 xtc_count_cart();
 
-include_once(DIR_WS_CLASSES.'StopWatch.inc.php');
-include_once(DIR_WS_CLASSES.'Registry.inc.php');
-include_once(DIR_WS_CLASSES.'ClassRegistry.inc.php');
-
 // Wartung
 if (WARTUNG == 'true'){
   if ($_SESSION['customers_status']['customers_status_id'] == 0) {
@@ -575,7 +571,7 @@ if (WARTUNG == 'true'){
           <html><head></head><body>
           '.WARTUNG_TEXT.'
           <div style="position: relative; top: 80%;">
-          Login für Administrator:<br />
+          Login fï¿½r Administrator:<br />
           <a href="'.HTTP_SERVER.''.DIR_WS_CATALOG.'login.php">login.php</a><br />
           </div></body></html>
           ';
