@@ -25,6 +25,7 @@ require_once (DIR_FS_INC.'xtc_get_tax_rate.inc.php');
 require_once (DIR_FS_INC.'xtc_get_products_mo_images.inc.php');
 require_once (DIR_WS_CLASSES.'currencies.php');
 require_once (DIR_FS_INC.'xtc_wysiwyg.inc.php');
+require_once (DIR_FS_CATALOG.'includes/graduated-prices-edit.php');
 $currencies = new currencies();
 $catfunc = new categories();
 //this is used only by group_prices

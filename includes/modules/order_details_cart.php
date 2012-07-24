@@ -76,7 +76,7 @@ for ($i = 0, $n = sizeof($products); $i < $n; $i ++) {
 								'ATTRIBUTES' => '');
 
 	// Product options names
-	$attributes_exist = ((isset ($products[$i]['attributes'])) ? 1 : 0);
+    $attributes_exist = ((isset ($products[$i]['attributes']) && is_array($products[$i]['attributes'])) ? 1 : 0);
 
 	if ($attributes_exist == 1) {
 		reset($products[$i]['attributes']);

@@ -87,6 +87,9 @@ define('STORE_DB_TRANSACTIONS', 'false');
 // graduated prices model or products assigned ?
 define('GRADUATED_ASSIGN', 'true');
 
+// Dezimalstellen
+define('TAX_DECIMAL_PLACES', 0);
+
 // include used functions
 
 // Database
@@ -111,7 +114,6 @@ require_once (DIR_FS_INC.'xtc_get_top_level_domain.inc.php');
 require_once (DIR_FS_INC.'xtc_href_link.inc.php');
 require_once (DIR_FS_INC.'xtc_draw_separator.inc.php');
 require_once (DIR_FS_INC.'xtc_php_mail.inc.php');
-
 require_once (DIR_FS_INC.'xtc_product_link.inc.php');
 require_once (DIR_FS_INC.'xtc_category_link.inc.php');
 require_once (DIR_FS_INC.'xtc_manufacturer_link.inc.php');
@@ -128,7 +130,6 @@ require_once (DIR_FS_INC.'xtc_draw_selection_field.inc.php');
 require_once (DIR_FS_INC.'xtc_draw_separator.inc.php');
 require_once (DIR_FS_INC.'xtc_draw_textarea_field.inc.php');
 require_once (DIR_FS_INC.'xtc_image_button.inc.php');
-
 require_once (DIR_FS_INC.'xtc_not_null.inc.php');
 require_once (DIR_FS_INC.'xtc_update_whos_online.inc.php');
 require_once (DIR_FS_INC.'xtc_activate_banners.inc.php');
@@ -136,9 +137,7 @@ require_once (DIR_FS_INC.'xtc_expire_banners.inc.php');
 require_once (DIR_FS_INC.'xtc_expire_specials.inc.php');
 require_once (DIR_FS_INC.'xtc_parse_category_path.inc.php');
 require_once (DIR_FS_INC.'xtc_get_product_path.inc.php');
-
 require_once (DIR_FS_INC.'xtc_get_category_path.inc.php');
-
 require_once (DIR_FS_INC.'xtc_get_parent_categories.inc.php');
 require_once (DIR_FS_INC.'xtc_redirect.inc.php');
 require_once (DIR_FS_INC.'xtc_get_uprid.inc.php');

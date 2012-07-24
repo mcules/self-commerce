@@ -15,8 +15,9 @@
    Released under the GNU General Public License 
    ---------------------------------------------------------------------------------------*/
    
-function xtc_remove_non_numeric($var) {	  
-	$var = preg_replace('{[^0-9]}','',$var);
-	return $var;
-}
-?>
+function xtc_remove_non_numeric($var) 
+	{	  
+	  $var=preg_replace('/[^0-9]/','',$var);
+	  return $var;
+     }
+ ?>

@@ -42,7 +42,6 @@ require (DIR_FS_CATALOG.'templates/'.CURRENT_TEMPLATE.'/source/boxes.php');
 
 // include needed functions
 require_once (DIR_FS_INC.'xtc_get_download.inc.php');
-require_once (DIR_FS_INC.'xtc_delete_file.inc.php');
 require_once (DIR_FS_INC.'xtc_get_all_get_params.inc.php');
 require_once (DIR_FS_INC.'xtc_date_long.inc.php');
 require_once (DIR_FS_INC.'xtc_draw_hidden_field.inc.php');

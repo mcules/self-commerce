@@ -64,6 +64,9 @@ define('FILENAME_FILE_CHK','file_chk.php');
 define('BOX_FILE_CHK','Pr�fsummenscanner');
 /* Pr�fsummenscanner END */
 
+// Dezimalstellen
+define('TAX_DECIMAL_PLACES', 0);
+
 define('FILENAME_ACCOUNTING', 'accounting.php');
 define('FILENAME_BACKUP', 'backup.php');
 define('FILENAME_BANNER_MANAGER', 'banner_manager.php');

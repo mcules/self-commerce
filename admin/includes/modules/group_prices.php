@@ -150,7 +150,7 @@ for ($col = 0, $n = sizeof($group_data); $col < $n +1; $col ++) {
 			}
 ?>
  </td>
-                <td width="80" align="left"><?php echo xtc_draw_separator('pixel_trans.gif', '1', '10'); ?><a class="button" href="<?php echo xtc_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath . '&function=delete&quantity=' . $staffel_values['quantity'] . '&statusID=' . $group_data[$col]['STATUS_ID'] . '&action=new_product&pID=' . $_GET['pID']); ?>"><?php echo BUTTON_DELETE; ?></a></td>
+                  <td width="80" align="left"><?php echo xtc_draw_separator('pixel_trans.gif', '1', '10'); ?><a class="button" href="<?php echo xtc_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath . '&function=delete&quantity=' . $staffel_values['quantity'] . '&statusID=' . $group_data[$col]['STATUS_ID'] . '&action=new_product&pID=' . $_GET['pID']); ?>" onclick="W4B_graduated_prices_edit_removerow(this);"><?php echo BUTTON_DELETE; ?></a></td>
               </tr>
               <tr>
                 <td colspan="3" height="5"></td>
@@ -166,7 +166,9 @@ for ($col = 0, $n = sizeof($group_data); $col < $n +1; $col ++) {
 		echo TXT_PRICE;
 		echo xtc_draw_input_field('products_price_staffel_'.$group_data[$col]['STATUS_ID'], 0);
 		echo xtc_draw_separator('pixel_trans.gif', '10', '10');
-		echo '<input type="submit" class="button" onClick="return confirm(\''.SAVE_ENTRY.'\')" value="' . BUTTON_INSERT . '"/>';
+        // MOD graduated-prices-edit by Web4Business GmbH - Designs - Modules
+        echo '<input type="submit" name="graduated_prices_edit" class="button" onclick="W4B_graduated_prices_edit_addrow(this, '.$group_data[$col]['STATUS_ID'].');" value="' . BUTTON_INSERT . '"/>';
+        // END MOD
 ?><br></td>
           </tr>
 <?php
@@ -174,6 +176,7 @@ for ($col = 0, $n = sizeof($group_data); $col < $n +1; $col ++) {
 
 	}
 }
+W4B_graduated_prices_edit_logic();
 ?></div>
           <tr>
             <td style="border-top: 1px solid; border-color: #cccccc;" class="main"><?php echo TEXT_PRODUCTS_DISCOUNT_ALLOWED; ?></td>

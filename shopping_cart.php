@@ -47,12 +47,12 @@ if ($_SESSION['cart']->count_contents() > 0) {
 	$products = $_SESSION['cart']->get_products();
 	for ($i = 0, $n = sizeof($products); $i < $n; $i ++) {
 		// Push all attributes information in an array
-		if (isset ($products[$i]['attributes'])) {
+		if (isset ($products[$i]['attributes']) && is_array($products[$i]['attributes'])) {
 			while (list ($option, $value) = each($products[$i]['attributes'])) {
 				$hidden_options .= xtc_draw_hidden_field('id['.$products[$i]['id'].']['.$option.']', $value);
-				$attributes = xtc_db_query("select popt.products_options_name, poval.products_options_values_name, pa.options_values_price, pa.price_prefix,pa.attributes_stock,pa.products_attributes_id,pa.attributes_model
-				                                      from ".TABLE_PRODUCTS_OPTIONS." popt, ".TABLE_PRODUCTS_OPTIONS_VALUES." poval, ".TABLE_PRODUCTS_ATTRIBUTES." pa
-				                                      where pa.products_id = '".$products[$i]['id']."'
+				$attributes = xtc_db_query("SELECT popt.products_options_name, poval.products_options_values_name, pa.options_values_price, pa.price_prefix,pa.attributes_stock,pa.products_attributes_id,pa.attributes_model
+				                                      FROM ".TABLE_PRODUCTS_OPTIONS." popt, ".TABLE_PRODUCTS_OPTIONS_VALUES." poval, ".TABLE_PRODUCTS_ATTRIBUTES." pa
+				                                      WHERE pa.products_id = '".$products[$i]['id']."'
 				                                       and pa.options_id = '".$option."'
 				                                       and pa.options_id = popt.products_options_id
 				                                       and pa.options_values_id = '".$value."'
