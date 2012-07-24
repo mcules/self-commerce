@@ -4,49 +4,43 @@ if (GROUP_CHECK == 'true') {
 }
 $and_lang = "and cd.language_id = '".(int) $_SESSION['languages_id']."'";
 
-		$category_query = "select
-		                                    cd.categories_description,
-		                                    cd.categories_name,
-						                            cd.categories_heading_title,				    
-		                                    c.categories_template,
-		                                    c.categories_image from ".TABLE_CATEGORIES." c, ".TABLE_CATEGORIES_DESCRIPTION." cd
-		                                    where c.categories_id = '".$current_category_id."'
-		                                    and cd.categories_id = '".$current_category_id."'
-		                                    ".$group_check."
-		                                    ".$and_lang."
-                                        ";
+		$category_query = "SELECT
+		                        cd.categories_description,
+		                        cd.categories_name,
+		                        cd.categories_heading_title,
+		                        c.categories_template,
+		                        c.categories_image from ".TABLE_CATEGORIES." c, ".TABLE_CATEGORIES_DESCRIPTION." cd
+                            WHERE c.categories_id = '".$current_category_id."' AND cd.categories_id = '".$current_category_id."'
+                            ".$group_check."
+                            ".$and_lang;
 
 		$category_query = xtDBquery($category_query);
 
 		$category = xtc_db_fetch_array($category_query, true);
     
 // build the select for categories_query
-    $categories_select = "
-                          select       
+    $categories_select = "SELECT
                             cd.categories_description,
-				                    c.categories_id,
-				                    cd.categories_name,
-									          cd.categories_heading_title,
-				                    c.categories_image,
-				                    c.parent_id 
-                          from 
+                            c.categories_id,
+                            cd.categories_name,
+                            cd.categories_heading_title,
+                            c.categories_image,
+                            c.parent_id
+                          FROM
                             ".TABLE_CATEGORIES." c, 
                             ".TABLE_CATEGORIES_DESCRIPTION." cd
-                          where 
-                            c.categories_status = '1'
-    ";
+                          WHERE
+                            c.categories_status = '1'";
     
-    $categories_select_end = "
-				                  and 
-                            c.categories_id = cd.categories_id
-				                  ".$group_check."
-				                  ".$and_lang."
-				                  order by 
-                            sort_order, 
-                            cd.categories_name    
-    ";
+    $categories_select_end = "AND
+                                c.categories_id = cd.categories_id
+                                ".$group_check."
+                                ".$and_lang."
+                                ORDER BY
+                                    sort_order,
+                                    cd.categories_name";
 // end build the select for categories_query    
-		if (isset ($cPath) && ereg('_', $cPath)) {
+		if (isset ($cPath) && preg_match('/_/', $cPath)) {
 			// check to see if there are deeper categories within the current category
 			$category_links = array_reverse($cPath_array);
 			for ($i = 0, $n = sizeof($category_links); $i < $n; $i ++) {
