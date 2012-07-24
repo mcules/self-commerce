@@ -109,7 +109,7 @@ require ('includes/application_top_1.php');
     }
     if (xtc_not_null($configuration['use_function'])) {
       $use_function = $configuration['use_function'];
-      if (ereg('->', $use_function)) {
+      if (preg_match('/->/', $use_function)) {
         $class_method = explode('->', $use_function);
         if (!is_object(${$class_method[0]})) {
           include(DIR_WS_CLASSES . $class_method[0] . '.php');
