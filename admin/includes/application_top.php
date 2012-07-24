@@ -57,12 +57,12 @@ define('LOCAL_EXE_ZIP', '/usr/local/bin/zip');
 define('LOCAL_EXE_UNZIP', '/usr/local/bin/unzip');
 
 // define the filenames used in the project
-/* Prüfsummenscanner START */
+/* Prï¿½fsummenscanner START */
 define('TABLE_FILE_CHECK_php', 'self_commerce_filechk_php');
 define('TABLE_FILE_CHECK_html', 'self_commerce_filechk_html');  
 define('FILENAME_FILE_CHK','file_chk.php');
-define('BOX_FILE_CHK','Prüfsummenscanner');
-/* Prüfsummenscanner END */
+define('BOX_FILE_CHK','Prï¿½fsummenscanner');
+/* Prï¿½fsummenscanner END */
 
 define('FILENAME_ACCOUNTING', 'accounting.php');
 define('FILENAME_BACKUP', 'backup.php');
@@ -456,10 +456,11 @@ if (!isset($_SESSION['customer_id'])) {
 if (xtc_check_permission($pagename) == '0') {
    xtc_redirect(xtc_href_link(FILENAME_LOGIN));
 }
-// Kontrolle ob der datei browser von tiny geschützt ist
+// Kontrolle ob der datei browser von tiny geschï¿½tzt ist
 if (file_exists(DIR_WS_MODULES . 'tiny_mce/plugins/media/filemanager/.htaccess')) {
-} else {
-   echo '<b>Verzeichnisschutz muß noch gesetzt werden für Tiny_MCE Image und Datei Browser!</b> <a href="' . DIR_WS_ADMIN . 'tiny_htacess.php">Schutz setzen</a>';
+}
+elseif($_SERVER['HTTP_HOST'] != 'localhost') {
+   echo '<b>Verzeichnisschutz mu&szlig; noch gesetzt werden f&uuml;r Tiny_MCE Image und Datei Browser!</b> <a href="' . DIR_WS_ADMIN . 'tiny_htacess.php">Schutz setzen</a>';
 }
 // Include Template Engine
 require (DIR_FS_CATALOG . DIR_WS_CLASSES . 'Smarty/Smarty.class.php');

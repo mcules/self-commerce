@@ -15,20 +15,22 @@
    Released under the GNU General Public License 
    ---------------------------------------------------------------------------------------*/
 
-  // include needed functions
+// include needed functions
   
-  require_once(DIR_FS_INC . 'xtc_exit.inc.php');
-  
-  function xtc_redirect($url) {
-    if ( (ENABLE_SSL == true) && (getenv('HTTPS') == 'on' || getenv('HTTPS') == '1') ) { // We are loading an SSL page
-	if (substr($url, 0, strlen(HTTP_SERVER)) == HTTP_SERVER) { // NONSSL url
-	    $url = HTTPS_SERVER . substr($url, strlen(HTTP_SERVER)); // Change it to SSL
-	}
-    }
-    
-    header('Location: ' . eregi_replace("[\r\n]+(.*)$", "", $url));
+require_once(DIR_FS_INC . 'xtc_exit.inc.php');
 
-    xtc_exit();
-    
-  }
+function xtc_redirect($url, $ssl='') {
+    global $request_type;
+    if ( (ENABLE_SSL == true) && ($request_type == 'SSL') && ($ssl != 'NONSSL') ) { // We are loading an SSL page
+        if (substr($url, 0, strlen(HTTP_SERVER)) == HTTP_SERVER) { // NONSSL url
+            $url = HTTPS_SERVER . substr($url, strlen(HTTP_SERVER)); // Change it to SSL
+        }
+    }
+
+    $_SESSION['REFERER'] = basename(parse_url($_SERVER['SCRIPT_NAME'], PHP_URL_PATH)); // GTB - 2011-03-21 - write referer to Session
+
+    header('Location: ' . preg_replace("/[\r\n]+(.*)$/i", "", html_entity_decode($url))); //Hetfield - 2009-08-11 - replaced deprecated function eregi_replace with preg_replace to be ready for PHP >= 5.3
+
+    exit();
+}
 ?>

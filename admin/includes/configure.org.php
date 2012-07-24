@@ -18,15 +18,15 @@
 // Define the webserver and path parameters
 // * DIR_FS_* = Filesystem directories (local/physical)
 // * DIR_WS_* = Webserver directories (virtual/URL)
-  define('HTTP_SERVER', 'http://devshop.eisold-edv.de'); // eg, http://localhost or - https://localhost should not be empty for productive servers
-  define('HTTP_CATALOG_SERVER', 'http://devshop.eisold-edv.de');
-  define('HTTPS_CATALOG_SERVER', 'https://devshop.eisold-edv.de');
+  define('HTTP_SERVER', 'http://localhost'); // eg, http://localhost or - https://localhost should not be empty for productive servers
+  define('HTTP_CATALOG_SERVER', 'http://localhost');
+  define('HTTPS_CATALOG_SERVER', 'https://localhost');
   define('ENABLE_SSL_CATALOG', 'false'); // secure webserver for catalog module
-  define('DIR_FS_DOCUMENT_ROOT', '/var/www/devshop.eisold-edv.de/web/'); // where the pages are located on the server
-  define('DIR_WS_ADMIN', '/admin/'); // absolute path required
-  define('DIR_FS_ADMIN', '/var/www/devshop.eisold-edv.de/web/admin/'); // absolute pate required
-  define('DIR_WS_CATALOG', '/'); // absolute path required
-  define('DIR_FS_CATALOG', '/var/www/devshop.eisold-edv.de/web/'); // absolute path required
+  define('DIR_FS_DOCUMENT_ROOT', '/Volumes/Elements/Projekte/Local/self-commerce/'); // where the pages are located on the server
+  define('DIR_WS_ADMIN', '/self-commerce/admin/'); // absolute path required
+  define('DIR_FS_ADMIN', '/Volumes/Elements/Projekte/Local/self-commerce/admin/'); // absolute pate required
+  define('DIR_WS_CATALOG', '/self-commerce/'); // absolute path required
+  define('DIR_FS_CATALOG', '/Volumes/Elements/Projekte/Local/self-commerce/'); // absolute path required
   define('DIR_WS_IMAGES', 'images/');
   define('DIR_FS_CATALOG_IMAGES', DIR_FS_CATALOG . 'images/');
   define('DIR_FS_CATALOG_ORIGINAL_IMAGES', DIR_FS_CATALOG_IMAGES .'product_images/original_images/');
@@ -53,9 +53,9 @@
 
 // define our database connection
   define('DB_SERVER', 'localhost'); // eg, localhost - should not be empty for productive servers
-  define('DB_SERVER_USERNAME', 'c2_pbXUkjtEr3A');
-  define('DB_SERVER_PASSWORD', '8E$)F32CXmNNe5qx');
-  define('DB_DATABASE', 'c2_sc_21');
+  define('DB_SERVER_USERNAME', 'root');
+  define('DB_SERVER_PASSWORD', '');
+  define('DB_DATABASE', 'self_commerce');
   define('USE_PCONNECT', 'false'); // use persisstent connections?
   define('STORE_SESSIONS', 'mysql'); // leave empty '' for default handler or set to 'mysql'
 

@@ -122,16 +122,16 @@ function xtc_check_permission($pagename) {
 	}
 }
 
-////
-// Redirect to another page or site
+/* Redirect to another page or site */
 function xtc_redirect($url) {
 	global $logger;
 
 	header('Location: '.$url);
 
 	if (STORE_PAGE_PARSE_TIME == 'true') {
-		if (!is_object($logger))
+		if (!is_object($logger)) {
 			$logger = new logger;
+        }
 		$logger->timer_stop();
 	}
 
