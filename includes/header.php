@@ -346,14 +346,14 @@ require('includes/google_conversiontracking.js.php');
 
   // check if the 'install' directory exists, and warn of its existence
   if (WARN_INSTALL_EXISTENCE == 'true') {
-    if (file_exists(dirname($_SERVER['SCRIPT_FILENAME']) . '/self_installer')) {
+    if (file_exists(dirname($_SERVER['SCRIPT_FILENAME']) . '/self_installer') && $_SERVER['HTTP_HOST'] != 'localhost') {
       xtc_output_warning(WARNING_INSTALL_DIRECTORY_EXISTS);
     }
   }
 
   // check if the configure.php file is writeable
   if (WARN_CONFIG_WRITEABLE == 'true') {
-    if ( (file_exists(dirname($_SERVER['SCRIPT_FILENAME']) . '/includes/configure.php')) && (is_writeable(dirname($_SERVER['SCRIPT_FILENAME']) . '/includes/configure.php')) ) {
+    if ( (file_exists(dirname($_SERVER['SCRIPT_FILENAME']) . '/includes/configure.php')) && (is_writeable(dirname($_SERVER['SCRIPT_FILENAME']) . '/includes/configure.php'))  && $_SERVER['HTTP_HOST'] != 'localhost') {
       xtc_output_warning(WARNING_CONFIG_FILE_WRITEABLE);
     }
   }
