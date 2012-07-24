@@ -34,6 +34,10 @@
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_URL, $this->host . $this->path);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_USERAGENT, PROJECT_VERSION);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
 			$data = curl_exec($ch);
 			curl_close($ch);
 			return $data;

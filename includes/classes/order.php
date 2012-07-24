@@ -484,7 +484,8 @@ class order {
                 $products[$i]['tax_class_id'],
                 '')+$xtPrice->xtcFormat($_SESSION['cart']->attributes_price($products[$i]['id']),false);
 
-            $this->products[$index] = array('qty' => $products[$i]['quantity'],
+            $this->products[$index] = array(
+				'qty' => $products[$i]['quantity'],
                 'name' => $products[$i]['name'],
                 'model' => $products[$i]['model'],
                 'description' => $products[$i]['description'],

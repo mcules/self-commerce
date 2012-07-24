@@ -1757,8 +1757,8 @@ var $PRZ; //Enthält die Prüfziffer
 
 /* -------- Dies ist die wichtigste function ---------- */
   function CheckAccount($banktransfer_number, $banktransfer_blz) {
-    $KontoNR = ereg_replace('[^0-9]', '', $banktransfer_number);
-    $BLZ = ereg_replace('[^0-9]', '', $banktransfer_blz);
+    $KontoNR = preg_replace('{[^0-9]}', '', $banktransfer_number);
+    $BLZ = preg_replace('{[^0-9]}', '', $banktransfer_blz);
 
 /*   echo "banktransfer_number:".$banktransfer_number;
    echo "banktranfer_blz:".$banktransfer_blz;

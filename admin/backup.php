@@ -37,7 +37,7 @@ require ('includes/application_top.php');
             if (isset($fields['Extra'])) $schema .= ' ' . $fields['Extra'];
             $schema .= ',' . "\n";
           }
-          $schema = ereg_replace(",\n$", '', $schema);
+          $schema = preg_replace("{,\n$}", '', $schema);
 
           // Add the keys
           $index = array();
@@ -73,13 +73,13 @@ require ('includes/application_top.php');
                 $schema_insert .= 'NULL, ';
               } elseif ($rows[$i] != '') {
                 $row = addslashes($rows[$i]);
-                $row = ereg_replace("\n#", "\n".'\#', $row);
+                $row = preg_replace("{\n#}", "\n".'\#', $row);
                 $schema_insert .= '\'' . $row . '\', ';
               } else {
                 $schema_insert .= '\'\', ';
               }
             }
-            $schema_insert = ereg_replace(', $', '', $schema_insert) . ');' . "\n";
+            $schema_insert = preg_replace('{, $}', '', $schema_insert) . ');' . "\n";
             $schema .= $schema_insert;
           }
           $schema .= "\n";

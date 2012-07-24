@@ -4,3 +4,18 @@ INSERT INTO `categories_description` (`categories_id`, `language_id`, `categorie
 (1, 1, 'Warenkorb', '', '', '', '', ''),
 (1, 2, 'Warenkorb', '', '', '', '', '');
 ALTER TABLE products ADD (products_setup int(1) default '0', setup_price decimal(15,4) NOT NULL default '0.0000');
+
+# Prüfsummenscanner
+CREATE TABLE `self_commerce_filechk_php` (
+  `id` int(11) NOT NULL auto_increment,
+  `filepath` text,
+  `hash` varchar(32) default NULL,
+  KEY `id` (`id`)
+);
+CREATE TABLE `self_commerce_filechk_html` (
+  `id` int(11) NOT NULL auto_increment,
+  `filepath` text,
+  `hash` varchar(32) default NULL,
+  KEY `id` (`id`)
+);
+ALTER TABLE `admin_access` ADD `file_chk` INT( 1 ) NOT NULL DEFAULT '1';
