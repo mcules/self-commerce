@@ -302,9 +302,9 @@ switch ($_GET['action']) {
 	
 		// send mail to admin
 		if ($send_to_admin==1)
-			xtc_php_mail($order->customer['email_address'], $order->customer['firstname'], EMAIL_BILLING_ADDRESS, STORE_NAME, EMAIL_BILLING_FORWARDING_STRING, $order->customer['email_address'], $order->customer['firstname'], '', '', $order_subject, $html_mail, $txt_mail);
+            xtc_php_mail(EMAIL_BILLING_ADDRESS, $order->customer['firstname'], EMAIL_BILLING_ADDRESS, STORE_NAME, EMAIL_BILLING_FORWARDING_STRING, $order->customer['email_address'], $order->customer['firstname'], '', '', $order_subject, $html_mail, $txt_mail);
 
-  if (ATTACH_ORDER_1 != '') {
+        if (ATTACH_ORDER_1 != '') {
   $attachment1 = '../attachments/'.ATTACH_ORDER_1 ;
   } else {
   $attachment1 = '';
