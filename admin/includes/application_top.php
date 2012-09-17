@@ -57,12 +57,12 @@ define('LOCAL_EXE_ZIP', '/usr/local/bin/zip');
 define('LOCAL_EXE_UNZIP', '/usr/local/bin/unzip');
 
 // define the filenames used in the project
-/* Pr�fsummenscanner START */
+/* Pruefsummenscanner START */
 define('TABLE_FILE_CHECK_php', 'self_commerce_filechk_php');
 define('TABLE_FILE_CHECK_html', 'self_commerce_filechk_html');  
 define('FILENAME_FILE_CHK','file_chk.php');
-define('BOX_FILE_CHK','Pr�fsummenscanner');
-/* Pr�fsummenscanner END */
+define('BOX_FILE_CHK','Pr&uuml;fsummenscanner');
+/* Pruefsummenscanner END */
 
 // Dezimalstellen
 define('TAX_DECIMAL_PLACES', 0);
@@ -141,6 +141,7 @@ define('FILENAME_CAMPAIGNS_REPORT', 'stats_campaigns.php');
 define('FILENAME_XSELL_GROUPS', 'cross_sell_groups.php');
 define('FILENAME_ADMIN_SQL', 'admin_sql.php');
 define('FILENAME_STOCK_LIST', 'stock_list.php');
+
 // define the database table names used in the project
 define('TABLE_ADDRESS_BOOK', 'address_book');
 define('TABLE_ADDRESS_FORMAT', 'address_format');
