@@ -2,15 +2,17 @@
 /* -----------------------------------------------------------------------------------------
    $Id$   
 
-   XT-Commerce - community made shopping
-   http://www.xt-commerce.com
+   Self-Commerce
+   http://www.self-commerce.de
 
-   Copyright (c) 2003 XT-Commerce
+   Copyright (c) 2012 Self-Commerce
    -----------------------------------------------------------------------------------------
    based on: 
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
-   (c) 2002-2003 osCommerce(configuration.php,v 1.8 2002/01/04); www.oscommerce.com
-   (c) 2003	 nextcommerce (configuration.php,v 1.16 2003/08/25); www.nextcommerce.org 
+   (c) 2002-2003 osCommerce(configuration.php,v 1.8 2002/01/04)	www.oscommerce.com
+   (c) 2003	 nextcommerce (configuration.php,v 1.16 2003/08/25)	www.nextcommerce.org
+   (c) 2005  xt-commerce;										www.xt-commerce.com
+   (c) 2012 Self-Commerce										www.self-commerce.de
 
    Released under the GNU General Public License 
    ---------------------------------------------------------------------------------------*/
@@ -567,7 +569,7 @@ define('ACCOUNT_COMPANY_VAT_GROUP_TITLE' , 'Kundengruppe nach UST ID Check anpas
 define('ACCOUNT_COMPANY_VAT_GROUP_DESC' , 'Durch einschalten dieser Option wird die Kundengruppe nach einen postiven UST ID Check ge&auml;ndert');
 define('ACCOUNT_VAT_BLOCK_ERROR_TITLE' , 'Eintragung falscher oder ungepr&uuml;fter UstID Nummern sperren?');
 define('ACCOUNT_VAT_BLOCK_ERROR_DESC' , 'Durch einschalten dieser Option werden nur gepr&uuml;fte und richtige UstIDs eingetragen');
-define('DEFAULT_CUSTOMERS_VAT_STATUS_ID_LOCAL_TITLE','Kundenstatus f&uuml;r UST ID Geprï¿½&uuml;fte Kunden (Innland)');
+define('DEFAULT_CUSTOMERS_VAT_STATUS_ID_LOCAL_TITLE','Kundenstatus f&uuml;r UST ID Gepr&uuml;fte Kunden (Innland)');
 define('DEFAULT_CUSTOMERS_VAT_STATUS_ID_LOCAL_DESC','W&auml;hlen Sie den Kundenstatus(Gruppe) f&uuml;r UST ID gepr&uuml;fte Kunden aus!');
 // Google Conversion
 define('GOOGLE_CONVERSION_TITLE','Google Conversion-Tracking');
@@ -597,11 +599,11 @@ define('SEARCH_IN_ATTR_DESC','Aktivieren um die Suche in den Produktattributen (
 
 // Ebay Options
 define('EBAY_NAME_TITLE','Ebay Benutzername:');
-define('EBAY_NAME_DESC','Geben Sie hier den Ebay Benutzernamen ein, welcher genutzt wird um die zugehörigen Auktionen zu listen.');
+define('EBAY_NAME_DESC','Geben Sie hier den Ebay Benutzernamen ein, welcher genutzt wird um die zugeh&ouml;rigen Auktionen zu listen.');
 define('SHOW_THUMP_TITLE','Zeige Bilder?');
 define('SHOW_THUMP_DESC','Einstellung ob Bilder mit angezeigt werden sollen.<br /> (1 = ja 0 = nein)<br />default: 1');
-define('NEW_WIN_TITLE','Link in neuem Fenster öffnen?');
-define('NEW_WIN_DESC','Einstellung, ob bei Klick auf den Auktionlink ein neues Fenster geöffnet werden soll.<br /> (1 = ja 0 = nein)<br />default: 1');
+define('NEW_WIN_TITLE','Link in neuem Fenster &ouml;ffnen?');
+define('NEW_WIN_DESC','Einstellung, ob bei Klick auf den Auktionlink ein neues Fenster ge&ouml;ffnet werden soll.<br /> (1 = ja 0 = nein)<br />default: 1');
 define('TABLE_BORDER_TITLE','Tabellen Rahmen Farbe:');
 define('TABLE_BORDER_DESC','default: #FF6600');
 define('TABLE_BORDER_ROW_TITLE','Tabellenkopf Farbe:');
@@ -621,23 +623,23 @@ define('LIMIT_TO_DESC','Setzen Sie dies auf eine sehr hohe Zahl um alle anzuzeig
 
 // TINY_MCE Options
 define('TINY_MODUS_TITLE','Editor Modus:');
-define('TINY_MODUS_DESC','Hier können Sie einstellen, in welchem Modus der Editor angezeigt wird.<br />(simple / advanced)<br />default: advanced');
+define('TINY_MODUS_DESC','Hier k&ouml;nnen Sie einstellen, in welchem Modus der Editor angezeigt wird.<br />(simple / advanced)<br />default: advanced');
 define('TINY_CSS_TITLE','Stylesheet Auswahl:');
-define('TINY_CSS_DESC','Geben Sie hier an, welche stylesheet Datei verwendet wird um im Editor in der Style Auswahl zu erscheinen.<br />Die Datei <b>muß</b> im Ordner Ihres Templates liegen!<br />Beispiel: tiny.css');
+define('TINY_CSS_DESC','Geben Sie hier an, welche stylesheet Datei verwendet wird um im Editor in der Style Auswahl zu erscheinen.<br />Die Datei <b>muß¼/b> im Ordner Ihres Templates liegen!<br />Beispiel: tiny.css');
 
 // Mail Attachments
 define('ATTACH_ORDER_1_TITLE','Bestellung Anhang 1:');
-define('ATTACH_ORDER_1_DESC','Geben Sie hier den Dateinamen für den Anhang der Mail an.<br />Die Datei muß sich im Ordner <b>attachments</b> befinden.<br />Wenn kein Anhang gewünscht wird einfach das Feld leer lassen.');
+define('ATTACH_ORDER_1_DESC','Geben Sie hier den Dateinamen f&uuml;r den Anhang der Mail an.<br />Die Datei mu§ sich im Ordner <b>attachments</b> befinden.<br />Wenn kein Anhang gew&uuml;nscht wird einfach das Feld leer lassen.');
 define('ATTACH_ORDER_2_TITLE','Bestellung Anhang 2:');
-define('ATTACH_ORDER_2_DESC','Geben Sie hier den Dateinamen für den Anhang der Mail an.<br />Die Datei muß sich im Ordner <b>attachments</b> befinden.<br />Wenn kein Anhang gewünscht wird einfach das Feld leer lassen.');
+define('ATTACH_ORDER_2_DESC','Geben Sie hier den Dateinamen f&uuml;r den Anhang der Mail an.<br />Die Datei mu&szlig; sich im Ordner <b>attachments</b> befinden.<br />Wenn kein Anhang gew&uuml;nscht wird einfach das Feld leer lassen.');
 define('ATTACH_CREATE_1_TITLE','Kundenerstellung Anhang 1:');
-define('ATTACH_CREATE_1_DESC','Geben Sie hier den Dateinamen für den Anhang der Mail an.<br />Die Datei muß sich im Ordner <b>attachments</b> befinden.<br />Wenn kein Anhang gewünscht wird einfach das Feld leer lassen.');
+define('ATTACH_CREATE_1_DESC','Geben Sie hier den Dateinamen f&uuml;r den Anhang der Mail an.<br />Die Datei mu&szlig; sich im Ordner <b>attachments</b> befinden.<br />Wenn kein Anhang gew&uuml;nscht wird einfach das Feld leer lassen.');
 define('ATTACH_CREATE_2_TITLE','Kundenerstellung Anhang 2:');
-define('ATTACH_CREATE_2_DESC','Geben Sie hier den Dateinamen für den Anhang der Mail an.<br />Die Datei muß sich im Ordner <b>attachments</b> befinden.<br />Wenn kein Anhang gewünscht wird einfach das Feld leer lassen.');
-define('ATTACH_ORDER_STATUS_1_TITLE','Bestellung Statusänderung Anhang 1:');
-define('ATTACH_ORDER_STATUS_1_DESC','Geben Sie hier den Dateinamen für den Anhang der Mail an.<br />Die Datei muß sich im Ordner <b>attachments</b> befinden.<br />Wenn kein Anhang gewünscht wird einfach das Feld leer lassen.');
-define('ATTACH_ORDER_STATUS_2_TITLE','Bestellung Statusänderung Anhang 2:');
-define('ATTACH_ORDER_STATUS_2_DESC','Geben Sie hier den Dateinamen für den Anhang der Mail an.<br />Die Datei muß sich im Ordner <b>attachments</b> befinden.<br />Wenn kein Anhang gewünscht wird einfach das Feld leer lassen.');
+define('ATTACH_CREATE_2_DESC','Geben Sie hier den Dateinamen f&uuml;r den Anhang der Mail an.<br />Die Datei mu&szlig; sich im Ordner <b>attachments</b> befinden.<br />Wenn kein Anhang gew&uuml;nscht wird einfach das Feld leer lassen.');
+define('ATTACH_ORDER_STATUS_1_TITLE','Bestellung Status&auml;nderung Anhang 1:');
+define('ATTACH_ORDER_STATUS_1_DESC','Geben Sie hier den Dateinamen f&uuml;r den Anhang der Mail an.<br />Die Datei mu&szlig; sich im Ordner <b>attachments</b> befinden.<br />Wenn kein Anhang gew&uuml;nscht wird einfach das Feld leer lassen.');
+define('ATTACH_ORDER_STATUS_2_TITLE','Bestellung Status&auml;nderung Anhang 2:');
+define('ATTACH_ORDER_STATUS_2_DESC','Geben Sie hier den Dateinamen f&uuml;r den Anhang der Mail an.<br />Die Datei mu&szlig; sich im Ordner <b>attachments</b> befinden.<br />Wenn kein Anhang gew&uuml;nscht wird einfach das Feld leer lassen.');
 
 // Google Analytics
 define('GOOGLE_ANAL_ON_TITLE','Google Analytics einschalten');
@@ -649,16 +651,29 @@ define('GOOGLE_ANAL_CODE_DESC','Geben Sie hier ihren Analytics Code an.<br />Bei
 define('WARTUNG_TITLE','Wartung ein/ausschalten:');
 define('WARTUNG_DESC','<b><font color="red">ACHTUNG! hiermit schalten Sie den Shop in den Wartungszustand.<br />true = offline, false = online</font></b>');
 define('WARTUNG_TEXT_TITLE','Inhalt der Wartungs-Seite:');
-define('WARTUNG_TEXT_DESC','Geben Sie hier den Inhalt der Wartungs-Seite an.<br />Es ist HTML Code möglich.');
+define('WARTUNG_TEXT_DESC','Geben Sie hier den Inhalt der Wartungs-Seite an.<br />Es ist HTML Code m&ouml;glich.');
 
 // Login Safe
 define('LOGIN_NUM_TITLE','Anzahl der erlaubten Loginversuche:');
 define('LOGIN_NUM_DESC','Stellen Sie hier ein, nach wieviel falschen Versuchen die Grafikcode abfrage erscheinen soll.<br /><b>default: 3</b>');
 define('LOGIN_TIME_TITLE','Zeit zwischen den Logins:');
 define('LOGIN_TIME_DESC','Wenn diese Zeit vergangen ist, wird die Grafikcode abfrage abgeschalten, und es ist wieder ein normales Login möglich. (in sekunden!)<br /><b>default: 300</b>');
+
 // erweiterter contentmanager
 define('MODULE_CONTENT_MANAGER_CHILDREN_CENTERBOX_TITLE', 'Centerbox-Modus');
-define('MODULE_CONTENT_MANAGER_CHILDREN_CENTERBOX_DESC', 'Nur die nächste Seite (children) in der Centerbox anzeigen, oder alle folgenden Seiten (sisters)?');
+define('MODULE_CONTENT_MANAGER_CHILDREN_CENTERBOX_DESC', 'Nur die n&auml;chste Seite (children) in der Centerbox anzeigen, oder alle folgenden Seiten (sisters)?');
 define('MODULE_CONTENT_MANAGER_CHILDREN_SHOW_TITLE', 'Children anzeigen?');
 define('MODULE_CONTENT_MANAGER_CHILDREN_SHOW_DESC', 'Die Nachfahren der einzelen Dokumente in den Boxen anzeigen?');
+
+// Token Verwaltung
+define('TOKEN_SERVER_TITLE', 'Token Server');
+define('TOKEN_SERVER_PORT_AUTH_TITLE', 'Token Server Authentication Port');
+define('TOKEN_SERVER_PORT_AUTH_DESC', 'Der Authentication Port des Token Servers');
+define('TOKEN_SERVER_PORT_ACCOUNTING_TITLE', 'Token Server Accounting Port');
+define('TOKEN_SERVER_PORT_ACCOUNTING_DESC', 'Der Accounting Port des Token Servers');
+define('TOKEN_SECRET_TITLE', 'Token Secret');
+define('TOKEN_DEBUG_TITLE', 'Debugging aktivieren?');
+define('TOKEN_DEBUG_DESC', '<b><font color="red">ACHTUNG! Hiermit werden dem Kunden "unsch&ouml;ne" Meldungen angezeigt, deshalb nur im Fehlerfall aktivieren!</font><br />Aktiviert: 1<br />Deaktiviert: 0 (default)</b>');
+define('TOKEN_SECURE_ADMIN_TITLE', 'Admin mit Token sch&uuml;tzen?');
+define('TOKEN_SECURE_ADMIN_DESC', '<b>Aktiviert: 1<br />Deaktiviert: 0 (default)</b>');
 ?>

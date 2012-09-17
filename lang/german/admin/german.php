@@ -74,6 +74,7 @@ define('BOX_HEADING_CUSTOMERS','Kunden');
 define('BOX_HEADING_PRODUCTS','Artikelkatalog');
 define('BOX_HEADING_STATISTICS','Statistiken');
 define('BOX_HEADING_TOOLS','Hilfsprogramme');
+define('BOX_HEADING_SECURITY','System-Sicherheit');
 
 define('BOX_CONTENT','Content Manager');
 define('TEXT_ALLOWED', 'Erlaubnis');
@@ -102,7 +103,7 @@ define('BOX_CONFIGURATION_19', 'xt:C Partner');
 define('BOX_CONFIGURATION_22', 'Such-Optionen');
 define('BOX_CONFIGURATION_358', 'Ebay Einstellungen');
 define('BOX_CONFIGURATION_359', 'Tiny_MCE Einstellungen');
-define('BOX_CONFIGURATION_360', 'Mail Anhänge');
+define('BOX_CONFIGURATION_360', 'Mail Anh&auml;nge');
 define('BOX_CONFIGURATION_361','Google Analytics');
 define('BOX_CONFIGURATION_362','<font color="red">Wartungs Modus</font>');
 define('BOX_CONFIGURATION_363','<font color="red">Login Schutz</font>');
@@ -163,6 +164,7 @@ define('BOX_IMPORT','Import/Export');
 define('BOX_PRODUCTS_VPE','Verpackungseinheit');
 define('BOX_CAMPAIGNS_REPORT','Kampagnen Report');
 define('BOX_ORDERS_XSELL_GROUP','Cross-Marketing Gruppen');
+define('BOX_TOKEN_ADMIN', 'Token verwaltung');
 
 define('TXT_GROUPS','<b>Gruppen</b>:');
 define('TXT_SYSTEM','System');
@@ -404,7 +406,7 @@ define('BOX_ADMIN_SQL','<font color="red">Admin SQL</font>');
 define('ADMIN_SQL','SQL-Admin');
 define('ADMIN_SQL_TEXT','SQL-Befehl(e):');
 define('ADMIN_SQL_DESC','Hiermit senden Sie SQL Befehle an Ihre Datenbank.<br />Bitte mit Vorsicht vorgehen.');
-define('ADMIN_SQL_SUCCESS','<b>SQL Befehl erfolgreich ausgeführt.</b>');
+define('ADMIN_SQL_SUCCESS','<b>SQL Befehl erfolgreich ausgefí©²t.</b>');
 
 // Lagerliste
 define('BOX_STOCK_LIST','Lagerliste');

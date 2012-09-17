@@ -162,6 +162,7 @@ define('BOX_IMPORT','Import/Export');
 define('BOX_PRODUCTS_VPE','Packing unit');
 define('BOX_CAMPAIGNS_REPORT','Campaign report');
 define('BOX_ORDERS_XSELL_GROUP','Cross-sell groups');
+define('BOX_TOKEN_ADMIN', 'Token management');
 
 define('TXT_GROUPS','<b>Groups</b>:');
 define('TXT_SYSTEM','System');

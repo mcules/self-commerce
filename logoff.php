@@ -1,5 +1,4 @@
 <?php
-
 /* -----------------------------------------------------------------------------------------
    $Id$   
 
@@ -38,11 +37,10 @@ require (DIR_FS_CATALOG.'templates/'.CURRENT_TEMPLATE.'/source/boxes.php');
 $breadcrumb->add(NAVBAR_TITLE_LOGOFF);
 
 //delete Guests from Database   
-
 if (($_SESSION['account_type'] == 1) && (DELETE_GUEST_ACCOUNT == 'true')) {
-	xtc_db_query("delete from ".TABLE_CUSTOMERS." where customers_id = '".$_SESSION['customer_id']."'");
-	xtc_db_query("delete from ".TABLE_ADDRESS_BOOK." where customers_id = '".$_SESSION['customer_id']."'");
-	xtc_db_query("delete from ".TABLE_CUSTOMERS_INFO." where customers_info_id = '".$_SESSION['customer_id']."'");
+        xtc_db_query("delete from ".TABLE_CUSTOMERS." where customers_id = '".$_SESSION['customer_id']."'");
+        xtc_db_query("delete from ".TABLE_ADDRESS_BOOK." where customers_id = '".$_SESSION['customer_id']."'");
+        xtc_db_query("delete from ".TABLE_CUSTOMERS_INFO." where customers_info_id = '".$_SESSION['customer_id']."'");
 }
 
 xtc_session_destroy();
@@ -65,6 +63,7 @@ unset ($_SESSION['gv_id']);
 unset ($_SESSION['cc_id']);
 // GV Code End
 $_SESSION['cart']->reset();
+
 // write customers status guest in session again
 require (DIR_WS_INCLUDES.'write_customers_status.php');
 
@@ -79,7 +78,8 @@ $main_content = $smarty->fetch(CURRENT_TEMPLATE.'/module/logoff.html');
 $smarty->assign('language', $_SESSION['language']);
 $smarty->assign('main_content', $main_content);
 $smarty->caching = 0;
-if (!defined(RM))
-	$smarty->loadfilter('output', 'note');
+if (!defined(RM)) {
+    $smarty->loadfilter('output', 'note');
+}
 $smarty->display(CURRENT_TEMPLATE.'/index.html');
 ?>

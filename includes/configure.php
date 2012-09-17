@@ -17,12 +17,12 @@
 // Define the webserver and path parameters
 // * DIR_FS_* = Filesystem directories (local/physical)
 // * DIR_WS_* = Webserver directories (virtual/URL)
-  define('HTTP_SERVER', 'http://localhost'); // eg, http://localhost - should not be empty for productive servers
-  define('HTTPS_SERVER', 'https://localhost'); // eg, https://localhost - should not be empty for productive servers
+  define('HTTP_SERVER', 'http://dev.self-commerce.de'); // eg, http://localhost - should not be empty for productive servers
+  define('HTTPS_SERVER', 'https://dev.self-commerce.de'); // eg, https://localhost - should not be empty for productive servers
   define('ENABLE_SSL', false); // secure webserver for checkout procedure?
-  define('DIR_WS_CATALOG', '/self-commerce/'); // absolute path required
-  define('DIR_FS_DOCUMENT_ROOT', '/Volumes/Elements/Projekte/Local/self-commerce/');
-  define('DIR_FS_CATALOG', '/Volumes/Elements/Projekte/Local/self-commerce/');
+  define('DIR_WS_CATALOG', '/'); // absolute path required
+  define('DIR_FS_DOCUMENT_ROOT', '/var/www/dev.self-commerce.de/web/');
+  define('DIR_FS_CATALOG', '/var/www/dev.self-commerce.de/web/');
   define('DIR_WS_IMAGES', 'images/');
   define('DIR_WS_ORIGINAL_IMAGES', DIR_WS_IMAGES .'product_images/original_images/');
   define('DIR_WS_THUMBNAIL_IMAGES', DIR_WS_IMAGES .'product_images/thumbnail_images/');
@@ -42,9 +42,11 @@
 
 // define our database connection
   define('DB_SERVER', 'localhost'); // eg, localhost - should not be empty for productive servers
-  define('DB_SERVER_USERNAME', 'root');
-  define('DB_SERVER_PASSWORD', '');
-  define('DB_DATABASE', 'self_commerce');
+  define('DB_SERVER_USERNAME', 'c2_pbXUkjtEr3A');
+  define('DB_SERVER_PASSWORD', '8E$)F32CXmNNe5qx');
+  define('DB_DATABASE', 'c2_sc_21');
   define('USE_PCONNECT', 'false'); // use persistent connections?
   define('STORE_SESSIONS', 'mysql'); // leave empty '' for default handler or set to 'mysql'
+  
+  define('TAX_DECIMAL_PLACES', 2);
 ?>
