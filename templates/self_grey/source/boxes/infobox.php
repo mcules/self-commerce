@@ -1,18 +1,18 @@
 <?php
 /* -----------------------------------------------------------------------------------------
-   $Id: infobox.php 1262 2005-09-30 10:00:32Z mz $   
+   $Id: infobox.php 1262 2005-09-30 10:00:32Z mz $
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
 
    Copyright (c) 2003 XT-Commerce
    -----------------------------------------------------------------------------------------
-   based on: 
+   based on:
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
-   (c) 2002-2003 osCommercebased on original files from OSCommerce CVS 2.2 2002/08/28 02:14:35 www.oscommerce.com 
+   (c) 2002-2003 osCommercebased on original files from OSCommerce CVS 2.2 2002/08/28 02:14:35 www.oscommerce.com
    (c) 2003	 nextcommerce (infobox.php,v 1.7 2003/08/13); www.nextcommerce.org
 
-   Released under the GNU General Public License 
+   Released under the GNU General Public License
    -----------------------------------------------------------------------------------------
    Third Party contributions:
    Loginbox V1.0        	Aubrey Kilian <aubrey@mycon.co.za>
@@ -25,7 +25,7 @@ $box_content='';
 
 
   if ($_SESSION['customers_status']['customers_status_image']!='') {
-    $loginboxcontent = xtc_image('admin/images/icons/' . $_SESSION['customers_status']['customers_status_image']) . '<br />';
+    $loginboxcontent = xtc_image('images/icons/' . $_SESSION['customers_status']['customers_status_image']) . '<br />';
   }
   $loginboxcontent .= BOX_LOGINBOX_STATUS . '<b>' . $_SESSION['customers_status']['customers_status_name'] . '</b><br />';
   if ($_SESSION['customers_status']['customers_status_show_price'] == 0) {
@@ -54,7 +54,7 @@ $box_content='';
   $cache_id = $_SESSION['language'].$_SESSION['customers_status']['customers_status_id'];
   $box_infobox= $box_smarty->fetch(CURRENT_TEMPLATE.'/boxes/box_infobox.html',$cache_id);
   }
-    
+
     $smarty->assign('box_INFOBOX',$box_infobox);
 
     ?>
