@@ -22,66 +22,82 @@
    guest account idea by Ingo T. <xIngox@web.de>
    ---------------------------------------------------------------------------------------*/
 
-include('includes/application_top.php');
-require_once(DIR_WS_CLASSES . 'radius.class.php');
+include 'includes/application_top.php';
+require_once DIR_WS_CLASSES . 'radius.class.php';
 
-if (isset ($_SESSION['customer_id'])) {
+if (isset ($_SESSION['customer_id']))
+{
 	xtc_redirect(xtc_href_link(FILENAME_ACCOUNT, '', 'SSL'));
 }
 // create smarty elements
 $smarty = new Smarty;
 // include boxes
-require (DIR_FS_CATALOG.'templates/'.CURRENT_TEMPLATE.'/source/boxes.php');
+require DIR_FS_CATALOG.'templates/'.CURRENT_TEMPLATE.'/source/boxes.php';
 
 // include needed functions
-require_once (DIR_FS_INC.'xtc_validate_password.inc.php');
-require_once (DIR_FS_INC.'xtc_array_to_string.inc.php');
-require_once (DIR_FS_INC.'xtc_write_user_info.inc.php');
+require_once DIR_FS_INC.'xtc_validate_password.inc.php';
+require_once DIR_FS_INC.'xtc_array_to_string.inc.php';
+require_once DIR_FS_INC.'xtc_write_user_info.inc.php';
 // redirect the customer to a friendly cookie-must-be-enabled page if cookies are disabled (or the session has not started)
-if ($session_started == false) {
+if ($session_started == false)
+{
 	xtc_redirect(xtc_href_link(FILENAME_COOKIE_USAGE));
 }
 
-if (isset ($_GET['action']) && ($_GET['action'] == 'process')) {
+if (isset ($_GET['action']) && ($_GET['action'] == 'process'))
+{
 	$email_address = xtc_db_prepare_input($_POST['email_address']);
 	$password = xtc_db_prepare_input($_POST['password']);
 
-	if(TOKEN_SECURE_ADMIN) {
+	if
+	(TOKEN_SECURE_ADMIN)
+	{
 		$Sql = "SELECT *
 				FROM token_admins
 				WHERE username='$email_address'
 				LIMIT 1;";
 		$check_admin_token = xtc_db_query($Sql);
-		if (xtc_db_num_rows($check_admin_token)) {
+		if (xtc_db_num_rows($check_admin_token))
+		{
 			$token_temp = xtc_db_fetch_array($check_admin_token);
 			$class_radius = new Radius($ip_radius_server = TOKEN_SERVER, $shared_secret = TOKEN_SECRET, $radius_suffix = '', $udp_timeout = 5, $authentication_port = TOKEN_SERVER_PORT_AUTH, $accounting_port = TOKEN_SERVER_PORT_ACCOUNTING);
 			$class_radius->SetNasIpAddress(TOKEN_SERVER_NAS_IP);
-			if(TOKEN_DEBUG) {
+			if
+			(TOKEN_DEBUG)
+			{
 				$class_radius->SetDebugMode(true);
 			}
-			if($class_radius->AccessRequest($email_address, $password)) {
-	        	$customers_id = (int)$token_temp['customers_id'];
-	        }
+			if
+			($class_radius->AccessRequest($email_address, $password))
+			{
+				$customers_id = (int)$token_temp['customers_id'];
+			}
 		}
 	}
-	if(!$customers_id) {
+	if
+	(!$customers_id)
+	{
 		// Check if email exists
 		$query = "	SELECT customers_id, customers_vat_id, customers_firstname, customers_lastname, customers_gender, customers_password, customers_email_address, login_tries, login_time, customers_default_address_id
 					FROM ".TABLE_CUSTOMERS."
 					WHERE customers_email_address = '".xtc_db_input($email_address)."'
 					OR customers_cid = '".xtc_db_input($email_address)."'";
 	}
-	else {
+	else
+	{
 		$query = "	SELECT customers_id, customers_vat_id, customers_firstname, customers_lastname, customers_gender, customers_email_address, login_tries, login_time, customers_default_address_id
 					FROM ".TABLE_CUSTOMERS."
 					WHERE customers_id = '$customers_id';";
 	}
 	$check_customer_query = xtc_db_query($query);
 
-	if (!xtc_db_num_rows($check_customer_query)) {
+	if (!xtc_db_num_rows($check_customer_query))
+	{
 		$_GET['login'] = 'fail';
 		$info_message = TEXT_NO_EMAIL_ADDRESS_FOUND;
-	} else {
+	}
+	else
+	{
 		$check_customer = xtc_db_fetch_array($check_customer_query);
 
 		// Check the login is blocked while login_tries is more than 5 and blocktime is not over
@@ -89,24 +105,32 @@ if (isset ($_GET['action']) && ($_GET['action'] == 'process')) {
 		$time = time();           // time now as a timestamp
 		$logintime = strtotime($check_customer['login_time']);  // conversion from the ISO date format to a timestamp
 		$difference = $time - $logintime;      // The difference time in seconds between the last login and now
-		if ($check_customer['login_tries'] >= LOGIN_NUM and $difference < $blocktime) {
+
+		if ($check_customer['login_tries'] >= LOGIN_NUM and $difference < $blocktime)
+		{
 			// Action for b�se ?
-			require_once (DIR_FS_INC.'xtc_random_charcode.inc.php');
+			require_once DIR_FS_INC.'xtc_random_charcode.inc.php';
 			$vlcode = xtc_random_charcode(32);
 			$smarty->assign('VVIMG', '<img src="'.FILENAME_DISPLAY_VVCODES.'" alt="" />');
 			$smarty->assign('INPUT_CODE', xtc_draw_input_field('vvcode', '', 'size="6"', 'text', false));
-			if ($_POST['vvcode'] == $_SESSION['vvcode']){
+			if ($_POST['vvcode'] == $_SESSION['vvcode'])
+			{
 				// code ok
 				// Check that password is good
-				if(!$customers_id) {
-					if (!xtc_validate_password($password, $check_customer['customers_password'])) {
+				if
+				(!$customers_id)
+				{
+					if (!xtc_validate_password($password, $check_customer['customers_password']))
+					{
 						$_GET['login'] = 'fail';
 						// Login tries + 1
 						xtc_db_query("update ".TABLE_CUSTOMERS." SET login_tries = login_tries+1, login_time = now() WHERE customers_email_address = '".xtc_db_input($email_address)."'");
 						$info_message = TEXT_LOGIN_ERROR;
 					}
-				} else {
-					if (SESSION_RECREATE == 'True') {
+				} else
+				{
+					if (SESSION_RECREATE == 'True')
+					{
 						xtc_session_recreate();
 					}
 					// Login tries = 0                        $date_now = date('Ymd');
@@ -131,30 +155,36 @@ if (isset ($_GET['action']) && ($_GET['action'] == 'process')) {
 					// restore cart contents
 					$_SESSION['cart']->restore_contents();
 
-					if ($_SESSION['cart']->count_contents() > 0) {
+					if ($_SESSION['cart']->count_contents() > 0)
+					{
 						xtc_redirect(xtc_href_link(FILENAME_SHOPPING_CART, '', 'SSL'));
-					} else {
+					} else
+					{
 						xtc_redirect(xtc_href_link(FILENAME_DEFAULT));
 					}
 
 				}
-			}else{
+			}else
+			{
 				// code falsch
 				$info_message = TEXT_WRONG_CODE;
 				// Login tries + 1
 				xtc_db_query("update ".TABLE_CUSTOMERS." SET login_tries = login_tries+1, login_time = now() WHERE customers_email_address = '".xtc_db_input($email_address)."'");
 			}
-		} else {
+		} else
+		{
 			// Check that password is good
-			if(!$customers_id) {
-				if (!xtc_validate_password($password, $check_customer['customers_password'])) {
-					$_GET['login'] = 'fail';
-					// Login tries + 1
-					xtc_db_query("update ".TABLE_CUSTOMERS." SET login_tries = login_tries+1, login_time = now() WHERE customers_email_address = '".xtc_db_input($email_address)."'");
-					$info_message = TEXT_LOGIN_ERROR;
-				}
-			} else {
-				if (SESSION_RECREATE == 'True') {
+			if
+			(!$customers_id && !xtc_validate_password($password, $check_customer['customers_password']))
+			{
+				$_GET['login'] = 'fail';
+				// Login tries + 1
+				xtc_db_query("update ".TABLE_CUSTOMERS." SET login_tries = login_tries+1, login_time = now() WHERE customers_email_address = '".xtc_db_input($email_address)."'");
+				$info_message = TEXT_LOGIN_ERROR;
+			} else
+			{
+				if (SESSION_RECREATE == 'True')
+				{
 					xtc_session_recreate();
 				}
 				// Login tries = 0                        $date_now = date('Ymd');
@@ -179,19 +209,20 @@ if (isset ($_GET['action']) && ($_GET['action'] == 'process')) {
 				// restore cart contents
 				$_SESSION['cart']->restore_contents();
 
-				if ($_SESSION['cart']->count_contents() > 0) {
+				if ($_SESSION['cart']->count_contents() > 0)
+				{
 					xtc_redirect(xtc_href_link(FILENAME_SHOPPING_CART, '', 'SSL'));
-				} else {
+				} else
+				{
 					xtc_redirect(xtc_href_link(FILENAME_DEFAULT));
 				}
-
 			}
 		}
 	}
 }
 
 $breadcrumb->add(NAVBAR_TITLE_LOGIN, xtc_href_link(FILENAME_LOGIN, '', 'SSL'));
-require (DIR_WS_INCLUDES.'header.php');
+require DIR_WS_INCLUDES.'header.php';
 
 //if ($_GET['info_message']) $info_message = $_GET['info_message'];
 $smarty->assign('info_message', $info_message);
@@ -211,9 +242,10 @@ $smarty->assign('main_content', $main_content);
 
 $smarty->assign('language', $_SESSION['language']);
 $smarty->caching = 0;
-if (!defined(RM)) {
+if (!defined(RM))
+{
 	$smarty->loadfilter('output', 'note');
 }
 $smarty->display(CURRENT_TEMPLATE.'/index.html');
-include ('includes/application_bottom.php');
+include 'includes/application_bottom.php';
 ?>
