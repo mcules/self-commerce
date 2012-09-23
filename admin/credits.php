@@ -1,102 +1,100 @@
 <?php
 /* --------------------------------------------------------------
-   $Id$   
+   $Id$
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
    Copyright (c) 2003 XT-Commerce
    --------------------------------------------------------------
-   based on: 
+   based on:
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
-   (c) 2002-2003 osCommercecoding standards (a typical file) www.oscommerce.com 
-   (c) 2003	 nextcommerce ( start.php,v 1.6 2003/08/19); www.nextcommerce.org
+   (c) 2002-2003 osCommercecoding standards (a typical file) www.oscommerce.com
+   (c) 2003  nextcommerce ( start.php,v 1.6 2003/08/19); www.nextcommerce.org
    Released under the GNU General Public License
    --------------------------------------------------------------*/
 require ('includes/application_top.php');
 require ('includes/application_top_1.php');
 ?>
-<table border="0" width="100%" cellspacing="0" cellpadding="2">
-  <tr>
-    <td>
-      <table border="0" width="100%" cellspacing="0" cellpadding="2">
-        <tr>
-          <td width="80" rowspan="2">
-            <?php echo xtc_image(DIR_WS_ICONS.'heading_news.gif'); ?></td>
-          <td class="pageHeading"> Credits</td>
-        </tr>
-        <tr>
-          <td class="main" valign="top"> Self-Commerce Credits</td>
-        </tr>
-      </table></td>
-  </tr>
-</table>
-<!-- content -->
-<table border="0" width="100%" cellspacing="0" cellpadding="0">
-  <tr>
-    <td class="main">
-      <font color="D68000">
-        <b>
-          <?php echo PROJECT_VERSION; ?></b>
-      </font><br />
-      <strong><br /> Release
-        Datum: Jan 2008</strong><br />
-      Released under the GNU General Public License<br /><br /> This program is distributed in the hope that it will be useful, but
-      <b>WITHOUT ANY WARRANTY</b>
-      ;<br /> without even the implied warranty of
-      <b>MERCHANTABILITY</b> or
-      <b>FITNESS FOR A PARTICULAR PURPOSE</b>.<br /> See the GNU General Public License for more details. You should have received
-      a copy of the<br />
-      GNU General Public License along with this program; if not, write to the<br />
-      Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.<br /> See
-      <a href="http://www.gnu.org/copyleft/gpl.html">http://www.gnu.org/copyleft/gpl.html</a>
-      for details. <br /><br />
-      <b>Das Self-Commerce-Team dankt allen Programmierern und Entwicklern die Ihre Software<br />
-        zur Verf&uuml;gung gestellt haben. Sollten wir jemanden vergessen haben hier zu nennen,<br />
-        bitten wir um Entschuldigung. In diesem Fall bitten wir um einen Hinweis in unter:</b><br />
-      <a href="mailto://admin@ne-xt.de">admin@ne-xt.de</a><br /><br /><br />
-      <font color="D68000">
-        <b>Programmierer (Modifikation & Redesign) von Self-Commerce:</b>
-      </font><br />
-      <hr width="100%">
-      <table width="100%" border="0" cellpadding="0" cellspacing="4" border-color: #ff0000;" bgcolor="FDAC00">
-        <tr>
-          <td class="main" width="150">
-            <b>Maik Schmidt (kunigunde)</b></td>
-          <td class="main" width="80%">
-            <a href="mailto:admin@ne-xt.de">admin@ne-xt.de</a></td>
-        </tr>
-        <tr>
-          <td class="main" width="150">
-            <b>Tina Klassen (Tikla)</b></td>
-          <td class="main" width="80%">
-            <a href="mailto:template@ne-xt.de">template@ne-xt.de</a></td>
-        </tr>
-        <tr>
-          <td class="main" colspan="2">
-            <hr>
-            <b>Natürlich kommen sehr viele Ideen direkt aus der Community.<br />
-              Auch all denen gilt der Dank für die Mitarbeit.</b></td>
-          <td></td>
-        </tr>
-      </table><br /><br />
-      <font color="D68000">
-        <b>Die Shopsoftware basiert auf:</b>
-      </font><br />
-      <hr align="center" width="100%">
-      <b>© 2000-2001 The Exchange Project</b> © Harald Ponce de Leon | http://www.oscommerce.com<br />
-      <b>© 2002-2003 osCommerce (Milestone2)</b>
-      © Harald Ponce de Leon | http://www.oscommerce.com<br />
-      <b>© 2003-2004 neXTCommerce</b> © neXTCommerce
-      (XTC 0.9 RC3 CVS) | http://www.nextcommerce.org ( code-modifications &amp; redesign by Guido Winger/Mario Zanier/Andreas Oberzier)<br /> Mario Zanier
-      <a href="mailto:mzanier@xtcommerce.com">mzanier@xtcommerce.com</a> / Guido Winger
-      <a href="mailto:gwinger@xtcommerce.com">gwinger@xtcommerce.com</a> / Andreas Oberzier
-      <a href="mailto:aoberzier@nextcommerce.org">aoberzier@nextcommerce.org</a><br /><br />
-      <b>© 2004- XT:Commerce</b>
-      © XT:Commerce (Xt:C3.04sp1/sp2.1) | http://xtcommerce.de<br /><br />
-      <hr align="center" width="100%"></td>
-  </tr>
-</table>
-<!-- end content -->
-<?php 
-require(DIR_WS_INCLUDES . 'application_bottom.php'); 
-require(DIR_WS_INCLUDES . 'application_bottom_0.php');
-?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+	<head>
+	    <title></title>
+	</head>
+	<body>
+	    <table border="0" width="100%" cellspacing="0" cellpadding="2">
+	        <tr>
+	            <td>
+	                <table border="0" width="100%" cellspacing="0" cellpadding="2">
+	                    <tr>
+	                        <td width="80" rowspan="2"><?php echo xtc_image(DIR_WS_ICONS.'heading_news.gif'); ?></td>
+	                        <td class="pageHeading">Credits</td>
+	                    </tr>
+	                    <tr>
+	                        <td class="main" valign="top">Self-Commerce Credits</td>
+	                    </tr>
+	                </table>
+	            </td>
+	        </tr>
+	    </table><!-- content -->
+	    <table border="0" width="100%" cellspacing="0" cellpadding="0">
+	        <tr>
+	            <td class="main">
+	                <font color="#D68000"><b><?php echo PROJECT_VERSION; ?></b></font><br />
+	                <br />
+	                <font color="#D68000"><b>Programmierer (Modifikation & Redesign) von Self-Commerce:</b></font><br />
+	                <hr width="100%">
+	                <table width="100%" border="0" cellpadding="0" cellspacing="4" border-color:="#ff0000" bgcolor="#FDAC00">
+	                    <tr>
+	                        <td class="main" width="150"><b>Dennis Eisold (McUles)</b></td>
+	                        <td class="main" width="80%"><a href="mailto:support@self-commerce.de">support@eisold-edv.de</a></td>
+	                    </tr>
+	                    <tr>
+	                        <td class="main" width="150"><b>Maik Schmidt (kunigunde)</b></td>
+	                        <td class="main" width="80%"><a href="mailto:admin@ne-xt.de">admin@ne-xt.de</a></td>
+	                    </tr>
+	                    <tr>
+	                        <td class="main" width="150"><b>Tina Klassen (Tikla)</b></td>
+	                        <td class="main" width="80%"><a href="mailto:template@ne-xt.de">template@ne-xt.de</a></td>
+	                    </tr>
+	                    <tr>
+	                        <td class="main" colspan="2">
+	                            <hr>
+	                            <b>Nat&uuml;rlich kommen sehr viele Ideen direkt aus der Community.<br />
+	                            Auch all denen gilt der Dank f&uuml;r die Mitarbeit.</b>
+	                        </td>
+	                        <td></td>
+	                    </tr>
+	                </table><br />
+	                <br />
+	                <font color="#D68000"><b>Die Shopsoftware basiert auf:</b></font><br />
+	                <hr align="center" width="100%">
+	                <b>&copy; 2000-2001 The Exchange Project</b> &copy; Harald Ponce de Leon | http://www.oscommerce.com<br />
+	                <b>&copy; 2002-2003 osCommerce (Milestone2)</b> &copy; Harald Ponce de Leon | http://www.oscommerce.com<br />
+	                <b>&copy; 2003-2004 neXTCommerce</b> &copy; neXTCommerce (XTC 0.9 RC3 CVS) | http://www.nextcommerce.org ( code-modifications &amp; redesign by Guido Winger/Mario Zanier/Andreas Oberzier)<br />
+	                <b>&copy; 2004- XT:Commerce</b> &copy; XT:Commerce (Xt:C3.04sp1/sp2.1) | http://www.xtcommerce.de<br />
+	                <br />
+	                <font color="#D68000"><b>Projektlizenz</b></font><br />
+	                <hr align="center" width="100%">
+	                <strong>Release Datum: Jan 2008</strong><br />
+                	Released under the GNU General Public License<br />
+	                <br />
+	                This program is distributed in the hope that it will be useful, but <b>WITHOUT ANY WARRANTY</b> ;<br />
+	                without even the implied warranty of <b>MERCHANTABILITY</b> or <b>FITNESS FOR A PARTICULAR PURPOSE</b>.<br />
+	                See the GNU General Public License for more details. You should have received a copy of the<br />
+	                GNU General Public License along with this program; if not, write to the<br />
+	                Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.<br />
+	                See <a href="http://www.gnu.org/copyleft/gpl.html">http://www.gnu.org/copyleft/gpl.html</a> for details.<br />
+	                <br />
+	                <b>Das Self-Commerce-Team dankt allen Programmierern und Entwicklern die Ihre Software<br />
+	                zur Verf&uuml;gung gestellt haben. Sollten wir jemanden vergessen haben hier zu nennen,<br />
+	                bitten wir um Entschuldigung. In diesem Fall bitten wir um einen Hinweis unter:</b> <a href="mailto:support@self-commerce.de">support@self-commerce.de</a><br />
+	                <br />
+	            </td>
+	        </tr>
+	    </table><!-- end content -->
+	    <?php
+	    require(DIR_WS_INCLUDES . 'application_bottom.php');
+	    require(DIR_WS_INCLUDES . 'application_bottom_0.php');
+	    ?>
+	</body>
+</html>
