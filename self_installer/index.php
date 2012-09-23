@@ -1,6 +1,6 @@
 <?php
   /* --------------------------------------------------------------
-   $Id: index.php 1220 2005-09-16 15:53:13Z mz $   
+   $Id: index.php 1220 2005-09-16 15:53:13Z mz $
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
@@ -9,10 +9,10 @@
    --------------------------------------------------------------
    based on:
    (c) 2003	 nextcommerce (index.php,v 1.18 2003/08/17); www.nextcommerce.org
-   
-   Released under the GNU General Public License 
+
+   Released under the GNU General Public License
    --------------------------------------------------------------*/
-   
+
   require('includes/application.php');
 
   // include needed functions
@@ -20,12 +20,12 @@
   require_once(DIR_FS_INC.'xtc_draw_separator.inc.php');
   require_once(DIR_FS_INC.'xtc_redirect.inc.php');
   require_once(DIR_FS_INC.'xtc_href_link.inc.php');
-  
+
   include('language/english.php');
 
   // Include Developer - standard settings for installer
-  //  require('developer_settings.php');  
-  
+  //  require('developer_settings.php');
+
  define('HTTP_SERVER','');
  define('HTTPS_SERVER','');
  define('DIR_WS_CATALOG','');
@@ -36,7 +36,7 @@
   if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
     $process = true;
 
-        
+
         $_SESSION['language'] = xtc_db_prepare_input($_POST['LANGUAGE']);
 
     $error = false;
@@ -47,7 +47,7 @@
 
         $messageStack->add('index', SELECT_LANGUAGE_ERROR);
         }
-        
+
 
                     if ($error == false) {
                         xtc_redirect(xtc_href_link('install_step1.php', '', 'NONSSL'));
@@ -119,7 +119,7 @@ h2 {font-family: Verdana, Arial, Helvetica, san-serif; font-size: 10px; font-wei
 						<table width="100%" class="green"  border="0" cellpadding="2" cellspacing="2">
 							<tr>
 								<td width="1"><img src="images/install.gif" border="0" alt="install" /></td>
-								<td><a class="h1" href="http://selfxtc.ne-xt.de" target="_blank">Installationsanleitung auf selfxtc.ne-xt.de</a></td>
+								<td><a class="h1" href="http://www.self-commerce.de" target="_blank">Installationsanleitung auf www.self-commerce.de</a></td>
                   			</tr>
                 		</table>
                 		<br /><h2><?php echo TEXT_WELCOME_INDEX; ?></h2><br />
@@ -161,7 +161,7 @@ $block7=false;
     $message .= 'WRONG PERMISSION on '.DIR_FS_CATALOG . 'admin/includes/configure.org.php<br />';
  }
  if ($block1 == true) $message .= '<hr class="lineRed">';
- 
+
  $status='OK';
  if ($error_flag==true) $status='<strong><font color="#ff0000">ERROR</font></strong>';
  $ok_message.='FILE Permissions .............................. '.$status.'<hr class="lineGreen">';
@@ -181,12 +181,12 @@ $block7=false;
  }
        if (!is_writeable(DIR_FS_CATALOG . 'admin/includes/modules/tiny_mce/plugins/media/filemanager/')) {
     $error_flag=true;
-    $block2 = true;    
+    $block2 = true;
     $folder_flag=true;
     $message .= 'WRONG PERMISSION on '.DIR_FS_CATALOG . 'admin/includes/modules/tiny_mce/plugins/media/filemanager/<br />';
  }
  if ($block2 == true) $message .= '<hr class="lineRed">';
- 
+
  // smarty folders
  $folder_flag==false;
    if (!is_writeable(DIR_FS_CATALOG . 'templates_c/')) {
@@ -200,7 +200,7 @@ $block7=false;
     $block3 = true;
     $folder_flag=true;
     $message .= 'WRONG PERMISSION on '.DIR_FS_CATALOG . 'cache/<br />';
- } 
+ }
  // export folder
       if (!is_writeable(DIR_FS_CATALOG . 'export/')) {
     $error_flag=true;
@@ -214,24 +214,24 @@ $block7=false;
     $block3 = true;
     $folder_flag=true;
     $message .= 'WRONG PERMISSION on '.DIR_FS_CATALOG . 'media/<br />';
- } 
+ }
  // image folders
       if (!is_writeable(DIR_FS_CATALOG . 'images/')) {
     $error_flag=true;
     $block3 = true;
     $folder_flag=true;
     $message .= 'WRONG PERMISSION on '.DIR_FS_CATALOG . 'images/<br />';
- } 
+ }
  if ($block3 == true) $message .= '<hr class="lineRed">';
-   
+
      if (!is_writeable(DIR_FS_CATALOG . 'media/content/')) {
     $error_flag=true;
     $block4 = true;
     $folder_flag=true;
     $message .= 'WRONG PERMISSION on '.DIR_FS_CATALOG . 'media/content/<br />';
- } 
+ }
  if ($block4 == true) $message .= '<hr class="lineRed">';
- 
+
      if (!is_writeable(DIR_FS_CATALOG . 'images/categories/')) {
     $error_flag=true;
     $block5 = true;
@@ -251,7 +251,7 @@ $block7=false;
     $message .= 'WRONG PERMISSION on '.DIR_FS_CATALOG . 'images/manufacturers/<br />';
  }
  if ($block5 == true) $message .= '<hr class="lineRed">';
- 
+
      if (!is_writeable(DIR_FS_CATALOG . 'images/product_images/info_images/')) {
     $error_flag=true;
     $block6 = true;
@@ -277,14 +277,14 @@ $block7=false;
     $message .= 'WRONG PERMISSION on '.DIR_FS_CATALOG . 'images/product_images/thumbnail_images/<br />';
  }
  if ($block6 == true) $message .= '<hr class="lineRed">';
- 
+
       if (!is_writeable(DIR_FS_CATALOG . 'tiny_upload/pics/')) {
     $error_flag=true;
     $block7 = true;
     $folder_flag=true;
     $message .= 'WRONG PERMISSION on '.DIR_FS_CATALOG . 'tiny_upload/pics/<br />';
  }
- 
+
        if (!is_writeable(DIR_FS_CATALOG . 'tiny_upload/files/')) {
     $error_flag=true;
     $block7 = true;
@@ -333,7 +333,7 @@ $block7=false;
 <?php
 if ($error_flag==true) {
 ?>
-        
+
 <strong>Attention:</strong><br />
 <?php echo $message; ?>
 
