@@ -45,6 +45,12 @@ if (isset ($_GET['action'])) {
 			$parameters = array ('action', 'pid', 'BUYproducts_id','info');
 		}
 	}
+
+	if (!is_object($_SESSION['cart']))
+	{
+		$_SESSION['cart'] = new shoppingCart();
+	}
+
 	switch ($_GET['action']) {
 		// customer wants to update the product quantity in their shopping cart
 		case 'update_product' :
@@ -131,27 +137,27 @@ if (isset ($_GET['action'])) {
 					$old_quantity = $_SESSION['cart']->get_quantity(xtc_get_uprid($_POST['products_id'], $_POST['id']));
 					$econda->_addProduct($_POST['products_id'], $_POST['products_qty'], $old_quantity);
 				}
-				
+
 				// Einrichtungsgebühr
 				$old_quantity = $_SESSION['cart']->get_quantity(xtc_get_uprid($_POST['products_id'], $_POST['id']));
 				// Einrichtungsgebühr eof
 
 				$_SESSION['cart']->add_cart((int) $_POST['products_id'], $_SESSION['cart']->get_quantity(xtc_get_uprid($_POST['products_id'], $_POST['id'])) + xtc_remove_non_numeric($_POST['products_qty']), $_POST['id']);
-				
+
 				// Einrichtungsgebühr
-				$products_setup_query = xtc_db_query("select products_setup from ".TABLE_PRODUCTS." 
+				$products_setup_query = xtc_db_query("select products_setup from ".TABLE_PRODUCTS."
 													  where products_id = '".$_POST['products_id']."'");
 				$products_setup = xtc_db_fetch_array($products_setup_query);
-					
+
 				if($products_setup['products_setup'] == 1) {
-					$setup_query = xtc_db_query("select products_id from ".TABLE_PRODUCTS." 
+					$setup_query = xtc_db_query("select products_id from ".TABLE_PRODUCTS."
 												 where products_model = 'GIFT_products_setup'");
 					$setup = xtc_db_fetch_array($setup_query);
-					
+
 					$pids = explode(',', $_SESSION['cart']->get_product_id_list());
-					
+
 					for ($i = 0, $n = sizeof($pids); $i < $n; $i++) {
-						if(xtc_get_prid($pids[$i]) == $_POST['products_id']) { 
+						if(xtc_get_prid($pids[$i]) == $_POST['products_id']) {
 							if($old_quantity >= 1) {
 								// il dolce fa niente... das süße nichts tun!
 							} else {
@@ -167,10 +173,10 @@ if (isset ($_GET['action'])) {
 
 		case 'remove_product': if ($_GET['products_id']) {
 			$_SESSION['cart']->remove($_GET['products_id']);
-			} 
+			}
 			xtc_redirect(xtc_href_link($goto, xtc_get_all_get_params($parameters)));
 		break;
-											
+
 		case 'check_gift' :
 			require_once (DIR_FS_INC.'xtc_collect_posts.inc.php');
 			xtc_collect_posts();
