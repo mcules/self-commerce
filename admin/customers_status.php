@@ -1,6 +1,6 @@
 <?php
 /* --------------------------------------------------------------
-   $Id$   
+   $Id$
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
@@ -12,7 +12,7 @@
    (c) 2002-2003 osCommerce( based on original files from OSCommerce CVS 2.2 2002/08/28 02:14:35); www.oscommerce.com
    (c) 2003	 nextcommerce (customers_status.php,v 1.28 2003/08/18); www.nextcommerce.org
 
-   Released under the GNU General Public License 
+   Released under the GNU General Public License
    --------------------------------------------------------------
    based on Third Party contribution:
    Customers Status v3.x  (c) 2002-2003 Copyright Elari elari@free.fr | www.unlockgsm.com/dload-osc/ | CVS : http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/elari/?sortby=date#dirlist
@@ -45,7 +45,7 @@ require ('includes/application_top.php');
         $customers_fsk18_display = $_POST['customers_fsk18_display'];
         $customers_status_write_reviews = $_POST['customers_status_write_reviews'];
         $customers_status_read_reviews = $_POST['customers_status_read_reviews'];
-        $customers_base_status = $_POST['customers_base_status'];        
+        $customers_base_status = $_POST['customers_base_status'];
 
         $language_id = $languages[$i]['id'];
 
@@ -78,29 +78,29 @@ require ('includes/application_top.php');
             xtc_db_query("create table personal_offers_by_customers_status_" . $customers_status_id . " (price_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, products_id int NOT NULL, quantity int, personal_offer decimal(15,4))");
 		   xtc_db_query("ALTER TABLE  `products` ADD  `group_permission_" . $customers_status_id . "` TINYINT( 1 ) NOT NULL");
 		   xtc_db_query("ALTER TABLE  `categories` ADD  `group_permission_" . $customers_status_id . "` TINYINT( 1 ) NOT NULL");
-		   
+
         $products_query = xtc_db_query("select price_id, products_id, quantity, personal_offer from personal_offers_by_customers_status_" . $customers_base_status ."");
-        while($products = xtc_db_fetch_array($products_query)){  
+        while($products = xtc_db_fetch_array($products_query)){
         $product_data_array = array(
           'price_id' => xtc_db_prepare_input($products['price_id']),
           'products_id' => xtc_db_prepare_input($products['products_id']),
           'quantity' => xtc_db_prepare_input($products['quantity']),
           'personal_offer' => xtc_db_prepare_input($products['personal_offer'])
-         );          
+         );
          xtc_db_perform('personal_offers_by_customers_status_' . $customers_status_id, $product_data_array);
-         } 
+         }
 
           }
 
           $insert_sql_data = array('customers_status_id' => xtc_db_prepare_input($customers_status_id), 'language_id' => xtc_db_prepare_input($language_id));
           $sql_data_array = xtc_array_merge($sql_data_array, $insert_sql_data);
           xtc_db_perform(TABLE_CUSTOMERS_STATUS, $sql_data_array);
- 
+
         } elseif ($_GET['action'] == 'save') {
           xtc_db_perform(TABLE_CUSTOMERS_STATUS, $sql_data_array, 'update', "customers_status_id = '" . xtc_db_input($customers_status_id) . "' and language_id = '" . $language_id . "'");
         }
       }
-       
+
       if ($customers_status_image = &xtc_try_upload('customers_status_image', DIR_WS_ICONS)) {
         xtc_db_query("update " . TABLE_CUSTOMERS_STATUS . " set customers_status_image = '" . $customers_status_image->filename . "' where customers_status_id = '" . xtc_db_input($customers_status_id) . "'");
       }
@@ -223,7 +223,7 @@ XT Customers
 
     echo '<td class="dataTableContent" align="left">';
      if ($customers_status['customers_status_image'] != '') {
-       echo xtc_image(DIR_WS_ICONS . $customers_status['customers_status_image'] , IMAGE_ICON_INFO);
+       echo xtc_image('../'.DIR_WS_ICONS . $customers_status['customers_status_image'] , IMAGE_ICON_INFO);
      }
      echo '</td>';
 
@@ -255,7 +255,7 @@ XT Customers
     echo '</td>';
 
     echo '<td nowrap class="dataTableContent" align="center">' . $customers_status['customers_status_discount'] . ' %</td>';
-      
+
     echo '<td nowrap class="dataTableContent" align="center">';
     if ($customers_status['customers_status_ot_discount_flag'] == 0){
       echo '<font color="ff0000">'.$customers_status['customers_status_ot_discount'].' %</font>';
@@ -263,7 +263,7 @@ XT Customers
       echo $customers_status['customers_status_ot_discount'].' %';
     }
     echo ' </td>';
-  
+
     echo '<td class="dataTableContent" align="center">';
     if ($customers_status['customers_status_graduated_prices'] == 0) {
       echo NO;
@@ -344,13 +344,13 @@ XT Customers
       for ($i=0; $i<sizeof($languages); $i++) {
         $customers_status_inputs_string .= '<br />' . xtc_image(DIR_WS_CATALOG.'lang/'.$languages[$i]['directory'].'/admin/images/' . $languages[$i]['image'], $languages[$i]['name']) . '&nbsp;' . xtc_draw_input_field('customers_status_name[' . $languages[$i]['id'] . ']', xtc_get_customers_status_name($cInfo->customers_status_id, $languages[$i]['id']));
       }
-	  
+
       $contents[] = array('text' => '<br />' . TEXT_INFO_CUSTOMERS_STATUS_NAME . $customers_status_inputs_string);
       $contents[] = array('text' => '<br />' . xtc_image(DIR_WS_ICONS . $cInfo->customers_status_image, $cInfo->customers_status_name) . '<br />' . DIR_WS_ICONS . '<br /><b>' . $cInfo->customers_status_image . '</b>');
       $contents[] = array('text' => '<br />' . TEXT_INFO_CUSTOMERS_STATUS_IMAGE . '<br />' . xtc_draw_file_field('customers_status_image', $cInfo->customers_status_image));
       $contents[] = array('text' => '<br />' . TEXT_INFO_CUSTOMERS_STATUS_PUBLIC_INTRO . '<br />' . ENTRY_CUSTOMERS_STATUS_PUBLIC . ' ' . xtc_draw_pull_down_menu('customers_status_public', $customers_status_public_array, $cInfo->customers_status_public ));
       $contents[] = array('text' => '<br />' . TEXT_INFO_CUSTOMERS_STATUS_MIN_ORDER_INTRO . '<br />' . ENTRY_CUSTOMERS_STATUS_MIN_ORDER . ' ' . xtc_draw_input_field('customers_status_min_order', $cInfo->customers_status_min_order ));
-      $contents[] = array('text' => '<br />' . TEXT_INFO_CUSTOMERS_STATUS_MAX_ORDER_INTRO . '<br />' . ENTRY_CUSTOMERS_STATUS_MAX_ORDER . ' ' . xtc_draw_input_field('customers_status_max_order', $cInfo->customers_status_max_order )); 
+      $contents[] = array('text' => '<br />' . TEXT_INFO_CUSTOMERS_STATUS_MAX_ORDER_INTRO . '<br />' . ENTRY_CUSTOMERS_STATUS_MAX_ORDER . ' ' . xtc_draw_input_field('customers_status_max_order', $cInfo->customers_status_max_order ));
       $contents[] = array('text' => '<br />' . TEXT_INFO_CUSTOMERS_STATUS_SHOW_PRICE_INTRO     . '<br />' . ENTRY_CUSTOMERS_STATUS_SHOW_PRICE . ' ' . xtc_draw_pull_down_menu('customers_status_show_price', $customers_status_show_price_array, $cInfo->customers_status_show_price ));
       $contents[] = array('text' => '<br />' . TEXT_INFO_CUSTOMERS_STATUS_SHOW_PRICE_TAX_INTRO . '<br />' . ENTRY_CUSTOMERS_STATUS_SHOW_PRICE_TAX . ' ' . xtc_draw_pull_down_menu('customers_status_show_price_tax', $customers_status_show_price_tax_array, $cInfo->customers_status_show_price_tax ));
       $contents[] = array('text' => '<br />' . TEXT_INFO_CUSTOMERS_STATUS_ADD_TAX_INTRO . '<br />' . ENTRY_CUSTOMERS_STATUS_ADD_TAX . ' ' . xtc_draw_pull_down_menu('customers_status_add_tax_ot', $customers_status_add_tax_ot_array, $cInfo->customers_status_add_tax_ot));
@@ -412,7 +412,7 @@ XT Customers
           </tr>
         </table>
 <!-- end content -->
-<?php 
-require(DIR_WS_INCLUDES . 'application_bottom.php'); 
+<?php
+require(DIR_WS_INCLUDES . 'application_bottom.php');
 require(DIR_WS_INCLUDES . 'application_bottom_0.php');
 ?>

@@ -1,20 +1,20 @@
 <?php
 /* -----------------------------------------------------------------------------------------
-   $Id$   
+   $Id$
 
    Self-Commerce
    http://www.self-commerce.de
 
    Copyright (c) 2012 Self-Commerce
    -----------------------------------------------------------------------------------------
-   based on: 
+   based on:
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
    (c) 2002-2003 osCommerce(configuration.php,v 1.8 2002/01/04)	www.oscommerce.com
    (c) 2003	 nextcommerce (configuration.php,v 1.16 2003/08/25)	www.nextcommerce.org
    (c) 2005  xt-commerce;										www.xt-commerce.com
    (c) 2012 Self-Commerce										www.self-commerce.de
 
-   Released under the GNU General Public License 
+   Released under the GNU General Public License
    ---------------------------------------------------------------------------------------*/
 
 define('TABLE_HEADING_CONFIGURATION_TITLE', 'Name');
@@ -124,7 +124,7 @@ define('MIN_DISPLAY_BESTSELLERS_TITLE' , 'Bestseller');
 define('MIN_DISPLAY_BESTSELLERS_DESC' , 'Minimum Anzahl der Bestseller, die angezeigt werden sollen');
 define('MIN_DISPLAY_ALSO_PURCHASED_TITLE' , 'Ebenfalls gekauft');
 define('MIN_DISPLAY_ALSO_PURCHASED_DESC' , 'Minimum Anzahl der ebenfalls gekauften Artikel, die bei der Artikelansicht angezeigt werden sollen');
- 
+
 define('MAX_ADDRESS_BOOK_ENTRIES_TITLE' , 'Adressbuch Eintr&auml;ge');
 define('MAX_ADDRESS_BOOK_ENTRIES_DESC' , 'Maximum erlaubte Anzahl an Adressbucheintr&auml;gen');
 define('MAX_DISPLAY_SEARCH_RESULTS_TITLE' , 'Suchergebnisse');
@@ -259,7 +259,7 @@ define('PRODUCT_IMAGE_INFO_DROP_SHADDOW_DESC' , 'Artikel-Info Bilder:Drop-Shadow
 define('PRODUCT_IMAGE_INFO_MOTION_BLUR_TITLE' , 'Artikel-Info Bilder:Motion-Blur');
 define('PRODUCT_IMAGE_INFO_MOTION_BLUR_DESC' , 'Artikel-Info Bilder:Motion-Blur<br /><br />Default Wert: (4,FFFFFF)<br /><br />fading parallel lines<br />Verwendung:<br />(int number of lines,hex background colour)');
 
-//so this image is the biggest in the shop this 
+//so this image is the biggest in the shop this
 
 define('PRODUCT_IMAGE_POPUP_BEVEL_TITLE' , 'Artikel-Popup Bilder:Bevel');
 define('PRODUCT_IMAGE_POPUP_BEVEL_DESC' , 'Artikel-Popup Bilder:Bevel<br /><br />Default Wert: (8,FFCCCC,330000)<br /><br />shaded bevelled edges<br />Verwendung:<br />(edge width,hex light colour,hex dark colour)');
@@ -657,7 +657,7 @@ define('WARTUNG_TEXT_DESC','Geben Sie hier den Inhalt der Wartungs-Seite an.<br 
 define('LOGIN_NUM_TITLE','Anzahl der erlaubten Loginversuche:');
 define('LOGIN_NUM_DESC','Stellen Sie hier ein, nach wieviel falschen Versuchen die Grafikcode abfrage erscheinen soll.<br /><b>default: 3</b>');
 define('LOGIN_TIME_TITLE','Zeit zwischen den Logins:');
-define('LOGIN_TIME_DESC','Wenn diese Zeit vergangen ist, wird die Grafikcode abfrage abgeschalten, und es ist wieder ein normales Login möglich. (in sekunden!)<br /><b>default: 300</b>');
+define('LOGIN_TIME_DESC','Wenn diese Zeit vergangen ist, wird die Grafikcode abfrage abgeschalten, und es ist wieder ein normales Login m&ouml;glich. (in sekunden!)<br /><b>default: 300</b>');
 
 // erweiterter contentmanager
 define('MODULE_CONTENT_MANAGER_CHILDREN_CENTERBOX_TITLE', 'Centerbox-Modus');
@@ -667,13 +667,17 @@ define('MODULE_CONTENT_MANAGER_CHILDREN_SHOW_DESC', 'Die Nachfahren der einzelen
 
 // Token Verwaltung
 define('TOKEN_SERVER_TITLE', 'Token Server');
+define('TOKEN_SERVER_DESC', 'Diese URL erhalten Sie von Ihrem Anbieter');
 define('TOKEN_SERVER_PORT_AUTH_TITLE', 'Token Server Authentication Port');
 define('TOKEN_SERVER_PORT_AUTH_DESC', 'Der Authentication Port des Token Servers');
 define('TOKEN_SERVER_PORT_ACCOUNTING_TITLE', 'Token Server Accounting Port');
 define('TOKEN_SERVER_PORT_ACCOUNTING_DESC', 'Der Accounting Port des Token Servers');
 define('TOKEN_SECRET_TITLE', 'Token Secret');
+define('TOKEN_SECRET_DESC', 'Diesen Schl&uuml;ssel erhalten Sie von Ihrem Anbieter');
 define('TOKEN_DEBUG_TITLE', 'Debugging aktivieren?');
-define('TOKEN_DEBUG_DESC', '<b><font color="red">ACHTUNG! Hiermit werden dem Kunden "unsch&ouml;ne" Meldungen angezeigt, deshalb nur im Fehlerfall aktivieren!</font><br />Aktiviert: 1<br />Deaktiviert: 0 (default)</b>');
+define('TOKEN_DEBUG_DESC', '<b><font color="red">ACHTUNG! Hiermit werden im Kundenbereich "unsch&ouml;ne" Meldungen angezeigt, deshalb nur im Fehlerfall aktivieren!</font><br />Aktiviert: 1<br />Deaktiviert: 0 (default)</b>');
 define('TOKEN_SECURE_ADMIN_TITLE', 'Admin mit Token sch&uuml;tzen?');
 define('TOKEN_SECURE_ADMIN_DESC', '<b>Aktiviert: 1<br />Deaktiviert: 0 (default)</b>');
+define('TOKEN_SERVER_NAS_IP_TITLE', 'NAS IP');
+define('TOKEN_SERVER_NAS_IP_DESC', 'Die IP Ihres Webspaces');
 ?>

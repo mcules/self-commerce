@@ -1,18 +1,18 @@
 <?php
 /* --------------------------------------------------------------
-   $Id$   
+   $Id$
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
 
    Copyright (c) 2003 XT-Commerce
    --------------------------------------------------------------
-   based on: 
+   based on:
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
-   (c) 2002-2003 osCommerce(customers.php,v 1.13 2002/06/15); www.oscommerce.com 
+   (c) 2002-2003 osCommerce(customers.php,v 1.13 2002/06/15); www.oscommerce.com
    (c) 2003	 nextcommerce (customers.php,v 1.8 2003/08/15); www.nextcommerce.org
 
-   Released under the GNU General Public License 
+   Released under the GNU General Public License
    --------------------------------------------------------------*/
 
 define('HEADING_TITLE', 'Kunden');

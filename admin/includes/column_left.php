@@ -7,19 +7,17 @@
 
    Copyright (c) 2003 XT-Commerce
    --------------------------------------------------------------
-   based on: 
+   based on:
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
-   (c) 2002-2003 osCommerce(column_left.php,v 1.15 2002/01/11); www.oscommerce.com 
+   (c) 2002-2003 osCommerce(column_left.php,v 1.15 2002/01/11); www.oscommerce.com
    (c) 2003	 nextcommerce (column_left.php,v 1.25 2003/08/19); www.nextcommerce.org
 
-   Released under the GNU General Public License 
+   Released under the GNU General Public License
    --------------------------------------------------------------*/
 
-  $admin_access_query = xtc_db_query("select * from " . TABLE_ADMIN_ACCESS . " where customers_id = '" . $_SESSION['customer_id'] . "'");
-  $admin_access = xtc_db_fetch_array($admin_access_query); 
+  $admin_access_query = xtc_db_query("SELECT * FROM " . TABLE_ADMIN_ACCESS . " WHERE customers_id = '" . $_SESSION['customer_id'] . "'");
+  $admin_access = xtc_db_fetch_array($admin_access_query);
 ?>
-
-
 <tr>
 <td>
 <script type="text/javascript" src="includes/javascript/collumn_left_slide.js"></script>
@@ -28,13 +26,9 @@
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['customers'] == '1')) $box_customers .= '<a href="' . xtc_href_link(FILENAME_CUSTOMERS, '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_CUSTOMERS . '</a><br />';
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['customers_status'] == '1')) $box_customers .= '<a href="' . xtc_href_link(FILENAME_CUSTOMERS_STATUS, '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_CUSTOMERS_STATUS . '</a><br />';
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['orders'] == '1')) $box_customers .= '<a href="' . xtc_href_link(FILENAME_ORDERS, '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_ORDERS . '</a><br />';
-
-  if(!empty($box_customers)) 
-  	echo '
-	<div class="dhtmlgoodies_panel">
-		<div>'.
-		$box_customers .
-		'</div>	
+  if(!empty($box_customers))
+  	echo '<div class="dhtmlgoodies_panel">
+		<div>'.$box_customers.'</div>
 	</div>';
 
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['categories'] == '1')) $box_products .= '<a href="' . xtc_href_link(FILENAME_CATEGORIES, '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_CATEGORIES . '</a><br />';
@@ -44,26 +38,18 @@
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['reviews'] == '1')) $box_products .= '<a href="' . xtc_href_link(FILENAME_REVIEWS, '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_REVIEWS . '</a><br />';
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['specials'] == '1')) $box_products .= '<a href="' . xtc_href_link(FILENAME_SPECIALS, '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_SPECIALS . '</a><br />';
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['products_expected'] == '1')) $box_products .= '<a href="' . xtc_href_link(FILENAME_PRODUCTS_EXPECTED, '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_PRODUCTS_EXPECTED . '</a><br />';
-
-  if(!empty($box_products)) 
-  	echo '
-	<div class="dhtmlgoodies_panel">
-		<div>'.
-		$box_products .
-		'</div>	
+  if(!empty($box_products))
+  	echo '<div class="dhtmlgoodies_panel">
+		<div>'.$box_products.'</div>
 	</div>';
 
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['modules'] == '1')) $box_modules .= '<a href="' . xtc_href_link(FILENAME_MODULES, 'set=payment', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_PAYMENT . '</a><br />';
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['modules'] == '1')) $box_modules .= '<a href="' . xtc_href_link(FILENAME_MODULES, 'set=shipping', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_SHIPPING . '</a><br />';
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['modules'] == '1')) $box_modules .= '<a href="' . xtc_href_link(FILENAME_MODULES, 'set=ordertotal', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_ORDER_TOTAL . '</a><br />';
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['module_export'] == '1')) $box_modules .= '<a href="' . xtc_href_link(FILENAME_MODULE_EXPORT) . '" class="menuBoxContentLink"> -' . BOX_MODULE_EXPORT . '</a><br />';
-
-  if(!empty($box_modules)) 
-  	echo '
-	<div class="dhtmlgoodies_panel">
-		<div>'.
-		$box_modules .
-		'</div>	
+  if(!empty($box_modules))
+  	echo '<div class="dhtmlgoodies_panel">
+		<div>'.$box_modules.'</div>
 	</div>';
 
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['stats_products_viewed'] == '1')) $box_statistics .= '<a href="' . xtc_href_link(FILENAME_STATS_PRODUCTS_VIEWED, '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_PRODUCTS_VIEWED . '</a><br />';
@@ -71,13 +57,9 @@
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['stats_customers'] == '1')) $box_statistics .= '<a href="' . xtc_href_link(FILENAME_STATS_CUSTOMERS, '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_STATS_CUSTOMERS . '</a><br />';
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['stats_sales_report'] == '1')) $box_statistics .= '<a href="' . xtc_href_link(FILENAME_SALES_REPORT, '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_SALES_REPORT . '</a><br />';
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['stats_campaigns'] == '1')) $box_statistics .= '<a href="' . xtc_href_link(FILENAME_CAMPAIGNS_REPORT, '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_CAMPAIGNS_REPORT . '</a><br />';
-
-  if(!empty($box_statistics)) 
-  	echo '
-	<div class="dhtmlgoodies_panel">
-		<div>'.
-		$box_statistics .
-		'</div>	
+  if(!empty($box_statistics))
+  	echo '<div class="dhtmlgoodies_panel">
+		<div>'.$box_statistics.'</div>
 	</div>';
 
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['module_newsletter'] == '1'))	$box_tools .= '<a href="' . xtc_href_link(FILENAME_MODULE_NEWSLETTER) . '" class="menuBoxContentLink"> -' . BOX_MODULE_NEWSLETTER . '</a><br />';
@@ -89,25 +71,18 @@
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['whos_online'] == '1'))		$box_tools .= '<a href="' . xtc_href_link(FILENAME_WHOS_ONLINE) . '" class="menuBoxContentLink"> -' . BOX_WHOS_ONLINE . '</a><br />';
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['csv_backend'] == '1'))		$box_tools .= '<a href="' . xtc_href_link('csv_backend.php') . '" class="menuBoxContentLink"> -' . BOX_IMPORT . '</a><br />';
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['file_chk'] == '1'))			$box_tools .= '<a href="' . xtc_href_link(FILENAME_FILE_CHK) . '" class="menuBoxContentLink"> -' . BOX_FILE_CHK . '</a><br />';
-
-  if(!empty($box_tools)) 
-  	echo '
-	<div class="dhtmlgoodies_panel">
-		<div>'.
-		$box_tools .
-		'</div>	
+  if(!empty($box_tools))
+  	echo '<div class="dhtmlgoodies_panel">
+		<div>'.$box_tools.'</div>
 	</div>';
 
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['coupon_admin'] == '1')) $box_gift_system .= '<a href="' . xtc_href_link(FILENAME_COUPON_ADMIN, '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_COUPON_ADMIN . '</a><br />';
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['gv_queue'] == '1')) $box_gift_system .= '<a href="' . xtc_href_link(FILENAME_GV_QUEUE, '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_GV_ADMIN_QUEUE . '</a><br />';
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['gv_mail'] == '1')) $box_gift_system .= '<a href="' . xtc_href_link(FILENAME_GV_MAIL, '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_GV_ADMIN_MAIL . '</a><br />';
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['gv_sent'] == '1')) $box_gift_system .= '<a href="' . xtc_href_link(FILENAME_GV_SENT, '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_GV_ADMIN_SENT . '</a><br />';
-  if(!empty($box_gift_system) && ACTIVATE_GIFT_SYSTEM=='true') 
-  	echo '
-	<div class="dhtmlgoodies_panel">
-		<div>'.
-		$box_gift_system .
-		'</div>	
+  if(!empty($box_gift_system) && ACTIVATE_GIFT_SYSTEM=='true')
+  	echo '<div class="dhtmlgoodies_panel">
+		<div>'.$box_gift_system.'</div>
 	</div>';
 
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['languages'] == '1')) $box_zone .= '<a href="' . xtc_href_link(FILENAME_LANGUAGES, '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_LANGUAGES . '</a><br />';
@@ -117,13 +92,9 @@
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['geo_zones'] == '1')) $box_zone .= '<a href="' . xtc_href_link(FILENAME_GEO_ZONES, '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_GEO_ZONES . '</a><br />';
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['tax_classes'] == '1')) $box_zone .= '<a href="' . xtc_href_link(FILENAME_TAX_CLASSES, '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_TAX_CLASSES . '</a><br />';
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['tax_rates'] == '1')) $box_zone .= '<a href="' . xtc_href_link(FILENAME_TAX_RATES, '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_TAX_RATES . '</a><br />';
-
-  if(!empty($box_zone)) 
-  	echo '
-	<div class="dhtmlgoodies_panel">
-		<div>'.
-		$box_zone .
-		'</div>	
+  if(!empty($box_zone))
+  	echo '<div class="dhtmlgoodies_panel">
+		<div>'.$box_zone.'</div>
 	</div>';
 
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['configuration'] == '1')) $box_configuration .= '<a href="' . xtc_href_link(FILENAME_CONFIGURATION, 'gID=1', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_CONFIGURATION_1 . '</a><br />';
@@ -152,45 +123,33 @@
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['products_vpe'] == '1')) $box_configuration .= '<a href="' . xtc_href_link(FILENAME_PRODUCTS_VPE, '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_PRODUCTS_VPE . '</a><br />';
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['campaigns'] == '1')) $box_configuration .= '<a href="' . xtc_href_link(FILENAME_CAMPAIGNS, '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_CAMPAIGNS . '</a><br />';
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['cross_sell_groups'] == '1')) $box_configuration .= '<a href="' . xtc_href_link(FILENAME_XSELL_GROUPS, '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_ORDERS_XSELL_GROUP . '</a><br />';
-
-  if(!empty($box_configuration)) 
-  	echo '
-	<div class="dhtmlgoodies_panel">
-		<div>'.
-		$box_configuration .
-		'</div>	
+  if(!empty($box_configuration))
+  	echo '<div class="dhtmlgoodies_panel">
+		<div>'.$box_configuration.'</div>
 	</div>';
 
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['configuration'] == '1')) $box_extra_modules .= '<a href="' . xtc_href_link(FILENAME_CONFIGURATION, 'gID=358', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_CONFIGURATION_358 . '</a><br />';
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['configuration'] == '1')) $box_extra_modules .= '<a href="' . xtc_href_link(FILENAME_CONFIGURATION, 'gID=359', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_CONFIGURATION_359 . '</a><br />';
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['configuration'] == '1')) $box_extra_modules .= '<a href="' . xtc_href_link(FILENAME_CONFIGURATION, 'gID=360', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_CONFIGURATION_360 . '</a><br />';
-  if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['configuration'] == '1')) $box_extra_modules .= '<a href="' . xtc_href_link(FILENAME_CONFIGURATION, 'gID=361', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_CONFIGURATION_361 . '</a><br />';  
+  if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['configuration'] == '1')) $box_extra_modules .= '<a href="' . xtc_href_link(FILENAME_CONFIGURATION, 'gID=361', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_CONFIGURATION_361 . '</a><br />';
   if(!empty($box_extra_modules)) $box_extra_modules .= '<hr>';
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['admin_sql'] == '1')) $box_extra_modules .= '<a href="' . xtc_href_link(FILENAME_ADMIN_SQL, '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_ADMIN_SQL . '</a><br />';
   if(!empty($box_extra_modules)) $box_extra_modules .= '<hr>';
-  if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['stock_list'] == '1')) $box_extra_modules .= '<a href="' . xtc_href_link(FILENAME_STOCK_LIST, '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_STOCK_LIST . '</a><br />';        
-
-  if(!empty($box_extra_modules)) 
-  	echo '
-	<div class="dhtmlgoodies_panel">
-		<div>'.
-		$box_extra_modules .
-		'</div>	
+  if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['stock_list'] == '1')) $box_extra_modules .= '<a href="' . xtc_href_link(FILENAME_STOCK_LIST, '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_STOCK_LIST . '</a><br />';
+  if(!empty($box_extra_modules))
+  	echo '<div class="dhtmlgoodies_panel">
+		<div>'.$box_extra_modules.'</div>
 	</div>';
 
 	if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['token_admin'] == '1')) $box_security .= '<a href="' . xtc_href_link(FILENAME_CONFIGURATION, 'gID=365', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_TOKEN_ADMIN . '</a><br />';
-	
-	if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['configuration'] == '1')) $box_security .= '<a href="' . xtc_href_link(FILENAME_CONFIGURATION, 'gID=362', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_CONFIGURATION_362 . '</a><br />';  
-	if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['configuration'] == '1')) $box_security .= '<a href="' . xtc_href_link(FILENAME_CONFIGURATION, 'gID=363', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_CONFIGURATION_363 . '</a><br />';  
-	
-	if(!empty($box_security)) 
-		echo '
-	<div class="dhtmlgoodies_panel">
-		<div>'.
-		$box_security .
-		'</div>	
+	if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['token_admin'] == '1')) $box_security .= '<a href="' . xtc_href_link(FILENAME_TOKEN_ADMIN, '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_TOKEN_USER . '</a><br />';
+	if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['configuration'] == '1')) $box_security .= '<a href="' . xtc_href_link(FILENAME_CONFIGURATION, 'gID=362', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_CONFIGURATION_362 . '</a><br />';
+	if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['configuration'] == '1')) $box_security .= '<a href="' . xtc_href_link(FILENAME_CONFIGURATION, 'gID=363', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_CONFIGURATION_363 . '</a><br />';
+	if(!empty($box_security))
+		echo '<div class="dhtmlgoodies_panel">
+		<div>'.$box_security.'</div>
 	</div>';
-?>		
+?>
 </div>
 <?php
 	$panelHead = '';
@@ -209,8 +168,8 @@
 <!-- START OF PANE CODE -->
 <script type="text/javascript">
 initDhtmlgoodies_xpPane(Array(<?php echo $panelHead ?>),
-				Array(false,false,false,false,false,<?php echo (!empty($box_gift_system) && ACTIVATE_GIFT_SYSTEM=='true') ? 'false,':''; ?>false,false,false),
-				Array('pane1','pane2','pane3','pane4','pane5',<?php echo (!empty($box_gift_system) && ACTIVATE_GIFT_SYSTEM=='true') ? '\'pane6\',':''; ?>'pane7','pane8','pane9')
+				Array(false,false,false,false,false,<?php echo (!empty($box_gift_system) && ACTIVATE_GIFT_SYSTEM=='true') ? 'false,':''; ?>false,false,false,false),
+				Array('pane1','pane2','pane3','pane4','pane5',<?php echo (!empty($box_gift_system) && ACTIVATE_GIFT_SYSTEM=='true') ? '\'pane6\',':''; ?>'pane7','pane8','pane9','panel10')
 			);
 </script>
 <!-- END OF PANE CONTENT -->

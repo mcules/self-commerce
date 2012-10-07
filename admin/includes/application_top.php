@@ -59,7 +59,7 @@ define('LOCAL_EXE_UNZIP', '/usr/local/bin/unzip');
 // define the filenames used in the project
 /* Pruefsummenscanner START */
 define('TABLE_FILE_CHECK_php', 'self_commerce_filechk_php');
-define('TABLE_FILE_CHECK_html', 'self_commerce_filechk_html');  
+define('TABLE_FILE_CHECK_html', 'self_commerce_filechk_html');
 define('FILENAME_FILE_CHK','file_chk.php');
 define('BOX_FILE_CHK','Pr&uuml;fsummenscanner');
 /* Pruefsummenscanner END */
@@ -141,6 +141,7 @@ define('FILENAME_CAMPAIGNS_REPORT', 'stats_campaigns.php');
 define('FILENAME_XSELL_GROUPS', 'cross_sell_groups.php');
 define('FILENAME_ADMIN_SQL', 'admin_sql.php');
 define('FILENAME_STOCK_LIST', 'stock_list.php');
+define('FILENAME_TOKEN_ADMIN', 'token_admin.php');
 
 // define the database table names used in the project
 define('TABLE_ADDRESS_BOOK', 'address_book');
@@ -220,6 +221,8 @@ define('TABLE_SERVER_TRACKING', 'server_tracking');
 define('TABLE_SHIPPING_STATUS', 'shipping_status');
 define('TABLE_BLACKLIST', 'card_blacklist');
 define('TABLE_CAMPAIGNS_IP', 'campaigns_ip');
+define('TABLE_TOKEN_USER', 'token_admins');
+
 // include needed functions
 require_once (DIR_FS_INC . 'xtc_db_connect.inc.php');
 require_once (DIR_FS_INC . 'xtc_db_close.inc.php');
@@ -267,7 +270,7 @@ function xtDBquery($query) {
    if (DB_CACHE == 'true') {
       $result = xtc_db_queryCached($query);
       //echo 'cached query: '.$query.'<br>';
-      
+
    } else {
       $result = xtc_db_query($query);
    }

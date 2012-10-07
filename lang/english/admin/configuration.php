@@ -1,18 +1,18 @@
 <?php
 /* -----------------------------------------------------------------------------------------
-   $Id$   
+   $Id$
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
 
    Copyright (c) 2003 XT-Commerce
    -----------------------------------------------------------------------------------------
-   based on: 
+   based on:
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
    (c) 2002-2003 osCommerce(configuration.php,v 1.8 2002/01/04); www.oscommerce.com
-   (c) 2003	 nextcommerce (configuration.php,v 1.16 2003/08/25); www.nextcommerce.org 
+   (c) 2003	 nextcommerce (configuration.php,v 1.16 2003/08/25); www.nextcommerce.org
 
-   Released under the GNU General Public License 
+   Released under the GNU General Public License
    ---------------------------------------------------------------------------------------*/
 
 define('TABLE_HEADING_CONFIGURATION_TITLE', 'Title');
@@ -642,4 +642,21 @@ define ('MODULE_CONTENT_MANAGER_CHILDREN_CENTERBOX_TITLE', 'Centerbox-Modus');
 define ('MODULE_CONTENT_MANAGER_CHILDREN_CENTERBOX_DESC', 'show only the next Page (children) in Centerbox or all follow Pages (sisters?)');
 define ('MODULE_CONTENT_MANAGER_CHILDREN_SHOW_TITLE', 'Show Children?');
 define ('MODULE_CONTENT_MANAGER_CHILDREN_SHOW_DESC', 'Show Children from Documents in the Boxes?');
+
+// Token Verwaltung
+define('TOKEN_SERVER_TITLE', 'Token Server');
+define('TOKEN_SERVER_DESC', 'Please contact your Provider for this url');
+define('TOKEN_SERVER_PORT_AUTH_TITLE', 'Token Server Authentication Port');
+define('TOKEN_SERVER_PORT_AUTH_DESC', 'Authentication Port of the Token Server');
+define('TOKEN_SERVER_PORT_ACCOUNTING_TITLE', 'Token Server Accounting Port');
+define('TOKEN_SERVER_PORT_ACCOUNTING_DESC', 'Accounting Port of the Token Server');
+define('TOKEN_SECRET_TITLE', 'Token Secret');
+define('TOKEN_SECRET_DESC', 'Please contact your Provider for that key');
+define('TOKEN_DEBUG_TITLE', 'Debugging');
+define('TOKEN_DEBUG_DESC', '<b><font color="red">Attention! Please just activate in case of emergence!</font><br />Enabled: 1<br />Deactivated: 0 (default)</b>');
+define('TOKEN_SECURE_ADMIN_TITLE', 'Secure Admin with Token?');
+define('TOKEN_SECURE_ADMIN_DESC', '<b>Enabled: 1<br />Dissabled: 0 (default)</b>');
+define('TOKEN_SERVER_NAS_IP_TITLE', 'NAS IP');
+define('TOKEN_SERVER_NAS_IP_DESC', 'The IP of youre Webspace');
+
 ?>
