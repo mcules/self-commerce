@@ -25,6 +25,14 @@ if ($_GET['action'])
 
 			xtc_db_perform(TABLE_TOKEN_USER, $sql_data_array);
 			break;
+		case 'delete' :
+			$username	= xtc_db_prepare_input($_GET['username']);
+			$email		= xtc_db_prepare_input($_GET['email']);
+			$delete_sql = "DELETE ".TABLE_TOKEN_USER."
+							FROM ".TABLE_TOKEN_USER."
+							INNER JOIN ".TABLE_CUSTOMERS." AS cust ON (cust.customers_email_address='$email')
+							WHERE ".TABLE_TOKEN_USER.".username='$username' AND cust.customers_id=".TABLE_TOKEN_USER.".customers_id;";
+			xtc_db_query($delete_sql);
 	}
 }
 
@@ -51,16 +59,16 @@ if ($_GET['action'])
 					<td></td>
 				</tr>
 			<?php
-			$sql = "SELECT ".TABLE_TOKEN_USER.".*, ".TABLE_CUSTOMERS.".customers_firstname, ".TABLE_CUSTOMERS.".customers_lastname, ".TABLE_CUSTOMERS.".customers_email_address
-					FROM ".TABLE_TOKEN_USER."
-					LEFT JOIN ".TABLE_CUSTOMERS." ON (".TABLE_TOKEN_USER.".customers_id=".TABLE_CUSTOMERS.".customers_id);";
-			$token_user_query = xtc_db_query($sql);
+			$token_user_sql = "SELECT ".TABLE_TOKEN_USER.".*, ".TABLE_CUSTOMERS.".customers_firstname, ".TABLE_CUSTOMERS.".customers_lastname, ".TABLE_CUSTOMERS.".customers_email_address
+								FROM ".TABLE_TOKEN_USER."
+								LEFT JOIN ".TABLE_CUSTOMERS." ON (".TABLE_TOKEN_USER.".customers_id=".TABLE_CUSTOMERS.".customers_id);";
+			$token_user_query = xtc_db_query($token_user_sql);
 			while ($row = xtc_db_fetch_array($token_user_query))
 			{
 				echo '<tr>'.
 					'<td class="dataTableContent">'.$row['username'].'</td>'.
 					'<td class="dataTableContent">'.$row['customers_email_address'].'</td>'.
-					'<td></td>'.
+					'<td><a href="'.FILENAME_TOKEN_ADMIN.'?action=delete&username='.$row['username'].'&email='.$row['customers_email_address'].'" title="delete">'.xtc_image("../".DIR_WS_ICONS."cancel.png").'</a></td>'.
 				'</tr>';
 			}
 			?>
@@ -85,16 +93,20 @@ if ($_GET['action'])
 									<td class="infoBoxContent"><?php echo CUSTOMERS_ID; ?></td>
 									<td>
 										<?php
-										$admins_sql = "SELECT customers_email_address FROM ".TABLE_CUSTOMERS." WHERE customers_status=0 GROUP BY customers_email_address;";
-										$admins_query = xtc_db_query($sql);
+										$admins_sql = "SELECT customers_id, customers_email_address FROM ".TABLE_CUSTOMERS." WHERE customers_status=0 GROUP BY customers_email_address;";
+										$admins_query = xtc_db_query($admins_sql);
 										while ($admins_row = xtc_db_fetch_array($admins_query))
 										{
 											$admins_array[] = array(
-												'id' => $admins_row['customers_id'],
-												'text' => $admins_row['customers_email_address']
+												'id'	=> $admins_row['customers_id'],
+												'text'	=> $admins_row['customers_email_address']
 											);
+											if(!isset($admins_default))
+											{
+												$admins_default = $admins_row['customers_id'];
+											}
 										}
-										echo xtc_draw_pull_down_menu('customers_id', $admins_array);
+										echo xtc_draw_pull_down_menu('customers_id', $admins_array, $admins_default);
 										?>
 									</td>
 								</tr>

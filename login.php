@@ -46,14 +46,15 @@ if ($session_started == false)
 
 if (isset ($_GET['action']) && ($_GET['action'] == 'process'))
 {
-	$email_address = xtc_db_prepare_input($_POST['email_address']);
-	$password = xtc_db_prepare_input($_POST['password']);
+	$email_address	= xtc_db_prepare_input($_POST['email_address']);
+	$password		= xtc_db_prepare_input($_POST['password']);
+	$customers_id	= false;
 
 	if
 	(TOKEN_SECURE_ADMIN)
 	{
 		$Sql = "SELECT *
-				FROM token_admins
+				FROM ".TABLE_TOKEN_USER."
 				WHERE username='$email_address'
 				LIMIT 1;";
 		$check_admin_token = xtc_db_query($Sql);
