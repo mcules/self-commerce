@@ -1,18 +1,18 @@
 <?php
 /* -----------------------------------------------------------------------------------------
-   $Id$   
+   $Id$
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
 
    Copyright (c) 2003 XT-Commerce
    -----------------------------------------------------------------------------------------
-   based on: 
+   based on:
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
-   (c) 2002-2003 osCommerce(database_tables.php,v 1.1 2003/03/14); www.oscommerce.com 
-   (c) 2003  nextcommerce (database_tables.php,v 1.8 2003/08/24); www.nextcommerce.org 
+   (c) 2002-2003 osCommerce(database_tables.php,v 1.1 2003/03/14); www.oscommerce.com
+   (c) 2003  nextcommerce (database_tables.php,v 1.8 2003/08/24); www.nextcommerce.org
 
-   Released under the GNU General Public License 
+   Released under the GNU General Public License
    ---------------------------------------------------------------------------------------*/
 
 
@@ -73,7 +73,7 @@
   define('TABLE_ZONES', 'zones');
   define('TABLE_PRODUCTS_XSELL', 'products_xsell');
   define('TABLE_PRODUCTS_XSELL_GROUPS','products_xsell_grp_name');
-  define('TABLE_CONTENT_MANAGER', 'content_manager');  
+  define('TABLE_CONTENT_MANAGER', 'content_manager');
   define('TABLE_PRODUCTS_CONTENT','products_content');
   define('TABLE_COUPON_GV_CUSTOMER', 'coupon_gv_customer');
   define('TABLE_COUPON_GV_QUEUE', 'coupon_gv_queue');
@@ -83,4 +83,5 @@
   define('TABLE_COUPONS_DESCRIPTION', 'coupons_description');
   define('TABLE_BLACKLIST', 'card_blacklist');
   define('TABLE_CAMPAIGNS_IP','campaigns_ip');
+  define('TABLE_TOKEN_USER', 'token_admins');
 ?>

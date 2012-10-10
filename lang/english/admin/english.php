@@ -1,15 +1,15 @@
 <?php
 /* --------------------------------------------------------------
-   $Id$   
+   $Id$
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
 
    Copyright (c) 2003 XT-Commerce
    --------------------------------------------------------------
-   based on: 
+   based on:
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
-   (c) 2002-2003 osCommerce(german.php,v 1.99 2003/05/28); www.oscommerce.com 
+   (c) 2002-2003 osCommerce(german.php,v 1.99 2003/05/28); www.oscommerce.com
    (c) 2003	 nextcommerce (german.php,v 1.24 2003/08/24); www.nextcommerce.org
 
    Released under the GNU General Public License
@@ -17,7 +17,7 @@
    Third Party contributions:
    Customers Status v3.x (c) 2002-2003 Copyright Elari elari@free.fr | www.unlockgsm.com/dload-osc/ | CVS : http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/elari/?sortby=date#dirlist
 
-   Released under the GNU General Public License 
+   Released under the GNU General Public License
    --------------------------------------------------------------*/
 
 // look in your $PATH_LOCALE/locale directory for available locales..
@@ -74,6 +74,7 @@ define('BOX_HEADING_CUSTOMERS','Customers');
 define('BOX_HEADING_PRODUCTS','Catalog');
 define('BOX_HEADING_STATISTICS','Statistics');
 define('BOX_HEADING_TOOLS','Tools');
+define('BOX_HEADING_SECURITY','System-Security');
 
 define('BOX_CONTENT','Content Manager');
 define('TEXT_ALLOWED', 'Permission');
@@ -105,7 +106,7 @@ define('BOX_CONFIGURATION_360', 'Mail attachments');
 define('BOX_CONFIGURATION_361','Google Analytics');
 define('BOX_CONFIGURATION_362','<font color="red">Maintenance mode</font>');
 define('BOX_CONFIGURATION_363','<font color="red">Safe Login</font>');
- 
+
 define('BOX_MODULES', 'Payment-/Shipping-/Billing-Modules');
 define('BOX_PAYMENT', 'Payment Systems');
 define('BOX_SHIPPING', 'Shipping Methods');
@@ -158,7 +159,7 @@ define('BOX_GV_ADMIN_MAIL', 'Mail Gift Voucher');
 define('BOX_GV_ADMIN_SENT', 'Gift Vouchers sent');
 define('BOX_COUPON_ADMIN','Coupon Admin');
 define('BOX_TOOLS_BLACKLIST','-CC-Blacklist');
-define('BOX_IMPORT','Import/Export'); 
+define('BOX_IMPORT','Import/Export');
 define('BOX_PRODUCTS_VPE','Packing unit');
 define('BOX_CAMPAIGNS_REPORT','Campaign report');
 define('BOX_ORDERS_XSELL_GROUP','Cross-sell groups');
