@@ -1,7 +1,7 @@
 <?php
 
 /* -----------------------------------------------------------------------------------------
-   $Id$   
+   $Id$
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
@@ -9,12 +9,12 @@
    Copyright (c) 2003 XT-Commerce
    -----------------------------------------------------------------------------------------
    (c) 2012	 Self-Commerce www.self-commerce.de
-   based on: 
+   based on:
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
    (c) 2002-2003 osCommerce(create_account.php,v 1.63 2003/05/28); www.oscommerce.com
-   (c) 2003  nextcommerce (create_account.php,v 1.27 2003/08/24); www.nextcommerce.org 
+   (c) 2003  nextcommerce (create_account.php,v 1.27 2003/08/24); www.nextcommerce.org
 
-   Released under the GNU General Public License 
+   Released under the GNU General Public License
    -----------------------------------------------------------------------------------------
    Third Party contribution:
 
@@ -77,7 +77,7 @@ if (isset ($_POST['action']) && ($_POST['action'] == 'process')) {
 	$newsletter = '0';
 	$password = xtc_db_prepare_input($_POST['password']);
 	$confirmation = xtc_db_prepare_input($_POST['confirmation']);
-  $datensg = xtc_db_prepare_input($_POST['datensg']);	
+  $datensg = xtc_db_prepare_input($_POST['datensg']);
 
 	$error = false;
 
@@ -112,18 +112,18 @@ if (isset ($_POST['action']) && ($_POST['action'] == 'process')) {
 // New VAT Check
 	require_once(DIR_WS_CLASSES.'vat_validation.php');
 	$vatID = new vat_validation($vat, '', '', $country);
-	
+
 	$customers_status = $vatID->vat_info['status'];
 	$customers_vat_id_status = $vatID->vat_info['vat_id_status'];
 	$error_vat = $vatID->vat_info['error'];
-	
+
 	if($error_vat==1){
 	$messageStack->add('create_account', ENTRY_VAT_ERROR);
 	$error = true;
   }
 
 // New VAT CHECK END
-	
+
 
 	if (strlen($email_address) < ENTRY_EMAIL_ADDRESS_MIN_LENGTH) {
 		$error = true;
@@ -211,13 +211,13 @@ if (isset ($_POST['action']) && ($_POST['action'] == 'process')) {
 
 		$messageStack->add('create_account', ENTRY_PASSWORD_ERROR_NOT_MATCHING);
 	}
-	
+
   if(!isset($datensg) || empty($datensg)) {
     $error = true;
-    
+
     $messageStack->add('create_account', ERROR_DATENSG_NOT_ACCEPTED);
   }
-	
+
 
 	//don't know why, but this happens sometimes and new user becomes admin
 	if ($customers_status == 0 || !$customers_status)
@@ -232,22 +232,22 @@ if (isset ($_POST['action']) && ($_POST['action'] == 'process')) {
 		if (ACCOUNT_DOB == 'true')
 			$sql_data_array['customers_dob'] = xtc_date_raw($dob);
 
-// Modifikation Automatisch Kundennummer tag monat jahr- nr: 
-function new_customer_id($space='-'){ 
-    $new_cid=''; 
-    $day = date("d"); 
-    $mon = date("m"); 
-    $year = date("y"); 
-    
-    $cid_query = xtc_db_query("SELECT customers_id FROM ".TABLE_CUSTOMERS." ORDER BY customers_id DESC LIMIT 1"); 
-    $last_cid = xtc_db_fetch_array($cid_query); 
-    $new_cid = $day . $mon . $year . $space . ($last_cid['customers_id']+1000); 
+// Modifikation Automatisch Kundennummer tag monat jahr- nr:
+function new_customer_id($space='-'){
+    $new_cid='';
+    $day = date("d");
+    $mon = date("m");
+    $year = date("y");
 
-return $new_cid; 
-} 
-    $sql_data_array['customers_cid'] = new_customer_id(); 
-// Modifikation Kundennummer tag monat jahr- nr Ende 
- 
+    $cid_query = xtc_db_query("SELECT customers_id FROM ".TABLE_CUSTOMERS." ORDER BY customers_id DESC LIMIT 1");
+    $last_cid = xtc_db_fetch_array($cid_query);
+    $new_cid = $day . $mon . $year . $space . ($last_cid['customers_id']+1000);
+
+return $new_cid;
+}
+    $sql_data_array['customers_cid'] = new_customer_id();
+// Modifikation Kundennummer tag monat jahr- nr Ende
+
 		xtc_db_perform(TABLE_CUSTOMERS, $sql_data_array);
 
 
@@ -306,12 +306,12 @@ return $new_cid;
 		$smarty->assign('logo_path', HTTP_SERVER.DIR_WS_CATALOG.'templates/'.CURRENT_TEMPLATE.'/img/');
 		$smarty->assign('content', $module_content);
 		$smarty->caching = false;
-    $smarty->assign('USERNAME4MAIL', $email_address); 
-    $smarty->assign('PASSWORT4MAIL', $password); 
+    $smarty->assign('USERNAME4MAIL', $email_address);
+    $smarty->assign('PASSWORT4MAIL', $password);
 
 if (isset ($_SESSION['tracking']['refID'])){
       $campaign_check_query_raw = "SELECT *
-			                            FROM ".TABLE_CAMPAIGNS." 
+			                            FROM ".TABLE_CAMPAIGNS."
 			                            WHERE campaigns_refID = '".$_SESSION[tracking][refID]."'";
 			$campaign_check_query = xtc_db_query($campaign_check_query_raw);
 		if (xtc_db_num_rows($campaign_check_query) > 0) {
@@ -320,15 +320,15 @@ if (isset ($_SESSION['tracking']['refID'])){
 			} else {
 			$refID = 0;
 		            }
-			
+
 			 xtc_db_query("update " . TABLE_CUSTOMERS . " set
                                  refferers_id = '".$refID."'
                                  where customers_id = '".(int) $_SESSION['customer_id']."'");
-			
+
 			$leads = $campaign['campaigns_leads'] + 1 ;
 		     xtc_db_query("update " . TABLE_CAMPAIGNS . " set
 		                         campaigns_leads = '".$leads."'
-                                 where campaigns_id = '".$refID."'");		
+                                 where campaigns_id = '".$refID."'");
 }
 
 
@@ -374,7 +374,7 @@ if (isset ($_SESSION['tracking']['refID'])){
   } else {
   $attachment1 = '';
   }
-  
+
   if (ATTACH_CREATE_2 != '') {
   $attachment2 = 'attachments/'.ATTACH_CREATE_2 ;
   } else {
@@ -493,16 +493,8 @@ $shop_content_query = xtc_db_query("SELECT content_title,
                                           FROM ".TABLE_CONTENT_MANAGER."
                                           WHERE content_group='2'
                                           AND languages_id='".$_SESSION['languages_id']."'");
-$shop_content_data = xtc_db_fetch_array($shop_content_query);
-  if ($shop_content_data['content_file'] != '') {
-    $datensg = '<iframe SRC="'.DIR_WS_CATALOG.'media/content/'.$shop_content_data['content_file'].'" width="100%" height="300">';
-    $datensg .= '</iframe>';
-  } else {
-    $datensg = '<textarea name="blubblub" cols="60" rows="10" readonly="readonly">'.strip_tags(str_replace('<br />', "\n", $shop_content_data['content_text'])).'</textarea>';
-  }
-$smarty->assign('DSG', $datensg);
-$smarty->assign('DATENSG_CHECKBOX', xtc_draw_checkbox_field('datensg', 'datensg', ''));
 
+$smarty->assign('DATENSG_CHECKBOX', xtc_draw_checkbox_field('datensg', 'datensg', ''));
 $smarty->assign('FORM_END', '</form>');
 $smarty->assign('language', $_SESSION['language']);
 $smarty->caching = 0;

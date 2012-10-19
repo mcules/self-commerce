@@ -7,22 +7,22 @@
 
    Copyright (c) 2003 XT-Commerce
    -----------------------------------------------------------------------------------------
-   based on: 
+   based on:
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
-   (c) 2002-2003 osCommerce(german.php,v 1.119 2003/05/19); www.oscommerce.com 
+   (c) 2002-2003 osCommerce(german.php,v 1.119 2003/05/19); www.oscommerce.com
    (c) 2003  nextcommerce (german.php,v 1.25 2003/08/25); www.nextcommerce.org
 
-   Released under the GNU General Public License 
+   Released under the GNU General Public License
    ---------------------------------------------------------------------------------------*/
 
 /*
- * 
+ *
  *  ZEIT / DATUM
- * 
+ *
  */
- 
+
 define('TITLE', STORE_NAME);
-define('HEADER_TITLE_TOP', 'Startseite');    
+define('HEADER_TITLE_TOP', 'Startseite');
 define('HEADER_TITLE_CATALOG', 'Katalog');
 
 define('HTML_PARAMS',' xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de"');
@@ -50,9 +50,9 @@ define('MALE', 'Herr');
 define('FEMALE', 'Frau');
 
 /*
- * 
+ *
  *  BOX TEXT
- * 
+ *
  */
 
 // text for gift voucher redeeming
@@ -69,7 +69,7 @@ define('BOX_MANUFACTURER_INFO_HOMEPAGE', '%s Homepage');
 define('BOX_MANUFACTURER_INFO_OTHER_PRODUCTS', 'Mehr Artikel');
 
 define('BOX_HEADING_ADD_PRODUCT_ID','In den Korb legen');
-  
+
 define('BOX_LOGINBOX_STATUS','Kundengruppe:');
 define('BOX_LOGINBOX_DISCOUNT','Artikelrabatt');
 define('BOX_LOGINBOX_DISCOUNT_TEXT','Rabatt');
@@ -92,9 +92,9 @@ define('JS_ERROR_SUBMITTED', 'Diese Seite wurde bereits best&auml;tigt. Klicken 
 define('ERROR_NO_PAYMENT_MODULE_SELECTED', '* Bitte w&auml;hlen Sie eine Zahlungsweise f&uuml;r Ihre Bestellung.');
 
 /*
- * 
+ *
  * ACCOUNT FORMS
- * 
+ *
  */
 
 define('ENTRY_COMPANY_ERROR', '');
@@ -136,13 +136,13 @@ define('ENTRY_PASSWORD_CURRENT_ERROR', 'Ihr Passwort muss aus mindestens ' . ENT
 define('ENTRY_PASSWORD_NEW_TEXT', '*');
 define('ENTRY_PASSWORD_NEW_ERROR', 'Ihr neues Passwort muss aus mindestens ' . ENTRY_PASSWORD_MIN_LENGTH . ' Zeichen bestehen.');
 define('ENTRY_PASSWORD_NEW_ERROR_NOT_MATCHING', 'Ihre Passw&ouml;rter stimmen nicht &uuml;berein.');
-define('ERROR_DATENSG_NOT_ACCEPTED', 'Sofern Sie die Kenntnisnahme unserer Informationen zu den Datenschutzbestimmung nicht best�tigen, k�nnen wir Ihren Account nicht einrichten!');
+define('ERROR_DATENSG_NOT_ACCEPTED', 'Sofern Sie die Kenntnisnahme unserer Informationen zu den Datenschutzbestimmung nicht best&auml;tigen, k&ouml;nnen wir Ihren Account nicht einrichten!');
 /*
- * 
+ *
  *  RESTULTPAGES
- * 
+ *
  */
- 
+
 define('TEXT_RESULT_PAGE', 'Seiten:');
 define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS', 'Zeige <b>%d</b> bis <b>%d</b> (von insgesamt <b>%d</b> Artikeln)');
 define('TEXT_DISPLAY_NUMBER_OF_ORDERS', 'Zeige <b>%d</b> bis <b>%d</b> (von insgesamt <b>%d</b> Bestellungen)');
@@ -151,9 +151,9 @@ define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS_NEW', 'Zeige <b>%d</b> bis <b>%d</b> (vo
 define('TEXT_DISPLAY_NUMBER_OF_SPECIALS', 'Zeige <b>%d</b> bis <b>%d</b> (von insgesamt <b>%d</b> Angeboten)');
 
 /*
- * 
+ *
  * SITE NAVIGATION
- * 
+ *
  */
 
 define('PREVNEXT_TITLE_PREVIOUS_PAGE', 'vorherige Seite');
@@ -163,18 +163,18 @@ define('PREVNEXT_TITLE_PREV_SET_OF_NO_PAGE', 'Vorhergehende %d Seiten');
 define('PREVNEXT_TITLE_NEXT_SET_OF_NO_PAGE', 'N&auml;chste %d Seiten');
 
 /*
- * 
+ *
  * PRODUCT NAVIGATION
- * 
+ *
  */
 
 define('PREVNEXT_BUTTON_PREV', '[&lt;&lt;&nbsp;vorherige]');
 define('PREVNEXT_BUTTON_NEXT', '[n&auml;chste&nbsp;&gt;&gt;]');
 
 /*
- * 
+ *
  * IMAGE BUTTONS
- * 
+ *
  */
 
 define('IMAGE_BUTTON_ADD_ADDRESS', 'Neue Adresse');
@@ -190,7 +190,7 @@ define('IMAGE_BUTTON_SEARCH', 'Suchen');
 define('IMAGE_BUTTON_UPDATE', 'Aktualisieren');
 define('IMAGE_BUTTON_UPDATE_CART', 'Warenkorb aktualisieren');
 define('IMAGE_BUTTON_WRITE_REVIEW', 'Bewertung schreiben');
-define('IMAGE_BUTTON_ADMIN', 'Admin'); 
+define('IMAGE_BUTTON_ADMIN', 'Admin');
 define('IMAGE_BUTTON_PRODUCT_EDIT', 'Produkt bearbeiten');
 define('IMAGE_BUTTON_LOGIN', 'Anmelden');
 
@@ -204,9 +204,9 @@ define('ICON_SUCCESS', 'Erfolg');
 define('ICON_WARNING', 'Warnung');
 
 /*
- * 
+ *
  *  GREETINGS
- * 
+ *
  */
 
 define('TEXT_GREETING_PERSONAL', 'Sch&ouml;n, dass Sie wieder da sind, <span class="greetUser">%s!</span> M&ouml;chten Sie sich unsere <a style="text-decoration:underline;" href="%s">neuen Artikel</a> ansehen?');
@@ -227,9 +227,9 @@ define('TEXT_NO_NEW_PRODUCTS', 'Zur Zeit gibt es keine neuen Artikel.');
 define('TEXT_UNKNOWN_TAX_RATE', 'Unbekannter Steuersatz');
 
 /*
- * 
+ *
  * WARNINGS
- * 
+ *
  */
 
 define('WARNING_INSTALL_DIRECTORY_EXISTS', 'Warnung: Das Installationverzeichnis ist noch vorhanden auf: ' . dirname($HTTP_SERVER_VARS['SCRIPT_FILENAME']) . '/self_installer. Bitte l&ouml;schen Sie das Verzeichnis aus Gr&uuml;nden der Sicherheit!');
@@ -270,9 +270,9 @@ define('TEXT_NOW', '\' bestellen');
 define('TEXT_GUEST','Gast');
 
 /*
- * 
+ *
  * ADVANCED SEARCH
- * 
+ *
  */
 
 define('TEXT_ALL_CATEGORIES', 'Alle Kategorien');
@@ -306,9 +306,9 @@ define('MAXIMUM_ORDER_VALUE_REACHED_2', '&uuml;berschritten.<br /> Bitte reduzie
 define('ERROR_INVALID_PRODUCT', 'Der von Ihnen gew&auml;hlte Artikel wurde nicht gefunden!');
 
 /*
- * 
+ *
  * NAVBAR Titel
- * 
+ *
  */
 
 define('NAVBAR_TITLE_ACCOUNT', 'Ihr Konto');
@@ -365,9 +365,9 @@ define('NAVBAR_GV_REDEEM', 'Gutschein einl&ouml;sen');
 define('NAVBAR_GV_SEND', 'Gutschein versenden');
 
 /*
- * 
+ *
  *  MISC
- * 
+ *
  */
 
 define('TEXT_NEWSLETTER','Sie m&ouml;chten immer auf dem Laufenden bleiben?<br />Kein Problem, tragen Sie sich in unseren Newsletter ein und Sie sind immer auf dem neuesten Stand.');
@@ -418,11 +418,11 @@ define('PERSONAL_MESSAGE', '%s schreibt:');
 define('TEXT_CLOSE_WINDOW', 'Fenster schliessen.');
 
 /*
- * 
+ *
  *  COUPON POPUP
- * 
+ *
  */
- 
+
 define('TEXT_CLOSE_WINDOW', 'Fenster schliessen [x]');
 define('TEXT_COUPON_HELP_HEADER', 'Ihr Gutschein wurde erfolgreich verbucht.');
 define('TEXT_COUPON_HELP_NAME', '<br /><br />Gutscheinbezeichnung: %s');
