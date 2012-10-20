@@ -1,15 +1,15 @@
 <?php
 /* -----------------------------------------------------------------------------------------
-   $Id$   
+   $Id$
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
 
    Copyright (c) 2003 XT-Commerce
    -----------------------------------------------------------------------------------------
-   based on: 
+   based on:
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
-   (c) 2002-2003 osCommerce(order.php,v 1.32 2003/02/26); www.oscommerce.com 
+   (c) 2002-2003 osCommerce(order.php,v 1.32 2003/02/26); www.oscommerce.com
    (c) 2003	 nextcommerce (order.php,v 1.28 2003/08/18); www.nextcommerce.org
 
    Released under the GNU General Public License
@@ -341,56 +341,56 @@ class order {
         $this->content_type = $_SESSION['cart']->get_content_type();
 
         $customer_address_query = xtc_db_query("SELECT c.payment_unallowed,c.shipping_unallowed,c.customers_firstname,
-                                                    c.customers_cid, c.customers_gender,c.customers_lastname, 
-                                                    c.customers_telephone, c.customers_email_address, 
-                                                    ab.entry_company, ab.entry_street_address, ab.entry_suburb, 
+                                                    c.customers_cid, c.customers_gender,c.customers_lastname,
+                                                    c.customers_telephone, c.customers_email_address,
+                                                    ab.entry_company, ab.entry_street_address, ab.entry_suburb,
                                                     ab.entry_postcode, ab.entry_city, ab.entry_zone_id, ab.entry_state,
-                                                    co.countries_id, co.countries_name, co.countries_iso_code_2, 
-                                                    co.countries_iso_code_3, co.address_format_id, 
+                                                    co.countries_id, co.countries_name, co.countries_iso_code_2,
+                                                    co.countries_iso_code_3, co.address_format_id,
                                                     z.zone_name
-                                               FROM " . TABLE_CUSTOMERS . " c, 
-                                                    " . TABLE_ADDRESS_BOOK . " ab 
-                                          LEFT JOIN " . TABLE_ZONES . " z ON (ab.entry_zone_id = z.zone_id) 
-                                          LEFT JOIN " . TABLE_COUNTRIES . " co ON (ab.entry_country_id = co.countries_id) 
-                                              WHERE c.customers_id = '" . $_SESSION['customer_id'] . "' 
-                                                AND ab.customers_id = '" . $_SESSION['customer_id'] . "' 
+                                               FROM " . TABLE_CUSTOMERS . " c,
+                                                    " . TABLE_ADDRESS_BOOK . " ab
+                                          LEFT JOIN " . TABLE_ZONES . " z ON (ab.entry_zone_id = z.zone_id)
+                                          LEFT JOIN " . TABLE_COUNTRIES . " co ON (ab.entry_country_id = co.countries_id)
+                                              WHERE c.customers_id = '" . $_SESSION['customer_id'] . "'
+                                                AND ab.customers_id = '" . $_SESSION['customer_id'] . "'
                                                 AND c.customers_default_address_id = ab.address_book_id
                                             ");
         $customer_address = xtc_db_fetch_array($customer_address_query);
 
         $shipping_address_query = xtc_db_query("SELECT ab.entry_firstname, ab.entry_lastname, ab.entry_company,
-                                                     ab.entry_street_address, ab.entry_suburb, ab.entry_postcode, 
-                                                     ab.entry_city, ab.entry_zone_id, ab.entry_country_id, ab.entry_state,                                                       
-                                                     c.countries_id, c.countries_name, c.countries_iso_code_2, 
-                                                     c.countries_iso_code_3, c.address_format_id, 
+                                                     ab.entry_street_address, ab.entry_suburb, ab.entry_postcode,
+                                                     ab.entry_city, ab.entry_zone_id, ab.entry_country_id, ab.entry_state,
+                                                     c.countries_id, c.countries_name, c.countries_iso_code_2,
+                                                     c.countries_iso_code_3, c.address_format_id,
                                                      z.zone_name
-                                                FROM " . TABLE_ADDRESS_BOOK . " ab 
-                                           LEFT JOIN " . TABLE_ZONES . " z ON (ab.entry_zone_id = z.zone_id) 
-                                           LEFT JOIN " . TABLE_COUNTRIES . " c ON (ab.entry_country_id = c.countries_id) 
-                                               WHERE ab.customers_id = '" . $_SESSION['customer_id'] . "' 
+                                                FROM " . TABLE_ADDRESS_BOOK . " ab
+                                           LEFT JOIN " . TABLE_ZONES . " z ON (ab.entry_zone_id = z.zone_id)
+                                           LEFT JOIN " . TABLE_COUNTRIES . " c ON (ab.entry_country_id = c.countries_id)
+                                               WHERE ab.customers_id = '" . $_SESSION['customer_id'] . "'
                                                  AND ab.address_book_id = '" . $_SESSION['sendto'] . "'
                                             ");
         $shipping_address = xtc_db_fetch_array($shipping_address_query);
 
         $billing_address_query = xtc_db_query("SELECT ab.entry_firstname, ab.entry_lastname, ab.entry_company,
-                                                    ab.entry_street_address, ab.entry_suburb, ab.entry_postcode, 
-                                                    ab.entry_city, ab.entry_zone_id, ab.entry_country_id, ab.entry_state,                                                    
-                                                    c.countries_id, c.countries_name, c.countries_iso_code_2, 
-                                                    c.countries_iso_code_3, c.address_format_id, 
+                                                    ab.entry_street_address, ab.entry_suburb, ab.entry_postcode,
+                                                    ab.entry_city, ab.entry_zone_id, ab.entry_country_id, ab.entry_state,
+                                                    c.countries_id, c.countries_name, c.countries_iso_code_2,
+                                                    c.countries_iso_code_3, c.address_format_id,
                                                     z.zone_name
-                                               FROM " . TABLE_ADDRESS_BOOK . " ab 
-                                          LEFT JOIN " . TABLE_ZONES . " z ON (ab.entry_zone_id = z.zone_id) 
-                                          LEFT JOIN " . TABLE_COUNTRIES . " c ON (ab.entry_country_id = c.countries_id) 
-                                              WHERE ab.customers_id = '" . $_SESSION['customer_id'] . "' 
+                                               FROM " . TABLE_ADDRESS_BOOK . " ab
+                                          LEFT JOIN " . TABLE_ZONES . " z ON (ab.entry_zone_id = z.zone_id)
+                                          LEFT JOIN " . TABLE_COUNTRIES . " c ON (ab.entry_country_id = c.countries_id)
+                                              WHERE ab.customers_id = '" . $_SESSION['customer_id'] . "'
                                               AND ab.address_book_id = '" . (isset($_SESSION['billto']) ? $_SESSION['billto'] : $_SESSION['sendto']) . "'
                                             ");
 
         $billing_address = xtc_db_fetch_array($billing_address_query);
 
         $tax_address_query = xtc_db_query("SELECT ab.entry_country_id, ab.entry_zone_id
-                                           FROM " . TABLE_ADDRESS_BOOK . " ab 
-                                      LEFT JOIN " . TABLE_ZONES . " z ON (ab.entry_zone_id = z.zone_id) 
-                                          WHERE ab.customers_id = '" . $_SESSION['customer_id'] . "' 
+                                           FROM " . TABLE_ADDRESS_BOOK . " ab
+                                      LEFT JOIN " . TABLE_ZONES . " z ON (ab.entry_zone_id = z.zone_id)
+                                          WHERE ab.customers_id = '" . $_SESSION['customer_id'] . "'
                                             AND ab.address_book_id = '" . ($this->content_type == 'virtual' ? $_SESSION['billto'] : $_SESSION['sendto']) . "'
                                        ");
         $tax_address = xtc_db_fetch_array($tax_address_query);
@@ -493,10 +493,10 @@ class order {
                 'tax_class_id'=> $products[$i]['tax_class_id'],
                 'tax' => xtc_get_tax_rate($products[$i]['tax_class_id'], $tax_address['entry_country_id'], $tax_address['entry_zone_id']),
                 'tax_description' => xtc_get_tax_description($products[$i]['tax_class_id'], $tax_address['entry_country_id'], $tax_address['entry_zone_id']),
-                'price' => $products[$i]['model'] == 'GIFT_products_setup' ? $_SESSION['cart']->show_setup_price() : $products_price,
+                'price' => $products_price,
                 'price_formated' => $xtPrice->xtcFormat($products_price,true), // PayPal API Modul / Paypal Express Modul
-				'final_price' => $products[$i]['model'] == 'GIFT_products_setup' ? $_SESSION['cart']->show_setup_price() : $products_price * $products[$i]['quantity'],
-				'final_price_formated' => $xtPrice->xtcFormat($products_price*$products[$i]['quantity'],true), // PayPal API Modul / Paypal Express Modul
+				'final_price' => $products_price * $products[$i]['quantity'],
+				'final_price_formated' => $xtPrice->xtcFormat($products_price*$products[$i]['quantity'], true),  //  PayPal  API  Modul  /  Paypal  Express  Modul
                 'shipping_time'=>$products[$i]['shipping_time'],
 				'weight' => $products[$i]['weight'],
                 'id' => $products[$i]['id']);

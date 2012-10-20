@@ -25,7 +25,7 @@
    --------------------------------------------------------------*/
 
 if (($_GET['pID']) && (!$_POST)) {
-	$product_query = xtc_db_query("select *, date_format(p.products_date_available, '%Y-%m-%d') as products_date_available 
+	$product_query = xtc_db_query("select *, date_format(p.products_date_available, '%Y-%m-%d') as products_date_available
 	                               from ".TABLE_PRODUCTS." p, ".TABLE_PRODUCTS_DESCRIPTION." pd
                                   where p.products_id = '".(int) $_GET['pID']."'
                                   and p.products_id = pd.products_id
@@ -84,7 +84,6 @@ switch ($pInfo->products_status) {
 }
 
 if ($pInfo->products_startpage == '1') { $startpage_checked = true; } else { $startpage_checked = false; }
-if ($pInfo->products_setup == '1') { $setup_checked = true; } else { $setup_checked = false; }  // Einrichtungsgebühr
 
 ?>
 <link rel="stylesheet" type="text/css" href="includes/javascript/spiffyCal/spiffyCal_v2_1.css">
@@ -105,7 +104,7 @@ if ($pInfo->products_setup == '1') { $setup_checked = true; } else { $setup_chec
 // ### MOD admin_specials - Modules
 	require_once("includes/modules/categories_specials.php");
 	showSpecialsBox();
-?>      
+?>
     </td><td>
       <table border="0">
         <tr>
@@ -119,12 +118,12 @@ if ($pInfo->products_setup == '1') { $setup_checked = true; } else { $setup_chec
               <script type="text/javascript">dateAvailable.writeControl(); dateAvailable.dateFormat="yyyy-MM-dd";</script></td>
         </tr>
       </table>
-   
+
     <table bgcolor="f3f3f3" style="border: 1px solid; border-color: #cccccc;" "width="100%"  border="0">
     <tr>
         <td><span class="main"><?php echo TEXT_PRODUCTS_STARTPAGE; ?> <?php echo TEXT_PRODUCTS_STARTPAGE_YES . xtc_draw_radio_field('products_startpage', '1', $startpage_checked) . '&nbsp;' . TEXT_PRODUCTS_STARTPAGE_NO . xtc_draw_radio_field('products_startpage', '0', !$startpage_checked) ?></span></td>
         <td><span class="main"><?php echo TEXT_PRODUCTS_STARTPAGE_SORT; ?>&nbsp;<?php echo  xtc_draw_input_field('products_startpage_sort', $pInfo->products_startpage_sort ,'size=3'); ?></span></td>
-    </tr>        
+    </tr>
     <tr>
         <td><span class="main"><?php echo TEXT_PRODUCTS_SORT; ?>&nbsp;<?php echo  xtc_draw_input_field('products_sort', $pInfo->products_sort,'size=3'); ?></span></td>
         <td><span class="main"><?php echo TEXT_PRODUCTS_QUANTITY; ?>&nbsp;<?php echo xtc_draw_input_field('products_quantity', $pInfo->products_quantity,'size=5'); ?></span></td>
@@ -213,45 +212,8 @@ echo '<td class="main">'.TEXT_CHOOSE_OPTIONS_TEMPLATE.':'.'</td>';
 echo '<td><span class="main">'.xtc_draw_pull_down_menu('options_template', $files, $default_value);
 ?>
         </span></td>
-      </tr>      
+      </tr>
     </table><br />
-    <table bgcolor="f3f3f3" style="border: 1px solid; border-color: #cccccc;" "width="100%"  border="0">
-      <tr>  
-        <td><span class="main"><strong>Vertrags / Einrichtungsgeb&uuml;hr</strong></span></td> 
-      </tr>
-      <tr>  
-        <td>
-        	<span class="main">			
-			<?php echo 'Vertrags / Einrichtungsgeb&uuml;hr: '; ?> <?php echo 'Ja' . xtc_draw_radio_field('products_setup', '1', $setup_checked) . '&nbsp;' . 'Nein' . xtc_draw_radio_field('products_setup', '0', !$setup_checked) ?>                   
-            </span>
-        </td> 
-      </tr>
-      <tr>  
-        <td>
-        	<span class="main">
-			<?php require (DIR_FS_CATALOG.DIR_WS_CLASSES.'xtcPrice.php');
-			$xtPrice = new xtcPrice(DEFAULT_CURRENCY, $_SESSION['customers_status']['customers_status_id']); ?>
-            
-            <?php 
-			if (PRICE_IS_BRUTTO == 'true') {
-				$setup_price = xtc_round($pInfo->setup_price * ((100 + xtc_get_tax_rate($pInfo->products_tax_class_id)) / 100), PRICE_PRECISION);
-			} else {
-				$setup_price = xtc_round($pInfo->setup_price, PRICE_PRECISION);
-			}
-			?>
-            
-            <?php echo 'Vertrags / Einrichtungsgeb&uuml;hr: '; ?> <?php echo xtc_draw_input_field('setup_price', $setup_price); ?>
-            
-            <?php 
-			if (PRICE_IS_BRUTTO == 'true') {
-				echo TEXT_NETTO.'<b>'.$xtPrice->xtcFormat($pInfo->setup_price, false).'</b>  ';
-			}
-			?>
-            </span>
-        </td> 
-      </tr>
-    </table>
-    
     </td>
   </tr>
 </table>
@@ -279,7 +241,7 @@ echo '<td><span class="main">'.xtc_draw_pull_down_menu('options_template', $file
   </tr>
   <tr>
     <td class="main" valign="top">
-    
+
     <table>
     <tr>
      <td width="60%" valign="top" class="main">
@@ -288,17 +250,17 @@ echo '<td><span class="main">'.xtc_draw_pull_down_menu('options_template', $file
      </td>
      <td class="main" valign="top" style="padding: 15px;">
         <?php echo TEXT_PRODUCTS_KEYWORDS; ?><br />
-        <?php echo xtc_draw_input_field('products_keywords[' . $languages[$i]['id'] . ']',(($products_keywords[$languages[$i]['id']]) ? stripslashes($products_keywords[$languages[$i]['id']]) : xtc_get_products_keywords($pInfo->products_id, $languages[$i]['id'])), 'size=25 maxlenght=255'); ?><br />     
+        <?php echo xtc_draw_input_field('products_keywords[' . $languages[$i]['id'] . ']',(($products_keywords[$languages[$i]['id']]) ? stripslashes($products_keywords[$languages[$i]['id']]) : xtc_get_products_keywords($pInfo->products_id, $languages[$i]['id'])), 'size=25 maxlenght=255'); ?><br />
         <?php echo TEXT_META_TITLE; ?><br />
         <?php echo xtc_draw_input_field('products_meta_title[' . $languages[$i]['id'] . ']',(($products_meta_title[$languages[$i]['id']]) ? stripslashes($products_meta_title[$languages[$i]['id']]) : xtc_get_products_meta_title($pInfo->products_id, $languages[$i]['id'])), 'size=25 maxlenght=50'); ?><br />
         <?php echo TEXT_META_DESCRIPTION; ?><br />
         <?php echo xtc_draw_input_field('products_meta_description[' . $languages[$i]['id'] . ']',(($products_meta_description[$languages[$i]['id']]) ? stripslashes($products_meta_description[$languages[$i]['id']]) : xtc_get_products_meta_description($pInfo->products_id, $languages[$i]['id'])), 'size=25 maxlenght=50'); ?><br />
         <?php echo TEXT_META_KEYWORDS; ?><br />
-        <?php echo xtc_draw_input_field('products_meta_keywords[' . $languages[$i]['id'] . ']', (($products_meta_keywords[$languages[$i]['id']]) ? stripslashes($products_meta_keywords[$languages[$i]['id']]) : xtc_get_products_meta_keywords($pInfo->products_id, $languages[$i]['id'])), 'size=25 maxlenght=50'); ?> 
+        <?php echo xtc_draw_input_field('products_meta_keywords[' . $languages[$i]['id'] . ']', (($products_meta_keywords[$languages[$i]['id']]) ? stripslashes($products_meta_keywords[$languages[$i]['id']]) : xtc_get_products_meta_keywords($pInfo->products_id, $languages[$i]['id'])), 'size=25 maxlenght=50'); ?>
      </td>
     </tr>
     </table>
-   
+
    </td>
   </tr>
 </table>
@@ -330,11 +292,11 @@ if (GROUP_CHECK == 'true') {
 	for ($i = 0; $n = sizeof($customers_statuses_array), $i < $n; $i ++) {
 		$code = '$id=$pInfo->group_permission_'.$customers_statuses_array[$i]['id'].';';
 		eval ($code);
-		
+
 		if ($id==1) {
 
 			$checked = 'checked ';
-			
+
 		} else {
 			$checked = '';
 		}

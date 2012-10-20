@@ -78,34 +78,16 @@ if (isset ($_GET['action'])) {
                 $_SESSION['alter_prod'] = $_POST['alter'];
             } elseif (isset ($_POST['attributes'])) {
 				$temp=explode("-",$_POST['attributes']);
-				$prod_id = $temp[0];
-				$alt = $temp[1];
-				$neu = $temp[2];
-				$attr_id = $temp[3];
-				$attributes = array($attr_id => $neu); //$_POST['id'][$_POST['products_id'][$prod_id]] : '';
-				$_SESSION['cart']->modify_attributes($_POST['products_id'][$prod_id], xtc_remove_non_numeric($_POST['cart_quantity'][$prod_id]), $attributes, false);
+				$prod_id  =  $temp[0];
+				$alt  =  $temp[1];
+				$neu  =  $temp[2];
+				$attr_id  =  $temp[3];
+				$attributes  =  array($attr_id  =>  $neu);  //$_POST['id'][$_POST['products_id'][$prod_id]]  :  '';
+				$_SESSION['cart']->modify_attributes($_POST['products_id'][$prod_id],  xtc_remove_non_numeric($_POST['cart_quantity'][$prod_id]),  $attributes,  false);
             } else {
-				for ($i = 0, $n = sizeof($_POST['products_id']); $i < $n; $i++) {
-					if (in_array($_POST['products_id'][$i], (is_array($_POST['cart_delete']) ? $_POST['cart_delete'] : array ()))) {
+				for  ($i  =  0,  $n  =  sizeof($_POST['products_id']);  $i  <  $n;  $i++)  {
+					if  (in_array($_POST['products_id'][$i],  (is_array($_POST['cart_delete'])  ?  $_POST['cart_delete']  :  array  ())))  {
 						$_SESSION['cart']->remove($_POST['products_id'][$i]);
-						// Einrichtungsgebühr
-						$products_setup_query = xtc_db_query("select products_setup from ".TABLE_PRODUCTS." where products_id = '".$_POST['products_id'][$i]."'");
-						$products_setup = xtc_db_fetch_array($products_setup_query);
-						if($products_setup['products_setup'] == 1) {
-							$setup_query = xtc_db_query("select products_id from ".TABLE_PRODUCTS." where products_model = 'GIFT_products_setup'");
-							$setup = xtc_db_fetch_array($setup_query);
-							if (in_array($_POST['products_id'][$i], (is_array($_POST['cart_delete']) ? $_POST['cart_delete'] : array ()))) {
-								if($_SESSION['cart']->get_quantity(xtc_get_uprid($setup['products_id'], $_POST['id'][$i])) > '1') {
-									$old_qty = $_SESSION['cart']->get_quantity(xtc_get_uprid($setup['products_id'], $_POST['id'][$i]));
-									$_SESSION['cart']->update_quantity($setup['products_id'], $old_qty-1);
-									xtc_redirect(xtc_href_link($goto, xtc_get_all_get_params($parameters)));
-								} else {
-									$_SESSION['cart']->remove($setup['products_id']);
-									xtc_redirect(xtc_href_link($goto, xtc_get_all_get_params($parameters)));
-								}
-							}
-						}
-						// Einrichtungsgebühr eof
 
 						if (is_object($econda)) {
 							$econda->_delArticle($_POST['products_id'][$i], $_POST['cart_quantity'][$i], $_POST['old_qty'][$i]);
@@ -138,35 +120,7 @@ if (isset ($_GET['action'])) {
 					$econda->_addProduct($_POST['products_id'], $_POST['products_qty'], $old_quantity);
 				}
 
-				// Einrichtungsgebühr
-				$old_quantity = $_SESSION['cart']->get_quantity(xtc_get_uprid($_POST['products_id'], $_POST['id']));
-				// Einrichtungsgebühr eof
-
 				$_SESSION['cart']->add_cart((int) $_POST['products_id'], $_SESSION['cart']->get_quantity(xtc_get_uprid($_POST['products_id'], $_POST['id'])) + xtc_remove_non_numeric($_POST['products_qty']), $_POST['id']);
-
-				// Einrichtungsgebühr
-				$products_setup_query = xtc_db_query("select products_setup from ".TABLE_PRODUCTS."
-													  where products_id = '".$_POST['products_id']."'");
-				$products_setup = xtc_db_fetch_array($products_setup_query);
-
-				if($products_setup['products_setup'] == 1) {
-					$setup_query = xtc_db_query("select products_id from ".TABLE_PRODUCTS."
-												 where products_model = 'GIFT_products_setup'");
-					$setup = xtc_db_fetch_array($setup_query);
-
-					$pids = explode(',', $_SESSION['cart']->get_product_id_list());
-
-					for ($i = 0, $n = sizeof($pids); $i < $n; $i++) {
-						if(xtc_get_prid($pids[$i]) == $_POST['products_id']) {
-							if($old_quantity >= 1) {
-								// il dolce fa niente... das süße nichts tun!
-							} else {
-								$_SESSION['cart']->add_cart($setup['products_id'], $_SESSION['cart']->get_quantity(xtc_get_uprid($setup['products_id'], '')) + xtc_remove_non_numeric(1), '');
-							}
-						}
-					}
-				}
-				// Einrichtungsgebühr eof
 			}
 			xtc_redirect(xtc_href_link($goto, 'products_id=' . (int) $_POST['products_id'] . '&' . xtc_get_all_get_params($parameters)));
 		break;

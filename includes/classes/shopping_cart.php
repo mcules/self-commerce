@@ -8,7 +8,7 @@
    Copyright (c) 2003 XT-Commerce
    -----------------------------------------------------------------------------------------
    (c) 2012	 Self-Commerce www.self-commerce.de
-   based on: 
+   based on:
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
    (c) 2002-2003 osCommerce(shopping_cart.php,v 1.32 2003/02/11); www.oscommerce.com
    (c) 2003	 nextcommerce (shopping_cart.php,v 1.21 2003/08/17); www.nextcommerce.org
@@ -63,44 +63,48 @@ class shoppingCart {
             reset($this->contents);
             while(list($products_id,) = each($this->contents)) {
                 $qty = $this->contents[$products_id]['qty'];
-                $product_query = xtc_db_query("	SELECT products_id
-												FROM ".TABLE_CUSTOMERS_BASKET."
-												WHERE customers_id = '".(int)$_SESSION['customer_id']."'
-												AND products_id = '".xtc_db_input($products_id)."'");
+                $Sql = "SELECT products_id
+                		FROM ".TABLE_CUSTOMERS_BASKET."
+                		WHERE customers_id = '".(int)$_SESSION['customer_id']."'
+                			AND products_id = '".xtc_db_input($products_id)."'";
+                $product_query = xtc_db_query($Sql);
                 if(!xtc_db_num_rows($product_query)) {
-                    xtc_db_query("	INSERT INTO ".TABLE_CUSTOMERS_BASKET." (
-										customers_id,
-										products_id,
-										customers_basket_quantity,
-										customers_basket_date_added
-									)
-									VALUES (
-										'".(int)$_SESSION['customer_id']."',
-										'".xtc_db_input($products_id)."',
-										'".xtc_db_input($qty)."',
-										'".date('Ymd')."'
-									)");
+                	$Sql = "INSERT INTO ".TABLE_CUSTOMERS_BASKET." (
+                				customers_id,
+                				products_id,
+                				customers_basket_quantity,
+                				customers_basket_date_added
+                			)
+                			VALUES (
+                				'".(int)$_SESSION['customer_id']."',
+                				'".xtc_db_input($products_id)."',
+                				'".xtc_db_input($qty)."',
+                				'".date('Ymd')."'
+                			)";
+                    xtc_db_query($Sql);
                     if(isset ($this->contents[$products_id]['attributes'])) {
                         reset($this->contents[$products_id]['attributes']);
                         while(list($option, $value) = each($this->contents[$products_id]['attributes'])) {
-                            xtc_db_query("	INSERT INTO ".TABLE_CUSTOMERS_BASKET_ATTRIBUTES." (
-												customers_id,
-												products_id,
-												products_options_id,
-												products_options_value_id
-											)
-											VALUES (
-												'".(int)$_SESSION['customer_id']."',
-												'".xtc_db_input($products_id)."',
-												'".(int)$option."', '".(int)$value."'
-											)");
+                        	$Sql = "INSERT INTO ".TABLE_CUSTOMERS_BASKET_ATTRIBUTES." (
+                        				customers_id,
+                        				products_id,
+                        				products_options_id,
+                        				products_options_value_id
+                        			)
+                        			VALUES (
+                        				'".(int)$_SESSION['customer_id']."',
+                        				'".xtc_db_input($products_id)."',
+                        				'".(int)$option."', '".(int)$value."'
+                        			)";
+                            xtc_db_query($Sql);
                         }
                     }
                 } else {
-                    xtc_db_query("	UPDATE ".TABLE_CUSTOMERS_BASKET."
-									SET customers_basket_quantity = '".xtc_db_input($qty)."'
-									WHERE customers_id = '".(int)$_SESSION['customer_id']."'
-										AND products_id = '".xtc_db_input($products_id)."'");
+                	$Sql = "UPDATE ".TABLE_CUSTOMERS_BASKET."
+                			SET customers_basket_quantity = '".xtc_db_input($qty)."'
+                			WHERE customers_id = '".(int)$_SESSION['customer_id']."'
+                				AND products_id = '".xtc_db_input($products_id)."'";
+                    xtc_db_query($Sql);
                 }
             }
         }
@@ -108,10 +112,11 @@ class shoppingCart {
         // reset per-session cart contents, but not the database contents
         $this->reset(false);
 
-        $products_query = xtc_db_query("SELECT products_id, customers_basket_quantity
-										FROM ".TABLE_CUSTOMERS_BASKET."
-										WHERE customers_id = '".(int)$_SESSION['customer_id']."'
-										ORDER BY customers_basket_id");
+        $Sql = "SELECT products_id, customers_basket_quantity
+        		FROM ".TABLE_CUSTOMERS_BASKET."
+        		WHERE customers_id = '".(int)$_SESSION['customer_id']."'
+        		ORDER BY customers_basket_id";
+        $products_query = xtc_db_query($Sql);
 
         while($products = xtc_db_fetch_array($products_query)) {
             $qty = (int)$products['customers_basket_quantity'];
@@ -120,11 +125,12 @@ class shoppingCart {
 																);
 
             // attributes
-            $attributes_query = xtc_db_query("	SELECT products_options_id, products_options_value_id
-												FROM ".TABLE_CUSTOMERS_BASKET_ATTRIBUTES."
-												WHERE customers_id = '".(int)$_SESSION['customer_id']."'
-													AND products_id = '".xtc_db_input($products['products_id'])."'
-												ORDER BY customers_basket_attributes_id");
+            $Sql = "SELECT products_options_id, products_options_value_id
+            		FROM ".TABLE_CUSTOMERS_BASKET_ATTRIBUTES."
+            		WHERE customers_id = '".(int)$_SESSION['customer_id']."'
+            			AND products_id = '".xtc_db_input($products['products_id'])."'
+            		ORDER BY customers_basket_attributes_id";
+            $attributes_query = xtc_db_query($Sql);
             while($attributes = xtc_db_fetch_array($attributes_query)) {
                 $this->contents[$products['products_id']]['attributes'][$attributes['products_options_id']] = $attributes['products_options_value_id'];
             }
@@ -460,43 +466,20 @@ class shoppingCart {
             $qty = $this->contents[$products_id]['qty'];
 
             // products price
-            $product_query = xtc_db_query("	SELECT
-												products_id,
-												products_price,
-												products_discount_allowed,
-												products_tax_class_id,
-												products_weight,
-												products_model,
-												setup_price,
-												products_setup
-											FROM ".TABLE_PRODUCTS."
-											WHERE products_id='".xtc_get_prid($products_id)."'");
+            $Sql = "SELECT
+            			products_id,
+            			products_price,
+            			products_discount_allowed,
+            			products_tax_class_id,
+            			products_weight,
+            			products_model,
+            			products_setup
+            		FROM ".TABLE_PRODUCTS."
+            		WHERE products_id='".xtc_get_prid($products_id)."'";
+            $product_query = xtc_db_query($Sql);
             if ($product = xtc_db_fetch_array($product_query)) {
-				// Einrichtungsgebuehr start
-				if($product['products_model'] == 'GIFT_products_setup') {
-					$p_price = $product['products_price'] * $qty;
-				} else {
-					if($product['products_setup'] == 1) {
-						$setup_price = $xtPrice->xtcGetPrice(
-																$product['products_id'],
-																$format = false,
-																$qty,
-																$product['products_tax_class_id'],
-																$product['setup_price']);
-						$p_price = ($product['products_price'] + $setup_price) * $qty;
-					} else {
-						$pproduct_price = $xtPrice->xtcGetPrice	(
-																	$product['products_id'],
-																	$format = false,
-																	$qty,
-																	$product['products_tax_class_id'],
-																	$product['products_price']);
-						$p_price = $product_price * $qty;
-					}
-				}
-
-				// Einrichtungsgebuehr ende
-                $this->total += $p_price;
+				$products_price = $xtPrice->xtcGetPrice($product['products_id'], $format = false, $qty, $product['products_tax_class_id'], $product['products_price']);
+                $this->total += $products_price;
                 $this->weight += ($qty * $product['products_weight']);
 
                 // attributes price
@@ -521,18 +504,12 @@ class shoppingCart {
                 // $this->total + $this->tax wird berechnet
                 if ($product['products_tax_class_id'] != 0) {
 					if ($_SESSION['customers_status']['customers_status_ot_discount_flag'] == 1) {
-						// Einrichtungsgebuehr start
-						if($product['products_model'] == 'GIFT_products_setup') {
-/*							if($qty > 1) {								
-								$s_price = $s_price / $qty;
-							}
-*/							$products_price_tax = $s_price - ($s_price / 100 * $_SESSION['customers_status']['customers_status_ot_discount']);
-							$attribute_price_tax = $attribute_price - ($attribute_price / 100 * $_SESSION['customers_status']['customers_status_ot_discount']);
-						} else {
+						if ($_SESSION['customers_status']['customers_status_ot_discount_flag'] == 1) {
+							// Rabatt für die Steuerberechnung
+							// der eigentliche Rabatt wird im order-details_cart abgezogen
 							$products_price_tax = $products_price - ($products_price / 100 * $_SESSION['customers_status']['customers_status_ot_discount']);
 							$attribute_price_tax = $attribute_price - ($attribute_price / 100 * $_SESSION['customers_status']['customers_status_ot_discount']);
 						}
-						// Einrichtungsgebuehr ende
 					}
 
                     $products_tax = $xtPrice->TAX[$product['products_tax_class_id']];
@@ -618,22 +595,7 @@ class shoppingCart {
 													AND pd.language_id = '".(int)$_SESSION['languages_id']."'");
                 if ($products = xtc_db_fetch_array($products_query)) {
                     $prid = $products['products_id'];
-                    $products_price = $xtPrice->xtcGetPrice	(
-																$products['products_id'],
-																$format = false,
-																$this->contents[$products_id]['qty'],
-																$products['products_tax_class_id'],
-																$products['products_price']);
-					// Einrichtungsgebuehr start
-					if($products['products_setup'] == 1) {
-						$setup_price = $xtPrice->xtcGetPrice(
-																$products['products_id'],
-																$format = false,
-																$this->contents[$products_id]['qty'],
-																$products['products_tax_class_id'],
-																$products['setup_price']);
-					}
-					// Einrichtungsgebuehr ende
+                    $products_price = $xtPrice->xtcGetPrice($products['products_id'], $format = false, $this->contents[$products_id]['qty'], $products['products_tax_class_id'], $products['products_price']);
                     $products_array[] = array	(
 													'id' => $products_id,
 													'name' => $products['products_name'],
@@ -657,43 +619,6 @@ class shoppingCart {
     }
 
 	/**
-	 * show_setup_price
-	 * This function is responsable for the setup-price
-	 *
-	 * @return unknown
-	 */
-	function show_setup_price() {
-		global $xtPrice,$main;
-		if (!is_array($this->contents)) {
-			return false;
-		}
-
-		$products_array = array ();
-		reset($this->contents);
-		while (list ($products_id,) = each($this->contents)) {
-			
-			if($this->contents[$products_id]['qty'] != 0 || $this->contents[$products_id]['qty'] !='') {			
-				$products_setup_query	= xtc_db_query("SELECT products_setup,
-															setup_price,
-															products_tax_class_id
-														FROM ".TABLE_PRODUCTS." 
-														WHERE products_id = '".xtc_get_prid($products_id)."'");
-				$products_setup = xtc_db_fetch_array($products_setup_query);
-				
-				if($products_setup['products_setup'] == 1)
-					$setup_price += $xtPrice->xtcGetPrice	(
-																xtc_get_prid($products_id),
-																$format = false,
-																$this->contents[$products_id]['qty'],
-																$products_setup['products_tax_class_id'],
-																$products_setup['setup_price']);
-			}
-		}
-
-		return $setup_price;
-	}
-
-    /**
      * show_total
      *
      * @return unknown
