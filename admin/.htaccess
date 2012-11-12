@@ -1,6 +1,0 @@
-AuthName "Administration"
-AuthType Basic
-AuthBasicProvider external
-AuthExternal admin_auth
-
-require valid-user
