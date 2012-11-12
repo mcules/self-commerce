@@ -45,7 +45,7 @@ require ('includes/application_top_1.php');
 	                <hr width="100%">
 	                <table width="100%" border="0" cellpadding="0" cellspacing="4" border-color:="#ff0000" bgcolor="#FDAC00">
 	                    <tr>
-	                        <td class="main" width="150"><b>Dennis Eisold (McUles)</b></td>
+	                        <td class="main" width="150"><b>Dennis Eisold</b></td>
 	                        <td class="main" width="80%"><a href="mailto:support@self-commerce.de">support@eisold-edv.de</a></td>
 	                    </tr>
 	                    <tr>
@@ -71,7 +71,7 @@ require ('includes/application_top_1.php');
 	                <b>&copy; 2000-2001 The Exchange Project</b> &copy; Harald Ponce de Leon | http://www.oscommerce.com<br />
 	                <b>&copy; 2002-2003 osCommerce (Milestone2)</b> &copy; Harald Ponce de Leon | http://www.oscommerce.com<br />
 	                <b>&copy; 2003-2004 neXTCommerce</b> &copy; neXTCommerce (XTC 0.9 RC3 CVS) | http://www.nextcommerce.org ( code-modifications &amp; redesign by Guido Winger/Mario Zanier/Andreas Oberzier)<br />
-	                <b>&copy; 2004- XT:Commerce</b> &copy; XT:Commerce (Xt:C3.04sp1/sp2.1) | http://www.xtcommerce.de<br />
+	                <b>&copy; 2004 XT:Commerce</b> &copy; XT:Commerce (Xt:C3.04sp1/sp2.1) | http://www.xtcommerce.de<br />
 	                <br />
 	                <font color="#D68000"><b>Projektlizenz</b></font><br />
 	                <hr align="center" width="100%">

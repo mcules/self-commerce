@@ -46,7 +46,7 @@ if (file_exists('includes/local/configure.php')) {
 $php4_3_10 = (0 == version_compare(phpversion(), "4.3.10"));
 define('PHP4_3_10', $php4_3_10);
 // define the project version
-define('PROJECT_VERSION', 'Self-Commerce 2.1');
+define('PROJECT_VERSION', 'Self-Commerce 3.0');
 
 // set the type of request (secure or not)
 $request_type = (getenv('HTTPS') == '1' || getenv('HTTPS') == 'on') ? 'SSL' : 'NONSSL';
@@ -54,9 +54,9 @@ $request_type = (getenv('HTTPS') == '1' || getenv('HTTPS') == 'on') ? 'SSL' : 'N
 // set php_self in the local scope
 $PHP_SELF = $_SERVER['PHP_SELF'];
 
-if ($PHP_SELF != $_SERVER['SCRIPT_NAME']) { 
-  $PHP_SELF = $_SERVER['SCRIPT_NAME'].$PHP_SELF; 
- } 
+if ($PHP_SELF != $_SERVER['SCRIPT_NAME']) {
+  $PHP_SELF = $_SERVER['SCRIPT_NAME'].$PHP_SELF;
+ }
 
 // include the list of project filenames
 require (DIR_WS_INCLUDES.'filenames.php');
@@ -433,10 +433,10 @@ if (isset ($_GET['info'])) {
 elseif (isset($_GET['products_id'])) {
 	$actual_products_id = (int) $_GET['products_id'];
 	$product = new product($actual_products_id);
-	
+
 }
 if (!is_object($product)) {
-	$product = new product();	
+	$product = new product();
 }
 
 // new c URLS
@@ -574,7 +574,7 @@ if (WARTUNG == 'true'){
           <a href="'.HTTP_SERVER.''.DIR_WS_CATALOG.'login.php">login.php</a><br />
           </div></body></html>
           ';
-    die;    
+    die;
     }
 }
 

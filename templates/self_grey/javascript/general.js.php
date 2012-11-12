@@ -1,6 +1,6 @@
 <?php
 /* define Shop-System */
-if ( (stripos(PROJECT_VERSION, 'xtcModified')) !== false) { 
+if ( (stripos(PROJECT_VERSION, 'Self-Commerce')) !== false) {
 	define('TPL_CLIENT', 'xtcmod');
 } else {
 	define('TPL_CLIENT', 'xtc304');
@@ -24,9 +24,9 @@ define('MULTI_COL_LISTING_DIR', CURRENT_TEMPLATE."/module/multicol_listings");
 
 //print_r(get_defined_constants(true));
 /*********************************************************
-* Einfügen der Conditional Comments zur anpassung des IE *  
+* Einfügen der Conditional Comments zur anpassung des IE *
 * ********************************************************
-* 3-columns fix / 3-Spalten fix - default:  patch_3col_fixed.css 
+* 3-columns fix / 3-Spalten fix - default:  patch_3col_fixed.css
 * 3-columns flexible / 3-Spalten flexibel:  patch_3col_flex.css
 * 2-columns fix / 2-Spalten fix:            patch_2col_fixed_13.css
 * 2-columns flexible / 2-Spalten flexibel : patch_2col_flex_13.css

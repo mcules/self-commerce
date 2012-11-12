@@ -88,7 +88,7 @@ if ($_SESSION['cart']->count_contents() > 0)
 
 	if (SHOW_SHIPPING=='true')
 	{
-		if ( (stripos(PROJECT_VERSION, 'xtcModified')) !== false)
+		if ( (stripos(PROJECT_VERSION, 'Self-Commerce')) !== false)
 		{
 			$box_smarty->assign('SHIPPING_INFO', ' '.SHIPPING_EXCL.'<a rel="#overlay_cart" class="cartShipLink" href="'.xtc_href_link(FILENAME_POPUP_CONTENT, 'coID='.SHIPPING_INFOS).'"> '.SHIPPING_COSTS.'</a>');
 		} else

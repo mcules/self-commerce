@@ -10,13 +10,13 @@
    based on:
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
    (c) 2002-2003 osCommerce(application_top.php,v 1.273 2003/05/19); www.oscommerce.com
-   (c) 2003	 nextcommerce (application_top.php,v 1.54 2003/08/25); www.nextcommerce.org 
+   (c) 2003	 nextcommerce (application_top.php,v 1.54 2003/08/25); www.nextcommerce.org
 
    Released under the GNU General Public License
    -----------------------------------------------------------------------------------------
    Third Party contribution:
    Add A Quickie v1.0 Autor  Harald Ponce de Leon
-    
+
    Released under the GNU General Public License
    ---------------------------------------------------------------------------------------*/
 
@@ -35,9 +35,9 @@
   }
 
 
-  
+
   // define the project version
-  define('PROJECT_VERSION', 'Self-Commerce 2.1');
+  define('PROJECT_VERSION', 'Self-Commerce 3.0');
 
   // set the type of request (secure or not)
   $request_type = (getenv('HTTPS') == '1' || getenv('HTTPS') == 'on') ? 'SSL' : 'NONSSL';
