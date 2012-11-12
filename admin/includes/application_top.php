@@ -47,7 +47,7 @@ if (file_exists('includes/local/configure.php')) {
 }
 define('SQL_CACHEDIR', DIR_FS_CATALOG . 'cache/');
 // Define the project version
-define('PROJECT_VERSION', 'Self-Commerce 3.0');
+define('PROJECT_VERSION', 'Self-Commerce 3.0 Beta 1');
 // Set the length of the redeem code, the longer the more secure
 define('SECURITY_CODE_LENGTH', '6');
 // Used in the "Backup Manager" to compress backups
