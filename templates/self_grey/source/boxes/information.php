@@ -46,7 +46,7 @@ if (!$box_smarty->iscached(CURRENT_TEMPLATE.'/boxes/box_information.html', $cach
 	 					content_group
 	 					FROM ".TABLE_CONTENT_MANAGER."
 	 					WHERE languages_id='".(int) $_SESSION['languages_id']."'
-	 					and file_flag=0 ".$group_check." and content_status=1 order by sort_order";
+	 					and file_flag=2 ".$group_check." and content_status=1 order by sort_order";
 
 	$content_query = xtDBquery($content_query);
 
