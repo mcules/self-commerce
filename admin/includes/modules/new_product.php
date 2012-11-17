@@ -25,11 +25,11 @@
    --------------------------------------------------------------*/
 
 if (($_GET['pID']) && (!$_POST)) {
-	$product_query = xtc_db_query("select *, date_format(p.products_date_available, '%Y-%m-%d') as products_date_available
-	                               from ".TABLE_PRODUCTS." p, ".TABLE_PRODUCTS_DESCRIPTION." pd
-                                  where p.products_id = '".(int) $_GET['pID']."'
-                                  and p.products_id = pd.products_id
-                                  and pd.language_id = '".$_SESSION['languages_id']."'");
+	$product_query = xtc_db_query("SELECT *, date_format(p.products_date_available, '%Y-%m-%d') AS products_date_available
+	                               FROM ".TABLE_PRODUCTS." p, ".TABLE_PRODUCTS_DESCRIPTION." pd
+                                  WHERE p.products_id = '".(int) $_GET['pID']."'
+                                  AND p.products_id = pd.products_id
+                                  AND pd.language_id = '".$_SESSION['languages_id']."'");
 
 	$product = xtc_db_fetch_array($product_query);
 	$pInfo = new objectInfo($product);
@@ -212,6 +212,32 @@ echo '<td class="main">'.TEXT_CHOOSE_OPTIONS_TEMPLATE.':'.'</td>';
 echo '<td><span class="main">'.xtc_draw_pull_down_menu('options_template', $files, $default_value);
 ?>
         </span></td>
+		</tr>
+      <tr>
+        <td>
+                <span class="main">
+                        <?php require (DIR_FS_CATALOG.DIR_WS_CLASSES.'xtcPrice.php');
+                        $xtPrice = new xtcPrice(DEFAULT_CURRENCY, $_SESSION['customers_status']['customers_status_id']); ?>
+            <?php
+                        if (PRICE_IS_BRUTTO == 'true') {
+                                $setup_price = xtc_round($pInfo->setup_price * ((100 + xtc_get_tax_rate($pInfo->products_tax_class_id)) / 100), PRICE_PRECISION);
+                        } else {
+                                $setup_price = xtc_round($pInfo->setup_price, PRICE_PRECISION);
+                        }
+                        ?>
+            <?php echo 'Vertrags / Einrichtungsgeb&uuml;hr: '; ?> <?php echo xtc_draw_input_field('setup_price', $setup_price); ?> 
+            <?php
+                        if (PRICE_IS_BRUTTO == 'true') {
+                                echo TEXT_NETTO.'<b>'.$xtPrice->xtcFormat($pInfo->setup_price, false).'</b>  ';
+                        }
+                        ?>
+            </span>
+        </td>
+      </tr>
+    </table><br />
+    <table bgcolor="f3f3f3" style="border: 1px solid; border-color: #cccccc;" "width="100%"  border="0">
+      <tr>
+        <td><span class="main"><strong>Vertrags / Einrichtungsgeb&uuml;hr</strong></span></td>
       </tr>
     </table><br />
     </td>
