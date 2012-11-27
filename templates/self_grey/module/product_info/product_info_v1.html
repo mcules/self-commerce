@@ -1,10 +1,10 @@
 {config_load file="$language/lang_$language.conf" section="product_info"}
 {$PRODUCT_NAVIGATOR}
 {$FORM_ACTION}
-<h1 class="productInfo1Name">{$PRODUCTS_NAME}</h1> 
+<h1 class="productInfo1Name">{$PRODUCTS_NAME}</h1>
 <div class="productInfo1">
 <div class="floatbox">
-  {if $PRODUCTS_IMAGE !=''}<a href="{$PRODUCTS_IMAGE|replace:"info_images":"popup_images"}" title="{$PRODUCTS_NAME}" rel="lightbox-productimg"><img src="{$PRODUCTS_IMAGE}" alt="{$PRODUCTS_NAME}" class="imgLeft"/></a>{/if}
+  {if $PRODUCTS_IMAGE !=''}<a href="{$PRODUCTS_IMAGE|replace:"info_images":"popup_images"}" title="{$PRODUCTS_NAME}" rel="lightbox"><img src="{$PRODUCTS_IMAGE}" alt="{$PRODUCTS_NAME}" class="imgLeft"/></a>{/if}
     <div class="basicData">
       <div class="prodPriceInfo1">{$PRODUCTS_PRICE}</div>
     	<div class="prodTaxShipInfo1">{$PRODUCTS_TAX_INFO}{if $PRODUCTS_SHIPPING_LINK}{$PRODUCTS_SHIPPING_LINK}{/if}</div>
@@ -33,20 +33,20 @@
 	{if $more_images|@count > 0}
 		<!-- More Pictures -->
 		<div class="morepics"><div class="floatbox">
-			{foreach item=more_images_data from=$more_images} 
-				<a href="{$more_images_data.PRODUCTS_IMAGE|replace:"info_images":"popup_images"}" rel="lightbox-productimg" title="{$PRODUCTS_NAME}"><img src="{$more_images_data.PRODUCTS_IMAGE}" alt="{$PRODUCTS_NAME}" /></a>                          
+			{foreach item=more_images_data from=$more_images}
+				<a href="{$more_images_data.PRODUCTS_IMAGE|replace:"info_images":"popup_images"}" rel="lightbox" title="{$PRODUCTS_NAME}"><img src="{$more_images_data.PRODUCTS_IMAGE}" alt="{$PRODUCTS_NAME}" /></a>
 			{/foreach}
 		</div></div>
 	{/if}
 {else}{* additional pics xtc3.04 *}
 <div class="morePics"><div class="floatbox">
-	{if $PRODUCTS_IMAGE_1 != ''}<a href="{$PRODUCTS_IMAGE_1|replace:"info_images":"popup_images"}" rel="lightbox-productimg" title="{$PRODUCTS_NAME}"><img src="{$PRODUCTS_IMAGE_1}" alt="{$PRODUCTS_NAME}" class="imgLeft" /></a>{/if}
-	{if $PRODUCTS_IMAGE_2 != ''}<a href="{$PRODUCTS_IMAGE_2|replace:"info_images":"popup_images"}" rel="lightbox-productimg" title="{$PRODUCTS_NAME}"><img src="{$PRODUCTS_IMAGE_2}" alt="{$PRODUCTS_NAME}" class="imgLeft" /></a>{/if}
-	{if $PRODUCTS_IMAGE_3 != ''}<a href="{$PRODUCTS_IMAGE_3|replace:"info_images":"popup_images"}" rel="lightbox-productimg" title="{$PRODUCTS_NAME}"><img src="{$PRODUCTS_IMAGE_3}" alt="{$PRODUCTS_NAME}" class="imgLeft" /></a>{/if}
-	{if $PRODUCTS_IMAGE_4 != ''}<a href="{$PRODUCTS_IMAGE_4|replace:"info_images":"popup_images"}" rel="lightbox-productimg" title="{$PRODUCTS_NAME}"><img src="{$PRODUCTS_IMAGE_4}" alt="{$PRODUCTS_NAME}" class="imgLeft" /></a>{/if}
-	{if $PRODUCTS_IMAGE_5 != ''}<a href="{$PRODUCTS_IMAGE_5|replace:"info_images":"popup_images"}" rel="lightbox-productimg" title="{$PRODUCTS_NAME}"><img src="{$PRODUCTS_IMAGE_5}" alt="{$PRODUCTS_NAME}" class="imgLeft" /></a>{/if}
-	{if $PRODUCTS_IMAGE_6 != ''}<a href="{$PRODUCTS_IMAGE_6|replace:"info_images":"popup_images"}" rel="lightbox-productimg" title="{$PRODUCTS_NAME}"><img src="{$PRODUCTS_IMAGE_6}" alt="{$PRODUCTS_NAME}" class="imgLeft" /></a>{/if}
-	{if $PRODUCTS_IMAGE_7 != ''}<a href="{$PRODUCTS_IMAGE_7|replace:"info_images":"popup_images"}" rel="lightbox-productimg" title="{$PRODUCTS_NAME}"><img src="{$PRODUCTS_IMAGE_7}" alt="{$PRODUCTS_NAME}" class="imgLeft" /></a>{/if}
+	{if $PRODUCTS_IMAGE_1 != ''}<a href="{$PRODUCTS_IMAGE_1|replace:"info_images":"popup_images"}" rel="lightbox" title="{$PRODUCTS_NAME}"><img src="{$PRODUCTS_IMAGE_1}" alt="{$PRODUCTS_NAME}" class="imgLeft" /></a>{/if}
+	{if $PRODUCTS_IMAGE_2 != ''}<a href="{$PRODUCTS_IMAGE_2|replace:"info_images":"popup_images"}" rel="lightbox" title="{$PRODUCTS_NAME}"><img src="{$PRODUCTS_IMAGE_2}" alt="{$PRODUCTS_NAME}" class="imgLeft" /></a>{/if}
+	{if $PRODUCTS_IMAGE_3 != ''}<a href="{$PRODUCTS_IMAGE_3|replace:"info_images":"popup_images"}" rel="lightbox" title="{$PRODUCTS_NAME}"><img src="{$PRODUCTS_IMAGE_3}" alt="{$PRODUCTS_NAME}" class="imgLeft" /></a>{/if}
+	{if $PRODUCTS_IMAGE_4 != ''}<a href="{$PRODUCTS_IMAGE_4|replace:"info_images":"popup_images"}" rel="lightbox" title="{$PRODUCTS_NAME}"><img src="{$PRODUCTS_IMAGE_4}" alt="{$PRODUCTS_NAME}" class="imgLeft" /></a>{/if}
+	{if $PRODUCTS_IMAGE_5 != ''}<a href="{$PRODUCTS_IMAGE_5|replace:"info_images":"popup_images"}" rel="lightbox" title="{$PRODUCTS_NAME}"><img src="{$PRODUCTS_IMAGE_5}" alt="{$PRODUCTS_NAME}" class="imgLeft" /></a>{/if}
+	{if $PRODUCTS_IMAGE_6 != ''}<a href="{$PRODUCTS_IMAGE_6|replace:"info_images":"popup_images"}" rel="lightbox" title="{$PRODUCTS_NAME}"><img src="{$PRODUCTS_IMAGE_6}" alt="{$PRODUCTS_NAME}" class="imgLeft" /></a>{/if}
+	{if $PRODUCTS_IMAGE_7 != ''}<a href="{$PRODUCTS_IMAGE_7|replace:"info_images":"popup_images"}" rel="lightbox" title="{$PRODUCTS_NAME}"><img src="{$PRODUCTS_IMAGE_7}" alt="{$PRODUCTS_NAME}" class="imgLeft" /></a>{/if}
 	{if $PRODUCTS_IMAGE_LINK!=''}<a href="{$PRODUCTS_IMAGE_LINK}" onclick="window.open(this.href); return false;">{$PRODUCTS_TEXT_ZOOM}</a>{/if}
 	{if $PRODUCTS_FSK18=='true'}<img src="{$tpl_path}img/fsk18.gif" alt="" />{/if}
 </div></div>

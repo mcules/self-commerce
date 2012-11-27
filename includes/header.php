@@ -56,12 +56,16 @@
 	Information and contribution of SELF-Commerce at http://www.self-commerce.de
 -->
 <meta name="generator" content="(c) by <?php echo PROJECT_VERSION; ?> , http://www.self-commerce.de" />
-<?php include(DIR_WS_MODULES.FILENAME_METATAGS); ?>
+<?php include DIR_WS_MODULES.FILENAME_METATAGS; ?>
 <base href="<?php echo (($request_type == 'SSL') ? HTTPS_SERVER : HTTP_SERVER) . DIR_WS_CATALOG; ?>" />
 <link rel="stylesheet" type="text/css" href="<?php echo 'templates/'.CURRENT_TEMPLATE.'/stylesheet.css'; ?>" />
-<?php if(TINY_CSS != ''){ ?>
+<?php if
+(TINY_CSS != '')
+	{ ?>
 <link rel="stylesheet" type="text/css" href="<?php echo 'templates/'.CURRENT_TEMPLATE.'/'.TINY_CSS.''; ?>" />
 <?php } ?>
+<script type="text/javascript" src="/includes/javascript/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="/includes/javascript/jquery-ui-1.9.2.custom.min.js"></script>
 <script type="text/javascript"><!--
 var selected;
 var submitter = null;
@@ -123,37 +127,45 @@ function popupImageWindow(url) {
 //--></script>
 <?php
 // require theme based javascript
-require('templates/'.CURRENT_TEMPLATE.'/javascript/general.js.php');
+require 'templates/'.CURRENT_TEMPLATE.'/javascript/general.js.php';
 
-if (strstr($PHP_SELF, FILENAME_CHECKOUT_PAYMENT)) {
- echo $payment_modules->javascript_validation();
-// Tab Pane (WebFX) - Ritterreiter
+if (strstr($PHP_SELF, FILENAME_CHECKOUT_PAYMENT))
+{
+	echo $payment_modules->javascript_validation();
+	// Tab Pane (WebFX) - Ritterreiter
 ?>
 <script type="text/javascript" src="includes/javascript/tabpane.js"></script>
 <?php
 }
 
-if (strstr($PHP_SELF, FILENAME_CREATE_ACCOUNT)) {
-require('includes/form_check.js.php');
+if (strstr($PHP_SELF, FILENAME_CREATE_ACCOUNT))
+{
+	require 'includes/form_check.js.php';
 }
 
 
-if (strstr($PHP_SELF, FILENAME_CREATE_GUEST_ACCOUNT )) {
-require('includes/form_check.js.php');
+if (strstr($PHP_SELF, FILENAME_CREATE_GUEST_ACCOUNT ))
+{
+	require 'includes/form_check.js.php';
 }
-if (strstr($PHP_SELF, FILENAME_ACCOUNT_PASSWORD )) {
-require('includes/form_check.js.php');
+if (strstr($PHP_SELF, FILENAME_ACCOUNT_PASSWORD ))
+{
+	require 'includes/form_check.js.php';
 }
-if (strstr($PHP_SELF, FILENAME_ACCOUNT_EDIT )) {
-require('includes/form_check.js.php');
+if (strstr($PHP_SELF, FILENAME_ACCOUNT_EDIT ))
+{
+	require 'includes/form_check.js.php';
 }
-if (strstr($PHP_SELF, FILENAME_ADDRESS_BOOK_PROCESS )) {
-  if (isset($_GET['delete']) == false) {
-    include('includes/form_check.js.php');
-  }
-  }
-if (strstr($PHP_SELF, FILENAME_CHECKOUT_SHIPPING_ADDRESS )or strstr($PHP_SELF,FILENAME_CHECKOUT_PAYMENT_ADDRESS)) {
-require('includes/form_check.js.php');
+if (strstr($PHP_SELF, FILENAME_ADDRESS_BOOK_PROCESS ))
+{
+	if (isset($_GET['delete']) == false)
+	{
+		include 'includes/form_check.js.php';
+	}
+}
+if (strstr($PHP_SELF, FILENAME_CHECKOUT_SHIPPING_ADDRESS )or strstr($PHP_SELF, FILENAME_CHECKOUT_PAYMENT_ADDRESS))
+{
+	require 'includes/form_check.js.php';
 ?>
 <script type="text/javascript"><!--
 function check_form_optional(form_name) {
@@ -173,7 +185,8 @@ function check_form_optional(form_name) {
 <?php
 }
 
-if (strstr($PHP_SELF, FILENAME_ADVANCED_SEARCH )) {
+if (strstr($PHP_SELF, FILENAME_ADVANCED_SEARCH ))
+{
 ?>
 <script type="text/javascript" src="includes/general.js"></script>
 <script type="text/javascript"><!--
@@ -237,7 +250,8 @@ function popupWindow(url) {
 <?php
 }
 
-if (strstr($PHP_SELF, FILENAME_PRODUCT_REVIEWS_WRITE )) {
+if (strstr($PHP_SELF, FILENAME_PRODUCT_REVIEWS_WRITE ))
+{
 ?>
 
 <script type="text/javascript"><!--
@@ -267,40 +281,36 @@ function checkForm() {
 //--></script>
 <?php
 }
-if (strstr($PHP_SELF, FILENAME_POPUP_IMAGE )) {
-?>
-
-<script type="text/javascript"><!--
-var i=0;
-function resize() {
-  if (navigator.appName == 'Netscape') i=40;
-  if (document.images[0]) window.resizeTo(document.images[0].width +30, document.images[0].height+60-i);
-  self.focus();
+if (strstr($PHP_SELF, FILENAME_POPUP_IMAGE ))
+{
+	?>
+	<script type="text/javascript"><!--
+	var i=0;
+	function resize() {
+	  if (navigator.appName == 'Netscape') i=40;
+	  if (document.images[0]) window.resizeTo(document.images[0].width +30, document.images[0].height+60-i);
+	  self.focus();
+	}
+	//--></script>
+	<?php
 }
-//--></script>
-
-
-<?php
-}
-if (strstr($PHP_SELF, FILENAME_PRODUCT_REVIEWS_INFO )) {
-?>
-<?php
+if (strstr($PHP_SELF, FILENAME_PRODUCT_REVIEWS_INFO ))
+{
 }
 
-if (strstr($PHP_SELF, FILENAME_PRODUCT_INFO )) {
-?>
-<?php
+if (strstr($PHP_SELF, FILENAME_PRODUCT_INFO ))
+{
+
 }
 // slideshow topangebote
-if (strstr($PHP_SELF, FILENAME_DEFAULT )) {
+if (strstr($PHP_SELF, FILENAME_DEFAULT ))
+{
 ?>
 <script type="text/javascript" src="<?php echo 'includes/javascript/timed.slideshow.js'; ?>"></script>
 <link rel="stylesheet" type="text/css" href="<?php echo 'includes/stylesheet/jd.slideshow.css'; ?>" />
 <?php }
 // slideshow topangebote
 ?>
-<script type="text/javascript" src="includes/javascript/jquery-1.8.3.min.js"></script>
-<script type="text/javascript" src="includes/javascript/jquery-ui-1.9.2.custom.min.js"></script>
 <script type="text/javascript" src="<?php echo 'includes/javascript/cookies.js'; ?>"></script>
 <script type="text/javascript" src="<?php echo 'includes/javascript/efa_fontsize.js'; ?>"></script>
 <link rel="stylesheet" type="text/css" href="<?php echo 'includes/stylesheet/default.css'; ?>" />
@@ -309,141 +319,174 @@ if (strstr($PHP_SELF, FILENAME_DEFAULT )) {
 <?php
 echo '<body';
 
-if (strstr($PHP_SELF, FILENAME_POPUP_IMAGE )) {
-echo ' onload="resize();" ';
+if (strstr($PHP_SELF, FILENAME_POPUP_IMAGE ))
+{
+	echo ' onload="resize();" ';
 }
-else if (GOOGLE_ANAL_ON == 'true' && GOOGLE_ANAL_CODE != ''){
-	   if (strstr($PHP_SELF, FILENAME_CHECKOUT_SUCCESS)) {
-		    echo ' onload="javascript:__utmSetTrans()"';
-		  }
+else if (GOOGLE_ANAL_ON == 'true' && GOOGLE_ANAL_CODE != '')
+	{
+		if (strstr($PHP_SELF, FILENAME_CHECKOUT_SUCCESS))
+		{
+			echo ' onload="javascript:__utmSetTrans()"';
+		}
 	}
 echo '><script type="text/javascript">
 if (efa_fontSize) efa_fontSize.efaInit();
 </script>';
 
-if (WARTUNG == 'true'){
-  if ($_SESSION['customers_status']['customers_status_id'] == 0) {
-  echo '<div align="center" style=" background-color: #ff0000 ;"><h2>OFFLINE</h2></div>';
-  }
+if (WARTUNG == 'true')
+{
+	if ($_SESSION['customers_status']['customers_status_id'] == 0)
+	{
+		echo '<div align="center" style=" background-color: #ff0000 ;"><h2>OFFLINE</h2></div>';
+	}
 }
 
 echo '<div id="body">';
 
-if (strstr($PHP_SELF, FILENAME_CHECKOUT_SUCCESS) && GOOGLE_CONVERSION == 'true') {
-require('includes/google_conversiontracking.js.php');
+if (strstr($PHP_SELF, FILENAME_CHECKOUT_SUCCESS) && GOOGLE_CONVERSION == 'true')
+{
+	require 'includes/google_conversiontracking.js.php';
 }
 
 
-  // include needed functions
-  require_once('inc/xtc_output_warning.inc.php');
-  require_once('inc/xtc_image.inc.php');
-  require_once('inc/xtc_parse_input_field_data.inc.php');
-  require_once('inc/xtc_draw_separator.inc.php');
+// include needed functions
+require_once 'inc/xtc_output_warning.inc.php';
+require_once 'inc/xtc_image.inc.php';
+require_once 'inc/xtc_parse_input_field_data.inc.php';
+require_once 'inc/xtc_draw_separator.inc.php';
 
 //  require_once('inc/xtc_draw_form.inc.php');
 //  require_once('inc/xtc_draw_pull_down_menu.inc.php');
 
-  // check if the 'install' directory exists, and warn of its existence
-  if (WARN_INSTALL_EXISTENCE == 'true') {
-    if (file_exists(dirname($_SERVER['SCRIPT_FILENAME']) . '/self_installer') && $_SERVER['HTTP_HOST'] != 'localhost') {
-      xtc_output_warning(WARNING_INSTALL_DIRECTORY_EXISTS);
-    }
-  }
-
-  // check if the configure.php file is writeable
-  if (WARN_CONFIG_WRITEABLE == 'true') {
-    if ( (file_exists(dirname($_SERVER['SCRIPT_FILENAME']) . '/includes/configure.php')) && (is_writeable(dirname($_SERVER['SCRIPT_FILENAME']) . '/includes/configure.php'))  && $_SERVER['HTTP_HOST'] != 'localhost') {
-      xtc_output_warning(WARNING_CONFIG_FILE_WRITEABLE);
-    }
-  }
-
-  // check if the session folder is writeable
-  if (WARN_SESSION_DIRECTORY_NOT_WRITEABLE == 'true') {
-    if (STORE_SESSIONS == '') {
-      if (!is_dir(xtc_session_save_path())) {
-        xtc_output_warning(WARNING_SESSION_DIRECTORY_NON_EXISTENT);
-      } elseif (!is_writeable(xtc_session_save_path())) {
-        xtc_output_warning(WARNING_SESSION_DIRECTORY_NOT_WRITEABLE);
-      }
-    }
-  }
-
-  // check session.auto_start is disabled
-  if ( (function_exists('ini_get')) && (WARN_SESSION_AUTO_START == 'true') ) {
-    if (ini_get('session.auto_start') == '1') {
-      xtc_output_warning(WARNING_SESSION_AUTO_START);
-    }
-  }
-
-  if ( (WARN_DOWNLOAD_DIRECTORY_NOT_READABLE == 'true') && (DOWNLOAD_ENABLED == 'true') ) {
-    if (!is_dir(DIR_FS_DOWNLOAD)) {
-      xtc_output_warning(WARNING_DOWNLOAD_DIRECTORY_NON_EXISTENT);
-    }
-  }
-
-
-$smarty->assign('navtrail',$breadcrumb->trail(' &raquo; '));
-if (isset($_SESSION['customer_id'])) {
-
-$smarty->assign('logoff',xtc_href_link(FILENAME_LOGOFF, '', 'SSL'));
-} else {
-  $smarty->assign('logoff',xtc_href_link(FILENAME_LOGIN, '', 'SSL'));
-  }
-if ( $_SESSION['account_type']=='0') {
-$smarty->assign('account',xtc_href_link(FILENAME_ACCOUNT, '', 'SSL'));
+// check if the 'install' directory exists, and warn of its existence
+if (WARN_INSTALL_EXISTENCE == 'true')
+{
+	if (file_exists(dirname($_SERVER['SCRIPT_FILENAME']) . '/self_installer') && $_SERVER['HTTP_HOST'] != 'localhost')
+	{
+		xtc_output_warning(WARNING_INSTALL_DIRECTORY_EXISTS);
+	}
 }
-$smarty->assign('cart',xtc_href_link(FILENAME_SHOPPING_CART, '', 'SSL'));
-$smarty->assign('checkout',xtc_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL'));
-$smarty->assign('store_name',TITLE);
 
-		$handle = opendir(DIR_FS_CATALOG."templates/");
-		$t_array = array();
-		while (false !== ($file = readdir($handle))) {
-		  if(is_dir(DIR_FS_CATALOG."templates/".$file)){
-			 if(!preg_match("/^\./", $file)) {
-			   $t_array[] = $file;
-			 }
-			}
+// check if the configure.php file is writeable
+if (WARN_CONFIG_WRITEABLE == 'true')
+{
+	if ( (file_exists(dirname($_SERVER['SCRIPT_FILENAME']) . '/includes/configure.php')) && (is_writeable(dirname($_SERVER['SCRIPT_FILENAME']) . '/includes/configure.php'))  && $_SERVER['HTTP_HOST'] != 'localhost')
+	{
+		xtc_output_warning(WARNING_CONFIG_FILE_WRITEABLE);
+	}
+}
+
+// check if the session folder is writeable
+if (WARN_SESSION_DIRECTORY_NOT_WRITEABLE == 'true')
+{
+	if (STORE_SESSIONS == '')
+	{
+		if (!is_dir(xtc_session_save_path()))
+		{
+			xtc_output_warning(WARNING_SESSION_DIRECTORY_NON_EXISTENT);
+		} elseif (!is_writeable(xtc_session_save_path()))
+		{
+			xtc_output_warning(WARNING_SESSION_DIRECTORY_NOT_WRITEABLE);
 		}
-		sort($t_array);
-		for($i=0;$i<sizeof($t_array);$i++) {
-			$tpls[] = array("id" => $t_array[$i], 'text' => $t_array[$i]);
+	}
+}
+
+// check session.auto_start is disabled
+if ( (function_exists('ini_get')) && (WARN_SESSION_AUTO_START == 'true') )
+{
+	if (ini_get('session.auto_start') == '1')
+	{
+		xtc_output_warning(WARNING_SESSION_AUTO_START);
+	}
+}
+
+if ( (WARN_DOWNLOAD_DIRECTORY_NOT_READABLE == 'true') && (DOWNLOAD_ENABLED == 'true') )
+{
+	if (!is_dir(DIR_FS_DOWNLOAD))
+	{
+		xtc_output_warning(WARNING_DOWNLOAD_DIRECTORY_NON_EXISTENT);
+	}
+}
+
+
+$smarty->assign('navtrail', $breadcrumb->trail(' &raquo; '));
+if (isset($_SESSION['customer_id']))
+{
+
+	$smarty->assign('logoff', xtc_href_link(FILENAME_LOGOFF, '', 'SSL'));
+} else
+{
+	$smarty->assign('logoff', xtc_href_link(FILENAME_LOGIN, '', 'SSL'));
+}
+if ( $_SESSION['account_type']=='0')
+{
+	$smarty->assign('account', xtc_href_link(FILENAME_ACCOUNT, '', 'SSL'));
+}
+$smarty->assign('cart', xtc_href_link(FILENAME_SHOPPING_CART, '', 'SSL'));
+$smarty->assign('checkout', xtc_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL'));
+$smarty->assign('store_name', TITLE);
+
+$handle = opendir(DIR_FS_CATALOG."templates/");
+$t_array = array();
+while (false !== ($file = readdir($handle)))
+{
+	if
+	(is_dir(DIR_FS_CATALOG."templates/".$file))
+	{
+		if
+		(!preg_match("/^\./", $file))
+		{
+			$t_array[] = $file;
 		}
-		$parameters = xtc_get_all_get_params(array ('tpl', 'x', 'y'));
-		parse_str(urldecode($parameters), $para);
-		$hidden = "";
-		for(reset($para); $k = key($para); next($para)) {
-			$hidden .= sprintf("<input type='hidden' name='%s' value='%s' />", $k, $para[$k]);
-		}
-		$t_select = xtc_draw_pull_down_menu('tpl', $tpls, CURRENT_TEMPLATE, 'onchange="this.form.submit()"');
-		$smarty->assign('TEMPLATE_SWITCHER', sprintf("%s%s <noscript>%s</noscript>%s</form>", xtc_draw_form('template-switcher', $_SERVER['PHP_SELF'], 'get'), $t_select,  xtc_image_submit('button_continue.gif', IMAGE_BUTTON_CONTINUE), $hidden));
+	}
+}
+sort($t_array);
+for
+($i=0;$i<sizeof($t_array);$i++)
+{
+	$tpls[] = array("id" => $t_array[$i], 'text' => $t_array[$i]);
+}
+$parameters = xtc_get_all_get_params(array ('tpl', 'x', 'y'));
+parse_str(urldecode($parameters), $para);
+$hidden = "";
+for
+(reset($para); $k = key($para); next($para))
+{
+	$hidden .= sprintf("<input type='hidden' name='%s' value='%s' />", $k, $para[$k]);
+}
+$t_select = xtc_draw_pull_down_menu('tpl', $tpls, CURRENT_TEMPLATE, 'onchange="this.form.submit()"');
+$smarty->assign('TEMPLATE_SWITCHER', sprintf("%s%s <noscript>%s</noscript>%s</form>", xtc_draw_form('template-switcher', $_SERVER['PHP_SELF'], 'get'), $t_select,  xtc_image_submit('button_continue.gif', IMAGE_BUTTON_CONTINUE), $hidden));
 
 
-  if (isset($_GET['error_message']) && xtc_not_null($_GET['error_message'])) {
+if (isset($_GET['error_message']) && xtc_not_null($_GET['error_message']))
+{
 
-$smarty->assign('error','
+	$smarty->assign('error', '
     <table border="0" width="100%" cellspacing="0" cellpadding="2">
       <tr class="headerError">
         <td class="headerError">'. htmlspecialchars(urldecode($_GET['error_message'])).'</td>
       </tr>
     </table>');
 
-  }
+}
 
-  if (isset($_GET['info_message']) && xtc_not_null($_GET['info_message'])) {
+if (isset($_GET['info_message']) && xtc_not_null($_GET['info_message']))
+{
 
-$smarty->assign('error','
+	$smarty->assign('error', '
     <table border="0" width="100%" cellspacing="0" cellpadding="2">
       <tr class="headerInfo">
         <td class="headerInfo">'.htmlspecialchars($_GET['info_message']).'</td>
       </tr>
     </table>');
 
-  }
+}
 
-		if (SHOW_SHIPPING=='true') {
-        $ship_info=' '.SHIPPING_EXCL.' <a href="'.xtc_href_link(FILENAME_CONTENT, 'coID='.SHIPPING_INFOS).'">'.SHIPPING_COSTS.'</a>';
-		}
+if (SHOW_SHIPPING=='true')
+{
+	$ship_info=' '.SHIPPING_EXCL.' <a href="'.xtc_href_link(FILENAME_CONTENT, 'coID='.SHIPPING_INFOS).'">'.SHIPPING_COSTS.'</a>';
+}
 
-  include(DIR_WS_INCLUDES.FILENAME_BANNER);
+include DIR_WS_INCLUDES.FILENAME_BANNER;
 ?>
