@@ -1,16 +1,16 @@
 <?php
 /* -----------------------------------------------------------------------------------------
-   $Id$   
+   $Id$
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
 
-   Copyright (c) 2003 XT-Commerce 
+   Copyright (c) 2003 XT-Commerce
    -----------------------------------------------------------------------------------------
-   based on: 
+   based on:
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
-   (c) 2002-2003 osCommerce(header.php,v 1.40 2003/03/14); www.oscommerce.com 
-   (c) 2003	 nextcommerce (header.php,v 1.13 2003/08/17); www.nextcommerce.org 
+   (c) 2002-2003 osCommerce(header.php,v 1.40 2003/03/14); www.oscommerce.com
+   (c) 2003	 nextcommerce (header.php,v 1.13 2003/08/17); www.nextcommerce.org
 
    Released under the GNU General Public License
    -----------------------------------------------------------------------------------------
@@ -32,7 +32,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html <?php echo HTML_PARAMS; ?>>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=<?php echo $_SESSION['language_charset']; ?>" /> 
+<meta http-equiv="Content-Type" content="text/html; charset=<?php echo $_SESSION['language_charset']; ?>" />
 <meta http-equiv="Content-Style-Type" content="text/css" />
 
 <?php
@@ -52,7 +52,7 @@
 	Self-Commerce is a free open source e-Commerce System.
 	Based on XT:Commerce http://www.xtcommerce.de
 	xt:c created by Mario Zanier & Guido Winger and licensed under GNU/GPL.
-	modified to Self-Commerce by Maik Schmidt http://www.self-commerce.de and Tina Klassen http://www.insideoutside.de 
+	modified to Self-Commerce by Maik Schmidt http://www.self-commerce.de and Tina Klassen http://www.insideoutside.de
 	Information and contribution of SELF-Commerce at http://www.self-commerce.de
 -->
 <meta name="generator" content="(c) by <?php echo PROJECT_VERSION; ?> , http://www.self-commerce.de" />
@@ -71,7 +71,7 @@ function submitFunction() {
 }
 function popupWindow(url) {
   window.open(url,'popupWindow','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no,width=100,height=100,screenX=150,screenY=150,top=150,left=150')
-}  
+}
 
 function selectRowEffect(object, buttonSelect) {
   if (!selected) {
@@ -85,7 +85,7 @@ function selectRowEffect(object, buttonSelect) {
   if (selected) selected.className = 'moduleRow';
   object.className = 'moduleRowSelected';
   selected = object;
-  
+
 // one button is not an array
   if (document.getElementsByName("payment")[0]) {
     document.getElementsByName("payment")[buttonSelect].checked = true;
@@ -130,7 +130,7 @@ if (strstr($PHP_SELF, FILENAME_CHECKOUT_PAYMENT)) {
 // Tab Pane (WebFX) - Ritterreiter
 ?>
 <script type="text/javascript" src="includes/javascript/tabpane.js"></script>
-<?php 
+<?php
 }
 
 if (strstr($PHP_SELF, FILENAME_CREATE_ACCOUNT)) {
@@ -280,28 +280,27 @@ function resize() {
 //--></script>
 
 
-<?php 
+<?php
 }
 if (strstr($PHP_SELF, FILENAME_PRODUCT_REVIEWS_INFO )) {
 ?>
-<script type="text/javascript" src="<?php echo 'includes/javascript/mootool.js'; ?>"></script>
 <?php
 }
 
 if (strstr($PHP_SELF, FILENAME_PRODUCT_INFO )) {
 ?>
-<script type="text/javascript" src="<?php echo 'includes/javascript/mootool.js'; ?>"></script>
 <?php
-} 
+}
 // slideshow topangebote
 if (strstr($PHP_SELF, FILENAME_DEFAULT )) {
 ?>
-<script type="text/javascript" src="<?php echo 'includes/javascript/mootools.release.83.js'; ?>"></script>
 <script type="text/javascript" src="<?php echo 'includes/javascript/timed.slideshow.js'; ?>"></script>
 <link rel="stylesheet" type="text/css" href="<?php echo 'includes/stylesheet/jd.slideshow.css'; ?>" />
 <?php }
 // slideshow topangebote
 ?>
+<script type="text/javascript" src="includes/javascript/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="includes/javascript/jquery-ui-1.9.2.custom.min.js"></script>
 <script type="text/javascript" src="<?php echo 'includes/javascript/cookies.js'; ?>"></script>
 <script type="text/javascript" src="<?php echo 'includes/javascript/efa_fontsize.js'; ?>"></script>
 <link rel="stylesheet" type="text/css" href="<?php echo 'includes/stylesheet/default.css'; ?>" />
@@ -312,7 +311,7 @@ echo '<body';
 
 if (strstr($PHP_SELF, FILENAME_POPUP_IMAGE )) {
 echo ' onload="resize();" ';
-} 
+}
 else if (GOOGLE_ANAL_ON == 'true' && GOOGLE_ANAL_CODE != ''){
 	   if (strstr($PHP_SELF, FILENAME_CHECKOUT_SUCCESS)) {
 		    echo ' onload="javascript:__utmSetTrans()"';
@@ -325,7 +324,7 @@ if (efa_fontSize) efa_fontSize.efaInit();
 if (WARTUNG == 'true'){
   if ($_SESSION['customers_status']['customers_status_id'] == 0) {
   echo '<div align="center" style=" background-color: #ff0000 ;"><h2>OFFLINE</h2></div>';
-  } 
+  }
 }
 
 echo '<div id="body">';
@@ -418,7 +417,7 @@ $smarty->assign('store_name',TITLE);
 		}
 		$t_select = xtc_draw_pull_down_menu('tpl', $tpls, CURRENT_TEMPLATE, 'onchange="this.form.submit()"');
 		$smarty->assign('TEMPLATE_SWITCHER', sprintf("%s%s <noscript>%s</noscript>%s</form>", xtc_draw_form('template-switcher', $_SERVER['PHP_SELF'], 'get'), $t_select,  xtc_image_submit('button_continue.gif', IMAGE_BUTTON_CONTINUE), $hidden));
-    
+
 
   if (isset($_GET['error_message']) && xtc_not_null($_GET['error_message'])) {
 
