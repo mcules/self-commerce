@@ -479,7 +479,7 @@ class shoppingCart {
             $product_query = xtc_db_query($Sql);
             if ($product = xtc_db_fetch_array($product_query)) {
 				$products_price = $xtPrice->xtcGetPrice($product['products_id'], $format = false, $qty, $product['products_tax_class_id'], $product['products_price']);
-                $this->total += $products_price;
+                $this->total += $products_price * $qty;
                 $this->weight += ($qty * $product['products_weight']);
 
                 // attributes price
