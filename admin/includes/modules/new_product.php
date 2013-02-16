@@ -218,26 +218,8 @@ echo '<td><span class="main">'.xtc_draw_pull_down_menu('options_template', $file
                 <span class="main">
                         <?php require (DIR_FS_CATALOG.DIR_WS_CLASSES.'xtcPrice.php');
                         $xtPrice = new xtcPrice(DEFAULT_CURRENCY, $_SESSION['customers_status']['customers_status_id']); ?>
-            <?php
-                        if (PRICE_IS_BRUTTO == 'true') {
-                                $setup_price = xtc_round($pInfo->setup_price * ((100 + xtc_get_tax_rate($pInfo->products_tax_class_id)) / 100), PRICE_PRECISION);
-                        } else {
-                                $setup_price = xtc_round($pInfo->setup_price, PRICE_PRECISION);
-                        }
-                        ?>
-            <?php echo 'Vertrags / Einrichtungsgeb&uuml;hr: '; ?> <?php echo xtc_draw_input_field('setup_price', $setup_price); ?> 
-            <?php
-                        if (PRICE_IS_BRUTTO == 'true') {
-                                echo TEXT_NETTO.'<b>'.$xtPrice->xtcFormat($pInfo->setup_price, false).'</b>  ';
-                        }
-                        ?>
             </span>
         </td>
-      </tr>
-    </table><br />
-    <table bgcolor="f3f3f3" style="border: 1px solid; border-color: #cccccc;" "width="100%"  border="0">
-      <tr>
-        <td><span class="main"><strong>Vertrags / Einrichtungsgeb&uuml;hr</strong></span></td>
       </tr>
     </table><br />
     </td>
@@ -246,9 +228,6 @@ echo '<td><span class="main">'.xtc_draw_pull_down_menu('options_template', $file
   <br /><br />
   <?php for ($i = 0, $n = sizeof($languages); $i < $n; $i++) { ?>
   <table width="100%" border="0">
-  <tr>
-  <td bgcolor="000000" height="10"></td>
-  </tr>
   <tr>
     <td bgcolor="#FFCC33" valign="top" class="main"><?php echo xtc_image(DIR_WS_LANGUAGES . $languages[$i]['directory'] .'/'. $languages[$i]['image'], $languages[$i]['name']); ?>&nbsp;<?php echo TEXT_PRODUCTS_NAME; ?><?php echo xtc_draw_input_field('products_name[' . $languages[$i]['id'] . ']', (($products_name[$languages[$i]['id']]) ? stripslashes($products_name[$languages[$i]['id']]) : xtc_get_products_name($pInfo->products_id, $languages[$i]['id'])),'size=60'); ?></td>
   </tr>
