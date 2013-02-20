@@ -1,7 +1,7 @@
 <?php
 
 /*------------------------------------------------------------------------------
-  $Id$
+  $Id: cc.php 1136 2005-08-07 13:19:54Z mz $
 
   XTC-CC - Contribution for XT-Commerce http://www.xt-commerce.com
   modified by http://www.netz-designer.de
@@ -9,7 +9,7 @@
   Copyright (c) 2003 netz-designer
   -----------------------------------------------------------------------------
   based on:
-  $Id$
+  $Id: cc.php 1136 2005-08-07 13:19:54Z mz $
 
   osCommerce, Open Source E-Commerce Solutions
   http://www.oscommerce.com

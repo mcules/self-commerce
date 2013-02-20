@@ -1,7 +1,7 @@
 <?php
 
 /* -----------------------------------------------------------------------------------------
-   $Id$   
+   $Id: checkout_confirmation.php 21 2012-06-10 15:22:06Z deisold $   
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

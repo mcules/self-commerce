@@ -1,28 +1,28 @@
 <?php
 /* -----------------------------------------------------------------------------------------
-   $Id$   
+   $Id$
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
 
    Copyright (c) 2003 XT-Commerce
    -----------------------------------------------------------------------------------------
-   based on: 
+   based on:
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
-   (c) 2002-2003 osCommerce(dp.php,v 1.36 2003/03/09 02:14:35); www.oscommerce.com 
+   (c) 2002-2003 osCommerce(dp.php,v 1.36 2003/03/09 02:14:35); www.oscommerce.com
    (c) 2003	 nextcommerce (dp.php,v 1.12 2003/08/24); www.nextcommerce.org
 
-   Released under the GNU General Public License 
+   Released under the GNU General Public License
    -----------------------------------------------------------------------------------------
    Third Party contributions:
-   German Post (Deutsche Post WorldNet)         	Autor:	Copyright (C) 2002 - 2003 TheMedia, Dipl.-Ing Thomas Plänkers | http://www.themedia.at & http://www.oscommerce.at
+   German Post (Deutsche Post WorldNet)         	Autor:	Copyright (C) 2002 - 2003 TheMedia, Dipl.-Ing Thomas PlÃ¤nkers | http://www.themedia.at & http://www.oscommerce.at
 
-   Released under the GNU General Public License 
+   Released under the GNU General Public License
    ---------------------------------------------------------------------------------------*/
-   
-   
 
- 
+
+
+
   class dp {
     var $code, $title, $description, $icon, $enabled, $num_dp;
 
@@ -74,7 +74,7 @@
 
       for ($i=1; $i<=$this->num_dp; $i++) {
         $countries_table = constant('MODULE_SHIPPING_DP_COUNTRIES_' . $i);
-        $country_zones = split("[,]", $countries_table);
+        $country_zones = preg_split("/[,]/", $countries_table);
         if (in_array($dest_country, $country_zones)) {
           $dest_zone = $i;
           break;
@@ -87,7 +87,7 @@
         $shipping = -1;
         $dp_cost = constant('MODULE_SHIPPING_DP_COST_' . $i);
 
-        $dp_table = split("[:,]" , $dp_cost);
+        $dp_table = preg_split("/[:,]/" , $dp_cost);
         for ($i=0; $i<sizeof($dp_table); $i+=2) {
           if ($shipping_weight <= $dp_table[$i]) {
             $shipping = $dp_table[$i+1];
@@ -136,7 +136,7 @@
       xtc_db_query("insert into " . TABLE_CONFIGURATION . " ( configuration_key, configuration_value,  configuration_group_id, sort_order, use_function, set_function, date_added) values ('MODULE_SHIPPING_DP_ZONE', '0', '6', '0', 'xtc_get_zone_class_title', 'xtc_cfg_pull_down_zone_classes(', now())");
       xtc_db_query("insert into " . TABLE_CONFIGURATION . " ( configuration_key, configuration_value,  configuration_group_id, sort_order, date_added) values ('MODULE_SHIPPING_DP_SORT_ORDER', '0', '6', '0', now())");
       xtc_db_query("insert into " . TABLE_CONFIGURATION . " ( configuration_key, configuration_value,  configuration_group_id, sort_order, date_added) values ('MODULE_SHIPPING_DP_ALLOWED', '', '6', '0', now())");
-	  
+
       xtc_db_query("insert into " . TABLE_CONFIGURATION . " ( configuration_key, configuration_value,  configuration_group_id, sort_order, date_added) values ('MODULE_SHIPPING_DP_COUNTRIES_1', 'AD,AT,BE,CZ,DK,FO,FI,FR,GR,GL,IE,IT,LI,LU,MC,NL,PL,PT,SM,SK,SE,CH,VA,GB,SP', '6', '0', now())");
       xtc_db_query("insert into " . TABLE_CONFIGURATION . " ( configuration_key, configuration_value,  configuration_group_id, sort_order, date_added) values ('MODULE_SHIPPING_DP_COST_1', '5:16.50,10:20.50,20:28.50', '6', '0', now())");
       xtc_db_query("insert into " . TABLE_CONFIGURATION . " ( configuration_key, configuration_value,  configuration_group_id, sort_order, date_added) values ('MODULE_SHIPPING_DP_COUNTRIES_2', 'AL,AM,AZ,BY,BA,BG,HR,CY,GE,GI,HU,IS,KZ,LT,MK,MT,MD,NO,SI,UA,TR,YU,RU,RO,LV,EE', '6', '0', now())");

@@ -1,7 +1,7 @@
 <?
 
 /* -----------------------------------------------------------------------------------------
-   $Id$
+   $Id: cash.php 1102 2005-07-24 15:05:38Z mz $
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

@@ -1,6 +1,6 @@
 <?php
 /* -----------------------------------------------------------------------------------------
-   $Id$
+   $Id: configuration.php 58 2012-10-07 23:01:41Z deisold $
 
    Self-Commerce
    http://www.self-commerce.de

@@ -1,7 +1,7 @@
 <?php
 
 /* -----------------------------------------------------------------------------------------
-   $Id$
+   $Id: order_details_cart.php 63 2012-10-20 17:29:32Z McUles $
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

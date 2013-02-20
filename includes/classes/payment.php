@@ -1,6 +1,6 @@
 <?php
 /* --------------------------------------------------------------
-   $Id$
+   $Id: payment.php 17 2012-06-04 20:33:29Z deisold $
    Self-Commerce - Fresh up your eCommerce
    http://www.self-commerce.de
    Copyright (c) 2012 Self-Commerce
@@ -82,7 +82,7 @@
         }
         // if there is only one payment method, select it as default because in
         // checkout_confirmation.php the $payment variable is being assigned the
-        // $HTTP_POST_VARS['payment'] value which will be empty (no radio button selection possible)
+        // $_POST['payment'] value which will be empty (no radio button selection possible)
         if ( (xtc_count_payment_modules() == 1) && (!is_object($_SESSION['payment'])) ) {
           $_SESSION['payment'] = $include_modules[0]['class'];
         }

@@ -1,6 +1,6 @@
 <?php
 /* -----------------------------------------------------------------------------------------
-   $Id$   
+   $Id: xtc_db_num_rows.inc.php 1212 2005-09-12 07:46:37Z novalis $   
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

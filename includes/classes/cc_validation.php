@@ -1,7 +1,7 @@
 <?php
 
 /* -----------------------------------------------------------------------------------------
-   $Id$   
+   $Id: cc_validation.php 44 2012-07-24 22:20:20Z deisold $   
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
@@ -22,37 +22,37 @@ class cc_validation {
 	function validate($number, $expiry_m, $expiry_y) {
 		$this->cc_number = preg_replace('{[^0-9]}', '', $number);
 
-		if (ereg('^4[0-9]{12}([0-9]{3})?$', $this->cc_number)) {
+		if (preg_match('/^4[0-9]{12}([0-9]{3})?$/', $this->cc_number)) {
 			$this->cc_type = 'Visa';
 			if (strtolower(MODULE_PAYMENT_CC_ACCEPT_VISA) != 'true')
 				return -8;
 		}
-		elseif (ereg('^5[1-5][0-9]{14}$', $this->cc_number)) {
+		elseif (preg_match('/^5[1-5][0-9]{14}$/', $this->cc_number)) {
 			$this->cc_type = 'Master Card';
 			if (strtolower(MODULE_PAYMENT_CC_ACCEPT_MASTERCARD) != 'true')
 				return -8;
 		}
-		elseif (ereg('^3[47][0-9]{13}$', $this->cc_number)) {
+		elseif (preg_match('/^3[47][0-9]{13}$/', $this->cc_number)) {
 			$this->cc_type = 'American Express';
 			if (strtolower(MODULE_PAYMENT_CC_ACCEPT_AMERICANEXPRESS) != 'true')
 				return -8;
 		}
-		elseif (ereg('^3(0[0-5]|[68][0-9])[0-9]{11}$', $this->cc_number)) {
+		elseif (preg_match('/^3(0[0-5]|[68][0-9])[0-9]{11}$/', $this->cc_number)) {
 			$this->cc_type = 'Diners Club';
 			if (strtolower(MODULE_PAYMENT_CC_ACCEPT_DINERSCLUB) != 'true')
 				return -8;
 		}
-		elseif (ereg('^6011[0-9]{12}$', $this->cc_number)) {
+		elseif (preg_match('/^6011[0-9]{12}$/', $this->cc_number)) {
 			$this->cc_type = 'Discover';
 			if (strtolower(MODULE_PAYMENT_CC_ACCEPT_DISCOVERNOVUS) != 'true')
 				return -8;
 		}
-		elseif (ereg('^(3[0-9]{4}|2131|1800)[0-9]{11}$', $this->cc_number)) {
+		elseif (preg_match('/^(3[0-9]{4}|2131|1800)[0-9]{11}$/', $this->cc_number)) {
 			$this->cc_type = 'JCB';
 			if (strtolower(MODULE_PAYMENT_CC_ACCEPT_JCB) != 'true')
 				return -8;
 		}
-		elseif (ereg('^5610[0-9]{12}$', $this->cc_number)) {
+		elseif (preg_match('/^5610[0-9]{12}$/', $this->cc_number)) {
 			$this->cc_type = 'Australian BankCard';
 			if (strtolower(MODULE_PAYMENT_CC_ACCEPT_OZBANKCARD) != 'true')
 				return -8;

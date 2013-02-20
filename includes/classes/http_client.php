@@ -1,6 +1,6 @@
 <?php
 /* -----------------------------------------------------------------------------------------
-   $Id$   
+   $Id: http_client.php 17 2012-06-04 20:33:29Z deisold $   
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
@@ -390,7 +390,7 @@
         $str = fgets($this->socket, 1024);
         $finished = ($str == $lastLine);
         if (!$finished) {
-          list($hdr, $value) = split(': ', $str, 2);
+          list($hdr, $value) = preg_split('/: /', $str, 2);
           // nasty workaround broken multiple same headers (eg. Set-Cookie headers) @FIXME 
           if (isset($headers[$hdr])) {
             $headers[$hdr] .= '; ' . trim($value);

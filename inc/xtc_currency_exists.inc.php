@@ -1,7 +1,7 @@
 <?php
 
 /* -----------------------------------------------------------------------------------------
-   $Id$   
+   $Id: xtc_currency_exists.inc.php 689 2007-09-27 18:01:51Z mzanier $   
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

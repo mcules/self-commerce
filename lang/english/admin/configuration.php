@@ -1,6 +1,6 @@
 <?php
 /* -----------------------------------------------------------------------------------------
-   $Id$
+   $Id: configuration.php 58 2012-10-07 23:01:41Z deisold $
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

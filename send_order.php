@@ -1,7 +1,7 @@
 <?php
 
 /* -----------------------------------------------------------------------------------------
-   $Id$   
+   $Id: send_order.php 46 2012-07-30 12:06:11Z deisold $   
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
@@ -95,7 +95,7 @@ if ($_SESSION['customer_id'] == $order_check['customers_id']) {
 	
 // PayPal Bezahl-Linkerweiterung 
     $smarty->assign('CURRENCY1',$order->info['currency']); 
-    $tmp1 = eregi_replace ( ',', '.' , $order->info['total'] ); 
+    $tmp1 = preg_replace ( '/,/i', '.' , $order->info['total'] ); 
     $tmp2 = floatval ($tmp1); 
     $smarty->assign('TOTAL1',$tmp2); 
 //Ende PayPal Bezahl-Linkerweiterung

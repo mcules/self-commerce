@@ -1,6 +1,6 @@
 <?php
 /* -----------------------------------------------------------------------------------------
-   $Id$   
+   $Id: logoff.php 49 2012-09-17 12:50:55Z deisold $   
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

@@ -1,6 +1,6 @@
 <?php
 /* -----------------------------------------------------------------------------------------
-   $Id$
+   $Id: shopping_cart.php 77 2012-12-12 22:04:43Z deisold $
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

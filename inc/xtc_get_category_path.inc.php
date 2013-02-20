@@ -1,6 +1,6 @@
 <?php
 /* -----------------------------------------------------------------------------------------
-   $Id$   
+   $Id: xtc_get_category_path.inc.php 868 2005-04-23 19:28:27Z hhgag $   
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

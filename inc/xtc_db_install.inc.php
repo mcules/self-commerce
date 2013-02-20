@@ -1,6 +1,6 @@
 <?php
 /* -----------------------------------------------------------------------------------------
-   $Id$   
+   $Id: xtc_db_install.inc.php 37 2012-07-16 14:54:15Z deisold $   
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

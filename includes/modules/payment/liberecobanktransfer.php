@@ -1,7 +1,7 @@
 <?php
 
 /* -----------------------------------------------------------------------------------------
-   $Id$
+   $Id: liberecobanktransfer.php 998 2005-07-07 14:18:20Z mz $
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
@@ -203,9 +203,9 @@ class liberecobanktransfer {
 	}
 
 	function get_error() {
-		global $HTTP_GET_VARS;
+		global $_GET;
 
-		$error = array ('title' => MODULE_PAYMENT_LIBERECO_BANKTRANSFER_TEXT_BANK_ERROR, 'error' => stripslashes(urldecode($HTTP_GET_VARS['error'])));
+		$error = array ('title' => MODULE_PAYMENT_LIBERECO_BANKTRANSFER_TEXT_BANK_ERROR, 'error' => stripslashes(urldecode($_GET['error'])));
 
 		return $error;
 	}

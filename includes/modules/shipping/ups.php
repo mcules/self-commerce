@@ -16,7 +16,7 @@
    -----------------------------------------------------------------------------------------
    Third Party contributions:
    German Post (Deutsche Post WorldNet)
-   Autor:	Copyright (C) 2002 - 2003 TheMedia, Dipl.-Ing Thomas Pl‰nkers | http://www.themedia.at & http://www.oscommerce.at
+   Autor:	Copyright (C) 2002 - 2003 TheMedia, Dipl.-Ing Thomas Pl√§nkers | http://www.themedia.at & http://www.oscommerce.at
    Changes for personal use: Copyright (C) 2004 Comm4All, Bernd Blazynski | http://www.comm4all.com & http://www.cheapshirt.de
 
    Released under the GNU General Public License 
@@ -80,7 +80,7 @@ function quote($method = '') {
 
 	for ($i=1; $i<=$this->num_ups; $i++) {
 		$countries_table = constant('MODULE_SHIPPING_UPS_COUNTRIES_' . $i);
-		$country_zones = split("[,]", $countries_table);
+		$country_zones =  preg_split("/[,]/", $countries_table);
 		if (in_array($dest_country, $country_zones)) {
 		$dest_zone = $i;
 		break;
@@ -97,7 +97,7 @@ function quote($method = '') {
 			$lowship = true;
 			$shipping = -1;
 			$ups_cost = constant('MODULE_SHIPPING_UPS_COST_' . $i);
-			$ups_table = split("[:,]" , $ups_cost);
+			$ups_table =  preg_split("/[:,]/" , $ups_cost);
 			for ($i=0; $i<sizeof($ups_table); $i+=2) {
 				if ($shipping_weight <= $ups_table[$i]) {
 					$shipping = $ups_table[$i+1];
@@ -107,7 +107,7 @@ function quote($method = '') {
 			}
 			$i = 1;
 			$ups_cost = constant('MODULE_SHIPPING_UPS_COST_' . $i);
-			$ups_table = split("[:,]" , $ups_cost);
+			$ups_table =  preg_split("/[:,]/" , $ups_cost);
 			for ($i=0; $i<sizeof($ups_table); $i+=2) {
 				if ($shipping_weight <= $ups_table[$i]) {
 					$diff = $ups_table[$i+1];
@@ -118,7 +118,7 @@ function quote($method = '') {
 		} else {
 			$shipping = -1;
 			$ups_cost = constant('MODULE_SHIPPING_UPS_COST_' . $i);
-			$ups_table = split("[:,]" , $ups_cost);
+			$ups_table =  preg_split("/[:,]/" , $ups_cost);
 			for ($i=0; $i<sizeof($ups_table); $i+=2) {
 				if ($shipping_weight <= $ups_table[$i]) {
 					$shipping = $ups_table[$i+1];

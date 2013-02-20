@@ -286,38 +286,6 @@
     $session->id = $id;
   }
 
-  function session_register($var) {
-    global $session;
-
-    if ($session->nr_open_sessions == 0) {
-      session_start();
-    }
-
-    $session->vars[] = trim($var);
-  }
-
-  function session_unregister($var) {
-    global $session;
-
-    for (reset($session->vars); list($i)=each($session->vars);) {
-      if ($session->vars[$i] == trim($var)) {
-        unset($session->vars[$i]);
-        break;
-      }
-    }
-  }
-
-  function session_is_registered($var) {
-    global $session;
-
-    for (reset($session->vars); list($i)=each($session->vars);) {
-      if ($session->vars[$i] == trim($var)) {
-        return true;
-      }
-    }
-
-    return false;
-  }
 
   function session_encode() {
     global $session;
@@ -381,18 +349,7 @@
       }
     }
 
-/*
-    // Check the REQUEST_URI symbol for a string of the form
-    // '<session-name>=<session-id>' to allow URLs of the form
-    // http://yoursite/<session-name>=<session-id>/script.php 
-    if (empty($session->id)) {
-      eregi($session->name . '=([^/]+)', $GLOBALS['REQUEST_URI'], $regs);
-      $regs[1] = trim($regs[1]);
-      if (!empty($regs[1])) {
-        $session->id = $regs[1];
-      }
-    }
-*/
+
 
     // Check whether the current request was referred to by
     // an external site which invalidates the previously found ID

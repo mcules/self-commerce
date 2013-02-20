@@ -1,6 +1,6 @@
 <?php
 /* -----------------------------------------------------------------------------------------
-   $Id$   
+   $Id: compatibility.php 17 2012-06-04 20:33:29Z deisold $   
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
@@ -115,7 +115,7 @@
 
   if (!function_exists('is_numeric')) {
     function is_numeric($param) {
-      return ereg('^[0-9]{1,50}.?[0-9]{0,50}$', $param);
+      return preg_match('/^[0-9]{1,50}.?[0-9]{0,50}$/', $param);
     }
   }
 
@@ -165,7 +165,7 @@
       if(xtc_not_null($host) && xtc_not_null($type)) {
         @exec("nslookup -type=$type $host", $output);
         while(list($k, $line) = each($output)) {
-          if(eregi("^$host", $line)) {
+          if(preg_match("/^$host/i", $line)) {
             return true;
           }
         }

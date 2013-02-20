@@ -15,7 +15,7 @@
    Released under the GNU General Public License 
    -----------------------------------------------------------------------------------------
    Third Party contributions:
-   German Post (Deutsche Post WorldNet)         	Autor:	Copyright (C) 2002 - 2003 TheMedia, Dipl.-Ing Thomas Pl‰nkers | http://www.themedia.at & http://www.oscommerce.at
+   German Post (Deutsche Post WorldNet)         	Autor:	Copyright (C) 2002 - 2003 TheMedia, Dipl.-Ing Thomas Pl√§nkers | http://www.themedia.at & http://www.oscommerce.at
 
    Released under the GNU General Public License 
    UPS - Modul
@@ -75,7 +75,7 @@
 
       for ($i=1; $i<=$this->num_upse; $i++) {
         $countries_table = constant('MODULE_SHIPPING_UPSE_COUNTRIES_' . $i);
-        $country_zones = split("[,]", $countries_table);
+        $country_zones =  preg_split("/[,]/", $countries_table);
         if (in_array($dest_country, $country_zones)) {
           $dest_zone = $i;
           break;
@@ -88,7 +88,7 @@
         $shipping = -1;
         $upse_cost = constant('MODULE_SHIPPING_UPSE_COST_' . $i);
 
-        $upse_table = split("[:,]" , $upse_cost);
+        $upse_table =  preg_split("/[:,]/" , $upse_cost);
         for ($i=0; $i<sizeof($upse_table); $i+=2) {
           if ($shipping_weight <= $upse_table[$i]) {
             $shipping = $upse_table[$i+1];

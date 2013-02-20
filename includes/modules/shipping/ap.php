@@ -15,7 +15,7 @@
    Released under the GNU General Public License 
    -----------------------------------------------------------------------------------------
    Third Party contributions:
-   austrian_post_1.05       	Autor:	Copyright (C) 2002 - 2003 TheMedia, Dipl.-Ing Thomas Pl‰nkers | http://www.themedia.at & http://www.oscommerce.at
+   austrian_post_1.05       	Autor:	Copyright (C) 2002 - 2003 TheMedia, Dipl.-Ing Thomas Pl√§nkers | http://www.themedia.at & http://www.oscommerce.at
 
    Released under the GNU General Public License 
    ---------------------------------------------------------------------------------------*/
@@ -75,7 +75,7 @@
 
       for ($i=1; $i<=$this->num_ap; $i++) {
         $countries_table = constant('MODULE_SHIPPING_AP_COUNTRIES_' . $i);
-        $country_zones = split("[,]", $countries_table);
+        $country_zones = preg_split("/[,]/", $countries_table);
         if (in_array($dest_country, $country_zones)) {
           $dest_zone = $i;
           break;
@@ -88,7 +88,7 @@
         $shipping = -1;
         $ap_cost = constant('MODULE_SHIPPING_AP_COST_' . $i);
 
-        $ap_table = split("[:,]" , $ap_cost);
+        $ap_table = preg_split("/[:,]/" , $ap_cost);
         for ($i=0; $i<sizeof($ap_table); $i+=2) {
           if ($shipping_weight <= $ap_table[$i]) {
             $shipping = $ap_table[$i+1];

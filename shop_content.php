@@ -1,7 +1,7 @@
 <?php
 
 /* -----------------------------------------------------------------------------------------
-   $Id$   
+   $Id: shop_content.php 46 2012-07-30 12:06:11Z deisold $   
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

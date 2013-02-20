@@ -1,0 +1,7 @@
+templates_c/*.*.php
+stats
+images/product_images/info_images/*.jpg
+images/product_images/original_images/*.jpg
+images/product_images/popup_images/*.jpg
+images/product_images/thumbnail_images/*.jpg
+admin/invoice/*.pdf

@@ -1,7 +1,7 @@
 <?php
 
 /* -----------------------------------------------------------------------------------------
-   $Id$ 
+   $Id: afterbuy.php 44 2012-07-24 22:20:20Z deisold $ 
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
@@ -261,7 +261,7 @@ class xtc_afterbuy_functions {
 
 		$DATAstring .= "PosAnz=".$p_count."&";
 
-		$vK = ereg_replace("\.", ",", $shipping);
+		$vK = preg_match("/\./", ",", $shipping);
 
 		if ($oData['payment_method'] == 'cod')
 			$oData['payment_method'] = 'Nachnahme';
@@ -295,7 +295,7 @@ class xtc_afterbuy_functions {
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $DATAstring);
 		$result = curl_exec($ch);
 
-		if (ereg("<success>1</success>", $result)) {
+		if (preg_match("/<success>1<\/success>/", $result)) {
 			// result ok, mark order
 			// extract ID from result
 			$cdr = explode('<KundenNr>', $result);
@@ -310,7 +310,7 @@ class xtc_afterbuy_functions {
 		} else {
 
 			// mail to shopowner
-			$mail_content = 'Fehler bei â&Uuml;bertragung der Bestellung: '.$oID.chr(13).chr(10).'Folgende Fehlermeldung wurde vom afterbuy.de zur&uuml;ckgegeben:'.chr(13).chr(10).$result;
+			$mail_content = 'Fehler bei ï¿½&Uuml;bertragung der Bestellung: '.$oID.chr(13).chr(10).'Folgende Fehlermeldung wurde vom afterbuy.de zur&uuml;ckgegeben:'.chr(13).chr(10).$result;
 
 			mail(EMAIL_BILLING_ADDRESS, "Afterbuy-Fehl&uuml;bertragung", $mail_content);
 

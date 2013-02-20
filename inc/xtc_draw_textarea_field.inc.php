@@ -1,6 +1,6 @@
 <?php
 /* -----------------------------------------------------------------------------------------
-   $Id$   
+   $Id: xtc_draw_textarea_field.inc.php 1300 2005-10-10 20:40:33Z mz $   
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

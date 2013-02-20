@@ -1,6 +1,6 @@
 <?php
 /* -----------------------------------------------------------------------------------------
-   $Id$
+   $Id: application_top.php 70 2012-11-12 22:16:12Z deisold $
    Self-Commerce - Fresh up your eCommerce
    http://www.self-commerce.de
    Copyright (c) 2012 Self-Commerce
@@ -179,7 +179,7 @@ $configuration_query = xtc_db_query('select configuration_key as cfgKey, configu
 			// end msslovi0
 		}
 
-require_once (DIR_WS_CLASSES.'class.phpmailer.php');
+require_once (DIR_WS_MODULES.'phpmailer/class.phpmailer.php');
 if (EMAIL_TRANSPORT == 'smtp')
 	require_once (DIR_WS_CLASSES.'class.smtp.php');
 require_once (DIR_FS_INC.'xtc_Security.inc.php');
@@ -320,7 +320,7 @@ if (CHECK_CLIENT_AGENT) {
 // verify the ssl_session_id if the feature is enabled
 if (($request_type == 'SSL') && (SESSION_CHECK_SSL_SESSION_ID == 'True') && (ENABLE_SSL == true) && ($session_started == true)) {
 	$ssl_session_id = getenv('SSL_SESSION_ID');
-	if (!session_is_registered('SSL_SESSION_ID')) {
+	if(!isset($_SESSION['SESSION_SSL_ID'])) {
 		$_SESSION['SESSION_SSL_ID'] = $ssl_session_id;
 	}
 

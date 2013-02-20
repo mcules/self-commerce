@@ -16,7 +16,7 @@
    Released under the GNU General Public License 
    -----------------------------------------------------------------------------------------
    Third Party contributions:
-   fedex_europe_1.02         	Autor:	Copyright (C) 2002 - 2003 TheMedia, Dipl.-Ing Thomas Pl‰nkers | http://www.themedia.at & http://www.oscommerce.at
+   fedex_europe_1.02         	Autor:	Copyright (C) 2002 - 2003 TheMedia, Dipl.-Ing Thomas Pl√§nkers | http://www.themedia.at & http://www.oscommerce.at
 
    Released under the GNU General Public License 
    ---------------------------------------------------------------------------------------*/
@@ -76,7 +76,7 @@
 
       for ($j=1; $j<=$this->num_fedexeu; $j++) {
         $countries_table = constant('MODULE_SHIPPING_FEDEXEU_COUNTRIES_' . $j);
-        $country_zones = split("[,]", $countries_table);
+        $country_zones = preg_split("/[,]/", $countries_table);
         if (in_array($dest_country, $country_zones)) {
           $dest_zone = $j;
           break;
@@ -94,7 +94,7 @@
         $methods = array();
 
         if ($fedexeu_cost_pak != '') {
-          $fedexeu_table_pak = split("[:,]" , $fedexeu_cost_pak);
+          $fedexeu_table_pak = preg_split("/[:,]/" , $fedexeu_cost_pak);
 
           for ($i=0; $i<sizeof($fedexeu_table_pak); $i+=2) {
             if ($shipping_weight <= $fedexeu_table_pak[$i]) {
@@ -119,7 +119,7 @@
 		
 
 		if ($fedexeu_cost_env != '') {
-          $fedexeu_table_env = split("[:,]" , $fedexeu_cost_env);
+          $fedexeu_table_env = preg_split("/[:,]/" , $fedexeu_cost_env);
 
           for ($i=0; $i<sizeof($fedexeu_table_env); $i+=2) {
             if ($shipping_weight <= $fedexeu_table_env[$i]) {
@@ -144,7 +144,7 @@
 		
 
         if ($fedexeu_cost_box != '') {
-          $fedexeu_table_box = split("[:,]" , $fedexeu_cost_box);
+          $fedexeu_table_box = preg_split("/[:,]/" , $fedexeu_cost_box);
           if ( ($shipping_weight > 10) and ($shipping_weight <= 20) ) {
             $shipping_box = number_format((($shipping_weight - 10)* 2 + 0.5), 0) * constant('MODULE_SHIPPING_FEDEXEU_STEP_BOX_20_' .$j) + $fedexeu_table_box[count ($fedexeu_table_box)-1];
           } elseif ( ($shipping_weight > 20) and ($shipping_weight <= 40) ) {

@@ -1,6 +1,6 @@
 <?php
 /* -----------------------------------------------------------------------------------------
-   $Id$   
+   $Id: xtc_validate_email.inc.php 40 2012-07-24 19:52:32Z deisold $   
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

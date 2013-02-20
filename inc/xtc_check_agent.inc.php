@@ -1,6 +1,6 @@
 <?php
 /* -----------------------------------------------------------------------------------------
-   $Id$
+   $Id: xtc_check_agent.inc.php 974 2005-06-07 12:40:29Z mz $
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

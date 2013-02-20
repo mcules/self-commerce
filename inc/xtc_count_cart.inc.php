@@ -1,7 +1,7 @@
 <?php
 
 /* -----------------------------------------------------------------------------------------
-   $Id$
+   $Id: xtc_count_cart.inc.php 975 2005-06-07 12:49:19Z mz $
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

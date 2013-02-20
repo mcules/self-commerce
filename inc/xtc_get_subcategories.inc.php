@@ -1,6 +1,6 @@
 <?php
 /* -----------------------------------------------------------------------------------------
-   $Id$   
+   $Id: xtc_get_subcategories.inc.php 976 2005-06-08 13:23:10Z mz $   
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

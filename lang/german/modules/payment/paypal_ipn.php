@@ -1,6 +1,6 @@
 <?php
 /* -----------------------------------------------------------------------------------------
-   $Id$   
+   $Id: paypal_ipn.php v1.0 998 2005-08-16 14:18:20Z HHGAG $   
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

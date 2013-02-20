@@ -1,6 +1,6 @@
 <?php
 /* --------------------------------------------------------------
-   $Id$
+   $Id: stats_campaigns.php 1118 2005-07-25 21:11:34Z mz $
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

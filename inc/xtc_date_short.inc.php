@@ -1,6 +1,6 @@
 <?php
 /* -----------------------------------------------------------------------------------------
-   $Id$   
+   $Id: xtc_date_short.inc.php 44 2012-07-24 22:20:20Z deisold $   
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
@@ -31,7 +31,7 @@
     if (@date('Y', mktime($hour, $minute, $second, $month, $day, $year)) == $year) {
       return date(DATE_FORMAT, mktime($hour, $minute, $second, $month, $day, $year));
     } else {
-      return ereg_replace('{2037}' . '$', $year, date(DATE_FORMAT, mktime($hour, $minute, $second, $month, $day, 2037)));
+      return preg_match('/{2037}/' . '$', $year, date(DATE_FORMAT, mktime($hour, $minute, $second, $month, $day, 2037)));
     }
   }
  ?>

@@ -1,6 +1,6 @@
 <?php
 /* -----------------------------------------------------------------------------------------
-   $Id$   
+   $Id: freeamount.php 1288 2005-10-07 14:47:50Z gwinger $   
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

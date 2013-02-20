@@ -1,7 +1,7 @@
 <?php
 
 /* -----------------------------------------------------------------------------------------
-   $Id$   
+   $Id: iclear.php 17 2012-06-04 20:33:29Z deisold $   
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
@@ -134,7 +134,7 @@ class iclear {
 			// include needed functions
 			require_once (DIR_FS_INC.'xtc_calculate_tax.inc.php');
 			require_once (DIR_FS_INC.'xtc_address_label.inc.php');
-			require_once (DIR_WS_CLASSES.'class.phpmailer.php');
+			require_once (DIR_WS_MODULES.'/phpmailer/class.phpmailer.php');
 			require_once (DIR_FS_INC.'xtc_php_mail.inc.php');
 			require_once (DIR_FS_INC.'changedatain.inc.php');
 

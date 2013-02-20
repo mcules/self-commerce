@@ -81,7 +81,7 @@
     global $session_started;
 
     if ($session_started == true) {
-      return session_register($variable);
+      return $_SESSION[$variable];
     }
   }
 
@@ -90,7 +90,7 @@
   }
 
   function xtc_session_unregister($variable) {
-    return session_unregister($variable);
+    	unset($_SESSION[$variable]);
   }
 
   function xtc_session_id($sessid = '') {

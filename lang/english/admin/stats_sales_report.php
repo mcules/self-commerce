@@ -1,7 +1,7 @@
 <?php
 
 /* --------------------------------------------------------------
-   $Id$   
+   $Id: stats_sales_report.php 1311 2005-10-18 12:30:40Z mz $   
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

@@ -1,6 +1,6 @@
 <?php
 /* -----------------------------------------------------------------------------------------
-   $Id$   
+   $Id: xtc_db_input.inc.php 899 2005-04-29 02:40:57Z hhgag $   
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
@@ -21,9 +21,7 @@
 
   if (function_exists('mysql_real_escape_string')) {
     return mysql_real_escape_string($string, $$link);
-  } elseif (function_exists('mysql_escape_string')) {
-    return mysql_escape_string($string);
-  }
+  } 
 
   return addslashes($string);
 }

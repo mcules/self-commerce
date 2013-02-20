@@ -174,7 +174,7 @@ class ot_coupon {
 						
 						for ($i = 0; $i < sizeof($order->products); $i ++) {
 							if ($get_result['restrict_to_products']) {
-								$pr_ids = split("[,]", $get_result['restrict_to_products']);
+								$pr_ids = preg_split("/[,]/", $get_result['restrict_to_products']);
 								for ($ii = 0; $ii < count($pr_ids); $ii ++) {
 									if ($pr_ids[$ii] == xtc_get_prid($order->products[$i]['id'])) {
 										if ($get_result['coupon_type'] == 'P') {
@@ -190,10 +190,10 @@ class ot_coupon {
 									}
 								}
 							} else {
-								$cat_ids = split("[,]", $get_result['restrict_to_categories']);
+								$cat_ids = preg_split("/[,]/", $get_result['restrict_to_categories']);
 								for ($i = 0; $i < sizeof($order->products); $i ++) {
 									$my_path = xtc_get_product_path(xtc_get_prid($order->products[$i]['id']));
-									$sub_cat_ids = split("[_]", $my_path);
+									$sub_cat_ids = preg_split("/[_]/", $my_path);
 									for ($iii = 0; $iii < count($sub_cat_ids); $iii ++) {
 										for ($ii = 0; $ii < count($cat_ids); $ii ++) {
 											if ($sub_cat_ids[$iii] == $cat_ids[$ii]) {
@@ -262,7 +262,7 @@ class ot_coupon {
 						
 						
 						if ($get_result['restrict_to_products']) {
-							$pr_ids = split("[,]", $get_result['restrict_to_products']);
+							$pr_ids = preg_split("/[,]/", $get_result['restrict_to_products']);
 							for ($p = 0; $p < sizeof($pr_ids); $p ++) {
 								if ($pr_ids[$p] == $t_prid)
 									$valid_product = true;
@@ -271,9 +271,9 @@ class ot_coupon {
 						                                          
 						if ($get_result['restrict_to_categories']) {
                         // v5.13a Tanaka 2005-4-30:  New code, this correctly identifies valid products in subcategories
-                        $cat_ids = split("[,]", $get_result['restrict_to_categories']);
+                        $cat_ids = preg_split("/[,]/", $get_result['restrict_to_categories']);
                         $my_path = xtc_get_product_path($t_prid);
-                        $sub_cat_ids = split("[_]", $my_path);
+                        $sub_cat_ids = preg_split("/[_]/", $my_path);
                         for ($iii = 0; $iii < count($sub_cat_ids); $iii++) {
                             for ($ii = 0; $ii < count($cat_ids); $ii++) {
                                 if ($sub_cat_ids[$iii] == $cat_ids[$ii]) {
@@ -401,7 +401,7 @@ $order->info['tax'] -= $tod_amount;
 			$t_prid = xtc_get_prid($products[$i]['id']);
 			$gv_query = xtc_db_query("select products_price, products_tax_class_id, products_model from ".TABLE_PRODUCTS." where products_id = '".$t_prid."'");
 			$gv_result = xtc_db_fetch_array($gv_query);
-			if (ereg('^GIFT', addslashes($gv_result['products_model']))) {
+			if (preg_match('/^GIFT/', addslashes($gv_result['products_model']))) {
 				$qty = $_SESSION['cart']->get_quantity($t_prid);
 				$products_tax = $xtPrice->TAX[$gv_result['products_tax_class_id']];
 				if ($this->include_tax == 'false') {
@@ -426,7 +426,7 @@ $order->info['tax'] -= $tod_amount;
 			$get_result = xtc_db_fetch_array($coupon_get);
 			$in_cat = true;
 			if ($get_result['restrict_to_categories']) {
-				$cat_ids = split("[,]", $get_result['restrict_to_categories']);
+				$cat_ids = preg_split("/[,]/", $get_result['restrict_to_categories']);
 				$in_cat = false;
 				for ($i = 0; $i < count($cat_ids); $i ++) {
 					if (is_array($this->contents)) {
@@ -444,7 +444,7 @@ $order->info['tax'] -= $tod_amount;
 			$in_cart = true;
 			if ($get_result['restrict_to_products']) {
 
-				$pr_ids = split("[,]", $get_result['restrict_to_products']);
+				$pr_ids = preg_split("/[,]/", $get_result['restrict_to_products']);
 
 				$in_cart = false;
 				$products_array = $_SESSION['cart']->get_products();

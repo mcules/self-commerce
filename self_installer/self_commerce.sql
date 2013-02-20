@@ -1,10 +1,6 @@
 # -----------------------------------------------------------------------------------------
-#  $Id: self_commerce.sql,v 1.62 2004/06/06 18:21:16 novalis Exp $
-#
-#  XT-Commerce - community made shopping
-#  http://www.xt-commerce.com
-#
-#  Copyright (c) 2003 XT-Commerce
+#  $Id: self_commerce.sql,v 1.62 2004/06/06 18:21:16 novalis Exp $#  XT-Commerce - community made shopping
+#  http://www.xt-commerce.com#  Copyright (c) 2003 XT-Commerce
 #  -----------------------------------------------------------------------------------------
 #  Third Party Contributions:
 #  Customers status v3.x (c) 2002-2003 Elari elari@free.fr
@@ -16,11 +12,7 @@
 #  based on:
 #  (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
 #  (c) 2002-2003 osCommerce (oscommerce.sql,v 1.83); www.oscommerce.com
-#  (c) 2003  nextcommerce (nextcommerce.sql,v 1.76 2003/08/25); www.nextcommerce.org
-#
-#  Released under the GNU General Public License
-#
-#  --------------------------------------------------------------
+#  (c) 2003  nextcommerce (nextcommerce.sql,v 1.76 2003/08/25); www.nextcommerce.org#  Released under the GNU General Public License#  --------------------------------------------------------------
 # NOTE: * Please make any modifications to this file by hand!
 #       * DO NOT use a mysqldump created file for new changes!
 #       * Please take note of the table structure, and use this
@@ -2718,11 +2710,7 @@ INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '222','WYOR','West Yorkshire');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '222','WILT','Wiltshire');
 
-
-#
 # Dumping data for table payment_moneybookers_countries
-#
-
 INSERT INTO payment_moneybookers_countries VALUES (2, 'ALB');
 INSERT INTO payment_moneybookers_countries VALUES (3, 'ALG');
 INSERT INTO payment_moneybookers_countries VALUES (4, 'AME');
@@ -2921,10 +2909,7 @@ INSERT INTO payment_moneybookers_countries VALUES (236, 'YUG');
 INSERT INTO payment_moneybookers_countries VALUES (238, 'ZAM');
 INSERT INTO payment_moneybookers_countries VALUES (239, 'ZIM');
 
-#
 # Dumping data for table payment_moneybookers_currencies
-#
-
 INSERT INTO payment_moneybookers_currencies VALUES ('AUD', 'Australian Dollar');
 INSERT INTO payment_moneybookers_currencies VALUES ('BGN', 'Bulgarian Lev');
 INSERT INTO payment_moneybookers_currencies VALUES ('CAD', 'Canadian Dollar');
@@ -2953,10 +2938,7 @@ INSERT INTO payment_moneybookers_currencies VALUES ('TWD', 'New Taiwan Dollar');
 INSERT INTO payment_moneybookers_currencies VALUES ('USD', 'US Dollar');
 INSERT INTO payment_moneybookers_currencies VALUES ('ZAR', 'South-African Rand');
 
-#
 # Token Plugin
-#
-
 ALTER TABLE admin_access ADD token_admin INT(1) NOT NULL DEFAULT '0';
 INSERT INTO configuration_group (configuration_group_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (365, 'Token Admin', 'Settings about the Token configuration', 365, 1);
 INSERT INTO configuration (configuration_key, configuration_value, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('TOKEN_SERVER', '', 365, 1, NULL, NOW(), NULL, NULL);
@@ -2968,3 +2950,19 @@ INSERT INTO configuration (configuration_key, configuration_value, configuration
 INSERT INTO configuration (configuration_key, configuration_value, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('TOKEN_SECURE_ADMIN', '0', 365, 5, NULL, NOW(), NULL, 'xtc_cfg_select_option(array(1, 0), ');
 CREATE TABLE IF NOT EXISTS token_admins (username varchar(16) NOT NULL, customers_id int(11) NOT NULL) ENGINE=MyISAM;
 UPDATE admin_access SET token_admin='1' WHERE admin_access.customers_id='1';
+
+# Product Details
+CREATE TABLE IF NOT EXISTS products_details (
+  products_details_id int(11) NOT NULL AUTO_INCREMENT,
+  products_details_name varchar(32) NOT NULL DEFAULT '',
+  PRIMARY KEY (products_details_id)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+
+# Product Details Values
+CREATE TABLE IF NOT EXISTS products_details_values (
+  products_details_id int(11) NOT NULL,
+  products_id int(11) NOT NULL,
+  products_details_value varchar(75) NOT NULL,
+  language_id int(11) NOT NULL,
+  KEY products_id (products_id)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;

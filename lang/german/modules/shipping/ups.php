@@ -1,6 +1,6 @@
 <?php
 /* -----------------------------------------------------------------------------------------
-   $Id$   
+   $Id: UPS.php,v 1.1 2003/09/06 21:54:34 fanta2k Exp $   
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

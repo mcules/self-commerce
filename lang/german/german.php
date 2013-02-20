@@ -1,6 +1,6 @@
 <?php
 /* -----------------------------------------------------------------------------------------
-   $Id$
+   $Id: german.php 62 2012-10-19 19:45:49Z McUles $
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

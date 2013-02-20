@@ -1,6 +1,6 @@
 <?php
 /* -----------------------------------------------------------------------------------------
-   $Id$   
+   $Id: xtc_db_connect.inc.php 1248 2005-09-27 10:27:23Z gwinger $   
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

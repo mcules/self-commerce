@@ -1,6 +1,6 @@
 <?php
 /* -----------------------------------------------------------------------------------------
-   $Id$
+   $Id: header.php 76 2012-11-27 21:50:10Z deisold $
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

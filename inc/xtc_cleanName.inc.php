@@ -1,6 +1,6 @@
 <?php
 /* -----------------------------------------------------------------------------------------
-   $Id$
+   $Id: xtc_cleanName.inc.php 1319 2005-10-23 10:35:15Z mz $
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

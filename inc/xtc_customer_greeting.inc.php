@@ -1,6 +1,6 @@
 <?php
 /* -----------------------------------------------------------------------------------------
-   $Id$
+   $Id: xtc_customer_greeting.inc.php 1009 2005-07-11 16:19:29Z mz $
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

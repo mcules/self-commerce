@@ -148,13 +148,13 @@ class moneybookers {
 
 		$process_button_string = xtc_draw_hidden_field('pay_to_email', MODULE_PAYMENT_MONEYBOOKERS_EMAILID).xtc_draw_hidden_field('transaction_id', $this->transaction_id).xtc_draw_hidden_field('return_url', xtc_href_link(FILENAME_CHECKOUT_PROCESS, 'trid='.$this->transaction_id, 'NONSSL', false)).xtc_draw_hidden_field('cancel_url', xtc_href_link(FILENAME_CHECKOUT_PAYMENT, MODULE_PAYMENT_MONEYBOOKERS_ERRORTEXT1.$this->code.MODULE_PAYMENT_MONEYBOOKERS_ERRORTEXT2, 'SSL', true, false)).xtc_draw_hidden_field('status_url', 'mailto:'.MODULE_PAYMENT_MONEYBOOKERS_EMAILID).xtc_draw_hidden_field('language', $mbLanguage).xtc_draw_hidden_field('pay_from_email', $order->customer['email_address']).xtc_draw_hidden_field('amount', $amount).xtc_draw_hidden_field('currency', $mbCurrency).xtc_draw_hidden_field('detail1_description', STORE_NAME).xtc_draw_hidden_field('detail1_text', MODULE_PAYMENT_MONEYBOOKERS_ORDER_TEXT.strftime(DATE_FORMAT_LONG)).xtc_draw_hidden_field('firstname', $order->billing['firstname']).xtc_draw_hidden_field('lastname', $order->billing['lastname']).xtc_draw_hidden_field('address', $order->billing['street_address']).xtc_draw_hidden_field('postal_code', $order->billing['postcode']).xtc_draw_hidden_field('city', $order->billing['city']).xtc_draw_hidden_field('state', $order->billing['state']).xtc_draw_hidden_field('country', $mbCountry).xtc_draw_hidden_field('confirmation_note', MODULE_PAYMENT_MONEYBOOKERS_CONFIRMATION_TEXT);
 
-		if (ereg("[0-9]{6}", MODULE_PAYMENT_MONEYBOOKERS_REFID)) {
+		if (preg_match("/[0-9]{6}/", MODULE_PAYMENT_MONEYBOOKERS_REFID)) {
 			$process_button_string .= xtc_draw_hidden_field('rid', MODULE_PAYMENT_MONEYBOOKERS_REFID);
 		}
 
 		// moneyboocers.com payment gateway does not accept accented characters!
 		// Please feel free to add any other accented characters to the list.
-		return strtr($process_button_string, "·ÈÌÛˆı˙¸˚¡…Õ”÷’⁄‹€", "aeiooouuuAEIOOOUUU");
+		return strtr($process_button_string, "√°√©√≠√≥√∂√µ√∫√º√ª√Å√â√ç√ì√ñ√ï√ö√ú√õ", "aeiooouuuAEIOOOUUU");
 	}
 
 	// manage returning data from moneybookers (errors, failures, success etc.)
