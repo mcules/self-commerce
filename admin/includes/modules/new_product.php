@@ -113,7 +113,13 @@ if ($pInfo->products_startpage == '1')
 <script type="text/javascript">
   var dateAvailable = new ctlSpiffyCalendarBox("dateAvailable", "new_product", "products_date_available", "btnDate1", "<?php echo $pInfo->products_date_available; ?>", scBTNMODE_CUSTOMBLUE);
 </script>
-
+<script>
+  $(function() {
+    $( "#tabs" ).tabs({
+      collapsible: true
+    });
+  });
+</script>
 <tr><td>
 <?php $form_action = ($_GET['pID']) ? 'update_product' : 'insert_product'; ?>
 <?php $fsk18_array=array(array('id'=>0, 'text'=>NO), array('id'=>1, 'text'=>YES)); ?>
@@ -247,9 +253,9 @@ echo '<td><span class="main">'.xtc_draw_pull_down_menu('options_template', $file
 		</tr>
       <tr>
         <td>
-                <span class="main">
-                        <?php require DIR_FS_CATALOG.DIR_WS_CLASSES.'xtcPrice.php';
-                        $xtPrice = new xtcPrice(DEFAULT_CURRENCY, $_SESSION['customers_status']['customers_status_id']); ?>
+            <span class="main">
+                <?php require DIR_FS_CATALOG.DIR_WS_CLASSES.'xtcPrice.php';
+                $xtPrice = new xtcPrice(DEFAULT_CURRENCY, $_SESSION['customers_status']['customers_status_id']); ?>
             </span>
         </td>
       </tr>
@@ -258,11 +264,17 @@ echo '<td><span class="main">'.xtc_draw_pull_down_menu('options_template', $file
   </tr>
 </table>
   <br /><br />
-  <?php for ($i = 0, $n = sizeof($languages); $i < $n; $i++)
-	{ ?>
+  <div id="tabs">
+  <ul>
+  	<?php for ($i = 0, $n = sizeof($languages); $i < $n; $i++) { ?>
+	    <li><a href="#tabs-<?php echo $languages[$i]['id']; ?>"><?php echo xtc_image(DIR_WS_LANGUAGES . $languages[$i]['directory'] .'/'. $languages[$i]['image'], $languages[$i]['name']) . ' <b>' . $languages[$i]['name'] . '</b>'; ?></a></li>
+    <?php } ?>
+  </ul>
+  <?php for ($i = 0, $n = sizeof($languages); $i < $n; $i++) { ?>
+  <div id="tabs-<?php echo $languages[$i]['id']; ?>">
   <table width="100%" border="0">
   <tr>
-    <td bgcolor="#FFCC33" valign="top" class="main"><?php echo xtc_image(DIR_WS_LANGUAGES . $languages[$i]['directory'] .'/'. $languages[$i]['image'], $languages[$i]['name']); ?>&nbsp;<?php echo TEXT_PRODUCTS_NAME; ?><?php echo xtc_draw_input_field('products_name[' . $languages[$i]['id'] . ']', (($products_name[$languages[$i]['id']]) ? stripslashes($products_name[$languages[$i]['id']]) : xtc_get_products_name($pInfo->products_id, $languages[$i]['id'])), 'size=60'); ?></td>
+    <td class="main"><?php echo TEXT_PRODUCTS_NAME; ?><?php echo xtc_draw_input_field('products_name[' . $languages[$i]['id'] . ']', (($products_name[$languages[$i]['id']]) ? stripslashes($products_name[$languages[$i]['id']]) : xtc_get_products_name($pInfo->products_id, $languages[$i]['id'])), 'size=60'); ?></td>
   </tr>
   <tr>
     <td class="main"><?php echo TEXT_PRODUCTS_URL . '&nbsp;<small>' . TEXT_PRODUCTS_URL_WITHOUT_HTTP . '</small>'; ?><?php echo xtc_draw_input_field('products_url[' . $languages[$i]['id'] . ']', (($products_url[$languages[$i]['id']]) ? stripslashes($products_url[$languages[$i]['id']]) : xtc_get_products_url($pInfo->products_id, $languages[$i]['id'])), 'size=60'); ?></td>
@@ -334,12 +346,12 @@ echo '<td><span class="main">'.xtc_draw_pull_down_menu('options_template', $file
      </td>
     </tr>
     </table>
-
    </td>
   </tr>
 </table>
-
+</div>
 <?php } ?>
+</div>
 <table width="100%"><tr><td style="border-bottom: thin dashed Gray;">&nbsp;</td></tr></table>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
 <tr><td><span class="main" style="padding-left: 10px;"><?php echo HEADING_PRODUCT_IMAGES; ?></span></td></tr>
