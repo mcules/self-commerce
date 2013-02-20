@@ -1,24 +1,24 @@
 <?php
 /* --------------------------------------------------------------
-   $Id$   
+   $Id: modules.php 17 2012-06-04 20:33:29Z deisold $
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
 
    Copyright (c) 2003 XT-Commerce
    --------------------------------------------------------------
-   based on: 
+   based on:
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
-   (c) 2002-2003 osCommerce(modules.php,v 1.45 2003/05/28); www.oscommerce.com 
+   (c) 2002-2003 osCommerce(modules.php,v 1.45 2003/05/28); www.oscommerce.com
    (c) 2003	 nextcommerce (modules.php,v 1.23 2003/08/19); www.nextcommerce.org
 
    Released under the GNU General Public License
    --------------------------------------------------------------*/
 require ('includes/application_top.php');
-	//Eingef�gt um Fehler in CC Modul zu unterdr�cken. 
+	//Eingef�gt um Fehler in CC Modul zu unterdr�cken.
    require(DIR_FS_CATALOG.DIR_WS_CLASSES . 'xtcPrice.php');
-   $xtPrice = new xtcPrice($_SESSION['currency'],''); 
- 
+   $xtPrice = new xtcPrice($_SESSION['currency'],'');
+
   switch ($_GET['set']) {
     case 'shipping':
       $module_type = 'shipping';
@@ -197,11 +197,20 @@ XT Modules
   $heading = array();
   $contents = array();
   switch ($_GET['action']) {
+  	// Paypal Express Modul Änderungen:
+		case 'removepaypal':
+			$heading[] = array('text' => '<b>' . $mInfo->title . '</b>');
+			$contents = array ('form' => xtc_draw_form('modules', FILENAME_MODULES, 'set=' . $_GET['set'] . '&module=' . $_GET['module'] . '&action=remove'));
+			$contents[] = array ('text' => '<br />'.TEXT_INFO_DELETE_PAYPAL.'<br /><br />'.$mInfo->description);
+			$contents[] = array ('text' => '<br />'.xtc_draw_checkbox_field('paypaldelete').' '.BUTTON_MODULE_REMOVE);
+			$contents[] = array ('align' => 'center', 'text' => '<br /><input type="submit" class="button" onClick="this.blur();" value="'. BUTTON_START .'"><a class="button" onClick="this.blur();" href="'.xtc_href_link(FILENAME_MODULES, 'set=' . $_GET['set'] . '&module=' . $_GET['module']).'">' . BUTTON_CANCEL . '</a>');
+			break;
+	// Paypal Express Modul Änderungen Ende
     case 'edit':
       $keys = '';
       reset($mInfo->keys);
       while (list($key, $value) = each($mInfo->keys)) {
-	 // if($value['description']!='_DESC' && $value['title']!='_TITLE'){ 
+	 // if($value['description']!='_DESC' && $value['title']!='_TITLE'){
         $keys .= '<b>' . $value['title'] . '</b><br />' .  $value['description'].'<br />';
 	//	}
         if ($value['set_function']) {
@@ -273,7 +282,7 @@ XT Modules
           </tr>
         </table>
 <!-- end content -->
-<?php 
-require(DIR_WS_INCLUDES . 'application_bottom.php'); 
+<?php
+require(DIR_WS_INCLUDES . 'application_bottom.php');
 require(DIR_WS_INCLUDES . 'application_bottom_0.php');
 ?>

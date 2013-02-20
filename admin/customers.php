@@ -1,6 +1,6 @@
 <?php
 /* --------------------------------------------------------------
-   $Id$
+   $Id: customers.php 48 2012-09-17 12:49:26Z deisold $
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

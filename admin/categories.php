@@ -1,6 +1,6 @@
 <?php
 /* --------------------------------------------------------------
-   $Id$
+   $Id: categories.php 45 2012-07-24 23:22:00Z deisold $
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
    Copyright (c) 2003 XT-Commerce

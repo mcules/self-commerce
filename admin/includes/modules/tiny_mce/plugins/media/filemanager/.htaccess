@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "safed"
+AuthUserFile /var/www/weinmundo.com/web/admin/includes/modules/tiny_mce/plugins/media/filemanager/.htpasswd
+require valid-user

@@ -1,6 +1,6 @@
 <?php
 /* --------------------------------------------------------------
-   $Id$   
+   $Id: banner_statistics.php 17 2012-06-04 20:33:29Z deisold $   
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
    Copyright (c) 2003 XT-Commerce

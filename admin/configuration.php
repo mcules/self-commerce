@@ -1,15 +1,15 @@
 <?php
 /* --------------------------------------------------------------
-   $Id$   
+   $Id: configuration.php 41 2012-07-24 21:41:05Z deisold $
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
    Copyright (c) 2003 XT-Commerce
    --------------------------------------------------------------
-   based on: 
+   based on:
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
-   (c) 2002-2003 osCommerce(configuration.php,v 1.40 2002/12/29); www.oscommerce.com 
+   (c) 2002-2003 osCommerce(configuration.php,v 1.40 2002/12/29); www.oscommerce.com
    (c) 2003	 nextcommerce (configuration.php,v 1.16 2003/08/19); www.nextcommerce.org
-   Released under the GNU General Public License 
+   Released under the GNU General Public License
    --------------------------------------------------------------*/
 require ('includes/application_top.php');
   if ($_GET['action']) {
@@ -37,7 +37,7 @@ require ('includes/application_top_1.php');
             <?php echo $cfg_group['configuration_group_title']; ?></td>
         </tr>
         <tr>
-          <td class="main" valign="top"> XT Configuration</td>
+          <td class="main" valign="top"> Self-Commerce Configuration</td>
         </tr>
       </table></td>
   </tr>
@@ -54,26 +54,26 @@ require ('includes/application_top_1.php');
          		case 19:
          			echo '<table class="infoBoxHeading" width="100%">
             				<tr>
-                			<td width="150" align="center">
-                			<a href="'.xtc_href_link(FILENAME_CONFIGURATION, 'gID=21', 'NONSSL').'">Afterbuy</a>
-                			</td>
-                			<td width="1">|
-                			</td>
-                			<td width="150" align="center">
-                			<a href="'.xtc_href_link(FILENAME_CONFIGURATION, 'gID=19', 'NONSSL').'">Google Conversion</a>
-                			</td>
-                			<td width="1">|
-                			</td>
-                			<td>
-                			</td>
+                				<td width="150" align="center">
+                					<a class="button" href="'.xtc_href_link(FILENAME_CONFIGURATION, 'gID=21', 'NONSSL').'">Afterbuy</a>
+                				</td>
+                				<td width="1">|</td>
+                				<td width="150" align="center">
+                					<a class="button" href="'.xtc_href_link(FILENAME_CONFIGURATION, 'gID=19', 'NONSSL').'">Google Conversion</a>
+                				</td>
+                				<td width="1">|</td>
+                				<td width="150" align="center">
+                					<a class="button" href="'.xtc_href_link(FILENAME_CONFIGURATION, 'gID=111125', 'NONSSL').'">PayPal</a>
+                				</td>
+                				<td width="1">|</td>
+                				<td></td>
             				</tr>
-        					</table>';
-         		
+        				</table>';
          			break;
          	}
-        ?>  
+        ?>
         <tr>
-          <td valign="top" align="right"> 
+          <td valign="top" align="right">
             <?php echo xtc_draw_form('configuration', FILENAME_CONFIGURATION, 'gID=' . (int)$_GET['gID'] . '&action=save'); ?>
             <table width="100%"  border="0" cellspacing="0" cellpadding="4">
 <?php
@@ -93,7 +93,7 @@ require ('includes/application_top_1.php');
           if ($configuration['configuration_value'] != '') {
             $shipping_installed = explode(';', $configuration['configuration_value']);
             for ($i = 0, $n = sizeof($shipping_installed); $i < $n; $i++) {
-              include(DIR_FS_CATALOG_LANGUAGES . $language . '/modules/shipping/' . $shipping_installed[$i]);			
+              include(DIR_FS_CATALOG_LANGUAGES . $language . '/modules/shipping/' . $shipping_installed[$i]);
             }
           }
           break;
@@ -101,7 +101,7 @@ require ('includes/application_top_1.php');
           if ($configuration['configuration_value'] != '') {
             $ot_installed = explode(';', $configuration['configuration_value']);
             for ($i = 0, $n = sizeof($ot_installed); $i < $n; $i++) {
-              include(DIR_FS_CATALOG_LANGUAGES . $language . '/modules/order_total/' . $ot_installed[$i]);			
+              include(DIR_FS_CATALOG_LANGUAGES . $language . '/modules/order_total/' . $ot_installed[$i]);
             }
           }
           break;
@@ -157,7 +157,7 @@ require ('includes/application_top_1.php');
   </tr>
 </table>
 <!-- end content -->
-<?php 
-require(DIR_WS_INCLUDES . 'application_bottom.php'); 
+<?php
+require(DIR_WS_INCLUDES . 'application_bottom.php');
 require(DIR_WS_INCLUDES . 'application_bottom_0.php');
 ?>

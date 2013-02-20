@@ -2,8 +2,8 @@
 
 
 /* --------------------------------------------------------------
-   $Id$
-  
+   $Id: categories.php 25 2012-06-10 17:59:00Z deisold $
+
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
 
@@ -25,13 +25,13 @@
    Released under the GNU General Public License
    --------------------------------------------------------------*/
 
-// ----------------------------------------------------------------------------------------------------- // 
+// ----------------------------------------------------------------------------------------------------- //
 
 // holds functions for manipulating products & categories
 defined('_VALID_XTC') or die('Direct Access to this location is not allowed.');
 class categories {
 
-	// ----------------------------------------------------------------------------------------------------- //     
+	// ----------------------------------------------------------------------------------------------------- //
 
 	// deletes an array of categories, with products
 	// makes use of remove_category, remove_product
@@ -80,9 +80,9 @@ class categories {
 			$this->remove_product($key);
 		}
 
-	} // remove_categories ends 
+	} // remove_categories ends
 
-	// ----------------------------------------------------------------------------------------------------- //     
+	// ----------------------------------------------------------------------------------------------------- //
 
 	// deletes a single category, without products
 
@@ -108,13 +108,13 @@ class categories {
 			xtc_reset_cache_block('also_purchased');
 		}
 
-	} // remove_category ends   
+	} // remove_category ends
 
 	// ----------------------------------------------------------------------------------------------------- //
 
 	// inserts / updates a category from given $categories_data array
 	// Needed fields: id, sort_order, status, array(groups), products_sorting, products_sorting2, category_template,
-	// listing_template, previous_image, array[name][lang_id], array[heading_title][lang_id], array[description][lang_id], 
+	// listing_template, previous_image, array[name][lang_id], array[heading_title][lang_id], array[description][lang_id],
 	// array[meta_title][lang_id], array[meta_description][lang_id], array[meta_keywords][lang_id]
 
 	function insert_category($categories_data, $dest_category_id, $action = 'insert') {
@@ -148,13 +148,13 @@ class categories {
 					$permission[$customers_statuses_array[$i]['id']] = 1;
 			}
 		}
-		
+
 
 		$permission_array = array ();
-		
-		
+
+
 		// set pointer to last key
-		end($customers_statuses_array);		
+		end($customers_statuses_array);
 		for ($i = 0; $n = key($customers_statuses_array), $i < $n+1; $i ++) {
 			if (isset($customers_statuses_array[$i]['id'])) {
 				$permission_array = array_merge($permission_array, array ('group_permission_'.$customers_statuses_array[$i]['id'] => $permission[$customers_statuses_array[$i]['id']]));
@@ -241,11 +241,11 @@ class categories {
 		$src_category_id = xtc_db_prepare_input($src_category_id);
 		$dest_category_id = xtc_db_prepare_input($dest_category_id);
 		xtc_db_query("UPDATE ".TABLE_CATEGORIES."
-				    	                 SET parent_id     = '".xtc_db_input($dest_category_id)."', last_modified = now() 
+				    	                 SET parent_id     = '".xtc_db_input($dest_category_id)."', last_modified = now()
 				    	               WHERE categories_id = '".xtc_db_input($src_category_id)."'");
 	}
 
-	// ----------------------------------------------------------------------------------------------------- //  
+	// ----------------------------------------------------------------------------------------------------- //
 
 	// copies a category to new parent category, takes argument to link or duplicate its products
 	// arguments are "link" or "duplicate"
@@ -268,7 +268,7 @@ class categories {
 			$cdcopy_query = xtDBquery("SELECT * FROM ".TABLE_CATEGORIES_DESCRIPTION." WHERE categories_id = '".$src_category_id."'");
 
 			//copy data
-			
+
 			$sql_data_array = array ('parent_id'=>xtc_db_input($dest_category_id),
 									'date_added'=>'NOW()',
 									'last_modified'=>'NOW()',
@@ -278,16 +278,16 @@ class categories {
 									'listing_template'=>$ccopy_values['listing_template'],
 									'sort_order'=>$ccopy_values['sort_order'],
 									'products_sorting'=>$ccopy_values['products_sorting'],
-									'products_sorting2'=>$ccopy_values['products_sorting2']);	
-			
-			
+									'products_sorting2'=>$ccopy_values['products_sorting2']);
+
+
 					$customers_statuses_array = xtc_get_customers_statuses();
 
 		for ($i = 0; $n = sizeof($customers_statuses_array), $i < $n; $i ++) {
 			if (isset($customers_statuses_array[$i]['id']))
 				$sql_data_array = array_merge($sql_data_array, array ('group_permission_'.$customers_statuses_array[$i]['id'] => $product['group_permission_'.$customers_statuses_array[$i]['id']]));
 		}
-			
+
 			xtc_db_perform(TABLE_CATEGORIES, $sql_data_array);
 
 			$new_cat_id = xtc_db_insert_id();
@@ -334,7 +334,7 @@ class categories {
 		}
 	}
 
-	// ----------------------------------------------------------------------------------------------------- //  
+	// ----------------------------------------------------------------------------------------------------- //
 
 	// removes a product + images + more images + content
 
@@ -343,8 +343,8 @@ class categories {
 		// get content of product
 		$product_content_query = xtc_db_query("SELECT content_file FROM ".TABLE_PRODUCTS_CONTENT." WHERE products_id = '".xtc_db_input($product_id)."'");
 		// check if used elsewhere, delete db-entry + file if not
-		while ($product_content = xtc_db_fetch_array($product_content_query)) {   
-		   		
+		while ($product_content = xtc_db_fetch_array($product_content_query)) {
+
    		$duplicate_content_query = xtc_db_query("SELECT count(*) AS total FROM ".TABLE_PRODUCTS_CONTENT." WHERE content_file = '".xtc_db_input($product_content['content_file'])."' AND products_id != '".xtc_db_input($product_id)."'");
 
    		$duplicate_content = xtc_db_fetch_array($duplicate_content_query);
@@ -352,12 +352,12 @@ class categories {
    		if ($duplicate_content['total'] == 0) {
    			@unlink(DIR_FS_DOCUMENT_ROOT.'media/products/'.$product_content['content_file']);
    		}
-         
-   		//delete DB-Entry   		
+
+   		//delete DB-Entry
    		xtc_db_query("DELETE FROM ".TABLE_PRODUCTS_CONTENT." WHERE products_id = '".xtc_db_input($product_id)."' AND (content_file = '".$product_content['content_file']."' OR content_file = '')");
-   		
+
 		}
-	   
+
 		$product_image_query = xtc_db_query("SELECT products_image FROM ".TABLE_PRODUCTS." WHERE products_id = '".xtc_db_input($product_id)."'");
 		$product_image = xtc_db_fetch_array($product_image_query);
 
@@ -379,7 +379,7 @@ class categories {
 		}
 
 
-		
+
 		xtc_db_query("DELETE FROM ".TABLE_SPECIALS." WHERE products_id = '".xtc_db_input($product_id)."'");
 		xtc_db_query("DELETE FROM ".TABLE_PRODUCTS." WHERE products_id = '".xtc_db_input($product_id)."'");
 		xtc_db_query("DELETE FROM ".TABLE_PRODUCTS_IMAGES." WHERE products_id = '".xtc_db_input($product_id)."'");
@@ -409,7 +409,7 @@ class categories {
 
 	} // remove_product ends
 
-	// ----------------------------------------------------------------------------------------------------- //  
+	// ----------------------------------------------------------------------------------------------------- //
 
 	// deletes given product from categories, removes it completely if no category is left
 
@@ -424,7 +424,7 @@ class categories {
 			$this->set_product_startpage($product_id, 0);
 										  }
 										}
- 
+
 		$product_categories_query = xtc_db_query("SELECT COUNT(*) AS total
 								                                            FROM ".TABLE_PRODUCTS_TO_CATEGORIES."
 								                                           WHERE products_id = '".xtc_db_input($product_id)."'");
@@ -437,12 +437,11 @@ class categories {
 
 	} // delete_product ends
 
-	// ----------------------------------------------------------------------------------------------------- //				   
+	// ----------------------------------------------------------------------------------------------------- //
 
 	// inserts / updates a product from given data
 
 	function insert_product($products_data, $dest_category_id, $action = 'insert') {
-
 		$products_id = xtc_db_prepare_input($products_data['products_id']);
 		$products_date_available = xtc_db_prepare_input($products_data['products_date_available']);
 		$products_date_available = (date('Y-m-d') < $products_date_available) ? $products_date_available : 'null';
@@ -486,13 +485,13 @@ class categories {
 					$permission[$customers_statuses_array[$i]['id']] = 1;
 			}
 		}
-		
+
 
 		$permission_array = array ();
-		
-		
+
+
 		// set pointer to last key
-		end($customers_statuses_array);		
+		end($customers_statuses_array);
 		for ($i = 0; $n = key($customers_statuses_array), $i < $n+1; $i ++) {
 			if (isset($customers_statuses_array[$i]['id'])) {
 				$permission_array = array_merge($permission_array, array ('group_permission_'.$customers_statuses_array[$i]['id'] => $permission[$customers_statuses_array[$i]['id']]));
@@ -651,7 +650,7 @@ class categories {
 // ### MOD admin_specials - Modules
 		require_once("includes/modules/categories_specials.php");
 		saveSpecialsData($products_id);
-		
+
 		$languages = xtc_get_languages();
 		// Here we go, lets write Group prices into db
 		// start
@@ -749,9 +748,30 @@ class categories {
 				xtc_db_perform(TABLE_PRODUCTS_DESCRIPTION, $sql_data_array, 'update', 'products_id = \''.xtc_db_input($products_id).'\' and language_id = \''.$language_id.'\'');
 			}
 		}
+		foreach($products_data['products_details_id'] as $Key => $Products_Details) {
+			$Key_Temp = explode('.', $Key);
+
+			$Temp_Sql = "SELECT * FROM ".TABLE_PRODUCTS_DETAILS_VALUES."
+						WHERE products_details_id=".xtc_db_prepare_input($Key_Temp[0])."
+							AND language_id=".xtc_db_prepare_input($Key_Temp[1])."
+							AND products_id=".xtc_db_prepare_input($products_id).";";
+			$Temp_Item = xtc_db_num_rows(mysql_query($Temp_Sql));
+			if($Temp_Item > 0) {
+				$Product_Details_Sql = "UPDATE ".TABLE_PRODUCTS_DETAILS_VALUES."
+										SET products_details_value='".$products_data['products_details_id'][$Key]."'
+										WHERE products_details_id=".xtc_db_prepare_input($Key_Temp[0])."
+											AND language_id=".xtc_db_prepare_input($Key_Temp[1])."
+											AND products_id=".xtc_db_prepare_input($products_id).";";
+			}
+			else {
+				$Product_Details_Sql = "INSERT INTO ".TABLE_PRODUCTS_DETAILS_VALUES."
+										SET products_details_value='".$products_data['products_details_id'][$Key]."', products_details_id=".xtc_db_prepare_input($Key_Temp[0]).", language_id=".xtc_db_prepare_input($Key_Temp[1]).", products_id=".xtc_db_prepare_input($products_id).";";
+			}
+			xtc_db_query($Product_Details_Sql);
+		}
 	} // insert_product ends
 
-	// ----------------------------------------------------------------------------------------------------- //   
+	// ----------------------------------------------------------------------------------------------------- //
 
 	// duplicates a product by id into specified category by id
 
@@ -763,7 +783,7 @@ class categories {
 
 		$product = xtc_db_fetch_array($product_query);
 		if ($dest_categories_id == 0) { $startpage = 1; $products_status = 1; } else { $startpage= 0; $products_status = $product['products_status'];}
-		
+
 		$sql_data_array=array('products_quantity'=>$product['products_quantity'],
 						'products_model'=>$product['products_model'],
 						'products_ean'=>$product['products_ean'],
@@ -782,8 +802,8 @@ class categories {
 						'product_template'=>$product['product_template'],
 						'options_template'=>$product['options_template'],
 						'products_fsk18'=>$product['products_fsk18'],
-						);		
-						
+						);
+
 		$customers_statuses_array = xtc_get_customers_statuses();
 
 		for ($i = 0; $n = sizeof($customers_statuses_array), $i < $n; $i ++) {
@@ -791,12 +811,12 @@ class categories {
 				$sql_data_array = array_merge($sql_data_array, array ('group_permission_'.$customers_statuses_array[$i]['id'] => $product['group_permission_'.$customers_statuses_array[$i]['id']]));
 
 		}
-		
+
 		xtc_db_perform(TABLE_PRODUCTS, $sql_data_array);
 
 		//get duplicate id
 		$dup_products_id = xtc_db_insert_id();
-		
+
 		//duplicate image if there is one
 		if ($product['products_image'] != '') {
 
@@ -824,16 +844,16 @@ class categories {
 		$old_products_id = xtc_db_input($src_products_id);
 		while ($description = xtc_db_fetch_array($description_query)) {
 			xtc_db_query("INSERT INTO ".TABLE_PRODUCTS_DESCRIPTION."
-						    		                 SET products_id                = '".$dup_products_id."',                                      
-						    		                     language_id                = '".$description['language_id']."',                           
-						    		                     products_name              = '".addslashes($description['products_name'])."',             
-						    		                     products_description       = '".addslashes($description['products_description'])."',      
+						    		                 SET products_id                = '".$dup_products_id."',
+						    		                     language_id                = '".$description['language_id']."',
+						    		                     products_name              = '".addslashes($description['products_name'])."',
+						    		                     products_description       = '".addslashes($description['products_description'])."',
 						    		                     products_keywords          = '".addslashes($description['products_keywords'])."',
 						    		                     products_short_description = '".addslashes($description['products_short_description'])."',
-						    		                     products_meta_title        = '".addslashes($description['products_meta_title'])."',       
-						    		                     products_meta_description  = '".addslashes($description['products_meta_description'])."', 
-						    		                     products_meta_keywords     = '".addslashes($description['products_meta_keywords'])."',    
-						    		                     products_url               = '".$description['products_url']."',                          
+						    		                     products_meta_title        = '".addslashes($description['products_meta_title'])."',
+						    		                     products_meta_description  = '".addslashes($description['products_meta_description'])."',
+						    		                     products_meta_keywords     = '".addslashes($description['products_meta_keywords'])."',
+						    		                     products_url               = '".$description['products_url']."',
 						    		                     products_viewed            = '0'");
 		}
 
@@ -899,7 +919,7 @@ class categories {
 		}
 	} //duplicate_product ends
 
-	// ----------------------------------------------------------------------------------------------------- //   
+	// ----------------------------------------------------------------------------------------------------- //
 
 	// links a product into specified category by id
 
@@ -915,7 +935,7 @@ class categories {
 			xtc_db_query("INSERT INTO ".TABLE_PRODUCTS_TO_CATEGORIES."
 						                          SET products_id   = '".xtc_db_input($src_products_id)."',
 						                          categories_id = '".xtc_db_input($dest_categories_id)."'");
-						                   
+
 	    if ($dest_categories_id == 0) {
 			$this->set_product_status($src_products_id, $products_status);
 			$this->set_product_startpage($src_products_id, 1);
@@ -941,20 +961,20 @@ class categories {
 						    		                 SET categories_id = '".xtc_db_input($dest_category_id)."'
 						    		                 WHERE products_id   = '".xtc_db_input($src_products_id)."'
 						    		                 AND categories_id = '".$src_category_id."'");
-						    		           
-		if ($dest_category_id == 0) {			
+
+		if ($dest_category_id == 0) {
 			$this->set_product_status($src_products_id, 1);
 			$this->set_product_startpage($src_products_id, 1);
-	    							   } 
+	    							   }
 
 		if ($src_category_id == 0) {
 			 $this->set_product_status($src_products_id, $products_status);
 			 $this->set_product_startpage($src_products_id, 0);
-	    							   }				    		                 
+	    							   }
 		}
 	}
 
-	// ----------------------------------------------------------------------------------------------------- // 
+	// ----------------------------------------------------------------------------------------------------- //
 
 	// Sets the status of a product
 	function set_product_status($products_id, $status) {
@@ -967,8 +987,8 @@ class categories {
 			return -1;
 		}
 	}
-	
-	// ----------------------------------------------------------------------------------------------------- // 
+
+	// ----------------------------------------------------------------------------------------------------- //
 
 	// Sets a product active on startpage
 	function set_product_startpage($products_id, $status) {
@@ -982,7 +1002,7 @@ class categories {
 		}
 	}
 
-	// ----------------------------------------------------------------------------------------------------- //  
+	// ----------------------------------------------------------------------------------------------------- //
 
 	// Counts how many products exist in a category
 	function count_category_products($category_id, $include_deactivated = false) {
@@ -1006,7 +1026,7 @@ class categories {
 		return $products_count;
 	}
 
-	// ----------------------------------------------------------------------------------------------------- //  
+	// ----------------------------------------------------------------------------------------------------- //
 
 	// Counts how many subcategories exist in a category
 	function count_category_childs($category_id) {
@@ -1018,17 +1038,17 @@ class categories {
 		}
 		return $categories_count;
 	}
-	
-	
+
+
 	function edit_cross_sell($cross_data) {
-		
+
 		if ($cross_data['special'] == 'add_entries') {
 
 				if (isset ($cross_data['ids'])) {
 					foreach ($cross_data['ids'] AS $pID) {
 
 						$sql_data_array = array ('products_id' => $cross_data['current_product_id'], 'xsell_id' => $pID,'products_xsell_grp_name_id'=>$cross_data['group_name'][$pID]);
-						
+
 						// check if product is already linked
 						$check_query = xtc_db_query("SELECT * FROM ".TABLE_PRODUCTS_XSELL." WHERE products_id='".$cross_data['current_product_id']."' and xsell_id='".$pID."'");
 						if (!xtc_db_num_rows($check_query)) xtc_db_perform(TABLE_PRODUCTS_XSELL, $sql_data_array);
@@ -1051,11 +1071,11 @@ class categories {
 					}
 				}
 			}
-	 
-		
+
+
 	}
 
-	// ----------------------------------------------------------------------------------------------------- //  
+	// ----------------------------------------------------------------------------------------------------- //
 
 } // class categories ENDS
 ?>

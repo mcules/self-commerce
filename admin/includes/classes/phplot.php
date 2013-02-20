@@ -1,6 +1,6 @@
 <?php
 /* --------------------------------------------------------------
-   $Id$   
+   $Id: phplot.php 44 2012-07-24 22:20:20Z deisold $   
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

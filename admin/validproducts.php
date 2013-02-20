@@ -1,6 +1,6 @@
 <?php
    /* -----------------------------------------------------------------------------------------
-   $Id$
+   $Id: validproducts.php 55 2012-09-23 01:07:49Z deisold $
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

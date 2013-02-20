@@ -1,6 +1,6 @@
 <?php
 /* --------------------------------------------------------------
-   $Id$
+   $Id: column_left.php 58 2012-10-07 23:01:41Z deisold $
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
@@ -71,6 +71,7 @@
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['whos_online'] == '1'))		$box_tools .= '<a href="' . xtc_href_link(FILENAME_WHOS_ONLINE) . '" class="menuBoxContentLink"> -' . BOX_WHOS_ONLINE . '</a><br />';
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['csv_backend'] == '1'))		$box_tools .= '<a href="' . xtc_href_link('csv_backend.php') . '" class="menuBoxContentLink"> -' . BOX_IMPORT . '</a><br />';
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['file_chk'] == '1'))			$box_tools .= '<a href="' . xtc_href_link(FILENAME_FILE_CHK) . '" class="menuBoxContentLink"> -' . BOX_FILE_CHK . '</a><br />';
+  if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['paypal'] == '1'))			$box_tools .= '<a href="' . xtc_href_link('paypal.php') . '" class="menuBoxContentLink"> -' . BOX_PAYPAL . '</a><br>';
   if(!empty($box_tools))
   	echo '<div class="dhtmlgoodies_panel">
 		<div>'.$box_tools.'</div>
@@ -123,6 +124,9 @@
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['products_vpe'] == '1')) $box_configuration .= '<a href="' . xtc_href_link(FILENAME_PRODUCTS_VPE, '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_PRODUCTS_VPE . '</a><br />';
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['campaigns'] == '1')) $box_configuration .= '<a href="' . xtc_href_link(FILENAME_CAMPAIGNS, '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_CAMPAIGNS . '</a><br />';
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['cross_sell_groups'] == '1')) $box_configuration .= '<a href="' . xtc_href_link(FILENAME_XSELL_GROUPS, '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_ORDERS_XSELL_GROUP . '</a><br />';
+  // PDFBill NEXT Start
+  if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['configuration'] == '1')) $box_configuration .= '<a href="' . xtc_href_link(FILENAME_CONFIGURATION, 'gID=99', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_CONFIGURATION_99 . '</a><br />';
+  // PDFBill NEXT End
   if(!empty($box_configuration))
   	echo '<div class="dhtmlgoodies_panel">
 		<div>'.$box_configuration.'</div>
@@ -136,6 +140,9 @@
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['admin_sql'] == '1')) $box_extra_modules .= '<a href="' . xtc_href_link(FILENAME_ADMIN_SQL, '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_ADMIN_SQL . '</a><br />';
   if(!empty($box_extra_modules)) $box_extra_modules .= '<hr>';
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['stock_list'] == '1')) $box_extra_modules .= '<a href="' . xtc_href_link(FILENAME_STOCK_LIST, '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_STOCK_LIST . '</a><br />';
+  /* Haendlerbund AGB- Schnittstelle Beginn */
+  if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['haendlerbund'] == '1')) $box_extra_modules .=  '<a href="' . xtc_href_link("haendlerbund.php", '') . '" class="menuBoxContentLink"> -' . 'AGB Service' . '</a>';
+  /* Haendlerbund AGB- Schnittstelle Ende */
   if(!empty($box_extra_modules))
   	echo '<div class="dhtmlgoodies_panel">
 		<div>'.$box_extra_modules.'</div>

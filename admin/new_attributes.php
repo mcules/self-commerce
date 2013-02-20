@@ -1,6 +1,6 @@
 <?php
 /* --------------------------------------------------------------
-   $Id$   
+   $Id: new_attributes.php 23 2012-06-10 16:26:52Z deisold $   
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com

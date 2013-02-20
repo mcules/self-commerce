@@ -1,6 +1,6 @@
 <?php
 /* --------------------------------------------------------------
-  $Id$
+  $Id: blacklist.php 17 2012-06-04 20:33:29Z deisold $
 
   XTC-CC - Contribution for XT-Commerce http://www.xt-commerce.com
   modified by http://www.netz-designer.de

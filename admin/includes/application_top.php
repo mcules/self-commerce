@@ -1,6 +1,6 @@
 <?php
 /* --------------------------------------------------------------
-$Id$
+$Id: application_top.php 70 2012-11-12 22:16:12Z deisold $
 
 XT-Commerce - community made shopping
 http://www.xt-commerce.com
@@ -139,9 +139,20 @@ define('FILENAME_BLACKLIST', 'blacklist.php');
 define('FILENAME_PRODUCTS_VPE', 'products_vpe.php');
 define('FILENAME_CAMPAIGNS_REPORT', 'stats_campaigns.php');
 define('FILENAME_XSELL_GROUPS', 'cross_sell_groups.php');
+
+// PDFBill NEXT Start
+define('FILENAME_PDF_BILL_NR','bill_nr.php');
+define('FILENAME_PRINT_ORDER_PDF','print_order_pdf.php');
+define('FILENAME_PRINT_PACKINGSLIP_PDF','print_packingslip_pdf.php');
+// PDFBill NEXT End
+
 define('FILENAME_ADMIN_SQL', 'admin_sql.php');
 define('FILENAME_STOCK_LIST', 'stock_list.php');
 define('FILENAME_TOKEN_ADMIN', 'token_admin.php');
+
+// Paypal Express Modul Änderungen:
+define('FILENAME_PAYPAL','paypal.php');
+define('FILENAME_PAYPAL_CHECKOUT', 'paypal_checkout.php');
 
 // define the database table names used in the project
 define('TABLE_ADDRESS_BOOK', 'address_book');
@@ -222,6 +233,12 @@ define('TABLE_SHIPPING_STATUS', 'shipping_status');
 define('TABLE_BLACKLIST', 'card_blacklist');
 define('TABLE_CAMPAIGNS_IP', 'campaigns_ip');
 define('TABLE_TOKEN_USER', 'token_admins');
+define('TABLE_PRODUCTS_DETAILS', 'products_details');
+define('TABLE_PRODUCTS_DETAILS_VALUES', 'products_details_values');
+
+// Paypal Express Modul Änderungen:
+define('TABLE_PAYPAL', 'paypal');
+define('TABLE_PAYPAL_STATUS_HISTORY', 'paypal_status_history');
 
 // include needed functions
 require_once (DIR_FS_INC . 'xtc_db_connect.inc.php');
@@ -266,6 +283,9 @@ while ($configuration = xtc_db_fetch_array($configuration_query)) {
 }
 define('FILENAME_IMAGEMANIPULATOR', IMAGE_MANIPULATOR);
 
+// Paypal Express Modul Änderungen - Cache im Admin AUS!
+define("DB_CACHE", "false");
+
 function xtDBquery($query) {
    if (DB_CACHE == 'true') {
       $result = xtc_db_queryCached($query);
@@ -308,7 +328,7 @@ if (isset($_POST[session_name() ])) {
 $session_started = false;
 if (SESSION_FORCE_COOKIE_USE == 'True') {
    xtc_setcookie('cookie_test', 'please_accept_for_session', time() +60*60*24*30, '/', $current_domain);
-   if (isset($HTTP_COOKIE_VARS['cookie_test'])) {
+   if (isset($_COOKIE['cookie_test'])) {
       session_start();
       $session_started = true;
    }

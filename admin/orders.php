@@ -1,6 +1,6 @@
 <?php
 /* --------------------------------------------------------------
-   $Id$
+   $Id: orders.php 46 2012-07-30 12:06:11Z deisold $
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
@@ -32,6 +32,15 @@ require_once (DIR_FS_INC.'xtc_add_tax.inc.php');
 require_once (DIR_FS_INC.'changedataout.inc.php');
 require_once (DIR_FS_INC.'xtc_validate_vatid_status.inc.php');
 require_once (DIR_FS_INC.'xtc_get_attributes_model.inc.php');
+/**
+ * PDFBill NEXT Start includes
+ * Start
+ */
+require_once (DIR_FS_INC.'xtc_get_bill_nr.inc.php');
+/**
+ * PDFBill NEXT Start includes
+ * End
+ */
 
 // initiate template engine for mail
 $smarty = new Smarty;
@@ -192,7 +201,7 @@ switch ($_GET['action']) {
 	case 'send' :
 		$send_to_customer = 0;
 		$send_to_admin = 0;
-		
+
 		if (isset($_GET['stc']))
 			$send_to_customer = $_GET['stc'];
 		if (isset($_GET['sta']))
@@ -206,14 +215,14 @@ switch ($_GET['action']) {
 		$smarty->template_dir = DIR_FS_CATALOG.'templates';
 		$smarty->compile_dir = DIR_FS_CATALOG.'templates_c';
 		$smarty->config_dir = DIR_FS_CATALOG.'lang';
-		
+
 		$smarty->assign('address_label_customer', xtc_address_format($order->customer['format_id'], $order->customer, 1, '', '<br />'));
 		$smarty->assign('address_label_shipping', xtc_address_format($order->delivery['format_id'], $order->delivery, 1, '', '<br />'));
 		if ($_SESSION['credit_covers'] != '1') {
 			$smarty->assign('address_label_payment', xtc_address_format($order->billing['format_id'], $order->billing, 1, '', '<br />'));
 		}
 		$smarty->assign('csID', $order->customer['csID']);
-	
+
 		// get products data
 		$order_query = xtc_db_query("SELECT
 								products_id,
@@ -224,7 +233,7 @@ switch ($_GET['action']) {
 								products_quantity
 								FROM ".TABLE_ORDERS_PRODUCTS."
 								WHERE orders_id='".$oID."'");
-	
+
 		$order_data = array ();
 		while ($order_data_values = xtc_db_fetch_array($order_query)) {
 			$attributes_query = xtc_db_query("SELECT
@@ -236,11 +245,11 @@ switch ($_GET['action']) {
 									WHERE orders_products_id='".$order_data_values['orders_products_id']."'");
 			$attributes_data = '';
 			$attributes_model = '';
-			while ($attributes_data_values = xtc_db_fetch_array($attributes_query)) {	
+			while ($attributes_data_values = xtc_db_fetch_array($attributes_query)) {
 				$attributes_data .= $attributes_data_values['products_options'].':'.$attributes_data_values['products_options_values'].'<br />';
 				$attributes_model .= xtc_get_attributes_model($order_data_values['products_id'], $attributes_data_values['products_options_values']).'<br />';
 			}
-			$order_data[] = array ('PRODUCTS_MODEL' => $order_data_values['products_model'], 'PRODUCTS_NAME' => $order_data_values['products_name'], 'PRODUCTS_ATTRIBUTES' => $attributes_data, 'PRODUCTS_ATTRIBUTES_MODEL' => $attributes_model, 'PRODUCTS_PRICE' => $xtPrice->xtcFormat($order_data_values['final_price'], true),'PRODUCTS_SINGLE_PRICE' => $xtPrice->xtcFormat($order_data_values['final_price']/$order_data_values['products_quantity'], true), 'PRODUCTS_QTY' => $order_data_values['products_quantity']);		
+			$order_data[] = array ('PRODUCTS_MODEL' => $order_data_values['products_model'], 'PRODUCTS_NAME' => $order_data_values['products_name'], 'PRODUCTS_ATTRIBUTES' => $attributes_data, 'PRODUCTS_ATTRIBUTES_MODEL' => $attributes_model, 'PRODUCTS_PRICE' => $xtPrice->xtcFormat($order_data_values['final_price'], true),'PRODUCTS_SINGLE_PRICE' => $xtPrice->xtcFormat($order_data_values['final_price']/$order_data_values['products_quantity'], true), 'PRODUCTS_QTY' => $order_data_values['products_quantity']);
 		}
 		// get order_total data
 		$oder_total_query = xtc_db_query("SELECT
@@ -250,13 +259,13 @@ switch ($_GET['action']) {
 							FROM ".TABLE_ORDERS_TOTAL."
 							WHERE orders_id='".$oID."'
 							ORDER BY sort_order ASC");
-	
+
 		$order_total = array ();
 		while ($oder_total_values = xtc_db_fetch_array($oder_total_query)) {
-	
+
 			$order_total[] = array ('TITLE' => $oder_total_values['title'], 'TEXT' => $oder_total_values['text']);
 		}
-	
+
 		// assign language to template for caching
 		$smarty->assign('language', $_SESSION['language']);
 		$smarty->assign('tpl_path', 'templates/'.CURRENT_TEMPLATE.'/');
@@ -274,23 +283,23 @@ switch ($_GET['action']) {
 		$smarty->assign('COMMENTS', $order->info['comments']);
 		$smarty->assign('EMAIL', $order->customer['email_address']);
 		$smarty->assign('PHONE',$order->customer['telephone']);
-	
+
 		// PAYMENT MODUL TEXTS
 		// EU Bank Transfer
 		if ($order->info['payment_method'] == 'eustandardtransfer') {
 			$smarty->assign('PAYMENT_INFO_HTML', MODULE_PAYMENT_EUTRANSFER_TEXT_DESCRIPTION);
 			$smarty->assign('PAYMENT_INFO_TXT', str_replace("<br />", "\n", MODULE_PAYMENT_EUTRANSFER_TEXT_DESCRIPTION));
 		}
-	
+
 		// MONEYORDER
 		if ($order->info['payment_method'] == 'moneyorder') {
 			$smarty->assign('PAYMENT_INFO_HTML', MODULE_PAYMENT_MONEYORDER_TEXT_DESCRIPTION);
 			$smarty->assign('PAYMENT_INFO_TXT', str_replace("<br />", "\n", MODULE_PAYMENT_MONEYORDER_TEXT_DESCRIPTION));
 		}
-	
+
 		// dont allow cache
 		$smarty->caching = false;
-	
+
 		$html_mail = $smarty->fetch(CURRENT_TEMPLATE.'/mail/'.$_SESSION['language'].'/order_mail.html');
 		$txt_mail = $smarty->fetch(CURRENT_TEMPLATE.'/mail/'.$_SESSION['language'].'/order_mail.txt');
 
@@ -299,7 +308,7 @@ switch ($_GET['action']) {
 		$order_subject = str_replace('{$date}', strftime(DATE_FORMAT_LONG), $order_subject);
 		$order_subject = str_replace('{$lastname}', $order->customer['lastname'], $order_subject);
 		$order_subject = str_replace('{$firstname}', $order->customer['firstname'], $order_subject);
-	
+
 		// send mail to admin
 		if ($send_to_admin==1)
             xtc_php_mail(EMAIL_BILLING_ADDRESS, $order->customer['firstname'], EMAIL_BILLING_ADDRESS, STORE_NAME, EMAIL_BILLING_FORWARDING_STRING, $order->customer['email_address'], $order->customer['firstname'], '', '', $order_subject, $html_mail, $txt_mail);
@@ -309,28 +318,59 @@ switch ($_GET['action']) {
   } else {
   $attachment1 = '';
   }
-  
+
   if (ATTACH_ORDER_2 != '') {
   $attachment2 = '../attachments/'.ATTACH_ORDER_2 ;
   } else {
   $attachment2 = '';
   }
-	
+
 		// send mail to customer
 		if ($send_to_customer==1)
 			xtc_php_mail(EMAIL_BILLING_ADDRESS, EMAIL_BILLING_NAME, $order->customer['email_address'], $order->customer['firstname'].' '.$order->customer['lastname'], '', EMAIL_BILLING_REPLY_ADDRESS, EMAIL_BILLING_REPLY_ADDRESS_NAME, $attachment1, $attachment2, $order_subject, $html_mail, $txt_mail);
-	
+
 		if (AFTERBUY_ACTIVATED == 'true') {
 			require_once (DIR_WS_CLASSES.'afterbuy.php');
 			$aBUY = new xtc_afterbuy_functions($oID);
 			if ($aBUY->order_send())
+			{
 				$aBUY->process_order();
+			}
 		}
 		$messageStack->add_session(SUCCESS_ORDER_SEND, 'success');
-		
+
 		xtc_redirect(xtc_href_link(FILENAME_ORDERS, 'oID='.$_GET['oID']));
-//TECHWAY ENDE ############################################################################		
+//TECHWAY ENDE ############################################################################
 	case 'update_order' :
+		/**
+		 * PDFBill NEXT change
+		 * Start
+	     */
+	    // send order with current special order status id
+	    $sendBill = (is_numeric(PDF_STATUS_SEND_ID))? PDF_STATUS_SEND_ID : 1;
+	    if (PDF_STATUS_SEND == 'true' && isset($_POST['status']) && $sendBill == $_POST['status']) {
+	        if (!defined('FPDF_FONTPATH')) {
+	            define('FPDF_FONTPATH', DIR_FS_CATALOG . DIR_WS_CLASSES . 'FPDF/font/');
+	        }
+	        require_once(DIR_FS_CATALOG . DIR_WS_CLASSES . 'class.phpmailer.php');
+	        require_once(DIR_FS_CATALOG . DIR_WS_CLASSES . 'FPDF/PdfRechnung.php');
+
+	        // include needed functions
+	        require_once(DIR_FS_INC . 'xtc_get_order_data.inc.php');
+	        require_once(DIR_FS_INC . 'xtc_get_attributes_model.inc.php');
+	        require_once(DIR_FS_INC . 'xtc_not_null.inc.php');
+	        require_once(DIR_FS_INC . 'xtc_format_price_order.inc.php');
+	        require_once(DIR_FS_INC . 'xtc_utf8_decode.inc.php');
+	        require_once(DIR_FS_INC . 'xtc_pdf_bill.inc.php');
+
+
+	        // generate bill and send to customer
+	        xtc_pdf_bill(xtc_db_prepare_input($_GET['oID']), true);
+	    }
+	    /**
+		 * PDFBill NEXT change
+		 * End
+	     */
 		$oID = xtc_db_prepare_input($_GET['oID']);
 		$status = xtc_db_prepare_input($_POST['status']);
 		$comments = xtc_db_prepare_input($_POST['comments']);
@@ -339,6 +379,48 @@ switch ($_GET['action']) {
 		$check_status_query = xtc_db_query("select customers_name, customers_email_address, orders_status, date_purchased from ".TABLE_ORDERS." where orders_id = '".xtc_db_input($oID)."'");
 		$check_status = xtc_db_fetch_array($check_status_query);
 		if ($check_status['orders_status'] != $status || $comments != '') {
+			if ($status == MODULE_PAYMENT_RMAMAZON_ORDER_STATUS_STORNO ||
+            $status == MODULE_PAYMENT_RMAMAZON_ORDER_STATUS_SHIPPED) {
+
+                $cba_query = xtc_db_query("SELECT * FROM ". TABLE_ORDERS ." WHERE orders_id = '". xtc_db_input($oID) ."' LIMIT 1");
+                $cba_result = xtc_db_fetch_array($cba_query);
+                if ($cba_result['amazon_order_id'] != '') {
+                    chdir("../CheckoutByAmazon");
+
+                    include_once ('.config.inc.php');
+
+                    switch ($status) {
+                        case MODULE_PAYMENT_RMAMAZON_ORDER_STATUS_STORNO:
+                            $feeds = new MarketplaceWebService_MWSFeedsClient();
+                            $MWSProperties = new MarketplaceWebService_MWSProperties();
+                            $envelope = new SimpleXMLElement("<AmazonEnvelope></AmazonEnvelope>");
+                            $envelope->Header->DocumentVersion = $MWSProperties->getDocumentVersion();
+                            $envelope->Header->MerchantIdentifier = $MWSProperties->getMerchantToken();
+                            $envelope->MessageType = "OrderAcknowledgement";
+                            $envelope->Message ->MessageID = 1;
+                            $envelope->Message ->OrderAcknowledgement->AmazonOrderID = $cba_result['amazon_order_id'];
+                            $envelope->Message ->OrderAcknowledgement->MerchantOrderID = $oID;
+                            $envelope->Message ->OrderAcknowledgement->StatusCode = "Failure";
+                            $feedSubmissionId = $feeds->cancelOrder($envelope, DIR_FS_CATALOG . 'cache');
+                            break;
+
+                        case MODULE_PAYMENT_RMAMAZON_ORDER_STATUS_SHIPPED:
+                            $feeds = new MarketplaceWebService_MWSFeedsClient();
+                            $MWSProperties = new MarketplaceWebService_MWSProperties();
+                            $envelope = new SimpleXMLElement("<AmazonEnvelope></AmazonEnvelope>");
+                            $envelope->Header->DocumentVersion = $MWSProperties->getDocumentVersion();
+                            $envelope->Header->MerchantIdentifier = $MWSProperties->getMerchantToken();
+                            $envelope->MessageType = "OrderFulfillment";
+                            $envelope->Message ->MessageID = 1;
+                            $envelope->Message ->OrderFulfillment->AmazonOrderID = $cba_result['amazon_order_id'];
+                            $envelope->Message ->OrderFulfillment->FulfillmentDate = gmdate("Y-m-d\TH:i:s.\\0\\0\\0\\Z", time()-160);
+                            $feedSubmissionId = $feeds->confirmShipment($envelope, DIR_FS_CATALOG . 'cache');
+                            break;
+
+                    }
+                    chdir("../admin");
+                }
+            }
 			xtc_db_query("update ".TABLE_ORDERS." set orders_status = '".xtc_db_input($status)."', last_modified = now() where orders_id = '".xtc_db_input($oID)."'");
 
 			$customer_notified = '0';
@@ -378,7 +460,7 @@ switch ($_GET['action']) {
   } else {
   $attachment1 = '';
   }
-  
+
   if (ATTACH_ORDER_STATUS_2 != '') {
   $attachment2 = '../attachments/'.ATTACH_ORDER_STATUS_2 ;
   } else {
@@ -407,6 +489,15 @@ switch ($_GET['action']) {
 
 		xtc_remove_order($oID);
 
+		// Paypal Express Modul Änderungen:
+		if($_POST['paypaldelete']) {
+			$query = xtc_db_query("SELECT * FROM " . TABLE_PAYPAL . " WHERE xtc_order_id = '" . $oID . "'");
+			while ($values = xtc_db_fetch_array($query)) {
+				xtc_db_query("delete from " . TABLE_PAYPAL_STATUS_HISTORY . " WHERE paypal_ipn_id = '" . $values['paypal_ipn_id'] . "'");
+			}
+			xtc_db_query("delete from " . TABLE_PAYPAL . " WHERE xtc_order_id = '" . $oID . "'");
+		}
+		// Paypal Express Modul Änderungen Ende
 		xtc_redirect(xtc_href_link(FILENAME_ORDERS, xtc_get_all_get_params(array ('oID', 'action'))));
 		break;
 		// BMC Delete CC info Start
@@ -487,14 +578,14 @@ if (($_GET['action'] == 'edit') && ($order_exists)) {
       <tr>
         <td><table width="100%" border="0" cellspacing="0" cellpadding="2">
 <!-- BEGIN NEXT AND PREVIOUS ORDERS DISPLAY IN ADMIN -->
-<tr> 
+<tr>
 <td colspan="3" width="100%">
-<table border="0" style="border: 1px solid #5F5F5F;" width="100%" cellspacing="0" cellpadding="2"> 
-<tr valign="top" height="20" class="dataTableHeadingRow"> 
-<td bgcolor="#BAD4F5" class="main"><?php if( $nextid = get_order_id($oID,'prev')) { echo '<a href="' .xtc_href_link(FILENAME_ORDERS, xtc_get_all_get_params(array('oID', 'action')) . 'oID=' . $nextid . '&action=edit') . '">&nbsp;' . PREV_ORDER . '</a>'; } ?></td> 
-<td bgcolor="#BAD4F5" class="main" align="right"><?php echo xtc_draw_separator('pixel_trans.gif', '1', '3'); ?></td> 
-<td bgcolor="#BAD4F5" class="main" align="right"><?php if( $previd = get_order_id($oID)) echo '<a href="' .xtc_href_link(FILENAME_ORDERS, xtc_get_all_get_params(array('oID', 'action')) . 'oID=' . $previd . '&action=edit') . '">' . NEXT_ORDER . '&nbsp;</a>'; ?></td> 
-</tr> 
+<table border="0" style="border: 1px solid #5F5F5F;" width="100%" cellspacing="0" cellpadding="2">
+<tr valign="top" height="20" class="dataTableHeadingRow">
+<td bgcolor="#BAD4F5" class="main"><?php if( $nextid = get_order_id($oID,'prev')) { echo '<a href="' .xtc_href_link(FILENAME_ORDERS, xtc_get_all_get_params(array('oID', 'action')) . 'oID=' . $nextid . '&action=edit') . '">&nbsp;' . PREV_ORDER . '</a>'; } ?></td>
+<td bgcolor="#BAD4F5" class="main" align="right"><?php echo xtc_draw_separator('pixel_trans.gif', '1', '3'); ?></td>
+<td bgcolor="#BAD4F5" class="main" align="right"><?php if( $previd = get_order_id($oID)) echo '<a href="' .xtc_href_link(FILENAME_ORDERS, xtc_get_all_get_params(array('oID', 'action')) . 'oID=' . $previd . '&action=edit') . '">' . NEXT_ORDER . '&nbsp;</a>'; ?></td>
+</tr>
 </table>
 </td> </tr>
 <!-- END NEXT AND PREVIOUS ORDERS DISPLAY IN ADMIN -->
@@ -556,6 +647,7 @@ if (($_GET['action'] == 'edit') && ($order_exists)) {
           </tr>
         </table></td>
       </tr>
+      <tr><td><?php include('amazon_storno.php'); ?></td></tr>
       <tr>
         <td><?php echo xtc_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
       </tr>
@@ -610,6 +702,15 @@ if (($_GET['action'] == 'edit') && ($order_exists)) {
 <?php
 
 	}
+
+// Paypal Express Modul Änderungen:
+	if ($order->info['payment_method']=='paypal_ipn' or $order->info['payment_method']=='paypal_directpayment' or $order->info['payment_method']=='paypal' or $order->info['payment_method']=='paypalexpress') {
+		require('../includes/classes/paypal_checkout.php');
+		require('includes/classes/class.paypal.php');
+		$paypal = new paypal_admin();
+		$paypal->admin_notification((int)$_GET['oID']);
+	}
+// Paypal Express Modul Änderungen Ende
 
 	// begin modification for banktransfer
 	$banktransfer_query = xtc_db_query("select banktransfer_prz, banktransfer_status, banktransfer_owner, banktransfer_number, banktransfer_bankname, banktransfer_blz, banktransfer_fax from banktransfer where orders_id = '".xtc_db_input($_GET['oID'])."'");
@@ -865,8 +966,33 @@ if (($_GET['action'] == 'edit') && ($order_exists)) {
 		echo '<a class="button" href="'.xtc_href_link(FILENAME_GV_MAIL, xtc_get_all_get_params(array ('cID', 'action')).'cID='.$order->customer['ID']).'">'.BUTTON_SEND_COUPON.'</a>';
 	}
 ?>
-   <a class="button" href="Javascript:void()" onclick="window.open('<?php echo xtc_href_link(FILENAME_PRINT_ORDER,'oID='.$_GET['oID']); ?>', 'popup', 'toolbar=0, width=640, height=600')"><?php echo BUTTON_INVOICE; ?></a>
-   <a class="button" href="Javascript:void()" onclick="window.open('<?php echo xtc_href_link(FILENAME_PRINT_PACKINGSLIP,'oID='.$_GET['oID']); ?>', 'popup', 'toolbar=0, width=640, height=600')"><?php echo BUTTON_PACKINGSLIP; ?></a>
+   <a class="button" href="Javascript:void()" onClick="window.open('<?php echo xtc_href_link(FILENAME_PRINT_ORDER,'oID='.$_GET['oID']); ?>', 'popup', 'toolbar=0, width=640, height=600')"><?php echo BUTTON_INVOICE; ?></a>
+   <?php
+/**
+ * PDFBill NEXT change
+ * Start
+ */
+$order_bill = xtc_get_bill_nr($_GET['oID']);
+if(is_numeric($order_bill)) {
+?>
+<span style="padding:5px; font-size:11pt; border:1px solid #aaaaaa; background-color: #ffffff;"><?php echo BUTTON_BILL_NR . $order_bill; ?></span>
+<a class="button" href="Javascript:void(0)" onClick="window.open('<?php echo xtc_href_link(FILENAME_PRINT_ORDER_PDF,'oID='.$_GET['oID']); ?>', 'popup', 'toolbar=0, width=640, height=600')"><?php echo BUTTON_INVOICE_PDF; ?></a>
+<?php
+} else {
+?>
+<a class="button" href="Javascript:void(0)" onclick="window.open('<?php echo xtc_href_link(FILENAME_PDF_BILL_NR, 'oID='.$_GET['oID']); ?>', 'popup', 'toolbar=0, width=400, height=250')"><?php echo BUTTON_SET_BILL_NR; ?></a>
+<?php
+}
+?>
+<a class="button" href="Javascript:void(0)" onClick="window.open('<?php echo xtc_href_link(FILENAME_PRINT_PACKINGSLIP_PDF,'oID='.$_GET['oID']); ?>', 'popup', 'toolbar=0, width=640, height=600')"><?php echo BUTTON_PACKINGSLIP_PDF; ?></a>
+<?php
+/**
+ * PDFBill NEXT change
+ * End
+ */
+?>
+
+<a class="button" href="Javascript:void()" onClick="window.open('<?php echo xtc_href_link(FILENAME_PRINT_PACKINGSLIP,'oID='.$_GET['oID']); ?>', 'popup', 'toolbar=0, width=640, height=600')"><?php echo BUTTON_PACKINGSLIP; ?></a>
 	<!-- BMC Delete CC Info -->
 	<a class="button" href="<?php echo xtc_href_link(FILENAME_ORDERS, 'oID='.$_GET['oID'].'&action=deleteccinfo').'">'.BUTTON_REMOVE_CC_INFO;?></a>&nbsp;
    <a class="button" href="<?php echo xtc_href_link(FILENAME_ORDERS, 'page='.$_GET['page'].'&oID='.$_GET['oID']).'">'.BUTTON_BACK;?></a>
@@ -914,12 +1040,25 @@ elseif ($_GET['action'] == 'custom_action') {
             <td valign="top"><table border="0" width="100%" cellspacing="0" cellpadding="2">
               <tr class="dataTableHeadingRow">
 			  	<?php // XTC-DELUXE.DE multi_order_status ?>
-			  	      <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_EDIT; echo xtc_draw_form('change_status_multi', FILENAME_ORDERS, '', 'get'); ?><br><input type="checkbox" name="checkAll" onClick="selectAll(document.getElementsByName('change_status_oID[]'));"></td>
+			  	<td class="dataTableHeadingContent"><?php echo TABLE_HEADING_EDIT; echo xtc_draw_form('change_status_multi', FILENAME_ORDERS, '', 'get'); ?><br><input type="checkbox" name="checkAll" onClick="selectAll(document.getElementsByName('change_status_oID[]'));"></td>
 			  	<?php // XTC-DELUXE.DE multi_order_status END ?>
                 <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_CUSTOMERS; ?></td>
-				        <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_CUSTOMERS_CID; ?></td>
+				<td class="dataTableHeadingContent"><?php echo TABLE_HEADING_CUSTOMERS_CID; ?></td>
                 <td class="dataTableHeadingContent" align="right"><?php echo 'Nr'; ?></td>
                 <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ORDER_TOTAL; ?></td>
+                <?php
+                /**
+                 * PDFBill NEXT
+                 * Start
+                 */
+                ?>
+                <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_BILL_NR; ?></td>
+                <?php
+                /**
+                 * PDFBill NEXT
+                 * End
+                 */
+                ?>
                 <td class="dataTableHeadingContent" align="center"><?php echo TABLE_HEADING_DATE_PURCHASED; ?></td>
                 <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_STATUS; ?></td>
 				        <td class="dataTableHeadingContent" align="right"><?php echo 'Land'; ?></td>
@@ -929,16 +1068,16 @@ elseif ($_GET['action'] == 'custom_action') {
 
 	if ($_GET['cID']) {
 		$cID = xtc_db_prepare_input($_GET['cID']);
-		$orders_query_raw = "select o.orders_id, o.customers_country, o.afterbuy_success, o.afterbuy_id, o.customers_name, o.customers_id, o.customers_cid, o.payment_method, o.date_purchased, o.last_modified, o.currency, o.currency_value, o.orders_status, s.orders_status_name, ot.text as order_total from ".TABLE_ORDERS." o left join ".TABLE_ORDERS_TOTAL." ot on (o.orders_id = ot.orders_id), ".TABLE_ORDERS_STATUS." s where o.customers_id = '".xtc_db_input($cID)."' and (o.orders_status = s.orders_status_id and s.language_id = '".$_SESSION['languages_id']."' and ot.class = 'ot_total') or (o.orders_status = '0' and ot.class = 'ot_total' and  s.orders_status_id = '1' and s.language_id = '".$_SESSION['languages_id']."') order by orders_id DESC";
+		$orders_query_raw = "select o.orders_id, o.customers_country, o.afterbuy_success, o.afterbuy_id, o.customers_name, o.customers_id, o.customers_cid, o.payment_method, o.date_purchased, o.last_modified, o.currency, o.currency_value, o.orders_status, s.orders_status_name, ot.text as order_total, o.bill_nr from ".TABLE_ORDERS." o left join ".TABLE_ORDERS_TOTAL." ot on (o.orders_id = ot.orders_id), ".TABLE_ORDERS_STATUS." s where o.customers_id = '".xtc_db_input($cID)."' and (o.orders_status = s.orders_status_id and s.language_id = '".$_SESSION['languages_id']."' and ot.class = 'ot_total') or (o.orders_status = '0' and ot.class = 'ot_total' and  s.orders_status_id = '1' and s.language_id = '".$_SESSION['languages_id']."') order by orders_id DESC";
 	}
 	elseif ($_GET['status']=='0') {
-			$orders_query_raw = "select o.orders_id, o.customers_country, o.afterbuy_success, o.afterbuy_id, o.customers_name, o.customers_cid, o.payment_method, o.date_purchased, o.last_modified, o.currency, o.currency_value, o.orders_status, ot.text as order_total from ".TABLE_ORDERS." o left join ".TABLE_ORDERS_TOTAL." ot on (o.orders_id = ot.orders_id) where o.orders_status = '0' and ot.class = 'ot_total' order by o.orders_id DESC";
+			$orders_query_raw = "select o.orders_id, o.customers_country, o.afterbuy_success, o.afterbuy_id, o.customers_name, o.customers_cid, o.payment_method, o.date_purchased, o.last_modified, o.currency, o.currency_value, o.orders_status, ot.text as order_total, o.bill_nr from ".TABLE_ORDERS." o left join ".TABLE_ORDERS_TOTAL." ot on (o.orders_id = ot.orders_id) where o.orders_status = '0' and ot.class = 'ot_total' order by o.orders_id DESC";
 	}
 	elseif ($_GET['status']) {
 			$status = xtc_db_prepare_input($_GET['status']);
-			$orders_query_raw = "select o.orders_id, o.customers_country, o.afterbuy_success, o.afterbuy_id, o.customers_name, o.customers_cid, o.payment_method, o.date_purchased, o.last_modified, o.currency, o.currency_value, s.orders_status_name, ot.text as order_total from ".TABLE_ORDERS." o left join ".TABLE_ORDERS_TOTAL." ot on (o.orders_id = ot.orders_id), ".TABLE_ORDERS_STATUS." s where o.orders_status = s.orders_status_id and s.language_id = '".$_SESSION['languages_id']."' and s.orders_status_id = '".xtc_db_input($status)."' and ot.class = 'ot_total' order by o.orders_id DESC";
+			$orders_query_raw = "select o.orders_id, o.customers_country, o.afterbuy_success, o.afterbuy_id, o.customers_name, o.customers_cid, o.payment_method, o.date_purchased, o.last_modified, o.currency, o.currency_value, s.orders_status_name, ot.text as order_total, o.bill_nr from ".TABLE_ORDERS." o left join ".TABLE_ORDERS_TOTAL." ot on (o.orders_id = ot.orders_id), ".TABLE_ORDERS_STATUS." s where o.orders_status = s.orders_status_id and s.language_id = '".$_SESSION['languages_id']."' and s.orders_status_id = '".xtc_db_input($status)."' and ot.class = 'ot_total' order by o.orders_id DESC";
 	} else {
-		$orders_query_raw = "select o.orders_id, o.orders_status, o.customers_country, o.afterbuy_success, o.afterbuy_id, o.customers_name, o.customers_cid, o.payment_method, o.date_purchased, o.last_modified, o.currency, o.currency_value, s.orders_status_name, ot.text as order_total from ".TABLE_ORDERS." o left join ".TABLE_ORDERS_TOTAL." ot on (o.orders_id = ot.orders_id), ".TABLE_ORDERS_STATUS." s where (o.orders_status = s.orders_status_id and s.language_id = '".$_SESSION['languages_id']."' and ot.class = 'ot_total') or (o.orders_status = '0' and ot.class = 'ot_total' and  s.orders_status_id = '1' and s.language_id = '".$_SESSION['languages_id']."') order by o.orders_id DESC";
+		$orders_query_raw = "select o.orders_id, o.orders_status, o.customers_country, o.afterbuy_success, o.afterbuy_id, o.customers_name, o.customers_cid, o.payment_method, o.date_purchased, o.last_modified, o.currency, o.currency_value, s.orders_status_name, ot.text as order_total, o.bill_nr from ".TABLE_ORDERS." o left join ".TABLE_ORDERS_TOTAL." ot on (o.orders_id = ot.orders_id), ".TABLE_ORDERS_STATUS." s where (o.orders_status = s.orders_status_id and s.language_id = '".$_SESSION['languages_id']."' and ot.class = 'ot_total') or (o.orders_status = '0' and ot.class = 'ot_total' and  s.orders_status_id = '1' and s.language_id = '".$_SESSION['languages_id']."') order by o.orders_id DESC";
 	}
 	$orders_split = new splitPageResults($_GET['page'], '20', $orders_query_raw, $orders_query_numrows);
 	$orders_query = xtc_db_query($orders_query_raw);
@@ -969,13 +1108,16 @@ elseif ($_GET['action'] == 'custom_action') {
 ?>
 
 				        <td class="dataTableContent" align="center"><input type="checkbox" name="change_status_oID[]" value="<?php echo $orders['orders_id'];?>"></td>
+				        <?php // PDFBill NEXT Start ?>
+		                <td class="dataTableContent" align="right"><?php echo $orders['bill_nr']; ?></td>
+		                <?php // PDFBill NEXT End ?>
 				        <td class="dataTableContent" <?php echo $td_event;?>><?php echo '<a href="' . xtc_href_link(FILENAME_ORDERS, xtc_get_all_get_params(array('oID', 'action')) . 'oID=' . $orders['orders_id'] . '&action=edit') . '">' . xtc_image(DIR_WS_ICONS . 'icon_edit.gif', EDIT)  . $orders['customers_name']. '</a>&nbsp;'; ?></td>
 				        <td class="dataTableContent" <?php echo $td_event;?> align="right"><?php echo $orders['customers_cid']; ?></td>
                 <td class="dataTableContent" <?php echo $td_event;?> align="right"><?php echo $orders['orders_id']; ?></td>
                 <td class="dataTableContent" <?php echo $td_event;?> align="right"><?php echo strip_tags($orders['order_total']); ?></td>
                 <td class="dataTableContent" <?php echo $td_event;?> align="center"><?php echo xtc_datetime_short($orders['date_purchased']); ?></td>
                 <td class="dataTableContent" <?php echo $td_event;?> align="right"><?php if($orders['orders_status']!='0') { echo $orders['orders_status_name']; }else{ echo '<font color="#FF0000">'.TEXT_VALIDATING.'</font>';}?></td>
-				        <td class="dataTableContent" <?php echo $td_event;?> align="right"><?php echo $orders['customers_country']; ?></td>                
+				        <td class="dataTableContent" <?php echo $td_event;?> align="right"><?php echo $orders['customers_country']; ?></td>
                 <td class="dataTableContent" <?php echo $td_event;?> align="right"><?php if ( (is_object($oInfo)) && ($orders['orders_id'] == $oInfo->orders_id) ) { echo xtc_image(DIR_WS_IMAGES . 'icon_arrow_right.gif', ''); } else { echo '<a href="' . xtc_href_link(FILENAME_ORDERS, xtc_get_all_get_params(array('oID')) . 'oID=' . $orders['orders_id']) . '">' . xtc_image(DIR_WS_IMAGES . 'icon_info.gif', IMAGE_ICON_INFO) . '</a>'; } ?>&nbsp;</td>
 				<?php // XTC-DELUXE.DE multi_order_status END ?>
               </tr>
@@ -1006,6 +1148,22 @@ elseif ($_GET['action'] == 'custom_action') {
 			$contents = array ('form' => xtc_draw_form('orders', FILENAME_ORDERS, xtc_get_all_get_params(array ('oID', 'action')).'oID='.$oInfo->orders_id.'&action=deleteconfirm'));
 			$contents[] = array ('text' => TEXT_INFO_DELETE_INTRO.'<br /><br /><b>'.$cInfo->customers_firstname.' '.$cInfo->customers_lastname.'</b>');
 //			$contents[] = array ('text' => '<br />'.xtc_draw_checkbox_field('restock').' '.TEXT_INFO_RESTOCK_PRODUCT_QUANTITY);
+// Paypal Express Modul Änderungen:
+			if(defined('TABLE_PAYPAL')):
+				$db_installed = false;
+				$tables = mysql_list_tables(DB_DATABASE);
+				while ($row = mysql_fetch_row($tables)) {
+					if ($row[0] == TABLE_PAYPAL) $db_installed=true;
+				}
+				if ($db_installed==true):
+					$query = "SELECT * FROM " . TABLE_PAYPAL . " WHERE xtc_order_id = '" . $oInfo->orders_id . "'";
+					$query = xtc_db_query($query);
+					if(xtc_db_num_rows($query)>0):
+						$contents[] = array ('text' => '<br />'.xtc_draw_checkbox_field('paypaldelete').' '.TEXT_INFO_PAYPAL_DELETE);
+					endif;
+				endif;
+			endif;
+// Paypal Express Modul Ende
 			$contents[] = array ('align' => 'center', 'text' => '<br /><input type="submit" class="button" value="'. BUTTON_DELETE .'"><a class="button" href="'.xtc_href_link(FILENAME_ORDERS, xtc_get_all_get_params(array ('oID', 'action')).'oID='.$oInfo->orders_id).'">' . BUTTON_CANCEL . '</a>');
 			break;
 		default :
@@ -1020,8 +1178,22 @@ elseif ($_GET['action'] == 'custom_action') {
 					$contents[] = array ('align' => 'center', 'text' => '<a class="button" href="'.xtc_href_link(FILENAME_ORDERS, xtc_get_all_get_params(array ('oID', 'action')).'oID='.$oInfo->orders_id.'&action=afterbuy_send').'">'.BUTTON_AFTERBUY_SEND.'</a>');
 
 				}
+				/**
+				 * PDFBill NEXT rh s
+				 * Start
+				 */
+		        $contents[] = array('align' => 'center', 'text' => '<br/>');
+		        $order_bill = xtc_get_bill_nr($oInfo->orders_id);
+		        if(is_numeric($order_bill)) {
+		            $contents[] = array('align' => 'center', 'text' => '<a class="button" target="_blank" href="'.xtc_href_link(FILENAME_PRINT_ORDER_PDF, 'oID='.$oInfo->orders_id.'&download=1').'">' . BUTTON_INVOICE_PDF . '</a>');
+		        } else {
+		            $contents[] = array('align' => 'center', 'text' => '<a class="button" href="javascript:void(0)"  onClick="window.open(\'' . xtc_href_link(FILENAME_PDF_BILL_NR,'oID='. $oInfo->orders_id) . '\', \'popup\', \'toolbar=0, width=640, height=600\')">' . BUTTON_SET_BILL_NR . '</a>');
+		        }
+		        /**
+				 * PDFBill NEXT rh s
+				 * End
+				 */
 				//$contents[] = array('align' => 'center', 'text' => '');
-
 				$contents[] = array ('text' => '<br />'.TEXT_DATE_ORDER_CREATED.' '.xtc_date_short($oInfo->date_purchased));
 				if (xtc_not_null($oInfo->last_modified))
 					$contents[] = array ('text' => TEXT_DATE_ORDER_LAST_MODIFIED.' '.xtc_date_short($oInfo->last_modified));
@@ -1089,7 +1261,7 @@ elseif ($_GET['action'] == 'custom_action') {
 ?>
     </table>
 <!-- end content -->
-<?php 
-require(DIR_WS_INCLUDES . 'application_bottom.php'); 
+<?php
+require(DIR_WS_INCLUDES . 'application_bottom.php');
 require(DIR_WS_INCLUDES . 'application_bottom_0.php');
 ?>
