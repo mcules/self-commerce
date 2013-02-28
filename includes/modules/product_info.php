@@ -1,22 +1,23 @@
 <?php
 /* -----------------------------------------------------------------------------------------
-   $Id: product_info.php 17 2012-06-04 20:33:29Z deisold $   
+   $Id: product_info.php 17 2012-06-04 20:33:29Z deisold $
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
 
    Copyright (c) 2003 XT-Commerce
    -----------------------------------------------------------------------------------------
-   based on: 
+   based on:
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
-   (c) 2002-2003 osCommerce(product_info.php,v 1.94 2003/05/04); www.oscommerce.com 
+   (c) 2002-2003 osCommerce(product_info.php,v 1.94 2003/05/04); www.oscommerce.com
    (c) 2003      nextcommerce (product_info.php,v 1.46 2003/08/25); www.nextcommerce.org
 
-   Released under the GNU General Public License 
+   Released under the GNU General Public License
    -----------------------------------------------------------------------------------------
    Third Party contribution:
    Customers Status v3.x  (c) 2002-2003 Copyright Elari elari@free.fr | www.unlockgsm.com/dload-osc/ | CVS : http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/elari/?sortby=date#dirlist
-   New Attribute Manager v4b                            Autor: Mike G | mp3man@internetwork.net | http://downloads.ephing.com   
+   New Attribute Manager v4b                            Autor: Mike G | mp3man@internetwork.net | http://downloads.ephing.com
+
    Cross-Sell (X-Sell) Admin 1                          Autor: Joshua Dechant (dreamscape)
    Released under the GNU General Public License
    ---------------------------------------------------------------------------------------*/
@@ -54,10 +55,13 @@ if (!is_object($product) || !$product->isProduct()) { // product not found in da
 				if ($product->data['products_fsk18'] == '0') {
 					$info_smarty->assign('ADD_QTY', xtc_draw_input_field('products_qty', '1', 'size="3"').' '.xtc_draw_hidden_field('products_id', $product->data['products_id']));
 					$info_smarty->assign('ADD_CART_BUTTON', xtc_image_submit('button_in_cart.gif', IMAGE_BUTTON_IN_CART));
+					$info_smarty->assign('ADD_CART_JQUERY_BUTTON', xtc_image('button_in_cart.gif', JQUERY_IMAGE_BUTTON_IN_CART));
+					$info_smarty->assign('ADD_CART_JQUERY_BUTTON', '<img id="addCartJquery" src="templates/'.CURRENT_TEMPLATE.'/buttons/'.$_SESSION['language'].'/button_in_cart.gif" />', JQUERY_IMAGE_BUTTON_IN_CART);
 				}
 			} else {
 				$info_smarty->assign('ADD_QTY', xtc_draw_input_field('products_qty', '1', 'size="3"').' '.xtc_draw_hidden_field('products_id', $product->data['products_id']));
 				$info_smarty->assign('ADD_CART_BUTTON', xtc_image_submit('button_in_cart.gif', IMAGE_BUTTON_IN_CART));
+				$info_smarty->assign('ADD_CART_JQUERY_BUTTON', '<img id="addCartJquery" src="templates/'.CURRENT_TEMPLATE.'/buttons/'.$_SESSION['language'].'/button_in_cart.gif" />', JQUERY_IMAGE_BUTTON_IN_CART);
 			}
 		}
 
@@ -73,8 +77,8 @@ if (!is_object($product) || !$product->isProduct()) { // product not found in da
 		$info_smarty->assign('PRODUCTS_PRICE', $products_price['formated']);
 		if ($product->data['products_vpe_status'] == 1 && $product->data['products_vpe_value'] != 0.0 && $products_price['plain'] > 0)
 		$info_smarty->assign('PRODUCTS_VPE', $xtPrice->xtcFormat($products_price['plain'] * (1 / $product->data['products_vpe_value']), true).TXT_PER.xtc_get_vpe_name($product->data['products_vpe']));
-    $info_smarty->assign('NACH_VPE',xtc_get_vpe_name($product->data['products_vpe'])); 
-    $info_smarty->assign('VPE',round($product->data['products_vpe_value'],2)); 		
+    $info_smarty->assign('NACH_VPE',xtc_get_vpe_name($product->data['products_vpe']));
+    $info_smarty->assign('VPE',round($product->data['products_vpe_value'],2));
 		$info_smarty->assign('PRODUCTS_ID', $product->data['products_id']);
 		$info_smarty->assign('PRODUCTS_NAME', $product->data['products_name']);
 		if ($_SESSION['customers_status']['customers_status_show_price'] != 0) {
@@ -82,7 +86,7 @@ if (!is_object($product) || !$product->isProduct()) { // product not found in da
 			// price incl tax
 			if ($tax_rate > 0 && $_SESSION['customers_status']['customers_status_show_price_tax'] != 0) {
 				$info_smarty->assign('PRODUCTS_TAX_INFO', sprintf(TAX_INFO_INCL, $tax_rate.' %'));
-			} 
+			}
 			// excl tax + tax at checkout
 			if ($tax_rate > 0 && $_SESSION['customers_status']['customers_status_show_price_tax'] == 0 && $_SESSION['customers_status']['customers_status_add_tax_ot'] == 1) {
 				$info_smarty->assign('PRODUCTS_TAX_INFO', sprintf(TAX_INFO_ADD, $tax_rate.' %'));
@@ -92,8 +96,8 @@ if (!is_object($product) || !$product->isProduct()) { // product not found in da
 				$info_smarty->assign('PRODUCTS_TAX_INFO', sprintf(TAX_INFO_EXCL, $tax_rate.' %'));
 			}
 		}
-		if (SHOW_SHIPPING=='true') { 
-        $info_smarty->assign('PRODUCTS_SHIPPING_LINK',' '.SHIPPING_EXCL.' <a href="'.xtc_href_link(FILENAME_CONTENT, 'coID='.SHIPPING_INFOS).'">'.SHIPPING_COSTS.'</a>');	
+		if (SHOW_SHIPPING=='true') {
+        $info_smarty->assign('PRODUCTS_SHIPPING_LINK',' '.SHIPPING_EXCL.' <a href="'.xtc_href_link(FILENAME_CONTENT, 'coID='.SHIPPING_INFOS).'">'.SHIPPING_COSTS.'</a>');
 		}
 		$info_smarty->assign('PRODUCTS_MODEL', $product->data['products_model']);
 		$info_smarty->assign('PRODUCTS_EAN', $product->data['products_ean']);
@@ -106,10 +110,10 @@ if (!is_object($product) || !$product->isProduct()) { // product not found in da
 		$image = '';
 		if ($product->data['products_image'] != '')
 			$image = DIR_WS_INFO_IMAGES.$product->data['products_image'];
-         // begin self-commerce.de 
-          $image_info = DIR_WS_POPUP_IMAGES.$product->data['products_image']; 
-          $info_smarty->assign('PRODUCTS_IMAGE_POPUP', $image_info); 
-        // end self-commerce.de 			
+         // begin self-commerce.de
+          $image_info = DIR_WS_POPUP_IMAGES.$product->data['products_image'];
+          $info_smarty->assign('PRODUCTS_IMAGE_POPUP', $image_info);
+        // end self-commerce.de
 
 		$info_smarty->assign('PRODUCTS_IMAGE', $image);
 
@@ -121,57 +125,62 @@ if (!is_object($product) || !$product->isProduct()) { // product not found in da
 		}
 		$info_smarty->assign('PRODUCTS_POPUP_LINK', 'javascript:popupWindow(\''.xtc_href_link(FILENAME_POPUP_IMAGE, 'pID='.$product->data['products_id'].$connector.'imgID=0').'\')');
 		$mo_images = xtc_get_products_mo_images($product->data['products_id']);
-      $mo_count = 0; 
-      $last_image = 0; 
+      $mo_count = 0;
+      $last_image = 0;
 
-      if ($mo_images != false) { 
-         foreach ($mo_images as $img) { 
-            if ( ( $img['image_nr'] != $last_image ) && ( $img['image_nr'] != '' ) ) { 
-               $mo_img = DIR_WS_INFO_IMAGES.$img['image_name']; 
-  
-               $mo_images_disp[$mo_count]['mo_img'] = DIR_WS_INFO_IMAGES.$img['image_name']; 
-  
-               $mo_images_disp[$mo_count]['PRODUCTS_IMAGE_POPUP'] = DIR_WS_POPUP_IMAGES.$img['image_name']; 
-               $mo_images_disp[$mo_count]['PRODUCTS_IMAGE'] = $mo_images_disp[$mo_count]['mo_img']; 
-               $mo_images_temp_link = xtc_href_link( FILENAME_POPUP_IMAGE, 'pID='.$product->data['products_id'].$connector.'imgID='.$img['image_nr']); 
-               $last_image = $img['image_nr']; 
-               $mo_count = $mo_count + 1; 
-            } 
-         } 
-         $info_smarty->assign('images', $mo_images_disp); 
-      } 
-		//mo_images EOF
-		$discount = 0.00;
-		if ($_SESSION['customers_status']['customers_status_public'] == 1 && $_SESSION['customers_status']['customers_status_discount'] != '0.00') {
-			$discount = $_SESSION['customers_status']['customers_status_discount'];
-			if ($product->data['products_discount_allowed'] < $_SESSION['customers_status']['customers_status_discount'])
-				$discount = $product->data['products_discount_allowed'];
-			if ($discount != '0.00')
-				$info_smarty->assign('PRODUCTS_DISCOUNT', $discount.'%');
+	if ($mo_images != false) {
+		foreach ($mo_images as $img) {
+			if ( ( $img['image_nr'] != $last_image ) && ( $img['image_nr'] != '' ) ) {
+				$mo_img = DIR_WS_INFO_IMAGES.$img['image_name'];
+
+				$mo_images_disp[$mo_count]['mo_img'] = DIR_WS_INFO_IMAGES.$img['image_name'];
+
+				$mo_images_disp[$mo_count]['PRODUCTS_IMAGE_POPUP'] = DIR_WS_POPUP_IMAGES.$img['image_name'];
+				$mo_images_disp[$mo_count]['PRODUCTS_IMAGE'] = $mo_images_disp[$mo_count]['mo_img'];
+				$mo_images_temp_link = xtc_href_link( FILENAME_POPUP_IMAGE, 'pID='.$product->data['products_id'].$connector.'imgID='.$img['image_nr']);
+				$last_image = $img['image_nr'];
+				$mo_count = $mo_count + 1;
+			}
 		}
+		$info_smarty->assign('images', $mo_images_disp);
+	}
+	//mo_images EOF
+	$discount = 0.00;
+	if ($_SESSION['customers_status']['customers_status_public'] == 1 && $_SESSION['customers_status']['customers_status_discount'] != '0.00') {
+		$discount = $_SESSION['customers_status']['customers_status_discount'];
+		if ($product->data['products_discount_allowed'] < $_SESSION['customers_status']['customers_status_discount'])
+			$discount = $product->data['products_discount_allowed'];
+		if ($discount != '0.00')
+			$info_smarty->assign('PRODUCTS_DISCOUNT', $discount.'%');
+	}
 
-		include (DIR_WS_MODULES.'product_attributes.php');
-		include (DIR_WS_MODULES.'product_reviews.php');
+	include (DIR_WS_MODULES.'product_attributes.php');
+	include (DIR_WS_MODULES.'product_reviews.php');
 
-		if (xtc_not_null($product->data['products_url']))
-			$info_smarty->assign('PRODUCTS_URL', sprintf(TEXT_MORE_INFORMATION, xtc_href_link(FILENAME_REDIRECT, 'action=product&id='.$product->data['products_id'], 'NONSSL', true, false)));
+	if (xtc_not_null($product->data['products_url']))
+		$info_smarty->assign('PRODUCTS_URL', sprintf(TEXT_MORE_INFORMATION, xtc_href_link(FILENAME_REDIRECT, 'action=product&id='.$product->data['products_id'], 'NONSSL', true, false)));
 
-		if ($product->data['products_date_available'] > date('Y-m-d H:i:s')) {
-			$info_smarty->assign('PRODUCTS_DATE_AVIABLE', sprintf(TEXT_DATE_AVAILABLE, xtc_date_long($product->data['products_date_available'])));
+	if ($product->data['products_date_available'] > date('Y-m-d H:i:s')) {
+		$info_smarty->assign('PRODUCTS_DATE_AVIABLE', sprintf(TEXT_DATE_AVAILABLE, xtc_date_long($product->data['products_date_available'])));
 
-		} else {
-			if ($product->data['products_date_added'] != '0000-00-00 00:00:00')
-				$info_smarty->assign('PRODUCTS_ADDED', sprintf(TEXT_DATE_ADDED, xtc_date_long($product->data['products_date_added'])));
+	} else {
+		if ($product->data['products_date_added'] != '0000-00-00 00:00:00')
+			$info_smarty->assign('PRODUCTS_ADDED', sprintf(TEXT_DATE_ADDED, xtc_date_long($product->data['products_date_added'])));
 
-		}
+	}
 
-		if ($_SESSION['customers_status']['customers_status_graduated_prices'] == 1)
-			include (DIR_WS_MODULES.FILENAME_GRADUATED_PRICE);
+	if ($_SESSION['customers_status']['customers_status_graduated_prices'] == 1) {
+		include (DIR_WS_MODULES.FILENAME_GRADUATED_PRICE);
+	}
 
-		include (DIR_WS_MODULES.FILENAME_PRODUCTS_MEDIA);
-		include (DIR_WS_MODULES.FILENAME_ALSO_PURCHASED_PRODUCTS);
-		include (DIR_WS_MODULES.FILENAME_CROSS_SELLING);
-	
+	include (DIR_WS_MODULES.FILENAME_PRODUCTS_MEDIA);
+	include (DIR_WS_MODULES.FILENAME_ALSO_PURCHASED_PRODUCTS);
+	include (DIR_WS_MODULES.FILENAME_CROSS_SELLING);
+
+	if($actual_products_id) {
+		$info_smarty->assign('PRODUCTS_DETAILS', $product->getDetails($actual_products_id, $_SESSION['languages_id']));
+	}
+
 	if ($product->data['product_template'] == '' or $product->data['product_template'] == 'default') {
 		$files = array ();
 		if ($dir = opendir(DIR_FS_CATALOG.'templates/'.CURRENT_TEMPLATE.'/module/product_info/')) {
@@ -185,7 +194,7 @@ if (!is_object($product) || !$product->isProduct()) { // product not found in da
 		$product->data['product_template'] = $files[0]['id'];
 	}
 
-$i = count($_SESSION['tracking']['products_history']);
+	$i = count($_SESSION['tracking']['products_history']);
 	if ($i > 6) {
 		array_shift($_SESSION['tracking']['products_history']);
 		$_SESSION['tracking']['products_history'][6] = $product->data['products_id'];
@@ -194,7 +203,6 @@ $i = count($_SESSION['tracking']['products_history']);
 		$_SESSION['tracking']['products_history'][$i] = $product->data['products_id'];
 		$_SESSION['tracking']['products_history'] = array_unique($_SESSION['tracking']['products_history']);
 	}
-	
 	$info_smarty->assign('language', $_SESSION['language']);
 	// set cache ID
 	 if (!CacheCheck()) {
