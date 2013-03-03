@@ -38,7 +38,7 @@ class product {
 
 		$fsk_lock = "";
 		if ($_SESSION['customers_status']['customers_fsk18_display'] == '0') {
-			$fsk_lock = ' and p.products_fsk18!=1';
+			$fsk_lock = " AND ".TABLE_PRODUCTS.".products_fsk18!=1";
 		}
 
 		$product_query = "SELECT ".TABLE_PRODUCTS.".*, ".TABLE_PRODUCTS_DESCRIPTION.".*, ".TABLE_MANUFACTURERS.".manufacturers_name
