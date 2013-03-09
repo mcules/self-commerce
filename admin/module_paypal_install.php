@@ -205,7 +205,7 @@ function zeig01($prog,$was,$result){
 	// Stand: 29.04.2009
 	global $html_zeil, $detail;
 	// auskommentieren falls mit OK Anzeige:
-	if(!ereg('OK',$result))
+	if(!preg_match('/OK/',$result))
 		$html_zeil.=
 		'<tr class="dataTableRow">'.
 			'<td class="dataTableContent"><table width="100%"><tr><td class="dataTableContent_products" align="left">'.$prog. '</td><td class="dataTableContent_products" align="right">'. $detail  .'</td></tr></table></td>'.

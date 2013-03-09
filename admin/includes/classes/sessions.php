@@ -287,39 +287,6 @@ defined( '_VALID_XTC' ) or die( 'Direct Access to this location is not allowed.'
     $session->id = $id;
   }
 
-  function session_register($var) {
-    global $session;
-
-    if ($session->nr_open_sessions == 0) {
-      session_start();
-    }
-
-    $session->vars[] = trim($var);
-  }
-
-  function session_unregister($var) {
-    global $session;
-
-    for (reset($session->vars); list($i)=each($session->vars);) {
-      if ($session->vars[$i] == trim($var)) {
-        unset($session->vars[$i]);
-        break;
-      }
-    }
-  }
-
-  function session_is_registered($var) {
-    global $session;
-
-    for (reset($session->vars); list($i)=each($session->vars);) {
-      if ($session->vars[$i] == trim($var)) {
-        return true;
-      }
-    }
-
-    return false;
-  }
-
   function session_encode() {
     global $session;
 
@@ -339,7 +306,7 @@ defined( '_VALID_XTC' ) or die( 'Direct Access to this location is not allowed.'
   }
 
   function session_start() {
-    global $session, $SID, $HTTP_COOKIE_VARS, $HTTP_GET_VARS, $HTTP_POST_VARS;
+    global $session, $SID, $_COOKIE, $_GET, $_POST;
 
     // Define the global variable $SID?
     $define_sid = true;
@@ -348,7 +315,7 @@ defined( '_VALID_XTC' ) or die( 'Direct Access to this location is not allowed.'
     $send_cookie = true;
 
     // Is track_vars enabled?
-    $track_vars = ( (isset($HTTP_COOKIE_VARS)) || (isset($HTTP_GET_VARS)) || (isset($HTTP_POST_VARS)) ) ? true : false;
+    $track_vars = ( (isset($_COOKIE)) || (isset($_GET)) || (isset($_POST)) ) ? true : false;
 
     // Check if session_start() has been called once already
     if ($session->nr_open_sessions != 0) {
@@ -367,33 +334,22 @@ defined( '_VALID_XTC' ) or die( 'Direct Access to this location is not allowed.'
     // Now check the track_vars. Cookies are preferred, because initially
     // cookie and get variables will be available. 
     if ( (empty($session->id)) && ($track_vars) ) {
-      if (isset($HTTP_COOKIE_VARS[$session->name])) {
-        $session->id = $HTTP_COOKIE_VARS[$session->name];
+      if (isset($_COOKIE[$session->name])) {
+        $session->id = $_COOKIE[$session->name];
         $define_sid = false;
         $send_cookie = false;
       }
 
-      if (isset($HTTP_GET_VARS[$session->name])) {
-        $session->id = $HTTP_GET_VARS[$session->name];
+      if (isset($_GET[$session->name])) {
+        $session->id = $_GET[$session->name];
       }
 
-      if (isset($HTTP_POST_VARS[$session->name])) {
-        $session->id = $HTTP_POST_VARS[$session->name];
+      if (isset($_POST[$session->name])) {
+        $session->id = $_POST[$session->name];
       }
     }
 
-/*
-    // Check the REQUEST_URI symbol for a string of the form
-    // '<session-name>=<session-id>' to allow URLs of the form
-    // http://yoursite/<session-name>=<session-id>/script.php 
-    if (empty($session->id)) {
-      eregi($session->name . '=([^/]+)', $GLOBALS['REQUEST_URI'], $regs);
-      $regs[1] = trim($regs[1]);
-      if (!empty($regs[1])) {
-        $session->id = $regs[1];
-      }
-    }
-*/
+
 
     // Check whether the current request was referred to by
     // an external site which invalidates the previously found ID

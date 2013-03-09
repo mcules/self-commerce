@@ -572,13 +572,13 @@ if (!$_GET['action']) {
 												<?php
 												// display preview button if filetype 
 												// .gif,.jpg,.png,.html,.htm,.txt,.tif,.bmp
-												if (	eregi('.gif',$content_array[$ii]['file']) or
-													eregi('.jpg',$content_array[$ii]['file']) or
-													eregi('.png',$content_array[$ii]['file']) or
-													eregi('.html',$content_array[$ii]['file']) or
-													eregi('.htm',$content_array[$ii]['file']) or
-													eregi('.txt',$content_array[$ii]['file']) or
-													eregi('.bmp',$content_array[$ii]['file']) ) {
+												if (	preg_match('/.gif/i',$content_array[$ii]['file']) or
+													preg_match('/.jpg/i',$content_array[$ii]['file']) or
+													preg_match('/.png/i',$content_array[$ii]['file']) or
+													preg_match('/.html/i',$content_array[$ii]['file']) or
+													preg_match('/.htm/i',$content_array[$ii]['file']) or
+													preg_match('/.txt/i',$content_array[$ii]['file']) or
+													preg_match('/.bmp/i',$content_array[$ii]['file']) ) {
 														?>
 														<a style="cursor:pointer" onClick="javascript:window.open('<?php echo xtc_href_link(FILENAME_CONTENT_PREVIEW,'pID=media&coID='.$content_array[$ii]['id']); ?>', 'popup', 'toolbar=0, width=640, height=600')">
 														<?php echo xtc_image(DIR_WS_ICONS.'preview.gif','Preview','','',' style="cursor:pointer"').'&nbsp;&nbsp;'.TEXT_PREVIEW.'</a>'; ?> 

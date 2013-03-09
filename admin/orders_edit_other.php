@@ -123,7 +123,7 @@ echo '<input type="submit" class="button" onClick="this.blur();" value="' . BUTT
 </tr>
 
 <?php
-  $payments = split(';', MODULE_PAYMENT_INSTALLED);
+  $payments = preg_split('/;/', MODULE_PAYMENT_INSTALLED);
   for ($i=0; $i<count($payments); $i++){
   
   require(DIR_FS_LANGUAGES . $order->info['language'] . '/modules/payment/' . $payments[$i]);	
@@ -176,7 +176,7 @@ echo '<input type="submit" class="button" onClick="this.blur();" value="' . BUTT
 </tr>
 
 <?php
-  $shippings = split(';', MODULE_SHIPPING_INSTALLED);
+  $shippings = preg_split('/;/', MODULE_SHIPPING_INSTALLED);
   for ($i=0; $i<count($shippings); $i++){
   
   require(DIR_FS_LANGUAGES . $order->info['language'] . '/modules/shipping/' . $shippings[$i]);	
@@ -188,7 +188,7 @@ echo '<input type="submit" class="button" onClick="this.blur();" value="' . BUTT
                             'text' => $shipping_text);
   }
   
-  $order_shipping = split('_', $order->info['shipping_class']);
+  $order_shipping = preg_split('/_/', $order->info['shipping_class']);
   $order_shipping = $order_shipping[0];
   
   require(DIR_FS_LANGUAGES . $order->info['language'] . '/modules/shipping/' . $order_shipping .'.php');	
@@ -238,7 +238,7 @@ echo '<input type="submit" class="button" onClick="this.blur();" value="' . BUTT
 
 
 <?php
-  $totals = split(';', MODULE_ORDER_TOTAL_INSTALLED);
+  $totals = preg_split('/;/', MODULE_ORDER_TOTAL_INSTALLED);
   for ($i=0; $i<count($totals); $i++){
   
   require(DIR_FS_LANGUAGES . $order->info['language'] . '/modules/order_total/' . $totals[$i]);	
