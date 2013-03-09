@@ -218,4 +218,3 @@ if (!is_object($product) || !$product->isProduct()) { // product not found in da
 
 }
 $smarty->assign('main_content', $product_info);
-?>
