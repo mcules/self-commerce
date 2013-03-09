@@ -259,7 +259,6 @@ class order {
                              products_name,
                              final_price,
                              products_tax,
-                             products_shipping_time,
                              products_quantity
                         FROM ".TABLE_ORDERS_PRODUCTS."
                        WHERE orders_id='".(int) $oID."'";

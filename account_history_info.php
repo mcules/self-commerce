@@ -1,7 +1,7 @@
 <?php
 
 /* -----------------------------------------------------------------------------------------
-   $Id: account_history_info.php 17 2012-06-04 20:33:29Z deisold $   
+   $Id: account_history_info.php 17 2012-06-04 20:33:29Z deisold $
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
@@ -9,12 +9,12 @@
    Copyright (c) 2003 XT-Commerce
    -----------------------------------------------------------------------------------------
    (c) 2012	 Self-Commerce www.self-commerce.de
-   based on: 
+   based on:
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
-   (c) 2002-2003 osCommerce(account_history_info.php,v 1.97 2003/05/19); www.oscommerce.com 
+   (c) 2002-2003 osCommerce(account_history_info.php,v 1.97 2003/05/19); www.oscommerce.com
    (c) 2003	 nextcommerce (account_history_info.php,v 1.17 2003/08/17); www.nextcommerce.org
 
-   Released under the GNU General Public License 
+   Released under the GNU General Public License
    ---------------------------------------------------------------------------------------*/
 
 include ('includes/application_top.php');
@@ -31,7 +31,7 @@ require_once (DIR_FS_INC.'xtc_format_price_order.inc.php');
 
 //security checks
 if (!isset ($_SESSION['customer_id'])) { xtc_redirect(xtc_href_link(FILENAME_LOGIN, '', 'SSL')); }
-if (!isset ($_GET['order_id']) || (isset ($_GET['order_id']) && !is_numeric($_GET['order_id']))) { 
+if (!isset ($_GET['order_id']) || (isset ($_GET['order_id']) && !is_numeric($_GET['order_id']))) {
    xtc_redirect(xtc_href_link(FILENAME_ACCOUNT_HISTORY, '', 'SSL'));
 }
 $customer_info_query = xtc_db_query("select customers_id from ".TABLE_ORDERS." where orders_id = '".(int) $_GET['order_id']."'");
@@ -52,10 +52,12 @@ if ($order->delivery != false) {
 	if ($order->info['shipping_method']) { $smarty->assign('SHIPPING_METHOD', $order->info['shipping_method']); }
 }
 
+$smarty->assign('order_data', $order->getOrderData($order->info['order_id']));
+
 // Products data
 $data_products = '<table style="width: 100%; border: none; padding: 0;">';
 for ($i = 0, $n = sizeof($order->products); $i < $n; $i ++) {
-	$data_products .= '          <tr>'."\n".'            <td style="text-align: left; vertical-align: top; white-space: nowrap;">'.$order->products[$i]['qty'].' x '.$order->products[$i]['name'].'</td>'."\n".'                
+	$data_products .= '          <tr>'."\n".'            <td style="text-align: left; vertical-align: top; white-space: nowrap;">'.$order->products[$i]['qty'].' x '.$order->products[$i]['name'].'</td>'."\n".'
 	<td style="text-align: left; vertical-align: top;">'.xtc_format_price_order($order->products[$i]['price'], 1, $order->info['currency']).'</td></tr>'."\n";
 
 	if ((isset ($order->products[$i]['attributes'])) && (sizeof($order->products[$i]['attributes']) > 0)) {
