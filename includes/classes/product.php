@@ -38,7 +38,7 @@ class product {
 
 		$fsk_lock = "";
 		if ($_SESSION['customers_status']['customers_fsk18_display'] == '0') {
-			$fsk_lock = ' and p.products_fsk18!=1';
+			$fsk_lock = " AND ".TABLE_PRODUCTS.".products_fsk18!=1";
 		}
 
 		$product_query = "SELECT ".TABLE_PRODUCTS.".*, ".TABLE_PRODUCTS_DESCRIPTION.".*, ".TABLE_MANUFACTURERS.".manufacturers_name
@@ -63,14 +63,17 @@ class product {
 	}
 
 	function getDetails($products_id, $language_id) {
-		$Details_query = "SELECT products_details.products_details_name, products_details_values.products_details_value
+		$counterDetails = 0;
+		$Details_query = "SELECT products_details.products_details_name, products_details.products_details_title, products_details_values.products_details_value
 							FROM products_details_values
 							INNER JOIN products_details ON (products_details_values.products_details_id=products_details.products_details_id)
 							WHERE products_details_values.products_id='".$products_id."'
 								AND products_details_values.language_id='".$language_id."';";
 		$Details_query = xtDBquery($Details_query);
 		while($Row = xtc_db_fetch_array($Details_query)) {
-			$Return[$Row['products_details_name']] = $Row['products_details_value'];
+			$Title = json_decode($Row['products_details_title']);
+			$Return[$Row['products_details_name']]['Title'] = $Title->$language_id;
+			$Return[$Row['products_details_name']]['Value'] = $Row['products_details_value'];
 		}
 		return $Return;
 	}
@@ -296,15 +299,7 @@ class product {
 				$group_check = " and p.group_permission_".$_SESSION['customers_status']['customers_status_id']."=1 ";
 			}
 
-			$cross_query = xtDBquery("select p.products_fsk18,
-																						 p.products_tax_class_id,
-																                                                 p.products_id,
-																                                                 p.products_image,
-																                                                 pd.products_name,
-																						 						pd.products_short_description,
-																                                                 p.products_fsk18,p.products_price,p.products_vpe,
-						                           																p.products_vpe_status,
-						                           																p.products_vpe_value,
+			$cross_query = xtDBquery("SELECT p.products_fsk18, p.products_tax_class_id, p.products_id, p.products_image, pd.products_name, pd.products_short_description, p.products_fsk18,p.products_price,p.products_vpe, p.products_vpe_status, p.products_vpe_value,
 																                                                 xp.sort_order from ".TABLE_PRODUCTS_XSELL." xp, ".TABLE_PRODUCTS." p, ".TABLE_PRODUCTS_DESCRIPTION." pd
 																                                            where xp.xsell_id = '".$this->pID."' and xp.products_id = p.products_id ".$fsk_lock.$group_check."
 																                                            and p.products_id = pd.products_id
@@ -329,14 +324,10 @@ class product {
 	function getGraduated() {
 		global $xtPrice;
 
-		$staffel_query = xtDBquery("SELECT
-				                                     quantity,
-				                                     personal_offer
-				                                     FROM
-				                                     ".TABLE_PERSONAL_OFFERS_BY.(int) $_SESSION['customers_status']['customers_status_id']."
-				                                     WHERE
-				                                     products_id = '".$this->pID."'
-				                                     ORDER BY quantity ASC");
+		$staffel_query = xtDBquery("SELECT quantity, personal_offer
+									FROM ".TABLE_PERSONAL_OFFERS_BY.(int) $_SESSION['customers_status']['customers_status_id']."
+									WHERE products_id = '".$this->pID."'
+									ORDER BY quantity ASC");
 
 		$staffel = array ();
 		while ($staffel_values = xtc_db_fetch_array($staffel_query, true)) {
@@ -487,8 +478,6 @@ class product {
 				'PRODUCTS_FSK18' => $array['products_fsk18'],
 				'PRODUCTS_DETAILS' => $this->getDetails($array['products_id'], (int) $_SESSION['languages_id']),
 				'PRODUCTS_REVIEWS' => $this->getReviewsAverage($array['products_id']));
-
-
 	}
 
 	function productImage($name, $type) {
