@@ -2955,8 +2955,9 @@ UPDATE admin_access SET token_admin='1' WHERE admin_access.customers_id='1';
 CREATE TABLE IF NOT EXISTS products_details (
   products_details_id int(11) NOT NULL AUTO_INCREMENT,
   products_details_name varchar(32) NOT NULL DEFAULT '',
+  products_details_title text,
   PRIMARY KEY (products_details_id)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
 
 # Product Details Values
 CREATE TABLE IF NOT EXISTS products_details_values (
