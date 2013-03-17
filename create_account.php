@@ -109,7 +109,7 @@ if (isset ($_POST['action']) && ($_POST['action'] == 'process')) {
 		}
 	}
 
-// New VAT Check
+	// New VAT Check
 	require_once(DIR_WS_CLASSES.'vat_validation.php');
 	$vatID = new vat_validation($vat, '', '', $country);
 
@@ -121,9 +121,7 @@ if (isset ($_POST['action']) && ($_POST['action'] == 'process')) {
 	$messageStack->add('create_account', ENTRY_VAT_ERROR);
 	$error = true;
   }
-
-// New VAT CHECK END
-
+  // New VAT CHECK END
 
 	if (strlen($email_address) < ENTRY_EMAIL_ADDRESS_MIN_LENGTH) {
 		$error = true;
@@ -280,6 +278,17 @@ return $new_cid;
 
 		xtc_db_query("insert into ".TABLE_CUSTOMERS_INFO." (customers_info_id, customers_info_number_of_logons, customers_info_date_account_created) values ('".(int) $_SESSION['customer_id']."', '0', now())");
 
+		if ($gender =='f') {
+			$smarty->assign('GENDER', FEMALE);
+	    }
+	    elseif ($gender =='m') {
+	    	$smarty->assign('GENDER', MALE);
+	    }
+	    else {
+	    	$smarty->assign('GENDER', '');
+	    }
+	    $smarty->assign('LASTNAME',$lastname);
+
 		if (SESSION_RECREATE == 'True') {
 			xtc_session_recreate();
 		}
@@ -369,17 +378,17 @@ if (isset ($_SESSION['tracking']['refID'])){
 		$smarty->caching = 0;
 		$txt_mail = $smarty->fetch(CURRENT_TEMPLATE.'/mail/'.$_SESSION['language'].'/create_account_mail.txt');
 
-  if (ATTACH_CREATE_1 != '') {
-  $attachment1 = 'attachments/'.ATTACH_CREATE_1 ;
-  } else {
-  $attachment1 = '';
-  }
+		if (ATTACH_CREATE_1 != '') {
+			$attachment1 = 'attachments/'.ATTACH_CREATE_1 ;
+		} else {
+			$attachment1 = '';
+		}
 
-  if (ATTACH_CREATE_2 != '') {
-  $attachment2 = 'attachments/'.ATTACH_CREATE_2 ;
-  } else {
-  $attachment2 = '';
-  }
+		if (ATTACH_CREATE_2 != '') {
+			$attachment2 = 'attachments/'.ATTACH_CREATE_2 ;
+		} else {
+			$attachment2 = '';
+		}
 
 		xtc_php_mail(EMAIL_SUPPORT_ADDRESS, EMAIL_SUPPORT_NAME, $email_address, $name, EMAIL_SUPPORT_FORWARDING_STRING, EMAIL_SUPPORT_REPLY_ADDRESS, EMAIL_SUPPORT_REPLY_ADDRESS_NAME, $attachment1, $attachment2, EMAIL_SUPPORT_SUBJECT, $html_mail, $txt_mail);
 
@@ -424,6 +433,7 @@ if (ACCOUNT_DOB == 'true') {
 }
 
 $smarty->assign('INPUT_EMAIL', xtc_draw_input_fieldNote(array ('name' => 'email_address', 'text' => '&nbsp;'. (xtc_not_null(ENTRY_EMAIL_ADDRESS_TEXT) ? '<span class="inputRequirement">'.ENTRY_EMAIL_ADDRESS_TEXT.'</span>' : ''))));
+$smarty->assign('INPUT_CONFIRM_EMAIL', xtc_draw_input_fieldNote(array ('name' => 'confirm_email_address', 'text' => '&nbsp;'. (xtc_not_null(ENTRY_EMAIL_ADDRESS_TEXT) ? '<span class="inputRequirement">'.ENTRY_EMAIL_ADDRESS_TEXT.'</span>' : '')), '',''));
 
 if (ACCOUNT_COMPANY == 'true') {
 	$smarty->assign('company', '1');
