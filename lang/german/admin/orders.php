@@ -1,18 +1,18 @@
 <?php
 /* --------------------------------------------------------------
-   $Id: orders.php 17 2012-06-04 20:33:29Z deisold $   
+   $Id: orders.php 17 2012-06-04 20:33:29Z deisold $
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
 
    Copyright (c) 2003 XT-Commerce
    --------------------------------------------------------------
-   based on: 
+   based on:
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
-   (c) 2002-2003 osCommerce(orders.php,v 1.27 2003/02/16); www.oscommerce.com 
+   (c) 2002-2003 osCommerce(orders.php,v 1.27 2003/02/16); www.oscommerce.com
    (c) 2003	 nextcommerce (orders.php,v 1.7 2003/08/14); www.nextcommerce.org
 
-   Released under the GNU General Public License 
+   Released under the GNU General Public License
    --------------------------------------------------------------*/
 define('SUCCESS_ORDER_SEND', 'Erfolg: Die Bestellung wurde erfolgreich nochmals per Email verschickt!');
 
@@ -124,8 +124,10 @@ define('TEXT_DO_STATUS_CHANGE','Status wirklich &auml;ndern?');
 define('HEADING_MULTI_ORDER_STATUS','Bestell Schnell Bearbeitung');
 define('WARNING_ORDER_NOT_UPDATED_ALL','Es wurde nicht alles korrekt ge&auml;ndert, pr&uuml;fen Sie Ihre Eingabe');
 
-//BEGIN NEXT AND PREVIOUS ORDERS DISPLAY IN ADMIN 
-define('PREV_ORDER', '<b><< vorherige Bestellung</b>'); 
-define('NEXT_ORDER', '<b>nächste Bestellung >></b>'); 
+//BEGIN NEXT AND PREVIOUS ORDERS DISPLAY IN ADMIN
+define('PREV_ORDER', '<b><< vorherige Bestellung</b>');
+define('NEXT_ORDER', '<b>nächste Bestellung >></b>');
 //END NEXT AND PREVIOUS ORDERS DISPLAY IN ADMIN
-?>
+
+// PayPal Express
+define('TEXT_INFO_PAYPAL_DELETE', 'PayPal Transaktions Daten auch l&ouml;schen.');

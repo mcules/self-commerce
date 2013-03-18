@@ -1,18 +1,18 @@
 <?php
 /* --------------------------------------------------------------
-   $Id: modules.php 899 2005-04-29 02:40:57Z hhgag $   
+   $Id: modules.php 899 2005-04-29 02:40:57Z hhgag $
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
 
    Copyright (c) 2003 XT-Commerce
    --------------------------------------------------------------
-   based on: 
+   based on:
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
-   (c) 2002-2003 osCommerce(modules.php,v 1.8 2002/04/09); www.oscommerce.com 
+   (c) 2002-2003 osCommerce(modules.php,v 1.8 2002/04/09); www.oscommerce.com
    (c) 2003	 nextcommerce (modules.php,v 1.5 2003/08/14); www.nextcommerce.org
 
-   Released under the GNU General Public License 
+   Released under the GNU General Public License
    --------------------------------------------------------------*/
 
 define('HEADING_TITLE_MODULES_PAYMENT', 'Zahlungsweisen');
@@ -27,4 +27,6 @@ define('TABLE_HEADING_ACTION', 'Aktion');
 define('TEXT_MODULE_DIRECTORY', 'Modul Verzeichnis:');
 
 define('TABLE_HEADING_FILENAME','Modulname (für internen Gebrauch)');
-?>
+
+// PayPal Express
+define('TEXT_INFO_DELETE_PAYPAL', 'Wenn Sie dieses Modul jetzt deinstallieren werden die PayPal Transaktions-Daten gel&ouml;scht!<br /> Wollen Sie diese Daten erhalten, dr&uuml;cken Sie jetzt auf Abbruch und de-aktivieren Sie das Modul (Modul aktivieren = False) nur.');

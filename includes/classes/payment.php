@@ -5,9 +5,9 @@
    http://www.self-commerce.de
    Copyright (c) 2012 Self-Commerce
    -----------------------------------------------------------------------------------------
-   based on: 
+   based on:
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
-   (c) 2002-2003 osCommerce(payment.php,v 1.36 2003/02/11); www.oscommerce.com 
+   (c) 2002-2003 osCommerce(payment.php,v 1.36 2003/02/11); www.oscommerce.com
    (c) 2003	 nextcommerce (payment.php,v 1.11 2003/08/17); www.nextcommerce.org
    (c) 2005      XT-Commerce (payment.php, 1235 2005/08/07); www.xt-commerce.com
 
@@ -38,7 +38,12 @@
       global $PHP_SELF,$order;
 
       if (defined('MODULE_PAYMENT_INSTALLED') && xtc_not_null(MODULE_PAYMENT_INSTALLED)) {
-        $this->modules = explode(';', MODULE_PAYMENT_INSTALLED);
+        if($_SESSION['paypal_express_checkout']==true) {
+			$this->modules = explode(';', $_SESSION['paypal_express_payment_modules'] );
+		} else {
+			$this->modules = explode(';', MODULE_PAYMENT_INSTALLED);
+			$this->modules = str_replace('paypalexpress.php', '', $this->modules);
+		}
 
         $include_modules = array();
 
@@ -82,7 +87,7 @@
         }
         // if there is only one payment method, select it as default because in
         // checkout_confirmation.php the $payment variable is being assigned the
-        // $_POST['payment'] value which will be empty (no radio button selection possible)
+        // $HTTP_POST_VARS['payment'] value which will be empty (no radio button selection possible)
         if ( (xtc_count_payment_modules() == 1) && (!is_object($_SESSION['payment'])) ) {
           $_SESSION['payment'] = $include_modules[0]['class'];
         }
@@ -101,7 +106,7 @@
        The following method is a work-around to implementing the method in all
        payment modules available which would break the modules in the contributions
        section. This should be looked into again post 2.2.
-     */   
+     */
     function update_status() {
       if (is_array($this->modules)) {
         if (is_object($GLOBALS[$this->selected_module])) {
@@ -241,6 +246,15 @@
       }
     }
 
+    // PayPal Express Giropay
+    function giropay_process() {
+      if (is_array($this->modules)) {
+        if (is_object($GLOBALS[$this->selected_module]) && ($GLOBALS[$this->selected_module]->enabled) ) {
+          return $GLOBALS[$this->selected_module]->giropay_process();
+        }
+      }
+    }
+
     function get_error() {
       if (is_array($this->modules)) {
         if (is_object($GLOBALS[$this->selected_module]) && ($GLOBALS[$this->selected_module]->enabled) ) {
@@ -249,4 +263,3 @@
       }
     }
   }
-?>

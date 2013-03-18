@@ -1,18 +1,18 @@
 <?php
 /* -----------------------------------------------------------------------------------------
-   $Id: shipping.php 17 2012-06-04 20:33:29Z deisold $   
+   $Id: shipping.php 17 2012-06-04 20:33:29Z deisold $
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
 
    Copyright (c) 2003 XT-Commerce
    -----------------------------------------------------------------------------------------
-   based on: 
+   based on:
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
-   (c) 2002-2003 osCommerce(shipping.php,v 1.22 2003/05/08); www.oscommerce.com 
+   (c) 2002-2003 osCommerce(shipping.php,v 1.22 2003/05/08); www.oscommerce.com
    (c) 2003	 nextcommerce (shipping.php,v 1.9 2003/08/17); www.nextcommerce.org
 
-   Released under the GNU General Public License 
+   Released under the GNU General Public License
    ---------------------------------------------------------------------------------------*/
 
   require_once(DIR_FS_INC . 'xtc_in_array.inc.php');
@@ -96,7 +96,9 @@
         $size = sizeof($include_quotes);
         for ($i=0; $i<$size; $i++) {
           $quotes = $GLOBALS[$include_quotes[$i]]->quote($method);
-          if (is_array($quotes)) $quotes_array[] = $quotes;
+          if (!isset ($quotes['error'])) {
+	          if (is_array($quotes)) $quotes_array[] = $quotes;
+          }
         }
       }
 
@@ -115,7 +117,7 @@
             $quotes = $GLOBALS[$class]->quotes;
             $size = sizeof($quotes['methods']);
             for ($i=0; $i<$size; $i++) {
-            if(array_key_exists("cost",$quotes['methods'][$i])) {
+            if(array_key_exists("cost",$quotes['methods'][$i]) AND !isset ($quotes['error'][$i])) {
                 $rates[] = array('id' => $quotes['id'] . '_' . $quotes['methods'][$i]['id'],
                                  'title' => $quotes['module'] . ' (' . $quotes['methods'][$i]['title'] . ')',
                                  'cost' => $quotes['methods'][$i]['cost']);
@@ -143,4 +145,3 @@
 
     }
   }
-?>

@@ -1,7 +1,7 @@
 <?php
 
 /* -----------------------------------------------------------------------------------------
-   $Id: checkout_payment.php 17 2012-06-04 20:33:29Z deisold $   
+   $Id: checkout_payment.php 17 2012-06-04 20:33:29Z deisold $
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
@@ -131,11 +131,14 @@ require (DIR_WS_INCLUDES.'header.php');
 $module_smarty = new Smarty;
 if ($order->info['total'] > 0) {
         if (isset ($_GET['payment_error']) && is_object(${ $_GET['payment_error'] }) && ($error = ${$_GET['payment_error']}->get_error())) {
-
                 $smarty->assign('error', htmlspecialchars($error['error']));
-
         }
 
+        // Paypal Express Modul Start
+		if(isset($_SESSION['reshash']['FORMATED_ERRORS'])){
+			$smarty->assign('error', $_SESSION['reshash']['FORMATED_ERRORS']);
+		}
+		// Paypal Express Modul Ende
 
         $selection = $payment_modules->selection();
 
@@ -161,15 +164,19 @@ if ($order->info['total'] > 0) {
                 }
         }
 
-            
+
             $module_smarty->assign('module_content', $selection);
 
-            
+
 } else {
         $smarty->assign('GV_COVER', 'true');
 }
 
-
+// Paypal Express Modul Start
+// PayPal neuer Start auf jeden Fall
+unset($_SESSION['reshash']);
+unset($_SESSION['nvpReqArray']);
+// Paypal Express Modul Ende
 
 if (ACTIVATE_GIFT_SYSTEM == 'true') {
         $smarty->assign('module_gift', $order_total_modules->credit_selection());

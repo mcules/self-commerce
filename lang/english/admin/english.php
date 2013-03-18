@@ -405,4 +405,6 @@ define('ADMIN_SQL_SUCCESS','<b>SQL Instruction successfully implemented.</b>');
 
 // Lagerliste
 define('BOX_STOCK_LIST','Stock list');
-?>
+
+// PayPal Express
+define('BOX_PAYPAL','PayPal');

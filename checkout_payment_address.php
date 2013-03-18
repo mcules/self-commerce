@@ -1,7 +1,7 @@
 <?php
 
 /* -----------------------------------------------------------------------------------------
-   $Id: checkout_payment_address.php 17 2012-06-04 20:33:29Z deisold $   
+   $Id: checkout_payment_address.php 17 2012-06-04 20:33:29Z deisold $
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
@@ -9,12 +9,12 @@
    Copyright (c) 2003 XT-Commerce
    -----------------------------------------------------------------------------------------
    (c) 2012	 Self-Commerce www.self-commerce.de
-   based on: 
+   based on:
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
-   (c) 2002-2003 osCommerce(checkout_payment_address.php,v 1.13 2003/05/27); www.oscommerce.com 
+   (c) 2002-2003 osCommerce(checkout_payment_address.php,v 1.13 2003/05/27); www.oscommerce.com
    (c) 2003	 nextcommerce (checkout_payment_address.php,v 1.14 2003/08/17); www.nextcommerce.org
 
-   Released under the GNU General Public License 
+   Released under the GNU General Public License
    ---------------------------------------------------------------------------------------*/
 
 include ('includes/application_top.php');
@@ -26,6 +26,13 @@ require (DIR_FS_CATALOG.'templates/'.CURRENT_TEMPLATE.'/source/boxes.php');
 require_once (DIR_FS_INC.'xtc_count_customer_address_book_entries.inc.php');
 require_once (DIR_FS_INC.'xtc_address_label.inc.php');
 
+// Paypal Express Modul Start
+if (is_array($_SESSION['nvpReqArray'])) {
+	$link_checkout_payment = FILENAME_PAYPAL_CHECKOUT;
+} else {
+	$link_checkout_payment = FILENAME_CHECKOUT_PAYMENT;
+}
+// Paypal Express Modul Ende
 
 // if the customer is not logged on, redirect them to the login page
 if (!isset ($_SESSION['customer_id']))
@@ -156,7 +163,8 @@ if (isset ($_POST['action']) && ($_POST['action'] == 'submit')) {
 			if (isset ($_SESSION['payment']))
 				unset ($_SESSION['payment']);
 
-			xtc_redirect(xtc_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL'));
+			// Paypal Express Modul Änderung:
+			xtc_redirect(xtc_href_link($link_checkout_payment, '', 'SSL'));
 		}
 		// process the selected billing destination
 	}
@@ -178,7 +186,8 @@ if (isset ($_POST['action']) && ($_POST['action'] == 'submit')) {
 		if ($check_address['total'] == '1') {
 			if ($reset_payment == true)
 				unset ($_SESSION['payment']);
-			xtc_redirect(xtc_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL'));
+			// Paypal Express Modul Änderung:
+			xtc_redirect(xtc_href_link($link_checkout_payment, '', 'SSL'));
 		} else {
 			unset ($_SESSION['billto']);
 		}
@@ -186,7 +195,8 @@ if (isset ($_POST['action']) && ($_POST['action'] == 'submit')) {
 	} else {
 		$_SESSION['billto'] = $_SESSION['customer_default_address_id'];
 
-		xtc_redirect(xtc_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL'));
+		// Paypal Express Modul Änderung:
+		xtc_redirect(xtc_href_link($link_checkout_payment, '', 'SSL'));
 	}
 }
 
@@ -195,7 +205,8 @@ if (!isset ($_SESSION['billto'])) {
 	$_SESSION['billto'] = $_SESSION['customer_default_address_id'];
 }
 
-$breadcrumb->add(NAVBAR_TITLE_1_PAYMENT_ADDRESS, xtc_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL'));
+// Paypal Express Modul Änderung:
+$breadcrumb->add(NAVBAR_TITLE_1_PAYMENT_ADDRESS, xtc_href_link($link_checkout_payment, '', 'SSL'));
 $breadcrumb->add(NAVBAR_TITLE_2_PAYMENT_ADDRESS, xtc_href_link(FILENAME_CHECKOUT_PAYMENT_ADDRESS, '', 'SSL'));
 
 $addresses_count = xtc_count_customer_address_book_entries();

@@ -11,7 +11,7 @@ Datum: {$DATE}
 
 Hallo {$NAME},
 
-vielen Dank für Ihre Bestellung.
+vielen Dank f&uuml;r Ihre Bestellung.
 
 {$PAYMENT_INFO_TXT}
 
@@ -22,7 +22,7 @@ Ihre Anmerkungen:
 
 Ihre Bestellten Produkte zur Kontrollle
 ----------------------------------------------------------------------
-{foreach name=aussen item=order_values from=$order_data} 
+{foreach name=aussen item=order_values from=$order_data}
 {$order_values.PRODUCTS_QTY} x {$order_values.PRODUCTS_NAME} {$order_values.PRODUCTS_PRICE}
 {if $order_values.PRODUCTS_SHIPPING_TIME neq ''}Lieferzeit: {$order_values.PRODUCTS_SHIPPING_TIME}{/if}
 {if $order_values.PRODUCTS_ATTRIBUTES !=''}{$order_values.PRODUCTS_ATTRIBUTES}{/if}
@@ -39,7 +39,7 @@ Rechnungsadresse
 ----------------------------------------------------------------------
 {$address_label_payment}
 {/if}
-Versandadresse 
+Versandadresse
 ----------------------------------------------------------------------
 {$address_label_shipping}
 

@@ -37,7 +37,7 @@ require ('includes/application_top_1.php');
             <?php echo $cfg_group['configuration_group_title']; ?></td>
         </tr>
         <tr>
-          <td class="main" valign="top"> Self-Commerce Configuration</td>
+          <td class="main" valign="top"> XT Configuration</td>
         </tr>
       </table></td>
   </tr>
@@ -52,24 +52,30 @@ require ('includes/application_top_1.php');
          		case 21:
          			echo AFTERBUY_URL;
          		case 19:
-         			echo '<table class="infoBoxHeading" width="100%">
-            				<tr>
-                				<td width="150" align="center">
-                					<a class="button" href="'.xtc_href_link(FILENAME_CONFIGURATION, 'gID=21', 'NONSSL').'">Afterbuy</a>
-                				</td>
-                				<td width="1">|</td>
-                				<td width="150" align="center">
-                					<a class="button" href="'.xtc_href_link(FILENAME_CONFIGURATION, 'gID=19', 'NONSSL').'">Google Conversion</a>
-                				</td>
-                				<td width="1">|</td>
-                				<td width="150" align="center">
-                					<a class="button" href="'.xtc_href_link(FILENAME_CONFIGURATION, 'gID=111125', 'NONSSL').'">PayPal</a>
-                				</td>
-                				<td width="1">|</td>
-                				<td></td>
-            				</tr>
-        				</table>';
-         			break;
+				case 24:
+				case 111125:
+							echo '<table width="100%">
+											<tr class="dataTableHeadingRow">
+												<td width="150" align="center">
+													<a class="button" href="'.xtc_href_link(FILENAME_CONFIGURATION, 'gID=21', 'NONSSL').'">Afterbuy</a>
+												</td>
+												<td width="1">|</td>
+												<td width="150" align="center">
+													<a class="button" href="'.xtc_href_link(FILENAME_CONFIGURATION, 'gID=19', 'NONSSL').'">Google Conversion</a>
+												</td>
+												<td width="1">|</td>
+												<td width="150" align="center">
+													<a class="button" href="'.xtc_href_link(FILENAME_CONFIGURATION, 'gID=24', 'NONSSL').'">x-check</a>
+												</td>
+												<td width="1">|</td>
+												<td width="150" align="center">
+													<a class="button" href="'.xtc_href_link(FILENAME_CONFIGURATION, 'gID=111125', 'NONSSL').'">PayPal</a>
+												</td>
+												<td width="1">|</td>
+												<td></td>
+											</tr>
+										</table>';
+							break;
          	}
         ?>
         <tr>

@@ -411,4 +411,6 @@ define('ADMIN_SQL_SUCCESS','<b>SQL Befehl erfolgreich ausgefí©²t.</b>');
 
 // Lagerliste
 define('BOX_STOCK_LIST','Lagerliste');
-?>
+
+// PayPal Express
+define('BOX_PAYPAL','PayPal');

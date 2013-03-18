@@ -16,57 +16,39 @@
  *
  * For questions, help, comments, discussion, etc., please join the
  * xt:Commerce Support Forums at www.xt-commerce.com
- *
  * ab 15.08.2008 Teile vom Hamburger-Internetdienst geändert
  * Hamburger-Internetdienst Support Forums at www.forum.hamburger-internetdienst.de
  * Stand 04.03.2012
 */
-class paypal {
+class paypalexpress {
 	var $code, $title, $description, $enabled;
 /**************************************************************/
-	function paypal() {
+	function paypalexpress() {
 		// Stand: 29.04.2009
 		global $order;
-		$this->code = 'paypal';
-		$this->title = MODULE_PAYMENT_PAYPAL_TEXT_TITLE;
-		$this->description = MODULE_PAYMENT_PAYPAL_TEXT_DESCRIPTION;
-		if(MODULE_PAYMENT_PAYPAL_SORT_ORDER!=''){
-			$this->sort_order = MODULE_PAYMENT_PAYPAL_SORT_ORDER;
+		$this->code = 'paypalexpress';
+		$this->title = MODULE_PAYMENT_PAYPALEXPRESS_TEXT_TITLE;
+		$this->description = MODULE_PAYMENT_PAYPALEXPRESS_TEXT_DESCRIPTION;
+		if(MODULE_PAYMENT_PAYPALEXPRESS_SORT_ORDER!=''){
+			$this->sort_order = MODULE_PAYMENT_PAYPALEXPRESS_SORT_ORDER;
 		}else{
-			$this->sort_order = 2;
+			$this->sort_order = 3;
 		}
-		$this->enabled = ((MODULE_PAYMENT_PAYPAL_STATUS == 'True') ? true : false);
-		$this->info = MODULE_PAYMENT_PAYPAL_TEXT_INFO;
+		$this->enabled = ((MODULE_PAYMENT_PAYPALEXPRESS_STATUS == 'True') ? true : false);
+		$this->info = MODULE_PAYMENT_PAYPALEXPRESS_TEXT_INFO;
 		$this->order_status_success = PAYPAL_ORDER_STATUS_SUCCESS_ID;
 		$this->order_status_rejected = PAYPAL_ORDER_STATUS_REJECTED_ID;
 		$this->order_status_pending = PAYPAL_ORDER_STATUS_PENDING_ID;
 		$this->order_status_tmp = PAYPAL_ORDER_STATUS_TMP_ID;
-		$this->tmpOrders = false;
+		$this->tmpOrders = true;
 		$this->debug = true;
-		$this->tmpStatus = PAYPAL_ORDER_STATUS_TMP_ID;
+		$this->tmpStatus = PAYPAL_ORDER_STATUS_TMP_ID;;
 		if(is_object($order))
 			$this->update_status();
 	}
 /**************************************************************/
 	function update_status() {
-		// Stand: 29.04.2009
 		global $order;
-		if(($this->enabled == true) && ((int) MODULE_PAYMENT_PAYPAL_ZONE > 0)) {
-			$check_flag = false;
-			$check_query = xtc_db_query("select zone_id from ".TABLE_ZONES_TO_GEO_ZONES." where geo_zone_id = '".MODULE_PAYMENT_PAYPAL_ZONE."' and zone_country_id = '".$order->billing['country']['id']."' order by zone_id");
-			while($check = xtc_db_fetch_array($check_query)) {
-				if($check['zone_id'] < 1) {
-					$check_flag = true;
-					break;
-				} elseif($check['zone_id'] == $order->billing['zone_id']) {
-					$check_flag = true;
-					break;
-				}
-			}
-			if($check_flag == false) {
-				$this->enabled = false;
-			}
-		}
 	}
 /**************************************************************/
 	function javascript_validation() {
@@ -85,8 +67,8 @@ class paypal {
 	}
 /**************************************************************/
 	function confirmation() {
-		// Stand: 19.07.2010
-		return array ('title' => $this->description);
+		// Stand: 29.04.2009
+		return false;
 	}
 /**************************************************************/
 	function process_button() {
@@ -96,31 +78,21 @@ class paypal {
 /**************************************************************/
 	function before_process() {
 		// Stand: 29.04.2009
-		// Bereits geholt und bestätigt
-		if($_GET['PayerID']!='' AND $_SESSION['reshash']['TOKEN']!='' AND (strtoupper($_SESSION['reshash']["ACK"])=="SUCCESS" OR strtoupper($_SESSION['reshash']["ACK"])=="SUCCESSWITHWARNING"))
-			return;
-		// Den PayPal Token holen, ohne das commit keine Preisanzeige !
-		global $order, $o_paypal;
-		$o_paypal->paypal_auth_call();
-		// Gleich auf Bezahl-Bestätigt setzten bei PayPal
-		xtc_redirect($o_paypal->payPalURL.'&useraction=commit');
-		return;
+		return false;
 	}
 /**************************************************************/
-	function payment_action() {
+	function payment_action(){
 		// Stand: 29.04.2009
 		global $order, $o_paypal, $tmp, $insert_id;
 		$tmp = false;
-		return;
 	}
 /**************************************************************/
 	function after_process() {
 		// Stand: 29.04.2009
-		global $order, $insert_id, $o_paypal;
+		global $insert_id, $o_paypal;
 		$o_paypal->complete_ceckout($insert_id, $_GET);
 		$o_paypal->write_status_history($insert_id);
 		$o_paypal->logging_status($insert_id);
-		return;
 	}
 /**************************************************************/
 	function giropay_process() {
@@ -128,6 +100,11 @@ class paypal {
 		global $o_paypal;
 		$o_paypal->giropay_confirm($_GET);
 		return;
+	}
+/**************************************************************/
+	function admin_order($oID) {
+		// Stand: 29.04.2009
+		return false;
 	}
 /**************************************************************/
 	function output_error() {
@@ -138,15 +115,10 @@ class paypal {
 	function check() {
 		// Stand: 29.04.2009
 		if(!isset($this->_check)) {
-			$check_query = xtc_db_query("select configuration_value from ".TABLE_CONFIGURATION." where configuration_key = 'MODULE_PAYMENT_PAYPAL_STATUS'");
+			$check_query = xtc_db_query("select configuration_value from ".TABLE_CONFIGURATION." where configuration_key = 'MODULE_PAYMENT_PAYPALEXPRESS_STATUS'");
 			$this->_check = xtc_db_num_rows($check_query);
 		}
 		return $this->_check;
-	}
-/**************************************************************/
-	function admin_order($oID) {
-		// Stand: 29.04.2009
-		return false;
 	}
 /**************************************************************/
 	function install() {
@@ -186,11 +158,11 @@ class paypal {
 			}
 		}
 		$m_fields=' ( configuration_key, configuration_value, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function ) ';
-		// Grund Install des PayPals
-		xtc_db_query("insert into ".TABLE_CONFIGURATION.$m_fields."values ('MODULE_PAYMENT_PAYPAL_STATUS', 'True', '6', '3', NULL, now(), '', 'xtc_cfg_select_option(array(\'True\', \'False\'),' )");
-		xtc_db_query("insert into ".TABLE_CONFIGURATION.$m_fields."values ('MODULE_PAYMENT_PAYPAL_SORT_ORDER', '0', '6', '0', NULL, now(), '', '')");
-		xtc_db_query("insert into ".TABLE_CONFIGURATION.$m_fields."values ('MODULE_PAYMENT_PAYPAL_ALLOWED', '', '6', '0', NULL, now(), '', '')");
-		xtc_db_query("insert into ".TABLE_CONFIGURATION.$m_fields."values ('MODULE_PAYMENT_PAYPAL_ZONE', '0', '6', '2', NULL, now(), 'xtc_get_zone_class_title', 'xtc_cfg_pull_down_zone_classes(')");
+		// Grund Install des Express
+		xtc_db_query("insert into ".TABLE_CONFIGURATION.$m_fields."values ('MODULE_PAYMENT_PAYPALEXPRESS_STATUS', 'True', '6', '3', NULL, now(), '', 'xtc_cfg_select_option(array(\'True\', \'False\'),' )");
+		xtc_db_query("insert into ".TABLE_CONFIGURATION.$m_fields."values ('MODULE_PAYMENT_PAYPALEXPRESS_SORT_ORDER', '0', '6', '0', NULL, now(), '', '')");
+		// muss sein wegen constante in modules/payment
+		xtc_db_query("insert into ".TABLE_CONFIGURATION.$m_fields."values ('MODULE_PAYMENT_PAYPALEXPRESS_ALLOWED', '', '6', '0', NULL, now(), '', '')");
 		// Config Daten auslesen - falls schon vorhanden durch PayPal Modul
 		$rest_query=xtc_db_query("select * from ".TABLE_CONFIGURATION." where configuration_key like 'PAYPAL\_%'");
 		$rest_array=array();
@@ -279,7 +251,7 @@ class paypal {
 		endif;
 		// Table paypal_status_history
 		$m_fields="payment_status_history_id int(11) NOT NULL auto_increment, paypal_ipn_id int(11) NOT NULL default '0', txn_id varchar(64) NOT NULL default '', parent_txn_id varchar(64) NOT NULL default '', payment_status varchar(17) NOT NULL default '', pending_reason varchar(64) default NULL, mc_amount decimal(7,2) NOT NULL, date_added datetime NOT NULL default '0001-01-01 00:00:00'";
-		$db_installed=false;
+		$db_installed = false;
 		$tables=xtc_db_query('show tables from '.DB_DATABASE);
 		while($row=mysql_fetch_row($tables)) {
 			if($row[0] == TABLE_PAYPAL_STATUS_HISTORY):
@@ -301,14 +273,14 @@ class paypal {
 		if(!defined('TABLE_PAYPAL'))define('TABLE_PAYPAL', 'paypal');
 		if(!defined('TABLE_PAYPAL_STATUS_HISTORY'))define('TABLE_PAYPAL_STATUS_HISTORY', 'paypal_status_history');
 		if(!$_POST['paypaldelete'] AND !$pre_inst):
-			$check_query = xtc_db_query("select configuration_key from ".TABLE_CONFIGURATION." where configuration_key = 'MODULE_PAYMENT_PAYPALEXPRESS_STATUS'");
+			$check_query = xtc_db_query("select configuration_key from ".TABLE_CONFIGURATION." where configuration_key = 'MODULE_PAYMENT_PAYPAL_STATUS'");
 			if(xtc_db_num_rows($check_query)==0)
 				xtc_redirect(xtc_href_link(FILENAME_MODULES, 'set=' . $_GET['set'] . '&module=' . $this->code . '&action=removepaypal'));
 		endif;
-		// Grund Install des PayPal
-		xtc_db_query("delete from ".TABLE_CONFIGURATION." where configuration_key like 'MODULE\_PAYMENT\_PAYPAL\_%'");
-		// Config Install für PayPal + Express - NUR falls das Express nicht installiert ist
-		$check_query = xtc_db_query("select configuration_key from ".TABLE_CONFIGURATION." where configuration_key = 'MODULE_PAYMENT_PAYPALEXPRESS_STATUS'");
+		// Grund Install des Express
+		xtc_db_query("delete from ".TABLE_CONFIGURATION." where configuration_key like 'MODULE\_PAYMENT\_PAYPALEXPRESS\_%'");
+		// Config Install für PayPal + Express - NUR falls das Paypal nicht installiert ist
+		$check_query = xtc_db_query("select configuration_key from ".TABLE_CONFIGURATION." where configuration_key = 'MODULE_PAYMENT_PAYPAL_STATUS'");
 		if(xtc_db_num_rows($check_query)==0):
 			xtc_db_query("delete from ".TABLE_CONFIGURATION." where configuration_key like 'PAYPAL\_%'");
 			xtc_db_query("delete from ".TABLE_CONFIGURATION_GROUP." where configuration_group_title = 'PayPal'");
@@ -322,12 +294,18 @@ class paypal {
 			endif;
 			xtc_db_query("DROP TABLE if EXISTS ".TABLE_PAYPAL);
 			xtc_db_query("DROP TABLE if EXISTS ".TABLE_PAYPAL_STATUS_HISTORY);
+		else:
+		// altes PayPal Modul da ?
+			$check_query = xtc_db_query("select configuration_key from ".TABLE_CONFIGURATION." where configuration_key = 'MODULE_PAYMENT_PAYPAL_ID'");
+			if(xtc_db_num_rows($check_query)>0):
+				xtc_db_query("delete from ".TABLE_CONFIGURATION." where configuration_key like 'MODULE\_PAYMENT\_PAYPAL\_%'");
+			endif;
 		endif;
 	}
 /**************************************************************/
 	function keys() {
 		// Stand: 29.04.2009
-		return array('MODULE_PAYMENT_PAYPAL_STATUS', 'MODULE_PAYMENT_PAYPAL_ALLOWED', 'MODULE_PAYMENT_PAYPAL_ZONE','MODULE_PAYMENT_PAYPAL_SORT_ORDER');
+		return array('MODULE_PAYMENT_PAYPALEXPRESS_STATUS');
 	}
 /**************************************************************/
 	function mn_confsearch($needle, $haystack ){

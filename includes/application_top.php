@@ -171,7 +171,7 @@ $configuration_query = xtc_db_query('select configuration_key as cfgKey, configu
 			// msslovi0 2006-11-30
 			// Template-Switcher
 			// continued after session is started
-			if($configuration['cfgKey']=="CURRENT_TEMPLATE") {
+			if($configuration['cfgKey'] == "CURRENT_TEMPLATE") {
 				$template = $configuration['cfgValue'];
 			} else {
 				define($configuration['cfgKey'], $configuration['cfgValue']);
@@ -179,7 +179,7 @@ $configuration_query = xtc_db_query('select configuration_key as cfgKey, configu
 			// end msslovi0
 		}
 
-require_once (DIR_WS_MODULES.'phpmailer/class.phpmailer.php');
+require_once (DIR_WS_CLASSES.'class.phpmailer.php');
 if (EMAIL_TRANSPORT == 'smtp')
 	require_once (DIR_WS_CLASSES.'class.smtp.php');
 require_once (DIR_FS_INC.'xtc_Security.inc.php');
@@ -320,7 +320,7 @@ if (CHECK_CLIENT_AGENT) {
 // verify the ssl_session_id if the feature is enabled
 if (($request_type == 'SSL') && (SESSION_CHECK_SSL_SESSION_ID == 'True') && (ENABLE_SSL == true) && ($session_started == true)) {
 	$ssl_session_id = getenv('SSL_SESSION_ID');
-	if(!isset($_SESSION['SESSION_SSL_ID'])) {
+	if (!session_is_registered('SSL_SESSION_ID')) {
 		$_SESSION['SESSION_SSL_ID'] = $ssl_session_id;
 	}
 
@@ -401,7 +401,12 @@ $main = new main();
 require (DIR_WS_CLASSES.'xtcPrice.php');
 $xtPrice = new xtcPrice($_SESSION['currency'], $_SESSION['customers_status']['customers_status_id']);
 
+// Paypal Express Modul Änderungen:
+require_once (DIR_WS_CLASSES.'paypal_checkout.php');
+$o_paypal = new paypal_checkout();
+
 require (DIR_WS_INCLUDES.FILENAME_CART_ACTIONS);
+
 // create the shopping cart & fix the cart if necesary
 if (!is_object($_SESSION['cart'])) {
 	$_SESSION['cart'] = new shoppingCart();

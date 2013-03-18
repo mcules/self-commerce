@@ -1,7 +1,7 @@
 <?php
 
 /* -----------------------------------------------------------------------------------------
-   $Id: checkout_shipping_address.php 17 2012-06-04 20:33:29Z deisold $   
+   $Id: checkout_shipping_address.php 17 2012-06-04 20:33:29Z deisold $
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
@@ -9,12 +9,12 @@
    Copyright (c) 2003 XT-Commerce
    -----------------------------------------------------------------------------------------
    (c) 2012	 Self-Commerce www.self-commerce.de
-   based on: 
+   based on:
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
    (c) 2002-2003 osCommerce(checkout_shipping_address.php,v 1.14 2003/05/27); www.oscommerce.com
-   (c) 2003	 nextcommerce (checkout_shipping_address.php,v 1.14 2003/08/17); www.nextcommerce.org 
+   (c) 2003	 nextcommerce (checkout_shipping_address.php,v 1.14 2003/08/17); www.nextcommerce.org
 
-   Released under the GNU General Public License 
+   Released under the GNU General Public License
    ---------------------------------------------------------------------------------------*/
 
 include ('includes/application_top.php');
@@ -31,6 +31,16 @@ require_once (DIR_FS_INC.'xtc_get_country_name.inc.php');
 require_once (DIR_FS_INC.'xtc_get_countries.inc.php');
 require_once (DIR_FS_INC.'xtc_get_zone_code.inc.php');
 
+// Paypal Express Modul Start
+if (is_array($_SESSION['nvpReqArray'])) {
+	$link_checkout_shipping = FILENAME_PAYPAL_CHECKOUT;
+	if(PAYPAL_EXPRESS_ADDRESS_CHANGE=='true'){
+		$_SESSION['pp_allow_address_change'] = 'true';
+	}
+} else {
+	$link_checkout_shipping = FILENAME_CHECKOUT_SHIPPING;
+}
+// Paypal Express Modul Ende
 
 // if the customer is not logged on, redirect them to the login page
 if (!isset ($_SESSION['customer_id'])) {
@@ -169,7 +179,8 @@ if (isset ($_POST['action']) && ($_POST['action'] == 'submit')) {
 
 			$_SESSION['sendto'] = xtc_db_insert_id();
 
-			xtc_redirect(xtc_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL'));
+			// Paypal Express Modul Änderung:
+			xtc_redirect(xtc_href_link($link_checkout_shipping, '', 'SSL'));
 		}
 		// process the selected shipping destination
 	}
@@ -189,16 +200,19 @@ if (isset ($_POST['action']) && ($_POST['action'] == 'submit')) {
 		$check_address = xtc_db_fetch_array($check_address_query);
 
 		if ($check_address['total'] == '1') {
-			if ($reset_shipping == true)
+			if ($reset_shipping == true) {
 				unset ($_SESSION['shipping']);
-			xtc_redirect(xtc_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL'));
+			}
+			// Paypal Express Modul Änderung:
+			xtc_redirect(xtc_href_link($link_checkout_shipping, '', 'SSL'));
 		} else {
 			unset ($_SESSION['sendto']);
 		}
 	} else {
 		$_SESSION['sendto'] = $_SESSION['customer_default_address_id'];
 
-		xtc_redirect(xtc_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL'));
+		// Paypal Express Modul Änderung:
+		xtc_redirect(xtc_href_link($link_checkout_shipping, '', 'SSL'));
 	}
 }
 
@@ -207,7 +221,8 @@ if (!isset ($_SESSION['sendto'])) {
 	$_SESSION['sendto'] = $_SESSION['customer_default_address_id'];
 }
 
-$breadcrumb->add(NAVBAR_TITLE_1_CHECKOUT_SHIPPING_ADDRESS, xtc_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL'));
+// Paypal Express Modul Änderung:
+$breadcrumb->add(NAVBAR_TITLE_1_CHECKOUT_SHIPPING_ADDRESS, xtc_href_link($link_checkout_shipping, '', 'SSL'));
 $breadcrumb->add(NAVBAR_TITLE_2_CHECKOUT_SHIPPING_ADDRESS, xtc_href_link(FILENAME_CHECKOUT_SHIPPING_ADDRESS, '', 'SSL'));
 
 $addresses_count = xtc_count_customer_address_book_entries();
@@ -240,7 +255,7 @@ if ($process == false) {
 				$address_content .= '<tr class="moduleRow" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="selectRowEffect(this, '.$radio_buttons.')">'."\n";
 			}
 			$address_content .= '<td width="10%">'.xtc_draw_radio_field('address', $addresses['address_book_id'], ($addresses['address_book_id'] == $_SESSION['sendto'])).'</td>
-			                    <td><strong>'.$addresses['firstname'].' '.$addresses['lastname'].'</strong></td>			                    
+			                    <td><strong>'.$addresses['firstname'].' '.$addresses['lastname'].'</strong></td>
 			                  </tr>
 			                  <tr>
 			                    <td colspan="2">'.xtc_address_format($format_id, $addresses, true, ' ', ', ').'</td>
@@ -272,8 +287,8 @@ $main_content = $smarty->fetch(CURRENT_TEMPLATE.'/module/checkout_shipping_addre
 $smarty->assign('language', $_SESSION['language']);
 $smarty->assign('main_content', $main_content);
 $smarty->caching = 0;
-if (!defined(RM))
+if (!defined(RM)) {
 	$smarty->loadfilter('output', 'note');
+}
 $smarty->display(CURRENT_TEMPLATE.'/index.html');
 include ('includes/application_bottom.php');
-?>

@@ -386,13 +386,17 @@ class order {
 
         $billing_address = xtc_db_fetch_array($billing_address_query);
 
-        $tax_address_query = xtc_db_query("SELECT ab.entry_country_id, ab.entry_zone_id
-                                           FROM " . TABLE_ADDRESS_BOOK . " ab
-                                      LEFT JOIN " . TABLE_ZONES . " z ON (ab.entry_zone_id = z.zone_id)
-                                          WHERE ab.customers_id = '" . $_SESSION['customer_id'] . "'
-                                            AND ab.address_book_id = '" . ($this->content_type == 'virtual' ? $_SESSION['billto'] : $_SESSION['sendto']) . "'
-                                       ");
-        $tax_address = xtc_db_fetch_array($tax_address_query);
+        if (isset($_SESSION['AMZ_COUNTRY_ID']) && isset($_SESSION['AMZ_ZONE_ID']))
+        {
+        	$tax_address = array('entry_country_id' => $_SESSION['AMZ_COUNTRY_ID'], 'entry_zone_id' => $_SESSION['AMZ_ZONE_ID']);
+        } else {
+	        $tax_address_query = xtc_db_query("SELECT ab.entry_country_id, ab.entry_zone_id
+    	                                       FROM " . TABLE_ADDRESS_BOOK . " ab
+    	                                       LEFT JOIN " . TABLE_ZONES . " z ON (ab.entry_zone_id = z.zone_id)
+    	                                       WHERE ab.customers_id = '" . $_SESSION['customer_id'] . "'
+    	                                       	AND ab.address_book_id = '" . ($this->content_type == 'virtual' ? $_SESSION['billto'] : $_SESSION['sendto']) . "'");
+    	    $tax_address = xtc_db_fetch_array($tax_address_query);
+    	}
 
         $this->info = array('order_status' => DEFAULT_ORDERS_STATUS_ID,
             'currency' => $_SESSION['currency'],

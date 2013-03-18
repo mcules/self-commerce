@@ -1,6 +1,6 @@
 <?php
 /* -----------------------------------------------------------------------------------------
-   $Id: shopping_cart.php 77 2012-12-12 22:04:43Z deisold $
+   $Id: shopping_cart.php 63 2012-10-20 17:29:32Z McUles $
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
@@ -457,6 +457,7 @@ class shoppingCart {
         $this->weight		= 0;
         $this->tax			= array();
         $this->tax_discount	= array();
+        $this->total_discount = array ();
 
         if (!is_array($this->contents)) {
             return 0;
@@ -527,12 +528,17 @@ class shoppingCart {
                     }
                     // excl tax + tax at checkout
                     if ($_SESSION['customers_status']['customers_status_show_price_tax'] == 0 && $_SESSION['customers_status']['customers_status_add_tax_ot'] == 1) {
-                        if (!isset($this->tax[$product['products_tax_class_id']])) { $this->tax[$product['products_tax_class_id']]['value'] = 0; }
+                        if (!isset($this->tax[$product['products_tax_class_id']])) {
+                        	$this->tax[$product['products_tax_class_id']]['value'] = 0;
+                        }
                         if ($_SESSION['customers_status']['customers_status_ot_discount_flag'] == 1) {
                             $this->tax[$product['products_tax_class_id']]['value'] += (($products_price_tax+$attribute_price_tax) / 100) * ($products_tax)*$qty;
                             $this->tax_discount[$product['products_tax_class_id']]+=(($products_price_tax+$attribute_price_tax) / 100) * ($products_tax)*$qty;
-                        } else {
+                            $this->total_discount[$product['products_tax_class_id']]+=(($products_price_tax+$attribute_price_tax) / 100) * ($products_tax)*$qty;
+                        }
+                        else {
                             $this->tax[$product['products_tax_class_id']]['value'] += (($products_price+$attribute_price) / 100) * ($products_tax)*$qty;
+                            $this->total_discount[$product['products_tax_class_id']]+=(($products_price+$attribute_price) / 100) * ($products_tax)*$qty;
                             $this->total += (($products_price+$attribute_price) / 100) * ($products_tax)*$qty;
                         }
                         $this->tax[$product['products_tax_class_id']]['desc'] = TAX_NO_TAX.$products_tax_description.TAX_SHORT_DISPLAY;
@@ -540,7 +546,8 @@ class shoppingCart {
                 }
             }
         }
-        foreach ($this->tax_discount as $value) {
+        $this->total_discount = $this->tax_discount;
+        foreach ($this->total_discount as $value) {
             $this->total += round($value, $xtPrice->get_decimal_places($order->info['currency']));
         }
     }
@@ -650,8 +657,8 @@ class shoppingCart {
         global $xtPrice;
         $this->calculate();
         $output	= "";
-        $val	= 0;
-        $gval	= 0;
+        $val = 0;
+        $gval = 0;
 
         foreach ($this->tax AS $key => $value) {
             if ($this->tax[$key]['value'] > 0 ) {

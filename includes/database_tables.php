@@ -85,3 +85,6 @@ define('TABLE_CAMPAIGNS_IP','campaigns_ip');
 define('TABLE_TOKEN_USER', 'token_admins');
 define('TABLE_PRODUCTS_DETAILS', 'products_details');
 define('TABLE_PRODUCTS_DETAILS_VALUES', 'products_details_values');
+// PayPal
+define('TABLE_PAYPAL', 'paypal');
+define('TABLE_PAYPAL_STATUS_HISTORY', 'paypal_status_history');

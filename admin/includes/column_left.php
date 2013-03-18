@@ -70,8 +70,10 @@
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['server_info'] == '1'))		$box_tools .= '<a href="' . xtc_href_link(FILENAME_SERVER_INFO) . '" class="menuBoxContentLink"> -' . BOX_SERVER_INFO . '</a><br />';
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['whos_online'] == '1'))		$box_tools .= '<a href="' . xtc_href_link(FILENAME_WHOS_ONLINE) . '" class="menuBoxContentLink"> -' . BOX_WHOS_ONLINE . '</a><br />';
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['csv_backend'] == '1'))		$box_tools .= '<a href="' . xtc_href_link('csv_backend.php') . '" class="menuBoxContentLink"> -' . BOX_IMPORT . '</a><br />';
+  // Paypal Express Modul Änderungen:
+  if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['paypal'] == '1'))			$box_tools .=  '<a href="' . xtc_href_link('paypal.php') . '" class="menuBoxContentLink"> -' . BOX_PAYPAL . '</a><br>';
+
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['file_chk'] == '1'))			$box_tools .= '<a href="' . xtc_href_link(FILENAME_FILE_CHK) . '" class="menuBoxContentLink"> -' . BOX_FILE_CHK . '</a><br />';
-  if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['paypal'] == '1'))			$box_tools .= '<a href="' . xtc_href_link('paypal.php') . '" class="menuBoxContentLink"> -' . BOX_PAYPAL . '</a><br>';
   if(!empty($box_tools))
   	echo '<div class="dhtmlgoodies_panel">
 		<div>'.$box_tools.'</div>
@@ -140,9 +142,6 @@
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['admin_sql'] == '1')) $box_extra_modules .= '<a href="' . xtc_href_link(FILENAME_ADMIN_SQL, '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_ADMIN_SQL . '</a><br />';
   if(!empty($box_extra_modules)) $box_extra_modules .= '<hr>';
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['stock_list'] == '1')) $box_extra_modules .= '<a href="' . xtc_href_link(FILENAME_STOCK_LIST, '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_STOCK_LIST . '</a><br />';
-  /* Haendlerbund AGB- Schnittstelle Beginn */
-  if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['haendlerbund'] == '1')) $box_extra_modules .=  '<a href="' . xtc_href_link("haendlerbund.php", '') . '" class="menuBoxContentLink"> -' . 'AGB Service' . '</a>';
-  /* Haendlerbund AGB- Schnittstelle Ende */
   if(!empty($box_extra_modules))
   	echo '<div class="dhtmlgoodies_panel">
 		<div>'.$box_extra_modules.'</div>

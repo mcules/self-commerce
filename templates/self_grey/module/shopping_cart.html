@@ -10,9 +10,14 @@
 	{$HIDDEN_OPTIONS}
 	{$MODULE_order_details}
 	{if $info_message_1!=''}<p class="error">{$info_message_1}{$min_order}{$info_message_2}{$order_amount}</p>{/if}
+	{if $error!=''}<p class="error">{$error}</p>{/if}
 	<div class="floatbox">
 		<div class="leftCol">&nbsp;</div>
-		<div class="rightCol">{$BUTTON_RELOAD}&nbsp;{$BUTTON_CHECKOUT}</div>
+		{if $BUTTON_PAYPAL!=''}
+		    <div class="rightCol">{$BUTTON_PAYPAL}&nbsp;{#text_or#}&nbsp;{$BUTTON_RELOAD}&nbsp;{$BUTTON_CHECKOUT}</div>
+		{else}
+		    <div class="rightCol">{$BUTTON_RELOAD}&nbsp;{$BUTTON_CHECKOUT}</div>
+		{/if}
 	</div>
 	<br class="clearHere" /><br class="clearHere" />
 	{$FORM_END}

@@ -1,7 +1,7 @@
 <?php
 
 /* -----------------------------------------------------------------------------------------
-   $Id: send_order.php 46 2012-07-30 12:06:11Z deisold $   
+   $Id: send_order.php 46 2012-07-30 12:06:11Z deisold $
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
@@ -10,8 +10,8 @@
    -----------------------------------------------------------------------------------------
    based on:
    (c) 2003	 nextcommerce (send_order.php,v 1.1 2003/08/24); www.nextcommerce.org
-   
-   Released under the GNU General Public License 
+
+   Released under the GNU General Public License
    ---------------------------------------------------------------------------------------*/
 
 require_once (DIR_FS_INC.'xtc_get_order_data.inc.php');
@@ -23,9 +23,20 @@ $order_query_check = xtc_db_query("SELECT
   					WHERE orders_id='".$insert_id."'");
 
 $order_check = xtc_db_fetch_array($order_query_check);
-if ($_SESSION['customer_id'] == $order_check['customers_id']) {
+if ($_SESSION['customer_id'] == $order_check['customers_id']  || $send_by_amazon) {
 
 	$order = new order($insert_id);
+
+// Paypal Express Modul Start
+	if ($_SESSION['paypal_express_new_customer'] == 'true' && $_SESSION['ACCOUNT_PASSWORD']== 'true') {
+		require_once (DIR_FS_INC.'xtc_create_password.inc.php');
+		require_once (DIR_FS_INC.'xtc_encrypt_password.inc.php');
+		$password_encrypted =  xtc_RandomString(10);
+		$password = xtc_encrypt_password($password_encrypted);
+		xtc_db_query("update " . TABLE_CUSTOMERS . " set customers_password = '" . $password . "' where customers_id = '" . (int) $_SESSION['customer_id'] . "'");
+		$smarty->assign('NEW_PASSWORD', $password_encrypted);
+	}
+// Paypal Express Modul Ende
 
 	$smarty->assign('address_label_customer', xtc_address_format($order->customer['format_id'], $order->customer, 1, '', '<br />'));
 	$smarty->assign('address_label_shipping', xtc_address_format($order->delivery['format_id'], $order->delivery, 1, '', '<br />'));
@@ -92,14 +103,14 @@ if ($_SESSION['customer_id'] == $order_check['customers_id']) {
 	$smarty->assign('COMMENTS', $order->info['comments']);
 	$smarty->assign('EMAIL', $order->customer['email_address']);
 	$smarty->assign('PHONE',$order->customer['telephone']);
-	
-// PayPal Bezahl-Linkerweiterung 
-    $smarty->assign('CURRENCY1',$order->info['currency']); 
-    $tmp1 = preg_replace ( '/,/i', '.' , $order->info['total'] ); 
-    $tmp2 = floatval ($tmp1); 
-    $smarty->assign('TOTAL1',$tmp2); 
+
+// PayPal Bezahl-Linkerweiterung
+    $smarty->assign('CURRENCY1',$order->info['currency']);
+    $tmp1 = preg_replace ( '/,/i', '.' , $order->info['total'] );
+    $tmp2 = floatval ($tmp1);
+    $smarty->assign('TOTAL1',$tmp2);
 //Ende PayPal Bezahl-Linkerweiterung
-	
+
 
 	// PAYMENT MODUL TEXTS
 	// EU Bank Transfer
@@ -128,18 +139,18 @@ if ($_SESSION['customer_id'] == $order_check['customers_id']) {
 
 	// send mail to admin
 	xtc_php_mail($order->customer['email_address'], $order->customer['firstname'], EMAIL_BILLING_ADDRESS, STORE_NAME, EMAIL_BILLING_FORWARDING_STRING, $order->customer['email_address'], $order->customer['firstname'], '', '', $order_subject, $html_mail, $txt_mail);
-  
-  if (ATTACH_ORDER_1 != '') {
-  $attachment1 = 'attachments/'.ATTACH_ORDER_1 ;
-  } else {
-  $attachment1 = '';
-  }
-  
-  if (ATTACH_ORDER_2 != '') {
-  $attachment2 = 'attachments/'.ATTACH_ORDER_2 ;
-  } else {
-  $attachment2 = '';
-  }
+
+	if (ATTACH_ORDER_1 != '') {
+		$attachment1 = 'attachments/'.ATTACH_ORDER_1 ;
+	} else {
+		$attachment1 = '';
+	}
+
+	if (ATTACH_ORDER_2 != '') {
+		$attachment2 = 'attachments/'.ATTACH_ORDER_2 ;
+	} else {
+		$attachment2 = '';
+	}
 	// send mail to customer
     xtc_php_mail(EMAIL_BILLING_ADDRESS, $order->customer['firstname'], EMAIL_BILLING_ADDRESS, STORE_NAME, EMAIL_BILLING_FORWARDING_STRING, $order->customer['email_address'], $order->customer['firstname'], '', '', $order_subject, $html_mail, $txt_mail);
 
@@ -154,4 +165,3 @@ if ($_SESSION['customer_id'] == $order_check['customers_id']) {
 	$smarty->assign('ERROR', 'You are not allowed to view this order!');
 	$smarty->display(CURRENT_TEMPLATE.'/module/error_message.html');
 }
-?>

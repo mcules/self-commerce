@@ -9,7 +9,7 @@ Hilfe: www.forum.hamburger-internetdienst.de
 Author: Michael Nochelski
 Beginn: 18.04.2009
 ---------------------------------------------------------------
-Stand: 04.03.2012
+Stand: 07.01.2013
 ---------------------------------------------------------------*/
 require('includes/application_top.php');
 // Shop Programme - Shop Config nehmen falls da was anders ist als im Admin Config (MultiShop))
@@ -202,10 +202,10 @@ function such01($prog,$fcrc=0){
 }
 /**************************************************************/
 function zeig01($prog,$was,$result){
-	// Stand: 29.04.2009
+	// Stand: 02.12.2012
 	global $html_zeil, $detail;
 	// auskommentieren falls mit OK Anzeige:
-	if(!preg_match('/OK/',$result))
+	if(stripos($result,'OK')===False)
 		$html_zeil.=
 		'<tr class="dataTableRow">'.
 			'<td class="dataTableContent"><table width="100%"><tr><td class="dataTableContent_products" align="left">'.$prog. '</td><td class="dataTableContent_products" align="right">'. $detail  .'</td></tr></table></td>'.
@@ -435,19 +435,9 @@ function progdat02($wasn,$lang=''){
 	switch($wasn){
 		case 1: // im /admin
 			return array(
-				'configuration.php' => array(
-					'heading_news.gif',
-					'Self-Commerce',
-					'>PayPal</a>'
-				),
-				'modules.php' => array(
-					'\'removepaypal\''
-				),
-				'orders.php' => array(
-					'$_POST[\'paypaldelete\']',
-					'require(\'../includes/classes/paypal_checkout.php\');',
-					'if(defined(\'TABLE_PAYPAL\'))'
-				)
+			'configuration.php'=>array('conf.png','xt:Commerce','>PayPal</a>'),
+			'modules.php'=>array('\'removepaypal\''),
+			'orders.php'=>array('$_POST[\'paypaldelete\']','require(\'../includes/classes/paypal_checkout.php\');','if(defined(\'TABLE_PAYPAL\'))')
 			);
 			break;
 		case 2: // im /admin/includes
@@ -478,41 +468,11 @@ function progdat02($wasn,$lang=''){
 			break;
 		case 5: // Shop Programme /includes/classes
 			return array(
-				'order.php' => array(
-					'xtc_db_query("SELECT text, value FROM',
-					'$pp_order_tax','$pp_order_fee+=$order_fee',
-					'xtc_db_query("SELECT title, value FROM',
-					'pp_total',
-					'pp_fee',
-					'delivery_country_iso_code_2',
-					'billing_country_iso_code_2',
-					'$order_total_values[\'class\'] == \'ot_total\'',
-					'$this->tax_discount',
-					'price_formated',
-					'final_price_formated',
-					'$this->tax_discount',
-					'$this->tax_discount'
-				),
-				'order_total.php' => array(
-					'function pp_output()'
-				),
-				'payment.php' => array(
-					'$_SESSION[\'paypal_express_checkout\']',
-					'function giropay_process()'
-				),
-				'shipping.php' => array(
-					'$quotes[\'error\']',
-					'$quotes[\'error\'][$i]'
-				),
-				'shopping_cart.php' => array(
-					'$this->tax = 0;',
-					'$this->total_discount = array ();',
-					'$this->total_discount[$product[\'products_tax_class_id\']]',
-					'$this->total_discount[$product[\'products_tax_class_id\']]',
-					'$this->total_discount as $value','$gval = 0;',
-					'gval += $this->tax[$key][\'value\'];',
-					'return $gval;'
-				)
+			'order.php'=>array('xtc_db_query("select text, value from', '$pp_order_tax','$pp_order_fee+=$order_fee', 'xtc_db_query("select title, value', 'pp_total','pp_fee','delivery_country_iso_code_2','billing_country_iso_code_2','$oder_total_values[\'class\'] == \'ot_total\'','$this->tax_discount','price_formated','final_price_formated','$this->tax_discount','$this->tax_discount'),
+			'order_total.php'=>array('function pp_output()'),
+			'payment.php'=>array('$_SESSION[\'paypal_express_checkout\']','function giropay_process()'),
+			'shipping.php'=>array('$quotes[\'error\']','$quotes[\'error\'][$i]'),
+			'shopping_cart.php'=>array('$this->tax = 0;','$this->total_discount = array ();','$this->total_discount[$product[\'products_tax_class_id\']]','$this->total_discount[$product[\'products_tax_class_id\']]','$this->total_discount as $value','$gval=0;','gval+=$this->tax[$key][\'value\'];','return $gval;')
 			);
 			break;
 		case 6: // Shop Programme /lang
@@ -533,7 +493,7 @@ function progdat02($wasn,$lang=''){
 			break;
 		case 8: // Shop Programme /templates/xxx/module
 			return array(
-			'shopping_cart.html'=>array('$error','BUTTON_PAYPAL')
+			'shopping_cart.html'=>array('error','BUTTON_PAYPAL')
 			);
 			break;
 	}
@@ -543,7 +503,7 @@ function progdat02($wasn,$lang=''){
 /************* Daten Funktion für den Schritt 1 ***************/
 /**************************************************************/
 function progdat01($wasn,$lang=''){
-	// Stand: 04.03.2012
+	// Stand: 07.01.2013
 	switch($wasn){
 		case 1: // im /admin
 			return array('paypal.php'=>3254103159);
@@ -561,7 +521,7 @@ function progdat01($wasn,$lang=''){
 			);
 			break;
 		case 4: // im shop root
-			return array('paypal_checkout.php'=>3843947868);
+			return array('paypal_checkout.php'=>843127144);
 			break;
 		case 5: // im shop root/callback/paypal/
 			return array('ipn.php'=>1725718444);
@@ -570,7 +530,7 @@ function progdat01($wasn,$lang=''){
 			return array('checkout_paypal.html'=>0);
 			break;
 		case 7: // im shop root/includes/classes/
-			return array('paypal_checkout.php'=>370149253);
+			return array('paypal_checkout.php'=>2457773998);
 			break;
 		case 8: // im shop root/includes/modules/payment/
 			return array(
@@ -580,7 +540,7 @@ function progdat01($wasn,$lang=''){
 			break;
 		case 9: // Shop Programme /lang
 			return array(
-			'admin/paypal.php'=>(($lang=='german')?2107463942:(($lang=='english')?3053301568:0)),
+			'admin/paypal.php'=>(($lang=='german')?2433382917:(($lang=='english')?3057858783:0)),
 			'modules/payment/paypal.php'=>(($lang=='german')?1416185336:(($lang=='english')?3196299556:0)),
 			'modules/payment/paypalexpress.php'=>(($lang=='german')?2552195224:(($lang=='english')?2126143357:0))
 			);

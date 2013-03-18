@@ -198,13 +198,13 @@ XT Modules
   $contents = array();
   switch ($_GET['action']) {
   	// Paypal Express Modul Änderungen:
-		case 'removepaypal':
-			$heading[] = array('text' => '<b>' . $mInfo->title . '</b>');
-			$contents = array ('form' => xtc_draw_form('modules', FILENAME_MODULES, 'set=' . $_GET['set'] . '&module=' . $_GET['module'] . '&action=remove'));
-			$contents[] = array ('text' => '<br />'.TEXT_INFO_DELETE_PAYPAL.'<br /><br />'.$mInfo->description);
-			$contents[] = array ('text' => '<br />'.xtc_draw_checkbox_field('paypaldelete').' '.BUTTON_MODULE_REMOVE);
-			$contents[] = array ('align' => 'center', 'text' => '<br /><input type="submit" class="button" onClick="this.blur();" value="'. BUTTON_START .'"><a class="button" onClick="this.blur();" href="'.xtc_href_link(FILENAME_MODULES, 'set=' . $_GET['set'] . '&module=' . $_GET['module']).'">' . BUTTON_CANCEL . '</a>');
-			break;
+	case 'removepaypal':
+		$heading[] = array('text' => '<b>' . $mInfo->title . '</b>');
+		$contents = array ('form' => xtc_draw_form('modules', FILENAME_MODULES, 'set=' . $_GET['set'] . '&module=' . $_GET['module'] . '&action=remove'));
+		$contents[] = array ('text' => '<br />'.TEXT_INFO_DELETE_PAYPAL.'<br /><br />'.$mInfo->description);
+		$contents[] = array ('text' => '<br />'.xtc_draw_checkbox_field('paypaldelete').' '.BUTTON_MODULE_REMOVE);
+		$contents[] = array ('align' => 'center', 'text' => '<br /><input type="submit" class="button" onClick="this.blur();" value="'. BUTTON_START .'"><a class="button" onClick="this.blur();" href="'.xtc_href_link(FILENAME_MODULES, 'set=' . $_GET['set'] . '&module=' . $_GET['module']).'">' . BUTTON_CANCEL . '</a>');
+		break;
 	// Paypal Express Modul Änderungen Ende
     case 'edit':
       $keys = '';
@@ -239,7 +239,7 @@ XT Modules
           $keys .= '<b>' . $value['title'] . '</b><br />';
           if ($value['use_function']) {
             $use_function = $value['use_function'];
-            if (preg_match('/->/', $use_function)) {
+            if (ereg('->', $use_function)) {
               $class_method = explode('->', $use_function);
               if (!is_object(${$class_method[0]})) {
                 include(DIR_WS_CLASSES . $class_method[0] . '.php');

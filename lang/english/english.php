@@ -22,7 +22,7 @@
  */
 
 define('TITLE', STORE_NAME);
-define('HEADER_TITLE_TOP', 'Main page');     
+define('HEADER_TITLE_TOP', 'Main page');
 define('HEADER_TITLE_CATALOG', 'Catalogue');
 
 define('HTML_PARAMS',' xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"');
@@ -69,8 +69,8 @@ define('BOX_MANUFACTURER_INFO_HOMEPAGE', '%s Homepage');
 define('BOX_MANUFACTURER_INFO_OTHER_PRODUCTS', 'More Products');
 
 define('BOX_HEADING_ADD_PRODUCT_ID','Add To Cart');
-  
-define('BOX_LOGINBOX_STATUS','Customer group:');     
+
+define('BOX_LOGINBOX_STATUS','Customer group:');
 define('BOX_LOGINBOX_DISCOUNT','Product discount');
 define('BOX_LOGINBOX_DISCOUNT_TEXT','Discount');
 define('BOX_LOGINBOX_DISCOUNT_OT','');
@@ -464,4 +464,21 @@ define ('PRICE_UP','Price - up');
 define ('PRICE_DOWN','Price - down');
 define ('MANU_UP','Manufacturer - up');
 define ('MANU_DOWN','Manufacturer - down');
-?>
+
+// PayPal Express
+define('NAVBAR_TITLE_PAYPAL_CHECKOUT','PayPal-Checkout');
+define('PAYPAL_ERROR','PayPal abort');
+define('PAYPAL_NOT_AVIABLE','PayPal Express is not available.<br />Please select another method of payment<br />or try again later.<br />');
+define('ERROR_ADDRESS_NOT_ACCEPTED', 'We are not able to accept your order if you do not accept your address!');
+define('PAYPAL_FEHLER','PayPal announced an error to the completion..<br />Your order is stored, is however not implemented.<br />Please enter a new order.<br />Thanks for your understanding.<br />');
+define('PAYPAL_WARTEN','PayPal announced an error to the completion.<br />You must pay again to PayPal around the order.<br />Down you see the stored order.<br /> Thanks for it pressing to understanding request you again the button PayPal express.<br />');
+define('PAYPAL_NEUBUTTON','Press please again around the order to pay.<br />Every other key leads to the abort of the order.');
+define('PAYPAL_GS','Coupon');
+define('PAYPAL_TAX','Tax');
+define('PAYPAL_EXP_WARN','Note! Possibly resulting forwarding expenses are only computed in the shop finally.');
+define('PAYPAL_EXP_VORL','Provisional forwarding expenses');
+define('PAYPAL_EXP_VERS','12.90');
+// 09.01.11
+define('PAYPAL_ADRESSE','The country in your PayPal dispatch address is not registered in our shop.<br />Please contact us.<br />Thanks for you understanding.<br />From PayPal received country: ');
+// 17.09.11
+define('PAYPAL_AMMOUNT_NULL','The order sum which can be expected (without dispatch) is directly 0.<br />Thus PayPal express is not available.<br />Please select another payment means.<br />Thanks for your understanding.<br />');

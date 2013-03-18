@@ -111,6 +111,10 @@ if (isset ($_GET['action'])) {
 
 		case 'add_product':
 			if (isset ($_POST['products_id']) && is_numeric($_POST['products_id'])) {
+				if(!is_numeric($_POST['products_qty'])){
+					$_POST['products_qty'] = 1;
+				}
+
 				if ($_POST['products_qty'] > MAX_PRODUCTS_QTY)
 					$_POST['products_qty'] = MAX_PRODUCTS_QTY;
 
@@ -225,6 +229,9 @@ if (isset ($_GET['action'])) {
 			}
 			xtc_redirect(xtc_href_link($goto, xtc_get_all_get_params($parameters)));
 		break;
+		case 'paypal_express_checkout' :
+			$o_paypal->paypal_express_auth_call();
+			xtc_redirect($o_paypal->payPalURL);
+			break;
 	}
 }
-?>

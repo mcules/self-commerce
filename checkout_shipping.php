@@ -2,7 +2,7 @@
 
 
 /* -----------------------------------------------------------------------------------------
-   $Id: checkout_shipping.php 17 2012-06-04 20:33:29Z deisold $   
+   $Id: checkout_shipping.php 17 2012-06-04 20:33:29Z deisold $
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
@@ -10,9 +10,9 @@
    Copyright (cxtc_format_price) 2003 XT-Commerce
    -----------------------------------------------------------------------------------------
    (c) 2012	 Self-Commerce www.self-commerce.de
-   based on: 
+   based on:
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
-   (c) 2002-2003 osCommerce(checkout_shipping.php,v 1.15 2003/04/08); www.oscommerce.com 
+   (c) 2002-2003 osCommerce(checkout_shipping.php,v 1.15 2003/04/08); www.oscommerce.com
    (c) 2003	 nextcommerce (checkout_shipping.php,v 1.20 2003/08/20); www.nextcommerce.org
 
    Released under the GNU General Public License
@@ -54,7 +54,7 @@ if (!isset ($_SESSION['customer_id'])) {
 		xtc_redirect(xtc_href_link(FILENAME_LOGIN, '', 'SSL'));
 	}
 }
- 
+
 // if there is nothing in the customers cart, redirect them to the shopping cart page
 if ($_SESSION['cart']->count_contents() < 1) {
 	xtc_redirect(xtc_href_link(FILENAME_SHOPPING_CART));
@@ -74,6 +74,15 @@ if (!isset ($_SESSION['sendto'])) {
 			unset ($_SESSION['shipping']);
 	}
 }
+
+// Paypal Express Modul Start
+if($_SESSION['payment'] == 'paypalexpress'):
+	unset($_SESSION['payment']);
+	unset($_SESSION['nvpReqArray']);
+	unset($_SESSION['reshash']);
+	unset($_SESSION['paypal_express_checkout']);
+endif;
+// Paypal Express Modul Ende
 
 require (DIR_WS_CLASSES.'order.php');
 $order = new order();

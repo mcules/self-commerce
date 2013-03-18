@@ -139,17 +139,14 @@ define('FILENAME_BLACKLIST', 'blacklist.php');
 define('FILENAME_PRODUCTS_VPE', 'products_vpe.php');
 define('FILENAME_CAMPAIGNS_REPORT', 'stats_campaigns.php');
 define('FILENAME_XSELL_GROUPS', 'cross_sell_groups.php');
-
 // PDFBill NEXT Start
 define('FILENAME_PDF_BILL_NR','bill_nr.php');
 define('FILENAME_PRINT_ORDER_PDF','print_order_pdf.php');
 define('FILENAME_PRINT_PACKINGSLIP_PDF','print_packingslip_pdf.php');
 // PDFBill NEXT End
-
 define('FILENAME_ADMIN_SQL', 'admin_sql.php');
 define('FILENAME_STOCK_LIST', 'stock_list.php');
 define('FILENAME_TOKEN_ADMIN', 'token_admin.php');
-
 // Paypal Express Modul Änderungen:
 define('FILENAME_PAYPAL','paypal.php');
 define('FILENAME_PAYPAL_CHECKOUT', 'paypal_checkout.php');
@@ -235,7 +232,6 @@ define('TABLE_CAMPAIGNS_IP', 'campaigns_ip');
 define('TABLE_TOKEN_USER', 'token_admins');
 define('TABLE_PRODUCTS_DETAILS', 'products_details');
 define('TABLE_PRODUCTS_DETAILS_VALUES', 'products_details_values');
-
 // Paypal Express Modul Änderungen:
 define('TABLE_PAYPAL', 'paypal');
 define('TABLE_PAYPAL_STATUS_HISTORY', 'paypal_status_history');
@@ -282,7 +278,6 @@ while ($configuration = xtc_db_fetch_array($configuration_query)) {
    define($configuration['cfgKey'], $configuration['cfgValue']);
 }
 define('FILENAME_IMAGEMANIPULATOR', IMAGE_MANIPULATOR);
-
 // Paypal Express Modul Änderungen - Cache im Admin AUS!
 define("DB_CACHE", "false");
 
@@ -346,7 +341,7 @@ if (SESSION_FORCE_COOKIE_USE == 'True') {
 // verify the ssl_session_id if the feature is enabled
 if (($request_type == 'SSL') && (SESSION_CHECK_SSL_SESSION_ID == 'True') && (ENABLE_SSL == true) && ($session_started == true)) {
    $ssl_session_id = getenv('SSL_SESSION_ID');
-   if (!isset($_SESSION['SSL_SESSION_ID'])) {
+   if (!session_is_registered('SSL_SESSION_ID')) {
       $_SESSION['SESSION_SSL_ID'] = $ssl_session_id;
    }
    if ($_SESSION['SESSION_SSL_ID'] != $ssl_session_id) {
