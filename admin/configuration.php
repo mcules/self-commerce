@@ -37,7 +37,7 @@ require ('includes/application_top_1.php');
             <?php echo $cfg_group['configuration_group_title']; ?></td>
         </tr>
         <tr>
-          <td class="main" valign="top"> XT Configuration</td>
+          <td class="main" valign="top"> Self-Commerce Configuration</td>
         </tr>
       </table></td>
   </tr>
