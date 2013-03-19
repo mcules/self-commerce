@@ -259,6 +259,7 @@ class order {
                              products_name,
                              final_price,
                              products_tax,
+                             products_shipping_time,
                              products_quantity
                         FROM ".TABLE_ORDERS_PRODUCTS."
                        WHERE orders_id='".(int) $oID."'";
@@ -307,8 +308,8 @@ class order {
                                    value,
                                    sort_order
                               FROM ".TABLE_ORDERS_TOTAL."
-                             WHERE orders_id='".(int)$oID."'
-                          ORDER BY sort_order ASC";
+                              WHERE orders_id='".(int)$oID."'
+                              ORDER BY sort_order ASC";
 
         $order_total = array ();
         $order_total_query = xtc_db_query($order_total_query);
