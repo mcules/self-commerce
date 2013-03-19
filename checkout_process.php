@@ -384,29 +384,31 @@ include ('send_order.php');
  * PDFBill NEXT - Send invoice if needed
  * Start
  */
-if (PDF_SEND_ORDER == 'true') {
-    // get current maxbil
-    $sqlBill = "SELECT configuration_value FROM " . TABLE_CONFIGURATION . " WHERE configuration_key = 'PDF_BILL_LASTNR'";
-    $resBill = xtc_db_query($sqlBill);
-    $rowBill = xtc_db_fetch_array($resBill);
+if(PDF_ENABLED) {
+	if (PDF_SEND_ORDER == 'true') {
+	    // get current maxbil
+	    $sqlBill = "SELECT configuration_value FROM " . TABLE_CONFIGURATION . " WHERE configuration_key = 'PDF_BILL_LASTNR'";
+	    $resBill = xtc_db_query($sqlBill);
+	    $rowBill = xtc_db_fetch_array($resBill);
 
-    // fallback if user did something wrong
-    if (is_numeric($rowBill['configuration_value'])) {
-        $new_billnr = $rowBill['configuration_value'] + 1;
-    } else {
-        $new_billnr = 1;
-    }
+	    // fallback if user did something wrong
+	    if (is_numeric($rowBill['configuration_value'])) {
+	        $new_billnr = $rowBill['configuration_value'] + 1;
+	    } else {
+	        $new_billnr = 1;
+	    }
 
-    // generate bill_nr
-    $sqlUpOrder = "UPDATE " . TABLE_ORDERS . " SET bill_nr = '" . $new_billnr . "' WHERE orders_id = '" . $insert_id . "'";
-    $resUpOrder = xtc_db_query($sqlUpOrder);
+	    // generate bill_nr
+	    $sqlUpOrder = "UPDATE " . TABLE_ORDERS . " SET bill_nr = '" . $new_billnr . "' WHERE orders_id = '" . $insert_id . "'";
+	    $resUpOrder = xtc_db_query($sqlUpOrder);
 
-    // update last bill_nr
-    $sqlUpLast = "UPDATE " . TABLE_CONFIGURATION . " SET configuration_value = '" . $new_billnr . "' WHERE configuration_key = 'PDF_BILL_LASTNR'";
-    $resUpLast = xtc_db_query($sqlUpLast);
+	    // update last bill_nr
+	    $sqlUpLast = "UPDATE " . TABLE_CONFIGURATION . " SET configuration_value = '" . $new_billnr . "' WHERE configuration_key = 'PDF_BILL_LASTNR'";
+	    $resUpLast = xtc_db_query($sqlUpLast);
 
-    // gernate and send bill
-    xtc_pdf_bill($insert_id, true);
+	    // gernate and send bill
+	    xtc_pdf_bill($insert_id, true);
+	}
 }
 /**
  * PDFBill NEXT - Send invoice if needed
