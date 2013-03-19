@@ -1,15 +1,15 @@
 <?php
 /* --------------------------------------------------------------
-   $Id: header.php 17 2012-06-04 20:33:29Z deisold $   
+   $Id: header.php 17 2012-06-04 20:33:29Z deisold $
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
    Copyright (c) 2003 XT-Commerce
    --------------------------------------------------------------
-   based on: 
+   based on:
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
-   (c) 2002-2003 osCommerce(header.php,v 1.19 2002/04/13); www.oscommerce.com 
+   (c) 2002-2003 osCommerce(header.php,v 1.19 2002/04/13); www.oscommerce.com
    (c) 2003	 nextcommerce (header.php,v 1.17 2003/08/24); www.nextcommerce.org
-   Released under the GNU General Public License 
+   Released under the GNU General Public License
    --------------------------------------------------------------*/
   if ($messageStack->size > 0) {
     echo $messageStack->output();

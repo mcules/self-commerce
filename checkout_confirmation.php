@@ -1,7 +1,7 @@
 <?php
 
 /* -----------------------------------------------------------------------------------------
-   $Id: checkout_confirmation.php 21 2012-06-10 15:22:06Z deisold $   
+   $Id: checkout_confirmation.php 21 2012-06-10 15:22:06Z deisold $
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
@@ -9,12 +9,12 @@
    Copyright (c) 2003 XT-Commerce
    -----------------------------------------------------------------------------------------
    (c) 2012	 Self-Commerce www.self-commerce.de
-   based on: 
+   based on:
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
-   (c) 2002-2003 osCommerce(checkout_confirmation.php,v 1.137 2003/05/07); www.oscommerce.com 
+   (c) 2002-2003 osCommerce(checkout_confirmation.php,v 1.137 2003/05/07); www.oscommerce.com
    (c) 2003	 nextcommerce (checkout_confirmation.php,v 1.21 2003/08/17); www.nextcommerce.org
 
-   Released under the GNU General Public License 
+   Released under the GNU General Public License
    -----------------------------------------------------------------------------------------
    Third Party contributions:
    agree_conditions_1.01        	Autor:	Thomas Ploenkers (webmaster@oscommerce.at)
@@ -28,7 +28,7 @@
    Copyright (c) Andre ambidex@gmx.net
    Copyright (c) 2001,2002 Ian C Wilson http://www.phesis.org
 
-   Released under the GNU General Public License 
+   Released under the GNU General Public License
    ---------------------------------------------------------------------------------------*/
 
 include ('includes/application_top.php');
@@ -177,11 +177,15 @@ if ($_SESSION['sendto'] != false) {
     }
 }
 
-$data_products = '<table width="100%" border="0" cellspacing="0" cellpadding="0">';
-$data_products.= '<tr>' . "\n" . '  <td class="main_header" align="left" valign="top"><b>' . HEADER_QTY . '</b></td>'
-    . "\n" . '  <td class="main_header" align="left" valign="top"><b>' . HEADER_ARTICLE . '</b></td>'
-    . "\n" . '  <td class="main_header" align="right" valign="top"><b>' . HEADER_SINGLE . '</b></td>'
-    . "\n" . '  <td class="main_header" align="right" valign="top"><b>' . HEADER_TOTAL . '</b></td>
+$data_products = '<table class="checkoutProducts" width="100%" border="0" cellspacing="0" cellpadding="0">';
+
+
+
+
+$data_products.= '<tr>' . "\n" . '  <td class="main_header" align="left" style="padding-bottom: 5px;" valign="top"><strong>' . HEADER_QTY . '</strong></td>'
+    . "\n" . '  <td class="main_header" align="left" valign="top"><strong>' . HEADER_ARTICLE . '</strong></td>'
+    . "\n" . '  <td class="main_header" align="right" valign="top"><strong>' . HEADER_SINGLE . '</strong></td>'
+    . "\n" . '  <td class="main_header" align="right" valign="top"><strong>' . HEADER_TOTAL . '</strong></td>
          </tr>' . "\n";
 
 for ($i = 0, $n = sizeof($order->products); $i < $n; $i++) {
@@ -190,12 +194,13 @@ for ($i = 0, $n = sizeof($order->products); $i < $n; $i++) {
         . "\n"  . '  <td class="main_row" align="right" valign="top"><nobr>' . $xtPrice->xtcFormat($order->products[$i]['price'], true) . '</nobr></td>'
         . "\n"  . '  <td class="main_row" align="right" valign="top"><nobr>' . $xtPrice->xtcFormat($order->products[$i]['final_price'], true) . '</nobr></td>
              </tr>' . "\n";
-    $data_products .= '<tr>
+
+	/* $data_products .= '<tr>
               <td class="main" align="left" valign="top">&nbsp;</td>
-              <td class="main" align="left" valign="top"><small>' . (!empty($order->products[$i]['short_description'])?$order->products[$i]['short_description']:$order->products[$i]['description']). '</small></td>
+              <td class="description" class="main" align="left" valign="top"><small>' . (!empty($order->products[$i]['short_description'])?$order->products[$i]['short_description']:$order->products[$i]['description']). '</small></td>
               <td class="main" align="right" valign="top">&nbsp;</td>
               <td class="main" align="right" valign="top">&nbsp;</td>
-              </tr>';
+              </tr>';*/
 
     if (ACTIVATE_SHIPPING_STATUS == 'true') {
 
@@ -208,6 +213,11 @@ for ($i = 0, $n = sizeof($order->products); $i < $n; $i++) {
               <td class="main" align="right" valign="top">&nbsp;</td>
               </tr>';
     }
+	$data_products .= '<tr>
+						  <td colspan="4" class="main" align="left" valign="top">&nbsp;</td>
+					  </tr>';
+
+
     if ((isset ($order->products[$i]['attributes'])) && (sizeof($order->products[$i]['attributes']) > 0)) {
         for ($j = 0, $n2 = sizeof($order->products[$i]['attributes']); $j < $n2; $j++) {
             $data_products .= '<tr>
@@ -237,7 +247,7 @@ if ($order->info['payment_method'] != 'no_payment' && $order->info['payment_meth
 }
 $smarty->assign('PAYMENT_EDIT', xtc_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL'));
 
-$total_block = '<table align="right">';
+$total_block = '<table style="margin-top: 10px;" align="right">';
 if (MODULE_ORDER_TOTAL_INSTALLED) {
     //Process the Order Total Modules Earlier on the Checkout Confirmation Page
     //$order_total_modules->process();
@@ -349,4 +359,3 @@ if (!defined('RM')) {
 }
 $smarty->display(CURRENT_TEMPLATE . '/index.html');
 include ('includes/application_bottom.php');
-?>
