@@ -108,7 +108,7 @@ switch($_GET['ppauto']) {
 <?php require(DIR_WS_INCLUDES . 'application_bottom.php');
 return;
 /**************************************************************/
-/************* Funktionen für den Schritt 1 *******************/
+/************* Funktionen fÃ¼r den Schritt 1 *******************/
 /**************************************************************/
 function inst01(){
 	// Stand: 29.04.2009
@@ -158,7 +158,7 @@ function inst01(){
 	elseif($warning==1):
 		$html_zeil.=sprintf($meldung,'center',ERROR_03);
 		menue01(1,0,1,2);
-	// Nur nötig falls mit OK Anzeige:
+	// Nur nÃ¶tig falls mit OK Anzeige:
 	//else:
 		//$html_zeil.=sprintf($meldung,'center','Fertig - alles OK.');
 		//menue01(0,1,0,2);
@@ -185,7 +185,7 @@ function such01($prog,$fcrc=0){
 			$color='<font style="color:#F1761B">';
 			$warning=1;
 			$ret="Version?";
-			// Nur nötig falls mit OK Anzeige
+			// Nur nÃ¶tig falls mit OK Anzeige
 		//elseif(file_crc($prog)==$fcrc AND $fcrc!=0):
 			//$color='<font style="color:#11E90C">';
 		else:
@@ -254,7 +254,7 @@ function file_crc($file){
 	return sprintf("%u", $crc);
 }
 /**************************************************************/
-/************* Funktionen für den Schritt 2 *******************/
+/************* Funktionen fÃ¼r den Schritt 2 *******************/
 /**************************************************************/
 function inst02(){
 	// Stand: 29.04.2009
@@ -298,7 +298,7 @@ function inst02(){
 	if($error==1):
 		$html_zeil.=sprintf($meldung,'center',ERROR_04);
 		menue02(1,0,1);
-	// Nur nötig falls mit OK Anzeige:
+	// Nur nÃ¶tig falls mit OK Anzeige:
 	//else:
 		//$html_zeil.=sprintf($meldung,'center','Fertig - alles OK.');
 		//menue02(0,1,0);
@@ -318,7 +318,7 @@ function vergleich02($programme,$verz,$verzz){
 		lese02($verz.$programm,$quellen);
 		// auskommentieren falls mit OK Anzeige:
 		if($html_tzeil!='' AND $terror!='')$html_zeil.=$html_prog.$html_tzeil.'<tr class="dataTableRow"><td class="dataTableContent" colspan="3" height="4px">&nbsp;</td></tr>';
-		// Nur nötig falls mit OK Anzeige:
+		// Nur nÃ¶tig falls mit OK Anzeige:
 		//$html_zeil.=$html_prog.$html_tzeil.'<tr class="dataTableRow"><td class="dataTableContent" colspan="3" height="4px">&nbsp;</td></tr>';
 	}
 	return;
@@ -407,7 +407,7 @@ function menue02($a=0,$b=0,$c=0){
 	// Stand: 29.04.2009
 	global $html_zeil;
 	// a=Wiederholen
-	// b=Beenden - nur nötig falls mit OK Anzeige
+	// b=Beenden - nur nÃ¶tig falls mit OK Anzeige
 	// c=Trotzdem Beenden
 	$html_zeil.=
 	'<tr class="dataTableRow" style="padding-top:10px;">'.
@@ -428,7 +428,7 @@ function menue02($a=0,$b=0,$c=0){
 	return;
 }
 /**************************************************************/
-/************* Daten Funktion für den Schritt 2 ***************/
+/************* Daten Funktion fÃ¼r den Schritt 2 ***************/
 /**************************************************************/
 function progdat02($wasn,$lang=''){
 	// Stand: 29.04.2009
@@ -468,7 +468,7 @@ function progdat02($wasn,$lang=''){
 			break;
 		case 5: // Shop Programme /includes/classes
 			return array(
-			'order.php'=>array('xtc_db_query("select text, value from', '$pp_order_tax','$pp_order_fee+=$order_fee', 'xtc_db_query("select title, value', 'pp_total','pp_fee','delivery_country_iso_code_2','billing_country_iso_code_2','$oder_total_values[\'class\'] == \'ot_total\'','$this->tax_discount','price_formated','final_price_formated','$this->tax_discount','$this->tax_discount'),
+			'order.php'=>array('xtc_db_query("SELECT text, value FROM', '$pp_order_tax','$pp_order_fee+=$order_fee', 'xtc_db_query("SELECT title, value', 'pp_total','pp_fee','delivery_country_iso_code_2','billing_country_iso_code_2','$oder_total_values[\'class\'] == \'ot_total\'','$this->tax_discount','price_formated','final_price_formated','$this->tax_discount','$this->tax_discount'),
 			'order_total.php'=>array('function pp_output()'),
 			'payment.php'=>array('$_SESSION[\'paypal_express_checkout\']','function giropay_process()'),
 			'shipping.php'=>array('$quotes[\'error\']','$quotes[\'error\'][$i]'),
@@ -500,7 +500,7 @@ function progdat02($wasn,$lang=''){
 	return;
 }
 /**************************************************************/
-/************* Daten Funktion für den Schritt 1 ***************/
+/************* Daten Funktion fÃ¼r den Schritt 1 ***************/
 /**************************************************************/
 function progdat01($wasn,$lang=''){
 	// Stand: 07.01.2013
@@ -555,9 +555,9 @@ function def_texte($wasn){
 	// Stand: 29.04.2009
 	if($_SESSION['language']=='german'):
 		if($wasn==1):
-			define('HEADING_TITLE', "Prüfen ob PayPal-Express-Modul-Programme vorhanden sind...<br /><font style='line-height:1.8em; font-size:0.6em; color:#FF0000;'>Achtung:<br />Es werden die Dateien für die PayPal Module aus dem Module-Verzeichnis '1-Ergaenzungen-new' gesucht.<br />Bei einem 'Fehlt!' kopieren Sie bitte die Datei aus dem Modul in Ihren Shop.<br />Es wird ein CRC Check der Programme durchgeführt. Haben Sie selbst ein Programm verändert oder ist ein Programm nicht auf dem neuesten Stand erscheint 'Version?'.<br />Wenn Sie nichts an dem Programm verändert haben, kopieren Sie die Original-Datei aus dem Modul in diesen Shop und drücken 'Wiederholen'.<br />Bei 'Trotzdem Weiter' geht das Programm zum nächsten Schritt und -falls dort kein Fehler auftritt- zum Ende.<br />Ein erneuter Test erfolgt erst beim 'Installieren' eines der PayPal Module.</font>");
+			define('HEADING_TITLE', "PrÃ¼fen ob PayPal-Express-Modul-Programme vorhanden sind...<br /><font style='line-height:1.8em; font-size:0.6em; color:#FF0000;'>Achtung:<br />Es werden die Dateien fÃ¼r die PayPal Module aus dem Module-Verzeichnis '1-Ergaenzungen-new' gesucht.<br />Bei einem 'Fehlt!' kopieren Sie bitte die Datei aus dem Modul in Ihren Shop.<br />Es wird ein CRC Check der Programme durchgefÃ¼hrt. Haben Sie selbst ein Programm verÃ¤ndert oder ist ein Programm nicht auf dem neuesten Stand erscheint 'Version?'.<br />Wenn Sie nichts an dem Programm verÃ¤ndert haben, kopieren Sie die Original-Datei aus dem Modul in diesen Shop und drÃ¼cken 'Wiederholen'.<br />Bei 'Trotzdem Weiter' geht das Programm zum nÃ¤chsten Schritt und -falls dort kein Fehler auftritt- zum Ende.<br />Ein erneuter Test erfolgt erst beim 'Installieren' eines der PayPal Module.</font>");
 		elseif($wasn==2):
-			define('HEADING_TITLE', "Teile des PayPal-Express-Moduls in den Shop Programmen suchen...<br /><font style='line-height:1.8em; font-size:0.6em; color:#FF0000;'>Achtung:<br />Es werden die Dateien bzw. Teile des geänderten Codes für die PayPal Module in den Dateien aus dem Module-Verzeichnis '2-Aenderungen-changed' gesucht.<br />Es werden nur markante, gern vergessene Teile des Moduls gesucht - NICHT der komplette Code!<br />Ein '<font style='color:#11E90C'>OK</font>' heisst nur, dass ein Teil des Codes gefunden wurde bzw. die Datei überhaupt vorhanden ist.<br />Das Programm kann NICHT die tatsächliche Funktion des Moduls prüfen und ob der Code an der richtigen Stelle steht.<br />Ein 'Fehlt!' zeigt das wichtiger Code nicht vorhanden ist und das Modul nicht ordnungsgemäß funktionieren wird.<br />Ein 'Falsch!' zeigt das die Reihenfolge der Code-Zeilen nicht stimmt und das Modul nicht ordnungsgemäß funktionieren wird.<br />Bauen Sie in diesem Fall den fehlenden/falschen Code richtig in das Programm ein und drücken Sie auf 'Wiederholen'.<br />Bei 'Trotzdem Fertig' wird das Programm beendet.<br />Ein erneuter Test erfolgt erst beim 'Installieren' eines der PayPal Module.</font>");
+			define('HEADING_TITLE', "Teile des PayPal-Express-Moduls in den Shop Programmen suchen...<br /><font style='line-height:1.8em; font-size:0.6em; color:#FF0000;'>Achtung:<br />Es werden die Dateien bzw. Teile des geÃ¤nderten Codes fÃ¼r die PayPal Module in den Dateien aus dem Module-Verzeichnis '2-Aenderungen-changed' gesucht.<br />Es werden nur markante, gern vergessene Teile des Moduls gesucht - NICHT der komplette Code!<br />Ein '<font style='color:#11E90C'>OK</font>' heisst nur, dass ein Teil des Codes gefunden wurde bzw. die Datei Ã¼berhaupt vorhanden ist.<br />Das Programm kann NICHT die tatsÃ¤chliche Funktion des Moduls prÃ¼fen und ob der Code an der richtigen Stelle steht.<br />Ein 'Fehlt!' zeigt das wichtiger Code nicht vorhanden ist und das Modul nicht ordnungsgemÃ¤ÃŸ funktionieren wird.<br />Ein 'Falsch!' zeigt das die Reihenfolge der Code-Zeilen nicht stimmt und das Modul nicht ordnungsgemÃ¤ÃŸ funktionieren wird.<br />Bauen Sie in diesem Fall den fehlenden/falschen Code richtig in das Programm ein und drÃ¼cken Sie auf 'Wiederholen'.<br />Bei 'Trotzdem Fertig' wird das Programm beendet.<br />Ein erneuter Test erfolgt erst beim 'Installieren' eines der PayPal Module.</font>");
 		endif;
 		define('ACT_01', "Suchen");
 		define('ACT_02', "Vergleichen");
@@ -570,13 +570,13 @@ function def_texte($wasn){
 		define('MENU_02', "Trotzdem ");
 		define('MENU_03', "Weiter");
 		define('MENU_04', "Fertig");
-		define('ERROR_01', "Fehler! Dateien nicht vollständig vorhanden.");
+		define('ERROR_01', "Fehler! Dateien nicht vollstÃ¤ndig vorhanden.");
 		define('ERROR_02', "Beide PayPal Module wurden deaktiviert.");
 		define('ERROR_03', "Warnung! Nicht alle Dateien entsprechen dem Neuesten- oder Original-Stand.");
 		define('ERROR_04', "Fehler! Nicht alle markanten Teile des Codes in den Dateien gefunden.");
 	else:
 		if($wasn==1):
-			define('HEADING_TITLE', "Examine whether PayPal express module programs are present…<br /><font style='line-height:1.8em; font-size:0.6em; color:#FF0000;'>Note:<br />The files for the PayPal modules become from the module listing ' 1-Ergaenzungen-new' searched.<br />With a 'missing!' copy the file from the module into your shop.<br />A CRC check of the programs is accomplished. If you changed a program or if a program not on the newest conditions appear 'Version?'.<br />If you did not change anything at the program, copy the original file from the module into this shop and press 'Try again'.<br />With 'Nevertheless next' the program goes to the next step and -if there no error occurrence- to the end.<br />A renewed test takes place only with the 'Install' one of the PayPal modules.</font>");
+			define('HEADING_TITLE', "Examine whether PayPal express module programs are presentâ€¦<br /><font style='line-height:1.8em; font-size:0.6em; color:#FF0000;'>Note:<br />The files for the PayPal modules become from the module listing ' 1-Ergaenzungen-new' searched.<br />With a 'missing!' copy the file from the module into your shop.<br />A CRC check of the programs is accomplished. If you changed a program or if a program not on the newest conditions appear 'Version?'.<br />If you did not change anything at the program, copy the original file from the module into this shop and press 'Try again'.<br />With 'Nevertheless next' the program goes to the next step and -if there no error occurrence- to the end.<br />A renewed test takes place only with the 'Install' one of the PayPal modules.</font>");
 		elseif($wasn==2):
 			define('HEADING_TITLE', "Search for Parts of the PayPal express module in the shop programs...<br /><font style='line-height:1.8em; font-size:0.6em; color:#FF0000;'> Note:<br />The files and/or parts of the changed code for the PayPal modules in the files become from the module listing ' 2-Aenderungen-changed' searched.<br />Only salient one, gladly forgotten parts of the module are not looked for - NOT the complete code!<br />A '<font style='color:#11E90C'>OK</font>' it means only that a part of the code was found and/or the file is at all present.<br />The program canNOT examine the actual function of the module and whether the code in the correct place stands.<br />A 'missing!' important code does not show is present and the module will not duly function.<br />A 'Wrong!' that shows the order of the code lines is not correct and the module will not duly function.<br />Build in this case the missing/wrong code correctly into the program and press you on 'Try Again'.<br />With 'Nevertheless End' the program is terminated.<br />A renewed test takes place only with the 'Install' one of the PayPal modules.</font>");
 		endif;
