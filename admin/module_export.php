@@ -32,6 +32,17 @@ require ('includes/application_top.php');
       }
 
   switch ($_GET['action']) {
+  	//BOF NEW IMAGE PROCESSING
+      case 'image_processing_do':
+        $class = basename($_GET['module']);
+        include($module_directory . $class . $file_extension);
+        if($class == 'image_processing_step'){
+          $module = new $class;
+          $module->process($file, $_GET['start']);
+          $link = xtc_href_link(FILENAME_MODULE_EXPORT, 'set=' . $_GET['set'] . '&module='. $class. '&start=' . $limit.'&count='.$count.'&action=image_processing_do'.'&max='. $_GET['max']. '&miss='. $_GET['miss']);
+        }
+        break;
+    //EOF NEW IMAGE PROCESSING
     case 'save':
     if (is_array($_POST['configuration'])) {
     if (count($_POST['configuration'])) {
@@ -44,37 +55,17 @@ require ('includes/application_top.php');
 
       $class = basename($_GET['module']);
       include($module_directory . $class . $file_extension);
-
-		// <Imageprocessing>
-		if($class == 'image_processing_step'){
-			$start = $_GET['start'];
-			if($start == '') {
-				$start = 0;
-			}
-			$module = new $class;
-			$module->process($file, $start);
-		}
-		elseif($class == 'image_processing_new_step') {
-			$start = $_GET['start'];
-			if($start == '') {
-				$start = 0;
-			}
-			$module = new $class;
-			$module->process($file, $start);
-		}
-		elseif($class == 'image_processing_new_step2') {
-			$module = new $class;
-			$module->process($file);
-		}
-		else {
-			$module = new $class;
-			$module->process($file);
-			xtc_redirect(xtc_href_link(FILENAME_MODULE_EXPORT, 'set=' . $_GET['set'] . '&module=' . $class));
-		}
-		// </Imageprocessing>
-      $module = new $class;
-      $module->process($file);
-      xtc_redirect(xtc_href_link(FILENAME_MODULE_EXPORT, 'set=' . $_GET['set'] . '&module=' . $class));
+      //BOF NEW IMAGE PROCESSING
+      if (isset($_POST['process']) && $_POST['process'] == 'image_processing_do') {
+	      xtc_redirect(xtc_href_link(FILENAME_MODULE_EXPORT, 'set=' . $_GET['set'] . '&module='. $class. '&start=0'.'&count='.$count.'&action=image_processing_do'.'&max='. $_POST['max_images']. '&miss='. $_POST['only_missing_images']));
+      } else {
+      //EOF NEW IMAGE PROCESSING
+	      $module = new $class;
+	      $module->process($file);
+	      xtc_redirect(xtc_href_link(FILENAME_MODULE_EXPORT, 'set=' . $_GET['set'] . '&module=' . $class));
+      //BOF NEW IMAGE PROCESSING
+      }
+      //EOF NEW IMAGE PROCESSING
       break;
 
     case 'install':
@@ -94,6 +85,10 @@ require ('includes/application_top.php');
       break;
   }
 require ('includes/application_top_1.php');
+//BOF NEW IMAGE PROCESSING
+echo '<form name="img_continue" id="img_continue" action="'.$link.'" method="POST"></form>';
+if ($selbstaufruf != '') echo $selbstaufruf;
+//EOF NEW IMAGE PROCESSING
 ?>
           <table border="0" width="100%" cellspacing="0" cellpadding="2">
             <tr>
@@ -287,7 +282,14 @@ XT Modules
 
     $box = new box;
     echo $box->infoBox($heading, $contents);
-
+    //BOF NEW IMAGE PROCESSING
+    if ($_GET['action']=='image_processing_do') {
+      echo $infotext;
+    }
+    if (isset($_GET['infotext'])){
+       echo '<div style="margin:10px; font-family:Verdana; font-size:15px; text-align:center;">'. urldecode($_GET['infotext']) .'</div>';
+    }
+    //EOF NEW IMAGE PROCESSING
     echo '            </td>' . "\n";
   }
 ?>
