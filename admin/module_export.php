@@ -1,15 +1,15 @@
 <?php
 /* --------------------------------------------------------------
-   $Id: module_export.php 17 2012-06-04 20:33:29Z deisold $   
+   $Id: module_export.php 17 2012-06-04 20:33:29Z deisold $
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
 
    Copyright (c) 2003 XT-Commerce
    --------------------------------------------------------------
-   based on: 
+   based on:
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
-   (c) 2002-2003 osCommerce(modules.php,v 1.45 2003/05/28); www.oscommerce.com 
+   (c) 2002-2003 osCommerce(modules.php,v 1.45 2003/05/28); www.oscommerce.com
    (c) 2003	 nextcommerce (modules.php,v 1.23 2003/08/19); www.nextcommerce.org
 
    Released under the GNU General Public License
@@ -45,6 +45,33 @@ require ('includes/application_top.php');
       $class = basename($_GET['module']);
       include($module_directory . $class . $file_extension);
 
+		// <Imageprocessing>
+		if($class == 'image_processing_step'){
+			$start = $_GET['start'];
+			if($start == '') {
+				$start = 0;
+			}
+			$module = new $class;
+			$module->process($file, $start);
+		}
+		elseif($class == 'image_processing_new_step') {
+			$start = $_GET['start'];
+			if($start == '') {
+				$start = 0;
+			}
+			$module = new $class;
+			$module->process($file, $start);
+		}
+		elseif($class == 'image_processing_new_step2') {
+			$module = new $class;
+			$module->process($file);
+		}
+		else {
+			$module = new $class;
+			$module->process($file);
+			xtc_redirect(xtc_href_link(FILENAME_MODULE_EXPORT, 'set=' . $_GET['set'] . '&module=' . $class));
+		}
+		// </Imageprocessing>
       $module = new $class;
       $module->process($file);
       xtc_redirect(xtc_href_link(FILENAME_MODULE_EXPORT, 'set=' . $_GET['set'] . '&module=' . $class));
@@ -192,7 +219,7 @@ XT Modules
       $keys = '';
       reset($mInfo->keys);
       while (list($key, $value) = each($mInfo->keys)) {
-	 // if($value['description']!='_DESC' && $value['title']!='_TITLE'){ 
+	 // if($value['description']!='_DESC' && $value['title']!='_TITLE'){
         $keys .= '<b>' . $value['title'] . '</b><br />' .  $value['description'].'<br />';
 	//	}
         if ($value['set_function']) {
@@ -267,7 +294,7 @@ XT Modules
           </tr>
         </table>
 <!-- end content -->
-<?php 
-require(DIR_WS_INCLUDES . 'application_bottom.php'); 
+<?php
+require(DIR_WS_INCLUDES . 'application_bottom.php');
 require(DIR_WS_INCLUDES . 'application_bottom_0.php');
 ?>
