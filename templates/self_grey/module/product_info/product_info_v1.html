@@ -1,60 +1,226 @@
 {config_load file="$language/lang_$language.conf" section="product_info"}
+
+{literal}
+	<script type="text/javascript">
+		$(document).ready(function () {
+
+		//jCarousel Plugin
+	    $('#carousel').jcarousel({
+			vertical: true,
+			scroll: 1,
+			auto: 2,
+			wrap: 'last',
+			initCallback: mycarousel_initCallback
+	   	});
+
+		//Front page Carousel - Initial Setup
+	   	$('div#slideshow-carousel a img').css({'opacity': '0.5'});
+	   	$('div#slideshow-carousel a img:first').css({'opacity': '1.0'});
+	   	$('div#slideshow-carousel li a:first').append('<span class="arrow"></span>')
+
+	  	//Combine jCarousel with Image Display
+	    $('div#slideshow-carousel li a').hover(
+	       	function () {
+	       		if (!$(this).has('span').length) {
+	        		$('div#slideshow-carousel li a img').stop(true, true).css({'opacity': '0.5'});
+	   	    		$(this).stop(true, true).children('img').css({'opacity': '1.0'});
+	       		}
+	       	},
+	       	function () {
+	       		$('div#slideshow-carousel li a img').stop(true, true).css({'opacity': '0.5'});
+	       		$('div#slideshow-carousel li a').each(function () {
+	       			if ($(this).has('span').length) $(this).children('img').css({'opacity': '1.0'});
+	       		});
+	       	}
+		).click(function () {
+	      	$('span.arrow').remove();
+			$(this).append('<span class="arrow"></span>');
+	       	$('div#slideshow-main li').removeClass('active');
+	       	$('div#slideshow-main li.' + $(this).attr('rel')).addClass('active');
+
+	       	return false;
+		});
+	});
+
+	//Carousel Tweaking
+	function mycarousel_initCallback(carousel) {
+		// Pause autoscrolling if the user moves with the cursor over the clip.
+		carousel.clip.hover(function() {
+			carousel.stopAuto();
+		}, function() {
+			carousel.startAuto();
+		});
+	}
+	</script>
+{/literal}
+<style>
+	/* Slide Show */
+	body {
+		font-family:arial;
+	}
+	img {
+		border:0;
+	}
+	#slideshow-main {
+		width:379px;
+		float:left;
+		margin-right:3px;
+	}
+	#slideshow-main ul {
+		margin:0;
+		padding:0;
+		width:379px;
+	}
+	#slideshow-main li {
+		width:379px;
+		height:290px;
+		display:none;
+		position:relative;
+	}
+	#slideshow-main li.active {
+		display:block !important;
+	}
+	#slideshow-main li span.opacity {
+		position:absolute;
+		bottom:0; left:0;
+		display:block;
+		width:100%;
+		height:60px;
+		background:#000;
+		filter:alpha(opacity=50);
+		-moz-opacity:0.5;
+		-khtml-opacity: 0.5;
+		opacity: 0.5;
+		z-index:500;
+	}
+	#slideshow-main li span.content {
+		position:absolute;
+		bottom:0; left:0;
+		display:block;
+		width:100%;
+		height:60px;
+		z-index:1000;
+	}
+	#slideshow-main li span.content h1 {
+		font-size:14px;
+		margin:5px 0;
+		padding:0 10px;;
+		color:#42e2e8;
+	}
+	#slideshow-main li span.content p {
+		font-size:11px;
+		margin:5px 0;
+		padding:0 10px;;
+		color:#42e2e8;
+	}
+	#slideshow-carousel {
+		float:left;
+		width:160px;
+		position:relative
+	}
+	#slideshow-carousel ul {
+		margin:0;
+		padding:0;
+		list-style:none;
+	}
+	#slideshow-carousel li {
+		background:#fff;
+		height:97px;
+		position:relative
+	}
+	#slideshow-carousel li .arrow {
+		left:3px;
+		top:28px;
+		position:absolute;
+		width:20px;
+		height:40px;
+		background:url(../../img/arrow_white.png) no-repeat 0 0;
+		display:block;
+	}
+	#slideshow-carousel li a {
+		background:#000;
+		display:block;
+		width:140px;
+		height:95px;
+	}
+	#slideshow-carousel .active {
+		filter:alpha(opacity=100);
+		-moz-opacity:1.0;
+		-khtml-opacity: 1.0;
+		opacity: 1.0;
+	}
+	#slideshow-carousel .faded {
+		filter:alpha(opacity=50);
+		-moz-opacity:0.5;
+		-khtml-opacity: 0.5;
+		opacity: 0.5;
+	}
+</style>
+
 {$PRODUCT_NAVIGATOR}
 {$FORM_ACTION}
 <h1 class="productInfo1Name">{$PRODUCTS_NAME}</h1>
 <div class="productInfo1">
-<div class="floatbox">
-  {if $PRODUCTS_IMAGE !=''}<a href="{$PRODUCTS_IMAGE|replace:"info_images":"popup_images"}" title="{$PRODUCTS_NAME}" rel="lightbox"><img src="{$PRODUCTS_IMAGE}" alt="{$PRODUCTS_NAME}" class="imgLeft"/></a>{/if}
-    <div class="basicData">
-      <div class="prodPriceInfo1">{$PRODUCTS_PRICE}</div>
-    	<div class="prodTaxShipInfo1">{$PRODUCTS_TAX_INFO}{if $PRODUCTS_SHIPPING_LINK}{$PRODUCTS_SHIPPING_LINK}{/if}</div>
-    	{if $PRODUCTS_VPE}{$PRODUCTS_VPE}<br />{/if}
-    	{if $PRODUCTS_MODEL!=''}{#model#}{$PRODUCTS_MODEL}<br />{/if}{$PRODUCTS_DISCOUNT}
-    	{if $SHIPPING_NAME}{#text_shippingtime#}{if $SHIPPING_IMAGE}<img src="{$SHIPPING_IMAGE}" alt="{$SHIPPING_NAME}" />{/if} {$SHIPPING_NAME}<br />{/if}
-    	<div style="margin-top:3px;">{$PRODUCTS_PRINT|replace:"cursor:hand":"cursor:pointer"}</div>
-    </div>
-  </div>
-
-{if $PRODUCTS_DESCRIPTION !=''}<div class="desc">{$PRODUCTS_DESCRIPTION}</div><br class="clearHere" />{/if}
-
-{if $MODULE_product_options !=''}<div class="options">{$MODULE_product_options}</div><br class="clearHere" />{/if}
-{* BOF Included xs:booster *}
-	{if $XTB_REDIRECT_USER_TO=='product'}<div style='width:400px;padding:10px;color:white;background-color:green;'><strong>Sie haben die eBay Auktion gewonnen!</strong><br/>Bitte w&auml;hlen Sie nun noch die gew&uuml;nschten Produkteigenschaften und legen Sie den Artikel danach in den Warenkorb, um mit der Zahlung fortzufahren und das Produkt versandfertig zu machen!</div>{/if}
-{* EOF Included xs:booster *}
-
-<div class="addCart">
-	<table>
-		<tr>
-			<td style="width: 100%; padding-right: 5px;">{$ADD_QTY}</td><td>{$ADD_CART_BUTTON}</td>
-		</tr>
-	</table>
-</div>
-{if $smarty.const.TPL_CLIENT == 'xtcmod' }{* additional pics xtcmodified *}
-	{if $more_images|@count > 0}
-		<!-- More Pictures -->
-		<div class="morepics"><div class="floatbox">
-			{foreach item=more_images_data from=$more_images}
-				<a href="{$more_images_data.PRODUCTS_IMAGE|replace:"info_images":"popup_images"}" rel="lightbox" title="{$PRODUCTS_NAME}"><img src="{$more_images_data.PRODUCTS_IMAGE}" alt="{$PRODUCTS_NAME}" /></a>
-			{/foreach}
-		</div></div>
+	{if $PRODUCTS_IMAGE !=''}
+		<div id="slideshow-main">
+			<ul>
+				<li class="p1 active">
+					<a href="{php}echo $_SERVER['REQUEST_URI'];{/php}#">
+						<img src="{$PRODUCTS_IMAGE|replace:"info_images":"popup_images"}" width="379" height="290" alt=""/>
+					</a>
+				</li>
+				{if $images}
+					{assign var=ImageCounter value=2}
+					{foreach item=images_data from=$images}
+						<li class="p{$ImageCounter}">
+							<a href="{php}echo $_SERVER['REQUEST_URI'];{/php}#">
+								<img src="{$images_data.PRODUCTS_IMAGE|replace:"info_images":"popup_images"}" width="379" height="290" alt=""/>
+							</a>
+						</li>
+						{assign var=ImageCounter value=$ImageCounter+1}
+					{/foreach}
+				{/if}
+			</ul>
+		</div>
+		<div id="slideshow-carousel">
+			  <ul id="carousel" class="jcarousel jcarousel-skin-tango">
+				<li><a href="{php}echo $_SERVER['REQUEST_URI'];{/php}#" rel="p1"><img src="{$PRODUCTS_IMAGE|replace:"info_images":"popup_images"}" width="140" height="95" alt="#"/></a></li>
+				{if $images}
+					{assign var=ImageCounter value=2}
+					{foreach item=images_data from=$images}
+						<li><a href="{php}echo $_SERVER['REQUEST_URI'];{/php}#" rel="p{$ImageCounter}"><img src="{$images_data.PRODUCTS_IMAGE|replace:"info_images":"popup_images"}" width="140" height="95" alt="#"/></a></li>
+						{assign var=ImageCounter value=$ImageCounter+1}
+					{/foreach}
+				{/if}
+			  </ul>
+		</div>
 	{/if}
-{else}{* additional pics xtc3.04 *}
-<div class="morePics"><div class="floatbox">
-	{if $PRODUCTS_IMAGE_1 != ''}<a href="{$PRODUCTS_IMAGE_1|replace:"info_images":"popup_images"}" rel="lightbox" title="{$PRODUCTS_NAME}"><img src="{$PRODUCTS_IMAGE_1}" alt="{$PRODUCTS_NAME}" class="imgLeft" /></a>{/if}
-	{if $PRODUCTS_IMAGE_2 != ''}<a href="{$PRODUCTS_IMAGE_2|replace:"info_images":"popup_images"}" rel="lightbox" title="{$PRODUCTS_NAME}"><img src="{$PRODUCTS_IMAGE_2}" alt="{$PRODUCTS_NAME}" class="imgLeft" /></a>{/if}
-	{if $PRODUCTS_IMAGE_3 != ''}<a href="{$PRODUCTS_IMAGE_3|replace:"info_images":"popup_images"}" rel="lightbox" title="{$PRODUCTS_NAME}"><img src="{$PRODUCTS_IMAGE_3}" alt="{$PRODUCTS_NAME}" class="imgLeft" /></a>{/if}
-	{if $PRODUCTS_IMAGE_4 != ''}<a href="{$PRODUCTS_IMAGE_4|replace:"info_images":"popup_images"}" rel="lightbox" title="{$PRODUCTS_NAME}"><img src="{$PRODUCTS_IMAGE_4}" alt="{$PRODUCTS_NAME}" class="imgLeft" /></a>{/if}
-	{if $PRODUCTS_IMAGE_5 != ''}<a href="{$PRODUCTS_IMAGE_5|replace:"info_images":"popup_images"}" rel="lightbox" title="{$PRODUCTS_NAME}"><img src="{$PRODUCTS_IMAGE_5}" alt="{$PRODUCTS_NAME}" class="imgLeft" /></a>{/if}
-	{if $PRODUCTS_IMAGE_6 != ''}<a href="{$PRODUCTS_IMAGE_6|replace:"info_images":"popup_images"}" rel="lightbox" title="{$PRODUCTS_NAME}"><img src="{$PRODUCTS_IMAGE_6}" alt="{$PRODUCTS_NAME}" class="imgLeft" /></a>{/if}
-	{if $PRODUCTS_IMAGE_7 != ''}<a href="{$PRODUCTS_IMAGE_7|replace:"info_images":"popup_images"}" rel="lightbox" title="{$PRODUCTS_NAME}"><img src="{$PRODUCTS_IMAGE_7}" alt="{$PRODUCTS_NAME}" class="imgLeft" /></a>{/if}
-	{if $PRODUCTS_IMAGE_LINK!=''}<a href="{$PRODUCTS_IMAGE_LINK}" onclick="window.open(this.href); return false;">{$PRODUCTS_TEXT_ZOOM}</a>{/if}
-	{if $PRODUCTS_FSK18=='true'}<img src="{$tpl_path}img/fsk18.gif" alt="" />{/if}
-</div></div>
-<br />
-{/if}
+	<div class="floatbox">
+		<div class="basicData">
+			<div class="prodPriceInfo1">{$PRODUCTS_PRICE}</div>
+			<div class="prodTaxShipInfo1">{$PRODUCTS_TAX_INFO}{if $PRODUCTS_SHIPPING_LINK}{$PRODUCTS_SHIPPING_LINK}{/if}</div>
+			{if $PRODUCTS_VPE}{$PRODUCTS_VPE}<br />{/if}
+			{if $PRODUCTS_MODEL!=''}{#model#}{$PRODUCTS_MODEL}<br />{/if}{$PRODUCTS_DISCOUNT}
+			{if $SHIPPING_NAME}{#text_shippingtime#}{if $SHIPPING_IMAGE}<img src="{$SHIPPING_IMAGE}" alt="{$SHIPPING_NAME}" />{/if} {$SHIPPING_NAME}<br />{/if}
+			<div style="margin-top:3px;">{$PRODUCTS_PRINT|replace:"cursor:hand":"cursor:pointer"}</div>
+		</div>
+	</div>
 
+	{if $MODULE_product_options !=''}<div class="options">{$MODULE_product_options}</div><br class="clearHere" />{/if}
+	{* BOF Included xs:booster *}
+		{if $XTB_REDIRECT_USER_TO=='product'}<div style='width:400px;padding:10px;color:white;background-color:green;'><strong>Sie haben die eBay Auktion gewonnen!</strong><br/>Bitte w&auml;hlen Sie nun noch die gew&uuml;nschten Produkteigenschaften und legen Sie den Artikel danach in den Warenkorb, um mit der Zahlung fortzufahren und das Produkt versandfertig zu machen!</div>{/if}
+	{* EOF Included xs:booster *}
 
-{if $MODULE_graduated_price !=''}{$MODULE_graduated_price}{/if}
+	<div class="addCart">
+		<table>
+			<tr>
+				<td style="width: 100%; padding-right: 5px;">{$ADD_QTY}</td><td>{$ADD_CART_BUTTON}</td>
+			</tr>
+		</table>
+	</div>
+	<br />
+	{if $PRODUCTS_DESCRIPTION !=''}<div class="desc">{$PRODUCTS_DESCRIPTION}</div><br class="clearHere" />{/if}
+	{if $MODULE_graduated_price !=''}{$MODULE_graduated_price}{/if}
 </div>
 {if $PRODUCTS_URL != ''}<p>{$PRODUCTS_URL}</p>{/if}
 {if $PRODUCTS_DATE_AVIABLE != ''}<p>{$PRODUCTS_DATE_AVIABLE}</p>{/if}
