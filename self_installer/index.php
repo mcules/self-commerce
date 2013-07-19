@@ -13,47 +13,39 @@
    Released under the GNU General Public License
    --------------------------------------------------------------*/
 
-  require('includes/application.php');
+require('includes/application.php');
 
-  // include needed functions
-  require_once(DIR_FS_INC.'xtc_image.inc.php');
-  require_once(DIR_FS_INC.'xtc_draw_separator.inc.php');
-  require_once(DIR_FS_INC.'xtc_redirect.inc.php');
-  require_once(DIR_FS_INC.'xtc_href_link.inc.php');
+// include needed functions
+require_once(DIR_FS_INC.'xtc_image.inc.php');
+require_once(DIR_FS_INC.'xtc_draw_separator.inc.php');
+require_once(DIR_FS_INC.'xtc_redirect.inc.php');
+require_once(DIR_FS_INC.'xtc_href_link.inc.php');
 
-  include('language/english.php');
+include('language/english.php');
 
-  // Include Developer - standard settings for installer
-  //  require('developer_settings.php');
+// Include Developer - standard settings for installer
+//  require('developer_settings.php');
+define('HTTP_SERVER','');
+define('HTTPS_SERVER','');
+define('DIR_WS_CATALOG','');
 
- define('HTTP_SERVER','');
- define('HTTPS_SERVER','');
- define('DIR_WS_CATALOG','');
+$messageStack = new messageStack();
 
-   $messageStack = new messageStack();
+$process = false;
+if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
+	$process = true;
+	$_SESSION['language'] = xtc_db_prepare_input($_POST['LANGUAGE']);
+	$error = false;
 
-    $process = false;
-  if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
-    $process = true;
+	if ( ($_SESSION['language'] != 'german') && ($_SESSION['language'] != 'english') ) {
+		$error = true;
+		$messageStack->add('index', SELECT_LANGUAGE_ERROR);
+	}
 
-
-        $_SESSION['language'] = xtc_db_prepare_input($_POST['LANGUAGE']);
-
-    $error = false;
-
-
-      if ( ($_SESSION['language'] != 'german') && ($_SESSION['language'] != 'english') ) {
-        $error = true;
-
-        $messageStack->add('index', SELECT_LANGUAGE_ERROR);
-        }
-
-
-                    if ($error == false) {
-                        xtc_redirect(xtc_href_link('install_step1.php', '', 'NONSSL'));
-                }
-        }
-
+	if ($error == false) {
+		xtc_redirect(xtc_href_link('install_step1.php', '', 'NONSSL'));
+	}
+}
 
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">

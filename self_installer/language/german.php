@@ -1,6 +1,6 @@
 <?php
 /* --------------------------------------------------------------
-   $Id: german.php 1213 2005-09-14 11:34:50Z mz $   
+   $Id: german.php 1213 2005-09-14 11:34:50Z mz $
 
    Self-Commerce - community made shopping
    http://www.xt-commerce.com
@@ -9,12 +9,12 @@
    --------------------------------------------------------------
    based on:
    (c) 2003	 nextcommerce (german.php,v 1.8 2003/08/13); www.nextcommerce.org
-   
-   Released under the GNU General Public License 
+
+   Released under the GNU General Public License
    --------------------------------------------------------------*/
 // Global
-define('TEXT_FOOTER','Copyright  &copy; 2007 <a href="http://www.self-commerce.de">Self-Commerce</a> based on <a href="http://www.xtcommerce.de" target="_blank">XT:Commerce</a><br />Self-Commerce provides no warranty and is redistributable under the <a href="http://www.fsf.org/licenses/gpl.txt" target="_blank">GNU General Public License</a>'); 
-   
+define('TEXT_FOOTER','Copyright  &copy; 2007 <a href="http://www.self-commerce.de">Self-Commerce</a> based on <a href="http://www.xtcommerce.de" target="_blank">XT:Commerce</a><br />Self-Commerce provides no warranty and is redistributable under the <a href="http://www.fsf.org/licenses/gpl.txt" target="_blank">GNU General Public License</a>');
+
 // Box names
 define('BOX_LANGUAGE','Sprache');
 define('BOX_DB_CONNECTION','DB Verbindung') ;
@@ -23,58 +23,51 @@ define('BOX_DB_IMPORT','DB Import');
 define('BOX_WRITE_CONFIG','Schreiben der Konfigurationsdatei');
 define('BOX_ADMIN_CONFIG','Administrator Konfiguration');
 define('BOX_USERS_CONFIG','User Konfiguration');
-
 define('PULL_DOWN_DEFAULT','Bitte Wählen Sie ein Land');
 
-
 // Error messages
- 	// index.php
-	define('SELECT_LANGUAGE_ERROR','Bitte wählen Sie eine Sprache!');
-	// install_step2,5.php
-	define('TEXT_CONNECTION_ERROR','Eine Testverbindung zur Datenbank war nicht erfolgreich.');
-	define('TEXT_CONNECTION_SUCCESS','Eine Testverbindung zur Datenbank war erfolgreich.');
-	define('TEXT_DB_ERROR','Folgender Fehler wurde zurückgegeben:');
-	define('TEXT_DB_ERROR_1','Bitte klicken Sie auf <i>Back</i> um Ihre Datenbankeinstellungen zu überprüfen.');
-	define('TEXT_DB_ERROR_2','Wenn Sie Hilfe zu Ihrer Datenbank benötigen, wenden Sie sich bitte an Ihren Provider.');
-	// install_step6.php
-	define('ENTRY_FIRST_NAME_ERROR','Vorname ist zu kurz');
-	define('ENTRY_LAST_NAME_ERROR','Nachname ist zu kurz');
-	define('ENTRY_EMAIL_ADDRESS_ERROR','E-Mail Adresse ist zu kurz');
-	define('ENTRY_EMAIL_ADDRESS_CHECK_ERROR','Bitte überprüfen Sie Ihre E-Mail Adresse');
-	define('ENTRY_STREET_ADDRESS_ERROR','Straße ist zu kurz');
-	define('ENTRY_POST_CODE_ERROR','Postleitzahl ist zu kurz');
-	define('ENTRY_CITY_ERROR','Stadt ist zu kurz');
-	define('ENTRY_COUNTRY_ERROR','Bitte überprüfen Sie das Bundesland');
-	define('ENTRY_STATE_ERROR','Bitte überprüfen Sie das Land');
-	define('ENTRY_TELEPHONE_NUMBER_ERROR','Telefonnummer ist zu kurz');
-	define('ENTRY_PASSWORD_ERROR','Bitte überprüfen Sie das Passwort');
-	define('ENTRY_STORE_NAME_ERROR','Shop-Name ist zu kurz');
-	define('ENTRY_COMPANY_NAME_ERROR','Firmenname ist zu kurz');
-	define('ENTRY_EMAIL_ADDRESS_FROM_ERROR','E-Mail-From ist zu kurz');
-	define('ENTRY_EMAIL_ADDRESS_FROM_CHECK_ERROR','Bitte überprüfen Sie den E-Mail-From');
-	define('SELECT_ZONE_SETUP_ERROR','Wählen Sie Zone-Setup');
-	// install_step7.php
-	define('ENTRY_DISCOUNT_ERROR','Product discount -Guest');
-	define('ENTRY_OT_DISCOUNT_ERROR','Discount on ot -Guest');
-	define('SELECT_OT_DISCOUNT_ERROR','Discount on ot -Guest');
-	define('SELECT_GRADUATED_ERROR','Graduated Prices -Guest');
-	define('SELECT_PRICE_ERROR','Show Price -Guest');
-	define('SELECT_TAX_ERROR','Show Tax -Guest');
-	define('ENTRY_DISCOUNT_ERROR2','Product discount -Default');
-	define('ENTRY_OT_DISCOUNT_ERROR2','Discount on ot -Default');
-	define('SELECT_OT_DISCOUNT_ERROR2','Discount on ot -Default');
-	define('SELECT_GRADUATED_ERROR2','Graduated Prices -Default');
-	define('SELECT_PRICE_ERROR2','Show Price -Default');
-	define('SELECT_TAX_ERROR2','Show Tax -Default');
-	
-	
+// index.php
+define('SELECT_LANGUAGE_ERROR','Bitte wählen Sie eine Sprache!');
+// install_step2,5.php
+define('TEXT_CONNECTION_ERROR','Eine Testverbindung zur Datenbank war nicht erfolgreich.');
+define('TEXT_CONNECTION_SUCCESS','Eine Testverbindung zur Datenbank war erfolgreich.');
+define('TEXT_DB_ERROR','Folgender Fehler wurde zurückgegeben:');
+define('TEXT_DB_ERROR_1','Bitte klicken Sie auf <i>Back</i> um Ihre Datenbankeinstellungen zu überprüfen.');
+define('TEXT_DB_ERROR_2','Wenn Sie Hilfe zu Ihrer Datenbank benötigen, wenden Sie sich bitte an Ihren Provider.');
+// install_step6.php
+define('ENTRY_FIRST_NAME_ERROR','Vorname ist zu kurz');
+define('ENTRY_LAST_NAME_ERROR','Nachname ist zu kurz');
+define('ENTRY_EMAIL_ADDRESS_ERROR','E-Mail Adresse ist zu kurz');
+define('ENTRY_EMAIL_ADDRESS_CHECK_ERROR','Bitte überprüfen Sie Ihre E-Mail Adresse');
+define('ENTRY_STREET_ADDRESS_ERROR','Straße ist zu kurz');
+define('ENTRY_POST_CODE_ERROR','Postleitzahl ist zu kurz');
+define('ENTRY_CITY_ERROR','Stadt ist zu kurz');
+define('ENTRY_COUNTRY_ERROR','Bitte überprüfen Sie das Bundesland');
+define('ENTRY_STATE_ERROR','Bitte überprüfen Sie das Land');
+define('ENTRY_TELEPHONE_NUMBER_ERROR','Telefonnummer ist zu kurz');
+define('ENTRY_PASSWORD_ERROR','Bitte überprüfen Sie das Passwort');
+define('ENTRY_STORE_NAME_ERROR','Shop-Name ist zu kurz');
+define('ENTRY_COMPANY_NAME_ERROR','Firmenname ist zu kurz');
+define('ENTRY_EMAIL_ADDRESS_FROM_ERROR','E-Mail-From ist zu kurz');
+define('ENTRY_EMAIL_ADDRESS_FROM_CHECK_ERROR','Bitte überprüfen Sie den E-Mail-From');
+define('SELECT_ZONE_SETUP_ERROR','Wählen Sie Zone-Setup');
 
+// install_step7.php
+define('ENTRY_DISCOUNT_ERROR','Product discount -Guest');
+define('ENTRY_OT_DISCOUNT_ERROR','Discount on ot -Guest');
+define('SELECT_OT_DISCOUNT_ERROR','Discount on ot -Guest');
+define('SELECT_GRADUATED_ERROR','Graduated Prices -Guest');
+define('SELECT_PRICE_ERROR','Show Price -Guest');
+define('SELECT_TAX_ERROR','Show Tax -Guest');
+define('ENTRY_DISCOUNT_ERROR2','Product discount -Default');
+define('ENTRY_OT_DISCOUNT_ERROR2','Discount on ot -Default');
+define('SELECT_OT_DISCOUNT_ERROR2','Discount on ot -Default');
+define('SELECT_GRADUATED_ERROR2','Graduated Prices -Default');
+define('SELECT_PRICE_ERROR2','Show Price -Default');
+define('SELECT_TAX_ERROR2','Show Tax -Default');
 
-	
-	
 // index.php
 define('TITLE_SELECT_LANGUAGE','Wählen Sie eine Sprache!');
-
 define('TEXT_WELCOME_INDEX','<b>Willkommen zu Self-Commerce</b><br /><br />Self-Commerce ist eine Open-Source e-commerce Lösung.<br /> Seine out-of-the-box Installation erlaubt es dem Shop-Besitzer seinen Online-Shop mit einem Minimum an Aufwand und Kosten zu installieren, zu betreiben und zu verwalten.<br /><br />Self-Commerce ist auf jedem System lauffähig, welches eine PHP Umgebung (ab PHP 4.1) und mySQL zur Verfügung stellt, wie zum Beispiel Linux, Solaris, BSD, und Microsoft Windows.');
 define('TEXT_WELCOME_STEP1','<b>Datenbank- und Webservereinstellungen</b><br /><br />Der Installer benötigt hier einige Informationen bezüglich Ihrer Datenbank und Ihrer Verzeichnisstruktur.');
 define('TEXT_WELCOME_STEP2','<b>Datenbank Installation</b><br /><br />Der Self-Commerce Installer installiert automatisch die Self-Commerce-Datenbank.');
@@ -100,7 +93,6 @@ Kundengruppe 4 -> Nettopreis für Produkt Y<br />
 define('TEXT_WELCOME_FINISHED','<b>Self-Commerce Installation erfolgreich!</b><br /><br />Der Installer hat nun die Grundfunktionen Ihres Shops eingerichtet. Melden Sie sich im Shop mit Ihrem Admin-Account an und wechseln in den Admin_bereich, um die komplette Konfiguration Ihres Shops vorzunehmen.');
 
 // install_step1.php
-
 define('TITLE_CUSTOM_SETTINGS','Installations Optionen');
 define('TEXT_IMPORT_DB','Importiere die Self-Commerce Datenbank');
 define('TEXT_IMPORT_DB_LONG','Importiere die Self-Commerce Datenbankstruktur, welche die Tabellen und Beispieldaten enthält.');
@@ -128,14 +120,12 @@ define('TEXT_WS_ADMINTOOL','WWW Admin Verzeichnis');
 define('TEXT_WS_ADMINTOOL_LONG','Das virtuelle Verzeichnis, in dem sich die Self-Commerce Admin-Module befinden, beispielsweise <i>http://www.Ihre-Domain.de<b>/selfcommerce/admin/</b></i>');
 
 // install_step2.php
-
 define('TEXT_PROCESS_1','Bitte setzten Sie die Installation nun fort, um die Datenbank zu Importieren.');
 define('TEXT_PROCESS_2','Dieser Vorgang nimmt einige Zeit in Anspruch. Es ist wichtig, dass Sie den Vorgang nun nicht unterbrechen, weil sonst die Datenbank möglicherweise nicht korrekt installiert wird.');
 define('TEXT_PROCESS_3','Die zu importierende Datei muss sich an folgendem Ort befinden. Diese befindet sich bei einem Standard-Upload dort.');
 
 
 // install_step3.php
-
 define('TEXT_TITLE_ERROR','Der folgende Fehler ist aufgetreten:');
 define('TEXT_TITLE_SUCCESS','Der Datenbank-Import war erfolgreich.');
 
@@ -161,17 +151,15 @@ define('TEXT_SESS_DB','Speichere Sessions in der Datenbank');
 define('TEXT_SESS_LONG','Das Verzeichnis, in welches PHP die Session-Dateien speichert.<br />Um Probleme zu vermeiden sollte <b>Speichere Sessions in der Datenbank</b> gewählt werden.');
 
 // install_step5.php
-
 define('TEXT_WS_CONFIGURATION_SUCCESS','<strong>Self-Commerce</strong> Webserver Konfiguration war erfolgreich');
 
 // install_step6.php
-
 define('TITLE_ADMIN_CONFIG','Administrator Konfiguration');
 define('TEXT_REQU_INFORMATION','* erforderliche Information');
 define('TEXT_FIRSTNAME','Vorname:');
 define('TEXT_LASTNAME','Nachname:');
 define('TEXT_EMAIL','E-Mail Adresse:');
-define('TEXT_EMAIL_LONG','E-Mail Adresse, an die eine separate Mail bei Bestellungen gesendet werden soll. Wird auch zum Login im Shop benötigt!');				
+define('TEXT_EMAIL_LONG','E-Mail Adresse, an die eine separate Mail bei Bestellungen gesendet werden soll. Wird auch zum Login im Shop benötigt!');
 define('TEXT_STREET','Straße:');
 define('TEXT_POSTCODE','PLZ:');
 define('TEXT_CITY','Stadt:');
@@ -195,8 +183,6 @@ define('TITLE_ADMIN_CONFIG_NOTE','*Note; Informationen für Admin/Superuser');
 define('TEXT_ZONE_NO','Nein');
 define('TEXT_ZONE_YES','Ja');
 define('TEXT_COMPANY','Firmenname');
-
-
 
 // install_step7
 define('TITLE_GUEST_CONFIG','Gast Konfiguration');
@@ -225,5 +211,3 @@ define('TEXT_STATUS_BT_PERMISSION_LONG','Erlaubt dem Kunden per Bankeinzug zu be
 
 define('TEXT_SHOP_CONFIG_SUCCESS','<strong>Self-Commerce</strong> Shop Konfiguration war erfolgreich');
 define('TEXT_TEAM','Vielen Dank, dass Sie sich für Self-Commerce entschieden haben. Besuchen Sie uns im Forum: <b><a href="http://www.self-commerce.de">http://www.self-commerce.de</a></b><br />Alles Gute und viel Erfolg wünschen Ihnen die Nutzer des <b>self-commerce.de</b> Forums.');
-   
- ?>

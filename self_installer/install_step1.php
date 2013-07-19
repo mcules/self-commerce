@@ -1,51 +1,51 @@
 <?php
 /* --------------------------------------------------------------
-   $Id: install_step1.php 899 2005-04-29 02:40:57Z hhgag $   
+   $Id: install_step1.php 899 2005-04-29 02:40:57Z hhgag $
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
 
    Copyright (c) 2003 XT-Commerce
    --------------------------------------------------------------
-   based on: 
+   based on:
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
-   (c) 2002-2003 osCommerce(install.php,v 1.7 2002/08/14); www.oscommerce.com 
+   (c) 2002-2003 osCommerce(install.php,v 1.7 2002/08/14); www.oscommerce.com
    (c) 2003	 nextcommerce (install_step1.php,v 1.10 2003/08/17); www.nextcommerce.org
 
-   Released under the GNU General Public License 
+   Released under the GNU General Public License
    --------------------------------------------------------------*/
-  
-  require('includes/application.php');
 
-  include('language/'.$_SESSION['language'].'.php');
-  
-  if (!$script_filename = str_replace('\\', '/', getenv('PATH_TRANSLATED'))) {
-    $script_filename = getenv('SCRIPT_FILENAME');
-  }
-  $script_filename = str_replace('//', '/', $script_filename);
+require('includes/application.php');
 
-  if (!$request_uri = getenv('REQUEST_URI')) {
-    if (!$request_uri = getenv('PATH_INFO')) {
-      $request_uri = getenv('SCRIPT_NAME');
-    }
+include('language/'.$_SESSION['language'].'.php');
 
-    if (getenv('QUERY_STRING')) $request_uri .=  '?' . getenv('QUERY_STRING');
-  }
+if (!$script_filename = str_replace('\\', '/', getenv('PATH_TRANSLATED'))) {
+	$script_filename = getenv('SCRIPT_FILENAME');
+}
+$script_filename = str_replace('//', '/', $script_filename);
 
-  $dir_fs_www_root_array = explode('/', dirname($script_filename));
-  $dir_fs_www_root = array();
-  for ($i=0; $i<sizeof($dir_fs_www_root_array)-2; $i++) {
-    $dir_fs_www_root[] = $dir_fs_www_root_array[$i];
-  }
-  $dir_fs_www_root = implode('/', $dir_fs_www_root);
+if (!$request_uri = getenv('REQUEST_URI')) {
+	if (!$request_uri = getenv('PATH_INFO')) {
+		$request_uri = getenv('SCRIPT_NAME');
+	}
 
-  $dir_ws_www_root_array = explode('/', dirname($request_uri));
-  $dir_ws_www_root = array();
-  for ($i=0; $i<sizeof($dir_ws_www_root_array)-1; $i++) {
-    $dir_ws_www_root[] = $dir_ws_www_root_array[$i];
-  }
-  $dir_ws_www_root = implode('/', $dir_ws_www_root);
-  
+	if (getenv('QUERY_STRING')) $request_uri .=  '?' . getenv('QUERY_STRING');
+}
+
+$dir_fs_www_root_array = explode('/', dirname($script_filename));
+$dir_fs_www_root = array();
+for ($i=0; $i<sizeof($dir_fs_www_root_array)-2; $i++) {
+	$dir_fs_www_root[] = $dir_fs_www_root_array[$i];
+}
+$dir_fs_www_root = implode('/', $dir_fs_www_root);
+
+$dir_ws_www_root_array = explode('/', dirname($request_uri));
+$dir_ws_www_root = array();
+for ($i=0; $i<sizeof($dir_ws_www_root_array)-1; $i++) {
+	$dir_ws_www_root[] = $dir_ws_www_root_array[$i];
+}
+$dir_ws_www_root = implode('/', $dir_ws_www_root);
+
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -83,7 +83,7 @@ h2 {font-family: Verdana, Arial, Helvetica, san-serif; font-size: 10px; font-wei
 
 <body>
 <table class="mainTable" style="height: 80%;" border="0" align="center" cellpadding="0" cellspacing="0">
-	<tr> 
+	<tr>
 		<td colspan="2" >
     		<table width="100%" border="0" cellpadding="0" cellspacing="0">
 				<tr>
@@ -92,27 +92,27 @@ h2 {font-family: Verdana, Arial, Helvetica, san-serif; font-size: 10px; font-wei
         		</tr>
       		</table>
 	</tr>
-	<tr> 
+	<tr>
 		<td class="frame1" width="180" valign="top" >
       		<table width="180" border="0" cellspacing="0" cellpadding="0">
 				<tr>
 					<td colspan="2" height="17" class="blocktitle" align="center">Self-Commerce Install</td>
 				</tr>
-        		<tr> 
+        		<tr>
 					<td class="left_top2" width="135" ><img src="images/icons/arrow02.gif" width="13" height="6" alt="Arrow"><?php echo BOX_LANGUAGE; ?></td>
                 	<td class="left_top2" width="35"><img src="images/icons/ok.gif" alt="Arrow"></td>
               	</tr>
-              	<tr> 
+              	<tr>
                 	<td colspan="2" class="left_top2"><img src="images/icons/arrow02.gif" width="13" height="6" alt="Arrow"><?php echo BOX_DB_CONNECTION; ?></td>
               	</tr>
-              	<tr> 
+              	<tr>
                 	<td colspan="2" class="left_top"><img src="images/icons/arrow02.gif" width="13" height="6" alt="Arrow"><?php echo BOX_WEBSERVER_SETTINGS; ?></td>
               	</tr>
 			</table>
     	</td>
 		<td align="right" valign="top" class="frame2">
 			<h2 class="welcome"><?php echo TEXT_WELCOME_STEP1; ?></h2><hr class="lineBlue">
-			
+
 			<form name="install" method="post" action="install_step2.php">
             <table width="98%" border="0" cellpadding="0" cellspacing="0">
           		<tr>
@@ -121,7 +121,7 @@ h2 {font-family: Verdana, Arial, Helvetica, san-serif; font-size: 10px; font-wei
 						<p class="small"><?php echo xtc_draw_checkbox_field_installer('install[]', 'database', true); ?>
                 			<strong><?php echo TEXT_IMPORT_DB; ?></strong><br />
                 			<?php echo TEXT_IMPORT_DB_LONG; ?></p>
-              			<p class="small"><?php echo xtc_draw_checkbox_field_installer('install[]', 'configure', true); ?> 
+              			<p class="small"><?php echo xtc_draw_checkbox_field_installer('install[]', 'configure', true); ?>
                 			<strong><?php echo TEXT_AUTOMATIC; ?></strong><br />
                 			<?php echo TEXT_AUTOMATIC_LONG; ?></p>
 					</td>
@@ -130,7 +130,7 @@ h2 {font-family: Verdana, Arial, Helvetica, san-serif; font-size: 10px; font-wei
         <br />
         <hr class="lineBlue">
         <table width="98%" border="0" cellpadding="0" cellspacing="0">
-        	<tr> 
+        	<tr>
             	<td>
               		<span class="title"><?php echo TITLE_DATABASE_SETTINGS; ?></span><hr class="lineRed">
 					<p class="small"><strong><?php echo TEXT_DATABASE_SERVER; ?></strong><br />
@@ -151,7 +151,7 @@ h2 {font-family: Verdana, Arial, Helvetica, san-serif; font-size: 10px; font-wei
 		<br />
         <hr class="lineBlue">
         <table width="98%" border="0" cellpadding="0" cellspacing="0">
-        	<tr> 
+        	<tr>
         		<td>
 	        		<span class="title"><?php echo TITLE_WEBSERVER_SETTINGS; ?></span><hr class="lineRed">
 	              	<p class="small"><strong><?php echo TEXT_WS_ROOT; ?></strong><br />
@@ -183,7 +183,7 @@ h2 {font-family: Verdana, Arial, Helvetica, san-serif; font-size: 10px; font-wei
 		</form>
       <p>&nbsp;</p>
       <p>&nbsp;</p>
-      
+
     </td>
   </tr>
 </table>
