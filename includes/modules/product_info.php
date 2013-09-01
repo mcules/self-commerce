@@ -160,6 +160,23 @@ if (!is_object($product) || !$product->isProduct()) { // product not found in da
 	if (xtc_not_null($product->data['products_url']))
 		$info_smarty->assign('PRODUCTS_URL', sprintf(TEXT_MORE_INFORMATION, xtc_href_link(FILENAME_REDIRECT, 'action=product&id='.$product->data['products_id'], 'NONSSL', true, false)));
 
+	// more images
+	$mo_images = xtc_get_products_mo_images($product->data['products_id']);
+	if ($mo_images != false) {
+		$more_images_data = array();
+		foreach ($mo_images as $img) {
+			$mo_img = $product->productImage($img['image_name'], 'info');
+			$more_images_data[] = array ('PRODUCTS_IMAGE' => $mo_img,
+										'PRODUCTS_POPUP_LINK' => 'javascript:popupWindow(\''.xtc_href_link(FILENAME_POPUP_IMAGE,
+										'pID='.$product->data['products_id'].'&imgID='.$img['image_nr']).'\')'
+			);
+			//next 2 lines only needed for non modified templates
+			$info_smarty->assign('PRODUCTS_IMAGE_'.$img['image_nr'], $mo_img);
+			$info_smarty->assign('PRODUCTS_POPUP_LINK_'.$img['image_nr'], 'javascript:popupWindow(\''.xtc_href_link(FILENAME_POPUP_IMAGE, 'pID='.$product->data['products_id'].'&imgID='.$img['image_nr']).'\')');
+		}
+		$info_smarty->assign('more_images', $more_images_data);
+	}
+
 	if ($product->data['products_date_available'] > date('Y-m-d H:i:s')) {
 		$info_smarty->assign('PRODUCTS_DATE_AVIABLE', sprintf(TEXT_DATE_AVAILABLE, xtc_date_long($product->data['products_date_available'])));
 
