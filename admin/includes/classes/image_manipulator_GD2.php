@@ -1,6 +1,6 @@
 <?php
 /* ----------------------------------------------------------------------------------------
-   $Id: image_manipulator_GD2.php 17 2012-06-04 20:33:29Z deisold $   
+   $Id: image_manipulator_GD2.php 950 2005-05-14 16:45:21Z mz $
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
@@ -12,12 +12,24 @@
    class thumbnail - proportional thumbnails with manipulations by mark@teckis.com
    You find more great scripts and some information at www.teckis.com
 
-   Released under the GNU General Public License 
+   Released under the GNU General Public License
    ---------------------------------------------------------------------------------------*/
+
+
+/*****************************************************************************************
+   Transparency Patch v0.1
+
+   - support for transparency added
+   - enhanced PNG & GIF processing
+
+   (C) 2006 Noxware, B. W. Masanek, E-Mail: xtcommerce [AT] noxware * de
+  ****************************************************************************************/
+
 defined( '_VALID_XTC' ) or die( 'Direct Access to this location is not allowed.' );
 class image_manipulation
 	{
-	
+	var $effects_disabled=false;
+
 	function image_manipulation($resource_file, $max_width, $max_height, $destination_file="", $compression=IMAGE_QUALITY, $transform="")
 		{
 		$this->a = $resource_file;	// image to be thumbnailed
@@ -34,8 +46,53 @@ class image_manipulation
 			$this->create();
 			}
 		}
+
+
+	//
+	// Support for transparency, enhanced PNG & GIF processing
+	// (C) 2006 Noxware, B. W. Masanek
+	// E-Mail: xtcommerce [AT] noxware * de
+	//
+	function imagecopyresampled_adv($image_type, &$dest, $source, $d_x, $d_y, $s_x, $s_y, $d_w, $d_h, $s_w, $s_h)
+		{
+
+			switch ($image_type)
+			{
+				// Process GIF images
+				case 1:
+					$transcol=imagecolortransparent($source);
+					$dest = imagecreate($d_w, $d_h);
+					imagepalettecopy($dest, $source);
+					imagefill($dest, 0, 0, $transcol);
+					imagecolortransparent($dest, $transcol);
+					return imagecopyresized($dest, $source, $d_x, $d_y, $s_x, $s_y, $d_w, $d_h, $s_w, $s_h);
+				break;
+
+
+				// Process PNG images
+				case 3:
+					$dest = imageCreateTrueColor($d_w, $d_h);
+					imagealphablending($dest, false);
+					imagesavealpha($dest,true);
+					$transparent = imagecolorallocatealpha($dest, 255, 255, 255, 0);
+					for($x=0; $x<$d_w; $x++) {
+						for($y=0; $y<$d_h; $y++) {
+							imageSetPixel($dest, $x, $y, $transparent);
+						}
+					}
+
+					return imagecopyresampled($dest, $source, $d_x, $d_y, $s_x, $s_y, $d_w, $d_h, $s_w, $s_h);
+				break;
+
+				// Any other images
+				default:
+					$dest = imageCreateTrueColor($d_w, $d_h);
+					return imagecopyresampled($dest, $source, $d_x, $d_y, $s_x, $s_y, $d_w, $d_h, $s_w, $s_h);
+			}
+		}
+
 	function compile()
-		{	
+		{
 		$this->h = getimagesize($this->a);
 		if(is_array($this->h))
 			{
@@ -55,10 +112,10 @@ class image_manipulation
 			}
 		$this->s = ($this->k < 4) ? ($this->k < 3) ? ($this->k < 2) ? ($this->k < 1) ? Null : imagecreatefromgif($this->a) : imagecreatefromjpeg($this->a) : imagecreatefrompng($this->a) : Null;
 		if($this->s !== Null)
-			{
-			$this->t = imagecreatetruecolor($this->q, $this->r); // created thumbnail reference
-			$this->u = imagecopyresampled($this->t, $this->s, 0, 0, 0, 0, $this->q, $this->r, $this->i, $this->j);
-			}
+		{
+			// Creates an new image: $this->t. $this->k is the image type.
+			$this->u = $this->imagecopyresampled_adv($this->k, $this->t, $this->s, 0, 0, 0, 0, $this->q, $this->r, $this->i, $this->j);
+		}
 		}
 
 	function hex2rgb($hex_value)
@@ -68,6 +125,9 @@ class image_manipulation
 		}
 	function bevel($edge_width=10, $light_colour="FFFFFF", $dark_colour="000000")
 		{
+		// Not working properly for PNG images, so skipping
+		if ($this->effects_disabled || $this->k == 3) return;
+
 		$this->edge = $edge_width;
 		$this->dc = $dark_colour;
 		$this->lc = $light_colour;
@@ -81,6 +141,7 @@ class image_manipulation
 		$this->nadir = @imagecolorallocate($this->dark,$this->dr,$this->dg,$this->db);
 		$this->light = @imagecreate($this->q,$this->r);
 		$this->zenith = @imagecolorallocate($this->light,$this->lr,$this->lg,$this->lb);
+
 		for($this->pixel = 0; $this->pixel < $this->edge; $this->pixel++)
 			{
 			$this->opac =  100 - (($this->pixel+1) * (100 / $this->edge));
@@ -94,6 +155,28 @@ class image_manipulation
 		}
 	function greyscale($rv=38, $gv=36, $bv=26)
 		{
+		// Not working properly for PNG & GIF images, so skipping
+		if ($this->effects_disabled || $this->k == 3 || $this->k == 1) return;
+
+		$this->bgc = $bg_colour;
+		$this->br = $this->hex2rgb(substr($this->bgc,0,2));
+		$this->bg = $this->hex2rgb(substr($this->bgc,2,2));
+		$this->bb = $this->hex2rgb(substr($this->bgc,4,2));
+		$this->dot = @ImageCreate(6,6);
+		$this->dot_base = @ImageColorAllocate($this->dot, $this->br, $this->bg, $this->bb);
+		$this->zenitha = @ImageColorClosest($this->t, $this->br, $this->bg, $this->bb);
+		for($this->rad = 0;$this->rad<6.3;$this->rad+=0.005)
+			{
+			$this->xpos = floor(($this->q)+(sin($this->rad)*($this->q)))/2;
+			$this->ypos = floor(($this->r)+(cos($this->rad)*($this->r)))/2;
+			$this->xto = 0;
+			if($this->xpos >= ($this->q/2))
+				{
+				$this->xto = $this->q;
+				}
+			@ImageCopyMerge($this->t,$this->dot,$this->xpos-3,$this->ypos-3,0,0,6,6,30);
+			@ImageCopyMerge($this->t,$this->dot,$this->xpos-2,$this->ypos-2,0,0,4,4,30);
+			@ImageCopyMerge($this->t,$this->dot,$this->xpos-1,$this->ypos-1,0,0,2,2,30);
 		$this->rv = $rv;
 		$this->gv = $gv;
 		$this->bv = $bv;
@@ -113,8 +196,12 @@ class image_manipulation
 				}
 			}
 		}
+		}
 	function ellipse($bg_colour="FFFFFF")
 		{
+		// Not working properly for PNG images, so skipping
+		if ($this->effects_disabled || $this->k == 3) return;
+
 		$this->bgc = $bg_colour;
 		$this->br = $this->hex2rgb(substr($this->bgc,0,2));
 		$this->bg = $this->hex2rgb(substr($this->bgc,2,2));
@@ -140,6 +227,9 @@ class image_manipulation
 		}
 	function round_edges($edge_rad=3, $bg_colour="FFFFFF", $anti_alias=1)
 		{
+		// Not working properly for PNG images, so skipping
+		if ($this->effects_disabled || $this->k == 3) return;
+
 		$this->er = $edge_rad;
 		$this->bgd = $bg_colour;
 		$this->aa = min(3,$anti_alias);
@@ -168,6 +258,8 @@ class image_manipulation
 		}
 	function merge($merge_img="", $x_left=0, $y_top=0, $merge_opacity=70, $trans_colour="FF0000")
 		{
+		if ($this->effects_disabled) return;
+
 		$this->mi = $merge_img;
 		$this->xx = ($x_left < 0) ? $this->q+$x_left : $x_left;
 		$this->yy = ($y_top < 0) ? $this->r+$y_top : $y_top;
@@ -193,6 +285,7 @@ class image_manipulation
 				else
 					{
 					@imagecopymerge($this->t, $this->mm, $this->xx+$this->xpo, $this->yy+$this->ypo, $this->xpo, $this->ypo, 1, 1, $this->mo);
+
 					}
 				}
 			}
@@ -200,6 +293,8 @@ class image_manipulation
 		}
 	function frame($light_colour="FFFFFF", $dark_colour="000000", $mid_width=4, $frame_colour = "" )
 		{
+		if ($this->effects_disabled) return;
+
 		$this->rw = $mid_width;
 		$this->dh = $dark_colour;
 		$this->lh = $light_colour;
@@ -231,6 +326,9 @@ class image_manipulation
 		}
 	function drop_shadow($shadow_width, $shadow_colour="000000", $background_colour="FFFFFF")
 		{
+		// Not working properly for PNG & GIF images, so skipping
+		if ($this->effects_disabled || $this->k == 3 || $this->k == 1) return;
+
 		$this->sw = $shadow_width;
 		$this->sc = $shadow_colour;
 		$this->sbr = $background_colour;
@@ -266,6 +364,8 @@ class image_manipulation
 		}
 	function motion_blur($num_blur_lines, $background_colour="FFFFFF")
 		{
+		// Not working properly for PNG images, so skipping
+		if ($this->effects_disabled || $this->k == 3) return;
 
 		$this->nbl = $num_blur_lines;
 		$this->shw = ($this->nbl*2)+1;
@@ -313,7 +413,32 @@ class image_manipulation
 			if($this->d !== "")
 				{
 				ob_start();
-				imagejpeg($this->t, $this->d, $this->e);
+
+					// Handle different image types
+					$image_type = $this->k;
+
+					switch ($image_type)
+					{
+						// GIF image
+						case 1:
+							// Keep transparent color
+							$transcol=imagecolortransparent($this->s);
+							imagecolortransparent($this->t,$transcol);
+							imagegif($this->t, $this->d);
+						break;
+						// PNG image
+						case 3:
+							imagealphablending($this->t, true);
+							imagesavealpha($this->t, true);
+							imagepng($this->t, $this->d);
+						break;
+
+						// Other images
+						default:
+						imagejpeg($this->t, $this->d, $this->e);
+
+					}
+
 				ob_end_clean();
 				}
 			imagedestroy($this->s);
