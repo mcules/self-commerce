@@ -41,6 +41,8 @@
   define('DIR_FS_DOWNLOAD_PUBLIC', DIR_FS_CATALOG . 'pub/');
   define('DIR_FS_INC', DIR_FS_CATALOG . 'inc/');
 
+  define('PDF_ENABLED', false);
+
 // define our database connection
   define('DB_SERVER', 'localhost'); // eg, localhost - should not be empty for productive servers
   define('DB_SERVER_USERNAME', 'root');
