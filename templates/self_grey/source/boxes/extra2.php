@@ -33,7 +33,7 @@ if (!CacheCheck()) {
 
 $content_string = '<ul  id="box_extra2">';
 
-if (!$box_smarty->is_cached(CURRENT_TEMPLATE.'/boxes/box_extra2.html', $cache_id) || !$cache) {
+if (!$box_smarty->iscached(CURRENT_TEMPLATE.'/boxes/box_extra2.html', $cache_id) || !$cache) {
 	$box_smarty->assign('tpl_path', 'templates/'.CURRENT_TEMPLATE.'/');
 
 	if (GROUP_CHECK == 'true') {
