@@ -27,6 +27,8 @@ if ($_SESSION['customers_status']['customers_status_id'] == 0) include(DIR_WS_BO
 require(DIR_WS_BOXES . 'infobox.php');
 require(DIR_WS_BOXES . 'loginbox.php');
 include(DIR_WS_BOXES . 'newsletter.php');
+include(DIR_WS_BOXES . 'extra1.php');
+include(DIR_WS_BOXES . 'extra2.php');
 if ($_SESSION['customers_status']['customers_status_show_price'] == 1) include(DIR_WS_BOXES . 'shopping_cart.php');
 if ($product->isProduct()) include(DIR_WS_BOXES . 'manufacturer_info.php');
 
