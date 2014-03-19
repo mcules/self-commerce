@@ -1147,7 +1147,7 @@ INSERT INTO database_version(version) VALUES ('3.0.4.0');
 
 INSERT INTO cm_file_flags (file_flag, file_flag_name) VALUES ('0', 'default');
 INSERT INTO cm_file_flags (file_flag, file_flag_name) VALUES ('1', 'Informationen');
-INSERT INTO cm_file_flags (file_flag, file_flag_name) VALUES ('2', 'Mehr über...');
+INSERT INTO cm_file_flags (file_flag, file_flag_name) VALUES ('2', 'Mehr ï¿½ber...');
 INSERT INTO cm_file_flags (file_flag, file_flag_name) VALUES ('3', 'Extra1 Box');
 INSERT INTO cm_file_flags (file_flag, file_flag_name) VALUES ('4', 'Extra2 Box');
 
@@ -1166,22 +1166,22 @@ INSERT INTO content_manager VALUES(3, 0, 0, '', 1, 'Conditions of Use', 'Conditi
 INSERT INTO content_manager VALUES(4, 0, 0, '', 1, 'Impressum', 'Impressum', 'Put here your Company information.', 0, 2, '', 1, 0, '', '', 4, 0, 'Impressum', '', '');
 INSERT INTO content_manager VALUES(5, 0, 0, '', 1, 'Index', 'Welcome', '<p>{$greeting}<br /><br />This is the standard installation xt:Commerce Forking of the project - Self-Commerce. All represented products serve the function mode for the demonstration. If you order products, then these are delivered neither, nor placed in calculation. All information to the different products is not invented and therefore can a requirement from it be derived.<br /><br />If you should be interested in it the program, which forms the basis for this Shop to begin then you visit please the support side of <a href="http://self-commerce.de" target="blank">self-commerce.de</a>. This Shop is based on the version <b>Self-Commerce 3.0 Beta 1</b><br /><br />The text represented here can in the AdminInterface under the point <b>Content Manager</b>- entry index to be worked on.</p>', 0, 0, '', 0, 0, '', '', 5, 0, 'here not possible', 'here not possible', 'here not possible');
 INSERT INTO content_manager VALUES(6, 0, 0, '', 2, 'Liefer- und Versandkosten', 'Liefer- und Versandkosten', 'F&uuml;gen Sie hier Ihre Informationen &uuml;ber Liefer- und Versandkosten ein.', 0, 2, '', 1, 0, '', '', 1, 0, 'Liefer- und Versandkosten', '', '');
-INSERT INTO content_manager VALUES(7, 0, 0, '', 2, 'Privatsphäre und Datenschutz', 'Privatsphäre und Datenschutz', 'F&uuml;gen Sie hier Ihre Informationen &uuml;ber Privatsph&auml;re und Datenschutz ein.', 0, 2, '', 1, 0, '', '', 2, 0, 'Privatsphäre und Datenschutz', '', '');
-INSERT INTO content_manager VALUES(8, 0, 0, '', 2, 'Unsere AGB', 'Allgemeine Geschäftsbedingungen', '<strong>Allgemeine Gesch&auml;ftsbedingungen<br /></strong><br />F&uuml;gen Sie hier Ihre allgemeinen Gesch&auml;ftsbedingungen ein.<br />1. Geltung<br />2. Angebote<br />3. Preis<br />4. Versand und Gefahr&uuml;bergang<br />5. Lieferung<br />6. Zahlungsbedingungen<br />7. Eigentumsvorbehalt <br />8. M&auml;ngelr&uuml;gen, Gew&auml;hrleistung und Schadenersatz<br />9. Kulanzr&uuml;cknahme / Annahmeverweigerung<br />10. Erf&uuml;llungsort und Gerichtsstand<br />11. Schlussbestimmungen', 0, 2, '', 1, 0, '', '', 3, 0, 'Unsere AGB', '', '');
-INSERT INTO content_manager VALUES(9, 0, 0, '', 2, 'Impressum', 'Impressum', 'Fügen Sie hier Ihr Impressum ein.', 0, 2, '', 1, 0, '', '', 4, 0, 'Impressum', '', '');
-INSERT INTO content_manager VALUES(10, 0, 0, '', 2, 'Index', 'Willkommen', '{$greeting}<br /><br /> Dies ist die Standardinstallation des xt:Commerce Forking Projektes - Self-Commerce. Alle dargestellten Produkte dienen zur Demonstration der Funktionsweise. Wenn Sie Produkte bestellen, so werden diese weder ausgeliefert, noch in Rechnung gestellt. Alle Informationen zu den verschiedenen Produkten sind erfunden und daher kann kein Anspruch daraus abgeleitet werden.<br /><br />Sollten Sie daran interessiert sein das Programm, welches die Grundlage für diesen Shop bildet, einzusetzen, so besuchen Sie bitte die Supportseite von <a href="http://self-commerce.de" target="blank">self-commerce.de</a>. Dieser Shop basiert auf der Version <b>Self-Commerce 3.0 Beta 1</b><br /><br />Der hier dargestellte Text kann im AdminInterface unter dem Punkt <b>Content Manager</b> - Eintrag Index bearbeitet werden.', 0, 0, '', 0, 0, '', '', 5, 0, 'hier nicht möglich', 'hier nicht möglich', 'hier nicht möglich');
-INSERT INTO content_manager VALUES(11, 0, 0, '', 2, 'Gutscheine', 'Gutscheine - Fragen und Antworten', '<table cellSpacing=0 cellPadding=0>\r\n<tbody>\r\n<tr>\r\n<td class=main><STRONG>Gutscheine kaufen </STRONG></td></tr>\r\n<tr>\r\n<td class=main>Gutscheine können, falls sie im Shop angeboten werden, wie normale Artikel gekauft werden. Sobald Sie einen Gutschein gekauft haben und dieser nach erfolgreicher Zahlung freigeschaltet wurde, erscheint der Betrag unter Ihrem Warenkorb. Nun können Sie über den Link " Gutschein versenden " den gewünschten Betrag per E-Mail versenden. </td></tr></tbody></table>\r\n<table cellSpacing=0 cellPadding=0>\r\n<tbody>\r\n<tr>\r\n<td class=main><STRONG>Wie man Gutscheine versendet </STRONG></td></tr>\r\n<tr>\r\n<td class=main>Um einen Gutschein zu versenden, klicken Sie bitte auf den Link "Gutschein versenden" in Ihrem Einkaufskorb. Um einen Gutschein zu versenden, benötigen wir folgende Angaben von Ihnen: Vor- und Nachname des Empfängers. Eine gültige E-Mail Adresse des Empfängers. Den gewünschten Betrag (Sie können auch Teilbeträge Ihres Guthabens versenden). Eine kurze Nachricht an den Empfänger. Bitte überprüfen Sie Ihre Angaben noch einmal vor dem Versenden. Sie haben vor dem Versenden jederzeit die Möglichkeit Ihre Angaben zu korrigieren. </td></tr></tbody></table>\r\n<table cellSpacing=0 cellPadding=0>\r\n<tbody>\r\n<tr>\r\n<td class=main><STRONG>Mit Gutscheinen Einkaufen. </STRONG></td></tr>\r\n<tr>\r\n<td class=main>Sobald Sie über ein Guthaben verfügen, können Sie dieses zum Bezahlen Ihrer Bestellung verwenden. Während des Bestellvorganges haben Sie die Möglichkeit Ihr Guthaben einzulösen. Falls das Guthaben unter dem Warenwert liegt müssen Sie Ihre bevorzugte Zahlungsweise für den Differenzbetrag wählen. Übersteigt Ihr Guthaben den Warenwert, steht Ihnen das Restguthaben selbstverständlich für Ihre nächste Bestellung zur Verfügung. </td></tr></tbody></table>\r\n<table cellSpacing=0 cellPadding=0>\r\n<tbody>\r\n<tr>\r\n<td class=main><STRONG>Gutscheine verbuchen. </STRONG></td></tr>\r\n<tr>\r\n<td class=main>Wenn Sie einen Gutschein per E-Mail erhalten haben, können Sie den Betrag wie folgt verbuchen:. <br />1. Klicken Sie auf den in der E-Mail angegebenen Link. Falls Sie noch nicht über ein persönliches Kundenkonto verfügen, haben Sie die Möglichkeit ein Konto zu eröffnen. <br />2. Nachdem Sie ein Produkt in den Warenkorb gelegt haben, können Sie dort Ihren Gutscheincode eingeben.</td></tr></tbody></table>\r\n<table cellSpacing=0 cellPadding=0>\r\n<tbody>\r\n<tr>\r\n<td class=main><STRONG>Falls es zu Problemen kommen sollte: </STRONG></td></tr>\r\n<tr>\r\n<td class=main>Falls es wider Erwarten zu Problemen mit einem Gutschein kommen sollte, kontaktieren Sie uns bitte per E-Mail : you@yourdomain.com. Bitte beschreiben Sie möglichst genau das Problem, wichtige Angaben sind unter anderem: Ihre Kundennummer, der Gutscheincode, Fehlermeldungen des Systems sowie der von Ihnen benutzte Browser. </td></tr></tbody></table>', 0, 2, '', 0, 0, '', '', 6, 0, 'Gutscheine', '', '');
+INSERT INTO content_manager VALUES(7, 0, 0, '', 2, 'Privatsphï¿½re und Datenschutz', 'Privatsphï¿½re und Datenschutz', 'F&uuml;gen Sie hier Ihre Informationen &uuml;ber Privatsph&auml;re und Datenschutz ein.', 0, 2, '', 1, 0, '', '', 2, 0, 'Privatsphï¿½re und Datenschutz', '', '');
+INSERT INTO content_manager VALUES(8, 0, 0, '', 2, 'Unsere AGB', 'Allgemeine Geschï¿½ftsbedingungen', '<strong>Allgemeine Gesch&auml;ftsbedingungen<br /></strong><br />F&uuml;gen Sie hier Ihre allgemeinen Gesch&auml;ftsbedingungen ein.<br />1. Geltung<br />2. Angebote<br />3. Preis<br />4. Versand und Gefahr&uuml;bergang<br />5. Lieferung<br />6. Zahlungsbedingungen<br />7. Eigentumsvorbehalt <br />8. M&auml;ngelr&uuml;gen, Gew&auml;hrleistung und Schadenersatz<br />9. Kulanzr&uuml;cknahme / Annahmeverweigerung<br />10. Erf&uuml;llungsort und Gerichtsstand<br />11. Schlussbestimmungen', 0, 2, '', 1, 0, '', '', 3, 0, 'Unsere AGB', '', '');
+INSERT INTO content_manager VALUES(9, 0, 0, '', 2, 'Impressum', 'Impressum', 'Fï¿½gen Sie hier Ihr Impressum ein.', 0, 2, '', 1, 0, '', '', 4, 0, 'Impressum', '', '');
+INSERT INTO content_manager VALUES(10, 0, 0, '', 2, 'Index', 'Willkommen', '{$greeting}<br /><br /> Dies ist die Standardinstallation des xt:Commerce Forking Projektes - Self-Commerce. Alle dargestellten Produkte dienen zur Demonstration der Funktionsweise. Wenn Sie Produkte bestellen, so werden diese weder ausgeliefert, noch in Rechnung gestellt. Alle Informationen zu den verschiedenen Produkten sind erfunden und daher kann kein Anspruch daraus abgeleitet werden.<br /><br />Sollten Sie daran interessiert sein das Programm, welches die Grundlage fï¿½r diesen Shop bildet, einzusetzen, so besuchen Sie bitte die Supportseite von <a href="http://self-commerce.de" target="blank">self-commerce.de</a>. Dieser Shop basiert auf der Version <b>Self-Commerce 3.0 Beta 1</b><br /><br />Der hier dargestellte Text kann im AdminInterface unter dem Punkt <b>Content Manager</b> - Eintrag Index bearbeitet werden.', 0, 0, '', 0, 0, '', '', 5, 0, 'hier nicht mï¿½glich', 'hier nicht mï¿½glich', 'hier nicht mï¿½glich');
+INSERT INTO content_manager VALUES(11, 0, 0, '', 2, 'Gutscheine', 'Gutscheine - Fragen und Antworten', '<table cellSpacing=0 cellPadding=0>\r\n<tbody>\r\n<tr>\r\n<td class=main><STRONG>Gutscheine kaufen </STRONG></td></tr>\r\n<tr>\r\n<td class=main>Gutscheine kï¿½nnen, falls sie im Shop angeboten werden, wie normale Artikel gekauft werden. Sobald Sie einen Gutschein gekauft haben und dieser nach erfolgreicher Zahlung freigeschaltet wurde, erscheint der Betrag unter Ihrem Warenkorb. Nun kï¿½nnen Sie ï¿½ber den Link " Gutschein versenden " den gewï¿½nschten Betrag per E-Mail versenden. </td></tr></tbody></table>\r\n<table cellSpacing=0 cellPadding=0>\r\n<tbody>\r\n<tr>\r\n<td class=main><STRONG>Wie man Gutscheine versendet </STRONG></td></tr>\r\n<tr>\r\n<td class=main>Um einen Gutschein zu versenden, klicken Sie bitte auf den Link "Gutschein versenden" in Ihrem Einkaufskorb. Um einen Gutschein zu versenden, benï¿½tigen wir folgende Angaben von Ihnen: Vor- und Nachname des Empfï¿½ngers. Eine gï¿½ltige E-Mail Adresse des Empfï¿½ngers. Den gewï¿½nschten Betrag (Sie kï¿½nnen auch Teilbetrï¿½ge Ihres Guthabens versenden). Eine kurze Nachricht an den Empfï¿½nger. Bitte ï¿½berprï¿½fen Sie Ihre Angaben noch einmal vor dem Versenden. Sie haben vor dem Versenden jederzeit die Mï¿½glichkeit Ihre Angaben zu korrigieren. </td></tr></tbody></table>\r\n<table cellSpacing=0 cellPadding=0>\r\n<tbody>\r\n<tr>\r\n<td class=main><STRONG>Mit Gutscheinen Einkaufen. </STRONG></td></tr>\r\n<tr>\r\n<td class=main>Sobald Sie ï¿½ber ein Guthaben verfï¿½gen, kï¿½nnen Sie dieses zum Bezahlen Ihrer Bestellung verwenden. Wï¿½hrend des Bestellvorganges haben Sie die Mï¿½glichkeit Ihr Guthaben einzulï¿½sen. Falls das Guthaben unter dem Warenwert liegt mï¿½ssen Sie Ihre bevorzugte Zahlungsweise fï¿½r den Differenzbetrag wï¿½hlen. ï¿½bersteigt Ihr Guthaben den Warenwert, steht Ihnen das Restguthaben selbstverstï¿½ndlich fï¿½r Ihre nï¿½chste Bestellung zur Verfï¿½gung. </td></tr></tbody></table>\r\n<table cellSpacing=0 cellPadding=0>\r\n<tbody>\r\n<tr>\r\n<td class=main><STRONG>Gutscheine verbuchen. </STRONG></td></tr>\r\n<tr>\r\n<td class=main>Wenn Sie einen Gutschein per E-Mail erhalten haben, kï¿½nnen Sie den Betrag wie folgt verbuchen:. <br />1. Klicken Sie auf den in der E-Mail angegebenen Link. Falls Sie noch nicht ï¿½ber ein persï¿½nliches Kundenkonto verfï¿½gen, haben Sie die Mï¿½glichkeit ein Konto zu erï¿½ffnen. <br />2. Nachdem Sie ein Produkt in den Warenkorb gelegt haben, kï¿½nnen Sie dort Ihren Gutscheincode eingeben.</td></tr></tbody></table>\r\n<table cellSpacing=0 cellPadding=0>\r\n<tbody>\r\n<tr>\r\n<td class=main><STRONG>Falls es zu Problemen kommen sollte: </STRONG></td></tr>\r\n<tr>\r\n<td class=main>Falls es wider Erwarten zu Problemen mit einem Gutschein kommen sollte, kontaktieren Sie uns bitte per E-Mail : you@yourdomain.com. Bitte beschreiben Sie mï¿½glichst genau das Problem, wichtige Angaben sind unter anderem: Ihre Kundennummer, der Gutscheincode, Fehlermeldungen des Systems sowie der von Ihnen benutzte Browser. </td></tr></tbody></table>', 0, 2, '', 0, 0, '', '', 6, 0, 'Gutscheine', '', '');
 INSERT INTO content_manager VALUES(12, 0, 0, '', 1, 'Coupons', 'Coupons - questions and answers', '<table cellSpacing=0 cellPadding=0>\r\n<tbody>\r\n<tr>\r\n<td class=main><STRONG>Coupons buy </STRONG></td></tr>\r\n<tr>\r\n<td class=main>Coupons can, if they are offered in the Shop, as normal articles are bought. As soon as you a coupon to have bought and this was de-energised after successful payment, the amount under your cart appears. Now you can dispatch the desired amount over the left "coupon" by E-Mail to dispatch. </td></tr></tbody></table>\r\n<table cellSpacing=0 cellPadding=0>\r\n<tbody>\r\n<tr>\r\n<td class=main><STRONG>As one coupons dispatches </STRONG></td></tr>\r\n<tr>\r\n<td class=main>In order to dispatch a coupon, you click please on the left to "coupon dispatch" in your purchase basket. In order to dispatch a coupon, we need the following data of you: Pre and surname of the receiver. A valid E-Mail address of the receiver. The desired amount (you also partial amounts of your assets can dispatch). A short message to the receiver. Please you examine your data again before dispatching. They have to correct the possibility your data at any time before dispatching. </td></tr></tbody></table>\r\n<table cellSpacing=0 cellPadding=0>\r\n<tbody>\r\n<tr>\r\n<td class=main><STRONG>With coupons buying. </STRONG></td></tr>\r\n<tr>\r\n<td class=main>As soon as you have assets, you can use this for paying your order. During the order procedure you have to redeem the possibility your assets. If the assets under the commodity value lie must you your preferential manner of payment for the balance select. If your assets exceed the commodity value, the remaining credit balance is to you naturally for your next order at the disposal. </td></tr></tbody></table>\r\n<table cellSpacing=0 cellPadding=0>\r\n<tbody>\r\n<tr>\r\n<td class=main><STRONG>Coupons book. </STRONG></td></tr>\r\n<tr>\r\n<td class=main>If you received a coupon by E-Mail, you can book the amount as follows:. <br />1. Click on in the E-Mail the indicated left. If you do not have yet a personal customer account, you have to open the possibility an account.<br />2. After you put a product into the warenkorb, you can enter your coupon code there.</td></tr></tbody></table>\r\n<table cellSpacing=0 cellPadding=0>\r\n<tbody>\r\n<tr>\r\n<td class=main><STRONG>If it should come to problems:</STRONG></td></tr>\r\n<tr>\r\n<td class=main>If it should come against expecting to problems with a coupon, contact us please by E-Mail: you@yourdomain.com. Please you describe as exactly as possible the problem, important data are among other things: Their customer number, the coupon code, error messages of the system as well as the Browser used by you. </td></tr></tbody></table>', 0, 2, '', 0, 0, '', '', 6, 0, 'Coupons', '', '');
 INSERT INTO content_manager VALUES(13, 0, 0, '', 2, 'Kontakt', 'Kontakt', '<p>Ihre Kontaktinformationen</p>', 0, 2, '', 1, 0, '', '', 7, 0, 'Kontakt', '', '');
 INSERT INTO content_manager VALUES(14, 0, 0, '', 1, 'Contact', 'Contact', 'Please enter your contact informations.', 0, 2, '', 1, 0, '', '', 7, 0, 'Contact', '', '');
 INSERT INTO content_manager VALUES(15, 0, 0, '', 1, 'Category list', 'Category list', '', 0, 1, 'catlist.php', 1, 0, '', '', 8, 0, 'Category overview', '', '');
-INSERT INTO content_manager VALUES(16, 0, 0, '', 2, 'Kategorie Liste', 'Kategorie Liste', '', 0, 1, 'catlist.php', 1, 0, '', '', 8, 0, 'Kategorie Übersicht', '', '');
+INSERT INTO content_manager VALUES(16, 0, 0, '', 2, 'Kategorie Liste', 'Kategorie Liste', '', 0, 1, 'catlist.php', 1, 0, '', '', 8, 0, 'Kategorie ï¿½bersicht', '', '');
 INSERT INTO content_manager VALUES(17, 0, 0, '', 1, 'Manufacturer list', 'Manufacturer list', '', 0, 1, 'allmanufacturers.php', 1, 0, '', '', 9, 0, 'Manufacturer overview', '', '');
-INSERT INTO content_manager VALUES(18, 0, 0, '', 2, 'Hersteller Liste', 'Hersteller Liste', '', 0, 1, 'allmanufacturers.php', 1, 0, '', '', 9, 0, 'Hersteller Übersicht', '', '');
+INSERT INTO content_manager VALUES(18, 0, 0, '', 2, 'Hersteller Liste', 'Hersteller Liste', '', 0, 1, 'allmanufacturers.php', 1, 0, '', '', 9, 0, 'Hersteller ï¿½bersicht', '', '');
 INSERT INTO content_manager VALUES(19, 0, 0, '', 1, 'Auctions', 'Auctions', '', 0, 1, 'ebay.php', 1, 0, '', '', 10, 0, 'Ebay Auctions', '', '');
 INSERT INTO content_manager VALUES(20, 0, 0, '', 2, 'Auktionen', 'Auktionen', '', 0, 1, 'ebay.php', 1, 0, '', '', 10, 0, 'Unsere Auktionen', '', '');
 INSERT INTO content_manager VALUES(21, 0, 0, '', 1, 'Revocation', 'Revocation', 'Put here your Revocation information.', 0, 2, '', 1, 0, '', '', 11, 0, 'Revocation', '', '');
-INSERT INTO content_manager VALUES(22, 0, 0, '', 2, 'Widerrufsrecht', 'Widerrufsrecht', 'Fügen Sie hier Ihr Widerrufsrecht ein.', 0, 2, '', 1, 0, '', '', 11, 0, 'Widerrufsrecht', '', '');
+INSERT INTO content_manager VALUES(22, 0, 0, '', 2, 'Widerrufsrecht', 'Widerrufsrecht', 'Fï¿½gen Sie hier Ihr Widerrufsrecht ein.', 0, 2, '', 1, 0, '', '', 11, 0, 'Widerrufsrecht', '', '');
 
 # 1 - Default, 2 - USA, 3 - Spain, 4 - Singapore, 5 - Germany
 INSERT INTO address_format VALUES (1, '$firstname $lastname$cr$streets$cr$city, $postcode$cr$statecomma$country','$city / $country');
@@ -1514,7 +1514,7 @@ INSERT INTO configuration (configuration_id,  configuration_key, configuration_v
 
 #configuration_group_id 362, Wartung
 INSERT INTO configuration (configuration_id,  configuration_key, configuration_value, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('', 'WARTUNG', 'false', '362', '1', NULL, '0000-00-00 00:00:00', NULL, 'xtc_cfg_select_option(array(\'true\', \'false\'),');
-INSERT INTO configuration (configuration_id,  configuration_key, configuration_value, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('', 'WARTUNG_TEXT', 'Dieser Shop ist aus Wartungsgründen vorübergehend deaktiviert...',  '362', '2', NULL, '0000-00-00 00:00:00', NULL, 'xtc_cfg_textarea(');
+INSERT INTO configuration (configuration_id,  configuration_key, configuration_value, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('', 'WARTUNG_TEXT', 'Dieser Shop ist aus Wartungsgrï¿½nden vorï¿½bergehend deaktiviert...',  '362', '2', NULL, '0000-00-00 00:00:00', NULL, 'xtc_cfg_textarea(');
 
 #configuration_group_id 363, Login Schutz
 INSERT INTO configuration (configuration_id,  configuration_key, configuration_value, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('', 'LOGIN_NUM', '3', '363', '1', NULL, '0000-00-00 00:00:00', NULL, NULL);
@@ -1902,7 +1902,7 @@ INSERT INTO zones VALUES (78,38,'YT','Yukon Territory');
 
 # Germany
 INSERT INTO zones VALUES (79,81,'NDS','Niedersachsen');
-INSERT INTO zones VALUES (80,81,'BAW','Baden-Württemberg');
+INSERT INTO zones VALUES (80,81,'BAW','Baden-Wï¿½rttemberg');
 INSERT INTO zones VALUES (81,81,'BAY','Bayern');
 INSERT INTO zones VALUES (82,81,'BER','Berlin');
 INSERT INTO zones VALUES (83,81,'BRG','Brandenburg');
@@ -1916,14 +1916,14 @@ INSERT INTO zones VALUES (90,81,'SAR','Saarland');
 INSERT INTO zones VALUES (91,81,'SAS','Sachsen');
 INSERT INTO zones VALUES (92,81,'SAC','Sachsen-Anhalt');
 INSERT INTO zones VALUES (93,81,'SCN','Schleswig-Holstein');
-INSERT INTO zones VALUES (94,81,'THE','Thüringen');
+INSERT INTO zones VALUES (94,81,'THE','Thï¿½ringen');
 
 # Austria
 INSERT INTO zones VALUES (95,14,'WI','Wien');
-INSERT INTO zones VALUES (96,14,'NO','Niederösterreich');
-INSERT INTO zones VALUES (97,14,'OO','Oberösterreich');
+INSERT INTO zones VALUES (96,14,'NO','Niederï¿½sterreich');
+INSERT INTO zones VALUES (97,14,'OO','Oberï¿½sterreich');
 INSERT INTO zones VALUES (98,14,'SB','Salzburg');
-INSERT INTO zones VALUES (99,14,'KN','Kärnten');
+INSERT INTO zones VALUES (99,14,'KN','Kï¿½rnten');
 INSERT INTO zones VALUES (100,14,'ST','Steiermark');
 INSERT INTO zones VALUES (101,14,'TI','Tirol');
 INSERT INTO zones VALUES (102,14,'BL','Burgenland');
@@ -1939,7 +1939,7 @@ INSERT INTO zones VALUES (109,204,'BS','Basel-Stadt');
 INSERT INTO zones VALUES (110,204,'FR','Freiburg');
 INSERT INTO zones VALUES (111,204,'GE','Genf');
 INSERT INTO zones VALUES (112,204,'GL','Glarus');
-INSERT INTO zones VALUES (113,204,'JU','Graubünden');
+INSERT INTO zones VALUES (113,204,'JU','Graubï¿½nden');
 INSERT INTO zones VALUES (114,204,'JU','Jura');
 INSERT INTO zones VALUES (115,204,'LU','Luzern');
 INSERT INTO zones VALUES (116,204,'NE','Neuenburg');
@@ -1955,10 +1955,10 @@ INSERT INTO zones VALUES (125,204,'UR','Uri');
 INSERT INTO zones VALUES (126,204,'VD','Waadt');
 INSERT INTO zones VALUES (127,204,'VS','Wallis');
 INSERT INTO zones VALUES (128,204,'ZG','Zug');
-INSERT INTO zones VALUES (129,204,'ZH','Zürich');
+INSERT INTO zones VALUES (129,204,'ZH','Zï¿½rich');
 
 # Spain
-INSERT INTO zones (zone_country_id, zone_code, zone_name) VALUES (195,'A Coruña','A Coruña');
+INSERT INTO zones (zone_country_id, zone_code, zone_name) VALUES (195,'A Coruï¿½a','A Coruï¿½a');
 INSERT INTO zones (zone_country_id, zone_code, zone_name) VALUES (195,'Alava','Alava');
 INSERT INTO zones (zone_country_id, zone_code, zone_name) VALUES (195,'Albacete','Albacete');
 INSERT INTO zones (zone_country_id, zone_code, zone_name) VALUES (195,'Alicante','Alicante');
@@ -2040,7 +2040,7 @@ INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',15
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',153,'Marlborough','Marlborough');
 
 #Brazil
-INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '30', 'SP', 'São Paulo');
+INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '30', 'SP', 'Sï¿½o Paulo');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '30', 'RJ', 'Rio de Janeiro');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '30', 'PE', 'Pernanbuco');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '30', 'BA', 'Bahia');
@@ -2048,7 +2048,7 @@ INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '30', 'MG', 'Minas Gerais');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '30', 'ES', 'Espirito Santo');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '30', 'RS', 'Rio Grande do Sul');
-INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '30', 'PR', 'Paraná');
+INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '30', 'PR', 'Paranï¿½');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '30', 'SC', 'Santa Catarina');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '30', 'RG', 'Rio Grande do Norte');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '30', 'MS', 'Mato Grosso do Sul');
@@ -2061,27 +2061,27 @@ INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '30', 'AP', 'Amapa');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '30', 'RO', 'Roraima');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '30', 'AL', 'Alagoas');
-INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '30', 'CE', 'Ceará');
-INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '30', 'MA', 'Maranhão');
-INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '30', 'PA', 'Pará');
-INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '30', 'PB', 'Paraíba');
-INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '30', 'PI', 'Piauí');
+INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '30', 'CE', 'Cearï¿½');
+INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '30', 'MA', 'Maranhï¿½o');
+INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '30', 'PA', 'Parï¿½');
+INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '30', 'PB', 'Paraï¿½ba');
+INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '30', 'PI', 'Piauï¿½');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '30', 'SE', 'Sergipe');
 
 #Chile
-insert into zones (zone_id, zone_country_id, zone_code, zone_name) values ('', '43', 'I', 'I Región de Tarapacá');
-insert into zones (zone_id, zone_country_id, zone_code, zone_name) values ('', '43', 'II', 'II Región de Antofagasta');
-insert into zones (zone_id, zone_country_id, zone_code, zone_name) values ('', '43', 'III', 'III Región de Atacama');
-insert into zones (zone_id, zone_country_id, zone_code, zone_name) values ('', '43', 'IV', 'IV Región de Coquimbo');
-insert into zones (zone_id, zone_country_id, zone_code, zone_name) values ('', '43', 'V', 'V Región de Valaparaíso');
-insert into zones (zone_id, zone_country_id, zone_code, zone_name) values ('', '43', 'RM', 'Región Metropolitana');
-insert into zones (zone_id, zone_country_id, zone_code, zone_name) values ('', '43', 'VI', 'VI Región de L. B. O´higgins');
-insert into zones (zone_id, zone_country_id, zone_code, zone_name) values ('', '43', 'VII', 'VII Región del Maule');
-insert into zones (zone_id, zone_country_id, zone_code, zone_name) values ('', '43', 'VIII', 'VIII Región del Bío Bío');
-insert into zones (zone_id, zone_country_id, zone_code, zone_name) values ('', '43', 'IX', 'IX Región de la Araucanía');
-insert into zones (zone_id, zone_country_id, zone_code, zone_name) values ('', '43', 'X', 'X Región de los Lagos');
-insert into zones (zone_id, zone_country_id, zone_code, zone_name) values ('', '43', 'XI', 'XI Región de Aysén');
-insert into zones (zone_id, zone_country_id, zone_code, zone_name) values ('', '43', 'XII', 'XII Región de Magallanes');
+insert into zones (zone_id, zone_country_id, zone_code, zone_name) values ('', '43', 'I', 'I Regiï¿½n de Tarapacï¿½');
+insert into zones (zone_id, zone_country_id, zone_code, zone_name) values ('', '43', 'II', 'II Regiï¿½n de Antofagasta');
+insert into zones (zone_id, zone_country_id, zone_code, zone_name) values ('', '43', 'III', 'III Regiï¿½n de Atacama');
+insert into zones (zone_id, zone_country_id, zone_code, zone_name) values ('', '43', 'IV', 'IV Regiï¿½n de Coquimbo');
+insert into zones (zone_id, zone_country_id, zone_code, zone_name) values ('', '43', 'V', 'V Regiï¿½n de Valaparaï¿½so');
+insert into zones (zone_id, zone_country_id, zone_code, zone_name) values ('', '43', 'RM', 'Regiï¿½n Metropolitana');
+insert into zones (zone_id, zone_country_id, zone_code, zone_name) values ('', '43', 'VI', 'VI Regiï¿½n de L. B. Oï¿½higgins');
+insert into zones (zone_id, zone_country_id, zone_code, zone_name) values ('', '43', 'VII', 'VII Regiï¿½n del Maule');
+insert into zones (zone_id, zone_country_id, zone_code, zone_name) values ('', '43', 'VIII', 'VIII Regiï¿½n del Bï¿½o Bï¿½o');
+insert into zones (zone_id, zone_country_id, zone_code, zone_name) values ('', '43', 'IX', 'IX Regiï¿½n de la Araucanï¿½a');
+insert into zones (zone_id, zone_country_id, zone_code, zone_name) values ('', '43', 'X', 'X Regiï¿½n de los Lagos');
+insert into zones (zone_id, zone_country_id, zone_code, zone_name) values ('', '43', 'XI', 'XI Regiï¿½n de Aysï¿½n');
+insert into zones (zone_id, zone_country_id, zone_code, zone_name) values ('', '43', 'XII', 'XII Regiï¿½n de Magallanes');
 
 #Columbia
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',47,'AMA','Amazonas');
@@ -2140,12 +2140,12 @@ INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'19','Corr?ze');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'2A','Corse du Sud');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'2B','Haute Corse');
-INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'21','C™te d\'or');
-INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'22','C™tes d\'Armor');
+INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'21','Cï¿½te d\'or');
+INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'22','Cï¿½tes d\'Armor');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'23','Creuse');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'24','Dordogne');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'25','Doubs');
-INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'26','Dr™me');
+INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'26','Drï¿½me');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'27','Eure');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'28','Eure et Loir');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'29','Finist?re');
@@ -2153,7 +2153,7 @@ INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'31','Haute Garonne');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'32','Gers');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'33','Gironde');
-INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'34','HŽrault');
+INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'34','Hï¿½rault');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'35','Ille et Vilaine');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'36','Indre');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'37','Indre et Loire');
@@ -2182,15 +2182,15 @@ INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'60','Oise');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'61','Orne');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'62','Pas de Calais');
-INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'63','Puy de D™me');
-INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'64','PyrŽnŽes Atlantiques');
-INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'65','Hautes PyrŽnŽes');
-INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'66','PyrŽnŽes Orientales');
+INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'63','Puy de Dï¿½me');
+INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'64','Pyrï¿½nï¿½es Atlantiques');
+INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'65','Hautes Pyrï¿½nï¿½es');
+INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'66','Pyrï¿½nï¿½es Orientales');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'67','Bas Rhin');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'68','Haut Rhin');
-INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'69','Rh™ne');
-INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'70','Haute Sa™ne');
-INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'71','Sa™ne et Loire');
+INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'69','Rhï¿½ne');
+INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'70','Haute Saï¿½ne');
+INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'71','Saï¿½ne et Loire');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'72','Sarthe');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'73','Savoie');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'74','Haute Savoie');
@@ -2204,7 +2204,7 @@ INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'82','Tarn et Garonne');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'83','Var');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'84','Vaucluse');
-INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'85','VendŽe');
+INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'85','Vendï¿½e');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'86','Vienne');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'87','Haute Vienne');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'88','Vosges');
@@ -2222,9 +2222,9 @@ INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'975 (DOM)','St-Pierre de Miquelon');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'976 (TOM)','Mayotte');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'984 (TOM)','Terres australes et Antartiques fran?aises');
-INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'985 (TOM)','Nouvelle CalŽdonie');
+INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'985 (TOM)','Nouvelle Calï¿½donie');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'986 (TOM)','Wallis et Futuna');
-INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'987 (TOM)','PolynŽsie fran?aise');
+INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',73,'987 (TOM)','Polynï¿½sie fran?aise');
 
 #India
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 99, 'DL', 'Delhi');
@@ -2297,7 +2297,7 @@ INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',10
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',105,'FE','Ferrara');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',105,'FI','Firenze');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',105,'FG','Foggia');
-INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',105,'FO','Forlì');
+INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',105,'FO','Forlï¿½');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',105,'FR','Frosinone');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',105,'GE','Genova');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',105,'GO','Gorizia');
@@ -2461,17 +2461,17 @@ INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',16
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',160,'FIN','Finnmark');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',160,'HED','Hedmark');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',160,'HOR','Hordaland');
-INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',160,'MOR','Møre og Romsdal');
+INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',160,'MOR','Mï¿½re og Romsdal');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',160,'NOR','Nordland');
-INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',160,'NTR','Nord-Trøndelag');
+INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',160,'NTR','Nord-Trï¿½ndelag');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',160,'OPP','Oppland');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',160,'ROG','Rogaland');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',160,'SOF','Sogn og Fjordane');
-INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',160,'STR','Sør-Trøndelag');
+INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',160,'STR','Sï¿½r-Trï¿½ndelag');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',160,'TEL','Telemark');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',160,'TRO','Troms');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',160,'VEA','Vest-Agder');
-INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',160,'OST','Østfold');
+INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',160,'OST','ï¿½stfold');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('',160,'SVA','Svalbard');
 
 #Pakistan
@@ -2552,14 +2552,14 @@ INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 2
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 215, 'AYDIN','AYDIN');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 215, 'BALIKESIR','BALIKESIR');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 215, 'BILECIK','BILECIK');
-INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 215, 'BINGÖL','BINGÖL');
+INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 215, 'BINGï¿½L','BINGï¿½L');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 215, 'BITLIS','BITLIS');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 215, 'BOLU','BOLU');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 215, 'BURDUR','BURDUR');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 215, 'BURSA','BURSA');
-INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 215, 'ÇANAKKALE','ÇANAKKALE');
-INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 215, 'ÇANKIRI','ÇANKIRI');
-INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 215, 'ÇORUM','ÇORUM');
+INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 215, 'ï¿½ANAKKALE','ï¿½ANAKKALE');
+INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 215, 'ï¿½ANKIRI','ï¿½ANKIRI');
+INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 215, 'ï¿½ORUM','ï¿½ORUM');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 215, 'DENIZLI','DENIZLI');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 215, 'DIYARBAKIR','DIYARBAKIR');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 215, 'EDIRNE','EDIRNE');
@@ -2569,11 +2569,11 @@ INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 2
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 215, 'ESKISEHIR','ESKISEHIR');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 215, 'GAZIANTEP','GAZIANTEP');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 215, 'GIRESUN','GIRESUN');
-INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 215, 'GÜMÜSHANE','GÜMÜSHANE');
+INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 215, 'Gï¿½Mï¿½SHANE','Gï¿½Mï¿½SHANE');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 215, 'HAKKARI','HAKKARI');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 215, 'HATAY','HATAY');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 215, 'ISPARTA','ISPARTA');
-INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 215, 'IÇEL','IÇEL');
+INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 215, 'Iï¿½EL','Iï¿½EL');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 215, 'ISTANBUL','ISTANBUL');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 215, 'IZMIR','IZMIR');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 215, 'KARS','KARS');
@@ -2583,7 +2583,7 @@ INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 2
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 215, 'KIRSEHIR','KIRSEHIR');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 215, 'KOCAELI','KOCAELI');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 215, 'KONYA','KONYA');
-INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 215, 'KÜTAHYA','KÜTAHYA');
+INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 215, 'Kï¿½TAHYA','Kï¿½TAHYA');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 215, 'MALATYA','MALATYA');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 215, 'MANISA','MANISA');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 215, 'KAHRAMANMARAS','KAHRAMANMARAS');
@@ -2618,33 +2618,33 @@ INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 2
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 215, 'ARDAHAN','ARDAHAN');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 215, 'IGDIR','IGDIR');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 215, 'YALOVA','YALOVA');
-INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 215, 'KARABÜK','KARABÜK');
+INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 215, 'KARABï¿½K','KARABï¿½K');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 215, 'KILIS','KILIS');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 215, 'OSMANIYE','OSMANIYE');
-INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 215, 'DÜZCE','DÜZCE');
+INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', 215, 'Dï¿½ZCE','Dï¿½ZCE');
 
 #Venezuela
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '229', 'AM', 'Amazonas');
-INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '229', 'AN', 'Anzoátegui');
+INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '229', 'AN', 'Anzoï¿½tegui');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '229', 'AR', 'Aragua');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '229', 'AP', 'Apure');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '229', 'BA', 'Barinas');
-INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '229', 'BO', 'Bolívar');
+INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '229', 'BO', 'Bolï¿½var');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '229', 'CA', 'Carabobo');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '229', 'CO', 'Cojedes');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '229', 'DA', 'Delta Amacuro');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '229', 'DC', 'Distrito Capital');
-INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '229', 'FA', 'Falcón');
-INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '229', 'GA', 'Guárico');
+INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '229', 'FA', 'Falcï¿½n');
+INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '229', 'GA', 'Guï¿½rico');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '229', 'GU', 'Guayana');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '229', 'LA', 'Lara');
-INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '229', 'ME', 'Mérida');
+INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '229', 'ME', 'Mï¿½rida');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '229', 'MI', 'Miranda');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '229', 'MO', 'Monagas');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '229', 'NE', 'Nueva Esparta');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '229', 'PO', 'Portuguesa');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '229', 'SU', 'Sucre');
-INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '229', 'TA', 'Táchira');
+INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '229', 'TA', 'Tï¿½chira');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '229', 'TU', 'Trujillo');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '229', 'VA', 'Vargas');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES ('', '229', 'YA', 'Yaracuy');
@@ -2982,6 +2982,9 @@ UPDATE admin_access SET print_order_pdf = '1' WHERE customers_id = '1';
 
 ALTER TABLE admin_access ADD print_packingslip_pdf INT( 1 ) NOT NULL ;
 UPDATE admin_access SET print_packingslip_pdf = '1' WHERE customers_id = '1';
+
+ALTER TABLE admin_access ADD haendlerbund INT(1) NOT NULL DEFAULT '0';
+UPDATE admin_access SET haendlerbund=1 WHERE module_export=1;
 
 INSERT INTO configuration_group (configuration_group_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES
 (99, 'PDFBill Configuration', 'PDFBill Overall Configuration', NULL, 99);

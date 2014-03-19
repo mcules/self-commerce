@@ -134,7 +134,10 @@
 		<div>'.$box_configuration.'</div>
 	</div>';
 
-  if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['configuration'] == '1')) $box_extra_modules .= '<a href="' . xtc_href_link(FILENAME_CONFIGURATION, 'gID=358', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_CONFIGURATION_358 . '</a><br />';
+/* Haendlerbund AGB- Schnittstelle Beginn */
+if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['haendlerbund'] == '1')) $box_extra_modules .= '<a href="' . xtc_href_link("haendlerbund.php", '') . '" class="menuBoxContentLink"> -' . 'AGB Service' . '</a><br />';
+/* Haendlerbund AGB- Schnittstelle Ende */
+if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['configuration'] == '1')) $box_extra_modules .= '<a href="' . xtc_href_link(FILENAME_CONFIGURATION, 'gID=358', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_CONFIGURATION_358 . '</a><br />';
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['configuration'] == '1')) $box_extra_modules .= '<a href="' . xtc_href_link(FILENAME_CONFIGURATION, 'gID=359', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_CONFIGURATION_359 . '</a><br />';
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['configuration'] == '1')) $box_extra_modules .= '<a href="' . xtc_href_link(FILENAME_CONFIGURATION, 'gID=360', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_CONFIGURATION_360 . '</a><br />';
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['configuration'] == '1')) $box_extra_modules .= '<a href="' . xtc_href_link(FILENAME_CONFIGURATION, 'gID=361', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_CONFIGURATION_361 . '</a><br />';
