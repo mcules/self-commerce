@@ -16,3 +16,5 @@ images/product_images/thumbnail_images/*.jpg
 admin/invoice/*.pdf
 .DS_Store
 admin/.DS_Store
+admin/includes/configure.php
+includes/configure.php
