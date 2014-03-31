@@ -713,9 +713,9 @@ if (($_GET['action'] == 'edit') && ($order_exists)) {
 	// Paypal Express Modul Änderungen Ende
 
 	// begin modification for banktransfer
-	$banktransfer_query = xtc_db_query("select banktransfer_prz, banktransfer_status, banktransfer_owner, banktransfer_number, banktransfer_bankname, banktransfer_blz, banktransfer_fax from banktransfer where orders_id = '".xtc_db_input($_GET['oID'])."'");
-	$banktransfer = xtc_db_fetch_array($banktransfer_query);
-	if (($banktransfer['banktransfer_bankname']) || ($banktransfer['banktransfer_blz']) || ($banktransfer['banktransfer_number'])) {
+	$banktransfer_query = xtc_db_query("select banktransfer_prz, banktransfer_status, banktransfer_owner, banktransfer_number, banktransfer_bankname, banktransfer_blz, banktransfer_fax, banktransfer_iban, banktransfer_bic from ".TABLE_BANKTRANSFER." where orders_id = '".xtc_db_input($_GET['oID'])."'");
+$banktransfer = xtc_db_fetch_array($banktransfer_query);
+        if (($banktransfer['banktransfer_bankname']) || ($banktransfer['banktransfer_blz']) || ($banktransfer['banktransfer_iban']) || ($banktransfer['banktransfer_number'])) {
 ?>
           <tr>
             <td colspan="2"><?php echo xtc_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
@@ -731,6 +731,14 @@ if (($_GET['action'] == 'edit') && ($order_exists)) {
           <tr>
             <td class="main"><?php echo TEXT_BANK_NUMBER; ?></td>
             <td class="main"><?php echo $banktransfer['banktransfer_number']; ?></td>
+          </tr>
+          <tr>
+            <td class="main"><?php echo TEXT_BANK_IBAN; ?></td>
+            <td class="main"><?php echo $banktransfer['banktransfer_iban']; ?></td>
+          </tr>
+          <tr>
+            <td class="main"><?php echo TEXT_BANK_BIC; ?></td>
+            <td class="main"><?php echo $banktransfer['banktransfer_bic']; ?></td>
           </tr>
           <tr>
             <td class="main"><?php echo TEXT_BANK_OWNER; ?></td>

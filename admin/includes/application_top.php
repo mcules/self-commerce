@@ -151,6 +151,8 @@ define('FILENAME_TOKEN_ADMIN', 'token_admin.php');
 define('FILENAME_PAYPAL','paypal.php');
 define('FILENAME_PAYPAL_CHECKOUT', 'paypal_checkout.php');
 
+define('FILENAME_BLZ_UPDATE', 'blz_update.php');
+
 // define the database table names used in the project
 define('TABLE_ADDRESS_BOOK', 'address_book');
 define('TABLE_ADDRESS_FORMAT', 'address_format');
@@ -235,6 +237,8 @@ define('TABLE_PRODUCTS_DETAILS_VALUES', 'products_details_values');
 // Paypal Express Modul Änderungen:
 define('TABLE_PAYPAL', 'paypal');
 define('TABLE_PAYPAL_STATUS_HISTORY', 'paypal_status_history');
+// BLZ Update
+define('TABLE_BANKTRANSFER_BLZ','banktransfer_blz');
 
 // include needed functions
 require_once (DIR_FS_INC . 'xtc_db_connect.inc.php');

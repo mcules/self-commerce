@@ -131,3 +131,7 @@ define('NEXT_ORDER', '<b>nächste Bestellung >></b>');
 
 // PayPal Express
 define('TEXT_INFO_PAYPAL_DELETE', 'PayPal Transaktions Daten auch l&ouml;schen.');
+
+// Banktransfer IBAN
+define('TEXT_BANK_IBAN', 'IBAN:');
+define('TEXT_BANK_BIC', 'BIC:');

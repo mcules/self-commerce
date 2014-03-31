@@ -1,4 +1,5 @@
 <?php
+
 /* -----------------------------------------------------------------------------------------
    $Id: banktransfer.php 998 2005-07-07 14:18:20Z mz $   
 
@@ -19,40 +20,68 @@
    
    Released under the GNU General Public License 
    ---------------------------------------------------------------------------------------*/
-  define('MODULE_PAYMENT_TYPE_PERMISSION', 'bt');
-
-  define('MODULE_PAYMENT_BANKTRANSFER_TEXT_TITLE', 'Banktransfer');
-  define('MODULE_PAYMENT_BANKTRANSFER_TEXT_DESCRIPTION', 'Banktransfer Payments');
-  define('MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK', 'Banktransfer');
-  define('MODULE_PAYMENT_BANKTRANSFER_TEXT_EMAIL_FOOTER', 'Note: You can download our Fax Confirmation form from here: ' . HTTP_SERVER . DIR_WS_CATALOG . MODULE_PAYMENT_BANKTRANSFER_URL_NOTE . '');
-  define('MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_INFO', 'Please note that Banktransfer Payments are <b>only</b> available from a <b>german</b> bank account!');
-  define('MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_OWNER', 'Account Owner:');
-  define('MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_NUMBER', 'Account Number:');
-  define('MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_BLZ', 'Bank Code:');
-  define('MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_NAME', 'Bank:');
-  define('MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_FAX', 'Banktransfer Payment will be confirmed by fax');
+define('MODULE_PAYMENT_TYPE_PERMISSION', 'bt');
+define('MODULE_PAYMENT_BANKTRANSFER_TEXT_TITLE', 'SEPA Direct Credit');
+define('MODULE_PAYMENT_BANKTRANSFER_TEXT_DESCRIPTION', 'SEPA Direct Credit Payments');
 define('MODULE_PAYMENT_BANKTRANSFER_TEXT_INFO','');
-  define('MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_ERROR', '<font color="#FF0000">FEHLER: </font>');
-  define('MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_ERROR_1', 'Accountnumber and Bank Code are not compatible!<br />Please try again.');
-  define('MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_ERROR_2', 'Sorry, we are unable to proof this account number!');
-  define('MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_ERROR_3', 'Account number not proofable!');
-  define('MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_ERROR_4', 'Account number not proofable!<br />Please try again.');
-  define('MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_ERROR_5', 'Bank Code not found!<br />Please try again.');
-  define('MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_ERROR_8', 'No match for your Bank Code or Bank Code not given!');
-  define('MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_ERROR_9', 'No account number given!');
+define('MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK', 'SEPA Direct Credit');
+define('MODULE_PAYMENT_BANKTRANSFER_TEXT_EMAIL_FOOTER', 'Note: You can download our Fax Confirmation form from here: ' . HTTP_SERVER . DIR_WS_CATALOG . MODULE_PAYMENT_BANKTRANSFER_URL_NOTE . '');
+define('MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_INFO', 'Note: SEPA Direct Debit is <b>only</b> available within Germany. You MUST have a German Bank Account !');
+define('MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_OWNER', 'Account Owner:');
+define('MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_NUMBER', 'Account Number:');
+define('MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_BLZ', 'Bank Code:');
+define('MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_NAME', 'Bank:');
+define('MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_IBAN', 'IBAN :');
+define('MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_BIC', 'BIC-Code der Bank :');
+define('MODULE_PAYMENT_BANKTRANSFER_TEXT_TITLE_SEPA', '');
+define('MODULE_PAYMENT_BANKTRANSFER_TEXT_INFO_SEPA', '<b>SEPA-Input</b></br>Please enter your IBAan and BIC instead of the Kontonummer and BLZ');
+define('MODULE_PAYMENT_BANKTRANSFER_TEXT_MANDAT_TITLE', '');
+define('MODULE_PAYMENT_BANKTRANSFER_TEXT_MANDAT_INFO', '<b>Lastschriftmandat</b><p>Hiermit erteile ich zugleich ein einmaliges SEPA-Mandat den Rechungsbetrag von meinem Konto einzuziehen</p>');
+define('MODULE_PAYMENT_BANKTRANSFER_TEXT_CID', 'Our Creditor Identifier:');
 
-  define('MODULE_PAYMENT_BANKTRANSFER_TEXT_NOTE', 'Note:');
-  define('MODULE_PAYMENT_BANKTRANSFER_TEXT_NOTE2', 'If you do not want to send your<br />account data over the internet you can download our ');
-  define('MODULE_PAYMENT_BANKTRANSFER_TEXT_NOTE3', 'Fax form');
-  define('MODULE_PAYMENT_BANKTRANSFER_TEXT_NOTE4', ' and sent it back to us.');
+define('MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_FAX', 'Banktransfer Payment will be confirmed by fax');
 
-  define('JS_BANK_BLZ', 'Please ente the BLZ or your bank!\n');
-  define('JS_BANK_NAME', 'Please enter your name and bank!\n');
-  define('JS_BANK_NUMBER', 'Please enter your account number!\n');
-  define('JS_BANK_OWNER', 'Please enter the name of the account owner!\n');
+define('MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_ERROR', 'ERROR:');
+define('MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_ERROR_1', 'Account number and bank code do not fit! Please check again.');
+define('MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_ERROR_2', 'No plausibility check method available for this bank code!');
+define('MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_ERROR_3', 'Account number cannot be verified!');
+define('MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_ERROR_4', 'Account number cannot be verified! Please check again.');
+define('MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_ERROR_5', 'Bank code not found! Please check again.');
+define('MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_ERROR_8', 'Incorrect bank code or no bank code entered!');
+define('MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_ERROR_9', 'No account number indicated!');
+define('MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_ERROR_10', 'No account holder indicated!');
 
-  define('MODULE_PAYMENT_BANKTRANSFER_DATABASE_BLZ_TITLE' , 'Use database lookup for Bank Code?');
-define('MODULE_PAYMENT_BANKTRANSFER_DATABASE_BLZ_DESC' , 'Do you want to use database lookup for Bank Code? Ensure that the table banktransfer_blz exists and is set up properly!');
+// BOF dmun 20140306 Erweiterte Fehlermeldungen IBAN 
+define('MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_ERROR_1000', 'Country-Code unknown.');
+define('MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_ERROR_1010', 'IBAN to long.');
+define('MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_ERROR_1020', 'IBAN to short.');
+define('MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_ERROR_1030', 'IBAN wrong format.');
+define('MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_ERROR_1040', 'IBAN Checksum is wrong. Typo !');
+define('MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_ERROR_1050', 'BIC is not valid.');
+
+define('MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_ERROR_2001', 'Deutsche Kontonummer und deutsche BLZ passen nicht.');
+define('MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_ERROR_2002', 'Kein deutsches Prüfziffernverfahren definiert.');
+define('MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_ERROR_2003', 'Prüfziffernverfahren ist noch nicht implementiert.');
+define('MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_ERROR_2004', 'Kontonummer im Detail nicht prüfbar.');
+
+define('MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_ERROR_2005', 'Deutsche BLZ nicht gefunden.');
+define('MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_ERROR_2008', 'Keine deutsche BLZ übergeben.');
+define('MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_ERROR_2009', 'Keine deutsche Kontonummer übergeben.');
+define('MODULE_PAYMENT_BANKTRANSFER_TEXT_BANK_ERROR_2128', 'Interner Fehler, der zeigt, dass eine Methode nicht implementiert ist.');
+// EOF dmun 20140306 Erweiterte Fehlermeldungen IBAN 
+
+define('MODULE_PAYMENT_BANKTRANSFER_TEXT_NOTE', 'Note:');
+define('MODULE_PAYMENT_BANKTRANSFER_TEXT_NOTE2', 'If you do not want to send your<br />account data over the internet you can download our ');
+define('MODULE_PAYMENT_BANKTRANSFER_TEXT_NOTE3', 'Fax form');
+define('MODULE_PAYMENT_BANKTRANSFER_TEXT_NOTE4', ' and sent it back to us.');
+
+define('JS_BANK_BLZ', '* Please enter your bank code!\n\n');
+define('JS_BANK_NAME', '* Please enter your name and bank!\n\n');
+define('JS_BANK_NUMBER', '* Please enter your account number!\n\n');
+define('JS_BANK_OWNER', '* Please enter the name of the account owner!\n\n');
+
+define('MODULE_PAYMENT_BANKTRANSFER_DATABASE_BLZ_TITLE' , 'Use database lookup for Bank Code?');
+define('MODULE_PAYMENT_BANKTRANSFER_DATABASE_BLZ_DESC' , 'Do you want to use database lookup for the Bank Code? Ensure that the database table <strong>banktransfer_blz</strong> exists and is set up properly (not configured by default)! Using the false (default) setting will use the provided blz.csv file instead.');
 define('MODULE_PAYMENT_BANKTRANSFER_URL_NOTE_TITLE' , 'Fax-URL');
 define('MODULE_PAYMENT_BANKTRANSFER_URL_NOTE_DESC' , 'The fax-confirmation file. It must located in catalog-dir');
 define('MODULE_PAYMENT_BANKTRANSFER_FAX_CONFIRMATION_TITLE' , 'Allow Fax Confirmation');
@@ -69,4 +98,6 @@ define('MODULE_PAYMENT_BANKTRANSFER_STATUS_TITLE' , 'Allow Banktransfer Payments
 define('MODULE_PAYMENT_BANKTRANSFER_STATUS_DESC' , 'Do you want to accept banktransfer payments?');
 define('MODULE_PAYMENT_BANKTRANSFER_MIN_ORDER_TITLE' , 'Minimum Orders');
 define('MODULE_PAYMENT_BANKTRANSFER_MIN_ORDER_DESC' , 'Minimum orders for a Customer to view this Option.');
+define('MODULE_PAYMENT_BANKTRANSFER_CID_TITLE', 'Gl&auml;ubiger-ID:');
+define('MODULE_PAYMENT_BANKTRANSFER_CID_DESC', 'G&uuml;ltige Gl&auml;ubigr ID');
 ?>

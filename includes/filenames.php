@@ -100,3 +100,6 @@ define('FILENAME_BANNER', 'banners.php');
 // PayPal
 define('FILENAME_PAYPAL_CHECKOUT', 'paypal_checkout.php');
 define('FILENAME_PAYPAL','paypal.php');
+
+// BLZ Update
+define('FILENAME_BLZ_UPDATE', 'blz_update.php');

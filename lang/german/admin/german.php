@@ -414,3 +414,6 @@ define('BOX_STOCK_LIST','Lagerliste');
 
 // PayPal Express
 define('BOX_PAYPAL','PayPal');
+
+// BLZ Update
+define('BOX_BLZ_UPDATE', 'Bankleitzahlen aktualisieren');

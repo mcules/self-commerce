@@ -408,3 +408,6 @@ define('BOX_STOCK_LIST','Stock list');
 
 // PayPal Express
 define('BOX_PAYPAL','PayPal');
+
+// BLZ Update
+define('BOX_BLZ_UPDATE', 'Update German bank code numbers');
