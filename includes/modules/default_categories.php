@@ -17,7 +17,7 @@ $and_lang = "and cd.language_id = '".(int) $_SESSION['languages_id']."'";
 		$category_query = xtDBquery($category_query);
 
 		$category = xtc_db_fetch_array($category_query, true);
-    
+
 // build the select for categories_query
     $categories_select = "SELECT
                             cd.categories_description,
@@ -27,11 +27,11 @@ $and_lang = "and cd.language_id = '".(int) $_SESSION['languages_id']."'";
                             c.categories_image,
                             c.parent_id
                           FROM
-                            ".TABLE_CATEGORIES." c, 
+                            ".TABLE_CATEGORIES." c,
                             ".TABLE_CATEGORIES_DESCRIPTION." cd
                           WHERE
                             c.categories_status = '1'";
-    
+
     $categories_select_end = "AND
                                 c.categories_id = cd.categories_id
                                 ".$group_check."
@@ -39,14 +39,14 @@ $and_lang = "and cd.language_id = '".(int) $_SESSION['languages_id']."'";
                                 ORDER BY
                                     sort_order,
                                     cd.categories_name";
-// end build the select for categories_query    
+// end build the select for categories_query
 		if (isset ($cPath) && preg_match('/_/', $cPath)) {
 			// check to see if there are deeper categories within the current category
 			$category_links = array_reverse($cPath_array);
 			for ($i = 0, $n = sizeof($category_links); $i < $n; $i ++) {
 
 				$categories_query = $categories_select."
-                          and 
+                          and
                             c.parent_id = '".$category_links[$i]."'
                           ".$categories_select_end."
                           ";
@@ -61,7 +61,7 @@ $and_lang = "and cd.language_id = '".(int) $_SESSION['languages_id']."'";
 		} else {
 
 			$categories_query = $categories_select."
-                        and 
+                        and
                           c.parent_id = '".$current_category_id."'
 			                  ".$categories_select_end."
                         ";
@@ -70,18 +70,24 @@ $and_lang = "and cd.language_id = '".(int) $_SESSION['languages_id']."'";
 
 		$rows = 0;
 		while ($categories = xtc_db_fetch_array($categories_query, true)) {
-			$rows ++;
-			
-			$cPath_new = xtc_category_link($categories['categories_id'],$categories['categories_name']);
-			
-			$width = (int) (100 / MAX_DISPLAY_CATEGORIES_PER_ROW).'%';
-			$image = '';
-			if ($categories['categories_image'] != '') {
-				$image = DIR_WS_IMAGES.'categories/'.$categories['categories_image'];
-			}
+            if (xtc_count_products_in_category($categories['categories_id'], false, true) > 0) {
+                $rows ++;
 
-			$categories_content[] = array ('CATEGORIES_NAME' => $categories['categories_name'], 'CATEGORIES_HEADING_TITLE' => $categories['categories_heading_title'], 'CATEGORIES_IMAGE' => $image, 'CATEGORIES_LINK' => xtc_href_link(FILENAME_DEFAULT, $cPath_new), 'CATEGORIES_DESCRIPTION' => $categories['categories_description']);
+                $cPath_new = xtc_category_link($categories['categories_id'],$categories['categories_name']);
 
+                $width = (int) (100 / MAX_DISPLAY_CATEGORIES_PER_ROW).'%';
+                $image = '';
+                if ($categories['categories_image'] != '') {
+                    $image = DIR_WS_IMAGES.'categories/'.$categories['categories_image'];
+                }
+
+                $categories_content[] = array ('CATEGORIES_NAME' => $categories['categories_name'],
+                                                'CATEGORIES_HEADING_TITLE' => $categories['categories_heading_title'],
+                                                'CATEGORIES_IMAGE' => $image,
+                                                'CATEGORIES_LINK' => xtc_href_link(FILENAME_DEFAULT, $cPath_new),
+                                                'CATEGORIES_DESCRIPTION' => $categories['categories_description']
+                                            );
+            }
 		}
 		$new_products_category_id = $current_category_id;
 		include (DIR_WS_MODULES.FILENAME_NEW_PRODUCTS);
@@ -116,4 +122,4 @@ $and_lang = "and cd.language_id = '".(int) $_SESSION['languages_id']."'";
 		$default_smarty->caching = 0;
 		$main_content = $default_smarty->fetch(CURRENT_TEMPLATE.'/module/categorie_listing/'.$category['categories_template']);
 		$smarty->assign('main_content', $main_content);
-?>		
+?>
