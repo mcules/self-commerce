@@ -1157,11 +1157,6 @@ elseif ($_GET['action'] == 'custom_action') {
 			$contents[] = array ('text' => TEXT_INFO_DELETE_INTRO.'<br /><br /><b>'.$cInfo->customers_firstname.' '.$cInfo->customers_lastname.'</b>');
 			// Paypal Express Modul Änderungen:
 			if(defined('TABLE_PAYPAL')) {
-				$db_installed = false;
-				$tables = mysql_list_tables(DB_DATABASE);
-				while ($row = mysql_fetch_row($tables)) {
-					if ($row[0] == TABLE_PAYPAL) $db_installed=true;
-				}
 				if ($db_installed==true) {
 					$query = "SELECT * FROM " . TABLE_PAYPAL . " WHERE xtc_order_id = '" . $oInfo->orders_id . "'";
 					$query = xtc_db_query($query);
