@@ -43,7 +43,7 @@ require_once (DIR_FS_INC.'changedatain.inc.php');
 if(PDF_ENABLED) {
 	require_once(DIR_WS_CLASSES . 'class.phpmailer.php');
 	require_once(DIR_WS_CLASSES . 'FPDF/PdfRechnung.php');
-	require_once(DIR_WS_CLASSES . 'order.php');
+#	require_once(DIR_WS_CLASSES . 'order.php');
 	require_once(DIR_FS_INC . 'xtc_php_mail.inc.php');
 	require_once(DIR_FS_INC . 'xtc_pdf_bill.inc.php');
 	require_once(DIR_FS_INC . 'xtc_get_order_data.inc.php');
