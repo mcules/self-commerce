@@ -239,6 +239,7 @@ define('TABLE_PAYPAL', 'paypal');
 define('TABLE_PAYPAL_STATUS_HISTORY', 'paypal_status_history');
 // BLZ Update
 define('TABLE_BANKTRANSFER_BLZ','banktransfer_blz');
+define('TABLE_BANKTRANSFER','banktransfer');
 
 // include needed functions
 require_once (DIR_FS_INC . 'xtc_db_connect.inc.php');

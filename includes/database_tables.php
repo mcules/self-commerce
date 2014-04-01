@@ -90,3 +90,4 @@ define('TABLE_PAYPAL', 'paypal');
 define('TABLE_PAYPAL_STATUS_HISTORY', 'paypal_status_history');
 // BLZ Update
 define('TABLE_BANKTRANSFER_BLZ','banktransfer_blz');
+define('TABLE_BANKTRANSFER','banktransfer');
