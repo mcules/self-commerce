@@ -1,20 +1,20 @@
 <?php
 /* -----------------------------------------------------------------------------------------
-   $Id$   
+   $Id$
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
 
    Copyright (c) 2003 XT-Commerce
    -----------------------------------------------------------------------------------------
-   based on: 
+   based on:
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
-   (c) 2002-2003 osCommerce(general.php,v 1.225 2003/05/29); www.oscommerce.com 
+   (c) 2002-2003 osCommerce(general.php,v 1.225 2003/05/29); www.oscommerce.com
    (c) 2003	 nextcommerce (xtc_parse_search_string.inc.php,v 1.3 2003/08/13); www.nextcommerce.org
 
-   Released under the GNU General Public License 
+   Released under the GNU General Public License
    ---------------------------------------------------------------------------------------*/
-   
+
   function xtc_parse_search_string($search_str = '', &$objects) {
     $search_str = trim(strtolower($search_str));
 
@@ -150,6 +150,7 @@
     for($i=0; $i<count($objects); $i++) {
       if ($objects[$i] == '(') $balance --;
       if ($objects[$i] == ')') $balance ++;
+      if ($balance > 0) return false;
       if ( ($objects[$i] == 'and') || ($objects[$i] == 'or') ) {
         $operator_count ++;
       } elseif ( ($objects[$i]) && ($objects[$i] != '(') && ($objects[$i] != ')') ) {
