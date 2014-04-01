@@ -1,25 +1,27 @@
 <?php
 /* -----------------------------------------------------------------------------------------
-   $Id: xtc_update_whos_online.inc.php 899 2005-04-29 02:40:57Z hhgag $   
+   $Id: xtc_update_whos_online.inc.php 899 2005-04-29 02:40:57Z hhgag $
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
 
    Copyright (c) 2003 XT-Commerce
    -----------------------------------------------------------------------------------------
-   based on: 
+   based on:
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
-   (c) 2002-2003 osCommerce(whos_online.php,v 1.8 2003/02/21); www.oscommerce.com 
+   (c) 2002-2003 osCommerce(whos_online.php,v 1.8 2003/02/21); www.oscommerce.com
    (c) 2003	 nextcommerce (xtc_update_whos_online.inc.php,v 1.4 2003/08/13); www.nextcommerce.org
 
-   Released under the GNU General Public License 
+   Released under the GNU General Public License
    ---------------------------------------------------------------------------------------*/
 
   function xtc_update_whos_online() {
     if (isset($_SESSION['customer_id'])) {
-      $wo_customer_id = $_SESSION['customer_id'];
+      $wo_customer_id = (int)$_SESSION['customer_id'];
 
-      $customer_query = xtc_db_query("select customers_firstname, customers_lastname from " . TABLE_CUSTOMERS . " where customers_id = '" . $_SESSION['customer_id'] . "'");
+      $customer_query = xtc_db_query("SELECT customers_firstname, customers_lastname
+      								FROM " . TABLE_CUSTOMERS . "
+      								WHERE customers_id = '" . $wo_customer_id . "'");
       $customer = xtc_db_fetch_array($customer_query);
 
       $wo_full_name = addslashes($customer['customers_firstname'] . ' ' . $customer['customers_lastname']);
