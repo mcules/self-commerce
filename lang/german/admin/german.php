@@ -107,6 +107,7 @@ define('BOX_CONFIGURATION_360', 'Mail Anh&auml;nge');
 define('BOX_CONFIGURATION_361','Google Analytics');
 define('BOX_CONFIGURATION_362','<font color="red">Wartungs Modus</font>');
 define('BOX_CONFIGURATION_363','<font color="red">Login Schutz</font>');
+define('BOX_CONFIGURATION_PIWIK','Piwik Analytics');
 
 define('BOX_MODULES', 'Zahlungs-/Versand-/Verrechnungs-Module');
 define('BOX_PAYMENT', 'Zahlungsoptionen');

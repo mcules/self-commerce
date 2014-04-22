@@ -722,3 +722,11 @@ define('PAYPAL_EXPRESS_ADDRESS_OVERRIDE_TITLE','Lieferadresse &uuml;berschreiben
 define('PAYPAL_EXPRESS_ADDRESS_OVERRIDE_DESC','Erlaubt das &Auml;ndern der von PayPal &uuml;bermittelten Adressdaten (bestehendes Konto)');
 define('PAYPAL_INVOICE_TITLE','Shop-Kenner f&uuml;r PayPal Rg.Nr.');
 define('PAYPAL_INVOICE_DESC','Buchstabe(n) die vor die Order-Nr. als Shop-Kenner gesetzt werden und als Rechnungs-Nr. von PayPal benutzt werden.<br />Durch unterschiedliche Shop-Kenner k&ouml;nnen mehrere Shops mit einem PayPal Konto arbeiten, ohne das es bei gleichen Order-Nummern zu gleichen Rechnungs-Nummern im PayPal Konto kommt.');
+
+// Piwik Analytics
+define('PIWIK_ANAL_ON_TITLE','Piwik Analytics einschalten');
+define('PIWIK_ANAL_ON_DESC','Einschalten: true<br />Ausschalten: false');
+define('PIWIK_ANAL_SITE_ID_TITLE','Seiten ID:');
+define('PIWIK_ANAL_SITE_ID_DESC','Geben Sie hier Ihre Site-ID an.<br />Beispiel: 139');
+define('PIWIK_ANAL_URL_TITLE','Piwik URL:');
+define('PIWIK_ANAL_URL_DESC','Geben Sie hier die URL Ihrer Piwik Installation an.<br />Beispiel: stats.eisold-edv.de');

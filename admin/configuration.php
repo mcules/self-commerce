@@ -12,18 +12,34 @@
    Released under the GNU General Public License
    --------------------------------------------------------------*/
 require ('includes/application_top.php');
-  if ($_GET['action']) {
-    switch ($_GET['action']) {
-      case 'save':
-          $configuration_query = xtc_db_query("select configuration_key,configuration_id, configuration_value, use_function,set_function from " . TABLE_CONFIGURATION . " where configuration_group_id = '" . (int)$_GET['gID'] . "' order by sort_order");
-          while ($configuration = xtc_db_fetch_array($configuration_query))
-              xtc_db_query("UPDATE ".TABLE_CONFIGURATION." SET configuration_value='".$_POST[$configuration['configuration_key']]."' where configuration_key='".$configuration['configuration_key']."'");
-               xtc_redirect(FILENAME_CONFIGURATION. '?gID=' . (int)$_GET['gID']);
-        break;
+
+$gID = $_GET['gID'];
+if(is_numeric($gID)) {
+    $gID = $_GET['gID'];
+}
+else {
+    $Group_Id_Query = xtc_db_query("SELECT
+                                        configuration_group_id
+                                    FROM configuration_group
+                                    WHERE configuration_group_title = '".xtc_db_prepare_input($_GET['gID'])."'
+                                    LIMIT 1;");
+    while($Group_Id_Raw = xtc_db_fetch_array($Group_Id_Query)) {
+        $gID = $Group_Id_Raw['configuration_group_id'];
     }
-  }
-  $cfg_group_query = xtc_db_query("select configuration_group_title from " . TABLE_CONFIGURATION_GROUP . " where configuration_group_id = '" . (int)$_GET['gID'] . "'");
-  $cfg_group = xtc_db_fetch_array($cfg_group_query);
+}
+
+if ($_GET['action']) {
+    switch ($_GET['action']) {
+        case 'save':
+            $configuration_query = xtc_db_query("select configuration_key,configuration_id, configuration_value, use_function,set_function from " . TABLE_CONFIGURATION . " where configuration_group_id = '" . (int)$gID . "' order by sort_order");
+            while ($configuration = xtc_db_fetch_array($configuration_query))
+                xtc_db_query("UPDATE ".TABLE_CONFIGURATION." SET configuration_value='".$_POST[$configuration['configuration_key']]."' where configuration_key='".$configuration['configuration_key']."'");
+            xtc_redirect(FILENAME_CONFIGURATION. '?gID=' . (int)$gID);
+            break;
+    }
+}
+$cfg_group_query = xtc_db_query("select configuration_group_title from " . TABLE_CONFIGURATION_GROUP . " where configuration_group_id = '" . (int)$gID . "'");
+$cfg_group = xtc_db_fetch_array($cfg_group_query);
 require ('includes/application_top_1.php');
 ?>
 <table border="0" width="100%" cellspacing="0" cellpadding="2">
@@ -48,44 +64,38 @@ require ('includes/application_top_1.php');
     <td style="border-top: 3px solid; border-color: #cccccc;" class="main">
       <table border="0" width="100%" cellspacing="0" cellpadding="0">
 <?php
-         	switch ($_GET['gID']) {
+         	switch ($gID) {
          		case 21:
          			echo AFTERBUY_URL;
          		case 19:
-				case 24:
-				case 111125:
-							echo '<table width="100%">
-											<tr class="dataTableHeadingRow">
-												<td width="150" align="center">
-													<a class="button" href="'.xtc_href_link(FILENAME_CONFIGURATION, 'gID=21', 'NONSSL').'">Afterbuy</a>
-												</td>
-												<td width="1">|</td>
-												<td width="150" align="center">
-													<a class="button" href="'.xtc_href_link(FILENAME_CONFIGURATION, 'gID=19', 'NONSSL').'">Google Conversion</a>
-												</td>
-												<td width="1">|</td>
-												<td width="150" align="center">
-													<a class="button" href="'.xtc_href_link(FILENAME_CONFIGURATION, 'gID=24', 'NONSSL').'">x-check</a>
-												</td>
-												<td width="1">|</td>
-												<td width="150" align="center">
-													<a class="button" href="'.xtc_href_link(FILENAME_CONFIGURATION, 'gID=111125', 'NONSSL').'">PayPal</a>
-												</td>
-												<td width="1">|</td>
-												<td></td>
-											</tr>
-										</table>';
-							break;
+         			echo '<table class="infoBoxHeading" width="100%">
+            				<tr>
+                				<td width="150" align="center">
+                					<a class="button" href="'.xtc_href_link(FILENAME_CONFIGURATION, 'gID=21', 'NONSSL').'">Afterbuy</a>
+                				</td>
+                				<td width="1">|</td>
+                				<td width="150" align="center">
+                					<a class="button" href="'.xtc_href_link(FILENAME_CONFIGURATION, 'gID=19', 'NONSSL').'">Google Conversion</a>
+                				</td>
+                				<td width="1">|</td>
+                				<td width="150" align="center">
+                					<a class="button" href="'.xtc_href_link(FILENAME_CONFIGURATION, 'gID=111125', 'NONSSL').'">PayPal</a>
+                				</td>
+                				<td width="1">|</td>
+                				<td></td>
+            				</tr>
+        				</table>';
+         			break;
          	}
         ?>
         <tr>
           <td valign="top" align="right">
-            <?php echo xtc_draw_form('configuration', FILENAME_CONFIGURATION, 'gID=' . (int)$_GET['gID'] . '&action=save'); ?>
+            <?php echo xtc_draw_form('configuration', FILENAME_CONFIGURATION, 'gID=' . (int)$gID . '&action=save'); ?>
             <table width="100%"  border="0" cellspacing="0" cellpadding="4">
 <?php
-  $configuration_query = xtc_db_query("select configuration_key,configuration_id, configuration_value, use_function,set_function from " . TABLE_CONFIGURATION . " where configuration_group_id = '" . (int)$_GET['gID'] . "' order by sort_order");
+  $configuration_query = xtc_db_query("select configuration_key,configuration_id, configuration_value, use_function,set_function from " . TABLE_CONFIGURATION . " where configuration_group_id = '" . (int)$gID . "' order by sort_order");
   while ($configuration = xtc_db_fetch_array($configuration_query)) {
-    if ($_GET['gID'] == 6) {
+    if ($gID == 6) {
       switch ($configuration['configuration_key']) {
         case 'MODULE_PAYMENT_INSTALLED':
           if ($configuration['configuration_value'] != '') {
@@ -166,4 +176,3 @@ require ('includes/application_top_1.php');
 <?php
 require(DIR_WS_INCLUDES . 'application_bottom.php');
 require(DIR_WS_INCLUDES . 'application_bottom_0.php');
-?>

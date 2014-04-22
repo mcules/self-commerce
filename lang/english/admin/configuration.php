@@ -700,3 +700,11 @@ define('PAYPAL_EXPRESS_ADDRESS_OVERRIDE_TITLE','Ship-to-address overwrite');
 define('PAYPAL_EXPRESS_ADDRESS_OVERRIDE_DESC','Permits changing address data conveyed by PayPal (existing account)');
 define('PAYPAL_INVOICE_TITLE','Shop connoisseur for PayPal Invoice-No.');
 define('PAYPAL_INVOICE_DESC','Letter(s) before the Order-No. as Shop connoisseurs to be set and as Invoice-No. of PayPal to be used. By different Shop connoisseurs several shops with a PayPal account can work, without which it comes with same order-numbers to same invoice-numbers in the PayPal account.');
+
+// Piwik Analytics
+define('PIWIK_ANAL_ON_TITLE','Piwik Analytics turn on/off');
+define('PIWIK_ANAL_ON_DESC','On: true<br />Off: false');
+define('PIWIK_ANAL_SITE_ID_TITLE','Page ID:');
+define('PIWIK_ANAL_SITE_ID_DESC','Input your Page-ID.<br />Example: 139');
+define('PIWIK_ANAL_URL_TITLE','Piwik URL:');
+define('PIWIK_ANAL_URL_DESC','Input the URL from your Piwik installation.<br />Example: stats.eisold-edv.de');

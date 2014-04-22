@@ -106,6 +106,7 @@ define('BOX_CONFIGURATION_360', 'Mail attachments');
 define('BOX_CONFIGURATION_361','Google Analytics');
 define('BOX_CONFIGURATION_362','<font color="red">Maintenance mode</font>');
 define('BOX_CONFIGURATION_363','<font color="red">Safe Login</font>');
+define('BOX_CONFIGURATION_PIWIK','Piwik Analytics');
 
 define('BOX_MODULES', 'Payment-/Shipping-/Billing-Modules');
 define('BOX_PAYMENT', 'Payment Systems');
