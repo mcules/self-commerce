@@ -125,6 +125,20 @@ if ($pInfo->products_startpage == '1')
 <?php $fsk18_array=array(array('id'=>0, 'text'=>NO), array('id'=>1, 'text'=>YES)); ?>
 <?php echo xtc_draw_form('new_product', FILENAME_CATEGORIES, 'cPath=' . $_GET['cPath'] . '&pID=' . $_GET['pID'] . '&action='.$form_action, 'post', 'enctype="multipart/form-data"'); ?>
 <span class="pageHeading"><?php echo sprintf(TEXT_NEW_PRODUCT, xtc_output_generated_category_path($current_category_id)); ?></span><br />
+<!-- FilterBox -->
+<?php
+if (file_exists(DIR_WS_MODULES."categories_products_filters.php")) {
+	require_once(DIR_WS_MODULES."categories_products_filters.php");
+	showFilterBox();
+	?>
+	<div class="main" style="margin-top: 4px;float:left">
+		<div id="butFilter">&nbsp;</div>
+	</div>
+	<script language="JavaScript" type="text/JavaScript">
+		document.getElementById('butFilter').innerHTML= '<a href="JavaScript:showFilter()" class="button">Filter &raquo;</a>';
+	</script>
+<?php } ?>
+<!-- FilterBox -->
 <table width="100%"  border="0">
   <tr>
     <td>

@@ -1,0 +1,41 @@
+{config_load file="$language/lang_$language.conf" section="filter_options"}
+
+<div id="filter_box">
+<h2 class="boxheader">{#heading#}</h2>
+{$FORM_ACTION}
+	{$HIDDEN_INPUT_FIELDS}
+
+	<div style="margin-bottom: 15px">
+		{* $OPTIONS_VALUE *}
+		{foreach from=$OPTIONS item=option key=option_id}
+			<div class="mg-f-head"><a href="#" onclick="return filter_toggle('options_{$option_id}',0{* $option.VALUES|@count *});"> {#option_prefix#} {$option.NAME}</a></div>
+			<ul class="mg-f-ul" id="options_{$option_id}" style="display:none;"{* if !count($option.VALUES)}{/if *}>
+			 <!--//{* foreach from=$option.VALUES item=value_id}
+				<li><a href="{$VALUES[$value_id].LINK}" class="choose_filter_aktiv">{$REMOVE_IMG} {$VALUES[$value_id].NAME}</a></li>
+			 {/foreach *}//-->
+				<li><a href="{$option.LINK}" class="mg-f-more" id="link_more_{$option_id}" title="{$option.NAME|htmlspecialchars}" onclick="return false;">{$smarty.const.BOX_LINK_MORE}</a></li>
+			</ul>
+		{/foreach}
+	</div>
+
+	<div id="sliderPrice">
+		<div id="slider-range"></div>
+		<div class="mg-f-price">
+			<span id="mg-f-pfrom" min="{$PREIS_MIN}">{$PREIS_MIN}</span> {#tmp_eur#} -
+			<span id="mg-f-pto" max="{$PREIS_MAX}">{$PREIS_MAX}</span> {#tmp_eur#}
+		</div>
+	</div>
+	
+	{if count($VALUES)>0}
+		<h3>{#subheading#}</h3>
+		<ul class="mg-f-ul mg-f-ul-all">
+		 {foreach from=$VALUES item=value}
+			<li><a href="{$value.LINK}" class="choose_filter_aktiv">{$REMOVE_IMG} {$value.NAME} <span class="mg-f-cnt">({$value.SUM})</span></a></li>
+		 {/foreach}
+		</ul>
+	<div style="margin-top: 5px"><a href="{$RESET_LINK}"><img src="{$tpl_path}buttons/{$language}/button_reset.gif"></a></div>
+	{/if}
+	
+	
+{$FORM_END}
+</div>

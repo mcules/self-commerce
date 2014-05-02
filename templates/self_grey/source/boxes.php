@@ -1,13 +1,13 @@
 <?php
 /* -----------------------------------------------------------------------------------------
-$Id: boxes.php 1298 2005-10-09 13:14:44Z mz $   
+$Id: boxes.php 1298 2005-10-09 13:14:44Z mz $
 
 XT-Commerce - community made shopping
 http://www.xt-commerce.com
 
 Copyright (c) 2003 XT-Commerce
 -----------------------------------------------------------------------------------------
-Released under the GNU General Public License 
+Released under the GNU General Public License
 ---------------------------------------------------------------------------------------*/
 
 define('DIR_WS_BOXES',DIR_FS_CATALOG .'templates/'.CURRENT_TEMPLATE. '/source/boxes/');
@@ -45,6 +45,13 @@ if (!$product->isProduct()) {
 	include(DIR_WS_BOXES . 'specials.php');
 }
 
+if(sc_check('box_FILTER')) {
+	require_once(DIR_WS_BOXES . 'box_filter.php');
+}
+else {
+	$smarty->assign('box_FILTER', '');
+}
+
 if ($_SESSION['customers_status']['customers_status_read_reviews'] == 1) require(DIR_WS_BOXES . 'reviews.php');
 
 if (substr(basename($PHP_SELF), 0, 8) != 'checkout') {
@@ -63,7 +70,7 @@ if ($_SESSION['language'] == "german") {
 	$fehler = array(404 => 'Fehler 404: Die gesuchte Seite wurde nicht gefunden!',
 					401 => "Fehler 401: Authentifizierungsfehler.",
 					400 => "Fehler 400: Die Anforderung war syntaktisch falsch.",
-					403 => "Fehler 403: Der Server verweigert die AusfŸhrung.",
+					403 => "Fehler 403: Der Server verweigert die Ausfï¿½hrung.",
 					500 => "Fehler 500: Beim Server gab es einen internen Fehler.");
 }
 else {
