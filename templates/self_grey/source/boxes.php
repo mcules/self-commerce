@@ -29,6 +29,7 @@ require(DIR_WS_BOXES . 'loginbox.php');
 include(DIR_WS_BOXES . 'newsletter.php');
 include(DIR_WS_BOXES . 'extra1.php');
 include(DIR_WS_BOXES . 'extra2.php');
+if(sc_check('box_FILTER')) { require_once(DIR_WS_BOXES . 'box_filter.php'); } else { $smarty->assign('box_FILTER', ''); }
 if ($_SESSION['customers_status']['customers_status_show_price'] == 1) include(DIR_WS_BOXES . 'shopping_cart.php');
 if ($product->isProduct()) include(DIR_WS_BOXES . 'manufacturer_info.php');
 
@@ -43,13 +44,6 @@ if (!$product->isProduct()) {
 
 if (!$product->isProduct()) {
 	include(DIR_WS_BOXES . 'specials.php');
-}
-
-if(sc_check('box_FILTER')) {
-	require_once(DIR_WS_BOXES . 'box_filter.php');
-}
-else {
-	$smarty->assign('box_FILTER', '');
 }
 
 if ($_SESSION['customers_status']['customers_status_read_reviews'] == 1) require(DIR_WS_BOXES . 'reviews.php');
