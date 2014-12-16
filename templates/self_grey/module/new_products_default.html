@@ -2,5 +2,7 @@
 {config_load file="$language/lang_$language.conf" section="new_products"}
 {assign var="multi_col_dir" value=$smarty.const.MULTI_COL_LISTING_DIR}
 
-<h2 style="margin-top:10px;">{#heading_text#}</h2>
+<br />
+<h1 style="margin-top:10px; font-size: 1.2em; text-align: center;">Unsere Bestseller</h1>
+<br />
 {include file="$multi_col_dir/1col_product.html" kind="new_products"}

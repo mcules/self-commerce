@@ -1,13 +1,11 @@
 <h3>{#heading_more_categories#}</h3>
 <div class="catListing1Col">
-
-{foreach name=aussen item=module_data from=$module_content}
-{* Content *}
-	<div class="catListing1ColBody"><div class="floatbox">
-		<div class="catListing1ColBodyImg">{if $module_data.CATEGORIES_IMAGE}<a href="{$module_data.CATEGORIES_LINK}"><img src="{$module_data.CATEGORIES_IMAGE}" alt="{$module_data.CATEGORIES_NAME}" /></a></div><br/>{/if}
-		<div class="catListing1ColBodyName"><a href="{$module_data.CATEGORIES_LINK}">{$module_data.CATEGORIES_NAME}</a></div>
-	</div></div>
-{* Content END*}
-{/foreach}
+	{foreach name=aussen item=module_data from=$module_content}
+		{* Content *}
+			<div class="catListing1ColBody"><div class="floatbox">
+				<div class="catListing1ColBodyImg">{if $module_data.CATEGORIES_IMAGE}<a href="{$module_data.CATEGORIES_LINK}"><img src="{$module_data.CATEGORIES_IMAGE}" alt="{$module_data.CATEGORIES_NAME}" /></a></div><br/>{/if}
+				<div class="catListing1ColBodyName"><a href="{$module_data.CATEGORIES_LINK}">{$module_data.CATEGORIES_NAME}</a></div>
+			</div></div>
+		{* Content END*}
+	{/foreach}
 </div>
-

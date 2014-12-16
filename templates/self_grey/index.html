@@ -1,84 +1,78 @@
 {config_load file="$language/lang_$language.conf" section="index"}
 <div class="page_margins">
 	<div class="page">
-
-    <div id="header">
-  		<div id="topnav">
-			 {* start: skip link navigation *}
-			 <a class="skip" href="#navigation" title="Direkt zur Navigation springen">Zur Navigation springen</a><span class="hideme">.</span>
-			 <a class="skip" href="#content" title="Direkt zum Inhalt springen">Zum Inhalt springen</a><span class="hideme">.</span>
-			 {* end: skip link navigation *}
-			 </div>
-	     <a href="{php}echo xtc_href_link('index.php');{/php}"><img src="{$tpl_path}img/logo.gif" alt="{$store_name}" id="companyLogo" /></a>
-    </div>
-
-    {* begin: main navigation #nav *}
-    <div id="nav">
-		<a id="navigation" name="navigation"></a>
-		<div id="nav_main">
-			<ul>
-				<li {if $curlink='index.php'} 'id="current"'{/if}><a href="{php}echo xtc_href_link('index.php');{/php}"><span>Home</span></a></li>
-				{if $account}
-					{if isset($customer_id)}
-						<li {if $curlink='logoff.php'} 'id="current"'{/if}><a href="{$logoff}"><span>{#link_logoff#}</span></a></li>
-					{/if}
-				{/if}
-				{if $account}
-					<li {if $curlink='account.php'} 'id="current"'{/if}><a href="{$account}"><span>{#link_account#}</span></a></li>
-				{/if}
-				<li {if $curlink='shopping_cart.php'} 'id="current"'{/if}><a href="{$cart}"><span>{#link_cart#}</span></a></li>
-				<li {if $curlink='checkout_shipping.php'} 'id="current"'{/if}><a href="{$checkout}"><span>{#link_checkout#}</span></a></li>
-			</ul>
+		<div id="header">
+			<div id="topnav">
+				{* start: skip link navigation *}
+				<a class="skip" href="#navigation" title="Direkt zur Navigation springen">Zur Navigation springen</a><span class="hideme">.</span>
+				<a class="skip" href="#content" title="Direkt zum Inhalt springen">Zum Inhalt springen</a><span class="hideme">.</span>
+				{* end: skip link navigation *}
+			</div>
+			<a href="{php}echo xtc_href_link('index.php');{/php}"><img src="{$tpl_path}img/logo.gif" alt="{$store_name}" id="companyLogo" height="90px" /></a>
 		</div>
-    </div>
-    {* end: main navigation *}
-    {* begin: content area #main *}
-    <div id="main">
-      <div id="teaser" class="clearfix">
-        {$navtrail}
-      </div>
-
-
-      {* begin: #col1 - first float column *}
-      {if $smarty.const.NO_BOXES != 'true'}
-      <div id="col1">
-        <div id="col1_content" class="clearfix">
-          {$box_CATEGORIES}{$box_ADD_QUICKIE}{$box_CONTENT}{$box_INFORMATION}{$box_LAST_VIEWED}{$box_REVIEWS}{$box_SEARCH}{$box_SPECIALS}
-		    </div>
-      </div>
-      {* end: #col1 *}
-      {/if}
-      {if $smarty.const.NO_BOXES != 'true'}
-	  {* begin: #col2 second float column *}
-      <div id="col2">
-        <div id="col2_content" class="clearfix">
-          {$box_CART}{$box_LOGIN}{$box_ADMIN}{$box_NEWSLETTER}{$box_BESTSELLERS} {$box_WHATSNEW} {$box_INFOBOX} {$box_CURRENCIES} {$box_LANGUAGES}{$box_MANUFACTURERS_INFO}{$box_MANUFACTURERS}
-        </div>
-      </div>
-      {* end: #col2 *}
-      {/if}
-
+		{* begin: main navigation #nav *}
+		<div id="nav">
+			<a id="navigation" name="navigation"></a>
+			<div id="nav_main">
+				<ul>
+					<li {if $curlink='index.php'} 'id="current"'{/if}><a href="{php}echo xtc_href_link('index.php');{/php}"><span>Home</span></a></li>
+					{if $account}
+						{if isset($customer_id)}
+							<li {if $curlink='logoff.php'} 'id="current"'{/if}><a href="{$logoff}"><span>{#link_logoff#}</span></a></li>
+						{/if}
+					{/if}
+					{if $account}
+						<li {if $curlink='account.php'} 'id="current"'{/if}><a href="{$account}"><span>{#link_account#}</span></a></li>
+					{/if}
+					<li {if $curlink='shopping_cart.php'} 'id="current"'{/if}><a href="{$cart}"><span>{#link_cart#}</span></a></li>
+					<li {if $curlink='checkout_shipping.php'} 'id="current"'{/if}><a href="{$checkout}"><span>{#link_checkout#}</span></a></li>
+				</ul>
+			</div>
+		</div>
+		{* end: main navigation *}
+		{* begin: content area #main *}
+		<div id="main">
+			<div id="teaser" class="clearfix">
+				<!-- {$navtrail} -->
+			</div>
+			{if $smarty.const.NO_BOXES != 'true'}
+				{* begin: #col1 - first float column *}
+				<div id="col1">
+					<div id="col1_content" class="clearfix">
+						{$box_SEARCH}{$box_CATEGORIES}{$box_REVIEWS}{$box_MANUFACTURERS}{$box_LAST_VIEWED}{$box_INFORMATION}{$box_SPECIALS}
+					</div>
+				</div>
+				{* end: #col1 *}
+			{/if}
+			{if $smarty.const.NO_BOXES != 'true'}
+				{* begin: #col2 second float column *}
+				<div id="col2">
+					<div id="col2_content" class="clearfix">
+						{$box_CART}{$box_LOGIN}{$box_ADMIN}{$box_MANUFACTURERS_INFO}{$box_NEWSLETTER}{$box_BESTSELLERS}{$box_WHATSNEW}<!-- {$box_INFOBOX} -->
+					</div>
+				</div>
+				{* end: #col2 *}
+			{/if}
 			{* begin: #col3 static column *}
-      <div id="col3"{if $smarty.const.NO_BOXES == 'true'} style="margin:0px"{/if}>
-	    <div id="col3_content" class="clearfix">
-            {* skip anchor: content *}
-            <a id="content" name="content"></a>
-            {$main_content}
-        </div>
-          {* IE column clearing *}
-		<div id="ie_clearing">&nbsp;</div>
-      </div>
-      {* end: #col3 *}
-
-    </div>
+			<div id="col3"{if $smarty.const.NO_BOXES == 'true'} style="margin:0px"{/if}>
+				<div id="col3_content" class="clearfix">
+					{* skip anchor: content *}
+					<a id="content" name="content"></a>
+					{$main_content}
+				</div>
+				{* IE column clearing *}
+				<div id="ie_clearing">&nbsp;</div>
+			</div>
+			{* end: #col3 *}
+		</div>
 		{* end: #main *}
 		{* begin: #footer *}
-    <div id="footer">
-      &copy; {$smarty.now|date_format:"%Y"} {$smarty.const.TITLE}
-    </div>
-    {* end: #footer *}
-  </div>
+		<div id="footer">&copy; {$smarty.now|date_format:"%Y"} {$smarty.const.TITLE}</div>
+		{* end: #footer *}
+	</div>
 </div>
-{* Overlay Markup *}
-<div class="popup_overlay" id="overlay_frame"><div class="contentWrap"></div></div>
-{* EOF Overlay Markup *}
+{* begin:Overlay Markup *}
+<div class="popup_overlay" id="overlay_frame">
+	<div class="contentWrap"></div>
+</div>
+{* end:Overlay Markup *}

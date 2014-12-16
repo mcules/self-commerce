@@ -45,10 +45,10 @@ form { overflow:hidden; }
 input[type=text], #col3_content textarea, input[type=password] , select {
     /* background:#fff  url(../../img/inbox_bg.jpg) left top repeat-x; */
     color: #333;
-    border: 1px #888 solid; /* ### Farbe für den Rand ### */
-    float: left;
-    margin-bottom: 5px;
-    padding:0px 1px;
+	border: 1px #888 solid;
+    /* float: left; */
+    /* margin-bottom: 5px; */
+    /* padding:0px 1px; */
 }
 
 #checkout_payment select {
@@ -56,9 +56,9 @@ input[type=text], #col3_content textarea, input[type=password] , select {
 }
 
 /* ### Standardgröße für Texteingabefelder Inhaltsspalte (col3)### */
-#col3_content input[type=text], #col3_content textarea,#col3_content input[type=password] {
+/* #col3_content input[type=text], #col3_content textarea,#col3_content input[type=password] {
 	width: 15em;
-}
+} */
 
 /* ### Hovereffekt für Inputfelder (ab FF 1 und IE 7) ### */
 input[type=text]:hover, input[type=text]:active, input[type=text]:focus,

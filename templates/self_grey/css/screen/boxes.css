@@ -114,20 +114,6 @@
   /* ################################################################################################### */
   /* ### Bildpositionierung in Boxen ################################################################### */
   /* ################################################################################################### */
-  /* ### Bild links ### */
-  img.imgRight {
-  	float: right;
-   	margin: 2px 0px 2px 10px;
-   	position: relative;
-  }
-  
-  /* ### Bild rechts ### */
-  img.imgLeft {
-  	float: left;
-  	margin: 2px 10px 2px 0px;
-  	position: relative;
-  }
-  
   /* ### Bild zentriert in Boxen ### */
   #col1_content img.imgCenter , #col2_content img.imgCenter  { background: #fff; padding: 4px; border:1px #9A9999 solid; }
   p.centerContent { text-align:center; }

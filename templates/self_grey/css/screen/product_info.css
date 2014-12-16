@@ -1,107 +1,130 @@
 @charset "UTF-8";
 /**
-* YAML-based Template for xt:Commerce
+* Template for Self-Commerce
 *
 * (en)  CSS for product informations
 * (de)  CSS für die Produktinformationsseiten
 *
-* @copyright       Copyright 2006-2007, Björn Teßmann (tessmann@zerosoft.de)
-*                  Based on YAML, Copyright 2005-2007, Dirk Jesse
-* @link            http://www.zs-ecommerce.com
-* @package         yaml for xt:Commerce
-* @version         1.6.0
+* @link            http://www.self-commerce.de
 */
 
 @media all
 {
-
-/* ################################################################################################################### */
-/* ### productInfo allgemein ################################################################################################ */
-/* ################################################################################################################### */
-
-.productInfo1  {
-	color: #444;
-}
-
-/* ### Bilder ###*/
-.productInfo1 img.imgLeft  {
-	background: #fff;
-	padding: 15px;
-	border:1px #9A9999 solid;
-}
-
-
-
-#col3_content .productInfo1 input[type=text] {
-	width: 2em;
-	float:none;
-}
-
-.productInfo1 .addCart {
-	text-align:right;
-}
-
-.prodInfo1Spacer {
-	margin-bottom: 15px;
-}
-.prodInfo1Spacer h2 {
-	font-size:0.9em;
-
-}
-.desc {
-	margin:10px 0 10px 0;
-}
-
-#col3_content h1.productInfo1Name  {
-  padding:1px 3px 1px 6px;
-  /*background:#3C3C3C;*/
-  color: #3C3C3C;
-  border-bottom: 1px solid #9A9999;
-  padding: 10px 0px;
-  font-size: 1.2em;
-}
-#col3_content h1.productInfo1Name a{
-  color:#fff;
-}
-
-.productInfo1 {
-  margin-bottom: 10px; 
-  padding: 15px 0px; 
-  background: #fff;
-	/*border-color: #3C3C3C;
-	border-style: solid;
-	border-width: 1px;*/
-}
-
-/* ### Skalierung der zusätzlichen Bilder durch Setzen der Höhe ### */
-.productInfo1 .morePics img.imgLeft {
-	height:55px;
-}
-
-.tabbedBody .morepics img {
-	padding: 5px;
-	background: #fff;
-	border:1px solid #9A9999;
-}
-
-.prodPriceInfo1 {
-  text-align:right;
-  font-size:1.1em;
-  font-weight:bold;
-}
-
-.prodTaxShipInfo1 {
-  font-size:0.8em;
-  text-align:right;
-}
-
-.productInfo1 .basicData {
-	line-height:1.5em;
-	text-align:right;
-}
-
-/* ################################################################################################################### */
-/* ### productInfo X ################################################################################################## */
-/* ################################################################################################################### */
-
+	/* Productinfo Columns */
+	#leftColumn {
+		width: 300px;
+		float: left;
+		position: relative;
+	}
+	#middleColumn {
+	    width: 0px;
+	    position: relative;
+	    float: left;
+	}
+	#rightColumn {
+	    width: 240px;
+	    float: right;
+	}
+	#productInfo .rightColumn {
+	    float: left;
+	    width: 210px;
+	}
+	#productInfo .middleColumn {
+	    float: left;
+	    width: 210px;
+	}
+	#productInfo .Price {
+		color: #86a51c;
+		font-size: 25px;
+		text-align: right;
+		padding-bottom: 2px;
+		line-height: 100%;
+	}
+	#productInfo .Model {
+		color: #6d6d6d;
+		font-size: 10px;
+		text-align: right;
+		line-height: 120%;
+	}
+	#productInfo .Tax {
+		color: #6d6d6d;
+		font-size: 10px;
+		text-align: right;
+		line-height: 120%;
+	}
+	#productInfo .shippingTime {
+		color: #6d6d6d;
+		font-size: 10px;
+		text-align: right;
+		line-height: 120%;
+	}
+	#productInfo .shippingTime a {
+		line-height: 120%;
+		font-size: 10px;
+	}
+	#productInfo .Stock {
+		margin-top: 10px;
+		color: #6d6d6d;
+		font-size: 10px;
+		text-align: right;
+		line-height: 120%;
+	}
+	#productInfo .addQuantity {
+		margin-top: 10px;
+		text-align: right;
+	}
+	#productInfo .addCartHidden {
+		display: none;
+	}
+	#productInfo #addCartJquery {
+		cursor: pointer;
+		padding-top: 3px;
+	}
+	.copyProductImage img {
+	    position: absolute;
+	    top: 0px;
+	    left: 0px;
+	}
+	.imgLeft {
+	    border-left: 1px solid rgb(204, 204, 204);
+	    border-right: 1px solid rgb(204, 204, 204);
+	    border-top: 1px solid rgb(204, 204, 204);
+	    border-bottom: 1px solid rgb(204, 204, 204);
+	}
+	.imgLeftsmall {
+	    margin-top: 3px;
+	    border-left: 1px solid rgb(204, 204, 204);
+	    border-right: 1px solid rgb(204, 204, 204);
+	    border-top: 1px solid rgb(204, 204, 204);
+	    border-bottom: 1px solid rgb(204, 204, 204);
+	    height:50px;
+	}
+	.productInfo1 .morePics img.imgLeft {
+		height:50px;
+	}
+	.tabbedBody .morepics img {
+		padding: 5px;
+		background: #fff;
+		border:1px solid #9A9999;
+	}
+	#articleBottom {
+	    border: none;
+	    border-radius: 0px;
+	    font-size:1em;
+	}
+	#tab_description li {
+		list-style-type: disc;
+	}
+	#articleBottomleft {
+	    padding-top: 10px;
+	    padding-left: 10px;
+	    float: left;
+	    position: relative;
+	    width: 100%;
+	}
+	#articleBottomright {
+	    padding-right: 10px;
+	    float: right;
+	    position: relative;
+	}
 }

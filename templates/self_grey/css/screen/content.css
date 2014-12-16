@@ -24,7 +24,7 @@
 
   /* (en) reset font size for all elements to standard (16 Pixel) */
   /* (de) Alle Schriftgrößen auf Standardgröße (16 Pixel) zurücksetzen */
-  html * { font-size: 100.01% }
+  /* html * { font-size: 100.01% } */
 
   /* (en) base layout gets standard font size 12px */
   /* (de) Basis-Layout erhält Standardschriftgröße von 12 Pixeln */

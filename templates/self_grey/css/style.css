@@ -1,0 +1,116 @@
+@charset "UTF-8";
+/**
+* Template for Self-Commerce
+*
+* (en)  CSS for product informations
+* (de)  CSS für die Produktinformationsseiten
+*
+* @link            http://www.self-commerce.de
+*/
+
+@media all
+{
+	#content #tabs {
+	    border: none;
+	    border-radius: 0px;
+	}
+	#content .ui-tabs .ui-tabs-nav {
+	    background:#f8f8f8;
+	}
+	#content .ui-tabs {
+	    padding: 0px;
+	}
+	.ui-widget {
+		font-size:1em;
+	}
+	#content .ui-widget-header {
+	    background: none;
+	    border: none;
+	    border-bottom: 1px solid #ccc;
+	    padding: 0px;
+	}
+	#content .ui-tabs-panel {
+	    border-left: 1px solid #ccc;
+	    border-right: 1px solid #ccc;
+	    border-bottom: 1px solid #ccc;
+	    padding-top: 10px;
+	}
+	#tabs_cross_selling {
+	    border: none;
+	    border-radius: 0px;
+	    margin-top: 20px;
+	}
+	#tabs_cross_selling .ui-tabs .ui-tabs-nav {
+	    background:#f8f8f8;
+	}
+	#tabs_cross_selling .ui-tabs {
+	    padding: 0px;
+	}
+	#tabs_cross_selling .ui-widget-header {
+	    background: none;
+	    border: none;
+	    border-bottom: 1px solid #ccc;
+	    padding: 0px;
+	}
+	#tabs_cross_selling_1 .ui-tabs-panel {
+	    border-left: 1px solid #ccc;
+	    border-right: 1px solid #ccc;
+	    border-bottom: 1px solid #ccc;
+	    padding-top: 25px;
+	}
+	/* shopping_cart.php */
+	div.shoppingCart {
+		min-height: 500px;
+	}
+	#rightColumn #shoppingCart .orderDetailsTable input[type="text"]{
+		width: 30px;
+		text-align: center;
+	}
+	#shoppingCart .orderDetailsTable thead{
+		font-weight: bold;
+		border-bottom: 1px solid #ccc;
+	}
+	#shoppingCart .orderDetailsTable td.delete{
+		position: relative;
+		line-height: 100%;
+		vertical-align: middle;
+	}
+	#shoppingCart .orderDetailsTable .delete input{
+		top: 4px;
+		margin-top: 4px;
+		display: inline;
+		margin-top: -2px;
+	}
+	#shoppingCart .orderDetailsTable tfoot{
+		border-top: 2px solid #333;
+		text-align: right;
+	}
+	#shoppingCart .orderDetailsTable tbody tr td{
+		padding-top: 5px;
+		padding-bottom: 5px;
+	}
+	#shoppingCart .orderDetailsTable tbody tr:first-child td{
+		padding-top: 8px;
+	}
+	#shoppingCart .orderDetailsTable tfoot td{
+		padding-top: 6px;
+	}
+	#shoppingCart #gift_coupon{
+		overflow: hidden;
+	}
+	#shoppingCart #gift_coupon strong{
+		font-size: 12px;
+		float: left;
+		display: inline-block;
+		margin-right: 5px;
+		padding-top: 5px;
+	}
+	#shoppingCart #gift_coupon input[type="text"]{
+		float: left;
+		margin-right: 5px;
+		padding: 4px;
+	}
+	#shoppingCart #gift_coupon input[type="image"]{
+		float: left;
+	}
+}
