@@ -431,7 +431,8 @@ class product {
 				'PRODUCTS_FSK18' => $array['products_fsk18'],
 				'PRODUCTS_DETAILS' => $this->getDetails($array['products_id'], (int) $_SESSION['languages_id']),
 				'PRODUCTS_MANUFACTURER' => $array['manufacturers_name'],
-				'PRODUCTS_REVIEWS' => $Reviews);
+				'PRODUCTS_REVIEWS' => $Reviews,
+				'PRODUCTS_QUANTITY' => $array['products_quantity']);
 		return $Return_array;
 	}
 
@@ -477,7 +478,8 @@ class product {
 				'PRODUCTS_SHORT_DESCRIPTION' => $array['products_short_description'],
 				'PRODUCTS_FSK18' => $array['products_fsk18'],
 				'PRODUCTS_DETAILS' => $this->getDetails($array['products_id'], (int) $_SESSION['languages_id']),
-				'PRODUCTS_REVIEWS' => $this->getReviewsAverage($array['products_id']));
+				'PRODUCTS_REVIEWS' => $this->getReviewsAverage($array['products_id']),
+				'PRODUCTS_QUANTITY' => $array['products_quantity']);
 	}
 
 	function productImage($name, $type) {
