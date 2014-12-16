@@ -704,7 +704,7 @@ if (($_GET['action'] == 'edit') && ($order_exists)) {
 	}
 
 	// Paypal Express Modul Änderungen:
-	if ($order->info['payment_method']=='paypal_ipn' or $order->info['payment_method']=='paypal_directpayment' or $order->info['payment_method']=='paypal' or $order->info['payment_method']=='paypalexpress') {
+	if ($order->info['payment_method']=='paypal_ipn' || $order->info['payment_method']=='paypal_directpayment' || $order->info['payment_method']=='paypal' || $order->info['payment_method']=='paypalexpress') {
 		require('../includes/classes/paypal_checkout.php');
 		require('includes/classes/class.paypal.php');
 		$paypal = new paypal_admin();

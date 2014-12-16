@@ -302,7 +302,7 @@ class paypal_admin extends paypal_checkout {
 /*************************************************************/
 	function getPaymentType($type) {
 		// Stand: 29.04.2009
-		if($type == '' OR strtoupper($type)=='NONE')
+		if($type == '' || strtoupper($type)=='NONE')
 			return;
 		if(defined(TYPE_ . strtoupper($type))):
 			return constant(TYPE_ . strtoupper($type));

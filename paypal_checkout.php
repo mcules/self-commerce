@@ -98,7 +98,7 @@ if($_SESSION['cart']->count_contents() < 1)
 	xtc_redirect(xtc_href_link(FILENAME_SHOPPING_CART));
 
 // Kein Token mehr da durch Back im Browser auf die Seite
-if( !($_SESSION['nvpReqArray']['TOKEN']) OR !($_SESSION['reshash']['PAYERID']) ):
+if( !($_SESSION['nvpReqArray']['TOKEN']) || !($_SESSION['reshash']['PAYERID']) ):
 	unset($_SESSION['payment']);
 	unset($_SESSION['nvpReqArray']);
 	unset($_SESSION['reshash']);

@@ -52,7 +52,7 @@ include ('includes/classes/'.FILENAME_IMAGEMANIPULATOR);
 
         if ($dir= opendir(DIR_FS_CATALOG_ORIGINAL_IMAGES)){
             while  ($file = readdir($dir)) {
-                     if (is_file(DIR_FS_CATALOG_ORIGINAL_IMAGES.$file) and ($file !="index.html") and (strtolower($file) != "thumbs.db")){
+                     if (is_file(DIR_FS_CATALOG_ORIGINAL_IMAGES.$file) && ($file !="index.html") && (strtolower($file) != "thumbs.db")){
                          $files[]=array(
                                         'id' => $file,
                                         'text' =>$file);

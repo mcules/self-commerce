@@ -314,7 +314,7 @@ $block7=false;
  // display GDlibversion
  $ok_message.='GDlib VERSION .............................. '.$status.'<hr class="lineGreen">';
 
- if ($gd['GIF Read Support']==1 or $gd['GIF Support']==1) {
+ if ($gd['GIF Read Support']==1 || $gd['GIF Support']==1) {
  $status='OK';
  } else {
  $status='<strong><font color="#ff0000">ERROR</font></strong><br />You don\'t have GIF support within your GDlib, you won\'t be able to use GIF images, and GIF overlayfunctions in XT-Commerce!';

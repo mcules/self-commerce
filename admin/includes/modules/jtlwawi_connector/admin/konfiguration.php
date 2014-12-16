@@ -403,7 +403,7 @@ function getTemplateArray($cur_template, $module)
 	{
 		while  (($file = readdir($dir)) !==false) 
 		{
-			if (is_file( DIR_FS_CATALOG.'templates/'.$cur_template->configuration_value.'/module/'.$module.'/'.$file) and ($file !="index.html"))
+			if (is_file( DIR_FS_CATALOG.'templates/'.$cur_template->configuration_value.'/module/'.$module.'/'.$file) && ($file !="index.html"))
 			{
 				$files[]=array('id' => $file,'text' => $file);
 			}

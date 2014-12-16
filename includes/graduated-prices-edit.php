@@ -281,7 +281,7 @@ function W4B_graduated_prices_save() {
 	die();
 }
 
-if(isset($_GET['action']) and $_GET['action'] == "update_product" and isset($_GET['pID']) and isset($_POST['graduated_prices_edit'])) {
+if(isset($_GET['action']) && $_GET['action'] == "update_product" && isset($_GET['pID']) && isset($_POST['graduated_prices_edit'])) {
 
 	W4B_graduated_prices_save();
 }

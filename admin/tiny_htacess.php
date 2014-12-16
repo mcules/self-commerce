@@ -108,11 +108,11 @@ if ($action == "neuerBereich3") {
 			echo "<b>Passwortgeschützten Bereich erstellen</b><br><br>";
 			echo "Bereich wird angelegt.<br><br>Benutzername: $benutzerName<br>Passwort: *****";
 
-			$fp = @fopen($htpasswd, "w") or die($filerights);
+			$fp = @fopen($htpasswd, "w") || die($filerights);
 			fwrite($fp,"$benutzerName:".crypt($benutzerPasswort)."\n");
 			fclose($fp);
 
-			$fp = @fopen($htaccess, "w") or die($filerights);
+			$fp = @fopen($htaccess, "w") || die($filerights);
 			fwrite($fp,"AuthType Basic\n");
 			fwrite($fp,"AuthName \"$bereichName\"\n");
 			fwrite($fp,"AuthUserFile $ordner1.htpasswd\n");
@@ -162,9 +162,9 @@ if ($action == "editName2") {
 		else
 		{
 			echo "<b>Passwortgeschützten Bereich umbenennen</b><br><br>";
-			unlink ($htaccess) or die("Die Datei .htaccess kann nicht geloescht werden.");
+			unlink ($htaccess) || die("Die Datei .htaccess kann nicht geloescht werden.");
 
-			$fp = @fopen($htaccess, "w") or die($filerights);
+			$fp = @fopen($htaccess, "w") || die($filerights);
 			fwrite($fp,"AuthType Basic\n");
 			fwrite($fp,"AuthName \"$bereichName\"\n");
 			fwrite($fp,"AuthUserFile $ordner1.htpasswd\n");
@@ -238,8 +238,8 @@ if ($action == "editBenutzer2") {
 			echo "<br><br>Das Passwort wird ersetzt.";
 
 			$datei = @file($htpasswd, "r");
-			unlink ($htpasswd) or die("Die Datei .htpasswd kann nicht geloescht werden.");
-		 	$fp = @fopen($htpasswd, "w") or die($filerights1);
+			unlink ($htpasswd) || die("Die Datei .htpasswd kann nicht geloescht werden.");
+		 	$fp = @fopen($htpasswd, "w") || die($filerights1);
 		 	$drin = array();
 			foreach ($datei as $zeile) {
 				$zeile = explode(":",$zeile);
@@ -319,8 +319,8 @@ if ($action == "hinzuBenutzer2") {
 			echo "<b>Passwortgeschützten Bereich editieren</b><br><br>";
 			echo "Benutzer wird hinzugefügt.<br><br>Benutzername: <b>$benutzerName</b>";
 			$datei = @file($htpasswd, "r");
-			unlink ($htpasswd) or die("Die Datei .htpasswd kann nicht geloescht werden.");
-		 	$fp = @fopen($htpasswd, "w") or die($filerights1);
+			unlink ($htpasswd) || die("Die Datei .htpasswd kann nicht geloescht werden.");
+		 	$fp = @fopen($htpasswd, "w") || die($filerights1);
 			foreach ($datei as $zeile) {
 				fwrite($fp,$zeile);
 			}
@@ -400,8 +400,8 @@ if ($action == "delBenutzer2") {
 	}
 	else
 	{
-		unlink ($htpasswd) or die("Die Datei .htpasswd kann nicht geloescht werden.");
-	 	$fp = @fopen($htpasswd, "w") or die($filerights1);
+		unlink ($htpasswd) || die("Die Datei .htpasswd kann nicht geloescht werden.");
+	 	$fp = @fopen($htpasswd, "w") || die($filerights1);
 		foreach ($datei as $zeile) {
 			$zeile = explode(":",$zeile);
 			
@@ -426,8 +426,8 @@ if ($action == "delBenutzer") {
 
 if ($action == "delBereich2") {
 	echo "<b>Passwortgeschützten Bereich löschen</b><br><br>";
-	unlink ($htaccess) or die("Die Datei .htaccess kann nicht geloescht werden.");
-	unlink ($htpasswd) or die("Die Datei .htpasswd kann nicht geloescht werden.");
+	unlink ($htaccess) || die("Die Datei .htaccess kann nicht geloescht werden.");
+	unlink ($htpasswd) || die("Die Datei .htpasswd kann nicht geloescht werden.");
 	echo "Der Passwortschutz wurde aufgehoben.";
 }
 
@@ -444,9 +444,7 @@ if ($action == "delBereich") {
 
 echo $cfg['footer'];
 exit;
-?>
-<!-- end content -->
-<?php 
+
 require(DIR_WS_INCLUDES . 'application_bottom.php'); 
 require(DIR_WS_INCLUDES . 'application_bottom_0.php');
 ?>

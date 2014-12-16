@@ -71,7 +71,7 @@
       $this->status = $status;
 
       
-      if ($startDate == 0  or $startDate < $this->globalStartDate) {
+      if ($startDate == 0  || $startDate < $this->globalStartDate) {
         // set startDate to globalStartDate
         $this->startDate = $this->globalStartDate;
       } else {

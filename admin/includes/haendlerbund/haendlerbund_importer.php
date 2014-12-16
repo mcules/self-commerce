@@ -164,7 +164,7 @@
     function getConfigurationValue($key){
       $value = false;
       $sqlConfiguration = mysql_query("SELECT * FROM configuration WHERE configuration_key='".$key."' LIMIT 1");
-      if(mysql_num_rows($sqlConfiguration) AND !$value){
+      if(mysql_num_rows($sqlConfiguration) && !$value){
         $dataConfiguration = mysql_fetch_object($sqlConfiguration);
         $value = $dataConfiguration->configuration_value;
       }

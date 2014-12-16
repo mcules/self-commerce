@@ -123,7 +123,7 @@ class PDF extends PdfBrief
 				$this->HREF=$attr['HREF'];
 				break;
 			case 'IMG':
-				if(isset($attr['SRC']) and (isset($attr['WIDTH']) or isset($attr['HEIGHT']))) {
+				if(isset($attr['SRC']) && (isset($attr['WIDTH']) || isset($attr['HEIGHT']))) {
 					if(!isset($attr['WIDTH']))
 						$attr['WIDTH'] = 0;
 					if(!isset($attr['HEIGHT']))
@@ -166,12 +166,12 @@ class PDF extends PdfBrief
 					$this->Cell(10, 5, '     »', 0, 0, 'R');	
 				break;
 			case 'FONT':
-				if (isset($attr['COLOR']) and $attr['COLOR']!='') {
+				if (isset($attr['COLOR']) && $attr['COLOR']!='') {
 					$coul=hex2dec($attr['COLOR']);
 					$this->SetTextColor($coul['R'],$coul['G'],$coul['B']);
 					$this->issetcolor=true;
 				}
-				if (isset($attr['FACE']) and in_array(strtolower($attr['FACE']), $this->fontlist)) {
+				if (isset($attr['FACE']) && in_array(strtolower($attr['FACE']), $this->fontlist)) {
 					$this->SetFont(strtolower($attr['FACE']));
 					$this->issetfont=true;
 				}
@@ -186,7 +186,7 @@ class PDF extends PdfBrief
 			$tag='B';
 		if($tag=='EM')
 			$tag='I';
-		if($tag=='B' or $tag=='I' or $tag=='U')
+		if($tag=='B' || $tag=='I' || $tag=='U')
 			$this->SetStyle($tag,false);
 		if($tag=='A')
 			$this->HREF='';

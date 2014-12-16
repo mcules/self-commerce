@@ -97,7 +97,7 @@ class paypal {
 	function before_process() {
 		// Stand: 29.04.2009
 		// Bereits geholt und bestätigt
-		if($_GET['PayerID']!='' AND $_SESSION['reshash']['TOKEN']!='' AND (strtoupper($_SESSION['reshash']["ACK"])=="SUCCESS" OR strtoupper($_SESSION['reshash']["ACK"])=="SUCCESSWITHWARNING"))
+		if($_GET['PayerID']!='' && $_SESSION['reshash']['TOKEN']!='' && (strtoupper($_SESSION['reshash']["ACK"])=="SUCCESS" || strtoupper($_SESSION['reshash']["ACK"])=="SUCCESSWITHWARNING"))
 			return;
 		// Den PayPal Token holen, ohne das commit keine Preisanzeige !
 		global $order, $o_paypal;
@@ -169,7 +169,7 @@ class paypal {
 				if($$statusname!=''):
 					$check_query = xtc_db_query("select orders_status_id from " . TABLE_ORDERS_STATUS . " where orders_status_name = '" .$$statusname. "' AND language_id='".$languages['languages_id']."' limit 1");
 					$status = xtc_db_fetch_array($check_query);
-					if(xtc_db_num_rows($check_query) < 1 OR ($$statusid AND $status['orders_status_id']!=$$statusid) ):
+					if(xtc_db_num_rows($check_query) < 1 || ($$statusid && $status['orders_status_id']!=$$statusid) ):
 						if(!$$statusid):
 							$status_query = xtc_db_query("select max(orders_status_id) as status_id from " . TABLE_ORDERS_STATUS);
 							$status = xtc_db_fetch_array($status_query);
@@ -300,7 +300,7 @@ class paypal {
 		// Stand: 17.05.2009
 		if(!defined('TABLE_PAYPAL'))define('TABLE_PAYPAL', 'paypal');
 		if(!defined('TABLE_PAYPAL_STATUS_HISTORY'))define('TABLE_PAYPAL_STATUS_HISTORY', 'paypal_status_history');
-		if(!$_POST['paypaldelete'] AND !$pre_inst):
+		if(!$_POST['paypaldelete'] && !$pre_inst):
 			$check_query = xtc_db_query("select configuration_key from ".TABLE_CONFIGURATION." where configuration_key = 'MODULE_PAYMENT_PAYPALEXPRESS_STATUS'");
 			if(xtc_db_num_rows($check_query)==0)
 				xtc_redirect(xtc_href_link(FILENAME_MODULES, 'set=' . $_GET['set'] . '&module=' . $this->code . '&action=removepaypal'));

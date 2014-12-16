@@ -1366,7 +1366,7 @@ function xtc_cfg_pull_down_template_sets() {
 	$name = (($key) ? 'configuration['.$key.']' : 'configuration_value');
 	if ($dir = opendir(DIR_FS_CATALOG.'templates/')) {
 		while (($templates = readdir($dir)) !== false) {
-			if (is_dir(DIR_FS_CATALOG.'templates/'."//".$templates) and ($templates != "CVS") and ($templates != ".") and ($templates != "..")) {
+			if (is_dir(DIR_FS_CATALOG.'templates/'."//".$templates) && ($templates != "CVS") && ($templates != ".") && ($templates != "..")) {
 				$templates_array[] = array ('id' => $templates, 'text' => $templates);
 			}
 		}

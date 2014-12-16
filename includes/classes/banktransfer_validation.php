@@ -563,7 +563,7 @@ var $PRZ; //Enthält die Prüfziffer
     }
     if ($Checksum == 10) {
       $Checksum = 0;
-      if ((substr($AccountNo,1,1) <> '8') and (substr($AccountNo,1,1) <> '9')) {
+      if ((substr($AccountNo,1,1) <> '8') && (substr($AccountNo,1,1) <> '9')) {
         $Mark25 = 1;
         $Falsch = TRUE;
       }
@@ -880,7 +880,7 @@ var $PRZ; //Enthält die Prüfziffer
   }  /* End of Mark44 */
 
   private function Mark45($AccountNo) {
-    if (substr($AccountNo,0,1)=='0' or substr($AccountNo,4,1)=='1'){
+    if (substr($AccountNo,0,1)=='0' || substr($AccountNo,4,1)=='1'){
       $Mark45 = 2;
     } else {
       $Mark45 = $this->Method00($AccountNo, '212121212', 10);
@@ -1051,7 +1051,7 @@ var $PRZ; //Enthält die Prüfziffer
 
       $Gewicht = HexDec(substr($Significance,5, 1));
       $PZ = -1;
-      while ($Help2 % 11 <> 10 or $PZ > 9) { //franky_n
+      while ($Help2 % 11 <> 10 || $PZ > 9) { //franky_n
         $PZ++;
         $Help2 = $Rest + ($PZ * $Gewicht);
       } //franky_n
@@ -1678,7 +1678,7 @@ var $PRZ; //Enthält die Prüfziffer
     } else {
       // Wenn falsch, dann Typ C.
       // Wenn zehnte Stelle = 7, 8, oder 9 dann Kontonummer ungueltig.
-      if ($AccountNo[9] == '7' or $AccountNo[9] == '8' or $AccountNo[9] == '9') {
+      if ($AccountNo[9] == '7' || $AccountNo[9] == '8' || $AccountNo[9] == '9') {
         return $Help;
       } else {
         // Methode 33 (Modifizierte Methode 6 mit Divisor 7).
@@ -1754,7 +1754,7 @@ var $PRZ; //Enthält die Prüfziffer
         }
         if ($C2 == $D2) {
           if ($AccountNoTemp[$i] > 5) {
-            if(($C2 == 0) AND ($D2 == 0)) {
+            if(($C2 == 0) && ($D2 == 0)) {
               $C2 = 1;
               $D2 = 1;
               $A5 = $A5 + 6 - ($AccountNoTemp[$i] - 6);
@@ -1762,9 +1762,9 @@ var $PRZ; //Enthält die Prüfziffer
               $C2 = 0;
               $D2 = 0;
               $A5 = $A5 + $AccountNoTemp[$i];
-            } //end if(($C2 == 0) AND ($D2 == 0))
+            } //end if(($C2 == 0) && ($D2 == 0))
           } else {
-            if (($C2 == 0) AND ($D2 == 0)) {
+            if (($C2 == 0) && ($D2 == 0)) {
               $C2 = 1;
               $A5 = $A5 + $AccountNoTemp[$i];
             } else {
@@ -1795,7 +1795,7 @@ var $PRZ; //Enthält die Prüfziffer
         }
         $i++;
       }
-      while (($A5 < 0) OR ($A5 > 4)) {
+      while (($A5 < 0) || ($A5 > 4)) {
         if ($A5 > 4) {
           $A5 = $A5 - 5;
         } else {
@@ -1859,7 +1859,7 @@ var $PRZ; //Enthält die Prüfziffer
         $Correct = $this->Method06($AccountNo,'098765432',FALSE,10,11);
         break;
       default :
-        if ((((int)$AccountNo > 32000005) and ((int)$AccountNo < 38999995)) or (((int)$AccountNo >1999999999) AND ((int)$AccountNo <400000000))) {
+        if ((((int)$AccountNo > 32000005) && ((int)$AccountNo < 38999995)) || (((int)$AccountNo >1999999999) && ((int)$AccountNo <400000000))) {
           $Correct = $this->Mark10($AccountNo);
         }
     }
@@ -2003,7 +2003,7 @@ var $PRZ; //Enthält die Prüfziffer
   }  /* End of Mark99 */
 
   private function MarkA1($AccountNo) {
-    if (strlen($AccountNo) == 8 OR strlen($AccountNo)==10){
+    if (strlen($AccountNo) == 8 || strlen($AccountNo)==10){
       $AccountNo = $this->ExpandAccount($AccountNo);
       $MarkA1 = $this->Method00($AccountNo, '002121212', 10);
     } else {
@@ -2127,10 +2127,10 @@ var $PRZ; //Enthält die Prüfziffer
   /* --- Added FrankM 20050408 --- */
   /* --- Wird aktuell von keiner Bank benutzt (09/2007 - 12/2007) ---*/
   private function MarkB0($AccountNo) {
-    if (strlen($AccountNo) != 10 OR substr($AccountNo,0,1) == "8"){
+    if (strlen($AccountNo) != 10 || substr($AccountNo,0,1) == "8"){
       $RetVal = 1;
     } else {
-      if (substr($AccountNo,9,1) == "1" OR substr($AccountNo,9,1) == "2" OR substr($AccountNo,9,1) == "3" OR substr($AccountNo,9,1) == "6"){
+      if (substr($AccountNo,9,1) == "1" || substr($AccountNo,9,1) == "2" || substr($AccountNo,9,1) == "3" || substr($AccountNo,9,1) == "6"){
         $RetVal = 0;
       } else {
         $RetVal = $this->Method06($AccountNo, '432765432', FALSE, 10, 11);
@@ -2187,7 +2187,7 @@ var $PRZ; //Enthält die Prüfziffer
     $AccountNo = $this->ExpandAccount($AccountNo);
     $RetVal = $this->Method01($AccountNo, '137137137');
     if ($RetVal != 0){
-      if ((substr($AccountNo,0,1) == '8') Or (substr($AccountNo,0,1) == '9')) {
+      if ((substr($AccountNo,0,1) == '8') || (substr($AccountNo,0,1) == '9')) {
         return $RetVal;
       }
       $RetVal = $this->Method00($AccountNo, '212121212', 10);
@@ -2226,9 +2226,9 @@ var $PRZ; //Enthält die Prüfziffer
   private function MarkB7($AccountNo) {
     $AccountNo = $this->ExpandAccount($AccountNo);
     $AccountFloat = doubleval($AccountNo);
-    if (($AccountFloat >= 1000000) And ($AccountFloat <= 5999999)) {
+    if (($AccountFloat >= 1000000) && ($AccountFloat <= 5999999)) {
       $RetVal = $this->Method01($AccountNo, '173173173');
-    } elseif (($AccountFloat >= 700000000) And ($AccountFloat <= 899999999)) {
+    } elseif (($AccountFloat >= 700000000) && ($AccountFloat <= 899999999)) {
       $RetVal = $this->Method01($AccountNo, '173173173');
     } else {
       $RetVal = 2;
@@ -2246,9 +2246,9 @@ var $PRZ; //Enthält die Prüfziffer
       $RetVal = $this->Mark29($AccountNo);
     }
     if ($RetVal != 0){
-      if (($AccountNo >= 5100000000) And ($AccountNo <=  5999999999)) {
+      if (($AccountNo >= 5100000000) && ($AccountNo <=  5999999999)) {
         $RetVal = $this->Mark09($AccountNo);
-      } elseif (($AccountNo >= 9010000000) And ($AccountNo <=  9109999999)) {
+      } elseif (($AccountNo >= 9010000000) && ($AccountNo <=  9109999999)) {
         $RetVal = $this->Mark09($AccountNo);
       }
     }
@@ -2315,7 +2315,7 @@ var $PRZ; //Enthält die Prüfziffer
     // Mit fuehrenden Nullen auf 10 erweitern.
     $AccountNo = $this->ExpandAccount($AccountNo);
     // Pruefen nach Methode 52 (achtstellig)
-    if ((substr($AccountNo,0,2) == "00") And (substr($AccountNo,0,3)!= "000")) {
+    if ((substr($AccountNo,0,2) == "00") && (substr($AccountNo,0,3)!= "000")) {
       // Fuer Methode 52 muss die Laenge der Kontonummer = 8 sein.
       if (strlen($AccountNoShort) == 8) {
         $RetVal = $this->Mark52($AccountNoShort, $BLZ);
@@ -2407,7 +2407,7 @@ var $PRZ; //Enthält die Prüfziffer
         break;
       case 8:
         // Variante 4, achtstellige Kontonummer.
-        if ((substr($AccountNo,2,1) == "3") or (substr($AccountNo,2,1) == "4") or (substr($AccountNo,2,1) == "5")) {
+        if ((substr($AccountNo,2,1) == "3") || (substr($AccountNo,2,1) == "4") || (substr($AccountNo,2,1) == "5")) {
           $markC5 = $this->Mark09($AccountNo);
         } else {
           $markC5 = 1;
@@ -2423,11 +2423,11 @@ var $PRZ; //Enthält die Prüfziffer
         break;
       case 10:
         // Variante 4, zehnstellige Kontonummer.
-        if ((substr($AccountNo,0,2) == "70") or (substr($AccountNo,0,2) == "85")) {
+        if ((substr($AccountNo,0,2) == "70") || (substr($AccountNo,0,2) == "85")) {
           $markC5 = $this->Mark09($AccountNo);
           return $markC5;
         // Variante 2, zehnstellige Kontonummer.
-        } elseif ((substr($AccountNo,0,1) == "1") or (substr($AccountNo,0,1) == "4") or (substr($AccountNo,0,1) == "5") or (substr($AccountNo,0,1) == "6") or (substr($AccountNo,0,1) == "9")) {
+        } elseif ((substr($AccountNo,0,1) == "1") || (substr($AccountNo,0,1) == "4") || (substr($AccountNo,0,1) == "5") || (substr($AccountNo,0,1) == "6") || (substr($AccountNo,0,1) == "9")) {
           $markC5 = $this->Mark29($AccountNo);
         // Variante 3, zehnstellige Kontonummer.
         } elseif ((substr($AccountNo,0,1) == "3")) {
@@ -2689,9 +2689,9 @@ var $PRZ; //Enthält die Prüfziffer
     $AccountNo = $this->ExpandAccount($AccountNo);
     // Kontonummern aus dem Nummernkreis 1000000000 bis 9999999999 mit Methode 00 pruefen
      $markD8 = 1;
-     if (($AccountNo >= 1000000000) And ($AccountNo <=  9999999999)) {
+     if (($AccountNo >= 1000000000) && ($AccountNo <=  9999999999)) {
        $markD8 = $this->Mark00($AccountNo);
-     } elseif (($AccountNo >= '0010000000') And ($AccountNo <=  '0099999999')) {
+     } elseif (($AccountNo >= '0010000000') && ($AccountNo <=  '0099999999')) {
       // Fuer Kontonummernkreis 0010000000 bis 0099999999 mit Methode 09 pruefen
        $markD8 = $this->Mark09($AccountNo);
      }

@@ -66,7 +66,7 @@ class paypal_checkout {
 			$this->GIROPAY_URL		= 'https://www.paypal.com/webscr?cmd=_complete-express-checkout&token=';
 			$this->IPN_URL				= 'https://www.paypal.com/cgi-bin/webscr';
 		}
-		if(defined('ENABLE_SSL') AND ENABLE_SSL == true){
+		if(defined('ENABLE_SSL') && ENABLE_SSL == true){
 			$this->NOTIFY_URL = HTTPS_SERVER.DIR_WS_CATALOG.'callback/paypal/ipn.php';
 			$this->EXPRESS_CANCEL_URL = HTTPS_SERVER.DIR_WS_CATALOG.FILENAME_SHOPPING_CART.'?XTCsid='.xtc_session_id();
 			$this->EXPRESS_RETURN_URL = HTTPS_SERVER.DIR_WS_CATALOG.FILENAME_PAYPAL_CHECKOUT.'?XTCsid='.xtc_session_id();
@@ -91,11 +91,11 @@ class paypal_checkout {
 		$this->USE_PROXY = FALSE;
 		$this->payPalURL = '';
 		$this->ppAPIec = $this->buildAPIKey(PAYPAL_API_KEY, 'ec');
-		if(defined('ENABLE_SSL') AND ENABLE_SSL == true):
+		if(defined('ENABLE_SSL') && ENABLE_SSL == true):
 			$hdrImg='templates/'.CURRENT_TEMPLATE.'/img/'.PAYPAL_API_IMAGE;
-			if(file_exists(DIR_FS_CATALOG.$hdrImg) AND PAYPAL_API_IMAGE!=''):
+			if(file_exists(DIR_FS_CATALOG.$hdrImg) && PAYPAL_API_IMAGE!=''):
 				$hdrSize = getimagesize(DIR_FS_CATALOG.$hdrImg);
-				if($hdrSize[0]<=750 AND $hdrSize[1]<=90):
+				if($hdrSize[0]<=750 && $hdrSize[1]<=90):
 					$this->Image = urlencode(HTTPS_SERVER.DIR_WS_CATALOG.$hdrImg);
 				endif;
 			endif;
@@ -109,7 +109,7 @@ class paypal_checkout {
 	function build_express_checkout_button(){
 		// Stand: 30.11.2012
 		global $PHP_SELF;
-		if($_SESSION['allow_checkout'] == 'true' AND $_SESSION['cart']->show_total()>0 AND MODULE_PAYMENT_PAYPALEXPRESS_STATUS=='True'):
+		if($_SESSION['allow_checkout'] == 'true' && $_SESSION['cart']->show_total()>0 && MODULE_PAYMENT_PAYPALEXPRESS_STATUS=='True'):
 			$unallowed_modules = explode(',', $_SESSION['customers_status']['customers_status_payment_unallowed']);
 			if(!in_array('paypalexpress', $unallowed_modules)):
 				include(DIR_WS_LANGUAGES . $_SESSION['language'] . '/modules/payment/paypalexpress.php');
@@ -357,7 +357,7 @@ class paypal_checkout {
 			$order_tax=$_SESSION['cart']->show_tax(false);
 		endif;
 		// Vorläufige Versandkosten
-		if(PAYPAL_EXP_VORL!='' AND PAYPAL_EXP_VERS!=0):
+		if(PAYPAL_EXP_VORL!='' && PAYPAL_EXP_VERS!=0):
 			$paymentAmount+=PAYPAL_EXP_VERS;
 		endif;
 		// AMT
@@ -377,7 +377,7 @@ class paypal_checkout {
 		$gpsucssesURL =urlencode($this->GIROPAY_SUCCESS_URL);
 		$gpcancelURL =urlencode($this->EXPRESS_CANCEL_URL);
 		$bankpending =urlencode($this->BANKTXN_PENDING_URL);
-		if(isset($_SESSION['sendto']) AND isset($_SESSION['customer_id'])):
+		if(isset($_SESSION['sendto']) && isset($_SESSION['customer_id'])):
 			// User eingeloggt
 			$sh_name = urlencode($this->mn_iconv($_SESSION['language_charset'], "UTF-8", $order->delivery['firstname'].' '.$order->delivery['lastname']));
 			$sh_street = urlencode($this->mn_iconv($_SESSION['language_charset'], "UTF-8", $order->delivery['street_address']));
@@ -592,7 +592,7 @@ class paypal_checkout {
 		$resArray=$this->hash_call("DoExpressCheckoutPayment",$nvpstr);
 		$_SESSION['reshash'] = array_merge($_SESSION['reshash'], $resArray) ;
 		$ack = strtoupper($resArray["ACK"]);
-		if($ack!="SUCCESS" AND $ack!="SUCCESSWITHWARNING"){
+		if($ack!="SUCCESS" && $ack!="SUCCESSWITHWARNING"){
 			$this->build_error_message($_SESSION['reshash'],'DoEx');
 		}
 	}
@@ -952,7 +952,7 @@ class paypal_checkout {
 				$errorCode    = $resArray["L_ERRORCODE".$count];
 				$shortMessage = $resArray["L_SHORTMESSAGE".$count];
 				$longMessage  = $resArray["L_LONGMESSAGE".$count];
-				if($Aufruf=='DoEx' AND ($errorCode=='10422' OR $errorCode=='10417'))
+				if($Aufruf=='DoEx' && ($errorCode=='10422' || $errorCode=='10417'))
 					$redirect=1;
 				$count=$count+1;
 				$error .=  'Error Number:'.  $errorCode . '<br />';
@@ -1023,7 +1023,7 @@ class paypal_checkout {
 			$i++;
 		endif;
 		$products_sum_amt = round($products_sum_amt,$xtPrice->get_decimal_places($order->info['currency']));
-		if($order_tax!=0 AND trim($paymentAmount-$products_sum_amt)>=$order_tax):
+		if($order_tax!=0 && trim($paymentAmount-$products_sum_amt)>=$order_tax):
 			$products_sum_amt+=$order_tax;
 			$tmp_products .='&L_NAME'.$i.'='.urlencode($this->mn_iconv($_SESSION['language_charset'], "UTF-8",substr(PAYPAL_TAX,0,127))).
 											'&L_NUMBER'.$i.'='.
@@ -1031,14 +1031,14 @@ class paypal_checkout {
 											'&L_AMT'.$i.'='.urlencode(number_format($order_tax, $xtPrice->get_decimal_places($order->info['currency']), '.', ','));
 			$i++;
 		endif;
-		if($express_call AND PAYPAL_EXP_WARN!=''):
+		if($express_call && PAYPAL_EXP_WARN!=''):
 			$tmp_products .='&L_NAME'.$i.'='.urlencode($this->mn_iconv($_SESSION['language_charset'], "UTF-8",substr(PAYPAL_EXP_WARN,0,127))).
 											'&L_NUMBER'.$i.'='.
 											'&L_QTY'.$i.'=0'.
 											'&L_AMT'.$i.'=0';
 			$i++;
 		endif;
-		if($express_call AND PAYPAL_EXP_VORL!='' AND PAYPAL_EXP_VERS!=0):
+		if($express_call && PAYPAL_EXP_VORL!='' && PAYPAL_EXP_VERS!=0):
 			$products_sum_amt+=PAYPAL_EXP_VERS;
 			$tmp_products .='&L_NAME'.$i.'='.urlencode($this->mn_iconv($_SESSION['language_charset'], "UTF-8",substr(PAYPAL_EXP_VORL,0,127))).
 											'&L_NUMBER'.$i.'='.
@@ -1064,13 +1064,13 @@ class paypal_checkout {
 		// Stand: 29.04.2009
 		if(empty($o_id) ) return false;
 		$ack = strtoupper($_SESSION['reshash']["ACK"]);
-		if($ack=="SUCCESS"  OR $ack=="SUCCESSWITHWARNING"):
+		if($ack=="SUCCESS"  || $ack=="SUCCESSWITHWARNING"):
 			$o_status = PAYPAL_ORDER_STATUS_PENDING_ID;
 		else:
 			$o_status = PAYPAL_ORDER_STATUS_REJECTED_ID;
 		endif;
 		// Sieht der Kunde auch ...
-		if(!($ack=="SUCCESS" OR $ack=="SUCCESSWITHWARNING") ):
+		if(!($ack=="SUCCESS" || $ack=="SUCCESSWITHWARNING") ):
 			$crlf = "\n";
 			while(list($key, $value) = each($_SESSION['reshash'])) {
 				$comment .= $key.'='.$value.$crlf;
@@ -1089,7 +1089,7 @@ class paypal_checkout {
 	function logging_status($o_id) {
 		// Stand: 29.04.2009
 		$data = array_merge($_SESSION['nvpReqArray'],$_SESSION['reshash']);
-		if(!$data['TRANSACTIONID'] OR $data['TRANSACTIONID']=='')
+		if(!$data['TRANSACTIONID'] || $data['TRANSACTIONID']=='')
 			$data['TRANSACTIONID']='PayPal Fehler!<br>'.date("d.m.Y - H:i:s");
 		$data_array = array('xtc_order_id' => $o_id,
 												'txn_type' => $data['TRANSACTIONTYPE'],
@@ -1304,14 +1304,14 @@ class paypal_checkout {
 					$request = stream_context_create($request_post);
 					$result= file_get_contents($this->IPN_URL, false, $request);
 				endif;
-				if(strtoupper($result) == 'VERIFIED' or $result == '1') {
+				if(strtoupper($result) == 'VERIFIED' || $result == '1') {
 					// Steht auf Warten
 					if(strtolower($this->data['payment_status']) == 'completed') {
 						if(PAYPAL_ORDER_STATUS_SUCCESS_ID > 0) {
 							$order_status_id = PAYPAL_ORDER_STATUS_SUCCESS_ID;
 						}
 					//Set status for Denied, Failed
-					}elseif((strtolower($this->data['payment_status']) == 'denied') OR (strtolower($this->data['payment_status']) == 'failed')) {
+					}elseif((strtolower($this->data['payment_status']) == 'denied') || (strtolower($this->data['payment_status']) == 'failed')) {
 						$order_status_id = PAYPAL_ORDER_STATUS_REJECTED_ID;
 					//Set status for Reversed
 					}elseif(strtolower($this->data['payment_status']) == 'reversed') {
