@@ -16,14 +16,12 @@ require ('includes/application_top_1.php');
 <!-- content -->
 <link rel="stylesheet" type="text/css" href="includes/stylesheet_stocklist.css" media="screen">
 <link rel="stylesheet" type="text/css" href="includes/stylesheet_stocklist_print.css" media="print">
-
 <table border="0" width="100%" cellspacing="0" cellpadding="2">
       <tr>
         <td width="100%"><table border="0" width="100%" cellspacing="0" cellpadding="0">
           <tr>
             <td class="pageHeading"><?php echo HEADING_TITLE; ?></td>
-             
-			 <td class="smallText" align="right">
+             <td class="smallText" align="right">
 			 	<?php 
 				// how many products on the page
 				echo xtc_draw_form('formpaging', FILENAME_STOCK_LIST, '', 'get');
@@ -31,15 +29,12 @@ require ('includes/application_top_1.php');
 				echo xtc_draw_hidden_field('search', $_GET['search']);
 				echo xtc_draw_hidden_field('page', $_GET['page']);
 				echo xtc_draw_hidden_field('sorting', $_GET['sorting']);
-			 
 				if ($_GET['paging']) {
-				$showpage = $_GET['paging'];
+					$showpage = $_GET['paging'];
 				} else {
-				$showpage = SHOW_PAGE_STANDARD;
+					$showpage = SHOW_PAGE_STANDARD;
 				}
-
 			 	?></form></td>
-
 			 <td class="smallText" align="right">
                 <?php 
 			    // product search field
@@ -69,17 +64,14 @@ require ('includes/application_top_1.php');
 					<tr class="dataTableRow3">
 					<td class="dataTableContent3" width="20%"><?php echo TABLE_HEADING_STOCKLIST_OPTION; ?>:</td>
 					<td class="dataTableContent3" width="50%"><?php echo TABLE_HEADING_STOCKLIST_OPTIONVALUE; ?></td>
-					<td class="dataTableContent3" align="right"><?php echo TABLE_HEADING_STOCKLIST_OPTIONSTOCK; ?></td>			
-					</tr>
+					<td class="dataTableContent3" align="right"><?php echo TABLE_HEADING_STOCKLIST_OPTIONSTOCK; ?></td>						</tr>
 					</table>
 				</td>
 				<td class="dataTableHeadingContent"><?php echo TABLE_HEADING_STOCKLIST_STOCK.xtc_sorting(FILENAME_STOCK_LIST,'quantity'); ?></td>
-              </tr>	  
+              </tr>
 		<?
 		$rows = 0;
     	$products_count = 0;
-	
-	
 
 		// get sorting option and switch accordingly        
 		if ($_GET['sorting']) {
@@ -120,9 +112,8 @@ require ('includes/application_top_1.php');
 		}
 		} else {
 				$prodsort   = 'p.products_quantity ASC';
-		}       
-			
-			
+		}
+
 // init paging
   $products_query_raw = "select p.products_id, p.products_model, pd.products_name, p.products_sort, p.products_quantity, p.products_price, p.products_status from " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_DESCRIPTION . " pd where p.products_id = pd.products_id and pd.language_id = '" . $_SESSION['languages_id'] . "' and (pd.products_name like '%" . $_GET['search'] . "%' or p.products_model like '%" . $_GET['search'] . "%') order by " .$prodsort. "";
   $products_split = new splitPageResults($_GET['page'], $showpage, $products_query_raw, $products_query_numrows);
@@ -133,10 +124,8 @@ require ('includes/application_top_1.php');
     $products_count++;
     $rows++;
 
-
 // product attributes
 		$attributessort   = 'po.products_options_name ASC, pov.products_options_values_name ASC';	
-		
 		$attributes_query = xtc_db_query("
         SELECT
 		pa.products_attributes_id,
@@ -150,19 +139,15 @@ require ('includes/application_top_1.php');
 		po.language_id, 
 		pov.products_options_values_id,
 		pov.products_options_values_name  
-			
 			FROM 	" . TABLE_PRODUCTS_ATTRIBUTES . " pa, 
 					" . TABLE_PRODUCTS_OPTIONS . " po, 
-					" . TABLE_PRODUCTS_OPTIONS_VALUES . " pov  	
-			
+					" . TABLE_PRODUCTS_OPTIONS_VALUES . " pov
 			WHERE pa.products_id = ".$products['products_id']."  
 				AND po.language_id = '" . $_SESSION['languages_id'] . "'  
 				AND pov.language_id = '" . $_SESSION['languages_id'] . "' 
 				AND pa.options_values_id = pov.products_options_values_id 
 				AND pa.options_id = po.products_options_id 
-			
 			ORDER BY " . $attributessort);
-
 	  ?>    
 		<tr class="dataTableRow2" onMouseOver="this.className='dataTableRowOver2'" onMouseOut="this.className='dataTableRow2'" valign="top">
 			<td class="dataTableContent2"><?php echo $products['products_id']; ?></td>
@@ -183,8 +168,7 @@ require ('includes/application_top_1.php');
 				<tr class="dataTableRow3" onMouseOver="this.className='dataTableRowOver3'" onMouseOut="this.className='dataTableRow3'">
 				<td class="dataTableContent3" width="20%"><?php echo $attributes['products_options_name'].":&nbsp;"; ?></td>
 				<td class="dataTableContent3" width="50%"><?php echo $attributes['products_options_values_name']; ?></td>
-				<td class="dataTableContent3" align="right"><?php echo $attributes['attributes_stock']; ?>&nbsp;</td>			
-				</tr>
+				<td class="dataTableContent3" align="right"><?php echo $attributes['attributes_stock']; ?>&nbsp;</td>				</tr>
 				<?
 				} // end while options
 				?>
@@ -205,15 +189,12 @@ require ('includes/application_top_1.php');
 					</table>
 				</td>
 			</tr>
-
           </tr>
         </table></td>
       </tr>
     </table></td>
-<!-- body_text_eof //-->
   </tr>
 </table>
-<!-- end content -->
 <?php 
 require(DIR_WS_INCLUDES . 'application_bottom.php'); 
 require(DIR_WS_INCLUDES . 'application_bottom_0.php');
