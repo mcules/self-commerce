@@ -25,7 +25,7 @@
       return false;
     }
 
-    $$link = @mysql_connect($server, $username, $password) or $db_error = mysql_error();
+    $$link = @mysql_connect($server, $username, $password) || $db_error = mysql_error();
 
     return $$link;
   }

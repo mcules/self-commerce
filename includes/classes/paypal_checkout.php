@@ -1205,10 +1205,10 @@ class paypal_checkout {
 					$verspos=$ipn_data['num_cart_items'];
 					for($p=1;$p<=$verspos;$p++):
 						if( $this->data['item_name'.$p] == substr(SUB_TITLE_OT_DISCOUNT,0,127)
-								OR $this->data['item_name'.$p] == substr(PAYPAL_GS,0,127)
-								OR $this->data['item_name'.$p] == "Handling"
-								OR $this->data['item_name'.$p] == substr(PAYPAL_TAX,0,127)
-								OR $this->data['item_name'.$p] == "Differenz" )
+								|| $this->data['item_name'.$p] == substr(PAYPAL_GS,0,127)
+								|| $this->data['item_name'.$p] == "Handling"
+								|| $this->data['item_name'.$p] == substr(PAYPAL_TAX,0,127)
+								|| $this->data['item_name'.$p] == "Differenz" )
 							// Artikel Nummer aus den Details für Sonderzeilen
 							$ipn_data['num_cart_items']--;
 						if($this->data['item_name'.$p] == substr(SHIPPING_COSTS,0,127)):

@@ -22,7 +22,7 @@
    OSC German Banktransfer v0.85a       	Autor:	Dominik Guder <osc@guder.org>
    Extensioncode: 							Marcel Bossert-Schwab <info@opensourcecommerce.de> (mbs)
    New methods 2005 - 2010: 				Frank Maroke (FrankM) <info@fmce.de>
-   New methods and bug fixes 2010 - 2014:	Christian Rothe <buero@laufstar.de>
+   New methods && bug fixes 2010 - 2014:	Christian Rothe <buero@laufstar.de>
 
 	 BLZ-Downloadseite der Deutschen Bundesbank:
 	 http://www.bundesbank.de/Redaktion/DE/Standardartikel/Kerngeschaeftsfelder/Unbarer_Zahlungsverkehr/bankleitzahlen_download.html
