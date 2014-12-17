@@ -773,7 +773,7 @@ $customer = xtc_db_fetch_array($customer_query);
           <td align="left" class="main">
             <?php echo COUPON_STARTDATE; ?></td>
           <td align="left">
-            <?php echo xtc_draw_date_selector('coupon_startdate', mktime(0,0,0, $coupon_startdate[1], $coupon_startdate[2], $coupon_startdate[0], 0)); ?></td>
+            <?php echo xtc_draw_date_selector('coupon_startdate', mktime(0,0,0, $coupon_startdate[1], $coupon_startdate[2], $coupon_startdate[0])); ?></td>
           <td align="left" class="main">
             <?php echo COUPON_STARTDATE_HELP; ?></td>
         </tr>
@@ -781,7 +781,7 @@ $customer = xtc_db_fetch_array($customer_query);
           <td align="left" class="main">
             <?php echo COUPON_FINISHDATE; ?></td>
           <td align="left">
-            <?php echo xtc_draw_date_selector('coupon_finishdate', mktime(0,0,0, $coupon_finishdate[1], $coupon_finishdate[2], $coupon_finishdate[0], 0)); ?></td>
+            <?php echo xtc_draw_date_selector('coupon_finishdate', mktime(0,0,0, $coupon_finishdate[1], $coupon_finishdate[2], $coupon_finishdate[0])); ?></td>
           <td align="left" class="main">
             <?php echo COUPON_FINISHDATE_HELP; ?></td>
         </tr>
