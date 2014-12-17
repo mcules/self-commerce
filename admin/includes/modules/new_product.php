@@ -191,7 +191,7 @@ if ($dir = opendir(DIR_FS_CATALOG.'templates/'.CURRENT_TEMPLATE.'/module/product
 {
 	while (($file = readdir($dir)) !== false)
 	{
-		if (is_file(DIR_FS_CATALOG.'templates/'.CURRENT_TEMPLATE.'/module/product_info/'.$file) and ($file != "index.html"))
+		if (is_file(DIR_FS_CATALOG.'templates/'.CURRENT_TEMPLATE.'/module/product_info/'.$file) && ($file != "index.html"))
 		{
 			$files[] = array ('id' => $file, 'text' => $file);
 		} //if
@@ -226,7 +226,7 @@ if ($dir = opendir(DIR_FS_CATALOG.'templates/'.CURRENT_TEMPLATE.'/module/product
 {
 	while (($file = readdir($dir)) !== false)
 	{
-		if (is_file(DIR_FS_CATALOG.'templates/'.CURRENT_TEMPLATE.'/module/product_options/'.$file) and ($file != "index.html"))
+		if (is_file(DIR_FS_CATALOG.'templates/'.CURRENT_TEMPLATE.'/module/product_options/'.$file) && ($file != "index.html"))
 		{
 			$files[] = array ('id' => $file, 'text' => $file);
 		} //if
