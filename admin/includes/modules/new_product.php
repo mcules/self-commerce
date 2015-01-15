@@ -54,6 +54,7 @@ else {
 	$pInfo = new objectInfo(array ());
 }
 
+$Products_Details_Array = array();
 $Products_Details_Sql = "SELECT *
 						FROM ".TABLE_PRODUCTS_DETAILS.";";
 $Products_Details_Query = xtc_db_query($Products_Details_Sql);
@@ -191,7 +192,7 @@ if ($dir = opendir(DIR_FS_CATALOG.'templates/'.CURRENT_TEMPLATE.'/module/product
 {
 	while (($file = readdir($dir)) !== false)
 	{
-		if (is_file(DIR_FS_CATALOG.'templates/'.CURRENT_TEMPLATE.'/module/product_info/'.$file) && ($file != "index.html"))
+		if (is_file(DIR_FS_CATALOG.'templates/'.CURRENT_TEMPLATE.'/module/product_info/'.$file) and ($file != "index.html"))
 		{
 			$files[] = array ('id' => $file, 'text' => $file);
 		} //if
@@ -226,7 +227,7 @@ if ($dir = opendir(DIR_FS_CATALOG.'templates/'.CURRENT_TEMPLATE.'/module/product
 {
 	while (($file = readdir($dir)) !== false)
 	{
-		if (is_file(DIR_FS_CATALOG.'templates/'.CURRENT_TEMPLATE.'/module/product_options/'.$file) && ($file != "index.html"))
+		if (is_file(DIR_FS_CATALOG.'templates/'.CURRENT_TEMPLATE.'/module/product_options/'.$file) and ($file != "index.html"))
 		{
 			$files[] = array ('id' => $file, 'text' => $file);
 		} //if
@@ -294,31 +295,31 @@ echo '<td><span class="main">'.xtc_draw_pull_down_menu('options_template', $file
     			<td class="main" valign="top" style="padding: 15px;">
     				<table>
     					<?php
-    					foreach($Products_Details_Array as $Product_Detail) {
-    						if($pInfo->products_id) {
-				    			$Detail_Sql = "SELECT ".TABLE_PRODUCTS_DETAILS_VALUES.".products_details_value, products_details_id
-				    							FROM ".TABLE_PRODUCTS_DETAILS_VALUES."
-				    							WHERE ".TABLE_PRODUCTS_DETAILS_VALUES.".products_details_id=".$Product_Detail['products_details_id']."
-				    								AND ".TABLE_PRODUCTS_DETAILS_VALUES.".language_id=".$languages[$i]['id']."
-				    								AND ".TABLE_PRODUCTS_DETAILS_VALUES.".products_id=".$pInfo->products_id."
-				    							LIMIT 1;";
-				    			$Detail = xtc_db_fetch_array(xtc_db_query($Detail_Sql));
-				    		}
-			    		?>
-    						<tr>
-    							<td class="main">
-    								<?php
-    								echo $Product_Detail['products_details_name'].'<br />';
-    								?>
-    							</td>
-    							<td>
-				    				<?php
-				    				echo xtc_draw_input_field('products_details_id[' . $Product_Detail['products_details_id'] . '.'.$languages[$i]['id'].']', $Detail['products_details_value'], ' size=25 maxlenght=255').'<br />';
-				    				?>
-			    				</td>
-    						</tr>
-    					<?php
-    					}
+	    					foreach($Products_Details_Array as $Product_Detail) {
+	    						if($pInfo->products_id) {
+					    			$Detail_Sql = "SELECT ".TABLE_PRODUCTS_DETAILS_VALUES.".products_details_value, products_details_id
+					    							FROM ".TABLE_PRODUCTS_DETAILS_VALUES."
+					    							WHERE ".TABLE_PRODUCTS_DETAILS_VALUES.".products_details_id=".$Product_Detail['products_details_id']."
+					    								AND ".TABLE_PRODUCTS_DETAILS_VALUES.".language_id=".$languages[$i]['id']."
+					    								AND ".TABLE_PRODUCTS_DETAILS_VALUES.".products_id=".$pInfo->products_id."
+					    							LIMIT 1;";
+					    			$Detail = xtc_db_fetch_array(xtc_db_query($Detail_Sql));
+					    		}
+				    		?>
+	    						<tr>
+	    							<td class="main">
+	    								<?php
+	    								echo $Product_Detail['products_details_name'].'<br />';
+	    								?>
+	    							</td>
+	    							<td>
+					    				<?php
+					    				echo xtc_draw_input_field('products_details_id[' . $Product_Detail['products_details_id'] . '.'.$languages[$i]['id'].']', $Detail['products_details_value'], ' size=25 maxlenght=255').'<br />';
+					    				?>
+				    				</td>
+	    						</tr>
+	    					<?php
+	    					}
 			    		?>
     				</table>
     			</td>
