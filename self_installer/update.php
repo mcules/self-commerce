@@ -34,7 +34,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
         $messageStack->add('index', SELECT_LANGUAGE_ERROR);
     }
     if ($error == false) {
-        xtc_redirect(xtc_href_link(INSTALLER_PATH.'update_step1.php', '', 'NONSSL'));
+        xtc_redirect(xtc_href_link(DIR_WS_INSTALLER_PATH.'update_step1.php', '', 'NONSSL'));
     }
 }
 ?>
@@ -128,10 +128,10 @@ $status='OK';
 if ($php_flag==true) $status='<strong><font color="ff0000">ERROR</font></strong>';
 $ok_message.='PHP VERSION .............................. '.$status.'<hr class="lineGreen">';
 
-if (!file_exists(DIR_FS_CATALOG . 'includes/configure.php')) {
+if (!file_exists(DIR_FS_INSTALLER_PATH . 'includes/configure.php')) {
     $error_flag=true;
     $config_exists=true;
-    $message .= 'FILE not found: '.DIR_FS_CATALOG . 'includes/configure.php<br />';
+    $message .= 'FILE not found: '.DIR_FS_INSTALLER_PATH . 'includes/configure.php<br />';
 }
 if ($config_exists == true) $message .= '<hr class="lineRed">';
 
