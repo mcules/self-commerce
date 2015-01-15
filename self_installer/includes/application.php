@@ -16,28 +16,33 @@
    --------------------------------------------------------------*/
 // Some FileSystem Directories
 if (!defined('DIR_FS_DOCUMENT_ROOT')) {
-  define('DIR_FS_DOCUMENT_ROOT', $_SERVER['DOCUMENT_ROOT']);
-  $local_install_path=str_replace('/self_installer','',$_SERVER['PHP_SELF']);
-  $local_install_path=str_replace('index.php','',$local_install_path);
-  $local_install_path=str_replace('install_step1.php','',$local_install_path);
-  $local_install_path=str_replace('install_step2.php','',$local_install_path);
-  $local_install_path=str_replace('install_step3.php','',$local_install_path);
-  $local_install_path=str_replace('install_step4.php','',$local_install_path);
-  $local_install_path=str_replace('install_step5.php','',$local_install_path);
-  $local_install_path=str_replace('install_step6.php','',$local_install_path);
-  $local_install_path=str_replace('install_step7.php','',$local_install_path);
-  $local_install_path=str_replace('install_finished.php','',$local_install_path);
-  define('DIR_FS_CATALOG', DIR_FS_DOCUMENT_ROOT . $local_install_path);
+	define('DIR_FS_DOCUMENT_ROOT', $_SERVER['DOCUMENT_ROOT']);
+	$local_install_path=str_replace('index.php','',$_SERVER['PHP_SELF']);
+	$local_install_path=str_replace('install_step1.php','',$local_install_path);
+	$local_install_path=str_replace('install_step2.php','',$local_install_path);
+	$local_install_path=str_replace('install_step3.php','',$local_install_path);
+	$local_install_path=str_replace('install_step4.php','',$local_install_path);
+	$local_install_path=str_replace('install_step5.php','',$local_install_path);
+	$local_install_path=str_replace('install_step6.php','',$local_install_path);
+	$local_install_path=str_replace('install_step7.php','',$local_install_path);
+	$local_install_path=str_replace('install_finished.php','',$local_install_path);
+	$local_install_path=str_replace('update.php','',$local_install_path);
+	$local_install_path=str_replace('update_step1.php','',$local_install_path);
+	$local_install_path=str_replace('update_step2.php','',$local_install_path);
+	$local_install_path=str_replace('update_finished.php','',$local_install_path);
+	define('DIR_WS_INSTALLER_PATH', $local_install_path);
+	$local_install_path=str_replace('/self_installer','',$local_install_path);
+	define('DIR_FS_INSTALLER_PATH', DIR_FS_DOCUMENT_ROOT . $local_install_path);
 }
-define('DIR_FS_INC', DIR_FS_CATALOG.'inc/');
+define('DIR_FS_INC', DIR_FS_DOCUMENT_ROOT.'/inc/');
 
 // include
 //require('../includes/functions/validations.php');
-require(DIR_FS_CATALOG.'includes/classes/boxes.php');
-require(DIR_FS_CATALOG.'includes/classes/message_stack.php');
-require(DIR_FS_CATALOG.'includes/filenames.php');
-require(DIR_FS_CATALOG.'includes/database_tables.php');
-require_once(DIR_FS_CATALOG.'inc/xtc_image.inc.php');
+require(DIR_FS_INSTALLER_PATH.'includes/classes/boxes.php');
+require(DIR_FS_INSTALLER_PATH.'includes/classes/message_stack.php');
+require(DIR_FS_INSTALLER_PATH.'includes/filenames.php');
+require(DIR_FS_INSTALLER_PATH.'includes/database_tables.php');
+require_once(DIR_FS_INSTALLER_PATH.'inc/xtc_image.inc.php');
 
 // Start the Install_Session
 session_start();
