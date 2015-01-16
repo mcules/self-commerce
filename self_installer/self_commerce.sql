@@ -2961,6 +2961,7 @@ CREATE TABLE IF NOT EXISTS products_details (
   products_details_title text,
   PRIMARY KEY (products_details_id)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
+INSERT INTO products_details (products_details_id, products_details_name, products_details_title) VALUES (1, 'Details', '{"2":"","1":""}');
 
 # Product Details Values
 CREATE TABLE IF NOT EXISTS products_details_values (
