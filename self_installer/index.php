@@ -250,19 +250,19 @@ $block7=false;
     $folder_flag=true;
     $message .= 'WRONG PERMISSION on '.DIR_FS_CATALOG . 'images/product_images/info_images/<br />';
  }
-     if (!is_writeable(DIR_FS_CATALOG . 'images/product_images/original_images/')) {
+if (!is_writeable(DIR_FS_CATALOG . 'images/product_images/original_images/')) {
     $error_flag=true;
     $block6 = true;
     $folder_flag=true;
     $message .= 'WRONG PERMISSION on '.DIR_FS_CATALOG . 'images/product_images/original_images/<br />';
  }
-     if (!is_writeable(DIR_FS_CATALOG . 'images/product_images/popup_images/')) {
+if (!is_writeable(DIR_FS_CATALOG . 'images/product_images/popup_images/')) {
     $error_flag=true;
     $block6 = true;
     $folder_flag=true;
     $message .= 'WRONG PERMISSION on '.DIR_FS_CATALOG . 'images/product_images/popup_images/<br />';
  }
-      if (!is_writeable(DIR_FS_CATALOG . 'images/product_images/thumbnail_images/')) {
+if (!is_writeable(DIR_FS_CATALOG . 'images/product_images/thumbnail_images/')) {
     $error_flag=true;
     $block6 = true;
     $folder_flag=true;
@@ -270,24 +270,33 @@ $block7=false;
  }
  if ($block6 == true) $message .= '<hr class="lineRed">';
 
-      if (!is_writeable(DIR_FS_CATALOG . 'tiny_upload/pics/')) {
+if (!is_writeable(DIR_FS_CATALOG . 'tiny_upload/pics/')) {
     $error_flag=true;
     $block7 = true;
     $folder_flag=true;
     $message .= 'WRONG PERMISSION on '.DIR_FS_CATALOG . 'tiny_upload/pics/<br />';
  }
 
-       if (!is_writeable(DIR_FS_CATALOG . 'tiny_upload/files/')) {
+if (!is_writeable(DIR_FS_CATALOG . 'tiny_upload/files/')) {
     $error_flag=true;
     $block7 = true;
     $folder_flag=true;
     $message .= 'WRONG PERMISSION on '.DIR_FS_CATALOG . 'tiny_upload/files/<br />';
  }
- if ($block7 == true) $message .= '<hr class="lineRed">';
+if ($block7 == true) $message .= '<hr class="lineRed">';
+ 
+if (!is_writeable(DIR_FS_CATALOG . 'AmazonAdvancedPayment/log/')) {
+    $error_flag=true;
+    $block8 = true;
+    $folder_flag=true;
+    $message .= 'WRONG PERMISSION on '.DIR_FS_CATALOG . 'tAmazonAdvancedPayment/log/<br />';
+}
 
- $status='OK';
- if ($folder_flag==true) $status='<strong><font color="#ff0000">ERROR</font></stong>';
- $ok_message.='FOLDER Permissions .............................. '.$status.'<hr class="lineGreen">';
+if ($block8 == true) $message .= '<hr class="lineRed">';
+
+$status='OK';
+if ($folder_flag==true) $status='<strong><font color="#ff0000">ERROR</font></stong>';
+$ok_message.='FOLDER Permissions .............................. '.$status.'<hr class="lineGreen">';
 
  // check PHP-Version
 
