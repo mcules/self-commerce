@@ -28,6 +28,6 @@ images/product_images/thumbnail_images/*.gif
 admin/invoice/*.pdf
 .DS_Store
 admin/.DS_Store
+cache/*
 admin/includes/configure.php
 includes/configure.php
-cache/*
