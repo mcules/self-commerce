@@ -1,0 +1,12 @@
+stdClass Object
+(
+    [Type] => Notification
+    [MessageId] => 8f77081a-b315-5cc7-b55a-44a06977fbe7
+    [TopicArn] => arn:aws:sns:eu-west-1:291180941288:A1G8446IYHA4MRAYJ786YBX3WE4
+    [Message] => {"NotificationReferenceId":"ce877b3b-3cf2-417c-b5f9-4bf8d36a5110","MarketplaceID":"136311","NotificationType":"OrderReferenceNotification","SellerId":"AYJ786YBX3WE4","ReleaseEnvironment":"Sandbox","Version":"2013-01-01","NotificationData":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><OrderReferenceNotification xmlns=\"https://mws.amazonservices.com/ipn/OffAmazonPayments/2013-01-01\">\n    <OrderReference>\n        <AmazonOrderReferenceId>S02-8564986-4935594<\/AmazonOrderReferenceId>\n        <OrderTotal>\n            <Amount>30.33<\/Amount>\n            <CurrencyCode>EUR<\/CurrencyCode>\n        <\/OrderTotal>\n        <SellerOrderAttributes>\n            <SellerId>AYJ786YBX3WE4<\/SellerId>\n            <OrderItemCategories/>\n        <\/SellerOrderAttributes>\n        <OrderReferenceStatus>\n            <State>Open<\/State>\n            <LastUpdateTimestamp>2014-10-17T08:49:37.427Z<\/LastUpdateTimestamp>\n        <\/OrderReferenceStatus>\n        <CreationTimestamp>2014-10-17T08:08:41.071Z<\/CreationTimestamp>\n        <ExpirationTimestamp>2015-04-15T08:08:41.071Z<\/ExpirationTimestamp>\n    <\/OrderReference>\n<\/OrderReferenceNotification>","Timestamp":"2014-10-17T08:49:38Z"}
+    [Timestamp] => 2014-10-17T08:49:38.740Z
+    [SignatureVersion] => 1
+    [Signature] => rEbMOxkullbPvTbQFjDUuIMis/lPr9qgu2khmjFxxkeBfoV6x4nxqUVzJN7xm2jGPcbKiNBFvcT4l0bv6d4DDXivlHhoxONsdMcekS/3j7NMfSq5ENF20IsLquVFVX/caYrS8FPZVbogxYZD4W4oe+59Gxybwgbr/i7TmeNoBnLr/wYjK5TnOemG9zQyEIj+6JAGEDxcuyFvKl5JDBnOF4DKaqJlBSPHqR2wFMu3CLealZU/HZy7LpyDQEsp8PwH26ynG7HIFcAnaNwbIU38SIS5ikHFeHYSP48De8AzJFJKxhVpmwQRTTHKcy8zeKbfdzn4I+og+BBaIjkkKb2+Ig==
+    [SigningCertURL] => https://sns.eu-west-1.amazonaws.com/SimpleNotificationService-d6d679a1d18e95c2f9ffcf11f4f9e198.pem
+    [UnsubscribeURL] => https://sns.eu-west-1.amazonaws.com/?Action=Unsubscribe&SubscriptionArn=arn:aws:sns:eu-west-1:291180941288:A1G8446IYHA4MRAYJ786YBX3WE4:7a7d8df3-43a0-4b4c-9610-604b3483b97d
+)

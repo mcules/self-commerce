@@ -7,6 +7,9 @@
 		{$FIELD_EMAIL}</p>
 		<p>{$FIELD_PWD}{$BUTTON}</p>
 		<p><a href="{$LINK_LOST_PASSWORD}">{#text_password_forgotten#}</a></p>
+		{if $smarty.const.MODULE_PAYMENT_AM_APA_STATUS == 'True' && $smarty.const.MODULE_PAYMENT_AM_APA_LPA_MODE != 'pay'}
+		    <div id="amazonLogin" class="amazonLoginWr"></div>
+		{/if}
 	{$FORM_END}
 	</div>
 </div>

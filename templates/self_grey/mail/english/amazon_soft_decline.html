@@ -1,0 +1,18 @@
+<table  width="100%" border="0" align="center" cellpadding="4" cellspacing="0">
+  <tr>
+    <td style="border-bottom: 1px solid; border-color: #cccccc;"><div align="right"><img src="{$logo_path}logo.gif"></div></td>
+  </tr>
+  <tr>
+    <td><font size="2" face="Verdana, Arial, Helvetica, sans-serif"><strong>Dear customer, </strong><br />
+      <br />
+      Thank you for your order {if $ORDER_NR} nr. {$ORDER_NR}{/if}{if $ORDER_DATE} from {$ORDER_DATE}{/if}.<br />
+      <br />
+		Unfortunately your payment was rejected by Amazon Payments.<br />
+		You can update the payment information for your order at <a href="https://payments.amazon.co.uk/overview">https://payments.amazon.co.uk/overview</a> by selecting or entering a different payment method. <br />
+		We will try to authorize the payment again, and you will receive a confirmation email.<br />
+<br />
+    </font></td>
+  </tr>
+</table>
+
+[SIGNATUR]

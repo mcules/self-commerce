@@ -485,3 +485,6 @@ define('PAYPAL_EXP_VORL','Vorl&auml;ufige Versandkosten');
 define('PAYPAL_EXP_VERS','6.90');
 define('PAYPAL_ADRESSE','Das Land in Ihrer PayPal-Versand-Adresse ist in unserem Shop nicht eingetragen.<br />Bitte nehmen Sie mit uns Kontakt auf.<br />Danke f&uuml;r Ihr Verst&auml;ndnis.<br />Von PayPal empfangenes Land: ');
 define('PAYPAL_AMMOUNT_NULL','Die zu erwartende Auftrags-Summe (ohne Versand) ist gleich 0.<br />Dadurch steht PayPal Express nicht zur Verf&uuml;gung.<br />Bitte w&auml;hlen Sie eine andere Zahlungsart.<br />Danke f&uuml;r Ihr Verst&auml;ndnis.<br />');
+# BOM AMAZON PAYMENTS POWERED BY ALKIM MEDIA
+include_once('lang/german/amazon.php');
+# EOM AMAZON PAYMENTS POWERED BY ALKIM MEDIA

@@ -1,0 +1,6 @@
+
+Dear customer,
+
+Unfortunately Amazon Payments rejected the payment for your order {if $ORDER_NR} no. {$ORDER_NR}{/if}{if $ORDER_DATE} from {$ORDER_DATE}{/if} in our online shop. Please contact us.
+
+[SIGNATUR]

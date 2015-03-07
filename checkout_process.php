@@ -173,8 +173,21 @@ if ($_SESSION['credit_covers'] != '1') {
 	$sql_data_array = array ('customers_id' => $_SESSION['customer_id'], 'customers_name' => $order->customer['firstname'].' '.$order->customer['lastname'], 'customers_firstname' => $order->customer['firstname'], 'customers_lastname' => $order->customer['lastname'], 'customers_cid' => $order->customer['csID'], 'customers_vat_id' => $order->customer['vat_id'], 'customers_company' => $order->customer['company'], 'customers_status' => $_SESSION['customers_status']['customers_status_id'], 'customers_status_name' => $_SESSION['customers_status']['customers_status_name'], 'customers_status_image' => $_SESSION['customers_status']['customers_status_image'], 'customers_status_discount' => $discount, 'customers_street_address' => $order->customer['street_address'], 'customers_suburb' => $order->customer['suburb'], 'customers_city' => $order->customer['city'], 'customers_postcode' => $order->customer['postcode'], 'customers_state' => $order->customer['state'], 'customers_country' => $order->customer['country']['title'], 'customers_telephone' => $order->customer['telephone'], 'customers_email_address' => $order->customer['email_address'], 'customers_address_format_id' => $order->customer['format_id'], 'delivery_name' => $order->delivery['firstname'].' '.$order->delivery['lastname'], 'delivery_firstname' => $order->delivery['firstname'], 'delivery_lastname' => $order->delivery['lastname'], 'delivery_company' => $order->delivery['company'], 'delivery_street_address' => $order->delivery['street_address'], 'delivery_suburb' => $order->delivery['suburb'], 'delivery_city' => $order->delivery['city'], 'delivery_postcode' => $order->delivery['postcode'], 'delivery_state' => $order->delivery['state'], 'delivery_country' => $order->delivery['country']['title'], 'delivery_country_iso_code_2' => $order->delivery['country']['iso_code_2'], 'delivery_address_format_id' => $order->delivery['format_id'], 'payment_method' => $order->info['payment_method'], 'payment_class' => $order->info['payment_class'], 'shipping_method' => $order->info['shipping_method'], 'shipping_class' => $order->info['shipping_class'], 'cc_type' => $order->info['cc_type'], 'cc_owner' => $order->info['cc_owner'], 'cc_number' => $order->info['cc_number'], 'cc_expires' => $order->info['cc_expires'], 'date_purchased' => 'now()', 'orders_status' => $order->info['order_status'], 'currency' => $order->info['currency'], 'currency_value' => $order->info['currency_value'], 'customers_ip' => $customers_ip, 'comments' => $order->info['comments']);
 }
 
-xtc_db_perform(TABLE_ORDERS, $sql_data_array);
-$insert_id = xtc_db_insert_id();
+# BOM ALKIM AMAZON PAYMENTS V2.01
+if(isset($_GET["amz"]) && $_GET["amz"] == '1' && MODULE_PAYMENT_AM_APA_STATUS == 'True'){
+	$sql_data_array["orders_status"] = AMZ_STATUS_NONAUTHORIZED;
+	$order->info['order_status'] = AMZ_STATUS_NONAUTHORIZED;
+}
+if(isset($_GET["amz"]) && $_GET["amz"] == '1' && MODULE_PAYMENT_AM_APA_STATUS == 'True' && AMZ_SET_SELLER_ORDER_ID == 'True' && isset($_SESSION["amzReservedOrdersId"])){
+	$insert_id = $_SESSION["amzReservedOrdersId"];
+	xtc_db_perform(TABLE_ORDERS, $sql_data_array, 'update', ' orders_id = '.(int)$insert_id);
+	unset($_SESSION["amzReservedOrdersId"]);
+} else {
+	xtc_db_perform(TABLE_ORDERS, $sql_data_array);
+	$insert_id = xtc_db_insert_id();
+}
+# EOM ALKIM AMAZON PAYMENTS V2.01
+
 for ($i = 0, $n = sizeof($order_totals); $i < $n; $i ++) {
 	$sql_data_array = array ('orders_id' => $insert_id, 'title' => $order_totals[$i]['title'], 'text' => $order_totals[$i]['text'], 'value' => $order_totals[$i]['value'], 'class' => $order_totals[$i]['code'], 'sort_order' => $order_totals[$i]['sort_order']);
 	xtc_db_perform(TABLE_ORDERS_TOTAL, $sql_data_array);

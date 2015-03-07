@@ -1,0 +1,86 @@
+OffAmazonPaymentsService_Model_AuthorizeRequest Object
+(
+    [_fields:protected] => Array
+        (
+            [SellerId] => Array
+                (
+                    [FieldValue] => AYJ786YBX3WE4
+                    [FieldType] => string
+                )
+
+            [AmazonOrderReferenceId] => Array
+                (
+                    [FieldValue] => S02-8943307-0977769
+                    [FieldType] => string
+                )
+
+            [AuthorizationReferenceId] => Array
+                (
+                    [FieldValue] => S02-8943307-0977769-a01
+                    [FieldType] => string
+                )
+
+            [AuthorizationAmount] => Array
+                (
+                    [FieldValue] => OffAmazonPaymentsService_Model_Price Object
+                        (
+                            [_fields:protected] => Array
+                                (
+                                    [Amount] => Array
+                                        (
+                                            [FieldValue] => 103.24
+                                            [FieldType] => string
+                                        )
+
+                                    [CurrencyCode] => Array
+                                        (
+                                            [FieldValue] => EUR
+                                            [FieldType] => string
+                                        )
+
+                                )
+
+                        )
+
+                    [FieldType] => OffAmazonPaymentsService_Model_Price
+                )
+
+            [SellerAuthorizationNote] => Array
+                (
+                    [FieldValue] => {"SandboxSimulation": {"State":"Declined", "ReasonCode":"InvalidPaymentMethod", "PaymentMethodUpdateTimeInMins":2}}
+                    [FieldType] => string
+                )
+
+            [OrderItemCategories] => Array
+                (
+                    [FieldValue] => 
+                    [FieldType] => OffAmazonPaymentsService_Model_OrderItemCategories
+                )
+
+            [TransactionTimeout] => Array
+                (
+                    [FieldValue] => 10
+                    [FieldType] => int
+                )
+
+            [CaptureNow] => Array
+                (
+                    [FieldValue] => 
+                    [FieldType] => bool
+                )
+
+            [SoftDescriptor] => Array
+                (
+                    [FieldValue] => 
+                    [FieldType] => string
+                )
+
+            [ProviderCreditList] => Array
+                (
+                    [FieldValue] => 
+                    [FieldType] => OffAmazonPaymentsService_Model_ProviderCreditList
+                )
+
+        )
+
+)

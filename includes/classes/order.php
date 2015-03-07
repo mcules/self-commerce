@@ -387,10 +387,10 @@ class order {
 
         $billing_address = xtc_db_fetch_array($billing_address_query);
 
-        if (isset($_SESSION['AMZ_COUNTRY_ID']) && isset($_SESSION['AMZ_ZONE_ID']))
-        {
-        	$tax_address = array('entry_country_id' => $_SESSION['AMZ_COUNTRY_ID'], 'entry_zone_id' => $_SESSION['AMZ_ZONE_ID']);
-        } else {
+        # BOM AMAZON PAYMENTS POWERED BY ALKIM MEDIA
+		if (isset($_SESSION['AMZ_COUNTRY_ID']) && isset($_SESSION['AMZ_ZONE_ID'])) {
+			$tax_address = array('entry_country_id' => $_SESSION['AMZ_COUNTRY_ID'], 'entry_zone_id' => $_SESSION['AMZ_ZONE_ID']);
+		} else {
 	        $tax_address_query = xtc_db_query("SELECT ab.entry_country_id, ab.entry_zone_id
     	                                       FROM " . TABLE_ADDRESS_BOOK . " ab
     	                                       LEFT JOIN " . TABLE_ZONES . " z ON (ab.entry_zone_id = z.zone_id)
@@ -398,6 +398,7 @@ class order {
     	                                       	AND ab.address_book_id = '" . ($this->content_type == 'virtual' ? $_SESSION['billto'] : $_SESSION['sendto']) . "'");
     	    $tax_address = xtc_db_fetch_array($tax_address_query);
     	}
+		# EOM AMAZON PAYMENTS POWERED BY ALKIM MEDIA
 
         $this->info = array('order_status' => DEFAULT_ORDERS_STATUS_ID,
             'currency' => $_SESSION['currency'],
@@ -471,6 +472,18 @@ class order {
             'country' => array('id' => $billing_address['countries_id'], 'title' => $billing_address['countries_name'], 'iso_code_2' => $billing_address['countries_iso_code_2'], 'iso_code_3' => $billing_address['countries_iso_code_3']),
             'country_id' => $billing_address['entry_country_id'],
             'format_id' => $billing_address['address_format_id']);
+		
+		# BOM AMAZON PAYMENTS POWERED BY ALKIM MEDIA
+		if(!isset($_SESSION['billto'])&&$_SESSION['payment']=='am_apa') {
+			foreach($this->billing AS $k=>$v) {
+				if(is_array($v)) {
+					$this->billing[$k] = array();
+				} else {
+					$this->billing[$k] = '';
+				}
+			}
+		}
+		# EOM AMAZON PAYMENTS POWERED BY ALKIM MEDIA
 
         $index = 0;
         // PayPal API Modul / Paypal Express Modul

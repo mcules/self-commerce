@@ -1,0 +1,12 @@
+stdClass Object
+(
+    [Type] => Notification
+    [MessageId] => f7be96b7-186a-5f25-b37b-da0dc1b61be7
+    [TopicArn] => arn:aws:sns:eu-west-1:291180941288:A1G8446IYHA4MRAYJ786YBX3WE4
+    [Message] => {"NotificationReferenceId":"a8a6a822-d7d4-4c94-8d9e-f82c68c52b92","MarketplaceID":"136311","NotificationType":"PaymentRefund","SellerId":"AYJ786YBX3WE4","ReleaseEnvironment":"Sandbox","Version":"2013-01-01","NotificationData":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><RefundNotification xmlns=\"https://mws.amazonservices.com/ipn/OffAmazonPayments/2013-01-01\">\n    <RefundDetails>\n        <AmazonRefundId>S02-8564986-4935594-R065404<\/AmazonRefundId>\n        <RefundReferenceId>S02-8564986-4935594-r01<\/RefundReferenceId>\n        <RefundType>SellerInitiated<\/RefundType>\n        <RefundAmount>\n            <Amount>20.33<\/Amount>\n            <CurrencyCode>EUR<\/CurrencyCode>\n        <\/RefundAmount>\n        <FeeRefunded>\n            <Amount>0.0<\/Amount>\n            <CurrencyCode>EUR<\/CurrencyCode>\n        <\/FeeRefunded>\n        <CreationTimestamp>2014-10-17T08:46:52.701Z<\/CreationTimestamp>\n        <RefundStatus>\n            <State>Completed<\/State>\n            <LastUpdateTimestamp>2014-10-17T08:47:23.575Z<\/LastUpdateTimestamp>\n        <\/RefundStatus>\n        <SoftDescriptor>AMZ*alkimalkim<\/SoftDescriptor>\n    <\/RefundDetails>\n<\/RefundNotification>","Timestamp":"2014-10-17T08:47:24Z"}
+    [Timestamp] => 2014-10-17T08:47:24.432Z
+    [SignatureVersion] => 1
+    [Signature] => UKt7wmXoS5BpUn7OkGpc9vJm+zLz5sa+VidA9YlaoEqwCe0gfrTiEMLQIc9bHVLrHd4FsHHCct4D3jVv8BkQIejtUx4rXlwzkzQb0Kb53ZaWYMkaPQEZPwIztgsm7V+vkVvOwVQTyol0ITcYUnQMCAC1M81sjwLmyhNuI+F5yJF7khEXkDvi7j6jBq2YQlB4jVfpA6JiZ46JXZGRVY6JPXMP4bzzGYt49qlMWN04v2ETPpPZ5vMmx78gXEb6XKV2yMbzP2mk2zLrIvjEb3am4N8Y64Gmkr5ONKTQ9BFFbNMIkyxA4Rggku1BmfWRvh0BUbFuDUVVFfHfKhH+lHvheg==
+    [SigningCertURL] => https://sns.eu-west-1.amazonaws.com/SimpleNotificationService-d6d679a1d18e95c2f9ffcf11f4f9e198.pem
+    [UnsubscribeURL] => https://sns.eu-west-1.amazonaws.com/?Action=Unsubscribe&SubscriptionArn=arn:aws:sns:eu-west-1:291180941288:A1G8446IYHA4MRAYJ786YBX3WE4:7a7d8df3-43a0-4b4c-9610-604b3483b97d
+)

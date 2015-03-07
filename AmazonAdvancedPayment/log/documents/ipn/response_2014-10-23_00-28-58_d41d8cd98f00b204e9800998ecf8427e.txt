@@ -1,0 +1,12 @@
+stdClass Object
+(
+    [Type] => Notification
+    [MessageId] => ce5d9a83-5d89-560a-8e49-d6416c60e6d6
+    [TopicArn] => arn:aws:sns:eu-west-1:291180941288:A1G8446IYHA4MRAYJ786YBX3WE4
+    [Message] => {"NotificationReferenceId":"593acf16-ebb8-4797-95be-2b126394a1fb","MarketplaceID":"136311","NotificationType":"PaymentAuthorize","SellerId":"AYJ786YBX3WE4","ReleaseEnvironment":"Sandbox","Version":"2013-01-01","NotificationData":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><AuthorizationNotification xmlns=\"https://mws.amazonservices.com/ipn/OffAmazonPayments/2013-01-01\">\n    <AuthorizationDetails>\n        <AmazonAuthorizationId>S02-6446905-5312350-A053141<\/AmazonAuthorizationId>\n        <AuthorizationReferenceId>S02-6446905-5312350-a01<\/AuthorizationReferenceId>\n        <AuthorizationAmount>\n            <Amount>276.25<\/Amount>\n            <CurrencyCode>EUR<\/CurrencyCode>\n        <\/AuthorizationAmount>\n        <CapturedAmount>\n            <Amount>0.0<\/Amount>\n            <CurrencyCode>EUR<\/CurrencyCode>\n        <\/CapturedAmount>\n        <AuthorizationFee>\n            <Amount>0.0<\/Amount>\n            <CurrencyCode>EUR<\/CurrencyCode>\n        <\/AuthorizationFee>\n        <IdList/>\n        <CreationTimestamp>2014-10-22T22:28:23.473Z<\/CreationTimestamp>\n        <ExpirationTimestamp>2014-11-21T22:28:23.473Z<\/ExpirationTimestamp>\n        <AuthorizationStatus>\n            <State>Declined<\/State>\n            <LastUpdateTimestamp>2014-10-22T22:28:55.995Z<\/LastUpdateTimestamp>\n            <ReasonCode>InvalidPaymentMethod<\/ReasonCode>\n        <\/AuthorizationStatus>\n        <OrderItemCategories/>\n        <CaptureNow>false<\/CaptureNow>\n        <SoftDescriptor/>\n    <\/AuthorizationDetails>\n<\/AuthorizationNotification>","Timestamp":"2014-10-22T10:28:57Z"}
+    [Timestamp] => 2014-10-22T22:28:57.895Z
+    [SignatureVersion] => 1
+    [Signature] => m1ei/eXUnkJiKRihReOcKRkZlR7NPb0IhNP1qvbYc2LKZZlf/cB33GlTu/ZzKSXahWAvl16GLd25g07dDdxm89gSU/9+Hg2AJrH8zCQXm//bby3JbwQMxIw2xXf0a+aeGPR14a2kgoU1vryPY6P4KhrSns2r2iLJCnCGlrWHQFfrWgPz3dVHj4/DhtDYaOWs1V3PlTwCc/CGYHQauYlPFL8IMiegj4pkIVvKwGukmFJxiRuFwR/E8DFIwIP1sfV2k9iN5bnwyWwWnyOrycDc72UsMHlPfaghD13ItVj4M177Fk1pQoBr5W8t/DV+dqtZL8Adgiedn93dOAWWftmGfg==
+    [SigningCertURL] => https://sns.eu-west-1.amazonaws.com/SimpleNotificationService-d6d679a1d18e95c2f9ffcf11f4f9e198.pem
+    [UnsubscribeURL] => https://sns.eu-west-1.amazonaws.com/?Action=Unsubscribe&SubscriptionArn=arn:aws:sns:eu-west-1:291180941288:A1G8446IYHA4MRAYJ786YBX3WE4:7a7d8df3-43a0-4b4c-9610-604b3483b97d
+)

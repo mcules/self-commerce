@@ -1,0 +1,237 @@
+OffAmazonPaymentsService_Model_CaptureResponse Object
+(
+    [_responseHeaderMetadata:private] => OffAmazonPaymentsService_Model_ResponseHeaderMetadata Object
+        (
+            [metadata:private] => Array
+                (
+                    [x-mws-request-id] => e3fee437-7ba8-4c92-adf2-e7abee2508f6
+                    [x-mws-response-context] => Bk7HXQqA7IkcbQEyDBPqtaNBBH2qMOgY+PcHUNv1gx/Y9ztzNVmIakh6vOT37VnWfz0TjurlsNTd bPLhUo0wUQ==
+                    [x-mws-timestamp] => 2014-10-17T08:46:45.473Z
+                )
+
+        )
+
+    [_fields:protected] => Array
+        (
+            [CaptureResult] => Array
+                (
+                    [FieldValue] => OffAmazonPaymentsService_Model_CaptureResult Object
+                        (
+                            [_fields:protected] => Array
+                                (
+                                    [CaptureDetails] => Array
+                                        (
+                                            [FieldValue] => OffAmazonPaymentsService_Model_CaptureDetails Object
+                                                (
+                                                    [_fields:protected] => Array
+                                                        (
+                                                            [AmazonCaptureId] => Array
+                                                                (
+                                                                    [FieldValue] => S02-8564986-4935594-C090081
+                                                                    [FieldType] => string
+                                                                )
+
+                                                            [CaptureReferenceId] => Array
+                                                                (
+                                                                    [FieldValue] => S02-8564986-4935594-c01
+                                                                    [FieldType] => string
+                                                                )
+
+                                                            [SellerCaptureNote] => Array
+                                                                (
+                                                                    [FieldValue] => 
+                                                                    [FieldType] => string
+                                                                )
+
+                                                            [CaptureAmount] => Array
+                                                                (
+                                                                    [FieldValue] => OffAmazonPaymentsService_Model_Price Object
+                                                                        (
+                                                                            [_fields:protected] => Array
+                                                                                (
+                                                                                    [Amount] => Array
+                                                                                        (
+                                                                                            [FieldValue] => 20.33
+                                                                                            [FieldType] => string
+                                                                                        )
+
+                                                                                    [CurrencyCode] => Array
+                                                                                        (
+                                                                                            [FieldValue] => EUR
+                                                                                            [FieldType] => string
+                                                                                        )
+
+                                                                                )
+
+                                                                        )
+
+                                                                    [FieldType] => OffAmazonPaymentsService_Model_Price
+                                                                )
+
+                                                            [RefundedAmount] => Array
+                                                                (
+                                                                    [FieldValue] => OffAmazonPaymentsService_Model_Price Object
+                                                                        (
+                                                                            [_fields:protected] => Array
+                                                                                (
+                                                                                    [Amount] => Array
+                                                                                        (
+                                                                                            [FieldValue] => 0
+                                                                                            [FieldType] => string
+                                                                                        )
+
+                                                                                    [CurrencyCode] => Array
+                                                                                        (
+                                                                                            [FieldValue] => EUR
+                                                                                            [FieldType] => string
+                                                                                        )
+
+                                                                                )
+
+                                                                        )
+
+                                                                    [FieldType] => OffAmazonPaymentsService_Model_Price
+                                                                )
+
+                                                            [CaptureFee] => Array
+                                                                (
+                                                                    [FieldValue] => OffAmazonPaymentsService_Model_Price Object
+                                                                        (
+                                                                            [_fields:protected] => Array
+                                                                                (
+                                                                                    [Amount] => Array
+                                                                                        (
+                                                                                            [FieldValue] => 0.00
+                                                                                            [FieldType] => string
+                                                                                        )
+
+                                                                                    [CurrencyCode] => Array
+                                                                                        (
+                                                                                            [FieldValue] => EUR
+                                                                                            [FieldType] => string
+                                                                                        )
+
+                                                                                )
+
+                                                                        )
+
+                                                                    [FieldType] => OffAmazonPaymentsService_Model_Price
+                                                                )
+
+                                                            [IdList] => Array
+                                                                (
+                                                                    [FieldValue] => OffAmazonPaymentsService_Model_IdList Object
+                                                                        (
+                                                                            [_fields:protected] => Array
+                                                                                (
+                                                                                    [member] => Array
+                                                                                        (
+                                                                                            [FieldValue] => Array
+                                                                                                (
+                                                                                                )
+
+                                                                                            [FieldType] => Array
+                                                                                                (
+                                                                                                    [0] => string
+                                                                                                )
+
+                                                                                        )
+
+                                                                                )
+
+                                                                        )
+
+                                                                    [FieldType] => OffAmazonPaymentsService_Model_IdList
+                                                                )
+
+                                                            [CreationTimestamp] => Array
+                                                                (
+                                                                    [FieldValue] => 2014-10-17T08:46:45.761Z
+                                                                    [FieldType] => string
+                                                                )
+
+                                                            [CaptureStatus] => Array
+                                                                (
+                                                                    [FieldValue] => OffAmazonPaymentsService_Model_Status Object
+                                                                        (
+                                                                            [_fields:protected] => Array
+                                                                                (
+                                                                                    [State] => Array
+                                                                                        (
+                                                                                            [FieldValue] => Completed
+                                                                                            [FieldType] => string
+                                                                                        )
+
+                                                                                    [LastUpdateTimestamp] => Array
+                                                                                        (
+                                                                                            [FieldValue] => 2014-10-17T08:46:45.761Z
+                                                                                            [FieldType] => string
+                                                                                        )
+
+                                                                                    [ReasonCode] => Array
+                                                                                        (
+                                                                                            [FieldValue] => 
+                                                                                            [FieldType] => string
+                                                                                        )
+
+                                                                                    [ReasonDescription] => Array
+                                                                                        (
+                                                                                            [FieldValue] => 
+                                                                                            [FieldType] => string
+                                                                                        )
+
+                                                                                )
+
+                                                                        )
+
+                                                                    [FieldType] => OffAmazonPaymentsService_Model_Status
+                                                                )
+
+                                                            [SoftDescriptor] => Array
+                                                                (
+                                                                    [FieldValue] => AMZ*alkimalkim
+                                                                    [FieldType] => string
+                                                                )
+
+                                                            [ProviderCreditSummaryList] => Array
+                                                                (
+                                                                    [FieldValue] => 
+                                                                    [FieldType] => OffAmazonPaymentsService_Model_ProviderCreditSummaryList
+                                                                )
+
+                                                        )
+
+                                                )
+
+                                            [FieldType] => OffAmazonPaymentsService_Model_CaptureDetails
+                                        )
+
+                                )
+
+                        )
+
+                    [FieldType] => OffAmazonPaymentsService_Model_CaptureResult
+                )
+
+            [ResponseMetadata] => Array
+                (
+                    [FieldValue] => OffAmazonPaymentsService_Model_ResponseMetadata Object
+                        (
+                            [_fields:protected] => Array
+                                (
+                                    [RequestId] => Array
+                                        (
+                                            [FieldValue] => e3fee437-7ba8-4c92-adf2-e7abee2508f6
+                                            [FieldType] => string
+                                        )
+
+                                )
+
+                        )
+
+                    [FieldType] => OffAmazonPaymentsService_Model_ResponseMetadata
+                )
+
+        )
+
+)

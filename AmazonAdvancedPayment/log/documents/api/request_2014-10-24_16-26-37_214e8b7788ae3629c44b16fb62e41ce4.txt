@@ -1,0 +1,68 @@
+OffAmazonPaymentsService_Model_RefundRequest Object
+(
+    [_fields:protected] => Array
+        (
+            [SellerId] => Array
+                (
+                    [FieldValue] => AYJ786YBX3WE4
+                    [FieldType] => string
+                )
+
+            [AmazonCaptureId] => Array
+                (
+                    [FieldValue] => S02-3791659-1028704-C051261
+                    [FieldType] => string
+                )
+
+            [RefundReferenceId] => Array
+                (
+                    [FieldValue] => S02-3791659-1028704-r01
+                    [FieldType] => string
+                )
+
+            [RefundAmount] => Array
+                (
+                    [FieldValue] => OffAmazonPaymentsService_Model_Price Object
+                        (
+                            [_fields:protected] => Array
+                                (
+                                    [Amount] => Array
+                                        (
+                                            [FieldValue] => 5.78
+                                            [FieldType] => string
+                                        )
+
+                                    [CurrencyCode] => Array
+                                        (
+                                            [FieldValue] => EUR
+                                            [FieldType] => string
+                                        )
+
+                                )
+
+                        )
+
+                    [FieldType] => OffAmazonPaymentsService_Model_Price
+                )
+
+            [SellerRefundNote] => Array
+                (
+                    [FieldValue] => 
+                    [FieldType] => string
+                )
+
+            [SoftDescriptor] => Array
+                (
+                    [FieldValue] => 
+                    [FieldType] => string
+                )
+
+            [ProviderCreditReversalList] => Array
+                (
+                    [FieldValue] => 
+                    [FieldType] => OffAmazonPaymentsService_Model_ProviderCreditReversalList
+                )
+
+        )
+
+)

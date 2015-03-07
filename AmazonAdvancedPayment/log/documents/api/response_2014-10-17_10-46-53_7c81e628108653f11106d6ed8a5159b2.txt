@@ -1,0 +1,192 @@
+OffAmazonPaymentsService_Model_RefundResponse Object
+(
+    [_responseHeaderMetadata:private] => OffAmazonPaymentsService_Model_ResponseHeaderMetadata Object
+        (
+            [metadata:private] => Array
+                (
+                    [x-mws-request-id] => 41eb67a3-3b78-4054-a1fd-eaabb11e3469
+                    [x-mws-response-context] => ZtxrpM8bE3RpKsc7hvKsX1W+6wHHRkzQ0OeggpSjfx5c6G3IhdSjuH0P7Inrd4akVVFpTulcxTc=
+                    [x-mws-timestamp] => 2014-10-17T08:46:52.456Z
+                )
+
+        )
+
+    [_fields:protected] => Array
+        (
+            [RefundResult] => Array
+                (
+                    [FieldValue] => OffAmazonPaymentsService_Model_RefundResult Object
+                        (
+                            [_fields:protected] => Array
+                                (
+                                    [RefundDetails] => Array
+                                        (
+                                            [FieldValue] => OffAmazonPaymentsService_Model_RefundDetails Object
+                                                (
+                                                    [_fields:protected] => Array
+                                                        (
+                                                            [AmazonRefundId] => Array
+                                                                (
+                                                                    [FieldValue] => S02-8564986-4935594-R065404
+                                                                    [FieldType] => string
+                                                                )
+
+                                                            [RefundReferenceId] => Array
+                                                                (
+                                                                    [FieldValue] => S02-8564986-4935594-r01
+                                                                    [FieldType] => string
+                                                                )
+
+                                                            [SellerRefundNote] => Array
+                                                                (
+                                                                    [FieldValue] => 
+                                                                    [FieldType] => string
+                                                                )
+
+                                                            [RefundType] => Array
+                                                                (
+                                                                    [FieldValue] => SellerInitiated
+                                                                    [FieldType] => string
+                                                                )
+
+                                                            [RefundAmount] => Array
+                                                                (
+                                                                    [FieldValue] => OffAmazonPaymentsService_Model_Price Object
+                                                                        (
+                                                                            [_fields:protected] => Array
+                                                                                (
+                                                                                    [Amount] => Array
+                                                                                        (
+                                                                                            [FieldValue] => 20.33
+                                                                                            [FieldType] => string
+                                                                                        )
+
+                                                                                    [CurrencyCode] => Array
+                                                                                        (
+                                                                                            [FieldValue] => EUR
+                                                                                            [FieldType] => string
+                                                                                        )
+
+                                                                                )
+
+                                                                        )
+
+                                                                    [FieldType] => OffAmazonPaymentsService_Model_Price
+                                                                )
+
+                                                            [FeeRefunded] => Array
+                                                                (
+                                                                    [FieldValue] => OffAmazonPaymentsService_Model_Price Object
+                                                                        (
+                                                                            [_fields:protected] => Array
+                                                                                (
+                                                                                    [Amount] => Array
+                                                                                        (
+                                                                                            [FieldValue] => 0.00
+                                                                                            [FieldType] => string
+                                                                                        )
+
+                                                                                    [CurrencyCode] => Array
+                                                                                        (
+                                                                                            [FieldValue] => EUR
+                                                                                            [FieldType] => string
+                                                                                        )
+
+                                                                                )
+
+                                                                        )
+
+                                                                    [FieldType] => OffAmazonPaymentsService_Model_Price
+                                                                )
+
+                                                            [CreationTimestamp] => Array
+                                                                (
+                                                                    [FieldValue] => 2014-10-17T08:46:52.701Z
+                                                                    [FieldType] => string
+                                                                )
+
+                                                            [RefundStatus] => Array
+                                                                (
+                                                                    [FieldValue] => OffAmazonPaymentsService_Model_Status Object
+                                                                        (
+                                                                            [_fields:protected] => Array
+                                                                                (
+                                                                                    [State] => Array
+                                                                                        (
+                                                                                            [FieldValue] => Pending
+                                                                                            [FieldType] => string
+                                                                                        )
+
+                                                                                    [LastUpdateTimestamp] => Array
+                                                                                        (
+                                                                                            [FieldValue] => 2014-10-17T08:46:52.701Z
+                                                                                            [FieldType] => string
+                                                                                        )
+
+                                                                                    [ReasonCode] => Array
+                                                                                        (
+                                                                                            [FieldValue] => 
+                                                                                            [FieldType] => string
+                                                                                        )
+
+                                                                                    [ReasonDescription] => Array
+                                                                                        (
+                                                                                            [FieldValue] => 
+                                                                                            [FieldType] => string
+                                                                                        )
+
+                                                                                )
+
+                                                                        )
+
+                                                                    [FieldType] => OffAmazonPaymentsService_Model_Status
+                                                                )
+
+                                                            [SoftDescriptor] => Array
+                                                                (
+                                                                    [FieldValue] => AMZ*alkimalkim
+                                                                    [FieldType] => string
+                                                                )
+
+                                                            [ProviderCreditReversalSummaryList] => Array
+                                                                (
+                                                                    [FieldValue] => 
+                                                                    [FieldType] => OffAmazonPaymentsService_Model_ProviderCreditReversalSummaryList
+                                                                )
+
+                                                        )
+
+                                                )
+
+                                            [FieldType] => OffAmazonPaymentsService_Model_RefundDetails
+                                        )
+
+                                )
+
+                        )
+
+                    [FieldType] => OffAmazonPaymentsService_Model_RefundResult
+                )
+
+            [ResponseMetadata] => Array
+                (
+                    [FieldValue] => OffAmazonPaymentsService_Model_ResponseMetadata Object
+                        (
+                            [_fields:protected] => Array
+                                (
+                                    [RequestId] => Array
+                                        (
+                                            [FieldValue] => 41eb67a3-3b78-4054-a1fd-eaabb11e3469
+                                            [FieldType] => string
+                                        )
+
+                                )
+
+                        )
+
+                    [FieldType] => OffAmazonPaymentsService_Model_ResponseMetadata
+                )
+
+        )
+
+)

@@ -482,3 +482,7 @@ define('PAYPAL_EXP_VERS','12.90');
 define('PAYPAL_ADRESSE','The country in your PayPal dispatch address is not registered in our shop.<br />Please contact us.<br />Thanks for you understanding.<br />From PayPal received country: ');
 // 17.09.11
 define('PAYPAL_AMMOUNT_NULL','The order sum which can be expected (without dispatch) is directly 0.<br />Thus PayPal express is not available.<br />Please select another payment means.<br />Thanks for your understanding.<br />');
+
+# BOM AMAZON PAYMENTS POWERED BY ALKIM MEDIA
+include_once('lang/english/amazon.php');
+# EOM AMAZON PAYMENTS POWERED BY ALKIM MEDIA

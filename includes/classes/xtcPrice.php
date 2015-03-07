@@ -60,10 +60,15 @@ class xtcPrice {
       		$tax_address = xtc_db_fetch_array($tax_address_query);
 			$this->TAX[$zones_data['class']]=xtc_get_tax_rate($zones_data['class'],$tax_address['entry_country_id'], $tax_address['entry_zone_id']);				
 			} else {
-			$this->TAX[$zones_data['class']]=xtc_get_tax_rate($zones_data['class']);		
-			}
-			
-			
+				# BOM AMAZON PAYMENTS POWERED BY ALKIM MEDIA
+				if (isset($_SESSION['AMZ_COUNTRY_ID']) && isset($_SESSION['AMZ_ZONE_ID'])) {
+					$tax_address = array('entry_country_id' => $_SESSION['AMZ_COUNTRY_ID'], 'entry_zone_id' => $_SESSION['AMZ_ZONE_ID']);
+					$this->TAX[$zones_data['class']]=xtc_get_tax_rate($zones_data['class'],$tax_address['entry_country_id'], $tax_address['entry_zone_id']);
+				} else {
+					$this->TAX[$zones_data['class']]=xtc_get_tax_rate($zones_data['class']);
+				}
+				# EOM AMAZON PAYMENTS POWERED BY ALKIM MEDIA
+            }
 		}
 				
 	}

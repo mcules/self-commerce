@@ -1,0 +1,334 @@
+OffAmazonPaymentsService_Model_AuthorizeResponse Object
+(
+    [_responseHeaderMetadata:private] => OffAmazonPaymentsService_Model_ResponseHeaderMetadata Object
+        (
+            [metadata:private] => Array
+                (
+                    [x-mws-request-id] => c478bc88-aef9-41e9-a08d-2acf2092fb87
+                    [x-mws-response-context] => Vxp0xFfZG+j4nkod9uVRGhbUdsNhwTOs5FehYBE/S3JtB+sKBEQMV/jVq/klHPRS7UAjx8SFGks=
+                    [x-mws-timestamp] => 2014-10-23T12:16:26.495Z
+                )
+
+        )
+
+    [_fields:protected] => Array
+        (
+            [AuthorizeResult] => Array
+                (
+                    [FieldValue] => OffAmazonPaymentsService_Model_AuthorizeResult Object
+                        (
+                            [_fields:protected] => Array
+                                (
+                                    [AuthorizationDetails] => Array
+                                        (
+                                            [FieldValue] => OffAmazonPaymentsService_Model_AuthorizationDetails Object
+                                                (
+                                                    [_fields:protected] => Array
+                                                        (
+                                                            [AmazonAuthorizationId] => Array
+                                                                (
+                                                                    [FieldValue] => S02-7694166-9711839-A048828
+                                                                    [FieldType] => string
+                                                                )
+
+                                                            [AuthorizationReferenceId] => Array
+                                                                (
+                                                                    [FieldValue] => S02-7694166-9711839-a02
+                                                                    [FieldType] => string
+                                                                )
+
+                                                            [AuthorizationBillingAddress] => Array
+                                                                (
+                                                                    [FieldValue] => OffAmazonPaymentsService_Model_Address Object
+                                                                        (
+                                                                            [_fields:protected] => Array
+                                                                                (
+                                                                                    [Name] => Array
+                                                                                        (
+                                                                                            [FieldValue] => Liam Barker
+                                                                                            [FieldType] => string
+                                                                                        )
+
+                                                                                    [AddressLine1] => Array
+                                                                                        (
+                                                                                            [FieldValue] => 
+                                                                                            [FieldType] => string
+                                                                                        )
+
+                                                                                    [AddressLine2] => Array
+                                                                                        (
+                                                                                            [FieldValue] => Meininger Strasse 58
+                                                                                            [FieldType] => string
+                                                                                        )
+
+                                                                                    [AddressLine3] => Array
+                                                                                        (
+                                                                                            [FieldValue] => 
+                                                                                            [FieldType] => string
+                                                                                        )
+
+                                                                                    [City] => Array
+                                                                                        (
+                                                                                            [FieldValue] => Neunkirchen
+                                                                                            [FieldType] => string
+                                                                                        )
+
+                                                                                    [County] => Array
+                                                                                        (
+                                                                                            [FieldValue] => 
+                                                                                            [FieldType] => string
+                                                                                        )
+
+                                                                                    [District] => Array
+                                                                                        (
+                                                                                            [FieldValue] => 
+                                                                                            [FieldType] => string
+                                                                                        )
+
+                                                                                    [StateOrRegion] => Array
+                                                                                        (
+                                                                                            [FieldValue] => 
+                                                                                            [FieldType] => string
+                                                                                        )
+
+                                                                                    [PostalCode] => Array
+                                                                                        (
+                                                                                            [FieldValue] => 66538
+                                                                                            [FieldType] => string
+                                                                                        )
+
+                                                                                    [CountryCode] => Array
+                                                                                        (
+                                                                                            [FieldValue] => DE
+                                                                                            [FieldType] => string
+                                                                                        )
+
+                                                                                    [Phone] => Array
+                                                                                        (
+                                                                                            [FieldValue] => 
+                                                                                            [FieldType] => string
+                                                                                        )
+
+                                                                                )
+
+                                                                        )
+
+                                                                    [FieldType] => OffAmazonPaymentsService_Model_Address
+                                                                )
+
+                                                            [SellerAuthorizationNote] => Array
+                                                                (
+                                                                    [FieldValue] => 
+                                                                    [FieldType] => string
+                                                                )
+
+                                                            [AuthorizationAmount] => Array
+                                                                (
+                                                                    [FieldValue] => OffAmazonPaymentsService_Model_Price Object
+                                                                        (
+                                                                            [_fields:protected] => Array
+                                                                                (
+                                                                                    [Amount] => Array
+                                                                                        (
+                                                                                            [FieldValue] => 655.40
+                                                                                            [FieldType] => string
+                                                                                        )
+
+                                                                                    [CurrencyCode] => Array
+                                                                                        (
+                                                                                            [FieldValue] => EUR
+                                                                                            [FieldType] => string
+                                                                                        )
+
+                                                                                )
+
+                                                                        )
+
+                                                                    [FieldType] => OffAmazonPaymentsService_Model_Price
+                                                                )
+
+                                                            [CapturedAmount] => Array
+                                                                (
+                                                                    [FieldValue] => OffAmazonPaymentsService_Model_Price Object
+                                                                        (
+                                                                            [_fields:protected] => Array
+                                                                                (
+                                                                                    [Amount] => Array
+                                                                                        (
+                                                                                            [FieldValue] => 0
+                                                                                            [FieldType] => string
+                                                                                        )
+
+                                                                                    [CurrencyCode] => Array
+                                                                                        (
+                                                                                            [FieldValue] => EUR
+                                                                                            [FieldType] => string
+                                                                                        )
+
+                                                                                )
+
+                                                                        )
+
+                                                                    [FieldType] => OffAmazonPaymentsService_Model_Price
+                                                                )
+
+                                                            [AuthorizationFee] => Array
+                                                                (
+                                                                    [FieldValue] => OffAmazonPaymentsService_Model_Price Object
+                                                                        (
+                                                                            [_fields:protected] => Array
+                                                                                (
+                                                                                    [Amount] => Array
+                                                                                        (
+                                                                                            [FieldValue] => 0.00
+                                                                                            [FieldType] => string
+                                                                                        )
+
+                                                                                    [CurrencyCode] => Array
+                                                                                        (
+                                                                                            [FieldValue] => EUR
+                                                                                            [FieldType] => string
+                                                                                        )
+
+                                                                                )
+
+                                                                        )
+
+                                                                    [FieldType] => OffAmazonPaymentsService_Model_Price
+                                                                )
+
+                                                            [IdList] => Array
+                                                                (
+                                                                    [FieldValue] => OffAmazonPaymentsService_Model_IdList Object
+                                                                        (
+                                                                            [_fields:protected] => Array
+                                                                                (
+                                                                                    [member] => Array
+                                                                                        (
+                                                                                            [FieldValue] => Array
+                                                                                                (
+                                                                                                )
+
+                                                                                            [FieldType] => Array
+                                                                                                (
+                                                                                                    [0] => string
+                                                                                                )
+
+                                                                                        )
+
+                                                                                )
+
+                                                                        )
+
+                                                                    [FieldType] => OffAmazonPaymentsService_Model_IdList
+                                                                )
+
+                                                            [CreationTimestamp] => Array
+                                                                (
+                                                                    [FieldValue] => 2014-10-23T12:16:26.724Z
+                                                                    [FieldType] => string
+                                                                )
+
+                                                            [ExpirationTimestamp] => Array
+                                                                (
+                                                                    [FieldValue] => 2014-11-22T12:16:26.724Z
+                                                                    [FieldType] => string
+                                                                )
+
+                                                            [AuthorizationStatus] => Array
+                                                                (
+                                                                    [FieldValue] => OffAmazonPaymentsService_Model_Status Object
+                                                                        (
+                                                                            [_fields:protected] => Array
+                                                                                (
+                                                                                    [State] => Array
+                                                                                        (
+                                                                                            [FieldValue] => Open
+                                                                                            [FieldType] => string
+                                                                                        )
+
+                                                                                    [LastUpdateTimestamp] => Array
+                                                                                        (
+                                                                                            [FieldValue] => 2014-10-23T12:16:26.724Z
+                                                                                            [FieldType] => string
+                                                                                        )
+
+                                                                                    [ReasonCode] => Array
+                                                                                        (
+                                                                                            [FieldValue] => 
+                                                                                            [FieldType] => string
+                                                                                        )
+
+                                                                                    [ReasonDescription] => Array
+                                                                                        (
+                                                                                            [FieldValue] => 
+                                                                                            [FieldType] => string
+                                                                                        )
+
+                                                                                )
+
+                                                                        )
+
+                                                                    [FieldType] => OffAmazonPaymentsService_Model_Status
+                                                                )
+
+                                                            [OrderItemCategories] => Array
+                                                                (
+                                                                    [FieldValue] => 
+                                                                    [FieldType] => OffAmazonPaymentsService_Model_OrderItemCategories
+                                                                )
+
+                                                            [CaptureNow] => Array
+                                                                (
+                                                                    [FieldValue] => false
+                                                                    [FieldType] => bool
+                                                                )
+
+                                                            [SoftDescriptor] => Array
+                                                                (
+                                                                    [FieldValue] => 
+                                                                    [FieldType] => string
+                                                                )
+
+                                                            [AddressVerificationCode] => Array
+                                                                (
+                                                                    [FieldValue] => 
+                                                                    [FieldType] => string
+                                                                )
+
+                                                        )
+
+                                                )
+
+                                            [FieldType] => OffAmazonPaymentsService_Model_AuthorizationDetails
+                                        )
+
+                                )
+
+                        )
+
+                    [FieldType] => OffAmazonPaymentsService_Model_AuthorizeResult
+                )
+
+            [ResponseMetadata] => Array
+                (
+                    [FieldValue] => OffAmazonPaymentsService_Model_ResponseMetadata Object
+                        (
+                            [_fields:protected] => Array
+                                (
+                                    [RequestId] => Array
+                                        (
+                                            [FieldValue] => c478bc88-aef9-41e9-a08d-2acf2092fb87
+                                            [FieldType] => string
+                                        )
+
+                                )
+
+                        )
+
+                    [FieldType] => OffAmazonPaymentsService_Model_ResponseMetadata
+                )
+
+        )
+
+)

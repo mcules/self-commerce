@@ -1,0 +1,12 @@
+stdClass Object
+(
+    [Type] => Notification
+    [MessageId] => 745d1030-b30e-5486-961d-5cf28108e1a7
+    [TopicArn] => arn:aws:sns:eu-west-1:291180941288:A1G8446IYHA4MRAYJ786YBX3WE4
+    [Message] => {"NotificationReferenceId":"7d17a1d5-ed64-45b1-8806-aa0407ad4361","MarketplaceID":"136311","NotificationType":"OrderReferenceNotification","SellerId":"AYJ786YBX3WE4","ReleaseEnvironment":"Sandbox","Version":"2013-01-01","NotificationData":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><OrderReferenceNotification xmlns=\"https://mws.amazonservices.com/ipn/OffAmazonPayments/2013-01-01\">\n    <OrderReference>\n        <AmazonOrderReferenceId>S02-8943307-0977769<\/AmazonOrderReferenceId>\n        <OrderTotal>\n            <Amount>103.24<\/Amount>\n            <CurrencyCode>EUR<\/CurrencyCode>\n        <\/OrderTotal>\n        <SellerOrderAttributes>\n            <SellerId>AYJ786YBX3WE4<\/SellerId>\n            <SellerOrderId>7<\/SellerOrderId>\n            <OrderItemCategories/>\n        <\/SellerOrderAttributes>\n        <OrderReferenceStatus>\n            <State>Suspended<\/State>\n            <LastUpdateTimestamp>2014-10-22T22:29:25.739Z<\/LastUpdateTimestamp>\n            <ReasonCode>InvalidPaymentMethod<\/ReasonCode>\n        <\/OrderReferenceStatus>\n        <CreationTimestamp>2014-10-22T22:28:39.280Z<\/CreationTimestamp>\n        <ExpirationTimestamp>2015-04-20T22:28:39.280Z<\/ExpirationTimestamp>\n    <\/OrderReference>\n<\/OrderReferenceNotification>","Timestamp":"2014-10-22T10:29:26Z"}
+    [Timestamp] => 2014-10-22T22:29:26.550Z
+    [SignatureVersion] => 1
+    [Signature] => VjBU81RQWSdey1gP3ahBiObNYB8WKTIcS7Kvi6DFHkYQeHmw6LfXWApvvJ5m0iM333+5hnrMh5ywQVUz6uNhPAF5+vv2noGeXwvByc16g+4ckCRXPJvU31Pmlm5B8i7UqtCiE2i/uMJFnsdFbiurFyj2/u8X+g+918pUf1584VUOQoV8szIu9s/1T/ej4wWJ85H5XcO0OTP27rwOXaJZpj2MzfzDsEsyWxyJRbwWf+AtCmcQIROXf7soSOyD+/NT/PfS0cfHILt8ge5Z85mNSeRXaGY3eH3UFOWijivflOaQhzCVUKUIfRq3mj8NBRTcLnspCNlPrJ3ByT2rtwDA7g==
+    [SigningCertURL] => https://sns.eu-west-1.amazonaws.com/SimpleNotificationService-d6d679a1d18e95c2f9ffcf11f4f9e198.pem
+    [UnsubscribeURL] => https://sns.eu-west-1.amazonaws.com/?Action=Unsubscribe&SubscriptionArn=arn:aws:sns:eu-west-1:291180941288:A1G8446IYHA4MRAYJ786YBX3WE4:7a7d8df3-43a0-4b4c-9610-604b3483b97d
+)

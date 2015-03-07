@@ -130,6 +130,11 @@ function popupImageWindow(url) {
 // require theme based javascript
 require('templates/'.CURRENT_TEMPLATE.'/javascript/general.js.php');
 
+# BOM AMAZON PAYMENTS POWERED BY ALKIM MEDIA
+// Remove this if you already have included jQuery
+echo '<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>';
+include_once('AmazonAdvancedPayment/javascripts.php');
+# EOM AMAZON PAYMENTS POWERED BY ALKIM MEDIA
 
 if (strstr($PHP_SELF, FILENAME_CHECKOUT_PAYMENT)) {
 	echo $payment_modules->javascript_validation();

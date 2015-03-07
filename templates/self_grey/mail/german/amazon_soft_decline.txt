@@ -1,0 +1,9 @@
+
+Sehr geehrter Kunde,
+
+Vielen Dank für Ihre Bestellung{if $ORDER_NR} Nr. {$ORDER_NR}{/if}{if $ORDER_DATE} vom {$ORDER_DATE}{/if}.
+Leider wurde Ihre Bezahlung von Amazon Payments abgelehnt.
+Sie können unter https://payments.amazon.de/overview die Zahlungsinformationen für Ihre Bestellung aktualisieren, indem Sie eine andere Zahlungsweise auswählen oder eine neue Zahlungsweise eingeben.
+Mit der neuen Zahlungsweise wird dann ein erneuter Zahlungsversuch vorgenommen und Sie erhalten eine Bestätigungsemail.
+
+[SIGNATUR]

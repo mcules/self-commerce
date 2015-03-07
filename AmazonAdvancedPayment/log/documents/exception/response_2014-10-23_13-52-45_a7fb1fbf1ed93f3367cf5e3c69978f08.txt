@@ -1,0 +1,253 @@
+OffAmazonPaymentsService_Exception Object
+(
+    [_message:private] => 2 validation errors detected: Value null at 'amazonOrderReferenceId' failed to satisfy constraint: Member must not be null; Value null at 'authorizationAmount.amount' failed to satisfy constraint: Member must not be null
+    [_statusCode:private] => 400
+    [_errorCode:private] => InvalidParameterValue
+    [_errorType:private] => Sender
+    [_requestId:private] => 3e896916-782c-47d9-80dd-a48a52eb9410
+    [_xml:private] => <ErrorResponse xmlns="http://mws.amazonservices.com/schema/OffAmazonPayments/2013-01-01">
+  <Error>
+    <Type>Sender</Type>
+    <Code>InvalidParameterValue</Code>
+    <Message>2 validation errors detected: Value null at 'amazonOrderReferenceId' failed to satisfy constraint: Member must not be null; Value null at 'authorizationAmount.amount' failed to satisfy constraint: Member must not be null</Message>
+  </Error>
+  <RequestId>3e896916-782c-47d9-80dd-a48a52eb9410</RequestId>
+</ErrorResponse>
+
+    [_responseHeaderMetadata:private] => OffAmazonPaymentsService_Model_ResponseHeaderMetadata Object
+        (
+            [metadata:private] => Array
+                (
+                    [x-mws-request-id] => 3e896916-782c-47d9-80dd-a48a52eb9410
+                    [x-mws-response-context] => Jul4i2mjPBlDAeT5PTC6RUa/vjZi8UMVh+9Fn8D58kiBsBI4As/bbXhuRJFClOnFPtu7Sy1pvtw=
+                    [x-mws-timestamp] => 2014-10-23T11:52:45.734Z
+                )
+
+        )
+
+    [message:protected] => 2 validation errors detected: Value null at 'amazonOrderReferenceId' failed to satisfy constraint: Member must not be null; Value null at 'authorizationAmount.amount' failed to satisfy constraint: Member must not be null
+    [string:private] => 
+    [code:protected] => 0
+    [file:protected] => /www/htdocs/w006bbb4/alkimmedia/shop_neu/AmazonPaymentsShops/APA/2.10/ap2-xtc-lpa/AmazonAdvancedPayment/OffAmazonPaymentsService/Client.php
+    [line:protected] => 912
+    [trace:private] => Array
+        (
+            [0] => Array
+                (
+                    [file] => /www/htdocs/w006bbb4/alkimmedia/shop_neu/AmazonPaymentsShops/APA/2.10/ap2-xtc-lpa/AmazonAdvancedPayment/OffAmazonPaymentsService/Client.php
+                    [line] => 860
+                    [function] => _reportAnyErrors
+                    [class] => OffAmazonPaymentsService_Client
+                    [type] => ->
+                    [args] => Array
+                        (
+                            [0] => <ErrorResponse xmlns="http://mws.amazonservices.com/schema/OffAmazonPayments/2013-01-01">
+  <Error>
+    <Type>Sender</Type>
+    <Code>InvalidParameterValue</Code>
+    <Message>2 validation errors detected: Value null at 'amazonOrderReferenceId' failed to satisfy constraint: Member must not be null; Value null at 'authorizationAmount.amount' failed to satisfy constraint: Member must not be null</Message>
+  </Error>
+  <RequestId>3e896916-782c-47d9-80dd-a48a52eb9410</RequestId>
+</ErrorResponse>
+
+                            [1] => 400
+                            [2] => OffAmazonPaymentsService_Model_ResponseHeaderMetadata Object
+                                (
+                                    [metadata:private] => Array
+                                        (
+                                            [x-mws-request-id] => 3e896916-782c-47d9-80dd-a48a52eb9410
+                                            [x-mws-response-context] => Jul4i2mjPBlDAeT5PTC6RUa/vjZi8UMVh+9Fn8D58kiBsBI4As/bbXhuRJFClOnFPtu7Sy1pvtw=
+                                            [x-mws-timestamp] => 2014-10-23T11:52:45.734Z
+                                        )
+
+                                )
+
+                        )
+
+                )
+
+            [1] => Array
+                (
+                    [file] => /www/htdocs/w006bbb4/alkimmedia/shop_neu/AmazonPaymentsShops/APA/2.10/ap2-xtc-lpa/AmazonAdvancedPayment/OffAmazonPaymentsService/Client.php
+                    [line] => 508
+                    [function] => _invoke
+                    [class] => OffAmazonPaymentsService_Client
+                    [type] => ->
+                    [args] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [Action] => Authorize
+                                    [SellerId] => AYJ786YBX3WE4
+                                    [AuthorizationReferenceId] => -a01
+                                    [AuthorizationAmount.CurrencyCode] => EUR
+                                    [SellerAuthorizationNote] => {"SandboxSimulation": {"State":"Declined", "ReasonCode":"InvalidPaymentMethod", "PaymentMethodUpdateTimeInMins":2}}
+                                    [TransactionTimeout] => 0
+                                    [SoftDescriptor] => 
+                                )
+
+                        )
+
+                )
+
+            [2] => Array
+                (
+                    [file] => /www/htdocs/w006bbb4/alkimmedia/shop_neu/AmazonPaymentsShops/APA/2.10/ap2-xtc-lpa/AmazonAdvancedPayment/AlkimAmazonClasses/AlkimAmazonTransactions.class.php
+                    [line] => 42
+                    [function] => authorize
+                    [class] => OffAmazonPaymentsService_Client
+                    [type] => ->
+                    [args] => Array
+                        (
+                            [0] => OffAmazonPaymentsService_Model_AuthorizeRequest Object
+                                (
+                                    [_fields:protected] => Array
+                                        (
+                                            [SellerId] => Array
+                                                (
+                                                    [FieldValue] => AYJ786YBX3WE4
+                                                    [FieldType] => string
+                                                )
+
+                                            [AmazonOrderReferenceId] => Array
+                                                (
+                                                    [FieldValue] => 
+                                                    [FieldType] => string
+                                                )
+
+                                            [AuthorizationReferenceId] => Array
+                                                (
+                                                    [FieldValue] => -a01
+                                                    [FieldType] => string
+                                                )
+
+                                            [AuthorizationAmount] => Array
+                                                (
+                                                    [FieldValue] => OffAmazonPaymentsService_Model_Price Object
+                                                        (
+                                                            [_fields:protected] => Array
+                                                                (
+                                                                    [Amount] => Array
+                                                                        (
+                                                                            [FieldValue] => 
+                                                                            [FieldType] => string
+                                                                        )
+
+                                                                    [CurrencyCode] => Array
+                                                                        (
+                                                                            [FieldValue] => EUR
+                                                                            [FieldType] => string
+                                                                        )
+
+                                                                )
+
+                                                        )
+
+                                                    [FieldType] => OffAmazonPaymentsService_Model_Price
+                                                )
+
+                                            [SellerAuthorizationNote] => Array
+                                                (
+                                                    [FieldValue] => {"SandboxSimulation": {"State":"Declined", "ReasonCode":"InvalidPaymentMethod", "PaymentMethodUpdateTimeInMins":2}}
+                                                    [FieldType] => string
+                                                )
+
+                                            [OrderItemCategories] => Array
+                                                (
+                                                    [FieldValue] => 
+                                                    [FieldType] => OffAmazonPaymentsService_Model_OrderItemCategories
+                                                )
+
+                                            [TransactionTimeout] => Array
+                                                (
+                                                    [FieldValue] => 0
+                                                    [FieldType] => int
+                                                )
+
+                                            [CaptureNow] => Array
+                                                (
+                                                    [FieldValue] => 
+                                                    [FieldType] => bool
+                                                )
+
+                                            [SoftDescriptor] => Array
+                                                (
+                                                    [FieldValue] => 
+                                                    [FieldType] => string
+                                                )
+
+                                            [ProviderCreditList] => Array
+                                                (
+                                                    [FieldValue] => 
+                                                    [FieldType] => OffAmazonPaymentsService_Model_ProviderCreditList
+                                                )
+
+                                        )
+
+                                )
+
+                        )
+
+                )
+
+            [3] => Array
+                (
+                    [file] => /www/htdocs/w006bbb4/alkimmedia/shop_neu/AmazonPaymentsShops/APA/2.10/ap2-xtc-lpa/AmazonAdvancedPayment/AlkimAmazonClasses/AlkimAmazonTransactions.class.php
+                    [line] => 403
+                    [function] => authorize
+                    [class] => AlkimAmazonTransactions
+                    [type] => ::
+                    [args] => Array
+                        (
+                            [0] => 
+                            [1] => 
+                            [2] => 0
+                            [3] => 
+                        )
+
+                )
+
+            [4] => Array
+                (
+                    [file] => /www/htdocs/w006bbb4/alkimmedia/shop_neu/AmazonPaymentsShops/APA/2.10/ap2-xtc-lpa/includes/modules/payment/am_apa.php
+                    [line] => 131
+                    [function] => fastAuth
+                    [class] => AlkimAmazonTransactions
+                    [type] => ::
+                    [args] => Array
+                        (
+                            [0] => 
+                            [1] => 
+                        )
+
+                )
+
+            [5] => Array
+                (
+                    [file] => /www/htdocs/w006bbb4/alkimmedia/shop_neu/AmazonPaymentsShops/APA/2.10/ap2-xtc-lpa/includes/classes/payment.php
+                    [line] => 232
+                    [function] => before_process
+                    [class] => am_apa
+                    [type] => ->
+                    [args] => Array
+                        (
+                        )
+
+                )
+
+            [6] => Array
+                (
+                    [file] => /www/htdocs/w006bbb4/alkimmedia/shop_neu/AmazonPaymentsShops/APA/2.10/ap2-xtc-lpa/checkout_process.php
+                    [line] => 80
+                    [function] => before_process
+                    [class] => payment
+                    [type] => ->
+                    [args] => Array
+                        (
+                        )
+
+                )
+
+        )
+
+)

@@ -1,0 +1,120 @@
+{config_load file="$language/amazon.conf" section="checkout_amazon"}
+{config_load file="$language/lang_$language.conf" section="checkout_payment"}
+
+
+<div id="checkout_shipping" class="checkout">
+
+
+{$FORM_ACTION}
+
+		<h1>
+			{#heading_checkout#}
+		</h1>
+{if $ERROR}
+    <div class="warning">{$ERROR}</div>
+{/if}
+
+
+{if $smarty.const.AMZ_AGB_DISPLAY_MODE == 'Long'}
+	{if $WITHDRAWAL}
+	    <div id="agbWidget">
+               <div class="amzBox">
+                    
+
+
+                                <div class="rm_slide_header cba_header">{#withdrawal_text#}
+                                    <span style="font-size: 10px; display: none; " class="open">{#open_text#}</span>
+                                    <span style="font-size: 10px; display: inline; " class="close">{#close_text#}</span>
+                                </div>
+
+                                <div class="rm_slide_content" style="">{$WITHDRAWAL}</div>
+
+		                    <div class="accept_box">
+		                        <div class="accept_box_checkbox">{$CHECKBOX_WITHDRAWAL}</div>
+		                        <div class="accept_box_text">{$smarty.const.AMZ_ACCEPT_REVOCATION}</div>
+		                    </div>
+		                    <div style="clear:both; height:0px; line-height:0px;">&nbsp;</div>
+
+	               
+	            </div>
+	    </div>
+	{/if}    
+	<div style="clear:both;"></div>
+	<div class="amzBox">
+	    {if $AGB}
+
+
+                    <div class="rm_slide_header cba_header">{#agb_text#}
+                        <span style="font-size: 10px; display: none; " class="open">{#open_text#}</span>
+                  		<span style="font-size: 10px; display: inline; " class="close">{#close_text#}</span>
+              		</div>
+
+
+	                <div class="rm_slide_content" style="">{$AGB}</div>
+
+
+		            <div class="accept_box">
+		                <div class="accept_box_checkbox">{$CHECKBOX_AGB}</div>
+		                <div class="accept_box_text">{#text_accept_agb#}</div>
+		            </div>
+	    {/if}
+	    <div style="clear:both; height:0px; line-height:0px;">&nbsp;</div>
+	</div>
+{else}
+    <div class="checkoutAmazonLegalBox">{$AGB_SHORT_TEXT}</div>
+{/if}
+<div style="clear:both;"></div>
+        <div style="margin-bottom:20px;">
+            <div class="amzBox" style="padding:3px 6px 6px 6px;">
+                   <div class="rm_slide_header cba_header_wo_a">{#title_comments#}
+                       <span style="font-size: 10px; display: none; " class="open">{#open_text#}</span>
+                       <span style="font-size: 10px; display: inline; " class="close">{#close_text#}</span>
+                	</div>
+
+                    <div class="rm_slide_content" style="">{$COMMENTS}</div>
+            </div>
+        </div>
+
+
+	<div id="AmazonPartLeft" class="amazonBoxes{$smarty.const.AMZ_TEMPLATE}">
+		{if $NO_SHIPPING != 1}<div id="addressBookWidgetDiv"></div>{/if}
+		<div id="walletWidgetDiv" style="display:none;"></div>
+	</div>
+	<div id="AmazonPartRight" class="amazonCheckoutFinal{$smarty.const.AMZ_TEMPLATE}">
+        {if $NO_SHIPPING != 1}
+        <div class="amzBox">
+            <div class="cba_header_wo_a">{#shipping_text#}</div>
+		    <div id="AmazonShipping"></div>
+	    </div>
+	    {/if}
+
+        <div class="amzBox">
+		    <div class="cba_header_wo_a">{#order_summary#}</div>
+		    <div id="AmazonProducts"></div>
+
+
+		    <div id="AmazonOrderTotals"><input type="hidden" name="cba_select_totals" id="cba_select_totals" value="0" /></div>
+            <div style="clear:both; height:0px; line-height:0px;">&nbsp;</div>
+            <div id="zollhinweis" style="width:100%; display:none;"><br />{$AMZ_ZOLL}</div>
+            <div id="paymenthinweis" style="width:100%; display:none;"><br /><br /><center><strong>{$AMZ_NO_PAYMENT}</strong></center></div>
+
+
+		    <div style="float:right;display:none;" id="loading_image" ><img src="https://images-na.ssl-images-amazon.com/images/G/01/cba/images/global/Loading._V192259297_.gif" style="vertical-align:middle" />{#submitted_text#}</div>
+		    <div style="float:right; width: 45%; text-align:right; display:none;" id="amazon_button" >{$BUTTON_CONTINUE}</div>
+		    <div style="clear:both; height:0px; line-height:0px;">&nbsp;</div>
+        </div>
+	</div>
+	<div  style="clear:both;"></div>
+
+
+    <div style="border:none; margin-top:10px; clear:both">
+		<div style="float:left; width: 45%; text-align:left;">{$BUTTON_BACK}</div>
+
+    <div style="clear:both;"></div>
+	</div>
+
+{$FORM_END}
+
+
+</div>
+

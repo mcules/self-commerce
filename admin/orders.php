@@ -811,6 +811,16 @@ $banktransfer = xtc_db_fetch_array($banktransfer_query);
 ?>
         </table></td>
       </tr>
+      <?php # BOM AMAZON PAYMENTS POWERED BY ALKIM MEDIA ?>
+	<tr>
+		<td>
+			<?php
+			require_once(DIR_FS_CATALOG.'AmazonAdvancedPayment/AlkimAmazonClasses/AlkimAmazonHandler.class.php');
+			echo AlkimAmazonHandler::getAdminSkeleton($_GET['oID']);
+			?>
+		</td>
+	</tr>
+	<?php # EOM AMAZON PAYMENTS POWERED BY ALKIM MEDIA ?> 
       <tr>
         <td><?php echo xtc_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
       </tr>

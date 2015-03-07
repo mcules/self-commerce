@@ -16,10 +16,8 @@
 			<div id="nav_main">
 				<ul>
 					<li {if $curlink='index.php'} 'id="current"'{/if}><a href="{php}echo xtc_href_link('index.php');{/php}"><span>Home</span></a></li>
-					{if $account}
-						{if isset($customer_id)}
-							<li {if $curlink='logoff.php'} 'id="current"'{/if}><a href="{$logoff}"><span>{#link_logoff#}</span></a></li>
-						{/if}
+					{if isset($customer_id)}
+						<li {if $curlink='logoff.php'} 'id="current"'{/if}><a href="{$logoff}"><span>{#link_logoff#}</span></a></li>
 					{/if}
 					{if $account}
 						<li {if $curlink='account.php'} 'id="current"'{/if}><a href="{$account}"><span>{#link_account#}</span></a></li>
