@@ -25,24 +25,26 @@ $(document).ready(function(){
 	});
 	*/
 	$(function() {
+/*
 		$(".cartShipLink").overlay({
 			mask: '#8F8F8F',
-			/*effect: 'apple',*/
 			target: '#overlay_frame',
 			onBeforeLoad: function() {
 				var wrap = this.getOverlay().find(".contentWrap");
 				wrap.load(this.getTrigger().attr("href"));
 			}
 		});
+*/
+/*
 		$(".thickbox").overlay({
 			mask: '#8F8F8F',
-			/*effect: 'apple',*/
 			target: '#overlay_frame',
 			onBeforeLoad: function() {
 				var wrap = this.getOverlay().find(".contentWrap");
 				wrap.load(this.getTrigger().attr("href"));
 			}
 		});
+*/
 	});
 	$("ul.tabbedHeading").tabs("div.tabbedBody > div");
 	$("#addCartJquery").click(function(){

@@ -62,7 +62,8 @@ if($_SESSION["tpl"]=="mobile" && file_exists(DIR_FS_CATALOG."templates/".$_SESSI
 <?php if(TINY_CSS != ''){ ?>
 <link rel="stylesheet" type="text/css" href="<?php echo 'templates/'.CURRENT_TEMPLATE.'/'.TINY_CSS.''; ?>" />
 <?php } ?>
-<script type="text/javascript" src="/includes/javascript/jquery-1.9.1.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<!-- <script type="text/javascript" src="/includes/javascript/jquery-1.9.1.js"></script> -->
 <script type="text/javascript" src="/includes/javascript/jquery-ui.js"></script>
 
 <?php require('templates/'.CURRENT_TEMPLATE.'/css/general.css.php'); ?>
@@ -131,8 +132,6 @@ function popupImageWindow(url) {
 require('templates/'.CURRENT_TEMPLATE.'/javascript/general.js.php');
 
 # BOM AMAZON PAYMENTS POWERED BY ALKIM MEDIA
-// Remove this if you already have included jQuery
-echo '<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>';
 include_once('AmazonAdvancedPayment/javascripts.php');
 # EOM AMAZON PAYMENTS POWERED BY ALKIM MEDIA
 

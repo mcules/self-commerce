@@ -426,7 +426,7 @@ if ($_GET["error"]) {
 }
 
 $smarty->assign('BUTTON_BACK', '<a href="' . FILENAME_SHOPPING_CART . '"><img src="templates/' . CURRENT_TEMPLATE . '/buttons/' . $_SESSION['language'] . '/button_back.gif" title="' . CANCEL . '" alt="' . CANCEL . '"/></a>');
-$smarty->assign('BUTTON_CONTINUE', '<img style="cursor:pointer;" onclick="cba_submit_order()" title="' . IMAGE_BUTTON_CONFIRM_ORDER . '" alt="'.IMAGE_BUTTON_CONFIRM_ORDER.'" src="templates/' . CURRENT_TEMPLATE . '/buttons/' . $_SESSION['language'] . '/button_confirm_order.gif">');
+$smarty->assign('BUTTON_CONTINUE', '<img style="cursor:pointer;" onclick="cba_submit_order()" title="' . IMAGE_BUTTON_CONFIRM_ORDER . '" alt="'.IMAGE_BUTTON_CONFIRM_ORDER.'" src="templates/' . CURRENT_TEMPLATE . '/buttons/' . $_SESSION['language'] . '/button_buy_now.gif">');
 $smarty->assign('FORM_END', '</form>');
 $smarty->assign('language', $_SESSION['language']);
 $smarty->caching = 0;
@@ -434,8 +434,8 @@ $main_content    = $smarty->fetch(CURRENT_TEMPLATE . '/module/checkout_amazon.ht
 $smarty->assign('language', $_SESSION['language']);
 $smarty->assign('main_content', $main_content);
 $smarty->caching = 0;
-if (!defined(RM))
-    $smarty->load_filter('output', 'note');
+if (!defined(RM)) {
+    $smarty->loadFilter('output', 'note');
+}
 $smarty->display(CURRENT_TEMPLATE . '/index.html');
 include('includes/application_bottom.php');
-?>
