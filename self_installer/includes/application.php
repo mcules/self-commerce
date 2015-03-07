@@ -35,6 +35,7 @@ if (!defined('DIR_FS_DOCUMENT_ROOT')) {
 	define('DIR_FS_INSTALLER_PATH', DIR_FS_DOCUMENT_ROOT . $local_install_path);
 }
 define('DIR_FS_INC', DIR_FS_DOCUMENT_ROOT.'/inc/');
+define('DIR_FS_CATALOG', DIR_FS_DOCUMENT_ROOT . '/');
 
 // include
 //require('../includes/functions/validations.php');
