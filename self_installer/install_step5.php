@@ -167,8 +167,8 @@ UL.liste {font-family: Verdana, Arial, Helvetica, san-serif; font-size: 10px; co
                      '  define(\'HTTPS_SERVER\', \'' . $_POST['HTTPS_SERVER'] . '\'); // eg, https://localhost - should not be empty for productive servers' . "\n" .
                      '  define(\'ENABLE_SSL\', ' . (($_POST['ENABLE_SSL'] == 'true') ? 'true' : 'false') . '); // secure webserver for checkout procedure?' . "\n" .
                      '  define(\'DIR_WS_CATALOG\', \'' . $_POST['DIR_WS_CATALOG'] . '\'); // absolute path required' . "\n" .
-                     '  define(\'DIR_FS_DOCUMENT_ROOT\', \'' . $_SERVER['DOCUMENT_ROOT'].$local_install_path  . '\');' . "\n" .
-                     '  define(\'DIR_FS_CATALOG\', \'' . $_SERVER['DOCUMENT_ROOT'].$local_install_path  . '\');' . "\n" .
+                     '  define(\'DIR_FS_DOCUMENT_ROOT\', \'' . DIR_FS_DOCUMENT_ROOT.$local_install_path  . '\');' . "\n" .
+                     '  define(\'DIR_FS_CATALOG\', \'' . DIR_FS_DOCUMENT_ROOT.$local_install_path  . '\');' . "\n" .
                      '  define(\'DIR_WS_IMAGES\', \'images/\');' . "\n" .
                      '  define(\'DIR_WS_ORIGINAL_IMAGES\', DIR_WS_IMAGES .\'product_images/original_images/\');' . "\n" .
                      '  define(\'DIR_WS_THUMBNAIL_IMAGES\', DIR_WS_IMAGES .\'product_images/thumbnail_images/\');' . "\n" .
@@ -221,8 +221,8 @@ UL.liste {font-family: Verdana, Arial, Helvetica, san-serif; font-size: 10px; co
                      '  define(\'HTTPS_SERVER\', \'' . $_POST['HTTPS_SERVER'] . '\'); // eg, https://localhost - should not be empty for productive servers' . "\n" .
                      '  define(\'ENABLE_SSL\', ' . (($_POST['ENABLE_SSL'] == 'true') ? 'true' : 'false') . '); // secure webserver for checkout procedure?' . "\n" .
                      '  define(\'DIR_WS_CATALOG\', \'' . $_POST['DIR_WS_CATALOG'] . '\'); // absolute path required' . "\n" .
-                     '  define(\'DIR_FS_DOCUMENT_ROOT\', \'' . $_SERVER['DOCUMENT_ROOT'].$local_install_path  . '\');' . "\n" .
-                     '  define(\'DIR_FS_CATALOG\', \'' . $_SERVER['DOCUMENT_ROOT'].$local_install_path  . '\');' . "\n" .
+                     '  define(\'DIR_FS_DOCUMENT_ROOT\', \'' . DIR_FS_DOCUMENT_ROOT.$local_install_path  . '\');' . "\n" .
+                     '  define(\'DIR_FS_CATALOG\', \'' . DIR_FS_DOCUMENT_ROOT.$local_install_path  . '\');' . "\n" .
                      '  define(\'DIR_WS_IMAGES\', \'images/\');' . "\n" .
                      '  define(\'DIR_WS_ORIGINAL_IMAGES\', DIR_WS_IMAGES .\'product_images/original_images/\');' . "\n" .
                      '  define(\'DIR_WS_THUMBNAIL_IMAGES\', DIR_WS_IMAGES .\'product_images/thumbnail_images/\');' . "\n" .
@@ -275,11 +275,11 @@ UL.liste {font-family: Verdana, Arial, Helvetica, san-serif; font-size: 10px; co
                      '  define(\'HTTP_CATALOG_SERVER\', \'' . $_POST['HTTP_SERVER'] . '\');' . "\n" .
                      '  define(\'HTTPS_CATALOG_SERVER\', \'' . $_POST['HTTPS_SERVER'] . '\');' . "\n" .
                      '  define(\'ENABLE_SSL_CATALOG\', \'' . (($_POST['ENABLE_SSL'] == 'true') ? 'true' : 'false') . '\'); // secure webserver for catalog module' . "\n" .
-                     '  define(\'DIR_FS_DOCUMENT_ROOT\', \'' . $_SERVER['DOCUMENT_ROOT'].$local_install_path  . '\'); // where the pages are located on the server' . "\n" .
+                     '  define(\'DIR_FS_DOCUMENT_ROOT\', \'' . DIR_FS_DOCUMENT_ROOT.$local_install_path  . '\'); // where the pages are located on the server' . "\n" .
                      '  define(\'DIR_WS_ADMIN\', \'' . $_POST['DIR_WS_CATALOG'] .'admin/' . '\'); // absolute path required' . "\n" .
-                     '  define(\'DIR_FS_ADMIN\', \'' . $_SERVER['DOCUMENT_ROOT'].$local_install_path .'admin/' . '\'); // absolute pate required' . "\n" .
+                     '  define(\'DIR_FS_ADMIN\', \'' . DIR_FS_DOCUMENT_ROOT.$local_install_path .'admin/' . '\'); // absolute pate required' . "\n" .
                      '  define(\'DIR_WS_CATALOG\', \'' . $_POST['DIR_WS_CATALOG'] . '\'); // absolute path required' . "\n" .
-                     '  define(\'DIR_FS_CATALOG\', \'' . $_SERVER['DOCUMENT_ROOT'].$local_install_path  . '\'); // absolute path required' . "\n" .
+                     '  define(\'DIR_FS_CATALOG\', \'' . DIR_FS_DOCUMENT_ROOT.$local_install_path  . '\'); // absolute path required' . "\n" .
                      '  define(\'DIR_WS_IMAGES\', \'images/\');' . "\n" .
                      '  define(\'DIR_FS_CATALOG_IMAGES\', DIR_FS_CATALOG . \'images/\');' . "\n" .
                      '  define(\'DIR_FS_CATALOG_ORIGINAL_IMAGES\', DIR_FS_CATALOG_IMAGES .\'product_images/original_images/\');' . "\n" .
@@ -343,11 +343,11 @@ UL.liste {font-family: Verdana, Arial, Helvetica, san-serif; font-size: 10px; co
                      '  define(\'HTTP_CATALOG_SERVER\', \'' . $_POST['HTTP_SERVER'] . '\');' . "\n" .
                      '  define(\'HTTPS_CATALOG_SERVER\', \'' . $_POST['HTTPS_SERVER'] . '\');' . "\n" .
                      '  define(\'ENABLE_SSL_CATALOG\', \'' . (($_POST['ENABLE_SSL'] == 'true') ? 'true' : 'false') . '\'); // secure webserver for catalog module' . "\n" .
-                     '  define(\'DIR_FS_DOCUMENT_ROOT\', \'' . $_SERVER['DOCUMENT_ROOT'].$local_install_path  . '\'); // where the pages are located on the server' . "\n" .
+                     '  define(\'DIR_FS_DOCUMENT_ROOT\', \'' . DIR_FS_DOCUMENT_ROOT.$local_install_path  . '\'); // where the pages are located on the server' . "\n" .
                      '  define(\'DIR_WS_ADMIN\', \'' . $_POST['DIR_WS_CATALOG'] .'admin/' . '\'); // absolute path required' . "\n" .
-                     '  define(\'DIR_FS_ADMIN\', \'' . $_SERVER['DOCUMENT_ROOT'].$local_install_path .'admin/' . '\'); // absolute pate required' . "\n" .
+                     '  define(\'DIR_FS_ADMIN\', \'' . DIR_FS_DOCUMENT_ROOT.$local_install_path .'admin/' . '\'); // absolute pate required' . "\n" .
                      '  define(\'DIR_WS_CATALOG\', \'' . $_POST['DIR_WS_CATALOG'] . '\'); // absolute path required' . "\n" .
-                     '  define(\'DIR_FS_CATALOG\', \'' . $_SERVER['DOCUMENT_ROOT'].$local_install_path  . '\'); // absolute path required' . "\n" .
+                     '  define(\'DIR_FS_CATALOG\', \'' . DIR_FS_DOCUMENT_ROOT.$local_install_path  . '\'); // absolute path required' . "\n" .
                      '  define(\'DIR_WS_IMAGES\', \'images/\');' . "\n" .
                      '  define(\'DIR_FS_CATALOG_IMAGES\', DIR_FS_CATALOG . \'images/\');' . "\n" .
                      '  define(\'DIR_FS_CATALOG_ORIGINAL_IMAGES\', DIR_FS_CATALOG_IMAGES .\'product_images/original_images/\');' . "\n" .

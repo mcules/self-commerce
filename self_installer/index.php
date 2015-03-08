@@ -120,152 +120,221 @@ h2 {font-family: Verdana, Arial, Helvetica, san-serif; font-size: 10px; font-wei
 				<tr>
 <?php
   // permission check to prevent DAU faults.
-$ErrorFlag = false;
-$message = '';
-$Message2 = '';
-$ok_message = '';
-$block1 = false;
-$block2 = false;
-$block3 = false;
-$block4 = false;
-$block5 = false;
-$block6 = false;
-$block7 = false;
-$block8 = false;
+ $error_flag=false;
+ $message='';
+ $ok_message='';
+$block1=false;
+$block2=false;
+$block3=false;
+$block4=false;
+$block5=false;
+$block6=false;
+$block7=false;
 
-$ToCheck['Description']['Files'] = array(
-	1 => 'config files'
-);
-$ToCheck['Description']['Folders'] = array(
-	1 => 'admin folders',
-	2 => 'smarty folders',
-	3 => 'export folders',
-	4 => 'media folders',
-	5 => 'image folders',
-	6 => 'upload folders',
-	7 => 'Amazon folders'
-);
-$ToCheck['Files'] = array(
-	1 => array(
-		'includes/configure.php',
-		'includes/configure.org.php',
-		'admin/includes/configure.php',
-		'admin/includes/configure.org.php'
-	)
-);
-$ToCheck['Folders'] = array(
-	1 => array(
-		'admin/backups/',
-		'admin/images/graphs',
-		'admin/includes/modules/tiny_mce/plugins/media/filemanager/'
-	),
-	2 => array(
-		'templates_c/',
-		'cache/'
-	),
-	3 => array(
-		'export/'
-	),
-	4 => array(
-		'media/',
-		'media/content/',
-	),
-	5 => array(
-		'images/',
-		'images/categories/',
-		'images/banner/',
-		'images/manufacturers/',
-		'images/product_images/info_images/',
-		'images/product_images/original_images/',
-		'images/product_images/popup_images/',
-		'images/product_images/thumbnail_images/'
-	),
-	6 => array(
-		'tiny_upload/pics/',
-		'tiny_upload/files/'
-	),
-	7 => array(
-		'AmazonAdvancedPayment/log/'
-	)
-);
+ // config files
+ if (!is_writeable(DIR_FS_CATALOG . 'includes/configure.php')) {
+    $error_flag=true;
+    $block1 = true;
+    $message .= 'WRONG PERMISSION on '.DIR_FS_CATALOG . 'includes/configure.php<br />';
+ }
+  if (!is_writeable(DIR_FS_CATALOG . 'includes/configure.org.php')) {
+    $error_flag=true;
+    $block1 = true;
+    $message .= 'WRONG PERMISSION on '.DIR_FS_CATALOG . 'includes/configure.org.php<br />';
+ }
+  if (!is_writeable(DIR_FS_CATALOG . 'admin/includes/configure.php')) {
+    $error_flag=true;
+    $block1 = true;
+    $message .= 'WRONG PERMISSION on '.DIR_FS_CATALOG . 'admin/includes/configure.php<br />';
+ }
+  if (!is_writeable(DIR_FS_CATALOG . 'admin/includes/configure.org.php')) {
+    $error_flag=true;
+    $block1 = true;
+    $message .= 'WRONG PERMISSION on '.DIR_FS_CATALOG . 'admin/includes/configure.org.php<br />';
+ }
+ if ($block1 == true) $message .= '<hr class="lineRed">';
 
-$FileErrorFlag = false;
-foreach($ToCheck['Files'] as $Block => $BlockContent) {
-	foreach($BlockContent as $Content) {
-		if (!is_writeable('../' . $Content)) {
-			$ErrorFlag = true;
-			$FileErrorFlag = true;
-			$BlockCheck[$Block] = true;
-			$message .= 'WRONG PERMISSION on ' . $Content . '<br />';
-			$Message2 .= "chmod 777 $Content<br />";
-		}
-	}
-	if ($BlockCheck[$Block] == true) $message .= '<hr class="lineRed">';
-}
+ $status='OK';
+ if ($error_flag==true) $status='<strong><font color="#ff0000">ERROR</font></strong>';
+ $ok_message.='FILE Permissions .............................. '.$status.'<hr class="lineGreen">';
 
-$FolderErrorFlag == false;
-foreach($ToCheck['Folders'] as $Block => $BlockContent) {
-	foreach($BlockContent as $Content) {
-		if (!is_writeable('../' . $Content)) {
-			$ErrorFlag = true;
-			$FolderErrorFlag = true;
-			$BlockCheck[$Block] = true;
-			$message .= 'WRONG PERMISSION on ' . $Content . '<br />';
-			$Message2 .= "chmod 777 $Content<br />";
-		}
-	}
-	if ($BlockCheck[$Block] == true) $message .= '<hr class="lineRed">';
-}
+// neu anordnung folder permissions
+    if (!is_writeable(DIR_FS_CATALOG . 'admin/backups/')) {
+    $error_flag=true;
+    $block2 = true;
+    $folder_flag=true;
+    $message .= 'WRONG PERMISSION on '.DIR_FS_CATALOG . 'admin/backups/<br />';
+ }
+      if (!is_writeable(DIR_FS_CATALOG . 'admin/images/graphs')) {
+    $error_flag=true;
+    $block2 = true;
+    $folder_flag=true;
+    $message .= 'WRONG PERMISSION on '.DIR_FS_CATALOG . 'admin/images/graphs/<br />';
+ }
+       if (!is_writeable(DIR_FS_CATALOG . 'admin/includes/modules/tiny_mce/plugins/media/filemanager/')) {
+    $error_flag=true;
+    $block2 = true;
+    $folder_flag=true;
+    $message .= 'WRONG PERMISSION on '.DIR_FS_CATALOG . 'admin/includes/modules/tiny_mce/plugins/media/filemanager/<br />';
+ }
+ if ($block2 == true) $message .= '<hr class="lineRed">';
 
-if ($FileErrorFlag == true) { $Status = '<strong><font color="#ff0000">ERROR</font></strong>'; }
-else { $Status = 'OK'; }
-$ok_message .= 'FILE Permissions .............................. ' . $Status . '<hr class="lineGreen">';
+ // smarty folders
+ $folder_flag==false;
+   if (!is_writeable(DIR_FS_CATALOG . 'templates_c/')) {
+    $error_flag=true;
+    $block3 = true;
+    $folder_flag=true;
+    $message .= 'WRONG PERMISSION on '.DIR_FS_CATALOG . 'templates_c/<br />';
+ }
+    if (!is_writeable(DIR_FS_CATALOG . 'cache/')) {
+    $error_flag=true;
+    $block3 = true;
+    $folder_flag=true;
+    $message .= 'WRONG PERMISSION on '.DIR_FS_CATALOG . 'cache/<br />';
+ }
+ // export folder
+      if (!is_writeable(DIR_FS_CATALOG . 'export/')) {
+    $error_flag=true;
+    $block3 = true;
+    $folder_flag=true;
+    $message .= 'WRONG PERMISSION on '.DIR_FS_CATALOG . 'export/<br />';
+ }
+  // media folder
+      if (!is_writeable(DIR_FS_CATALOG . 'media/')) {
+    $error_flag=true;
+    $block3 = true;
+    $folder_flag=true;
+    $message .= 'WRONG PERMISSION on '.DIR_FS_CATALOG . 'media/<br />';
+ }
+ // image folders
+      if (!is_writeable(DIR_FS_CATALOG . 'images/')) {
+    $error_flag=true;
+    $block3 = true;
+    $folder_flag=true;
+    $message .= 'WRONG PERMISSION on '.DIR_FS_CATALOG . 'images/<br />';
+ }
+ if ($block3 == true) $message .= '<hr class="lineRed">';
 
-if ($FolderErrorFlag == true) { $Status = '<strong><font color="#ff0000">ERROR</font></stong>'; }
-else { $Status = 'OK'; }
-$ok_message .= 'FOLDER Permissions .............................. ' . $Status . '<hr class="lineGreen">';
+     if (!is_writeable(DIR_FS_CATALOG . 'media/content/')) {
+    $error_flag=true;
+    $block4 = true;
+    $folder_flag=true;
+    $message .= 'WRONG PERMISSION on '.DIR_FS_CATALOG . 'media/content/<br />';
+ }
+ if ($block4 == true) $message .= '<hr class="lineRed">';
 
-// check PHP-Version
-$php_flag == false;
-if (xtc_check_version() != 1) {
-	$ErrorFlag = true;
-	$php_flag = true;
-	$message .='<strong>ATTENTION!, your PHP Version is to old, XT-Commerce requires atleast PHP 4.1.3.</strong><br /><br />
-				Your php Version: <strong><?php echo phpversion(); ?></strong><br /><br />
-				XT-Commerce wont work on this server, update PHP or change Server.';
-}
+     if (!is_writeable(DIR_FS_CATALOG . 'images/categories/')) {
+    $error_flag=true;
+    $block5 = true;
+    $folder_flag=true;
+    $message .= 'WRONG PERMISSION on '.DIR_FS_CATALOG . 'images/categories/<br />';
+ }
+     if (!is_writeable(DIR_FS_CATALOG . 'images/banner/')) {
+    $error_flag=true;
+    $block5 = true;
+    $folder_flag=true;
+    $message .= 'WRONG PERMISSION on '.DIR_FS_CATALOG . 'images/banner/<br />';
+ }
+      if (!is_writeable(DIR_FS_CATALOG . 'images/manufacturers/')) {
+    $error_flag=true;
+    $block5 = true;
+    $folder_flag=true;
+    $message .= 'WRONG PERMISSION on '.DIR_FS_CATALOG . 'images/manufacturers/<br />';
+ }
+ if ($block5 == true) $message .= '<hr class="lineRed">';
 
-$status = 'OK';
-if ($php_flag == true) $status='<strong><font color="#ff0000">ERROR</font></strong>';
-$ok_message .= 'PHP VERSION .............................. ' . $status . '<hr class="lineGreen">';
+     if (!is_writeable(DIR_FS_CATALOG . 'images/product_images/info_images/')) {
+    $error_flag=true;
+    $block6 = true;
+    $folder_flag=true;
+    $message .= 'WRONG PERMISSION on '.DIR_FS_CATALOG . 'images/product_images/info_images/<br />';
+ }
+     if (!is_writeable(DIR_FS_CATALOG . 'images/product_images/original_images/')) {
+    $error_flag=true;
+    $block6 = true;
+    $folder_flag=true;
+    $message .= 'WRONG PERMISSION on '.DIR_FS_CATALOG . 'images/product_images/original_images/<br />';
+ }
+     if (!is_writeable(DIR_FS_CATALOG . 'images/product_images/popup_images/')) {
+    $error_flag=true;
+    $block6 = true;
+    $folder_flag=true;
+    $message .= 'WRONG PERMISSION on '.DIR_FS_CATALOG . 'images/product_images/popup_images/<br />';
+ }
+      if (!is_writeable(DIR_FS_CATALOG . 'images/product_images/thumbnail_images/')) {
+    $error_flag=true;
+    $block6 = true;
+    $folder_flag=true;
+    $message .= 'WRONG PERMISSION on '.DIR_FS_CATALOG . 'images/product_images/thumbnail_images/<br />';
+ }
+ if ($block6 == true) $message .= '<hr class="lineRed">';
 
-$gd = gd_info();
+      if (!is_writeable(DIR_FS_CATALOG . 'tiny_upload/pics/')) {
+    $error_flag=true;
+    $block7 = true;
+    $folder_flag=true;
+    $message .= 'WRONG PERMISSION on '.DIR_FS_CATALOG . 'tiny_upload/pics/<br />';
+ }
 
-if ($gd['GD Version'] == '') $gd['GD Version'] = '<strong><font color="#ff0000">ERROR NO GDLIB FOUND!</font></strong>';
+       if (!is_writeable(DIR_FS_CATALOG . 'tiny_upload/files/')) {
+    $error_flag=true;
+    $block7 = true;
+    $folder_flag=true;
+    $message .= 'WRONG PERMISSION on '.DIR_FS_CATALOG . 'tiny_upload/files/<br />';
+ }
+ if ($block7 == true) $message .= '<hr class="lineRed">';
 
-$status = $gd['GD Version'] . ' <br />  if GDlib Version < 2+ , klick here for further instructions';
+ $status='OK';
+ if ($folder_flag==true) $status='<strong><font color="#ff0000">ERROR</font></stong>';
+ $ok_message.='FOLDER Permissions .............................. '.$status.'<hr class="lineGreen">';
 
-// display GDlibversion
-$ok_message .= 'GDlib VERSION .............................. ' . $status . '<hr class="lineGreen">';
+ // check PHP-Version
 
-if ($gd['GIF Read Support'] == 1 || $gd['GIF Support'] == 1) {
-	$status = 'OK';
-} else {
-	$status = '<strong><font color="#ff0000">ERROR</font></strong><br />You don\'t have GIF support within your GDlib, you won\'t be able to use GIF images, and GIF overlayfunctions in XT-Commerce!';
-}
-$ok_message .= 'GDlib GIF-Support .............................. ' . $status . '<hr class="lineGreen">';
+ $php_flag==false;
+ if (xtc_check_version()!=1) {
+     $error_flag=true;
+     $php_flag=true;
+    $message .='<strong>ATTENTION!, your PHP Version is to old, XT-Commerce requires atleast PHP 4.1.3.</strong><br /><br />
+                 Your php Version: <strong><?php echo phpversion(); ?></strong><br /><br />
+                 XT-Commerce wont work on this server, update PHP or change Server.';
+ }
+
+ $status='OK';
+ if ($php_flag==true) $status='<strong><font color="#ff0000">ERROR</font></strong>';
+ $ok_message.='PHP VERSION .............................. '.$status.'<hr class="lineGreen">';
+
+
+ $gd=gd_info();
+
+ if ($gd['GD Version']=='') $gd['GD Version']='<strong><font color="#ff0000">ERROR NO GDLIB FOUND!</font></strong>';
+
+ $status=$gd['GD Version'].' <br />  if GDlib Version < 2+ , klick here for further instructions';
+
+ // display GDlibversion
+ $ok_message.='GDlib VERSION .............................. '.$status.'<hr class="lineGreen">';
+
+ if ($gd['GIF Read Support']==1 || $gd['GIF Support']==1) {
+ $status='OK';
+ } else {
+ $status='<strong><font color="#ff0000">ERROR</font></strong><br />You don\'t have GIF support within your GDlib, you won\'t be able to use GIF images, and GIF overlayfunctions in XT-Commerce!';
+ }
+ $ok_message.='GDlib GIF-Support .............................. '.$status.'<hr class="lineGreen">';
 ?>
 <td class="red">
 <?php
-if ($ErrorFlag == true) {
-	echo '<strong>Attention:</strong><br />';
-	echo $message;
-}
+if ($error_flag==true) {
 ?>
+
+<strong>Attention:</strong><br />
+<?php echo $message; ?>
+
+
+<?php } ?>
 </td></tr>
 <tr>
 <?php
-if ($ok_message != '') {
+if ($ok_message!='') {
 ?>
 <td height="20"></td></tr><tr>
 <td class="green">
@@ -315,7 +384,7 @@ if ($ok_message != '') {
               </table>
 
               <input type="hidden" name="action" value="process">
-              <p> <?php if ($ErrorFlag == false) { ?><input type="image" src="images/button_continue.gif" alt="Continue" /> <?php } ?><br />
+              <p> <?php if ($error_flag==false) { ?><input type="image" src="images/button_continue.gif" alt="Continue" /> <?php } ?><br />
                 <br />
               </p>
             </form>

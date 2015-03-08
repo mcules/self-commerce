@@ -15,35 +15,27 @@
    Released under the GNU General Public License
    --------------------------------------------------------------*/
 // Some FileSystem Directories
+
 if (!defined('DIR_FS_DOCUMENT_ROOT')) {
-	define('DIR_FS_DOCUMENT_ROOT', $_SERVER['DOCUMENT_ROOT']);
-	$local_install_path=str_replace('index.php','',$_SERVER['PHP_SELF']);
-	$local_install_path=str_replace('install_step1.php','',$local_install_path);
-	$local_install_path=str_replace('install_step2.php','',$local_install_path);
-	$local_install_path=str_replace('install_step3.php','',$local_install_path);
-	$local_install_path=str_replace('install_step4.php','',$local_install_path);
-	$local_install_path=str_replace('install_step5.php','',$local_install_path);
-	$local_install_path=str_replace('install_step6.php','',$local_install_path);
-	$local_install_path=str_replace('install_step7.php','',$local_install_path);
-	$local_install_path=str_replace('install_finished.php','',$local_install_path);
-	$local_install_path=str_replace('update.php','',$local_install_path);
-	$local_install_path=str_replace('update_step1.php','',$local_install_path);
-	$local_install_path=str_replace('update_step2.php','',$local_install_path);
-	$local_install_path=str_replace('update_finished.php','',$local_install_path);
-	define('DIR_WS_INSTALLER_PATH', $local_install_path);
-	$local_install_path=str_replace('/self_installer','',$local_install_path);
-	define('DIR_FS_INSTALLER_PATH', DIR_FS_DOCUMENT_ROOT . $local_install_path);
+	define('DIR_FS_DOCUMENT_ROOT', $_SERVER['DOCUMENT_ROOT'] . "/");
 }
-define('DIR_FS_INC', DIR_FS_DOCUMENT_ROOT.'/inc/');
-define('DIR_FS_CATALOG', DIR_FS_DOCUMENT_ROOT . '/');
+if (!defined('DIR_FS_INSTALLER_PATH')) {
+	define('DIR_FS_INSTALLER_PATH', $_SERVER['DOCUMENT_ROOT'] . '/self_installer/');
+}
+if (!defined('DIR_FS_INC')) {
+	define('DIR_FS_INC', DIR_FS_DOCUMENT_ROOT . '/inc/');
+}
+if (!defined('DIR_FS_CATALOG')) {
+	define('DIR_FS_CATALOG', $_SERVER['DOCUMENT_ROOT'] . '/');
+}
 
 // include
 //require('../includes/functions/validations.php');
-require(DIR_FS_INSTALLER_PATH.'includes/classes/boxes.php');
-require(DIR_FS_INSTALLER_PATH.'includes/classes/message_stack.php');
-require(DIR_FS_INSTALLER_PATH.'includes/filenames.php');
-require(DIR_FS_INSTALLER_PATH.'includes/database_tables.php');
-require_once(DIR_FS_INSTALLER_PATH.'inc/xtc_image.inc.php');
+require(DIR_FS_CATALOG . '/includes/classes/boxes.php');
+require(DIR_FS_CATALOG . '/includes/classes/message_stack.php');
+require(DIR_FS_CATALOG . '/includes/filenames.php');
+require(DIR_FS_CATALOG . '/includes/database_tables.php');
+require_once(DIR_FS_CATALOG . '/inc/xtc_image.inc.php');
 
 // Start the Install_Session
 session_start();
@@ -57,36 +49,36 @@ define('BOX_BGCOLOR_CONTENTS', '#f8f8f9');
 define('BOX_SHADOW', '#b6b7cb');
 
 // include General functions
-require_once(DIR_FS_INC.'xtc_set_time_limit.inc.php');
-require_once(DIR_FS_INC.'xtc_check_agent.inc.php');
-require_once(DIR_FS_INC.'xtc_in_array.inc.php');
+require_once(DIR_FS_INC . 'xtc_set_time_limit.inc.php');
+require_once(DIR_FS_INC . 'xtc_check_agent.inc.php');
+require_once(DIR_FS_INC . 'xtc_in_array.inc.php');
 
 // Include Database functions for installer
-require_once(DIR_FS_INC.'xtc_db_prepare_input.inc.php');
-require_once(DIR_FS_INC.'xtc_db_connect_installer.inc.php');
-require_once(DIR_FS_INC.'xtc_db_select_db.inc.php');
-require_once(DIR_FS_INC.'xtc_db_close.inc.php');
-require_once(DIR_FS_INC.'xtc_db_query_installer.inc.php');
-require_once(DIR_FS_INC.'xtc_db_fetch_array.inc.php');
-require_once(DIR_FS_INC.'xtc_db_num_rows.inc.php');
-require_once(DIR_FS_INC.'xtc_db_data_seek.inc.php');
-require_once(DIR_FS_INC.'xtc_db_insert_id.inc.php');
-require_once(DIR_FS_INC.'xtc_db_free_result.inc.php');
-require_once(DIR_FS_INC.'xtc_db_test_create_db_permission.inc.php');
-require_once(DIR_FS_INC.'xtc_db_test_connection.inc.php');
-require_once(DIR_FS_INC.'xtc_db_install.inc.php');
+require_once(DIR_FS_INC . 'xtc_db_prepare_input.inc.php');
+require_once(DIR_FS_INC . 'xtc_db_connect_installer.inc.php');
+require_once(DIR_FS_INC . 'xtc_db_select_db.inc.php');
+require_once(DIR_FS_INC . 'xtc_db_close.inc.php');
+require_once(DIR_FS_INC . 'xtc_db_query_installer.inc.php');
+require_once(DIR_FS_INC . 'xtc_db_fetch_array.inc.php');
+require_once(DIR_FS_INC . 'xtc_db_num_rows.inc.php');
+require_once(DIR_FS_INC . 'xtc_db_data_seek.inc.php');
+require_once(DIR_FS_INC . 'xtc_db_insert_id.inc.php');
+require_once(DIR_FS_INC . 'xtc_db_free_result.inc.php');
+require_once(DIR_FS_INC . 'xtc_db_test_create_db_permission.inc.php');
+require_once(DIR_FS_INC . 'xtc_db_test_connection.inc.php');
+require_once(DIR_FS_INC . 'xtc_db_install.inc.php');
 
 // include Html output functions
-require_once(DIR_FS_INC.'xtc_draw_input_field_installer.inc.php');
-require_once(DIR_FS_INC.'xtc_draw_password_field_installer.inc.php');
-require_once(DIR_FS_INC.'xtc_draw_hidden_field_installer.inc.php');
-require_once(DIR_FS_INC.'xtc_draw_checkbox_field_installer.inc.php');
-require_once(DIR_FS_INC.'xtc_draw_radio_field_installer.inc.php');
+require_once(DIR_FS_INC . 'xtc_draw_input_field_installer.inc.php');
+require_once(DIR_FS_INC . 'xtc_draw_password_field_installer.inc.php');
+require_once(DIR_FS_INC . 'xtc_draw_hidden_field_installer.inc.php');
+require_once(DIR_FS_INC . 'xtc_draw_checkbox_field_installer.inc.php');
+require_once(DIR_FS_INC . 'xtc_draw_radio_field_installer.inc.php');
 
 // iinclude check functions
-require_once(DIR_FS_INC .'xtc_gdlib_check.inc.php');
+require_once(DIR_FS_INC . 'xtc_gdlib_check.inc.php');
 
-define('DIR_WS_ICONS','images/');
+define('DIR_WS_ICONS', 'images/');
 
 function xtc_check_version($mini='4.1.2') {
 	$dummy=phpversion();
