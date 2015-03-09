@@ -412,3 +412,8 @@ define('BOX_PAYPAL','PayPal');
 
 // BLZ Update
 define('BOX_BLZ_UPDATE', 'Update German bank code numbers');
+
+#---- AJAX CHECKOUT PROCESS START
+define('BOX_COX_SORT','Checkout process sorting');
+define('BOX_CONFIGURATION_333', 'Checkout process');
+#---- AJAX CHECKOUT PROCESS END

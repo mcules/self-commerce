@@ -730,3 +730,32 @@ define('PIWIK_ANAL_SITE_ID_TITLE','Seiten ID:');
 define('PIWIK_ANAL_SITE_ID_DESC','Geben Sie hier Ihre Site-ID an.<br />Beispiel: 139');
 define('PIWIK_ANAL_URL_TITLE','Piwik URL:');
 define('PIWIK_ANAL_URL_DESC','Geben Sie hier die URL Ihrer Piwik Installation an.<br />Beispiel: stats.eisold-edv.de');
+
+#---- AJAX CHECKOUT PROCESS START
+define('CHECKOUT_SHOW_SHIPPING_MODULES_TITLE','Versandmodule aufgeklappt?');
+define('CHECKOUT_SHOW_SHIPPING_MODULES_DESC','Sollen die Versandmodule standardm&auml;&szlig;ig angezeigt werden?');
+define('CHECKOUT_SHOW_SHIPPING_ADDRESS_TITLE','Versandadresse aufgeklappt?');
+define('CHECKOUT_SHOW_SHIPPING_ADDRESS_DESC','Soll die Versandadresse standardm&auml;&szlig;ig angezeigt werden?');
+define('CHECKOUT_SHOW_PAYMENT_MODULES_TITLE','Zahlungsmethoden aufgeklappt?');
+define('CHECKOUT_SHOW_PAYMENT_MODULES_DESC','Sollen die Zahlungsmethoden standardm&auml;&szlig;ig angezeigt werden?');
+define('CHECKOUT_SHOW_PAYMENT_ADDRESS_TITLE','Rechnungsadresse aufgeklappt?');
+define('CHECKOUT_SHOW_PAYMENT_ADDRESS_DESC','Soll die Rechnungsadresse standardm&auml;&szlig;ig angezeigt werden?');
+define('CHECKOUT_SHOW_COMMENTS_TITLE','Kommentarfeld aufgeklappt?');
+define('CHECKOUT_SHOW_COMMENTS_DESC','Soll das Kommentarfeld standardm&auml;&szlig;ig angezeigt werden?');
+define('CHECKOUT_SHOW_PRODUCTS_TITLE','Artikelliste aufgeklappt?');
+define('CHECKOUT_SHOW_PRODUCTS_DESC','Sollen die Produktliste standardm&auml;&szlig;ig angezeigt werden?');
+define('CHECKOUT_SHOW_AGB_TITLE','AGBs aufgeklappt?');
+define('CHECKOUT_SHOW_AGB_DESC','Sollen die allgemeinen Gesch&auml;ftsbedingungen standardm&auml;&szlig;ig angezeigt werden?');
+define('CHECKOUT_SHOW_REVOCATION_TITLE','Widerrufrecht aufgeklappt?');
+define('CHECKOUT_SHOW_REVOCATION_DESC','Soll das Widerrufrecht standardm&auml;&szlig;ig angezeigt werden?');
+define('CHECKOUT_SHOW_LOGIN_TITLE','Login-Box aufgeklappt?');
+define('CHECKOUT_SHOW_LOGIN_DESC','Soll die Login-Box standardm&auml;&szlig;ig angezeigt werden?');
+define('CHECKOUT_AJAX_PRODUCTS_TITLE','M&ouml;glichkeit Artikelliste zu editieren?');
+define('CHECKOUT_AJAX_PRODUCTS_DESC','Sollen die Kunden w&auml;hrend des Bestellprozesses die M&ouml;glichkeit haben, die Artikel zu editieren?');
+define('CHECKOUT_AJAX_STAT_TITLE','AJAX Checkout Prozess aktiviert?');
+define('CHECKOUT_AJAX_STAT_DESC','Sollen die Kunden &uuml;ber einen vereinfachten und kompakten Bestellvorgang Ihre Artikel bestellen?');
+define('CHECKOUT_BOX_ORDER_TITLE','Reihenfolge der Boxen');
+define('CHECKOUT_BOX_ORDER_DESC','In welcher Reihenfolge sollen die Boxen dargestellt werden? Sie k&ouml;nnen die Reihenfolge der Boxen auch <a href="cox_sort.php" style="text-decoration:underline; font-weight:bold;">hier</a> visuell anpassen.');
+define('CHECKOUT_AJAX_FULL_BOXES_TITLE','Zeige alle Boxen untereinander?');
+define('CHECKOUT_AJAX_FULL_BOXES_DESC','Wenn "true" bekommen alle Boxen im Bestellprozess die gleiche Breite und werden somit untereinander dargestellt.');
+#---- AJAX CHECKOUT PROCESS END

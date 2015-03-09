@@ -1,5 +1,4 @@
 <?php
-
 /* -----------------------------------------------------------------------------------------
    $Id: create_guest_account.php 17 2012-06-04 20:33:29Z deisold $
 
@@ -21,12 +20,8 @@
 
 require ('includes/application_top.php');
 
-if (ACCOUNT_OPTIONS == 'account')
-	xtc_redirect(FILENAME_DEFAULT);
-
-if (isset ($_SESSION['customer_id'])) {
-	xtc_redirect(xtc_href_link(FILENAME_ACCOUNT, '', 'SSL'));
-}
+if (ACCOUNT_OPTIONS == 'account') { xtc_redirect(FILENAME_DEFAULT); }
+if (isset ($_SESSION['customer_id'])) { xtc_redirect(xtc_href_link(FILENAME_ACCOUNT, '', 'SSL')); }
 
 // create smarty elements
 $smarty = new Smarty;
@@ -301,9 +296,14 @@ if (isset ($_SESSION[tracking]['refID'])){
 		     xtc_db_query("update " . TABLE_CAMPAIGNS . " set
 		                         campaigns_leads = '".$leads."'
                                  where campaigns_id = '".$refID."'");		
-}
-
-		xtc_redirect(xtc_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL'));
+		}
+		#---- AJAX CHECKOUT PROCESS START
+		if (CHECKOUT_AJAX_STAT == 'true' && $_POST['js_enabled'] == 1) {
+			xtc_redirect(xtc_href_link('checkout.php', '', 'SSL'));
+		} else {
+			xtc_redirect(xtc_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL'));
+		}
+		#---- AJAX CHECKOUT PROCESS END
 	}
 }
 
@@ -421,14 +421,17 @@ $smarty->assign('DATENSG_CHECKBOX', '<input type="checkbox" value="datensg" name
 $smarty->assign('FORM_END', '</form>');
 $smarty->assign('language', $_SESSION['language']);
 $smarty->caching = 0;
-$smarty->assign('BUTTON_SUBMIT', xtc_image_submit('button_continue.gif', IMAGE_BUTTON_CONTINUE));
+#---- AJAX CHECKOUT PROCESS START
+$post_js_stat = '<script type="text/javascript">';
+$post_js_stat .= 'document.write(\''.xtc_draw_hidden_field('js_enabled', 1).'\');'; 
+$post_js_stat .= '</script>';
+$smarty->assign('BUTTON_SUBMIT', xtc_image_submit('button_continue.gif', IMAGE_BUTTON_CONTINUE).$post_js_stat);
+#---- AJAX CHECKOUT PROCESS END
 $main_content = $smarty->fetch(CURRENT_TEMPLATE.'/module/create_account_guest.html');
 
 $smarty->assign('language', $_SESSION['language']);
 $smarty->assign('main_content', $main_content);
 $smarty->caching = 0;
-if (!defined(RM))
-	$smarty->loadfilter('output', 'note');
+if (!defined(RM)) { $smarty->loadfilter('output', 'note'); }
 $smarty->display(CURRENT_TEMPLATE.'/index.html');
 include ('includes/application_bottom.php');
-?>

@@ -418,3 +418,8 @@ define('BOX_PAYPAL','PayPal');
 
 // BLZ Update
 define('BOX_BLZ_UPDATE', 'Bankleitzahlen aktualisieren');
+
+#---- AJAX CHECKOUT PROCESS START
+define('BOX_CONFIGURATION_333', 'Bestellprozess');
+define('BOX_COX_SORT','Bestellprozess Sortierung');
+#---- AJAX CHECKOUT PROCESS END

@@ -128,6 +128,8 @@ if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_acc
 // PDFBill NEXT Start
 if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['configuration'] == '1')) $box_configuration .= '<a href="' . xtc_href_link(FILENAME_CONFIGURATION, 'gID=99', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_CONFIGURATION_99 . '</a><br />';
 // PDFBill NEXT End
+if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['configuration'] == '1')) $box_configuration .= '<li><a href="' . xtc_href_link(FILENAME_CONFIGURATION, 'gID=333', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_CONFIGURATION_333 . '</a></li>';
+  if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['configuration'] == '1')) $box_configuration .= '<li><a href="' . xtc_href_link('cox_sort.php', '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_COX_SORT . '</a></li>';
 if(!empty($box_configuration))
     echo '<div class="dhtmlgoodies_panel">
         <div>'.$box_configuration.'</div>

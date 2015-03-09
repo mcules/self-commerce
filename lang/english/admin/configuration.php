@@ -708,3 +708,32 @@ define('PIWIK_ANAL_SITE_ID_TITLE','Page ID:');
 define('PIWIK_ANAL_SITE_ID_DESC','Input your Page-ID.<br />Example: 139');
 define('PIWIK_ANAL_URL_TITLE','Piwik URL:');
 define('PIWIK_ANAL_URL_DESC','Input the URL from your Piwik installation.<br />Example: stats.eisold-edv.de');
+
+#---- AJAX CHECKOUT PROCESS START
+define('CHECKOUT_SHOW_SHIPPING_MODULES_TITLE','Shipping modules opened?');
+define('CHECKOUT_SHOW_SHIPPING_MODULES_DESC','Should the shipping modules be shown?');
+define('CHECKOUT_SHOW_SHIPPING_ADDRESS_TITLE','Shipping address opened?');
+define('CHECKOUT_SHOW_SHIPPING_ADDRESS_DESC','Should the shipping address be shown?');
+define('CHECKOUT_SHOW_PAYMENT_MODULES_TITLE','Payment modules opened?');
+define('CHECKOUT_SHOW_PAYMENT_MODULES_DESC','Should the payment modules be shown?');
+define('CHECKOUT_SHOW_PAYMENT_ADDRESS_TITLE','Payment address opened?');
+define('CHECKOUT_SHOW_PAYMENT_ADDRESS_DESC','Should the payment address be shown?');
+define('CHECKOUT_SHOW_COMMENTS_TITLE','Comments opened?');
+define('CHECKOUT_SHOW_COMMENTS_DESC','Should the comments field be shown?');
+define('CHECKOUT_SHOW_PRODUCTS_TITLE','Product list opened?');
+define('CHECKOUT_SHOW_PRODUCTS_DESC','Should the product list be shown?');
+define('CHECKOUT_SHOW_AGB_TITLE','General business conditions opened?');
+define('CHECKOUT_SHOW_AGB_DESC','Should the general business conditions be shown?');
+define('CHECKOUT_SHOW_REVOCATION_TITLE','Notice of revocation opened?');
+define('CHECKOUT_SHOW_REVOCATION_DESC','Should the notice of revocation be shown?');
+define('CHECKOUT_SHOW_LOGIN_TITLE','Login box opened?');
+define('CHECKOUT_SHOW_LOGIN_DESC','Should the login box be shown?');
+define('CHECKOUT_AJAX_PRODUCTS_TITLE','Provide the opportunity of changing the products?');
+define('CHECKOUT_AJAX_PRODUCTS_DESC','Should customers easily edit their articles during the checkout process?');
+define('CHECKOUT_AJAX_STAT_TITLE','AJAX Checkout Process active?');
+define('CHECKOUT_AJAX_STAT_DESC','Should customers order their products via an easy and dynamic Checkout page?');
+define('CHECKOUT_BOX_ORDER_TITLE','Order of boxes');
+define('CHECKOUT_BOX_ORDER_DESC','In which order should the boxes be sorted? You can also visual modify the order <a href="cox_sort.php" style="text-decoration:underline; font-weight:bold;">here</a>.');
+define('CHECKOUT_AJAX_FULL_BOXES_TITLE','Show all boxes one below the other?');
+define('CHECKOUT_AJAX_FULL_BOXES_DESC','');
+#---- AJAX CHECKOUT PROCESS END

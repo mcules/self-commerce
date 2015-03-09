@@ -252,7 +252,13 @@ if ($_SESSION['cart']->count_contents() > 0) {
 			$smarty->assign('info_message', str_replace('+', ' ', htmlspecialchars($_GET['info_message'])));
 		$smarty->assign('BUTTON_PAYPAL', $o_paypal->build_express_checkout_button());
 		$smarty->assign('BUTTON_RELOAD', xtc_image_submit('button_update_cart.gif', IMAGE_BUTTON_UPDATE_CART));
-		$smarty->assign('BUTTON_CHECKOUT', '<a href="'.xtc_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL').'">'.xtc_image_button('button_checkout.gif', IMAGE_BUTTON_CHECKOUT).'</a>');
+		#---- AJAX CHECKOUT PROCESS START
+		$onclick = '';
+		if (CHECKOUT_AJAX_STAT == 'true') {
+			$onclick = ' onclick="window.location.href=\''.xtc_href_link('checkout.php','', 'SSL').'\'; return false;"';
+		}
+		$smarty->assign('BUTTON_CHECKOUT', '<a href="'.xtc_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL').'"'.$onclick.'>'.xtc_image_button('button_checkout.gif', IMAGE_BUTTON_CHECKOUT).'</a>');
+		#---- AJAX CHECKOUT PROCESS END
 	endif;
 // Paypal Express Modul Ende
 
@@ -292,7 +298,13 @@ if ($_SESSION['cart']->count_contents() > 0) {
 		$smarty->assign('info_message', str_replace('+', ' ', htmlspecialchars($_GET['info_message'])));
 	}
 	$smarty->assign('BUTTON_RELOAD', xtc_image_submit('button_update_cart.gif', IMAGE_BUTTON_UPDATE_CART));
-	$smarty->assign('BUTTON_CHECKOUT', '<a href="'.xtc_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL').'">'.xtc_image_button('button_checkout.gif', IMAGE_BUTTON_CHECKOUT).'</a>');
+	#---- AJAX CHECKOUT PROCESS START
+	$onclick = '';
+	if (CHECKOUT_AJAX_STAT == 'true') {
+		$onclick = ' onclick="window.location.href=\''.xtc_href_link('checkout.php','', 'SSL').'\'; return false;"';
+	}
+	$smarty->assign('BUTTON_CHECKOUT', '<a href="'.xtc_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL').'"'.$onclick.'>'.xtc_image_button('button_checkout.gif', IMAGE_BUTTON_CHECKOUT).'</a>');
+	#---- AJAX CHECKOUT PROCESS END
 } else
 {
 

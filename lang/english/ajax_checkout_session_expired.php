@@ -1,0 +1,1 @@
+<p><strong>Dear Customer,</strong></p><p>Due to security policies, all visitors get a time limited ID . This ID is for instanced used to store your shopping cart.</p><p><strong>The Validity of this ID has expired. Please click <a href="login.php">here</a> to re-login.</strong></p>

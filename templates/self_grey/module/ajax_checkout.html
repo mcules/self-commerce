@@ -1,0 +1,477 @@
+{config_load file="$language/ajax_checkout.conf" section="checkout"}
+{if !$LOGGED_IN}
+  {config_load file="$language/ajax_checkout.conf" section="login"}
+  {config_load file="$language/ajax_checkout.conf" section="create_account"}
+{/if}
+
+<link rel="stylesheet" href="lib/nyroModal/styles/nyroModal.css" />
+<link rel="stylesheet" href="{$tpl_path}ajax_checkout.css" />
+
+<div id="ajax-checkout">
+
+  <h1>
+    {#heading_checkout#}
+    <a href="lang/{$language}/ajax_checkout_modal_message.php" class="help-link">{#text_help#}</a>
+  </h1>
+
+  {if $error}
+    <p class="error-message" id="ajax-checkout-error">{$error}</p>
+  {/if}
+
+  {if $CUSTOMERS_IP}
+    <p>{#text_ip#} <strong>{$CUSTOMERS_IP}</strong></p>
+  {/if}
+
+
+  {if !$LOGGED_IN}
+    <div id="ajax-checkout-logged-out-content" class="clearfix">
+      <div id="ajax-checkout-login" class="box-full">
+        <h2 class="header">
+          {#heading_login#}
+          <img src="{$tpl_path}img/ajax_checkout_indicator.gif" width="16" height="16" class="ajax-indicator" alt="" />
+          <span class="toggle minus">-</span>
+          <span class="toggle plus">+</span>
+        </h2>
+        <div class="content">
+          {if $ACCOUNT_OPTIONS != 'guest'}
+            <div class="login">
+              <form action="{$FORM_ACTION_LOGIN}" method="post">
+                <input type="hidden" name="ajax_action" value="login" />
+                <ul>
+                  <li>
+                    <label for="ajax-checkout-login-email">{#text_email#}</label>
+                    <input type="text" maxlength="50" name="email_address" id="ajax-checkout-login-email" />
+                    <sup>*</sup>
+                  </li>
+                  <li>
+                    <label for="ajax-checkout-password">{#text_password#}</label>
+                    <input type="password" maxlength="30" name="password" id="ajax-checkout-password" />
+                    <sup>*</sup>
+                  </li>
+                </ul>
+                <input type="image" src="{$tpl_path}buttons/{$language}/button_login.gif" alt="" />
+                <a href="{$HREF_REGISTER}" class="register-link">{#text_register#}</a>
+              </form>
+            </div>
+          {/if}
+
+          <div class="register" {if $ACCOUNT_OPTIONS != 'guest'} style="display: none"{/if}>
+            <form action="{$FORM_ACTION_REGISTER}" method="post">
+              <input type="hidden" name="ajax_action" value="register" />
+              <input type="hidden" name="action" value="process" />
+              {if $ACCOUNT_OPTIONS == 'both'}
+                <h4>{#title_account_type#}</h4>
+                <ul>
+                  <li>
+                    <label for="ajax-checkout-account-type-default">{#text_account_type#}</label>
+                    <label for="ajax-checkout-account-type-default" class="inline-label">{#text_account#}</label>
+                    <input type="radio" id="ajax-checkout-account-type" name="account_type" checked="checked" value="account" />
+                    <label for="ajax-checkout-account-type-default-guest" class="inline-label">{#text_guest#}</label>
+                    <input id="ajax-checkout-account-type-default-guest" type="radio" name="account_type" value="guest" />
+                    <sup>*</sup>
+                  </li>
+                </ul>
+              {else}
+                <input type="hidden" name="account_type" value="{$ACCOUNT_OPTIONS}" />
+              {/if}
+
+              <h4>{#title_personal#}</h4>
+              <ul>
+                {if $REGISTER_GENDER}
+                  <li>
+                    <label for="ajax-checkout-gender-male">{#text_gender#}</label>
+                    <label for="ajax-checkout-gender-male" class="inline-label">{#text_male#}</label>
+                    <input type="radio" name="gender" id="ajax-checkout-gender-male" checked="checked" value="m" />
+                    <label for="ajax-checkout-gender-female" class="inline-label">{#text_female#}</label>
+                    <input type="radio" name="gender" id="ajax-checkout-gender-female" value="f" />
+                    <sup>*</sup>
+                  </li>
+                {/if}
+                <li>
+                  <label for="ajax-checkout-firstname">{#text_firstname#}</label>
+                  <input type="text" name="firstname" id="ajax-checkout-firstname" maxlength="255" />
+                  <sup>*</sup>
+                </li>
+                <li>
+                  <label for="ajax-checkout-lastname">{#text_lastname#}</label>
+                  <input type="text" name="lastname" id="ajax-checkout-lastname" maxlength="255" />
+                  <sup>*</sup>
+                </li>
+                {if $REGISTER_BIRTHDATE}
+                  <li>
+                    <label for="ajax-checkout-birthdate">{#text_birthdate#}</label>
+                    <input type="text" name="dob" maxlength="10" id="ajax-checkout-birthdate" />
+                    <sup>* {#dob_example#}</sup>
+                  </li>
+                {/if}
+                <li>
+                  <label for="ajax-checkout-email">{#text_email#}</label>
+                  <input type="text" name="email_address" maxlength="255" id="ajax-checkout-email" />
+                  <sup>*</sup>
+                </li>
+                {if $REGISTER_EMAIL_CONFIRM}
+                  <li>
+                    <label for="ajax-checkout-confirm-email">{#text_confirm_email#}</label>
+                    <input type="text" maxlength="50" name="confirm_email_address" id="ajax-checkout-confirm-email" />
+                    <sup>*</sup>
+                  </li>
+                {/if}
+              </ul>
+
+              {if $REGISTER_COMPANY}
+                <h4>{#title_company#}</h4>
+                <ul>
+                  <li>
+                    <label for="ajax-checkout-company">{#text_company#}</label>
+                    <input type="text" name="company" maxlength="255" id="ajax-checkout-company" />
+                  </li>
+                  {if $REGISTER_VAT}
+                    <li>
+                      <label for="ajax-checkout-vat">{#text_ustid#}</label>
+                      <input type="text" name="vat" maxlength="100" id="ajax-checkout-vat" />
+                    </li>
+                  {/if}
+                </ul>
+              {/if}
+
+              <h4>{#title_address#}</h4>
+              <ul>
+                <li>
+                  <label for="ajax-checkout-street">{#text_street#}</label>
+                  <input type="text" name="street_address" maxlength="100" id="ajax-checkout-street" />
+                  <sup>*</sup>
+                </li>
+                {if $REGISTER_SUBURB}
+                  <li>
+                    <label for="ajax-checkout-suburb">{#text_suburb#}</label>
+                    <input type="text" name="suburb" maxlength="255" id="ajax-checkout-suburb" />
+                  </li>
+                {/if}
+                <li>
+                  <label for="ajax-checkout-postcode">{#text_code#}</label>
+                  <input type="text" name="postcode" maxlength="255" id="ajax-checkout-postcode" />
+                  <sup>*</sup>
+                </li>
+                <li>
+                  <label for="ajax-checkout-city">{#text_city#}</label>
+                  <input type="text" name="city" maxlength="255" id="ajax-checkout-city" />
+                  <sup>*</sup>
+                </li>
+                <li>
+                  <label for="ajax-checkout-country">{#text_country#}</label>
+                  {$SELECT_COUNTRY}
+                  <sup>*</sup>
+                </li>
+                {if $REGISTER_STATE}
+                  <li {if !$INPUT_STATE} style="display: none"{/if}>
+                    <label for="ajax-checkout-state">{#text_state#}</label>
+                    <span class="ajax-checkout-state-container">{$INPUT_STATE}</span>
+                    <sup>*</sup>
+                  </li>
+                {/if}
+              </ul>
+
+              <h4>{#title_contact#}</h4>
+              <ul>
+                <li>
+                  <label for="ajax-checkout-tel">{#text_tel#}</label>
+                  <input type="text" name="telephone" maxlength="50" id="ajax-checkout-tel" />
+                  <sup>*</sup>
+                </li>
+                <li>
+                  <label for="ajax-checkout-fax">{#text_fax#}</label>
+                  <input type="text" name="fax" maxlength="50" id="ajax-checkout-fax" />
+                </li>
+              </ul>
+
+              {if $ACCOUNT_OPTIONS != 'guest'}
+                <div id="ajax-checkout-password-container">
+                  <h4>{#title_password#}</h4>
+                  <ul>
+                    <li>
+                      <label for="ajax-checkout-password-register">{#text_password#}</label>
+                      <input type="password" name="password" maxlength="50" id="ajax-checkout-password-register" />
+                      <sup>*</sup>
+                    </li>
+                    <li>
+                      <label for="ajax-checkout-fax">{#text_confirmation#}</label>
+                      <input type="password" name="confirmation" maxlength="50" id="ajax-checkout-confirmation" />
+                      <sup>*</sup>
+                    </li>
+                  </ul>
+                </div>
+              {/if}
+
+              {if $REGISTER_PRIVACY_CHECK}
+                <p>
+                  <input type="checkbox" value="privacy" name="privacy" id="ajax-checkout-privacy" />
+                  <label for="ajax-checkout-privacy" class="inline-label">
+                    <strong>{#text_privacy_accept#}</strong>
+                  </label>
+                  {$PRIVACY_LINK}
+                  <sup>*</sup>
+                </p>
+              {/if}
+
+              <input type="image" src="{$tpl_path}buttons/{$language}/button_continue.gif" alt="" />
+              <a href="{$HREF_LOGIN}" class="login-link">{#title_already#}</a>
+            </form>
+          </div>
+          <p class="error-message"></p>
+        </div>
+      </div>
+    </div>
+  {/if}
+
+  <div id="ajax-checkout-logged-in-content" class="clearfix" {if !$LOGGED_IN} style="display: none;"{/if}>
+    {foreach from=$SORTING item=box}
+      {if $box=='modules'}
+        <!-- SHIPPING MODULES START -->
+        <div id="ajax-checkout-shipping-modules" class="{$half_box_css_class} left">
+          <h2 class="header">
+            {#title_shipping_modules#}
+            <img src="{$tpl_path}img/ajax_checkout_indicator.gif" width="16" height="16" class="ajax-indicator" alt="" />
+            <span class="toggle minus">-</span>
+            <span class="toggle plus">+</span>
+          </h2>
+          <div class="content">
+            <form method="post" {if $IS_VIRTUAL || $FREE_SHIPPING} style="display:none;"{/if}>
+              <input type="hidden" name="ajax_action" value="update_shipping" />
+              <div class="shipping-options">
+                {$SHIPPING_BLOCK}
+              </div>
+              {if $NO_SHIPPINGS}
+                <div>{#text_no_shippings#}</div>
+              {/if}
+              <p class="error-message"></p>
+            </form>
+            <div class="virtual-text" {if !$IS_VIRTUAL} style="display:none;"{/if}>
+              <strong>{$TEXT_VIRTUAL}</strong>
+            </div>
+            <div class="free-shipping-text" {if !$FREE_SHIPPING} style="display:none;"{/if}>
+              <strong>{$FREE_SHIPPING_DESCRIPTION}</strong>
+            </div>
+          </div>
+        </div>
+        <!-- SHIPPING MODULES END -->
+
+        <!-- PAYMENT MODULES START -->
+        <div id="ajax-checkout-payment-modules" class="{$half_box_css_class} right">
+          <h2 class="header">
+            {#title_payment_modules#}
+            <img src="{$tpl_path}img/ajax_checkout_indicator.gif" width="16" height="16" class="ajax-indicator" alt="" />
+            <span class="toggle minus">-</span>
+            <span class="toggle plus">+</span>
+          </h2>
+          <div class="content">
+            <form method="post" {if $GV_COVER} style="display:none"{/if}>
+              <input type="hidden" name="ajax_action" value="update_payment" />
+              <div class="payment-options">
+                {$PAYMENT_BLOCK}
+              </div>
+              {if $NO_PAYMENTS}
+                <div>{#text_no_payments#}</div>
+              {/if}
+              <p class="error-message"></p>
+            </form>
+            <div class="gvcover-text" {if !$GV_COVER} style="display:none"{/if}>
+              <strong>{#text_gccover#}</strong>
+            </div>
+            <form class="gift-module" {if !$GIFT_MODULE}style="display: none;"{/if} method="post">
+              <input type="hidden" name="ajax_action" value="use_gv" />
+              <table border="0" width="100%" cellspacing="0" cellpadding="0">
+                {$GIFT_MODULE}
+              </table>
+            </form>
+          </div>
+        </div>
+        <!-- PAYMENT MODULES END -->
+
+      {elseif $box=='addresses'}
+
+        <!-- SHIPPING ADDRESS START -->
+        <div id="ajax-checkout-shipping-address" class="{$half_box_css_class} left">
+          <h2 class="header">
+            {#title_shipping_address#}
+            <img src="{$tpl_path}img/ajax_checkout_indicator.gif" width="16" height="16" class="ajax-indicator" alt="" />
+            <span class="toggle minus">-</span>
+            <span class="toggle plus">+</span>
+          </h2>
+          <div class="content">
+            <div class="standard-address"{if $IS_VIRTUAL} style="display:none;"{/if}>
+              <div class="show-address">
+                <address class="selected">{$SHIPPING_ADDRESS_LABEL}</address>
+                <input type="image" src="{$tpl_path}buttons/{$language}/button_checkout_edit.gif" alt="" class="edit" />
+              </div>
+              <div class="change-address" style="display:none;">
+                <h4>{#address_old#}</h4>
+                {$SHIPPING_ADDRESS_DROPDOWN}
+                {if $IS_NEW_ADDRESS_POSSIBLE}
+                  <form method="post">
+                    <input type="hidden" name="ajax_action" value="update_address" />
+                    <input type="hidden" name="type" value="shipping" />
+                    {$MODULE_new_address}
+                    <div class="ajax-checkout-button">
+                      <input type="image" src="{$tpl_path}buttons/{$language}/button_back.gif" alt="" class="back" />
+                      {if $IS_NEW_ADDRESS_POSSIBLE}
+                        <input type="image" src="{$tpl_path}buttons/{$language}/button_checkout_save.gif" alt="" class="save" />
+                      {/if}
+                    </div>
+                    <p class="error-message"></p>
+                  </form>
+                {else}
+                  <div class="no-address-anymore">{#address_no_more#}</div>
+                  <div class="ajax-checkout-button">
+                    <input type="image" src="{$tpl_path}buttons/{$language}/button_back.gif" alt="" class="back" />
+                  </div>
+                {/if}
+              </div>
+            </div>
+            <div id="virtual-address" {if !$IS_VIRTUAL} style="display:none;"{/if}>
+              {$TEXT_VIRTUAL}
+            </div>
+          </div>
+        </div>
+        <!-- SHIPPING ADDRESS END -->
+
+        <!-- PAYMENT ADDRESS START -->
+        <div id="ajax-checkout-payment-address" class="{$half_box_css_class} right">
+          <h2 class="header">
+            {#title_payment_address#}
+            <img src="{$tpl_path}img/ajax_checkout_indicator.gif" width="16" height="16" class="ajax-indicator" alt="" />
+            <span class="toggle minus">-</span>
+            <span class="toggle plus">+</span>
+          </h2>
+          <div class="content">
+            <div class="show-address">
+              <address class="selected">{$PAYMENT_ADDRESS_LABEL}</address>
+              <input type="image" src="{$tpl_path}buttons/{$language}/button_checkout_edit.gif" alt="" class="edit" />
+            </div>
+            <div class="change-address" style="display:none;">
+              <h4>{#address_old#}</h4>
+              {$PAYMENT_ADDRESS_DROPDOWN}
+              {if $IS_NEW_ADDRESS_POSSIBLE}
+                <form method="post">
+                  <input type="hidden" name="ajax_action" value="update_address" />
+                  <input type="hidden" name="type" value="payment" />
+                  {$MODULE_new_address}
+                  <div class="ajax-checkout-button">
+                    <input type="image" src="{$tpl_path}buttons/{$language}/button_back.gif" alt="" class="back" />
+                    {if $IS_NEW_ADDRESS_POSSIBLE}
+                      <input type="image" src="{$tpl_path}buttons/{$language}/button_checkout_save.gif" alt="" class="save" />
+                    {/if}
+                  </div>
+                  <p class="error-message"></p>
+                </form>
+              {else}
+                <div class="no-address-anymore">{#address_no_more#}</div>
+                <div class="ajax-checkout-button">
+                  <input type="image" src="{$tpl_path}buttons/{$language}/button_back.gif" alt="" class="back" />
+                </div>
+              {/if}
+            </div>
+          </div>
+        </div>
+        <!-- PAYMENT ADDRESS END -->
+
+      {elseif $box=='products'}
+
+        <!-- SHOPPING CART START -->
+        <div id="ajax-checkout-shopping-cart" class="box-full">
+          <h2 class="header">
+            {#title_products#} (<span class="products-amount">{$PRODUCTS_AMOUNT}</span>)
+            <img src="{$tpl_path}img/ajax_checkout_indicator.gif" width="16" height="16" class="ajax-indicator" alt="" />
+            <span class="toggle minus">-</span>
+            <span class="toggle plus">+</span>
+          </h2>
+          <div class="content">
+            {$PRODUCTS_BLOCK}
+          </div>
+        </div>
+        <!-- SHOPPING CART END -->
+
+      {elseif $box=='comments'}
+
+        <!-- COMMENTS START -->
+        <div id="ajax-checkout-comments" class="box-full">
+          <h2 class="header">
+            {#title_comments#}
+            <img src="{$tpl_path}img/ajax_checkout_indicator.gif" width="16" height="16" class="ajax-indicator" alt="" />
+            <span class="toggle minus">-</span>
+            <span class="toggle plus">+</span>
+          </h2>
+          <div class="content">
+            <textarea id="ajax-checkout-comments-text" cols="60" rows="10">{$COMMENTS}</textarea>
+          </div>
+        </div>
+        <!-- COMMENTS END -->
+
+      {elseif $box=='legals'}
+
+        <!-- TOS START -->
+        {if $AGB !== false}
+          <div id="ajax-checkout-tos" class="box-full">
+            <h2 class="header">
+              {#title_agb#}
+              <img src="{$tpl_path}img/ajax_checkout_indicator.gif" width="16" height="16" class="ajax-indicator" alt="" />
+              <span class="toggle minus">-</span>
+              <span class="toggle plus">+</span>
+            </h2>
+            <div class="content">
+              <textarea cols="60" rows="10" readonly="readonly">{$AGB}</textarea>
+              <div>
+                <input type="checkbox" id="agb-checkbox" />
+                <label for="agb-checkbox">{#text_accept_agb#}</label>
+              </div>
+            </div>
+          </div>
+        {/if}
+        <!-- TOS END -->
+
+        <!-- REVOCATION START -->
+        {if $REVOCATION !== false}
+          <div id="ajax-checkout-revocation" class="box-full">
+            <h2 class="header">
+              {#title_revocation#}
+              <img src="{$tpl_path}img/ajax_checkout_indicator.gif" width="16" height="16" class="ajax-indicator" alt="" />
+              <span class="toggle minus">-</span>
+              <span class="toggle plus">+</span>
+            </h2>
+            <div class="content">
+              <textarea cols="60" rows="10" readonly="readonly">{$REVOCATION}</textarea>
+              <div>
+                <input type="checkbox" id="revocation-checkbox" />
+                {$REVOCATION_checkbox} <label for="revocation-checkbox">{#text_accept_revocation#}</label>
+              </div>
+            </div>
+          </div>
+        {/if}
+        <!-- REVOCATION END -->
+      {/if}
+    {/foreach}
+  </div>
+
+  <!-- ORDER TOTAL START -->
+  <form id="ajax-checkout-total-form" action="{$FORM_ACTION_CHECKOUT}" method="post" {if !$LOGGED_IN} style="display: none;"{/if}>
+    <div id="ajax-checkout-order-total" class="clearfix">{$ORDER_TOTAL}</div>
+    <div id="ajax-checkout-payment-data">{$HIDDEN_PAYMENT}</div>
+    <div {if !$LOGGED_IN} style="display: none;"{/if} id="ajax-checkout-button" class="clearfix">
+      <input type="image" src="{$tpl_path}buttons/{$language}/button_confirm_order.gif" alt="{#button_checkout_alt#}" />
+    </div>
+    <p class="error-message"></p>
+  </form>
+</div>
+
+<script type="text/javascript" src="checkout.js.php?tpl={php}echo urlencode(CURRENT_TEMPLATE){/php}&amp;v=1"></script>
+<script>
+xtc.AjaxCheckout.BOX_CONFIGS = {$JS_BOX_CONFIGS};
+xtc.AjaxCheckout.PAYMENT_FORM_DATA = {$JS_PAYMENT_FORM_DATA};
+xtc.AjaxCheckout.AGB_ERROR = {$JS_AGB_ERROR};
+xtc.AjaxCheckout.REVOCATION_ERROR = {$JS_REVOCATION_ERROR};
+
+xtc.AjaxCheckout.initialize();
+
+xtc.SessionTimeout.LANGUAGE = "{$language}";
+xtc.SessionTimeout.LIFETIME = {php}echo ini_get('session.gc_maxlifetime');{/php};
+xtc.SessionTimeout.initialize();
+</script>

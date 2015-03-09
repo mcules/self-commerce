@@ -1,5 +1,4 @@
 <?php
-
 /* -----------------------------------------------------------------------------------------
    $Id: order_total.php 17 2012-06-04 20:33:29Z deisold $
 
@@ -213,7 +212,7 @@ class order_total {
 			reset($modules);
 			while (list (, $value) = each($modules)) {
 				include_once (DIR_WS_LANGUAGES.$_SESSION['language'].'/modules/order_total/'.$value);
-                include_once (DIR_WS_MODULES.'order_total/'.$value);
+				include_once (DIR_WS_MODULES.'order_total/'.$value);
 
 				$class = substr($value, 0, strrpos($value, '.'));
 				$GLOBALS[$class] = new $class ();

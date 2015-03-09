@@ -16,14 +16,14 @@
 			<div id="nav_main">
 				<ul>
 					<li {if $curlink='index.php'} 'id="current"'{/if}><a href="{php}echo xtc_href_link('index.php');{/php}"><span>Home</span></a></li>
-					{if isset($customer_id)}
-						<li {if $curlink='logoff.php'} 'id="current"'{/if}><a href="{$logoff}"><span>{#link_logoff#}</span></a></li>
-					{/if}
+					<li id="ajax-checkout-ext-logout-link" {if !$smarty.session.customer_id}style="display: none"{/if}><a href="{php}echo xtc_href_link(FILENAME_LOGOFF, '', 'SSL');{/php}"><span>{#link_logoff#}</span></a></li>
+					<li id="ajax-checkout-ext-login-link" {if $smarty.session.customer_id}style="display: none"{/if}><a href="{php}echo xtc_href_link(FILENAME_LOGIN, '', 'SSL');{/php}"><span>{#link_login#}</span></a></li>
+					
 					{if $account}
 						<li {if $curlink='account.php'} 'id="current"'{/if}><a href="{$account}"><span>{#link_account#}</span></a></li>
 					{/if}
 					<li {if $curlink='shopping_cart.php'} 'id="current"'{/if}><a href="{$cart}"><span>{#link_cart#}</span></a></li>
-					<li {if $curlink='checkout_shipping.php'} 'id="current"'{/if}><a href="{$checkout}"><span>{#link_checkout#}</span></a></li>
+					<li {if $curlink='checkout_shipping.php'} 'id="current"'{/if}><a href="{$checkout}" {php} if (CHECKOUT_AJAX_STAT == 'true') echo "onclick=\"window.location.href='".xtc_href_link('checkout.php', '', 'SSL')."'; return false;\"";{/php}><span>{#link_checkout#}</span></a></li>
 				</ul>
 			</div>
 		</div>
@@ -46,7 +46,7 @@
 				{* begin: #col2 second float column *}
 				<div id="col2">
 					<div id="col2_content" class="clearfix">
-						{$box_CART}{$box_LOGIN}{$box_ADMIN}{$box_MANUFACTURERS_INFO}{$box_NEWSLETTER}{$box_BESTSELLERS}{$box_WHATSNEW}<!-- {$box_INFOBOX} -->
+						{$box_CART}<div id="ajax-checkout-ext-login-box">{$box_LOGIN}</div>{$box_ADMIN}{$box_MANUFACTURERS_INFO}{$box_NEWSLETTER}{$box_BESTSELLERS}{$box_WHATSNEW}<!-- {$box_INFOBOX} -->
 					</div>
 				</div>
 				{* end: #col2 *}
