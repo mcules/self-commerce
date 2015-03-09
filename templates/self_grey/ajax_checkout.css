@@ -29,7 +29,7 @@
 #ajax-checkout .box-full {
   background: #eee;
   width: 100%;
-  clear: both;
+/*   clear: both; */
 }
 
 #ajax-checkout .box-half {
