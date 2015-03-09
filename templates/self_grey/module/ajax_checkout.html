@@ -301,7 +301,7 @@
             <div class="standard-address"{if $IS_VIRTUAL} style="display:none;"{/if}>
               <div class="show-address">
                 <address class="selected">{$SHIPPING_ADDRESS_LABEL}</address>
-                <input type="image" src="{$tpl_path}buttons/{$language}/button_checkout_edit.gif" alt="" class="edit" />
+                <input type="image" src="{$tpl_path}buttons/{$language}/button_edit.gif" alt="" class="edit" />
               </div>
               <div class="change-address" style="display:none;">
                 <h4>{#address_old#}</h4>
@@ -345,7 +345,7 @@
           <div class="content">
             <div class="show-address">
               <address class="selected">{$PAYMENT_ADDRESS_LABEL}</address>
-              <input type="image" src="{$tpl_path}buttons/{$language}/button_checkout_edit.gif" alt="" class="edit" />
+              <input type="image" src="{$tpl_path}buttons/{$language}/button_edit.gif" alt="" class="edit" />
             </div>
             <div class="change-address" style="display:none;">
               <h4>{#address_old#}</h4>
@@ -456,7 +456,7 @@
     <div id="ajax-checkout-order-total" class="clearfix">{$ORDER_TOTAL}</div>
     <div id="ajax-checkout-payment-data">{$HIDDEN_PAYMENT}</div>
     <div {if !$LOGGED_IN} style="display: none;"{/if} id="ajax-checkout-button" class="clearfix">
-      <input type="image" src="{$tpl_path}buttons/{$language}/button_confirm_order.gif" alt="{#button_checkout_alt#}" />
+      <input type="image" src="{$tpl_path}buttons/{$language}/button_buy_now.gif" alt="{#button_checkout_alt#}" />
     </div>
     <p class="error-message"></p>
   </form>
