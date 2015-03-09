@@ -37,10 +37,6 @@ define('MULTI_COL_LISTING_DIR', CURRENT_TEMPLATE."/module/multicol_listings");
 <![endif]-->
 
 <script type="text/javascript" src="<?php echo 'templates/'.CURRENT_TEMPLATE; ?>/javascript/html5.js"></script>
-<!--
-<script type="text/javascript" src="<?php echo 'templates/'.CURRENT_TEMPLATE; ?>/javascript/jquery-1.7.min.js" ></script>
--->
-<!-- <script type="text/javascript" src="<?php echo 'templates/'.CURRENT_TEMPLATE; ?>/javascript/FF-cash.js"></script> -->
 <script type="text/javascript" src="<?php echo 'templates/'.CURRENT_TEMPLATE; ?>/javascript/superfish.js"></script>
 <script type="text/javascript" src="<?php echo 'templates/'.CURRENT_TEMPLATE; ?>/javascript/easyTooltip.js"></script>
 

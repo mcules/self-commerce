@@ -119,17 +119,16 @@ if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_acc
 if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['configuration'] == '1')) $box_configuration .= '<a href="' . xtc_href_link(FILENAME_CONFIGURATION, 'gID=19', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_CONFIGURATION_19 . '</a><br />';
 if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['configuration'] == '1')) $box_configuration .= '<a href="' . xtc_href_link(FILENAME_CONFIGURATION, 'gID=22', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_CONFIGURATION_22 . '</a><br />';
 if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['orders_status'] == '1')) $box_configuration .= '<a href="' . xtc_href_link(FILENAME_ORDERS_STATUS, '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_ORDERS_STATUS . '</a><br />';
-if (ACTIVATE_SHIPPING_STATUS=='true') {
-    if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['shipping_status'] == '1')) $box_configuration .= '<a href="' . xtc_href_link(FILENAME_SHIPPING_STATUS, '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_SHIPPING_STATUS . '</a><br />';
-}
+
+if (ACTIVATE_SHIPPING_STATUS=='true') { if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['shipping_status'] == '1')) $box_configuration .= '<a href="' . xtc_href_link(FILENAME_SHIPPING_STATUS, '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_SHIPPING_STATUS . '</a><br />'; }
 if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['products_vpe'] == '1')) $box_configuration .= '<a href="' . xtc_href_link(FILENAME_PRODUCTS_VPE, '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_PRODUCTS_VPE . '</a><br />';
 if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['campaigns'] == '1')) $box_configuration .= '<a href="' . xtc_href_link(FILENAME_CAMPAIGNS, '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_CAMPAIGNS . '</a><br />';
 if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['cross_sell_groups'] == '1')) $box_configuration .= '<a href="' . xtc_href_link(FILENAME_XSELL_GROUPS, '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_ORDERS_XSELL_GROUP . '</a><br />';
 // PDFBill NEXT Start
 if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['configuration'] == '1')) $box_configuration .= '<a href="' . xtc_href_link(FILENAME_CONFIGURATION, 'gID=99', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_CONFIGURATION_99 . '</a><br />';
 // PDFBill NEXT End
-if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['configuration'] == '1')) $box_configuration .= '<li><a href="' . xtc_href_link(FILENAME_CONFIGURATION, 'gID=333', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_CONFIGURATION_333 . '</a></li>';
-  if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['configuration'] == '1')) $box_configuration .= '<li><a href="' . xtc_href_link('cox_sort.php', '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_COX_SORT . '</a></li>';
+if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['configuration'] == '1')) $box_configuration .= '<a href="' . xtc_href_link(FILENAME_CONFIGURATION, 'gID=333', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_CONFIGURATION_333 . '</a><br />';
+  if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['configuration'] == '1')) $box_configuration .= '<a href="' . xtc_href_link('cox_sort.php', '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_COX_SORT . '</a><br />';
 if(!empty($box_configuration))
     echo '<div class="dhtmlgoodies_panel">
         <div>'.$box_configuration.'</div>

@@ -63,8 +63,10 @@ if($_SESSION["tpl"]=="mobile" && file_exists(DIR_FS_CATALOG."templates/".$_SESSI
 <link rel="stylesheet" type="text/css" href="<?php echo 'templates/'.CURRENT_TEMPLATE.'/'.TINY_CSS.''; ?>" />
 <?php } ?>
 
+<?php if (!strstr($PHP_SELF, 'checkout.php' )) { ?>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script type="text/javascript" src="/includes/javascript/jquery-ui.js"></script>
+<?php } ?>
 
 <?php require('templates/'.CURRENT_TEMPLATE.'/css/general.css.php'); ?>
 
