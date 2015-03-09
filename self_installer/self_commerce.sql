@@ -3019,3 +3019,20 @@ INSERT INTO configuration (configuration_key, configuration_value, configuration
 ('PDF_ENABLED', 'false', 99, NULL, NULL, '0000-00-00 00:00:00', NULL, 'xtc_cfg_select_option(array(''true'', ''false''),');
 
 ALTER TABLE `orders_products` ADD `products_shipping_time` VARCHAR(32) NOT NULL;
+
+ALTER TABLE `orders_products` ADD `products_shipping_time` VARCHAR(32) NOT NULL;
+INSERT INTO `".TABLE_CONFIGURATION."` (configuration_key, configuration_value, configuration_group_id, sort_order, set_function) VALUES ('CHECKOUT_AJAX_STAT', 'true', 333, 0, '".addslashes("xtc_cfg_select_option(array('true', 'false'),")."');
+INSERT INTO `".TABLE_CONFIGURATION."` (configuration_key, configuration_value, configuration_group_id, sort_order, set_function) VALUES ('CHECKOUT_AJAX_PRODUCTS', 'true', 333, 1, '".addslashes("xtc_cfg_select_option(array('true', 'false'),")."');
+INSERT INTO `".TABLE_CONFIGURATION."` (configuration_key, configuration_value, configuration_group_id, sort_order, set_function) VALUES ('CHECKOUT_AJAX_FULL_BOXES', 'false', 333, 2, '".addslashes("xtc_cfg_select_option(array('true', 'false'),")."');
+INSERT INTO `".TABLE_CONFIGURATION."` (configuration_key, configuration_value, configuration_group_id, sort_order, set_function) VALUES ('CHECKOUT_SHOW_SHIPPING_MODULES', 'false', 333, 3, '".addslashes("xtc_cfg_select_option(array('true', 'false'),")."');
+INSERT INTO `".TABLE_CONFIGURATION."` (configuration_key, configuration_value, configuration_group_id, sort_order, set_function) VALUES ('CHECKOUT_SHOW_SHIPPING_ADDRESS', 'false', 333, 4, '".addslashes("xtc_cfg_select_option(array('true', 'false'),")."');
+INSERT INTO `".TABLE_CONFIGURATION."` (configuration_key, configuration_value, configuration_group_id, sort_order, set_function) VALUES ('CHECKOUT_SHOW_PAYMENT_MODULES', 'false', 333, 5, '".addslashes("xtc_cfg_select_option(array('true', 'false'),")."');
+INSERT INTO `".TABLE_CONFIGURATION."` (configuration_key, configuration_value, configuration_group_id, sort_order, set_function) VALUES ('CHECKOUT_SHOW_PAYMENT_ADDRESS', 'false', 333, 6, '".addslashes("xtc_cfg_select_option(array('true', 'false'),")."');
+INSERT INTO `".TABLE_CONFIGURATION."` (configuration_key, configuration_value, configuration_group_id, sort_order, set_function) VALUES ('CHECKOUT_SHOW_COMMENTS', 'false', 333, 7, '".addslashes("xtc_cfg_select_option(array('true', 'false'),")."');
+INSERT INTO `".TABLE_CONFIGURATION."` (configuration_key, configuration_value, configuration_group_id, sort_order, set_function) VALUES ('CHECKOUT_SHOW_PRODUCTS', 'false', 333, 8, '".addslashes("xtc_cfg_select_option(array('true', 'false'),")."');
+INSERT INTO `".TABLE_CONFIGURATION."` (configuration_key, configuration_value, configuration_group_id, sort_order, set_function) VALUES ('CHECKOUT_SHOW_AGB', 'false', 333, 9, '".addslashes("xtc_cfg_select_option(array('true', 'false'),")."');
+INSERT INTO `".TABLE_CONFIGURATION."` (configuration_key, configuration_value, configuration_group_id, sort_order, set_function) VALUES ('CHECKOUT_SHOW_REVOCATION', 'false', 333, 10, '".addslashes("xtc_cfg_select_option(array('true', 'false'),")."');
+INSERT INTO `".TABLE_CONFIGURATION_GROUP."` (configuration_group_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES (333, 'Checkout process', 'Customize the checkout process', 333, 1);
+INSERT INTO `".TABLE_CONFIGURATION."` (configuration_key, configuration_value, configuration_group_id, sort_order, set_function) VALUES ('CHECKOUT_SHOW_LOGIN', 'true', 333, 11, '".addslashes("xtc_cfg_select_option(array('true', 'false'),")."');
+ALTER TABLE admin_access ADD cox_sort INT(1) DEFAULT 1;
+INSERT INTO `".TABLE_CONFIGURATION."` (configuration_key, configuration_value, configuration_group_id, sort_order) VALUES ('CHECKOUT_BOX_ORDER', 'modules|addresses|products|comments|legals', 333, 12);
