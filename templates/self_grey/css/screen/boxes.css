@@ -24,7 +24,7 @@
   
   /* ### Kopf der Infoboxen ################################################################### */
   #col1_content h4 , #col2_content h4 {
-  	background: #363636 url(../../img/boxhead.gif) repeat-x top;
+  	background: #888888 url(../../img/boxhead_gradient.png) repeat-x top center;
   	color: #fff;
   	padding:5px;
   	width:auto;
@@ -35,6 +35,7 @@
   .boxInfoLS , .boxInfoRS {
   	 margin-bottom:20px; /* Abstand der Boxen */
   	/* border-bottom: 1px #000 solid;*/ /* Rahmen Boxkörper unten */
+  	box-shadow: 0 0 5px #333;
   }
   
   /* ### Innenabstand linke Boxen*/
@@ -179,18 +180,17 @@
   /* ### Box für die Kategorie (Kategorienavigation) ############################################ */
   /* ############################################################################################ */
   
-  .catListBody {
-  	
-  	font-family: Verdana, Arial, Helvetica, sans-serif;
-  	padding:3px;
-  	border-bottom:1px solid #9F9F9F;
-    border-left:1px solid #9F9F9F;
-    border-right:1px solid #9F9F9F;
-  	margin:0px 0px 20px 0px;
-  	font-size:0.8em;
-  	overflow:hidden;
-  	
-  }
+.catListBody {	
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	padding:3px;
+	border-bottom:1px solid #9F9F9F;
+	border-left:1px solid #9F9F9F;
+	border-right:1px solid #9F9F9F;
+	margin:0px 0px 20px 0px;
+	font-size:0.8em;
+	overflow:hidden;
+	box-shadow: 0 0 5px #333;
+}
   
   .catListBody li ul {
   	list-style-type: none; margin:0; padding: 0;
