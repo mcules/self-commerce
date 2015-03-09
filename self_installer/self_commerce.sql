@@ -3017,3 +3017,5 @@ INSERT INTO configuration (configuration_key, configuration_value, configuration
 ('PDF_MAIL_SLIP_COPY', '', 99, 83, NULL, '0000-00-00 00:00:00', NULL, NULL),
 ('PDF_MAIL_SLIP_FORWARDER', 'false', 99, 85, NULL, '0000-00-00 00:00:00', NULL, 'xtc_cfg_select_option(array(''true'', ''false''),'),
 ('PDF_ENABLED', 'false', 99, NULL, NULL, '0000-00-00 00:00:00', NULL, 'xtc_cfg_select_option(array(''true'', ''false''),');
+
+ALTER TABLE `orders_products` ADD `products_shipping_time` VARCHAR(32) NOT NULL;
