@@ -2283,7 +2283,7 @@ var $PRZ; //Enthält die Prüfziffer
       }
 
     // Variante 2 - Drei führende Nullen
-    } elseif ((substr($AccountNo,0,3) == "000")And (substr($AccountNo,3,1) != "0")){
+    } elseif ((substr($AccountNo,0,3) == "000") && (substr($AccountNo,3,1) != "0")){
       $Significance = '654321';
       for ($Run = 0;$Run < strlen($Significance);$Run++) {
         $Step1 += (substr($AccountNo,$Run + 3,1) * substr($Significance,$Run,1));
