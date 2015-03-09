@@ -156,7 +156,7 @@ include(DIR_WS_FUNCTIONS.'self_file_chk.php');
 					if ($_GET['action']) {
 						switch ($_GET['action']) {
 							case 'set_new':
-								// Prüfsumme setzen
+								// PrÃ¼fsumme setzen
 								do_filechk();
 								echo FILE_CHK_SET_NEW_OK;
 								break;
@@ -168,7 +168,7 @@ include(DIR_WS_FUNCTIONS.'self_file_chk.php');
 										<th class="dataTableHeadingContent"><?php echo TH_FILE; ?></th>
 									</tr>
 									<?php
-									// Änderungen anzeigen
+									// Ã„nderungen anzeigen
 									$sql = 'SELECT filepath, hash FROM self_commerce_filechk_' . $_GET['type'];
 									$check_query = xtDBquery($sql);
 									while ($row = xtc_db_fetch_array($check_query, true)) {

@@ -109,12 +109,12 @@ function xtc_remove_product($product_id) {
         $manufacturers_url_array = $_POST['manufacturers_url'];
         $language_id = $languages[$i]['id'];
 
-// http:// muß vor maufacturer url
+// http:// muÃŸ vor maufacturer url
 if($manufacturers_url_array[$language_id] != ''){
   if (preg_match('~^http://~', $manufacturers_url_array[$language_id])){
     $post_manu_url = xtc_db_prepare_input($manufacturers_url_array[$language_id]);
   }else{
-    // nicht vorhanden anfügen
+    // nicht vorhanden anfÃ¼gen
     $post_manu_url = xtc_db_prepare_input('http://'.$manufacturers_url_array[$language_id]);
   }
 }
