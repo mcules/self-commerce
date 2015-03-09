@@ -208,16 +208,13 @@ define('ICON_WARNING', 'Warning');
  *  GREETINGS
  *
  */
-
 define('TEXT_GREETING_PERSONAL', 'Nice to see you again <span class="greetUser">%s!</span> Would you like to view our <a style="text-decoration:underline;" href="%s">new products</a> ?');
 define('TEXT_GREETING_PERSONAL_RELOGON', '<small>If you are not %s , please  <a style="text-decoration:underline;" href="%s">login</a>  with your account.</small>');
 define('TEXT_GREETING_GUEST', 'Welcome  <span class="greetUser">visitor!</span> Would you like to <a style="text-decoration:underline;" href="%s">login</a>? Or would you like to create a new <a style="text-decoration:underline;" href="%s">account</a> ?');
-
 define('TEXT_SORT_PRODUCTS', 'Sorting of the items is ');
 define('TEXT_DESCENDINGLY', 'descending');
 define('TEXT_ASCENDINGLY', 'ascending');
 define('TEXT_BY', ' after ');
-
 define('TEXT_REVIEW_BY', 'from %s');
 define('TEXT_REVIEW_WORD_COUNT', '%s words');
 define('TEXT_REVIEW_RATING', 'Review: %s [%s]');
@@ -231,8 +228,6 @@ define('TEXT_UNKNOWN_TAX_RATE', 'Unknown tax rate');
  * WARNINGS
  *
  */
-
-define('WARNING_INSTALL_DIRECTORY_EXISTS', 'Warning: The installation directory is still available on: ' . dirname($HTTP_SERVER_VARS['SCRIPT_FILENAME']) . '/self_installer. Please delete this directory for security reasons!');
 define('WARNING_CONFIG_FILE_WRITEABLE', 'Warning: XT-Commerce is able to write to the configuration directory: ' . dirname($HTTP_SERVER_VARS['SCRIPT_FILENAME']) . '/includes/configure.php. That represents a possible safety hazard - please correct the user access rights for this directory!');
 define('WARNING_SESSION_DIRECTORY_NON_EXISTENT', 'Warning: Directory for sesssions doesn&acute;t exist: ' . xtc_session_save_path() . '. Sessions will not work until this directory has been created!');
 define('WARNING_SESSION_DIRECTORY_NOT_WRITEABLE', 'Warning: XT-Commerce is not able to write into the session directory: ' . xtc_session_save_path() . '. Sessions will not work until the user access rights for this directory have been changed!');
@@ -250,7 +245,6 @@ define('ERROR_NONEXISTING_ADDRESS_BOOK_ENTRY', 'This address book entry is not a
 define('ERROR_ADDRESS_BOOK_FULL', 'Your adressbook is full and you have to delete one adress first, before you can save another.');
 
 //  conditions check
-
 define('ERROR_CONDITIONS_NOT_ACCEPTED', 'If you do not accept our General Business Conditions, we are not able to accept your order!');
 
 define('SUB_TITLE_OT_DISCOUNT','Discount:');

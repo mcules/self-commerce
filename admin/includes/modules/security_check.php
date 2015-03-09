@@ -20,36 +20,35 @@ $file_warning = '';
 if (!strpos(decoct(fileperms(DIR_FS_CATALOG.'includes/configure.php')), '444')) {
 	$file_warning .= '<br>'.DIR_FS_CATALOG.'includes/configure.php';
 }
-
 if (!strpos(decoct(fileperms(DIR_FS_CATALOG.'includes/configure.org.php')), '444')) {
 	$file_warning .= '<br>'.DIR_FS_CATALOG.'includes/configure.org.php';
 }
-
 if (!strpos(decoct(fileperms(DIR_FS_ADMIN.'includes/configure.php')), '444')) {
 	$file_warning .= '<br>'.DIR_FS_ADMIN.'includes/configure.php';
 }
-
 if (!strpos(decoct(fileperms(DIR_FS_ADMIN.'includes/configure.org.php')), '444')) {
 	$file_warning .= '<br>'.DIR_FS_ADMIN.'includes/configure.org.php';
 }
-
 if (!strpos(decoct(fileperms(DIR_FS_CATALOG.'templates_c/')), '777') and !strpos(decoct(fileperms(DIR_FS_CATALOG.'templates_c/')), '755')) {
 	$folder_warning .= '<br>'.DIR_FS_CATALOG.'templates_c/';
 }
-
 if (!strpos(decoct(fileperms(DIR_FS_CATALOG.'cache/')), '777') and !strpos(decoct(fileperms(DIR_FS_CATALOG.'cache/')), '755')) {
 	$folder_warning .= '<br>'.DIR_FS_CATALOG.'cache/';
 }
-
 if (!strpos(decoct(fileperms(DIR_FS_CATALOG.'media/')), '777') and !strpos(decoct(fileperms(DIR_FS_CATALOG.'media/')), '755')) {
 	$folder_warning .= '<br>'.DIR_FS_CATALOG.'media/';
 }
-
 if (!strpos(decoct(fileperms(DIR_FS_CATALOG.'media/content/')), '777') and !strpos(decoct(fileperms(DIR_FS_CATALOG.'media/content/')), '755')) {
 	$folder_warning .= '<br>'.DIR_FS_CATALOG.'media/content/';
 }
+// check if the 'install' directory exists, and warn of its existence
+if (WARN_INSTALL_EXISTENCE == 'true') {
+	if (file_exists(DIR_FS_CATALOG . '/self_installer') && $_SERVER['HTTP_HOST'] != 'localhost') {
+		$installer_warning .= '<br />' . WARNING_INSTALL_DIRECTORY_EXISTS;
+	}
+}
 
-if ($file_warning != '' or $folder_warning != '') {
+if ($file_warning != '' or $folder_warning != '' or $installer_warning != '') {
 ?>
 
 
@@ -61,43 +60,38 @@ if ($file_warning != '' or $folder_warning != '') {
           <tr>
             <td width="1"><?php echo xtc_image(DIR_WS_ICONS.'big_warning.gif'); ?></td>
             <td class="main">
-              <?php
-
-	if ($file_warning != '') {
-
-		echo TEXT_FILE_WARNING;
-
-		echo '<b>'.$file_warning.'</b><br>';
-	}
-
-	if ($folder_warning != '') {
-
-		echo TEXT_FOLDER_WARNING;
-
-		echo '<b>'.$folder_warning.'</b>';
-	}
-
-	$payment_query = xtc_db_query("SELECT *
-				FROM ".TABLE_CONFIGURATION."
-				WHERE configuration_key = 'MODULE_PAYMENT_INSTALLED'");
-	while ($payment_data = xtc_db_fetch_array($payment_query)) {
-		$installed_payment = $payment_data['configuration_value'];
-
-	}
-	if ($installed_payment == '') {
-		echo '<br>'.TEXT_PAYMENT_ERROR;
-	}
-	$shipping_query = xtc_db_query("SELECT *
-				FROM ".TABLE_CONFIGURATION."
-				WHERE configuration_key = 'MODULE_SHIPPING_INSTALLED'");
-	while ($shipping_data = xtc_db_fetch_array($shipping_query)) {
-		$installed_shipping = $shipping_data['configuration_value'];
-
-	}
-	if ($installed_shipping == '') {
-		echo '<br>'.TEXT_SHIPPING_ERROR;
-	}
-?>
+				<?php
+				if ($file_warning != '') {
+					echo TEXT_FILE_WARNING;
+					echo '<b>'.$file_warning.'</b><br>';
+				}
+				if ($folder_warning != '') {
+					echo TEXT_FOLDER_WARNING;
+					echo '<b>'.$folder_warning.'</b>';
+				}
+				if ($installer_warning != '') {
+					echo '<b>'.$installer_warning.'</b>';
+				}
+				$payment_query = xtc_db_query("SELECT *
+							FROM ".TABLE_CONFIGURATION."
+							WHERE configuration_key = 'MODULE_PAYMENT_INSTALLED'");
+				while ($payment_data = xtc_db_fetch_array($payment_query)) {
+					$installed_payment = $payment_data['configuration_value'];
+				
+				}
+				if ($installed_payment == '') {
+					echo '<br>'.TEXT_PAYMENT_ERROR;
+				}
+				$shipping_query = xtc_db_query("SELECT *
+							FROM ".TABLE_CONFIGURATION."
+							WHERE configuration_key = 'MODULE_SHIPPING_INSTALLED'");
+				while ($shipping_data = xtc_db_fetch_array($shipping_query)) {
+					$installed_shipping = $shipping_data['configuration_value'];
+				}
+				if ($installed_shipping == '') {
+					echo '<br>'.TEXT_SHIPPING_ERROR;
+				}
+				?>
             </td>
           </tr>
         </table>

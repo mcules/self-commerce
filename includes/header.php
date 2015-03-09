@@ -360,16 +360,6 @@ require_once('inc/xtc_image.inc.php');
 require_once('inc/xtc_parse_input_field_data.inc.php');
 require_once('inc/xtc_draw_separator.inc.php');
 
-//  require_once('inc/xtc_draw_form.inc.php');
-//  require_once('inc/xtc_draw_pull_down_menu.inc.php');
-
-// check if the 'install' directory exists, and warn of its existence
-if (WARN_INSTALL_EXISTENCE == 'true') {
-	if (file_exists(dirname($_SERVER['SCRIPT_FILENAME']) . '/self_installer') && $_SERVER['HTTP_HOST'] != 'localhost') {
-		xtc_output_warning(WARNING_INSTALL_DIRECTORY_EXISTS);
-	}
-}
-
   // check if the configure.php file is writeable
   if (WARN_CONFIG_WRITEABLE == 'true') {
     if ( (file_exists(dirname($_SERVER['SCRIPT_FILENAME']) . '/includes/configure.php')) && (is_writeable(dirname($_SERVER['SCRIPT_FILENAME']) . '/includes/configure.php'))  && $_SERVER['HTTP_HOST'] != 'localhost') {
