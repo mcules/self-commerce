@@ -285,9 +285,7 @@ if (count($campaign->result)) {
     <td class="dataTableContent"><b><?php echo $campaign->result[$n]['late_sells_s'].' ('.($campaign->total['sells']> 0 ? ($campaign->result[$n]['late_sells_s']/$campaign->total['sells']*100):'0').'%)'; ?></b></td>
     <td class="dataTableContent"><b><?php echo $campaign->result[$n]['sum_s'].' ('.($campaign->total['sum_plain']> 0 ? round(($campaign->result[$n]['sum_s']/$campaign->total['sum_plain']*100),0):'0').'%)'; ?></b></td>
   </tr>
-  <?
-	}
-?>
+  <?php } ?>
 </table>
 <?php } ?>
                 &nbsp; </td>
@@ -296,4 +294,3 @@ if (count($campaign->result)) {
 <?php 
 require(DIR_WS_INCLUDES . 'application_bottom.php'); 
 require(DIR_WS_INCLUDES . 'application_bottom_0.php');
-?>

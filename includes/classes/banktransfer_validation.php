@@ -2262,7 +2262,7 @@ var $PRZ; //Enthält die Prüfziffer
     $RetVal = 1;
 
     // Variante 1 - Zwei führende Nullen
-    if ((substr($AccountNo,0,2) == "00")And (substr($AccountNo,2,1) != "0")){
+    if ((substr($AccountNo,0,2) == "00") && (substr($AccountNo,2,1) != "0")){
       $Significance = '1231231';
       for ($Run = 0;$Run < strlen($Significance);$Run++) {
         $Step1 = (substr($AccountNo,$Run + 2,1) * substr($Significance,$Run,1));

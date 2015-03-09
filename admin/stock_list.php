@@ -69,7 +69,7 @@ require ('includes/application_top_1.php');
 				</td>
 				<td class="dataTableHeadingContent"><?php echo TABLE_HEADING_STOCKLIST_STOCK.xtc_sorting(FILENAME_STOCK_LIST,'quantity'); ?></td>
               </tr>
-		<?
+		<?php
 		$rows = 0;
     	$products_count = 0;
 
@@ -159,7 +159,7 @@ require ('includes/application_top_1.php');
             } ?>
 		  	</td>
 			<td class="dataTableContent2"><?php echo $products['products_model']; ?>&nbsp;</td>
-			<td class="dataTableContent2"><a href="categories.php?search=<? echo $products['products_name']; ?>" title="<?php echo TEXT_SHOW_PRODUCTS; ?>"><?php echo $products['products_name']; ?></a>
+			<td class="dataTableContent2"><a href="categories.php?search=<?php echo $products['products_name']; ?>" title="<?php echo TEXT_SHOW_PRODUCTS; ?>"><?php echo $products['products_name']; ?></a>
 				<table border="0" width="100%" cellspacing="0" cellpadding="2">			
 				<?php 
 				// output options
@@ -169,16 +169,12 @@ require ('includes/application_top_1.php');
 				<td class="dataTableContent3" width="20%"><?php echo $attributes['products_options_name'].":&nbsp;"; ?></td>
 				<td class="dataTableContent3" width="50%"><?php echo $attributes['products_options_values_name']; ?></td>
 				<td class="dataTableContent3" align="right"><?php echo $attributes['attributes_stock']; ?>&nbsp;</td>				</tr>
-				<?
-				} // end while options
-				?>
+				<?php } // end while options ?>
 				</table>
 			</td>
 			<td class="dataTableContent2"><?php echo $products['products_quantity']; ?></td>
 		</tr>
-<?
- } // while end product loop
-?>
+<?php } // while end product loop ?>
 			<tr>
 				<td class="dataTableContent2" colspan="5">
 					<table border="0" width="100%" cellspacing="0" cellpadding="2">
@@ -198,4 +194,3 @@ require ('includes/application_top_1.php');
 <?php 
 require(DIR_WS_INCLUDES . 'application_bottom.php'); 
 require(DIR_WS_INCLUDES . 'application_bottom_0.php');
-?>
