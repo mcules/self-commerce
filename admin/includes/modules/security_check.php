@@ -42,10 +42,8 @@ if (!strpos(decoct(fileperms(DIR_FS_CATALOG.'media/content/')), '777') and !strp
 	$folder_warning .= '<br>'.DIR_FS_CATALOG.'media/content/';
 }
 // check if the 'install' directory exists, and warn of its existence
-if (WARN_INSTALL_EXISTENCE == 'true') {
-	if (file_exists(DIR_FS_CATALOG . '/self_installer') && $_SERVER['HTTP_HOST'] != 'localhost') {
-		$installer_warning .= '<br />' . WARNING_INSTALL_DIRECTORY_EXISTS;
-	}
+if (file_exists(DIR_FS_CATALOG . '/self_installer') && $_SERVER['HTTP_HOST'] != 'localhost') {
+	$installer_warning .= '<br />' . WARNING_INSTALL_DIRECTORY_EXISTS;
 }
 
 if ($file_warning != '' or $folder_warning != '' or $installer_warning != '') {
