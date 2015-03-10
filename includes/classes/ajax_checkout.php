@@ -195,33 +195,32 @@ class Checkout {
     return $configs;
   }
 
-  function getAddresses($type) {
-    if ($type == 'shipping') {
-      $sess = 'sendto';
-    } elseif ($type == 'payment') {
-      $sess = 'billto';
-    }
-    $dropdown = '<select size="1" class="ajax-checkout-address-dropdown">';
-    $addresses_query = xtc_db_query("select address_book_id, entry_firstname as firstname, entry_lastname as lastname, entry_company as company, entry_street_address as street_address, entry_suburb as suburb, entry_city as city, entry_postcode as postcode, entry_state as state, entry_zone_id as zone_id, entry_country_id as country_id from ".TABLE_ADDRESS_BOOK." where customers_id = '".$_SESSION['customer_id']."'");
-    while ($addresses = xtc_db_fetch_array($addresses_query)) {
-      $format_id = xtc_get_address_format_id($address['country_id']);
-      $selected = '';
-      if ($addresses['address_book_id'] == $_SESSION[$sess]) {
-        $selected = ' selected';
-      }
-      $short_address = xtc_address_format($format_id, $addresses, true, ' ', ', ');
-      $strpos = strpos($short_address, ',', 25);
-      if ($strpos != false) {
-        $short_address = substr($short_address, 0, $strpos+1).' ...';
-      }
-      $short_address = htmlspecialchars($short_address);
-      $dropdown .= '<option value="'.$addresses['address_book_id'].'"'.$selected.'>'.$short_address.'</option>';
-
-    }
-    $dropdown .= '</select>';
-
-    return $dropdown;
-  }
+	function getAddresses($type) {
+		if ($type == 'shipping') {
+			$sess = 'sendto';
+		} elseif ($type == 'payment') {
+			$sess = 'billto';
+		}
+		$dropdown = '<select size="1" class="ajax-checkout-address-dropdown">';
+		$addresses_query = xtc_db_query("SELECT address_book_id, entry_firstname AS firstname, entry_lastname AS lastname, entry_company AS company, entry_street_address AS street_address, entry_suburb AS suburb, entry_city AS city, entry_postcode AS postcode, entry_state AS state, entry_zone_id AS zone_id, entry_country_id AS country_id FROM ".TABLE_ADDRESS_BOOK." WHERE customers_id = '".$_SESSION['customer_id']."'");
+		while ($addresses = xtc_db_fetch_array($addresses_query)) {
+			$format_id = xtc_get_address_format_id($address['country_id']);
+			$selected = '';
+			if ($addresses['address_book_id'] == $_SESSION[$sess]) {
+				$selected = ' selected';
+			}
+			$short_address = xtc_address_format($format_id, $addresses, true, ' ', ', ');
+			$strpos = strpos($short_address, ',', 25);
+			if ($strpos != false) {
+				$short_address = substr($short_address, 0, $strpos+1).' ...';
+			}
+			$dropdown .= '<option value="'.$addresses['address_book_id'].'"'.$selected.'>'.$short_address.'...</option>';
+		
+		}
+		$dropdown .= '</select>';
+		
+		return $dropdown;
+	}
 
   function isNewAddressPossible() {
     $addresses_query = xtc_db_query("select address_book_id, entry_firstname as firstname, entry_lastname as lastname, entry_company as company, entry_street_address as street_address, entry_suburb as suburb, entry_city as city, entry_postcode as postcode, entry_state as state, entry_zone_id as zone_id, entry_country_id as country_id from ".TABLE_ADDRESS_BOOK." where customers_id = '".$_SESSION['customer_id']."'");

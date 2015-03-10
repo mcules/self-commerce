@@ -6,6 +6,7 @@
 
 <link rel="stylesheet" href="lib/nyroModal/styles/nyroModal.css" />
 <link rel="stylesheet" href="{$tpl_path}ajax_checkout.css" />
+<script type="text/javascript" src="{$tpl_path}javascript/ajax_checkout.js"></script>
 
 <div id="ajax-checkout">
 
@@ -307,6 +308,8 @@
               <div class="change-address" style="display:none;">
                 <h4>{#address_old#}</h4>
                 {$SHIPPING_ADDRESS_DROPDOWN}
+                <input type="image" src="{$tpl_path}buttons/{$language}/button_confirm.gif" alt="" class="back" />
+                <br />
                 {if $IS_NEW_ADDRESS_POSSIBLE}
                   <form method="post">
                     <input type="hidden" name="ajax_action" value="update_address" />
@@ -351,6 +354,8 @@
             <div class="change-address" style="display:none;">
               <h4>{#address_old#}</h4>
               {$PAYMENT_ADDRESS_DROPDOWN}
+              <input type="image" src="{$tpl_path}buttons/{$language}/button_confirm.gif" alt="" class="back" />
+              <br />
               {if $IS_NEW_ADDRESS_POSSIBLE}
                 <form method="post">
                   <input type="hidden" name="ajax_action" value="update_address" />
@@ -422,7 +427,7 @@
               <textarea cols="60" rows="10" readonly="readonly">{$AGB}</textarea>
               <div>
                 <input type="checkbox" id="agb-checkbox" />
-                <label for="agb-checkbox">{#text_accept_agb#}</label>
+                <label for="agb-checkbox" style="width: 100%">{#text_accept_agb#}</label>
               </div>
             </div>
           </div>
