@@ -78,7 +78,6 @@ class Checkout {
     global $xtPrice;
 
     $data_products = '<ul>';
-
     for ($i=0, $n=sizeof($order->products); $i<$n; $i++) {
       $products_id = $order->products[$i]['id'];
       $products_name = $order->products[$i]['name'];
@@ -98,10 +97,10 @@ class Checkout {
       } else {
         $html_update_qty = '';
       }
-
-      $data_products .= '<strong class="products-qty">'.$products_amount.'</strong> x <strong class="products-name">'.$products_name.'</strong>'.$html_update_qty.' <strong class="products-price">'.$products_formatted_price.'</strong>';
+	  $Products_Link = xtc_href_link(FILENAME_PRODUCT_INFO, 'products_id=' . $products_id);
+      $data_products .= '<strong class="products-qty">'.$products_amount.'</strong> x <strong class="products-name"><a href="'.$Products_Link.'">'.$products_name.'</a></strong>'.$html_update_qty.' <strong class="products-price">'.$products_formatted_price.'</strong>';
       $data_products .= '<div class="products-description"><small>' . (!empty($order->products[$i]['short_description'])?trim(strip_tags($order->products[$i]['short_description'])):trim(substr(strip_tags($order->products[$i]['description']),0,300))). ' [...]' . '</small></br></br></div>';
-      $data_products .= '<div class="products-thumb"><img style="max-width:80px" src="'.DIR_WS_THUMBNAIL_IMAGES.xtc_get_products_image($order->products[$i]['id']).'" /></div><br/>';
+      $data_products .= '<div class="products-thumb"><a href="'.$Products_Link.'"><img style="max-width:80px" src="'.DIR_WS_THUMBNAIL_IMAGES.xtc_get_products_image($order->products[$i]['id']).'" /></a></div><br/>';
 
       if (ACTIVATE_SHIPPING_STATUS == 'true') {
         $data_products .= '<div class="products-shipping-time">'.SHIPPING_TIME.$products_shipping_time.'</div>';

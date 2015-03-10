@@ -16,57 +16,57 @@
 @media all
 {
 
-  /* ######################################################################################################
-  ** # Spezielle Inhaltselemente ##########################################################################
-  ** ######################################################################################################
+	/* ######################################################################################################
+	** # Spezielle Inhaltselemente ##########################################################################
+	** ######################################################################################################
+	
+	/* ### Boxen allgemein ###################################################################### */
+	
+	/* ### Kopf der Infoboxen ################################################################### */
+	#col1_content h4 , #col2_content h4 {
+		background: #888888 url(../../img/boxhead_gradient.png) repeat-x top center;
+		color: #fff;
+		padding:5px;
+		width:auto;
+		border:0px;
+	}
   
-  /* ### Boxen allgemein ###################################################################### */
+	/* ### Körper der Infoboxen */
+	.boxInfoLS , .boxInfoRS {
+		 margin-bottom:20px; /* Abstand der Boxen */
+		/* border-bottom: 1px #000 solid;*/ /* Rahmen Boxkörper unten */
+		box-shadow: 0 0 5px #333;
+	}
   
-  /* ### Kopf der Infoboxen ################################################################### */
-  #col1_content h4 , #col2_content h4 {
-  	background: #888888 url(../../img/boxhead_gradient.png) repeat-x top center;
-  	color: #fff;
-  	padding:5px;
-  	width:auto;
-  	border:0px;
-  }
+	/* ### Innenabstand linke Boxen*/
+	.boxInfoBodyLS {
+		padding:8px;
+		font-size: 0.8em;
+		border-bottom:1px solid #9F9F9F;
+		border-left:1px solid #9F9F9F;
+		border-right:1px solid #9F9F9F;
+	}
   
-  /* ### Körper der Infoboxen */
-  .boxInfoLS , .boxInfoRS {
-  	 margin-bottom:20px; /* Abstand der Boxen */
-  	/* border-bottom: 1px #000 solid;*/ /* Rahmen Boxkörper unten */
-  	box-shadow: 0 0 5px #333;
-  }
+	/* ### Innenabstand rechte Boxen*/
+	.boxInfoBodyRS {
+		padding:8px;
+		font-size: 0.8em;
+		border-bottom:1px solid #9F9F9F;
+		border-left:1px solid #9F9F9F;
+		border-right:1px solid #9F9F9F;
+	}
   
-  /* ### Innenabstand linke Boxen*/
-  .boxInfoBodyLS {
-  	padding:8px;
-  	font-size: 0.8em;
-  	border-bottom:1px solid #9F9F9F;
-    border-left:1px solid #9F9F9F;
-    border-right:1px solid #9F9F9F;
-  }
+	/* ### Abschnitte in den Boxen ### */
+	#col1_content p , #col2_content p {
+		margin:0;
+		line-height:1.2em;
+	}
   
-  /* ### Innenabstand rechte Boxen*/
-  .boxInfoBodyRS {
-  	padding:8px;
-  	font-size: 0.8em;
-  	border-bottom:1px solid #9F9F9F;
-    border-left:1px solid #9F9F9F;
-    border-right:1px solid #9F9F9F;
-  }
-  
-  /* ### Abschnitte in den Boxen ### */
-  #col1_content p , #col2_content p {
-  	margin:0;
-  	line-height:1.2em;
-  }
-  
-  /* ### Abstand für Inputs (Eingabefelder / Buttons in den Boxen ### */
-  #col1_content input , #col2_content input {
-  	margin:2px;
-  	font-size: 1.2em;
-  }
+	/* ### Abstand für Inputs (Eingabefelder / Buttons in den Boxen ### */
+	#col1_content input , #col2_content input {
+		margin:2px;
+		font-size: 1.2em;
+	}
   
   /* ### Einzug für Text in den Boxen ### */
   p.boxTxtInd {
