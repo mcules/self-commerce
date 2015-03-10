@@ -380,7 +380,6 @@ define('NEW_SIGNUP_DISCOUNT_COUPON_TITLE', 'Welcome Discount Coupon Code');
 define('NEW_SIGNUP_DISCOUNT_COUPON_DESC', 'Welcome Discount Coupon Code: if you do not want to send a Discount Coupon in your create account eMail ,leave this field blank, else place the coupon code here you wish to use');
 
 define('TXT_ALL','All');
-
 // UST ID
 define('BOX_CONFIGURATION_18', 'Vat ID');
 define('HEADING_TITLE_VAT','Vat-ID');
@@ -391,29 +390,23 @@ define('TEXT_VAT_TRUE','<font color="FF0000">Checked/True!</font>');
 define('TEXT_VAT_UNKNOWN_COUNTRY','<font color="FF0000">Not Checked/Unknown Country!</font>');
 define('TEXT_VAT_UNKNOWN_ALGORITHM','<font color="FF0000">Not Checked/No Check available!</font>');
 define('ENTRY_VAT_ID_ERROR', '<font color="FF0000">* Your Vat ID is False!</font>');
-
 define('ERROR_GIF_MERGE','Missing GDlib Gif-Support, merge failed');
 define('ERROR_GIF_UPLOAD','Missing GDlib Gif-Support, processing of Gif image failed');
-
 define('TEXT_REFERER','Referer: ');
-
 // Admin SQL
 define('BOX_ADMIN_SQL','<font color="red">Admin SQL</font>');
 define('ADMIN_SQL','SQL-Admin');
 define('ADMIN_SQL_TEXT','SQL instruction:');
 define('ADMIN_SQL_DESC','Here you send SQL instructions to your data base.<br />Please with caution proceed.');
 define('ADMIN_SQL_SUCCESS','<b>SQL Instruction successfully implemented.</b>');
-
 // Lagerliste
 define('BOX_STOCK_LIST','Stock list');
-
 // PayPal Express
 define('BOX_PAYPAL','PayPal');
-
 // BLZ Update
 define('BOX_BLZ_UPDATE', 'Update German bank code numbers');
-
-#---- AJAX CHECKOUT PROCESS START
+#---- AJAX CHECKOUT PROCESS
 define('BOX_COX_SORT','Checkout process sorting');
 define('BOX_CONFIGURATION_333', 'Checkout process');
-#---- AJAX CHECKOUT PROCESS END
+// Imageslider (c)2008 by Hetfield
+define('BOX_IMAGESLIDERS','Image-Slideshow');

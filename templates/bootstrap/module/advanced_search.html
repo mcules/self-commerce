@@ -1,0 +1,46 @@
+{config_load file="$language/lang_$language.conf" section="advanced_search"}
+<h1>{#heading_search#}</h1>
+{$FORM_ACTION}
+{if $error!=''}<div class="alert alert-error">{$error|replace:'<tr':'<div'|replace:'</tr':'</div'|stripTags:"table,tbody,td"|replace:'class="':'class="alert alert-error '}</div>{/if} 
+  <div class="row-fluid">
+    <div class="span12 well well-small">
+      <label>{#title_keywords#}</label>
+      {$INPUT_KEYWORDS|replace:'style="width: 100%"':'class="span11"'}
+    </div>
+  </div>
+  <div class="row-fluid">
+    <div class="span12 well well-small">
+      <div class="span6">
+        <label>{#text_categories#}</label>
+        {$SELECT_CATEGORIES|replace:'<select':'<select class="span10" '}
+        <label class="checkbox">{$ENTRY_SUBCAT}{#text_subkategories#}</label>
+      </div>
+      <div class="span6">
+        <label>{#text_manufacturer#}</label>
+        {$SELECT_MANUFACTURERS|replace:'<select':'<select class="span10" '}
+      </div>
+    </div>
+  </div>
+  <div class="row-fluid">
+    <div class="span12 well well-small">
+      <div class="span6">
+        <label>{#text_min#}</label>
+        {$SELECT_PFROM|replace:'<input type':'<input class="span4" type'}
+      </div>
+      <div class="span6">
+        <label>{#text_max#}</label>
+        {$SELECT_PTO|replace:'<input type':'<input class="span4" type'}
+      </div>
+    </div>
+  </div>
+  <div class="row-fluid">
+    <div class="span12 well well-small">
+      <div class="span6">
+        <label><a class="contentbox btn span10" href="{$HELP_LINK|regex_replace:'/php.*.KeepThis.*/':'php'}" title="Information"><i class="icon-info-sign"></i>&nbsp;{#text_help#}</a></label>
+      </div>
+      <div class="span6">
+        {$BUTTON_SUBMIT|button}
+      </div>
+    </div>
+  </div>
+{$FORM_END}

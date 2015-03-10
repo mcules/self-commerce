@@ -1,0 +1,18 @@
+{config_load file="$language/lang_$language.conf" section="boxes"}
+<div class="well well-small">
+  <div class="clearfix">
+    <span class="categoryheader pull-left">{#heading_guestnewsletter#}</span>
+    <button class="btn btn-default btn-mini pull-right" data-toggle="collapse" data-target="#box_newsletter"><span class="caret"></span></button>
+  </div>
+  <div id="box_newsletter" class="collapsebox collapse">
+    <div class="boxcontent">
+    {$FORM_ACTION}
+      <fieldset>
+        <label>{#text_email#}:</label>
+        {$FIELD_EMAIL}
+        {$BUTTON|button}
+      </fieldset>
+    {$FORM_END}
+    </div>
+  </div>
+</div>

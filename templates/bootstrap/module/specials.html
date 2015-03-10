@@ -1,0 +1,64 @@
+{config_load file="$language/lang_$language.conf" section="specials"} 
+{config_load file="$language/lang_$language.conf" section="index"}
+<h1>{#heading_text#}</h1>
+{template_styler input=$module_content tpl=SPECIALS}
+<div class="row-fluid">
+{if $ANSICHT_BUTTONS}
+  <div class="pull-right left-buffer hidden-phone">
+    {$ANSICHT_BUTTONS}
+  </div>                      
+{/if}
+{if $ART_PRO_SEITE_DROPDOWN}
+  <div class="pull-right left-buffer">
+          {$ART_PRO_SEITE_DROPDOWN}
+  </div>                      
+{/if}
+{if $SORTING_DROPDOWN}
+  <div class="pull-right left-buffer">
+    {$SORTING_DROPDOWN}
+  </div>                      
+{/if}
+{if $MANUFACTURER_DROPDOWN}
+  <div class="pull-right">
+    {$MANUFACTURER_DROPDOWN}
+  </div>                      
+{/if}
+</div>
+{$NAVIGATION}
+<div class="switcher">
+<div class="row-fluid">{foreach name=aussen item=module_data from=$module_content}  
+  <div class="{$switcher.span} well well-small">                                                                                                                
+    {if $module_data.PRODUCTS_IMAGE!=''}<div class="div1{$switcher.div1}"><a href="{$module_data.PRODUCTS_LINK}"><img class="img-responsive center-block" src="{$module_data.PRODUCTS_IMAGE}" alt="{$module_data.PRODUCTS_NAME}" /></a></div>{/if}
+    <div class="div2 {$switcher.div2} text-center">
+      <p class="prod text-center {$switcher.style}">
+        <a href="{$module_data.PRODUCTS_LINK}">
+          <span class="shown">{$module_data.PRODUCTS_NAME|truncate:$switcher.name}</span>
+        </a>
+      </p>
+{if $switcher.desc != 0 || $switcher.desc === FALSE}      <p class="desc {$switcher.style2}">{$module_data.PRODUCTS_SHORT_DESCRIPTION|strip_tags|truncate:$switcher.desc}</p>{/if}
+    </div>
+    <div class="div3 {$switcher.div3} text-center">
+      <p class="price {$switcher.style} {$switcher.style2}">{$module_data.PRODUCTS_PRICE}&nbsp;*{if $module_data.PRODUCTS_OLDPRICE}{$module_data.PRODUCTS_OLDPRICE}{/if}</p>
+      <div class="div3_1 {$switcher.div3_1}">
+        <p>( {$module_data.PRODUCTS_TAX_INFO}{$module_data.PRODUCTS_SHIPPING_LINK|replace:'thickbox':'contentbox'|replace:'&amp;KeepThis=true&amp;TB_iframe=true&amp;height=400&amp;width=600':''} )</p>
+{if $module_data.PRODUCTS_VPE}      <p>{$module_data.PRODUCTS_VPE}</p>{/if}
+{if $module_data.PRODUCTS_SHIPPING_NAME}        <p>{#text_shippingtime#}{if $module_data.PRODUCTS_SHIPPING_IMAGE}<img src="{$module_data.PRODUCTS_SHIPPING_IMAGE}" alt="{$module_data.PRODUCTS_SHIPPING_NAME}" />{/if}&nbsp;{$module_data.PRODUCTS_SHIPPING_NAME}</p>{/if}
+
+      </div>
+{ratings pID=$module_data.PRODUCTS_ID}{if $RATINGS >= 0}
+    <div class="div4 rating {$switcher.div4} text-center">
+      <p>
+        <a href="{$module_data.PRODUCTS_LINK}">{$RATING}&nbsp;&nbsp;<small>({$RATINGS})</small></a>
+      </p>
+    </div>{/if}
+      <p>{if $module_data.PRODUCTS_BUTTON_BUY_NOW}$module_data.PRODUCTS_BUTTON_BUY_NOW|button}&nbsp;&nbsp;{/if}{$module_data.PRODUCTS_BUTTON_DETAILS|button}</p>
+    </div>
+  </div>{if not $smarty.foreach.aussen.last}
+{if $smarty.foreach.aussen.iteration is div by $switcher.col}</div>
+<div class="row-fluid">
+  {/if}
+  {/if}
+  {/foreach} 
+</div>                                                                                                                                                                            
+</div>
+{$NAVIGATION}

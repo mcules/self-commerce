@@ -1,0 +1,19 @@
+{config_load file="$language/lang_$language.conf" section="boxes"}
+<br /><hr>
+<h1>{$smarty.const.NAV_BRAND}</h1>
+<div class="cat_show1 row-fluid top-buffer">
+	{foreach name=aussen item=box_data from=$box_content}
+		<div class="cat_show2 span4 well well-small">
+			<div class="cat_show_image text-center">
+{if $box_data.CATEGORY_IMAGE_TRUE!=''}
+        <a href="{$box_data.CATEGORY_LINK}" title="{$box_data.CATEGORY_NAME}"><img class="cat_image" src="{$box_data.CATEGORY_IMAGE}" alt="{$box_data.CATEGORY_NAME}" /><h3>{$box_data.CATEGORY_NAME}</h3></a>
+{else}
+        <a href="{$box_data.CATEGORY_LINK}" title="{$box_data.CATEGORY_NAME}"><h3>{$box_data.CATEGORY_NAME}</h3></a>
+{/if}
+			</div>
+		</div>
+{if !$smarty.foreach.aussen.last && $smarty.foreach.aussen.iteration is div by 3}</div>
+<div class="cat_show1 row-fluid">
+{/if}
+	{/foreach}
+</div>

@@ -88,18 +88,12 @@ define('FILENAME_POPUP_CONTENT', 'popup_content.php');
 define('FILENAME_EDIT_PRODUCTS', 'admin/categories.php');
 define('FILENAME_METATAGS_PRODUCTS_INFO', 'metatags_product_info.php');
 define('FILENAME_GRADUATED_PRICE', 'graduated_prices.php');
-
 define('FILENAME_PDF_DATASHEET', 'pdf_datasheet.php');
 define('FILENAME_PRINT_PRODUCT_INFO', 'print_product_info.php');
 define('FILENAME_PRINT_ORDER', 'print_order.php');
-
 define('FILENAME_ERROR_HANDLER', 'error_handler.php');
 define('FILENAME_CONTENT', 'shop_content.php');
 define('FILENAME_BANNER', 'banners.php');
-
 // PayPal
 define('FILENAME_PAYPAL_CHECKOUT', 'paypal_checkout.php');
 define('FILENAME_PAYPAL','paypal.php');
-
-// BLZ Update
-define('FILENAME_BLZ_UPDATE', 'blz_update.php');

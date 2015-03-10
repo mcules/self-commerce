@@ -1,0 +1,21 @@
+{if $FREE_SHIPPING} 
+		<p class="label"><strong>{$FREE_SHIPPING_TITLE}</strong></p>
+		<p>{$FREE_SHIPPING_DESCRIPTION}</p>
+{else}
+{foreach name=aussenshipping item=module_data from=$module_content}
+  <p class="label"><strong>{$module_data.module}</strong></p>
+  {if $module_data.error != ''}
+  <div class="row-fluid">
+    <div class="span6"><label class="radio">{$module_data.error|replace:'class="':'class="alert alert-error '}</label></div
+    <div class="span4"></div>
+  </div>
+  {else}
+  {foreach name=aussen item=method_data from=$module_data.methods} 
+  <div class="row-fluid">
+    <div class="span6"><label class="radio">{$method_data.radio_field}{$method_data.title}</label></div>
+    <div class="span4">{$method_data.price}</div>
+  </div>
+  {/foreach}
+  {/if}
+{/foreach}
+{/if}

@@ -1,0 +1,22 @@
+{config_load file="$language/lang_$language.conf" section="address_book"}
+<h1>{#heading_address#}</h1>
+{if $error!=''}<div>{$error|replace:'<tr':'<div'|replace:'</tr':'</div'|stripTags:"table,tbody,td"|replace:'class="':'class="alert alert-error '}</div>{/if} 
+<p>{$BUTTON_BACK|button}</p>
+{$FORM_ACTION}
+<div class="well well-small">
+<h2>{#title_standard#}</h2>
+<p>{#text_standard#}</p>
+<h3>{#title_standard#}:</h3>
+<p>{$ADDRESS_DEFAULT}</p>
+</div>
+<div class="well well-small">
+<h3>{#title_addresses#}</h3>
+{foreach name=aussen item=addresses from=$addresses_data}
+<p><strong>{$addresses.NAME} {if $addresses.PRIMARY=='1'} ({#title_standard#}) {/if}</strong><br />
+{$addresses.ADDRESS}</p>
+<p>{$addresses.BUTTON_EDIT|button}&nbsp;{$addresses.BUTTON_DELETE|button}</p>
+{if $addresses.PRIMARY!='1'} <hr> {/if}
+{/foreach}
+</div>
+<p>{$BUTTON_BACK|button}&nbsp;&nbsp;{$BUTTON_NEW|button}</p>
+<p>{$ADDRESS_COUNT}</p>

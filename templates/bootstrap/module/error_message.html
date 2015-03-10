@@ -1,0 +1,12 @@
+{config_load file="$language/lang_$language.conf" section="error_handler"}
+{config_load file="$language/lang_$language.conf" section="boxes"}
+<h1>{$ERROR}</h1>
+<p>{#text_search_again#}</p>
+{$FORM_ACTION}
+<div class="well well-small">
+    <p>{#text_search#}</p>
+    <p>{$INPUT_SEARCH|replace:'<input type':'<input class="span6" type'|regex_replace:'/maxlen.*"|size.*"/':''}</p>
+    <p>{$BUTTON_SUBMIT|button}&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn" href="{$LINK_ADVANCED}" title="{#text_advanced_search#}">{#text_advanced_search#}</a></p>
+</div>
+{$FORM_END}
+<p>{$BUTTON|button}</p>

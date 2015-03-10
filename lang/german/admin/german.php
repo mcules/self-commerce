@@ -384,9 +384,7 @@ define('NEW_SIGNUP_GIFT_VOUCHER_AMOUNT_TITLE', 'Willkommens-Geschenk Gutschein W
 define('NEW_SIGNUP_GIFT_VOUCHER_AMOUNT_DESC', 'Willkommens-Geschenk Gutschein Wert: Wenn Sie keinen Gutschein in Ihrer Willkommens-eMail versenden wollen, tragen Sie hier 0 ein, ansonsten geben Sie den Wert des Gutscheins an, zB. 10.00 oder 50.00, aber keine W&auml;hrungszeichen');
 define('NEW_SIGNUP_DISCOUNT_COUPON_TITLE', 'Willkommens-Rabatt Kupon Code');
 define('NEW_SIGNUP_DISCOUNT_COUPON_DESC', 'Willkommens-Rabatt Kupon Code: Wenn Sie keinen Kupon in Ihrer Willkommens-eMail versenden wollen, lassen Sie dieses Feld leer, ansonsten tragen Sie den Kupon Code ein, den Sie verwenden wollen');
-
 define('TXT_ALL','Alle');
-
 // UST ID
 define('HEADING_TITLE_VAT','Ust-ID');
 define('HEADING_TITLE_VAT','Ust-ID');
@@ -397,29 +395,23 @@ define('TEXT_VAT_TRUE','<font color="FF0000">Gepr&uuml;ft/OK!</font>');
 define('TEXT_VAT_UNKNOWN_COUNTRY','<font color="FF0000">Nicht Gepr&uuml;ft/Land unbekannt!</font>');
 define('TEXT_VAT_UNKNOWN_ALGORITHM','<font color="FF0000">Nicht Gepr&uuml;ft/Keine &Uuml;berpr&uuml;fung m&ouml;glich!</font>');
 define('ENTRY_VAT_ID_ERROR', '<font color="FF0000">* Die Eingegebene UST ID Nummer ist Falsch oder kann derzeit nicht gepr&uuml;ft werden!</font>');
-
 define('ERROR_GIF_MERGE','Fehlender GDlib Gif Support, kein Wasserzeichen (Merge) m&ouml;glich');
 define('ERROR_GIF_UPLOAD','Fehlender GDlib Gif Support, kein Upload von GIF Bildern m&ouml;glich');
-
 define('TEXT_REFERER','Referer: ');
-
 // Admin SQL
 define('BOX_ADMIN_SQL','<font color="red">Admin SQL</font>');
 define('ADMIN_SQL','SQL-Admin');
 define('ADMIN_SQL_TEXT','SQL-Befehl(e):');
 define('ADMIN_SQL_DESC','Hiermit senden Sie SQL Befehle an Ihre Datenbank.<br />Bitte mit Vorsicht vorgehen.');
 define('ADMIN_SQL_SUCCESS','<b>SQL Befehl erfolgreich ausgefí©²t.</b>');
-
 // Lagerliste
 define('BOX_STOCK_LIST','Lagerliste');
-
 // PayPal Express
 define('BOX_PAYPAL','PayPal');
-
 // BLZ Update
 define('BOX_BLZ_UPDATE', 'Bankleitzahlen aktualisieren');
-
-#---- AJAX CHECKOUT PROCESS START
+#---- AJAX CHECKOUT PROCESS
 define('BOX_CONFIGURATION_333', 'Bestellprozess');
 define('BOX_COX_SORT','Bestellprozess Sortierung');
-#---- AJAX CHECKOUT PROCESS END
+// Imageslider (c)2008 by Hetfield
+define('BOX_IMAGESLIDERS','Bilder-Slideshow');

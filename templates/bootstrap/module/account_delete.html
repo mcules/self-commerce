@@ -1,0 +1,19 @@
+{config_load file="$language/lang_$language.conf" section="account_delete"}
+{if $error!=''}<div>{$error|replace:'<tr':'<div'|replace:'</tr':'</div'|stripTags:"table,tbody,td"|replace:'class="':'class="alert alert-error '}</div>{/if} 
+{if $BUTTON_CONTINUE}
+<div class="well well-small">
+  <h2>{#heading_account_deleted#}</h2>
+  <p>{#account_deleted#}</p>                                           
+  <p>{$BUTTON_CONTINUE|button}</p>  
+</div>
+{else}
+{$FORM_ACTION}
+<div class="well well-small">
+  <h2>{#heading_delete_account#}</h2>
+  <p>{#delete_account#}</p>
+    <p>{$INPUT_PASSWORD|replace:'<input type':'<input class="span4" type'}</p>
+    <p>{$BUTTON_SUBMIT|button}</p>        
+</div>
+<p>{$BUTTON_BACK|button}</p>       
+{$FORM_END}
+{/if}

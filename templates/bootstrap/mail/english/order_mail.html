@@ -1,0 +1,163 @@
+{config_load file="$language/lang_$language.conf" section="print_order"}
+{config_load file="$language/lang_$language.conf" section="duty_info"} 
+{language}
+<table width="100%" align="center" border="0" cellspacing="0" cellpadding="10">
+  <tr valign="top"> 
+    <td width="53%" align="left">{$smarty.const.STORE_NAME_ADDRESS|nl2br}<br /><br /><br /></td>
+    <td style="vertical-align:top; text-align:right;"><img src="{$tpl_path}img/logo.gif" alt="{$smarty.const.STORE_NAME}" /></td>
+  </tr>
+  <tr>
+      <td colspan="2">{$smarty.const.ORDER_THANK_YOU_TOP}</td>
+  </tr>    
+  <tr bgcolor="white"> 
+    <td colspan="2"><h2>{$smarty.const.ORDER_HEAD}</h2></td>
+  </tr>
+</table>
+<table border="0" cellspacing="0" cellpadding="2" width="100%" style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size:12px;">
+  <!-- begin customer information --> 
+  <tr bgcolor="#CCCCCC"> 
+    <td colspan="2"><b>{$smarty.const.ORDER_ORDER_HEAD}</b></td>
+  </tr>                                                                                                        
+  <tr> 
+    <td>{#title#}</td><td>{$oID}</td>                       
+  </tr>
+  <tr> 
+    <td>{#date#}</td><td>{$DATE}</td>
+  </tr>
+  {if $PAYMENT_METHOD}
+  <tr> 
+    <td>{#payment#}</td><td>{$PAYMENT_METHOD}</td>
+  </tr>
+  {/if}
+  <!-- end customer information --> 
+  <!-- begin 2 column bill-ship to --> 
+  <tr>
+    <td colspan="2">&nbsp;</td>
+  </tr>
+  <tr bgcolor="#CCCCCC"> 
+    <td colspan="2"><b>{$smarty.const.ORDER_INFO_HEAD}</b></td>
+  </tr>
+  <tr valign="top"> 
+    <td width="50%"><!-- begin shipto -->   
+      <table width="100%" cellspacing="0" cellpadding="2" border="0">
+        	<tr> 
+            <td><b>{#shipping_address#}</b></td>
+	        </tr>
+	        <tr> 
+	          <td>{$address_label_shipping}</td>
+	        </tr>
+	     </table>
+       <!-- end shipto --> 
+   </td>
+    <td width="50%"><!-- begin billto --> 
+      <table width="100%" border="0" cellpadding="2" cellspacing="0">
+        <tr> 
+          {if $address_label_payment}
+          <td><b>{#payment_address#}</b></td>
+          {/if}
+        </tr>
+        <tr> 
+            {if $address_label_payment}
+	          <td>{$address_label_payment}</td>
+            {/if}
+        </tr>
+      </table>
+      <!-- end billto --> 
+      <!-- end customer information --> 
+    </td>
+  </tr>
+  <!-- begin order items information --> 
+  <tr bgcolor="#CCCCCC"> 
+    <td colspan="2"><b>{$smarty.const.ORDER_ARTIKEL_HEAD}</b></td>
+  </tr>
+  <tr> 
+    <td colspan="2"> 
+      <table width="100%" cellspacing="0" cellpadding="2" border="0">
+        <tr align="center">
+          <th>{#head_units#}</th>
+          <th>{#head_products#}</th>
+          <th>{#head_artnr#}</th>
+          <th>{#head_single_price#}</th>
+          <th>{#head_price#}</th>
+       </tr>
+      {foreach name=aussen item=order_values from=$order_data} 
+	     <tr align="center" valign="top">
+		      <td>{$order_values.PRODUCTS_QTY}</td>
+          <td>
+            <strong>{$order_values.PRODUCTS_NAME}</strong>
+            {if $order_values.PRODUCTS_ORDER_DESCRIPTION neq ''}<br />{$order_values.PRODUCTS_ORDER_DESCRIPTION}{/if}
+            {if $order_values.PRODUCTS_SHIPPING_TIME neq ''}<br />Lieferzeit: {$order_values.PRODUCTS_SHIPPING_TIME}{/if}
+            {if $order_values.PRODUCTS_ATTRIBUTES neq ''}<br /><em>{$order_values.PRODUCTS_ATTRIBUTES}</em>{/if}
+          </td>
+		      <td>{$order_values.PRODUCTS_MODEL}<br />
+            <em>{$order_values.PRODUCTS_ATTRIBUTES_MODEL}&nbsp;</em>
+          </td>
+		      <td>{$order_values.PRODUCTS_SINGLE_PRICE}</td>
+		      <td>{$order_values.PRODUCTS_PRICE}</td>
+	     </tr>
+      {/foreach} 
+        <tr> 
+          <td colspan="5" align="right">&nbsp;&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        {foreach name=aussen item=order_total_values from=$order_total}
+        <tr> 
+          <td colspan="4" align="right">{$order_total_values.TITLE}</td>
+          <td>{$order_total_values.TEXT}</td>
+        </tr>
+        {/foreach}
+      </table>
+    </td>
+  </tr>
+  <!-- end order items information --> 
+  <!-- begin customer note -->
+  <tr>
+    <td colspan="2">&nbsp;</td>
+  </tr>
+  {if $COMMENT}
+  <tr bgcolor="#CCCCCC">
+    <td colspan="2"><b>{$smarty.const.ORDER_COMMENTS_HEAD}</b></td>
+  </tr>
+  <tr>
+    <td colspan="2">{$COMMENT}</td>
+  </tr>
+  {/if}
+</table>
+<table width="100%" cellspacing="0" cellpadding="2" border="0" style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size:12px;">
+  <tr>
+    <td colspan="2">&nbsp;</td>
+  </tr>
+  <tr bgcolor="#CCCCCC">
+    <td colspan="2"><b>Hinweis zur Zahlungsart:</b></td>
+  </tr>
+  <tr>
+    <td colspan="2">{$PAYMENT_METHOD_INFO}</td>
+  </tr>
+</table>   
+{if $DELIVERY_DUTY_INFO neq ''}
+<table width="100%" cellspacing="0" cellpadding="2" border="0">
+  <tr>
+    <td colspan="2">&nbsp;</td>
+  </tr>
+  <tr bgcolor="#CCCCCC">
+    <td colspan="2"><b>{$smarty.const.ORDER_DUTY_INFO_HEAD}</b></td>
+  </tr>
+  <tr>
+    <td colspan="2">{#text_duty_info#}</td>
+  </tr>
+</table>
+{/if}
+<table width="100%" cellspacing="0" cellpadding="2" border="0">
+  <tr>
+    <td>
+      <br /><br />{$smarty.const.ORDER_THANK_YOU_BOTTOM}<br /><br /><br />
+    </td> 
+  </tr>
+</table>
+[SIGNATUR]
+<br /> 
+{if $REVOCATION_HTML neq ''}
+<br />
+{$REVOCATION_HTML}
+<br />
+{/if}

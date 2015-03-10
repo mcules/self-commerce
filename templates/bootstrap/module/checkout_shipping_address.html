@@ -1,0 +1,20 @@
+{config_load file="$language/lang_$language.conf" section="checkout_shipping_address"}
+<h1>{#heading_address#}</h1>
+{$FORM_ACTION|replace:'<form':'<form class="form-horizontal"'}
+{if $error!=''}<div>{$error|replace:'<tr':'<div'|replace:'</tr':'</div'|stripTags:"table,tbody,td"|replace:'class="':'class="alert alert-error '}</div>{/if} 
+<div class="well well-small">
+<p>{#text_current_address#}</p>
+<div><strong>{#title_current_address#}:</strong><br />{$ADDRESS_LABEL}</div>
+</div>
+{if $BLOCK_ADDRESS}
+<h1>{#title_old_addresses#}</h1>
+<div class="well well-small">
+<p>{#text_old_addresses#}</p>
+<div>{$BLOCK_ADDRESS|regex_replace:'/<label for="[a-z0-9\_]+">/':''|replace:'<input':'<label class="radio"><input'|stripTags:"br"|replace:'<li>':'<li class="bottom-buffer">'}</div>
+</div>
+{/if}
+{if $MODULE_new_address}
+{$MODULE_new_address}
+{/if}
+<p>{$BUTTON_BACK|button}&nbsp;{$BUTTON_CONTINUE|button}</p>
+{$FORM_END}

@@ -1,0 +1,15 @@
+{config_load file="$language/lang_$language.conf" section="product_navigator"}
+<div class="pagination pagination-right">
+  <span class="pull-left"><small>{#product#}&nbsp;<strong>{$ACTUAL_PRODUCT}</strong>&nbsp;{#of#}&nbsp;<strong>{$PRODUCTS_COUNT}</strong>&nbsp;{#total#}</small></span>
+    <ul>
+{if $FIRST!=''}<li><a href="{$FIRST}" title="{$smarty.const.PREVNEXT_TITLE_FIRST_PAGE}">&iota;&laquo;</a></li>{/if}
+{if $FIRST==''}<li class="disabled"><span title="{$smarty.const.PREVNEXT_TITLE_FIRST_PAGE}">&iota;&laquo;</span></li>{/if}
+{if $PREVIOUS!=''}<li><a href="{$PREVIOUS}" title="{$smarty.const.PREVNEXT_TITLE_PREVIOUS_PAGE}">&laquo;</a></li>{/if}
+{if $PREVIOUS==''}<li class="disabled"><span title="{$smarty.const.PREVNEXT_TITLE_PREVIOUS_PAGE}">&laquo;</span></li>{/if}
+{if $OVERVIEW!=''}<li><a href="{$OVERVIEW}" title="{$smarty.const.PAGINATION_TITLE_OVERVIEW}"><i class="icon-list-alt blue"></i></a></li>{/if}
+{if $NEXT!=''}<li><a href="{$NEXT}" title="{$smarty.const.PREVNEXT_TITLE_NEXT_PAGE}">&raquo;</a></li>{/if}
+{if $NEXT==''}<li class="disabled"><span title="{$smarty.const.PREVNEXT_TITLE_NEXT_PAGE}">&raquo;</span></li>{/if}
+{if $LAST!=''}<li><a href="{$LAST}" title="{$smarty.const.PREVNEXT_TITLE_LAST_PAGE}">&raquo;&iota;</a></li>{/if}
+{if $LAST==''}<li class="disabled"><span title="{$smarty.const.PREVNEXT_TITLE_LAST_PAGE}">&raquo;&iota;</span></li>{/if}
+    </ul>
+</div>                                                                                           

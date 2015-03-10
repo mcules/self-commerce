@@ -1,0 +1,42 @@
+{config_load file="$language/lang_$language.conf" section="gv_send"}
+{if $error!=''}{$error|replace:'<tr':'<div'|replace:'</tr':'</div'|stripTags:"table,tbody,td"|replace:'class="':'class="alert alert-error '}{/if} 
+<h1>{#heading_gvsend#}</h1>
+{if $action eq 'process'}
+<p>{$LINK_DEFAULT|button}</p>
+{elseif $action eq 'send'}
+{$FORM_ACTION}
+<div class="well well-small">
+<p>{$MAIN_MESSAGE}</p>
+{if $POST_MESSAGE neq ''}
+	<p>{$PERSONAL_MESSAGE}</p>
+	<p>{$POST_MESSAGE}</p>                                               
+{/if}
+{$HIDDEN_FIELDS}
+<p>{*$LINK_BACK|button*}&nbsp;&nbsp;{$LINK_SUBMIT|button}</p>
+</div>
+{$FORM_END}
+
+{elseif $action eq ''}
+<p>{#heading_text#}&nbsp;&nbsp;{$GV_FAQ_LINK|replace:'thickbox':'contentbox'|replace:'&amp;KeepThis=true&amp;TB_iframe=true&amp;height=400&amp;width=600':''}</p>
+{$FORM_ACTION}
+<div class="well well-small">
+<div class=" row-fluid">
+    <label>{#entry_name#}</label>
+    {$INPUT_TO_NAME|replace:'<input':'<input class="span6"'}
+</div>
+<div class="row-fluid">
+    <label>{#entry_email#}</label>
+    {$INPUT_EMAIL|replace:'<input':'<input class="span6"'}{if $ERROR_EMAIL neq ''}{$ERROR_EMAIL}{/if}
+</div>
+<div class="row-fluid">
+    <label>{#entry_amount#}</label>
+    {$INPUT_AMOUNT|replace:'<input':'<input class="span6"'}{if $ERROR_AMOUNT neq ''}{$ERROR_AMOUNT}{/if}
+</div>
+<div class="row-fluid">
+    <label>{#entry_message#}</label>
+    {$TEXTAREA_MESSAGE|replace:'<textarea':'<textarea class="span6"'}
+</div>
+</div>
+<p>{$LINK_SUBMIT|button}</p>
+{$FORM_END}
+{/if} 

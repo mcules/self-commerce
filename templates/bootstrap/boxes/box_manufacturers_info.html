@@ -1,0 +1,15 @@
+{config_load file="$language/lang_$language.conf" section="boxes"}
+<div class="well well-small">
+  <div class="clearfix">
+    <span class="categoryheader pull-left">{#heading_manufacturers_info#}</span>
+    <button class="btn btn-default btn-mini pull-right" data-toggle="collapse" data-target="#box_manufacturers_info"><span class="caret"></span></button>
+  </div>
+  <div id="box_manufacturers_info" class="collapsebox collapse">
+    <div class="boxcontent">
+      <p>{if $IMAGE}<center><img src="{$IMAGE}" alt="{$NAME}" /><br />{/if}
+      <strong>{$NAME}</strong><br />
+      {if $URL}{$URL}<br />{/if}
+      {$LINK_MORE|button}</p>
+    </div>
+  </div>
+</div>

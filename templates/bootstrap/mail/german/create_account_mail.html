@@ -1,0 +1,61 @@
+<table  width="100%" border="0" align="center" cellpadding="4" cellspacing="0" style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size:12px;">
+  <tr> 
+    <td style="border-bottom: 1px solid; border-color: #cccccc;"><div align="right"><img src="{$logo_path}logo.gif"></div></td>
+  </tr>
+  <tr> 
+    <td colspan="2"><b>Sehr geehrter Kunde,</b>
+      <br /><br />
+      Sie haben soeben Ihr Kundenkonto erfolgreich erstellt, als registrierter Kunde haben sie folgende Vorteile in unserem Shop.<br /><br />
+    </td>
+  </tr>
+  <tr>  
+    <td><b>Kundenwarenkorb</b></td>
+    <td>Jeder Artikel bleibt registriert bis Sie zur Kasse gehen, oder die Produkte aus dem Warenkorb entfernen.<br /><br /></td>
+  </tr>
+  <tr>  
+    <td><b>Adressbuch</b></td>
+    <td>Wir k&ouml;nnen jetzt die Produkte zu der von Ihnen ausgesuchten Adresse senden. Der perfekte Weg ein Geburtstagsgeschenk zu versenden.<br /><br /></td>
+  </tr>
+  <tr>  
+    <td><b>Vorherige Bestellungen</b></td>
+    <td>Sie k&ouml;nnen jederzeit Ihre vorherigen Bestellungen &uuml;berpr&uuml;fen.<br /><br /></td>
+  </tr>
+  <tr>  
+    <td><b>Meinungen &uuml;ber Produkte</b></td>
+    <td>Teilen Sie Ihre Meinung zu unseren Produkten mit anderen Kunden.<br /><br /></td>
+  </tr>
+  <tr>  
+    <td colspan="2">
+      Falls Sie Fragen zu unserem Kunden-Service haben, wenden Sie sich bitte an: {$content.MAIL_REPLY_ADDRESS}.<br />
+      Achtung: Diese E-Mail-Adresse wurde uns von einem Kunden bekannt gegeben. Falls Sie sich nicht angemeldet haben, senden Sie bitte eine E-Mail an {$content.MAIL_REPLY_ADDRESS}.<br />
+    <br />
+    </td>
+  </tr>
+{if $SEND_GIFT==true}
+  <tr>  
+    <td colspan="2">
+    <br />
+    Als kleines Willkommensgeschenk senden wir Ihnen einen Gutschein &uuml;ber:	<b>{$GIFT_AMMOUNT}</b><br />
+    <br />
+    Ihr pers&ouml;nlicher Gutscheincode lautet <b>{$GIFT_CODE}</b>. Sie k&ouml;nnen diese Gutschrift an der Kasse w&auml;hrend des Bestellvorganges verbuchen.<br />
+    <br />
+    Um den Gutschein einzul&ouml;sen klicken Sie bitte auf <a href="{$GIFT_LINK}">[Gutschein Einl&ouml;sen]</a>.
+    <br />
+    </td>
+  </tr>
+{/if}
+{if $SEND_COUPON==true}
+  <tr>  
+    <td colspan="2">
+    Als kleines Willkommensgeschenk senden wir Ihnen einen Kupon.<br />
+    Kuponbeschreibung: <b>{$COUPON_DESC}</b><br /><br />
+    Geben Sie einfach Ihren pers&ouml;nlichen Code {$COUPON_CODE} w&auml;hrend des Bezahlvorganges ein.<br />
+    </td>
+  </tr>
+{/if}
+  <tr>  
+    <td colspan="2">
+    <br />Das Team
+    </td>
+  </tr>
+</table>

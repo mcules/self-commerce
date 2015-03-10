@@ -1,0 +1,57 @@
+{config_load file="$language/lang_$language.conf" section="checkout_success"}
+  <div class="row-fluid">
+    <div class="span12">{$TEXT}</div>
+  </tr>
+{if $HOLDER != ''}
+  <div class="row-fluid">
+    <div class="span6">{$HOLDER_TEXT}</div>
+    <div class="span6"><b>{$HOLDER}</b></div>
+  </div>
+{/if}
+{if $ACCOUNT_NUMBER != ''}
+  <div class="row-fluid">
+    <div class="span6">{$ACCOUNT_NUMBER_TEXT}</div>
+    <div class="span6"><b>{$ACCOUNT_NUMBER}</b></div>
+  </div>
+{/if}
+{if $BANK_CODE != ''}
+  <div class="row-fluid">
+    <div class="span6">{$BANK_CODE_TEXT}</div>
+    <div class="span6"><b>{$BANK_CODE}</b></div>
+  </div>
+{/if}
+{if $IBAN != ''}
+  <div class="row-fluid">
+    <div class="span6">{$IBAN_TEXT}</div>
+    <div class="span6"><b>{$IBAN}</b></div>
+  </div>
+{/if}
+{if $BIC != ''}
+  <div class="row-fluid">
+    <div class="span6">{$BIC_TEXT}</div>
+    <div class="span6"><b>{$BIC}</b></div>
+  </div>
+{/if}
+{if $AMOUNT != ''}
+  <div class="row-fluid">
+    <div class="span6">{$AMOUNT_TEXT}</div>
+    <div class="span6"><b>{$AMOUNT}</b></div>
+  </div>
+{/if}
+{if $REASON_1 != ''}
+  <div class="row-fluid">
+    <div class="span6">{$REASON_1_TEXT}</div>
+    <div class="span6"><b>{$REASON_1}</b></div>
+  </div>
+{/if}
+{if $REASON_2 != ''}
+  <div class="row-fluid">
+    <div class="span6">{$REASON_2_TEXT}</div>
+    <div class="span6"><b>{$REASON_2}</b></div>
+  </div>
+{/if}
+{if $REASONS_HINT != ''}
+  <div class="row-fluid">
+    <div class="span12"><b><span style='color:red;'>{$REASONS_HINT}</span></b></div>
+  </div>
+{/if}

@@ -1,0 +1,43 @@
+{config_load file="$language/lang_$language.conf" section="checkout_payment"}
+{config_load file="$language/lang_$language.conf" section="checkout_navigation"}
+<div class="row-fluid">
+  <div class="btn disabled span3"><span class="lead">1. </span><span><strong>{#title_shipping#}</strong></span><br /><span><small>{#desc_shipping#}</small></span></div>
+  <div class="btn active span3"><span class="lead">2. </span><span><strong>{#title_payment#}</strong></span><br /><span><small>{#desc_payment#}</small></span></div>
+  <div class="btn disabled span3"><span class="lead">3. </span><span><strong>{#title_confirmation#}</strong></span><br /><span><small>{#desc_confirmation#}</small></span></div>
+  <div class="btn disabled span3"><span class="lead">4. </span><span><strong>{#title_success#}</strong></span><br /><span><small>{#desc_success#}</small></span></div>
+</div> 
+<div style="clear:both"></div>
+<br />
+{if $error!=''}<div class="alert alert-error">{$error|replace:'<tr':'<div'|replace:'</tr':'</div'|stripTags:"table,tbody,td"|replace:'class="':'class="alert alert-error '}</div>{/if} 
+{if $step2!='true'}
+<h1>{#title_address#}</h1>
+{$FORM_ACTION}
+<div class="well well-small">
+<div>{$ADDRESS_LABEL}</div>
+<p>{$BUTTON_ADDRESS|button}</p>
+</div>
+<h1>{#title_payment#}</h1>
+<div class="well well-small">
+<p>{#text_payment#}</p>
+{/if}
+{if $GV_COVER!='true'}
+{$PAYMENT_BLOCK}{$module_gift|replace:'<td width="90%" class="header">':'<p>'|replace:'</table>':'</p>'|replace:'<input':'<label class="checkbox"><input'|stripTags:"table,tbody,tr,td,img"|cat:"</label>"}
+{else}
+{#text_gccover#}
+{/if}
+</div>
+{if $step2!='true'}
+<h2>{#title_comments#}</h2>
+<div class="row-fluid">
+<div class="checkoutcomment well well-small span12">
+{$COMMENTS|replace:'id="comments"':'class="center-block"'}
+</div>
+</div>
+<h2>{#title_agb#}</h2>
+<div class="well well-small">
+<div class="bottom-buffer">{$AGB}</div>
+ <label class="checkbox">{$AGB_checkbox}<strong>{#text_accept_agb#}</strong></label>
+</div>
+{/if}
+<p>{$BUTTON_CONTINUE|button}</p>
+{$FORM_END}

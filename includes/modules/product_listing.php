@@ -109,19 +109,36 @@ if ($category['listing_template'] == '' or $category['listing_template'] == 'def
 if ($result != false) {
 
 	$module_smarty->assign('MANUFACTURER_DROPDOWN', $manufacturer_dropdown);
-  $module_smarty->assign('SORTING_DROPDOWN', $sorting_dropdown);	
+	$module_smarty->assign('SORTING_DROPDOWN', $sorting_dropdown);	
 	$module_smarty->assign('language', $_SESSION['language']);
 	$module_smarty->assign('module_content', $module_content);
 
 	$module_smarty->assign('NAVIGATION', $navigation);
 	// set cache ID
-	 if (!CacheCheck()) {
+	if (!CacheCheck()) {
 		$module_smarty->caching = 0;
 		$module = $module_smarty->fetch(CURRENT_TEMPLATE.'/module/product_listing/'.$category['listing_template']);
 	} else {
 		$module_smarty->caching = 1;
 		$module_smarty->cache_lifetime = CACHE_LIFETIME;
 		$module_smarty->cache_modified_check = CACHE_CHECK;
+		// Sessionvariable f¸r Anzahl Artikel pro Seite setzen
+		if (isset($_GET['artproseite'])) {
+			$_SESSION['artproseite'] = intval($_GET['artproseite']);
+		}
+		if( $_SESSION['artproseite']==0 || $_SESSION['artproseite']=='') {
+			$_SESSION['artproseite']=24; // hier wird der Standard definiert, wieviele Artikel auf einer Seite dargestellt werden sollen
+		}
+		// Sessionvariable f¸r Ansichtenwahl setzen auch in default.php
+		if (isset($_GET['ansicht'])) {
+			$_SESSION['ansicht'] = intval($_GET['ansicht']);
+		}
+		if( $_SESSION['ansicht']==0 || $_SESSION['ansicht']=='') {
+			$_SESSION['ansicht']=3; // hier wird der Standard der Ansichtenwahl definiert, 1 = einspaltig 3 = 3-spaltig 6 = 6-spaltig
+		}
+		$get_params .= isset($_GET['sort']) && $_GET['sort'] > 0 && $_GET['sort'] < 5 ? '_'.(int)$_GET['sort'] : '';
+		$get_params .= isset($_SESSION['artproseite']) && $_SESSION['artproseite'] > 0 && $_SESSION['artproseite'] < 49 ? '_'.(int)$_SESSION['artproseite'] : '';
+		$get_params .= isset($_SESSION['ansicht']) && $_SESSION['ansicht'] > 0 && $_SESSION['ansicht'] < 7 ? '_'.(int)$_SESSION['ansicht'] : '';
 		$cache_id = $current_category_id.'_'.$_SESSION['language'].'_'.$_SESSION['customers_status']['customers_status_name'].'_'.$_SESSION['currency'].'_'.$_GET['manufacturers_id'].'_'.$_GET['filter_id'].'_'.$_GET['page'].'_'.$_GET['keywords'].'_'.$_GET['categories_id'].'_'.$_GET['pfrom'].'_'.$_GET['pto'].'_'.$_GET['x'].'_'.$_GET['y'].'_'.$_GET['sorting_id'];
 		$module = $module_smarty->fetch(CURRENT_TEMPLATE.'/module/product_listing/'.$category['listing_template'], $cache_id);
 	}

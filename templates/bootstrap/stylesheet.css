@@ -1,0 +1,393 @@
+/* setzt Contentbereich bei großen Bildschirmen nach rechts */
+@media screen and  (min-width: 768px) {
+.desk9 {
+    left: 25.641%;
+    position: relative;
+    right: auto;
+}
+.desk3 {
+    left: auto;
+    position: relative;
+    right: 74.359%;
+    margin-left:0 !important;
+}
+}
+/* Superfishmenü mit Anpassung für kleine Bildschirme */
+@media screen and (min-width: 979px) {
+    ul.nav li.dropdown:hover > ul.dropdown-menu {
+      display: block;
+      margin-top:0px;
+    }
+}
+.nav .dropdown.men button{
+position:absolute;
+top:0;
+right:0;
+padding: 7px 10px;
+}
+@media (max-width: 979px) {
+  .nav li.men a {
+    border: 1px solid #D3D3D3;
+  }
+  .nav ul.dropdown-menu > li.men:first-child a {
+    margin-bottom: 2px;
+  }
+  .nav ul.dropdown-menu > li.men a {
+    border: 1px solid #A1A1A1;
+  }
+  .nav ul.dropdown-menu {
+    margin: 0 0 0 5px;
+  }
+  ul.nav li.dropdown a .caret {
+    border:none;
+  }
+}
+/* Warenkorblink im Header */
+.dropdown-menu.cart-header {
+  padding:10px;
+  background-color:#515151;
+  color:#FFFFFF; 
+}
+.dropdown-menu.cart-header a{
+  color:#3399FF; 
+}
+.dropdown-menu.cart-header a:hover, .dropdown-menu.cart-header a:hover{
+  color:#33CCFF; 
+}
+.nav li.open .dropdown-menu.cart-header:before, .nav li.open .dropdown-menu.cart-header:after {
+  display:none;
+}
+/* Formatiert Linklisten auch in Level 2 und 3 */
+.nav-list > li > ul {
+    padding-left:0;
+    padding-right:0;
+}
+.nav-list ul > li > a {
+    padding-left:30px;
+}
+.nav-list ul > li ul > li > a {
+    padding-left:45px;
+}
+.nav-list ul > li ul > li ul > li > a {
+    padding-left:60px;
+}
+/* Boxformatierungen */
+.boxheader, .categoryheader, .boxcartheader{
+    display: block;
+    font-size: 18px;
+    line-height: 24px; 
+}
+.boxcontent{
+margin-top: 10px;
+padding-top: 10px;
+border-top: 1px solid #E5E5E5;
+}
+/* Formatierung Tabs und Accordion in Produktdetailansicht */
+.nav-tabs-container, .accordion-group {
+  padding: 3px;
+  border: 1px solid #999999;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+.nav-tabs, .accordion-heading{
+  border: 1px solid #999999;
+  padding: 4px 3px 0 3px;
+  margin-bottom: 5px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  background-color: #cccccc;
+  background-image: -moz-linear-gradient(top, #eeeeee, #999999);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#eeeeee), to(#999999));
+  background-image: -webkit-linear-gradient(top, #eeeeee, #999999);
+  background-image: -o-linear-gradient(top, #eeeeee, #999999);
+  background-image: linear-gradient(to bottom, #eeeeee, #999999);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffeeeeee', endColorstr='#ff999999', GradientType=0);
+}
+.nav-tabs > li > a {
+  line-height: 10px;
+  background-color: #eeeeee;
+  border: none;
+  outline: 0;
+}
+.nav-tabs > li > a:hover,
+.nav-tabs > li > a:focus {
+  border-style: solid;
+  border-width: 1px 1px 0;
+  border-color: #999999 #999999 transparent;
+}
+.nav-tabs > li > a:link,
+.nav-tabs > li > a:active,
+.nav-tabs > li > a:visited,
+.nav-tabs > li > a:hover,
+.nav-tabs > li > a:focus {
+  color: #555555;
+}
+.nav-tabs > li:not(.active) > a:hover,
+.nav-tabs > li:not(.active) > a:focus {
+  padding: 7px 11px;
+}
+.nav-tabs > .active > a,
+.nav-tabs > .active > a:hover,
+.nav-tabs > .active > a:focus {
+  border-style: solid;
+  border-width: 1px 1px 0;
+  border-color: #999999 #999999 transparent;
+}
+.nav-tabs-container .tab-content{
+padding:20px;
+}
+/* Carousel - Bilderslider für Bilder mit weißem Hintergrund*/
+.carousel-caption.relative{
+background: none;
+position: relative;
+}
+.carousel-caption.relative h4, .carousel-caption.relative p {
+color: #333333;
+}
+.carousel-indicators  li.white {
+  background-color: #999;
+  background-color: rgba(70,70,70,.25);
+}
+.carousel-indicators .white.active  {
+  background-color: #444;
+}
+/* zentriert das Bild */
+.carousel-inner > .item > img, .carousel-inner > .item > a > img {
+margin: 0 auto;
+}  
+.carousel.carousel-fade .item {
+	-webkit-transition: opacity 1s ease-in-out;
+	-moz-transition: opacity 1s ease-in-out;
+	-ms-transition: opacity 1s ease-in-out;
+	-o-transition: opacity 1s ease-in-out;
+	transition: opacity 1s ease-in-out;
+	opacity:0;
+}
+.carousel.carousel-fade .active.item {
+	opacity:1;
+}
+.carousel.carousel-fade .active.left,
+.carousel.carousel-fade .active.right {
+	left: 0;
+	z-index: 2;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+.carousel.carousel-fade .next,
+.carousel.carousel-fade .prev {
+	left: 0;
+	z-index: 1;
+}
+.carousel.carousel-fade .carousel-control {
+	z-index: 3;
+}
+/* Hauptnav margin 0 */
+.navbar .nav {
+    margin: 0;
+}
+/* Feste Höhe für Artikelbox in Kategorie- und Produktlisten */
+.switcher p.price, .switcher p.prod{
+font-weight: bold;
+overflow:hidden;
+}
+.switcher .div3_1 p {
+font-size: 10px;
+line-height: 12px;
+}
+.switcher p.desc, .switcher p.desc_cat {
+color:#777;
+font-size: 11px;
+overflow:hidden;
+}
+.switcher .style_3 {
+font-size:12px;
+line-height:16px;
+height:33px;
+}
+.switcher .style_6 {
+font-size:10px;
+line-height:12px;
+height:36px;
+}
+.switcher .style_3_2 {
+line-height:13px;
+height:26px;
+}
+/* Kategorie- und Produktlisten mit Tablets - keine festen Höhen mehr */
+@media (max-width: 767px) {
+    .switcher .style_3, .switcher .style_3_2, .switcher .style_6 {
+        height:auto;
+    }
+}
+/* Hilfsstyles */
+/* Contentabstand unten */
+.content {
+margin-bottom: 20px;
+}
+/* Farbe active Link im Header */
+.navbar-inverse .nav .active > a, .navbar-inverse .nav .active > a:hover, .navbar-inverse .nav .active > a:focus {
+  background:none;
+}
+/* Schriftgröße Filter und Sortierung */
+#sorting select, #filter select{ font-size: 85%;}
+/* setzt den Headerabstand bei Popups zurück */
+.popupproductinfo, .popupprintorder {
+padding-top: 0;
+}
+/* entfernt Unterstrich bei hover */
+a:hover, a:focus {
+    text-decoration: none;
+}
+/* caret Pfeil nach oben */
+.caret.caret-reversed {
+    border-top-width: 0;
+    border-bottom: 4px solid #000000;
+}
+/* gleicht die Icon-Farbe an die Schriftfarbe an */
+.nav .icon-shopping-cart {
+  opacity: 0.5;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+}
+.nav a:hover .icon-shopping-cart, .nav li.active a .icon-shopping-cart, .nav li.open a .icon-shopping-cart {
+  opacity: 1;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+}
+/* Länderflaggen enger setzen */
+ul.language.nav li a {
+padding-left: 5px;
+padding-right: 5px;
+}
+/* damit die Languagebox unter das Topmenü rutscht - darunten IE7 Hack*/
+.right-clear {
+clear: right;
+}
+*+html .nav.pull-right.right-clear{
+clear:none;
+}
+/* Größe mehr Bilder Produktdetailansicht */
+.more_pics img {
+max-width:80px;
+max-height:80px;
+margin-right:3px;
+}
+.more_pics img:first {
+margin-right:0;
+}
+/* Textarea Kommentare bei Checkout */
+.checkoutcomment textarea {
+width:90%;
+margin-bottom:0;
+}
+/* damit beim Bewertung schreiben die Radiobuttons und die Schrift zentriert angezeigt werden können*/
+p.rating label{
+padding-left:0;
+}
+/* AGB */
+div.agbframe {
+    background:#fff;
+    border: 1px solid #666666;
+    height: 200px;
+    overflow: auto;
+    padding: 10px;
+}
+/* Hack für Safari und Opera margin-bottom */
+legend { margin-bottom: 0 }
+legend + *:before { content: "."; display: block; height: 0; visibility: hidden; margin-bottom: 20px; }
+/* Responsive Image in Fieldsets nur im Firefox */
+@-moz-document url-prefix() { 
+  fieldset{
+    display:table-column;
+  }
+}                             
+/* Hintergrundfarbe Wells Content und Footer */
+.content .well.well-small, .footer .well.well-small {
+    background-color: #FFFFFF;
+}
+/* Blockzentrierung */
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* Abstand oben */
+.top-buffer{                                                                                              
+margin-top: 20px;
+}                                                                                           
+/* Abstand unten */
+.bottom-buffer{                                                                                              
+margin-bottom: 20px;
+}                                                                                           
+/* Abstand links */
+.left-buffer{                                                                                              
+margin-left: 10px;
+}                                                                                           
+/* verkleinert die Linienhöhe */
+.small-line{                                                                                              
+line-height: 85%;
+}                                                                                           
+/* Well-Box Abstand unten bei Fromularen und Listen */
+.well-small form,.well-small ul{
+margin-bottom:0;
+}
+/* Linie unten */
+.bottom-line {
+border-bottom: 1px solid #E5E5E5;
+margin-bottom: 5px;
+}
+/* Schriftfarbe alter Preis */
+.productOldPrice {
+color:red;
+} 
+/* ServiceTabs in Modalbox */
+ul#ServiceTabs {
+margin-bottom:0;
+}
+/* Abstand Seitennavigation verkleinert */
+.pagination {margin-top:0;}
+/* setzt den Abstand der Dropdowns in Topnav auf null, damit das Aufklappen bei Mouseover funktioniert */
+.nav .dropdown-menu {
+margin-top:0;
+}
+/* Hack für IE7 damit Formulare die richtige Zeilenhöhe bekommen */
+.row-fluid [class*="span"] {
+    *min-height: 20px;
+}
+/* COPYRIGHT */
+.copyright {
+margin:0 auto;
+text-align:center;
+color:#666;
+font-size:11px;
+padding:0;
+}
+.copyright a {
+  text-decoration:none;
+}
+/* MODIFIED STYLE */
+.cop_magenta {
+  color:#B0347E;
+}
+.cop_grey {
+  color:#6D6D6D;
+}
+/* ParseTime */
+.parseTime {
+margin:0 auto;
+text-align:center;
+color:#666;
+font-size:11px;
+padding:0 0 10px 0;
+}
+/* Gototop Button */
+#GotoTop {
+padding: 5px 3px;
+position: fixed;
+bottom: 5px;
+right: 5px;
+display: none;
+z-index:99999;
+}
+               

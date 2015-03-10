@@ -1,0 +1,12 @@
+{config_load file="$language/lang_$language.conf" section="index"}
+{$MODULE_error|replace:'messageStackError':'alert alert-block alert-error'|replace:'messageStackWarning':'alert alert-block alert-warning'|replace:'messageStackSuccess':'alert alert-block alert-success'}
+<h1>{$title}</h1>
+<div>{$text}</div>
+{php}global $smarty; $smarty->assign('box_CATEGORIES_LIST',$smarty->tpl_vars['box_CATEGORIES_LIST']);{/php}
+{$box_CATEGORIES_LIST}
+{if $MODULE_new_products}
+<div>{$MODULE_new_products}</div>
+{/if}
+{if $MODULE_upcoming_products}
+<div>{$MODULE_upcoming_products}</div>
+{/if}
