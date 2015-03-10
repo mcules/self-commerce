@@ -37,3 +37,5 @@
              downgrade-1.0 force-response-1.0
   </IfDefine>
 </IfModule>
+
+AddDefaultCharset UTF-8
