@@ -27,6 +27,7 @@
    Released under the GNU General Public License
    ---------------------------------------------------------------------------------------*/
 
+define('DIR_SELF_INSTALLER', 'self_installer');
 
 if($_SESSION["tpl"]=="mobile" && file_exists(DIR_FS_CATALOG."templates/".$_SESSION["tpl"])) { ?>
 <!DOCTYPE html>
