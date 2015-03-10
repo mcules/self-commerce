@@ -22,7 +22,7 @@ $rand_footer = array_rand($footer = array(0 => 'Online Shop',1 => 'Shop System',
 
 $cop='
     <div id="copyright">
-      Copyright  &copy; '.date('Y').' <a href="http://www.self-commerce.de">Self-Commerce</a> based on XT:Commerce<br />
+      Copyright  &copy; '.date('Y').' <a href="http://www.self-commerce.de">Self-Commerce</a><br />
     </div>';
 $cop .= '
     <div id="gnu_copy">
