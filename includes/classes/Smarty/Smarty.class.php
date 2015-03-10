@@ -73,6 +73,10 @@ if (!defined('SMARTY_RESOURCE_DATE_FORMAT')) {
     define('SMARTY_RESOURCE_DATE_FORMAT', '%b %e, %Y');
 }
 
+if (!defined('MY_TEMPLATE_PLUGINS')) {
+    define('MY_TEMPLATE_PLUGINS', DIR_FS_CATALOG.'templates/'.CURRENT_TEMPLATE.'/smarty');
+}
+
 /**
  * register the class autoloader
  */
@@ -617,6 +621,7 @@ class Smarty extends Smarty_Internal_TemplateBase {
         $this->setTemplateDir('.' . DS . 'templates' . DS)
             ->setCompileDir('.' . DS . 'templates_c' . DS)
             ->setPluginsDir(SMARTY_PLUGINS_DIR)
+            ->addPluginsDir(MY_TEMPLATE_PLUGINS)
             ->setCacheDir('.' . DS . 'cache' . DS)
             #->setConfigDir('.' . DS . 'configs' . DS);
 			->setConfigDir('.' . DS . 'lang' . DS);
