@@ -30,3 +30,4 @@ define('ORDER_PAYMENTS_HEAD', 'Hinweis zur Zahlungsart:');
 define('ORDER_DUTY_INFO_HEAD', 'Steuerhinweis:');
 define('ORDER_THANK_YOU_BOTTOM', 'Vielen Dank f&uuml;r Ihr Vertrauen, wir hoffen Sie bald wieder in unserem Shop begr&uuml;ßen zu k&ouml;nnen.');
 define('TEXT_PRINT', 'Drucken');
+define('IMAGE_BUTTON_CONTINUE_SHOPPING', 'Weiter einkaufen');

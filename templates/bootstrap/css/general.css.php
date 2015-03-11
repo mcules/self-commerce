@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="<?php echo 'templates/'.CURRENT_TEMPLATE; ?>/css/bootstrap.min.css" type="text/css" media="screen" />
 <style type="text/css">
       body {
-        padding-top: 90px;
+        padding-top: 120px;
       }
 </style>
 <link rel="stylesheet" href="<?php echo 'templates/'.CURRENT_TEMPLATE; ?>/css/bootstrap-responsive.min.css" type="text/css" media="screen" />

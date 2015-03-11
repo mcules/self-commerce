@@ -30,3 +30,4 @@ define('ORDER_PAYMENTS_HEAD', 'Paymentinformation:');
 define('ORDER_DUTY_INFO_HEAD', 'Dutyinformation:');
 define('ORDER_THANK_YOU_BOTTOM', 'Thank you for your trust, we hope to welcome you back to our shop.');
 define('TEXT_PRINT', 'Print');
+define('IMAGE_BUTTON_CONTINUE_SHOPPING', 'Continue Shopping');
