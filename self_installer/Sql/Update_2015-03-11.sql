@@ -1,0 +1,2 @@
+UPDATE `c2_sc_21`.`cm_file_flags` SET `file_flag_name` = 'Mehr über...' WHERE `cm_file_flags`.`file_flag` = 1;
+UPDATE `c2_sc_21`.`cm_file_flags` SET `file_flag_name` = 'Informationen' WHERE `cm_file_flags`.`file_flag` = 1;

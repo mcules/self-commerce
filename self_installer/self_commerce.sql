@@ -1146,8 +1146,8 @@ DROP TABLE if EXISTS personal_offers_by_customers_status_3;
 INSERT INTO database_version(version) VALUES ('3.0.4.0');
 
 INSERT INTO cm_file_flags (file_flag, file_flag_name) VALUES ('0', 'default');
-INSERT INTO cm_file_flags (file_flag, file_flag_name) VALUES ('1', 'Informationen');
-INSERT INTO cm_file_flags (file_flag, file_flag_name) VALUES ('2', 'Mehr �ber...');
+INSERT INTO cm_file_flags (file_flag, file_flag_name) VALUES ('1', 'Mehr über...');
+INSERT INTO cm_file_flags (file_flag, file_flag_name) VALUES ('2', 'Informationen');
 INSERT INTO cm_file_flags (file_flag, file_flag_name) VALUES ('3', 'Extra1 Box');
 INSERT INTO cm_file_flags (file_flag, file_flag_name) VALUES ('4', 'Extra2 Box');
 
