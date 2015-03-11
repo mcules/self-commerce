@@ -1165,12 +1165,6 @@ INSERT INTO content_manager VALUES(2, 0, 0, '', 1, 'Privacy Notice', 'Privacy No
 INSERT INTO content_manager VALUES(3, 0, 0, '', 1, 'Conditions of Use', 'Conditions of Use', 'Conditions of Use<br />Put here your Conditions of Use information. <br />1. Validity<br />2. Offers<br />3. Price<br />4. Dispatch and passage of the risk<br />5. Delivery<br />6. Terms of payment<br />7. Retention of title<br />8. Notices of defect, guarantee and compensation<br />9. Fair trading cancelling / non-acceptance<br />10. Place of delivery and area of jurisdiction<br />11. Final clauses', 0, 2, '', 1, 0, '', '', 3, 0, 'Conditions of Use', '', '');
 INSERT INTO content_manager VALUES(4, 0, 0, '', 1, 'Impressum', 'Impressum', 'Put here your Company information.', 0, 2, '', 1, 0, '', '', 4, 0, 'Impressum', '', '');
 INSERT INTO content_manager VALUES(5, 0, 0, '', 1, 'Index', 'Welcome', '<p>{$greeting}<br /><br />This is the standard installation xt:Commerce Forking of the project - Self-Commerce. All represented products serve the function mode for the demonstration. If you order products, then these are delivered neither, nor placed in calculation. All information to the different products is not invented and therefore can a requirement from it be derived.<br /><br />If you should be interested in it the program, which forms the basis for this Shop to begin then you visit please the support side of <a href="http://self-commerce.de" target="blank">self-commerce.de</a>. This Shop is based on the version <b>Self-Commerce 3.0 Beta 1</b><br /><br />The text represented here can in the AdminInterface under the point <b>Content Manager</b>- entry index to be worked on.</p>', 0, 0, '', 0, 0, '', '', 5, 0, 'here not possible', 'here not possible', 'here not possible');
-INSERT INTO content_manager VALUES(6, 0, 0, '', 2, 'Liefer- und Versandkosten', 'Liefer- und Versandkosten', 'F&uuml;gen Sie hier Ihre Informationen &uuml;ber Liefer- und Versandkosten ein.', 0, 2, '', 1, 0, '', '', 1, 0, 'Liefer- und Versandkosten', '', '');
-INSERT INTO content_manager VALUES(7, 0, 0, '', 2, 'Privatsph�re und Datenschutz', 'Privatsph�re und Datenschutz', 'F&uuml;gen Sie hier Ihre Informationen &uuml;ber Privatsph&auml;re und Datenschutz ein.', 0, 2, '', 1, 0, '', '', 2, 0, 'Privatsph�re und Datenschutz', '', '');
-INSERT INTO content_manager VALUES(8, 0, 0, '', 2, 'Unsere AGB', 'Allgemeine Gesch�ftsbedingungen', '<strong>Allgemeine Gesch&auml;ftsbedingungen<br /></strong><br />F&uuml;gen Sie hier Ihre allgemeinen Gesch&auml;ftsbedingungen ein.<br />1. Geltung<br />2. Angebote<br />3. Preis<br />4. Versand und Gefahr&uuml;bergang<br />5. Lieferung<br />6. Zahlungsbedingungen<br />7. Eigentumsvorbehalt <br />8. M&auml;ngelr&uuml;gen, Gew&auml;hrleistung und Schadenersatz<br />9. Kulanzr&uuml;cknahme / Annahmeverweigerung<br />10. Erf&uuml;llungsort und Gerichtsstand<br />11. Schlussbestimmungen', 0, 2, '', 1, 0, '', '', 3, 0, 'Unsere AGB', '', '');
-INSERT INTO content_manager VALUES(9, 0, 0, '', 2, 'Impressum', 'Impressum', 'F�gen Sie hier Ihr Impressum ein.', 0, 2, '', 1, 0, '', '', 4, 0, 'Impressum', '', '');
-INSERT INTO content_manager VALUES(10, 0, 0, '', 2, 'Index', 'Willkommen', '{$greeting}<br /><br /> Dies ist die Standardinstallation des xt:Commerce Forking Projektes - Self-Commerce. Alle dargestellten Produkte dienen zur Demonstration der Funktionsweise. Wenn Sie Produkte bestellen, so werden diese weder ausgeliefert, noch in Rechnung gestellt. Alle Informationen zu den verschiedenen Produkten sind erfunden und daher kann kein Anspruch daraus abgeleitet werden.<br /><br />Sollten Sie daran interessiert sein das Programm, welches die Grundlage f�r diesen Shop bildet, einzusetzen, so besuchen Sie bitte die Supportseite von <a href="http://self-commerce.de" target="blank">self-commerce.de</a>. Dieser Shop basiert auf der Version <b>Self-Commerce 3.0 Beta 1</b><br /><br />Der hier dargestellte Text kann im AdminInterface unter dem Punkt <b>Content Manager</b> - Eintrag Index bearbeitet werden.', 0, 0, '', 0, 0, '', '', 5, 0, 'hier nicht m�glich', 'hier nicht m�glich', 'hier nicht m�glich');
-INSERT INTO content_manager VALUES(11, 0, 0, '', 2, 'Gutscheine', 'Gutscheine - Fragen und Antworten', '<table cellSpacing=0 cellPadding=0>\r\n<tbody>\r\n<tr>\r\n<td class=main><STRONG>Gutscheine kaufen </STRONG></td></tr>\r\n<tr>\r\n<td class=main>Gutscheine k�nnen, falls sie im Shop angeboten werden, wie normale Artikel gekauft werden. Sobald Sie einen Gutschein gekauft haben und dieser nach erfolgreicher Zahlung freigeschaltet wurde, erscheint der Betrag unter Ihrem Warenkorb. Nun k�nnen Sie �ber den Link " Gutschein versenden " den gew�nschten Betrag per E-Mail versenden. </td></tr></tbody></table>\r\n<table cellSpacing=0 cellPadding=0>\r\n<tbody>\r\n<tr>\r\n<td class=main><STRONG>Wie man Gutscheine versendet </STRONG></td></tr>\r\n<tr>\r\n<td class=main>Um einen Gutschein zu versenden, klicken Sie bitte auf den Link "Gutschein versenden" in Ihrem Einkaufskorb. Um einen Gutschein zu versenden, ben�tigen wir folgende Angaben von Ihnen: Vor- und Nachname des Empf�ngers. Eine g�ltige E-Mail Adresse des Empf�ngers. Den gew�nschten Betrag (Sie k�nnen auch Teilbetr�ge Ihres Guthabens versenden). Eine kurze Nachricht an den Empf�nger. Bitte �berpr�fen Sie Ihre Angaben noch einmal vor dem Versenden. Sie haben vor dem Versenden jederzeit die M�glichkeit Ihre Angaben zu korrigieren. </td></tr></tbody></table>\r\n<table cellSpacing=0 cellPadding=0>\r\n<tbody>\r\n<tr>\r\n<td class=main><STRONG>Mit Gutscheinen Einkaufen. </STRONG></td></tr>\r\n<tr>\r\n<td class=main>Sobald Sie �ber ein Guthaben verf�gen, k�nnen Sie dieses zum Bezahlen Ihrer Bestellung verwenden. W�hrend des Bestellvorganges haben Sie die M�glichkeit Ihr Guthaben einzul�sen. Falls das Guthaben unter dem Warenwert liegt m�ssen Sie Ihre bevorzugte Zahlungsweise f�r den Differenzbetrag w�hlen. �bersteigt Ihr Guthaben den Warenwert, steht Ihnen das Restguthaben selbstverst�ndlich f�r Ihre n�chste Bestellung zur Verf�gung. </td></tr></tbody></table>\r\n<table cellSpacing=0 cellPadding=0>\r\n<tbody>\r\n<tr>\r\n<td class=main><STRONG>Gutscheine verbuchen. </STRONG></td></tr>\r\n<tr>\r\n<td class=main>Wenn Sie einen Gutschein per E-Mail erhalten haben, k�nnen Sie den Betrag wie folgt verbuchen:. <br />1. Klicken Sie auf den in der E-Mail angegebenen Link. Falls Sie noch nicht �ber ein pers�nliches Kundenkonto verf�gen, haben Sie die M�glichkeit ein Konto zu er�ffnen. <br />2. Nachdem Sie ein Produkt in den Warenkorb gelegt haben, k�nnen Sie dort Ihren Gutscheincode eingeben.</td></tr></tbody></table>\r\n<table cellSpacing=0 cellPadding=0>\r\n<tbody>\r\n<tr>\r\n<td class=main><STRONG>Falls es zu Problemen kommen sollte: </STRONG></td></tr>\r\n<tr>\r\n<td class=main>Falls es wider Erwarten zu Problemen mit einem Gutschein kommen sollte, kontaktieren Sie uns bitte per E-Mail : you@yourdomain.com. Bitte beschreiben Sie m�glichst genau das Problem, wichtige Angaben sind unter anderem: Ihre Kundennummer, der Gutscheincode, Fehlermeldungen des Systems sowie der von Ihnen benutzte Browser. </td></tr></tbody></table>', 0, 2, '', 0, 0, '', '', 6, 0, 'Gutscheine', '', '');
 INSERT INTO content_manager VALUES(12, 0, 0, '', 1, 'Coupons', 'Coupons - questions and answers', '<table cellSpacing=0 cellPadding=0>\r\n<tbody>\r\n<tr>\r\n<td class=main><STRONG>Coupons buy </STRONG></td></tr>\r\n<tr>\r\n<td class=main>Coupons can, if they are offered in the Shop, as normal articles are bought. As soon as you a coupon to have bought and this was de-energised after successful payment, the amount under your cart appears. Now you can dispatch the desired amount over the left "coupon" by E-Mail to dispatch. </td></tr></tbody></table>\r\n<table cellSpacing=0 cellPadding=0>\r\n<tbody>\r\n<tr>\r\n<td class=main><STRONG>As one coupons dispatches </STRONG></td></tr>\r\n<tr>\r\n<td class=main>In order to dispatch a coupon, you click please on the left to "coupon dispatch" in your purchase basket. In order to dispatch a coupon, we need the following data of you: Pre and surname of the receiver. A valid E-Mail address of the receiver. The desired amount (you also partial amounts of your assets can dispatch). A short message to the receiver. Please you examine your data again before dispatching. They have to correct the possibility your data at any time before dispatching. </td></tr></tbody></table>\r\n<table cellSpacing=0 cellPadding=0>\r\n<tbody>\r\n<tr>\r\n<td class=main><STRONG>With coupons buying. </STRONG></td></tr>\r\n<tr>\r\n<td class=main>As soon as you have assets, you can use this for paying your order. During the order procedure you have to redeem the possibility your assets. If the assets under the commodity value lie must you your preferential manner of payment for the balance select. If your assets exceed the commodity value, the remaining credit balance is to you naturally for your next order at the disposal. </td></tr></tbody></table>\r\n<table cellSpacing=0 cellPadding=0>\r\n<tbody>\r\n<tr>\r\n<td class=main><STRONG>Coupons book. </STRONG></td></tr>\r\n<tr>\r\n<td class=main>If you received a coupon by E-Mail, you can book the amount as follows:. <br />1. Click on in the E-Mail the indicated left. If you do not have yet a personal customer account, you have to open the possibility an account.<br />2. After you put a product into the warenkorb, you can enter your coupon code there.</td></tr></tbody></table>\r\n<table cellSpacing=0 cellPadding=0>\r\n<tbody>\r\n<tr>\r\n<td class=main><STRONG>If it should come to problems:</STRONG></td></tr>\r\n<tr>\r\n<td class=main>If it should come against expecting to problems with a coupon, contact us please by E-Mail: you@yourdomain.com. Please you describe as exactly as possible the problem, important data are among other things: Their customer number, the coupon code, error messages of the system as well as the Browser used by you. </td></tr></tbody></table>', 0, 2, '', 0, 0, '', '', 6, 0, 'Coupons', '', '');
 INSERT INTO content_manager VALUES(13, 0, 0, '', 2, 'Kontakt', 'Kontakt', '<p>Ihre Kontaktinformationen</p>', 0, 2, '', 1, 0, '', '', 7, 0, 'Kontakt', '', '');
 INSERT INTO content_manager VALUES(14, 0, 0, '', 1, 'Contact', 'Contact', 'Please enter your contact informations.', 0, 2, '', 1, 0, '', '', 7, 0, 'Contact', '', '');
@@ -1181,8 +1175,94 @@ INSERT INTO content_manager VALUES(18, 0, 0, '', 2, 'Hersteller Liste', 'Herstel
 INSERT INTO content_manager VALUES(19, 0, 0, '', 1, 'Auctions', 'Auctions', '', 0, 1, 'ebay.php', 1, 0, '', '', 10, 0, 'Ebay Auctions', '', '');
 INSERT INTO content_manager VALUES(20, 0, 0, '', 2, 'Auktionen', 'Auktionen', '', 0, 1, 'ebay.php', 1, 0, '', '', 10, 0, 'Unsere Auktionen', '', '');
 INSERT INTO content_manager VALUES(21, 0, 0, '', 1, 'Revocation', 'Revocation', 'Put here your Revocation information.', 0, 2, '', 1, 0, '', '', 11, 0, 'Revocation', '', '');
-INSERT INTO content_manager VALUES(22, 0, 0, '', 2, 'Widerrufsrecht', 'Widerrufsrecht', 'F�gen Sie hier Ihr Widerrufsrecht ein.', 0, 2, '', 1, 0, '', '', 11, 0, 'Widerrufsrecht', '', '');
-
+UPDATE `c2_sc_21`.`content_manager` SET `content_text` = 'Fügen Sie hier Ihr Impressum ein.' WHERE `content_manager`.`content_id` = 9;
+UPDATE `c2_sc_21`.`content_manager` SET `content_text` = '<table cellSpacing=0 cellPadding=0>
+<tbody>
+<tr>
+<td class=main><STRONG>Gutscheine kaufen </STRONG></td></tr>
+<tr>
+<td class=main>Gutscheine können, falls sie im Shop angeboten werden, wie normale Artikel gekauft werden. Sobald Sie einen Gutschein gekauft haben und dieser nach erfolgreicher Zahlung freigeschaltet wurde, erscheint der Betrag unter Ihrem Warenkorb. Nun können Sie über den Link " Gutschein versenden " den gewünschten Betrag per E-Mail versenden. </td></tr></tbody></table>
+<table cellSpacing=0 cellPadding=0>
+<tbody>
+<tr>
+<td class=main><STRONG>Wie man Gutscheine versendet </STRONG></td></tr>
+<tr>
+<td class=main>Um einen Gutschein zu versenden, klicken Sie bitte auf den Link "Gutschein versenden" in Ihrem Einkaufskorb. Um einen Gutschein zu versenden, benötigen wir folgende Angaben von Ihnen: Vor- und Nachname des Empfängers. Eine gültige E-Mail Adresse des Empfängers. Den gewünschten Betrag (Sie können auch Teilbeträge Ihres Guthabens versenden). Eine kurze Nachricht an den Empfänger. Bitte überprüfen Sie Ihre Angaben noch einmal vor dem Versenden. Sie haben vor dem Versenden jederzeit die Möglichkeit Ihre Angaben zu korrigieren. </td></tr></tbody></table>
+<table cellSpacing=0 cellPadding=0>
+<tbody>
+<tr>
+<td class=main><STRONG>Mit Gutscheinen Einkaufen. </STRONG></td></tr>
+<tr>
+<td class=main>Sobald Sie über ein Guthaben verfügen, können Sie dieses zum Bezahlen Ihrer Bestellung verwenden. Während des Bestellvorganges haben Sie die Mï¿½glichkeit Ihr Guthaben einzulï¿½sen. Falls das Guthaben unter dem Warenwert liegt müssen Sie Ihre bevorzugte Zahlungsweise für den Differenzbetrag wühlen. übersteigt Ihr Guthaben den Warenwert, steht Ihnen das Restguthaben selbstverständlich für Ihre nächste Bestellung zur Verfügung. </td></tr></tbody></table>
+<table cellSpacing=0 cellPadding=0>
+<tbody>
+<tr>
+<td class=main><STRONG>Gutscheine verbuchen. </STRONG></td></tr>
+<tr>
+<td class=main>Wenn Sie einen Gutschein per E-Mail erhalten haben, können Sie den Betrag wie folgt verbuchen:. <br />1. Klicken Sie auf den in der E-Mail angegebenen Link. Falls Sie noch nicht über ein persönliches Kundenkonto verfügen, haben Sie die Möglichkeit ein Konto zu eröffnen. <br />2. Nachdem Sie ein Produkt in den Warenkorb gelegt haben, können Sie dort Ihren Gutscheincode eingeben.</td></tr></tbody></table>
+<table cellSpacing=0 cellPadding=0>
+<tbody>
+<tr>
+<td class=main><STRONG>Falls es zu Problemen kommen sollte: </STRONG></td></tr>
+<tr>
+<td class=main>Falls es wider Erwarten zu Problemen mit einem Gutschein kommen sollte, kontaktieren Sie uns bitte per E-Mail : you@yourdomain.com. Bitte beschreiben Sie möglichst genau das Problem, wichtige Angaben sind unter anderem: Ihre Kundennummer, der Gutscheincode, Fehlermeldungen des Systems sowie der von Ihnen benutzte Browser. </td></tr></tbody></table>' WHERE `content_manager`.`content_id` = 11;
+UPDATE `c2_sc_21`.`content_manager` SET `content_text` = 'Fügen Sie hier Ihre Informationen über Liefer- und Versandkosten ein.' WHERE `content_manager`.`content_id` = 6;
+UPDATE `c2_sc_21`.`content_manager` SET `content_title` = 'Privatsphäre und Datenschutz', `content_heading` = 'Privatsphäre und Datenschutz', `content_text` = 'Fügen Sie hier Ihre Informationen über Privatsphäre und Datenschutz ein.', `content_meta_title` = 'Privatsphäre und Datenschutz' WHERE `content_manager`.`content_id` = 7;
+UPDATE `c2_sc_21`.`content_manager` SET `content_heading` = 'Allgemeine Geschäftsbedingungen', `content_text` = '<strong>Allgemeine Geschäftsbedingungen<br /></strong><br />Fügen Sie hier Ihre allgemeinen Geschäftsbedingungen ein.<br />1. Geltung<br />2. Angebote<br />3. Preis<br />4. Versand und Gefahrübergang<br />5. Lieferung<br />6. Zahlungsbedingungen<br />7. Eigentumsvorbehalt <br />8. Mängelrügen, Gewährleistung und Schadenersatz<br />9. Kulanzrücknahme / Annahmeverweigerung<br />10. Erfüllungsort und Gerichtsstand<br />11. Schlussbestimmungen' WHERE `content_manager`.`content_id` = 8;
+UPDATE `c2_sc_21`.`content_manager` SET `content_text` = 'Fügen Sie hier Ihr Widerrufsrecht ein.' WHERE `content_manager`.`content_id` = 22;
+UPDATE `c2_sc_21`.`content_manager` SET `content_text` = '<div class="widerrufsformular-wrapper">
+<div class="widerrufsformular-grau">Wenn Sie den Vertrag widerrufen wollen, dann füllen Sie bitte dieses Formular aus und Senden es uns zurück. <br /><br /><br />
+<table>
+<tbody>
+<tr>
+<td class="t1"><strong>An:</strong></td>
+<td class="t2">Max Mustermann <br /> Musterstraße 1 <br /> 12345 Musterstadt</td>
+<td>Telefon: 0123 45678 <br /> Fax: 0123 456789 <br /> E-Mail: max@mustermann.de</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br />
+<p class="nummer1 nummer">1</p>
+<p class="nummer2 nummer">2</p>
+<p class="nummer3 nummer">3</p>
+<p class="nummer4 nummer">4</p>
+<p class="nummer5 nummer">5</p>
+<p class="nummer6 nummer">6</p>
+<p>Hiermit widerrufe(n) ich/wir den von mir/uns abgeschlossenen Vertrag über den Kauf der <br /> folgenden Waren/die Erbringung der folgenden Dienstleistung: <br /><br /> <strong class="blau">Angaben der Ware:</strong></p>
+<table class="verbraucherrechte-formular">
+<tbody>
+<tr>
+<td width="70%">
+<p>_____ x ________________</p>
+<p class="t1">Anzahl | Artikelname</p>
+<p>_______________________</p>
+<p class="t1">Bestellnummer</p>
+<p class="unterstriche">_ _ _ _ , _ _ &euro;</p>
+<p class="t1">Gesamtpreis der Ware</p>
+<br /><br /> <strong class="blau">Ihre persönlichen Angaben:</strong> <br /><br /><br /><br /><br /><br /><br /><br /> <br style="margin-bottom: 18px;" />
+<p class="unterstriche">_ _ . _ _ . _ _ _ _</p>
+<p class="t1">Datum</p>
+</td>
+<td>
+<p class="unterstriche">_ _ . _ _ . _ _ _ _</p>
+<p class="t1">Bestelldatum</p>
+<p class="unterstriche">_ _ . _ _ . _ _ _ _</p>
+<p class="t1">Ware erhalten am</p>
+<br /><br /><br /><br />
+<p>_______________________</p>
+<p class="t1">Vorname/Name</p>
+<p>_______________________</p>
+<p class="t1">Straße und Hausnummer</p>
+<p class="unterstriche">_ _ _ _ _</p>
+<p class="t1">PLZ</p>
+<p>_______________________</p>
+<p class="t1">Ort</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>' WHERE `content_manager`.`content_id` = 23;
 # 1 - Default, 2 - USA, 3 - Spain, 4 - Singapore, 5 - Germany
 INSERT INTO address_format VALUES (1, '$firstname $lastname$cr$streets$cr$city, $postcode$cr$statecomma$country','$city / $country');
 INSERT INTO address_format VALUES (2, '$firstname $lastname$cr$streets$cr$city, $state    $postcode$cr$country','$city, $state / $country');
