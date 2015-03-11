@@ -391,7 +391,7 @@ theme_advanced_buttons4 : "",
                 // WYSIWYG editor imageslider textarea named imagesliders_description for Imageslider (c)2008 by Hetfield
 				case 'imagesliders_description':
 					$val ='var oFCKeditor = new FCKeditor( \'imagesliders_description['.$langID.']\', \'100%\', \'300\' ) ;
-									   oFCKeditor.BasePath = "'.$path.'" ;
+									   oFCKeditor.BasePath = "/admin/includes/modules/fckeditor/" ;
 									   oFCKeditor.Config["LinkBrowserURL"] = "'.$filemanager.$file_path.'" ;
 									   oFCKeditor.Config["ImageBrowserURL"] = "'.$filemanager.$image_path.'" ;
 					     		   oFCKeditor.Config["FlashBrowserURL"] = "'.$filemanager.$flash_path.'" ;

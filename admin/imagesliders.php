@@ -15,6 +15,8 @@
    Released under the GNU General Public License 
    --------------------------------------------------------------*/
 
+die(print_r($_REQUEST));
+
   require('includes/application_top.php');
   require_once(DIR_FS_INC . 'xtc_wysiwyg.inc.php');
 
