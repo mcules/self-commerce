@@ -36,6 +36,7 @@ define('FILENAME_CHECKOUT_PROCESS', 'checkout_process.php');
 define('FILENAME_CHECKOUT_SHIPPING', 'checkout_shipping.php');
 define('FILENAME_CHECKOUT_SHIPPING_ADDRESS', 'checkout_shipping_address.php');
 define('FILENAME_CHECKOUT_SUCCESS', 'checkout_success.php');
+define('FILENAME_CHECKOUT', 'checkout.php');
 define('FILENAME_COOKIE_USAGE', 'cookie_usage.php');
 define('FILENAME_CUSTOMERS','admin/customers.php');
 define('FILENAME_CREATE_ACCOUNT', 'create_account.php');

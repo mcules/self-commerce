@@ -255,7 +255,7 @@ if ($_SESSION['cart']->count_contents() > 0) {
 		#---- AJAX CHECKOUT PROCESS START
 		$onclick = '';
 		if (CHECKOUT_AJAX_STAT == 'true') {
-			$onclick = ' onclick="window.location.href=\''.xtc_href_link('checkout.php','', 'SSL').'\'; return false;"';
+			$onclick = ' onclick="window.location.href=\''.xtc_href_link(FILENAME_CHECKOUT,'', 'SSL').'\'; return false;"';
 		}
 		$smarty->assign('BUTTON_CHECKOUT', '<a href="'.xtc_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL').'"'.$onclick.'>'.xtc_image_button('button_checkout.gif', IMAGE_BUTTON_CHECKOUT).'</a>');
 		#---- AJAX CHECKOUT PROCESS END
@@ -301,7 +301,7 @@ if ($_SESSION['cart']->count_contents() > 0) {
 	#---- AJAX CHECKOUT PROCESS START
 	$onclick = '';
 	if (CHECKOUT_AJAX_STAT == 'true') {
-		$onclick = ' onclick="window.location.href=\''.xtc_href_link('checkout.php','', 'SSL').'\'; return false;"';
+		$onclick = ' onclick="window.location.href=\''.xtc_href_link(FILENAME_CHECKOUT,'', 'SSL').'\'; return false;"';
 	}
 	$smarty->assign('BUTTON_CHECKOUT', '<a href="'.xtc_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL').'"'.$onclick.'>'.xtc_image_button('button_checkout.gif', IMAGE_BUTTON_CHECKOUT).'</a>');
 	#---- AJAX CHECKOUT PROCESS END

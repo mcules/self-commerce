@@ -31,7 +31,7 @@
 			{#order_total#}{$order_data.ORDER_TOTAL} / {#order_status#}{$order_data.ORDER_STATUS}<br /></p>
 			<div class="hr"></div>
 		{/foreach}
-		<a href="{$LINK_ALL}">{#text_all#}</a>
+		{$BUTTON_ALL}
 		</div>
 	{/if}
 <div class="well well-small">
@@ -44,8 +44,8 @@
 <div class="well well-small">
 	<h2>{#title_viewed_products#}</h2>
 		<ul>
-		{foreach name=history_products item=products_history from=$products_history}
-			<li><a href="{$products_history.PRODUCTS_LINK}">{$products_history.PRODUCTS_NAME} / {$products_history.PRODUCTS_PRICE}</a></li>
+		{foreach $products_history as $product_history}
+			<li><a href="{$product_history.PRODUCTS_LINK}">{$product_history.PRODUCTS_NAME} / {$product_history.PRODUCTS_PRICE}</a></li>
 		{/foreach}
 		</ul>
 		</div>

@@ -29,7 +29,7 @@
 
 define('DIR_SELF_INSTALLER', 'self_installer');
 ?>
-<?php // 06.01.2014 Karl HTML5 Doctype f¸r Template Bootstrap 
+<?php // 06.01.2014 Karl HTML5 Doctype f¸r Template Bootstrap
 if (CURRENT_TEMPLATE == "bootstrap") { ?>
 <!DOCTYPE html>
 <html lang="<?php echo $_SESSION['language_code']; ?>">
@@ -420,7 +420,13 @@ if ( $_SESSION['account_type']=='0') {
 $smarty->assign('account',xtc_href_link(FILENAME_ACCOUNT, '', 'SSL'));
 }
 $smarty->assign('cart',xtc_href_link(FILENAME_SHOPPING_CART, '', 'SSL'));
-$smarty->assign('checkout',xtc_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL'));
+#$smarty->assign('checkout',xtc_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL'));
+$onclick = '';
+if (CHECKOUT_AJAX_STAT == 'true') {
+	$onclick = ' onclick="window.location.href=\''.xtc_href_link(FILENAME_CHECKOUT,'', 'SSL').'\'; return false;"';
+}
+$smarty->assign('checkout', '<a href="'.xtc_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL').'"'.$onclick.'>');
+#$smarty->assign('checkout',xtc_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL'));
 $smarty->assign('store_name',TITLE);
 
 $handle = opendir(DIR_FS_CATALOG."templates/");
