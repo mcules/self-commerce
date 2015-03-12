@@ -58,6 +58,7 @@ if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_acc
 if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['stats_customers'] == '1')) $box_statistics .= '<a href="' . xtc_href_link(FILENAME_STATS_CUSTOMERS, '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_STATS_CUSTOMERS . '</a><br />';
 if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['stats_sales_report'] == '1')) $box_statistics .= '<a href="' . xtc_href_link(FILENAME_SALES_REPORT, '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_SALES_REPORT . '</a><br />';
 if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['stats_campaigns'] == '1')) $box_statistics .= '<a href="' . xtc_href_link(FILENAME_CAMPAIGNS_REPORT, '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_CAMPAIGNS_REPORT . '</a><br />';
+if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['stats_recover_cart_sales'] == '1')) $box_statistics .= '<a href="' . xtc_href_link(FILENAME_STATS_RECOVER_CART_SALES, '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_REPORTS_RECOVER_CART_SALES . '</a><br />';
 if(!empty($box_statistics))
     echo '<div class="dhtmlgoodies_panel">
         <div>'.$box_statistics.'</div>
@@ -75,6 +76,8 @@ if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_acc
 if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['csv_backend'] == '1'))		$box_tools .= '<a href="' . xtc_href_link('csv_backend.php') . '" class="menuBoxContentLink"> -' . BOX_IMPORT . '</a><br />';
 if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['file_chk'] == '1'))			$box_tools .= '<a href="' . xtc_href_link(FILENAME_FILE_CHK) . '" class="menuBoxContentLink"> -' . BOX_FILE_CHK . '</a><br />';
 if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['paypal'] == '1'))			$box_tools .= '<a href="' . xtc_href_link('paypal.php') . '" class="menuBoxContentLink"> -' . BOX_PAYPAL . '</a><br>';
+if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['recover_cart_sales'] == '1')) $box_tools .= '<a href="' . xtc_href_link(FILENAME_RECOVER_CART_SALES) . '" class="menuBoxContentLink"> -' . BOX_TOOLS_RECOVER_CART . '</a><br />';
+
 if(!empty($box_tools))
     echo '<div class="dhtmlgoodies_panel">
         <div>'.$box_tools.'</div>
@@ -131,6 +134,8 @@ if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_acc
 // PDFBill NEXT End
 if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['configuration'] == '1')) $box_configuration .= '<a href="' . xtc_href_link(FILENAME_CONFIGURATION, 'gID=333', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_CONFIGURATION_333 . '</a><br />';
   if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['configuration'] == '1')) $box_configuration .= '<a href="' . xtc_href_link('cox_sort.php', '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_COX_SORT . '</a><br />';
+if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['recover_cart_sales'] == '1')) $box_configuration .= '<a href="' . xtc_href_link(FILENAME_CONFIGURATION, 'gID=33', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_CONFIGURATION_33 . '</a><br />';
+
 if(!empty($box_configuration))
     echo '<div class="dhtmlgoodies_panel">
         <div>'.$box_configuration.'</div>

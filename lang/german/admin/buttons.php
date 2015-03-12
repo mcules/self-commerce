@@ -1,18 +1,18 @@
 <?php
 /* --------------------------------------------------------------
-   $Id: buttons.php 17 2012-06-04 20:33:29Z deisold $   
+   $Id: buttons.php 17 2012-06-04 20:33:29Z deisold $
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
 
    Copyright (c) 2003 XT-Commerce
    --------------------------------------------------------------
-   based on: 
+   based on:
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
-   (c) 2002-2003 osCommerce(categories.php,v 1.22 2002/08/17); www.oscommerce.com 
+   (c) 2002-2003 osCommerce(categories.php,v 1.22 2002/08/17); www.oscommerce.com
    (c) 2003	 nextcommerce (categories.php,v 1.10 2003/08/14); www.nextcommerce.org
 
-   Released under the GNU General Public License 
+   Released under the GNU General Public License
    --------------------------------------------------------------*/
 
 // buttons
@@ -75,5 +75,4 @@ define('BUTTON_DETAILS', 'Details');
 define('BUTTON_NEW_TAX_CLASS', 'Neue Steuerklasse');
 define('BUTTON_NEW_TAX_RATE', 'Neuer Steuersatz');
 define('BUTTON_SEND', 'Senden');
-
-?>
+define('BUTTON_COMPLETE', 'Bestellung abschlie&szlig;en');

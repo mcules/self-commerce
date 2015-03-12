@@ -1,20 +1,20 @@
 <?php
 /* -----------------------------------------------------------------------------------------
-   $Id: ot_loworderfee.php 17 2012-06-04 20:33:29Z deisold $   
+   $Id: ot_loworderfee.php 17 2012-06-04 20:33:29Z deisold $
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
 
    Copyright (c) 2003 XT-Commerce
    -----------------------------------------------------------------------------------------
-   based on: 
+   based on:
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
-   (c) 2002-2003 osCommerce(ot_loworderfee.php,v 1.11 2003/02/14); www.oscommerce.com 
+   (c) 2002-2003 osCommerce(ot_loworderfee.php,v 1.11 2003/02/14); www.oscommerce.com
    (c) 2003	 nextcommerce (ot_loworderfee.php,v 1.7 2003/08/24); www.nextcommerce.org
 
-   Released under the GNU General Public License 
+   Released under the GNU General Public License
    ---------------------------------------------------------------------------------------*/
-   
+
 
   class ot_loworderfee {
     var $title, $output;
@@ -32,10 +32,10 @@
 
     function process() {
       global $order, $xtPrice;
-      
+
       //include needed functions
-      require_once(DIR_FS_INC . 'xtc_calculate_tax.inc.php');
-      
+      //require_once(DIR_FS_INC . 'xtc_calculate_tax.inc.php');
+
       if (MODULE_ORDER_TOTAL_LOWORDERFEE_LOW_ORDER_FEE == 'true') {
         switch (MODULE_ORDER_TOTAL_LOWORDERFEE_DESTINATION) {
           case 'national':
@@ -54,7 +54,7 @@
 
 
 
-          
+
 
 		if ($_SESSION['customers_status']['customers_status_show_price_tax'] == 1) {
 		  $order->info['tax'] += xtc_calculate_tax(MODULE_ORDER_TOTAL_LOWORDERFEE_FEE, $tax);
@@ -62,7 +62,7 @@
           $order->info['total'] += MODULE_ORDER_TOTAL_LOWORDERFEE_FEE + xtc_calculate_tax(MODULE_ORDER_TOTAL_LOWORDERFEE_FEE, $tax);
           $low_order_fee=xtc_add_tax(MODULE_ORDER_TOTAL_LOWORDERFEE_FEE, $tax);
         }
-        
+
         if ($_SESSION['customers_status']['customers_status_show_price_tax'] == 0 && $_SESSION['customers_status']['customers_status_add_tax_ot'] == 1) {
 		$low_order_fee=MODULE_ORDER_TOTAL_LOWORDERFEE_FEE;
 		$order->info['tax'] += xtc_calculate_tax(MODULE_ORDER_TOTAL_LOWORDERFEE_FEE, $tax);
@@ -70,7 +70,7 @@
 		$order->info['subtotal'] += $low_order_fee;
         $order->info['total'] += $low_order_fee;
         }
-        
+
         if ($_SESSION['customers_status']['customers_status_show_price_tax'] == 0 && $_SESSION['customers_status']['customers_status_add_tax_ot'] != 1) {
 		$low_order_fee=MODULE_ORDER_TOTAL_LOWORDERFEE_FEE;
 		$order->info['subtotal'] += $low_order_fee;

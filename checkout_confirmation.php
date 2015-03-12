@@ -89,6 +89,7 @@ if (DISPLAY_CONDITIONS_ON_CHECKOUT == 'true') {
     }
 }
 
+xtc_checkout_site('confirm');
 // load the selected payment module
 require_once (DIR_WS_CLASSES . 'payment.php');
 if (isset ($_SESSION['credit_covers']) || !isset($_SESSION['payment'])) { //DokuMan - 2010-10-14 - check that payment is not yet set

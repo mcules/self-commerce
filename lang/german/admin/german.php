@@ -415,3 +415,9 @@ define('BOX_CONFIGURATION_333', 'Bestellprozess');
 define('BOX_COX_SORT','Bestellprozess Sortierung');
 // Imageslider (c)2008 by Hetfield
 define('BOX_IMAGESLIDERS','Bilder-Slideshow');
+// Offene Warenkoerbe
+define('BOX_CONFIGURATION_33', 'Offene Warenk&ouml;rbe');
+define('BOX_REPORTS_RECOVER_CART_SALES', 'Wiederhergestellte Warenk&ouml;rbe');
+define('BOX_TOOLS_RECOVER_CART', 'Offene Warenk&ouml;rbe');
+define('TAX_ADD_TAX','inkl. ');
+define('TAX_NO_TAX','zzgl. ');

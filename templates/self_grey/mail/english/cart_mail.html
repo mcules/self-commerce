@@ -1,0 +1,31 @@
+Please log in here: <a href="{$LOGIN}">{$LOGIN}</a>
+<hr />
+{if $GENDER}Dear{if $GENDER eq 'm'} Mr{elseif $GENDER eq 'f'} Ms{else} {$FIRSTNAME}{/if} {$LASTNAME},
+{else}Hello,{/if}
+
+<p>{if $NEW == true}Thank you very much for visiting {$STORE_NAME} and for the confidence shown to us.
+{else}Thank you very much for visiting {$STORE_NAME} again and for the repeated confidence you have placed in us.{/if}</p>
+
+<p>We have seen that while visiting our online shop you filled your shopping cart with the following articles, but did not complete your purchase. <br></p>
+
+<p>Content of your shopping cart:</p>
+
+<table border="0" cellpadding="0" cellspacing="3">
+{foreach name=outer item=product from=$products_data}
+<tr><td rowspan="2" valign="top">{$product.QUANTITY} x </td><td>{$product.NAME}</td></tr>
+<tr><td><a href="{$product.LINK}">{$product.LINK}</a></td></tr>
+{/foreach}
+</table>
+
+<p>We are keen to constantly improve the service to the interest of our customers. This is why we are interested in getting to know the reasons for not making a purchase with us this time. Therefore, we would be pleased if you could let us know if you were facing any problems or having any objections while visiting our online shop to successfully close the transaction. Should you have had any technical problems, we are certainly prepared to help you.&nbsp;
+It is our aim to facilitate and improve the purchasing procedure for you and other customers. <br></p>
+<p>Thank you once again for spending your time and help in order to improve our online shop. <br></p>
+
+<p>Best regards</p>
+
+<p>Your team of <a href="{$STORE_LINK}">{$STORE_NAME}<br></a></p>
+
+{if $MESSAGE}
+
+<p>{$MESSAGE}</p>
+{/if}

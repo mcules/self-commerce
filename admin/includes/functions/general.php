@@ -1,19 +1,19 @@
 <?php
 
 /* --------------------------------------------------------------
-   $Id: general.php 40 2012-07-24 19:52:32Z deisold $  
+   $Id: general.php 40 2012-07-24 19:52:32Z deisold $
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
 
    Copyright (c) 2003 XT-Commerce
    --------------------------------------------------------------
-   based on: 
+   based on:
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
-   (c) 2002-2003 osCommerce(general.php,v 1.156 2003/05/29); www.oscommerce.com 
+   (c) 2002-2003 osCommerce(general.php,v 1.156 2003/05/29); www.oscommerce.com
    (c) 2003	 nextcommerce (general.php,v 1.35 2003/08/1); www.nextcommerce.org
 
-   Released under the GNU General Public License 
+   Released under the GNU General Public License
    --------------------------------------------------------------
    Third Party contributions:
 
@@ -30,7 +30,7 @@
    Copyright (c) Andre ambidex@gmx.net
    Copyright (c) 2001,2002 Ian C Wilson http://www.phesis.org
 
-   Released under the GNU General Public License 
+   Released under the GNU General Public License
    --------------------------------------------------------------*/
 defined( '_VALID_XTC' ) or die( 'Direct Access to this location is not allowed.' );
 function clear_string($value) {
@@ -84,7 +84,7 @@ function xtc_set_groups($categories_id, $permission_array) {
 
 	// get products in categorie
 	$products_query = xtc_db_query("SELECT products_id FROM ".TABLE_PRODUCTS_TO_CATEGORIES." where categories_id='".$categories_id."'");
-	while ($products = xtc_db_fetch_array($products_query)) {		
+	while ($products = xtc_db_fetch_array($products_query)) {
 		xtc_db_perform(TABLE_PRODUCTS, $permission_array, 'update', 'products_id = \''.$products['products_id'].'\'');
 	}
 	// set status of categorie
@@ -752,6 +752,20 @@ function xtc_get_products_url($product_id, $language_id) {
 	return $product['products_url'];
 }
 
+function xtc_get_products_special_price($product_id, $customer_id, $qty = 1){
+	$customer_group_query = xtc_db_query("select customers_status from " . TABLE_CUSTOMERS . " where customers_id = '" . $customer_id . "'");
+	$customer_group = xtc_db_fetch_array($customer_group_query);
+	$personal_query = xtc_db_query("SELECT personal_offer FROM " . TABLE_PERSONAL_OFFERS_BY . $customer_group['customers_status'] . " WHERE products_id=" . (int)$product_id . " AND quantity<=" . (int)$qty . " ORDER BY quantity DESC LIMIT 1");
+	if (xtc_db_num_rows($personal_query)) {
+		$personal = xtc_db_fetch_array($personal_query);
+		return $personal['personal_offer'];
+	}
+	$product_query = xtc_db_query("select specials_new_products_price from " . TABLE_SPECIALS . " where products_id = '" . (int)$product_id . "' and status");
+	$product = xtc_db_fetch_array($product_query);
+
+	return $product['specials_new_products_price'];
+}
+
 ////
 // Return the manufacturers URL in the needed language
 // TABLES: manufacturers_info
@@ -1055,28 +1069,28 @@ function xtc_del_image_file($image) {
 function xtc_remove_order($order_id) {
 
 		$order_query = xtc_db_query("
-			select 
+			select
 				orders_products_id,
-				products_id, 
-				products_quantity 
-			from 
-				".TABLE_ORDERS_PRODUCTS." 
-			where 
+				products_id,
+				products_quantity
+			from
+				".TABLE_ORDERS_PRODUCTS."
+			where
 				orders_id = '".xtc_db_input($order_id)."'
 		");
-		
+
 		//nc_patch restock_attributes BOF
-		while ($order = xtc_db_fetch_array($order_query)) 
+		while ($order = xtc_db_fetch_array($order_query))
 		{
 			xtc_db_query("
-				update ".TABLE_PRODUCTS." 
-				set 
+				update ".TABLE_PRODUCTS."
+				set
 					products_quantity = products_quantity + ".$order['products_quantity'].",
 					products_ordered 	= products_ordered 	- ".$order['products_quantity']."
-				where 
+				where
 					products_id = '".$order['products_id']."'
 			");
-			
+
 			$result = mysql_query('
 				SELECT *
 				FROM orders_products_attributes
@@ -1086,8 +1100,8 @@ function xtc_remove_order($order_id) {
 			');
 			while(($row = mysql_fetch_array($result) ))
 			{
-				$attributes_id = nc_get_products_attributes_id($order['products_id'], 
-																											 $row['products_options'], 
+				$attributes_id = nc_get_products_attributes_id($order['products_id'],
+																											 $row['products_options'],
 																											 $row['products_options_values']);
 				mysql_query('
 					UPDATE products_attributes
@@ -1719,16 +1733,16 @@ function xtc_button_link($value, $href='javascript:void(null)', $parameter='') {
 
 function nc_get_products_attributes_id($products_id, $products_options, $products_options_values)
 {
-	//parameter	
+	//parameter
 	/*
 	$products_options 				= 'Farbe';
 	$products_options_values	= 'silber';
 	*/
-	
+
 	//needle
 	$products_options_id				= false;
 	$products_options_values_id	= false;
-	
+
 	$result = mysql_query('
 		SELECT products_options_id
 		FROM products_options
@@ -1739,11 +1753,11 @@ function nc_get_products_attributes_id($products_id, $products_options, $product
 	if(mysql_num_rows($result) > 0) {
 		$products_options_id = mysql_result($result, 0, 'products_options_id');
 	}
-	
+
 	$result = mysql_query('
-		SELECT 
+		SELECT
 			pov.products_options_values_id AS products_options_values_id
-		FROM 
+		FROM
 			products_options_values											pov,
 			products_options_values_to_products_options	pov2po
 		WHERE
@@ -1751,14 +1765,14 @@ function nc_get_products_attributes_id($products_id, $products_options, $product
 			pov2po.products_options_values_id = pov.products_options_values_id 			AND
 			pov.products_options_values_name 	= "'. $products_options_values		.'" AND
 			pov.language_id										= "'. $_SESSION['languages_id'] 	.'"
-	');		
+	');
 	if(mysql_num_rows($result) > 0) {
 		$products_options_values_id = mysql_result($result, 0, 'products_options_values_id');
 	}
-	
+
 	if($products_options_id === false || $products_options_values_id === false)
 		return false;
-	
+
 	$result = mysql_query('
 		SELECT products_attributes_id
 		FROM products_attributes
@@ -1769,32 +1783,32 @@ function nc_get_products_attributes_id($products_id, $products_options, $product
 	');
 	if(mysql_num_rows($result) == 0)
 		return false;
-	
+
 	return mysql_result($result, 0, 'products_attributes_id');
 }
 
-//BEGIN NEXT AND PREVIOUS ORDERS DISPLAY IN ADMIN 
-function get_order_id($orderid,$mode='next'){ 
-if ($mode=='prev') 
-$op = '<'; 
-elseif ($mode=='next') 
-$op = '>'; 
-if($op == '<' or $op == '>') 
+//BEGIN NEXT AND PREVIOUS ORDERS DISPLAY IN ADMIN
+function get_order_id($orderid,$mode='next'){
+if ($mode=='prev')
+$op = '<';
+elseif ($mode=='next')
+$op = '>';
+if($op == '<' or $op == '>')
 if (isset($_GET['status']))
     $status =  "orders_status = '" . (int)$_GET['status'] . "' and ";
-$nextprev_resource = xtc_db_query("select orders_id from " . TABLE_ORDERS . " where " . $status . " orders_id $op '" . (int)$orderid . "' order by orders_id"); 
-if($mode == 'prev'){ 
-while($nextprev_values = xtc_db_fetch_array($nextprev_resource)){ 
-$nextprev_value = $nextprev_values; 
-} 
-}else if($mode == 'next') 
-$nextprev_value = xtc_db_fetch_array($nextprev_resource); 
-if(!empty($nextprev_value[orders_id])) 
-return $nextprev_value[orders_id]; 
-else 
-return false; 
-} 
+$nextprev_resource = xtc_db_query("select orders_id from " . TABLE_ORDERS . " where " . $status . " orders_id $op '" . (int)$orderid . "' order by orders_id");
+if($mode == 'prev'){
+while($nextprev_values = xtc_db_fetch_array($nextprev_resource)){
+$nextprev_value = $nextprev_values;
+}
+}else if($mode == 'next')
+$nextprev_value = xtc_db_fetch_array($nextprev_resource);
+if(!empty($nextprev_value[orders_id]))
+return $nextprev_value[orders_id];
+else
+return false;
+}
 
 //END NEXT AND PREVIOUS ORDERS DISPLAY IN ADMIN
-//--------------------------------------------------------------------------------------Ende 
+//--------------------------------------------------------------------------------------Ende
 ?>

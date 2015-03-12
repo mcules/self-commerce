@@ -1,0 +1,29 @@
+Please log in here: {$LOGIN}
+------------------------------------------------------
+{if $GENDER}Dear{if $GENDER eq 'm'}Mr {elseif $GENDER eq 'f'} Ms{else} {$FIRSTNAME}{/if} {$LASTNAME},
+{else}Hello,{/if}
+
+{if $NEW == true}Thank you very much for visiting {$STORE_NAME} and for the confidence shown to us.
+{else}Thank you very much for visiting {$STORE_NAME} again and for the repeated confidence you have placed in us.{/if}
+
+We have seen that while visiting our online shop you filled your shopping cart with the following articles, but did not complete your purchase. 
+
+Content of your shopping cart:
+
+{foreach name=outer item=product from=$products_data}
+{$product.QUANTITY} x {$product.NAME}
+    {$product.LINK}
+{/foreach}
+
+We are keen to constantly improve the service to the interest of our customers. This is why we are interested in getting to know the reasons for not making a purchase with us this time. Therefore, we would be pleased if you could let us know if you were facing any problems or having any objections while visiting our online shop to successfully close the transaction. Should you have had any technical problems, we are certainly prepared to help you. It is our aim to facilitate and improve the purchasing procedure for you and other customers. 
+
+Thank you once again for spending your time and help in order to improve our online shop. 
+
+
+Best regards
+
+Your team of{$STORE_NAME}
+{if $MESSAGE}
+
+{$MESSAGE}
+{/if}

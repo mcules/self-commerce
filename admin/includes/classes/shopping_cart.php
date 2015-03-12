@@ -1,18 +1,18 @@
 <?php
 /* --------------------------------------------------------------
-   $Id: shopping_cart.php 17 2012-06-04 20:33:29Z deisold $   
+   $Id: shopping_cart.php 17 2012-06-04 20:33:29Z deisold $
 
    XT-Commerce - community made shopping
    http://www.xt-commerce.com
 
    Copyright (c) 2003 XT-Commerce
    --------------------------------------------------------------
-   based on: 
+   based on:
    (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
-   (c) 2002-2003 osCommerce(shopping_cart.php,v 1.7 2002/05/16); www.oscommerce.com 
+   (c) 2002-2003 osCommerce(shopping_cart.php,v 1.7 2002/05/16); www.oscommerce.com
    (c) 2003	 nextcommerce (shopping_cart.php,v 1.6 2003/08/18); www.nextcommerce.org
 
-   Released under the GNU General Public License 
+   Released under the GNU General Public License
    --------------------------------------------------------------*/
 defined( '_VALID_XTC' ) or die( 'Direct Access to this location is not allowed.' );
   class shoppingCart {
@@ -20,6 +20,76 @@ defined( '_VALID_XTC' ) or die( 'Direct Access to this location is not allowed.'
 
     function shoppingCart() {
       $this->reset();
+    }
+
+	function restoreCustomersCart($customers_id) {
+		$this->reset(false);
+
+		$products_query = xtc_db_query("select products_id, customers_basket_quantity from ".TABLE_CUSTOMERS_BASKET." where customers_id = '$customers_id'");
+		while ($products = xtc_db_fetch_array($products_query)) {
+			$this->contents[$products['products_id']] = array ('qty' => $products['customers_basket_quantity']);
+			// attributes
+			$attributes_query = xtc_db_query("select products_options_id, products_options_value_id from ".TABLE_CUSTOMERS_BASKET_ATTRIBUTES." where customers_id = '$customers_id' and products_id = '".$products['products_id']."'");
+			while ($attributes = xtc_db_fetch_array($attributes_query)) {
+				$this->contents[$products['products_id']]['attributes'][$attributes['products_options_id']] = $attributes['products_options_value_id'];
+			}
+		}
+		$this->calculate();
+	}
+
+  function get_content_type() {
+        $this->content_type = false;
+
+        if ((DOWNLOAD_ENABLED == 'true') && ($this->count_contents() > 0)) {
+            reset($this->contents);
+            while (list ($products_id,) = each($this->contents)) {
+                if (isset ($this->contents[$products_id]['attributes'])) {
+                    reset($this->contents[$products_id]['attributes']);
+                    while (list (, $value) = each($this->contents[$products_id]['attributes'])) {
+                        $virtual_check_query = xtc_db_query("select count(*) as total from ".TABLE_PRODUCTS_ATTRIBUTES." pa, ".TABLE_PRODUCTS_ATTRIBUTES_DOWNLOAD." pad where pa.products_id = '".$products_id."' and pa.options_values_id = '".$value."' and pa.products_attributes_id = pad.products_attributes_id");
+                        $virtual_check = xtc_db_fetch_array($virtual_check_query);
+
+                        if ($virtual_check['total'] > 0) {
+                            switch ($this->content_type) {
+                                case 'physical' :
+                                    $this->content_type = 'mixed';
+                                    return $this->content_type;
+                                    break;
+
+                                default :
+                                    $this->content_type = 'virtual';
+                                    break;
+                            }
+                        } else {
+                            switch ($this->content_type) {
+                                case 'virtual' :
+                                    $this->content_type = 'mixed';
+                                    return $this->content_type;
+                                    break;
+
+                                default :
+                                    $this->content_type = 'physical';
+                                    break;
+                            }
+                        }
+                    }
+                } else {
+                    switch ($this->content_type) {
+                        case 'virtual' :
+                            $this->content_type = 'mixed';
+                            return $this->content_type;
+                            break;
+
+                        default :
+                            $this->content_type = 'physical';
+                            break;
+                    }
+                }
+            }
+        } else {
+            $this->content_type = 'physical';
+        }
+        return $this->content_type;
     }
 
     function restore_contents() {
@@ -133,7 +203,7 @@ defined( '_VALID_XTC' ) or die( 'Direct Access to this location is not allowed.'
       }
     }
 
-    function count_contents() {  // get total number of items in cart 
+    function count_contents() {  // get total number of items in cart
         $total_items = 0;
         if (is_array($this->contents)) {
             reset($this->contents);

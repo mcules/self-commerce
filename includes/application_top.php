@@ -109,6 +109,7 @@ require_once (DIR_FS_INC.'xtc_db_output.inc.php');
 require_once (DIR_FS_INC.'xtc_db_input.inc.php');
 require_once (DIR_FS_INC.'xtc_db_prepare_input.inc.php');
 require_once (DIR_FS_INC.'xtc_get_top_level_domain.inc.php');
+require_once (DIR_FS_INC.'xtc_checkout_site.inc.php');
 
 // html basics
 require_once (DIR_FS_INC.'xtc_href_link.inc.php');

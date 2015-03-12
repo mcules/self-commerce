@@ -1,0 +1,31 @@
+Melden sie sich hier an: {$LOGIN}
+------------------------------------------------------
+{if $GENDER}Sehr geehrte{if $GENDER eq 'm'}r Herr{elseif $GENDER eq 'f'} Frau{else}(r) {$FIRSTNAME}{/if} {$LASTNAME},
+{else}Hallo,{/if}
+
+{if $NEW == true}vielen Dank für Ihren Besuch bei {$STORE_NAME} und Ihr uns entgegen gebrachtes Vertrauen.
+{else}vielen Dank für Ihren erneuten Besuch bei {$STORE_NAME} und Ihr wiederholtes uns entgegen gebrachtes Vertrauen.{/if}
+
+Wir haben gesehen, daß Sie bei Ihrem Besuch in unserem Onlineshop den Warenkorb mit folgenden Artikeln gefüllt haben, aber den Einkauf nicht vollständig durchgeführt haben.
+
+Inhalt Ihres Warenkorbes:
+
+{foreach name=outer item=product from=$products_data}
+{$product.QUANTITY} x {$product.NAME}
+    {$product.LINK}
+{/foreach}
+
+Wir sind immer bemüht, unseren Service im Interesse unserer Kunden zu verbessern.
+Aus diesem Grund interessiert es uns natürlich, was die Ursachen dafür waren, Ihren Einkauf dieses Mal nicht bei  {$STORE_NAME} zu tätigen.
+Wir sind Ihnen daher sehr dankbar, wenn Sie uns mitteilen, ob Sie bei Ihrem Besuch in unserem Onlineshop Probleme oder Bedenken hatten, den Einkauf erfolgreich abzuschließen.
+Unser Ziel ist es, Ihnen und anderen Kunden, den Einkauf bei {$STORE_NAME} leichter und besser zu gestalten.
+
+Nochmals vielen Dank für Ihre Zeit und Ihre Hilfe, den Onlineshop von {$STORE_NAME} zu verbessern.
+
+Mit freundlichen Grüßen
+
+Ihr Team von {$STORE_NAME}
+{if $MESSAGE}
+
+{$MESSAGE}
+{/if}

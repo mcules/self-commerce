@@ -64,6 +64,7 @@ if (isset ($_SESSION['cart']->cartID) && isset ($_SESSION['cartID'])) {
 		xtc_redirect(xtc_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL'));
 }
 
+xtc_checkout_site('payment');
 if (isset ($_SESSION['credit_covers']))
 	unset ($_SESSION['credit_covers']); //ICW ADDED FOR CREDIT CLASS SYSTEM
 // Stock Check

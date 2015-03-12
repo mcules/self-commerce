@@ -84,6 +84,7 @@ if($_SESSION['payment'] == 'paypalexpress'):
 endif;
 // Paypal Express Modul Ende
 
+xtc_checkout_site('shipping');
 require (DIR_WS_CLASSES.'order.php');
 $order = new order();
 

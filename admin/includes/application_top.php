@@ -157,6 +157,13 @@ define('FILENAME_IMAGESLIDERS', 'imagesliders.php');
 define('TABLE_IMAGESLIDERS', 'imagesliders');
 define('TABLE_IMAGESLIDERS_INFO', 'imagesliders_info');
 
+// Offene Warenkoerbe
+define('FILENAME_RECOVER_CART_SALES', 'recover_cart_sales.php');
+define('FILENAME_STATS_RECOVER_CART_SALES', 'stats_recover_cart_sales.php');
+define('FILENAME_CATALOG_PRODUCT_INFO', 'product_info.php');
+define('FILENAME_CATALOG_LOGIN', 'login.php');
+define('TABLE_SCART', 'scart');
+
 // define the database table names used in the project
 define('TABLE_ADDRESS_BOOK', 'address_book');
 define('TABLE_ADDRESS_FORMAT', 'address_format');
