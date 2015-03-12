@@ -16,7 +16,7 @@
    Released under the GNU General Public License
    ---------------------------------------------------------------------------------------*/
 
-$module_smarty = new Smarty;
+$module_smarty = new Smarty();
 $module_smarty->assign('tpl_path','templates/'.CURRENT_TEMPLATE.'/');
 
 require_once(DIR_FS_INC . 'xtc_count_products_in_category.inc.php');
@@ -69,6 +69,24 @@ while ($categories = xtc_db_fetch_array($categories_query,true)) {
 							'CAT_LINK'  => $SEF_link,
 							'SCATS'  => get_category_tree($categories['categories_id'], '',0));
 }
+
+if($_SESSION['language'] == "german") {
+	$fehler = array(
+		404 => 'Fehler 404: Die gesuchte Seite wurde nicht gefunden!',
+		401 => "Fehler 401: Authentifizierungsfehler.",
+		400 => "Fehler 400: Die Anforderung war syntaktisch falsch.",
+		403 => "Fehler 403: Der Server verweigert die Ausführung.",
+		500 => "Fehler 500: Beim Server gab es einen internen Fehler.");
+}
+else {
+	$fehler = array(
+		404 => 'Error 404: Not Found!',
+		401 => "Error 401: Unauthorized.",
+		400 => "Error 400: Bad Request.",
+		403 => "Error 403: Forbidden.",
+		500 => "Error 500: Internal Server Error.");
+}
+$module_smarty->assign("herror", $fehler[$_REQUEST['error']]);
 
 // if there's sth -> assign it
 if (sizeof($module_content)>=1) {

@@ -1,0 +1,33 @@
+<?php
+define('PREVNEXT_TITLE_FIRST_PAGE', 'erste Seite');
+define('PREVNEXT_TITLE_LAST_PAGE', 'letzte Seite');
+define('PAGINATION_TITLE_OVERVIEW', '&Uuml;bersicht');
+define('NAV_BRAND', 'Unser Angebot');
+define('TEXT_RATING_KUNDEN', 'Kundenmeinungen');  
+define('TEXT_EIN_RATING_KUNDEN', 'Kundenmeinung');
+define('SELECT_VIEW', 'Ansicht w&auml;hlen: ');
+define('KOSTEN_INFO', '* Alle Preise inkl. gesetzl. Mehrwertsteuer zzgl. Versandkosten und ggf. Nachnahmegebühren, wenn nicht anders beschrieben');
+define('KOSTEN_INFO_HAENDLER', '* Alle Preise exkl. gesetzl. Mehrwertsteuer zzgl. Versandkosten und ggf. Nachnahmegebühren, wenn nicht anders beschrieben');
+define('IMAGE_BUTTON_PREVIEW', 'Vorschau');
+define('IMAGE_BUTTON_PRODUCT_MORE', 'Details');
+define('APS_TEXT_STANDARD', 'Artikel pro Seite');
+define('SORTING_STANDARD', 'Sortieren nach ...');
+define('SORTING_ABC_ASC', 'A bis Z');
+define('SORTING_ABC_DESC', 'Z bis A');
+define('SORTING_PRICE_ASC', 'Preis aufsteigend');
+define('SORTING_PRICE_DESC', 'Preis absteigend');
+define('HEADING_CONTENT', 'Informationen');
+define('SERVICE_BOX_LINK_NAME', 'Service');
+define('SITEMAP_TITLE', 'Seiten&uuml;bersicht');
+// Bestellungsmail und -druck
+define('ORDER_THANK_YOU_TOP', 'Danke f&uuml;r Ihre Bestellung. Ihre Bestell-Informationen erhalten Sie nachfolgend.');
+define('ORDER_HEAD', 'Auftrag');
+define('ORDER_ORDER_HEAD', 'Bestelldaten');
+define('ORDER_INFO_HEAD', 'Kundeninformation');
+define('ORDER_ARTIKEL_HEAD', 'Bestellte Artikel');
+define('ORDER_COMMENTS_HEAD', 'Anmerkungen des Kunden zur Bestellung:');
+define('ORDER_PAYMENTS_HEAD', 'Hinweis zur Zahlungsart:');
+define('ORDER_DUTY_INFO_HEAD', 'Steuerhinweis:');
+define('ORDER_THANK_YOU_BOTTOM', 'Vielen Dank f&uuml;r Ihr Vertrauen, wir hoffen Sie bald wieder in unserem Shop begr&uuml;ßen zu k&ouml;nnen.');
+define('TEXT_PRINT', 'Drucken');
+define('IMAGE_BUTTON_CONTINUE_SHOPPING', 'Weiter einkaufen');

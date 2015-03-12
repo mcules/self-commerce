@@ -1,0 +1,130 @@
+{config_load file="$language/lang_$language.conf" section="product_info"}
+{$FORM_ACTION}
+<fieldset>
+<legend>{$PRODUCTS_NAME}</legend>
+<div id="productinfowrap" class="row-fluid">                              
+  <div class="span6 bottom-buffer">                                          
+	{if $PRODUCTS_IMAGE!=''}
+		<a class="cloud-zoom cloud-zoom-gallery" id="zoom1" title="{$PRODUCTS_NAME}" href="{$PRODUCTS_IMAGE|replace:"info_images":"popup_images"}" rel="transparentImage: 'data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==', showTitle: false, zoomWidth:'800', zoomHeight:'800', position:'inside'"><img class="img-polaroid productimage bottom-buffer" src="{$PRODUCTS_IMAGE}" alt="{$PRODUCTS_NAME}" title="{$PRODUCTS_NAME}" /></a>
+	{/if}
+{if $more_images|@count > 0}
+    <div class="row-fluid bottom-buffer">                              
+	<!-- More Pictures -->
+      <div class="more_pics">
+        <a class="cloud-zoom-gallery" rel="useZoom: 'zoom1',smallImage:'{$PRODUCTS_IMAGE}'"  title="{$PRODUCTS_NAME}" href="{$PRODUCTS_IMAGE|replace:"info_images":"popup_images"}" ><img class="pull-left img-polaroid" src="{$PRODUCTS_IMAGE|replace:"info_images":"thumbnail_images"}" alt="{$PRODUCTS_NAME}" /></a>
+{foreach item=more_images_data from=$more_images} 
+		    <a class="cloud-zoom-gallery" rel="useZoom: 'zoom1',smallImage:'{$more_images_data.PRODUCTS_IMAGE}'" title="{$PRODUCTS_NAME}" href="{$more_images_data.PRODUCTS_IMAGE|replace:"info_images":"popup_images"}"><img class="pull-left img-polaroid" src="{$more_images_data.PRODUCTS_IMAGE|replace:"info_images":"thumbnail_images"}" alt="{$PRODUCTS_NAME}" /></a>                          
+{/foreach}
+      </div>
+    </div>
+{/if}
+		{if $PRODUCTS_POPUP_LINK!=''}<a class="thickbox cloud-zoom-link btn" title="{$PRODUCTS_NAME}" href="{$PRODUCTS_IMAGE|replace:"info_images":"popup_images"}">{#text_zoom#}  <i class="icon-zoom-in"></i></a>{/if}
+  </div>
+ 	<div id="productinfoprice" class="span6">
+		<p class="productprice"><strong>{$PRODUCTS_PRICE}</strong></p>
+		<p class="taxandshippinginfo" style="white-space:nowrap"><small>{$PRODUCTS_TAX_INFO}<br />{if $PRODUCTS_SHIPPING_LINK}{$PRODUCTS_SHIPPING_LINK|replace:'thickbox':'contentbox'|replace:'&amp;KeepThis=true&amp;TB_iframe=true&amp;height=400&amp;width=600':''|replace:'rel="nofollow" target="_blank"':''}{/if}</small></p>
+		{if $SHIPPING_NAME}<p class="shippingtime"><strong>{#text_shippingtime#}</strong>{if $SHIPPING_IMAGE}<img src="{$SHIPPING_IMAGE}" alt="{$SHIPPING_NAME}" />{/if} {$SHIPPING_NAME}</p>{/if}
+		{if $PRODUCTS_VPE}<p class="bottom-line"></p>{$PRODUCTS_VPE}{/if}
+		{if $MODULE_graduated_price !=''}<p class="bottom-line"></p>{$MODULE_graduated_price}{/if}
+		{if $PRODUCTS_DISCOUNT!=''}<p class="bottom-line"></p>{$PRODUCTS_DISCOUNT}{/if}
+		{if $PRODUCTS_FSK18=='true'}<p class="bottom-line"></p><img src="{$tpl_path}img/fsk18.gif" alt="" style="cursor:default" />{/if}
+		{if $PRODUCTS_EXPIRES}<p class="taxandshippinginfo">{#text_expires_date#} {$PRODUCTS_EXPIRES}</p>{/if}
+		{if $PRODUCTS_MODEL!=''}<p class="bottom-line"></p><p><strong>{#model#}</strong> {$PRODUCTS_MODEL}</p>{/if}
+		{if $PRODUCTS_URL != ''}<p class="bottom-line"></p><p>{$PRODUCTS_URL}</p>{/if} 
+		{if $KLARNA_PPBOX}{$KLARNA_PPBOX}{/if}
+		<p class="bottom-line"></p>
+		{$PRODUCTS_PRINT|regex_replace:'/<img.*?onclick/':'<span class="btn" onclick'|replace:"/>":"><i class=\"icon-print\"></i>&nbsp;`$smarty.const.TEXT_PRINT`</span>"}
+		{if $PRODUCTS_DATE_AVIABLE != ''}<p>{$PRODUCTS_DATE_AVIABLE}</p>{/if}
+    <hr>
+	</div>
+  <div class="clearfix"></div>
+  {if $MODULE_product_options !=''}
+	<div class="productoptions">{$MODULE_product_options} </div>
+  <p class="bottom-line"></p>
+  {/if}
+<!-- BOF - Tomcraft - 2009-11-28 - Included xs:booster //-->
+	{if $XTB_REDIRECT_USER_TO=='product'}<div style='width:400px;padding:10px;color:white;background-color:green;'><strong>Sie haben die eBay Auktion gewonnen!</strong><br />Bitte w&auml;hlen Sie nun noch die gew&uuml;nschten Produkteigenschaften und legen Sie den Artikel danach in den Warenkorb, um mit der Zahlung fortzufahren und das Produkt versandfertig zu machen!<p class="bottom-line"></p></div>{/if}
+<!-- EOF - Tomcraft - 2009-11-28 - Included xs:booster //-->
+	<div class="addtobasket pull-right form-search">
+    		{$ADD_QTY|replace:'<input':'<input class="input-small"'}
+    		{$ADD_CART_BUTTON|button}
+	</div>	
+</div>
+</fieldset>
+{$FORM_END}
+
+{*BEGIN TABS*}
+<div class="accordion" id="accordion2">
+{if $PRODUCTS_DESCRIPTION !=''}
+  <div class="accordion-group">
+    <div class="accordion-heading">
+	   <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">{#description#}<span class="pull-right"><i class="icon-chevron-up"></i></span></a>
+    </div>
+	 	<div id="collapseOne" class="accordion-body collapse in">
+      <div class="accordion-inner">{$PRODUCTS_DESCRIPTION} </div>
+    </div>
+  </div>
+{/if}
+{if $MODULE_cross_selling != '' || $MODULE_reverse_cross_selling != ''}
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">{#cross_selling#}<span class="pull-right"><i class="icon-chevron-down"></i></span></a>
+    </div>
+    <div id="collapseTwo" class="accordion-body collapse">
+      <div class="accordion-inner">{$MODULE_cross_selling}{if $MODULE_reverse_cross_selling != ''}{$MODULE_reverse_cross_selling}{/if} </div>
+		</div>
+  </div>
+{/if}
+{if $MODULE_also_purchased != ''}
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">{#also_purchased#}<span class="pull-right"><i class="icon-chevron-down"></i></span></a>
+    </div>
+    <div id="collapseThree" class="accordion-body collapse">
+      <div class="accordion-inner">{$MODULE_also_purchased} </div>
+		</div>
+  </div>
+{/if}
+{if $MODULE_products_reviews != ''}
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFour">{#products_reviews#}<span class="pull-right"><i class="icon-chevron-down"></i></span></a>
+    </div>
+    <div id="collapseFour" class="accordion-body collapse">
+      <div class="accordion-inner">{$MODULE_products_reviews} </div>
+		</div>
+  </div>
+{/if}
+{if $MODULE_products_media != ''}
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFive">{#products_media#}<span class="pull-right"><i class="icon-chevron-down"></i></span></a>
+    </div>
+    <div id="collapseFive" class="accordion-body collapse">
+      <div class="accordion-inner">{$MODULE_products_media} </div>
+		</div>
+  </div>
+{/if}
+{if $more_images|@count > 0}
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseSix">{#more_images#}<span class="pull-right"><i class="icon-chevron-down"></i></span></a>
+    </div>
+    <div id="collapseSix" class="accordion-body collapse">
+      <div class="accordion-inner">
+      	<!-- More Pictures -->
+      	<div class="morepics">
+	      {foreach item=more_images_data from=$more_images} 
+      		<a class="thickbox" rel="{$PRODUCTS_ID}" title="{$PRODUCTS_NAME}" href="{$more_images_data.PRODUCTS_IMAGE|replace:"info_images":"popup_images"}"><img align="left" src="{$more_images_data.PRODUCTS_IMAGE|replace:"info_images":"thumbnail_images"}" alt="{$PRODUCTS_NAME}" /></a>                          
+	      {/foreach}
+        </div>
+        <div style="clear:both;"></div>
+      </div>
+		</div>
+  </div>
+{/if}
+</div>
+{*END TABS*}
+
+{if $PRODUCTS_ADDED != ''}<p class="bottom-buffer">{$PRODUCTS_ADDED}</p>{/if}
+{$PRODUCT_NAVIGATOR}

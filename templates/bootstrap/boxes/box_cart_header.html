@@ -1,0 +1,27 @@
+{config_load file="$language/lang_$language.conf" section="boxes"}<li{if strstr ($smarty.server.PHP_SELF, 'cart')} class="active"{/if}><a data-toggle="dropdown" href="#">{#heading_cart#}&nbsp;&nbsp;(<strong> {$PRODUCTS} </strong>)&nbsp;&nbsp;{if $TOTAL}{$TOTAL}{else}&nbsp;{$TOTALNULL}{/if}&nbsp;&nbsp;<i class="icon-shopping-cart icon-white"></i></a>
+                <div class="dropdown-menu cart-header row-fluid">
+    	             <div{if $GV_AMOUNT =='' } class="span12 boxcartbody" {else} class="span12 boxcartbody"{/if}>
+	   {if $ACTIVATE_GIFT=='true'}
+		  {if $GV_AMOUNT neq ''}
+                      <p class="bottom-line"><strong>{#voucher_balance#}</strong>&nbsp;{$GV_AMOUNT}</p>
+		  {/if}
+	   {/if}
+	  {if $empty=='false'}         <!-- cart has content -->
+		{foreach name=aussen item=products_data from=$products}
+                      <p>{$products_data.QTY}&nbsp;x&nbsp;<a href="{$products_data.LINK}">{$products_data.NAME|truncate:30:"...":true}</a><span class="pull-right">{$products_data.PRICE}</span></p>
+		{/foreach}
+		                  <p class="bottom-line clearfix"></p>
+		                  <p class="text-right">{if $DISCOUNT}{#text_discount#} {$DISCOUNT}<br />{/if}
+		  {$UST}
+		                    <strong>{#text_total#}:{$TOTAL}</strong><br />
+		  {if $SHIPPING_INFO}{$SHIPPING_INFO|replace:'thickbox':'contentbox'|replace:'&amp;KeepThis=true&amp;TB_iframe=true&amp;height=400&amp;width=600':''}{/if}</p>
+		                  <p class="bottom-line"></p>
+		                  <p class="text-right">{$LINK_CART|button|replace:'"btn"':'"btn btn-inverse"'|replace:'icon-shopping-cart':'icon-shopping-cart icon-white'}</p>
+{else}                <!-- cart has no content -->
+                      <p class="text-center"><br />{#text_empty_cart#}<br /><br /></p>
+		                  <p class="bottom-line"></p>
+		                  <p class="text-right">{$LINK_CART|button|replace:'"btn"':'"btn btn-inverse"'|replace:'icon-shopping-cart':'icon-shopping-cart icon-white'}</p>
+{/if}
+	                </div>
+                </div>
+              </li>

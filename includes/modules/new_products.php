@@ -26,8 +26,27 @@ $module_smarty->assign('tpl_path', 'templates/'.CURRENT_TEMPLATE.'/');
 
 //fsk18 lock
 $fsk_lock = '';
-if ($_SESSION['customers_status']['customers_fsk18_display'] == '0')
-	$fsk_lock = ' and p.products_fsk18!=1';
+if ($_SESSION['customers_status']['customers_fsk18_display'] == '0') { $fsk_lock = ' and p.products_fsk18!=1'; }
+
+// Sessionvariable f¸r Anzahl Artikel pro Seite setzen
+if (isset($_GET['artproseite'])) {
+	$_SESSION['artproseite'] = intval($_GET['artproseite']);
+}
+if( $_SESSION['artproseite']==0 || $_SESSION['artproseite']=='') {
+	$_SESSION['artproseite']=24; // hier wird der Standard definiert, wieviele Artikel auf einer Seite dargestellt werden sollen
+}
+// Sessionvariable f¸r Ansichtenwahl setzen auch in default.php
+if (isset($_GET['ansicht'])) {
+	$_SESSION['ansicht'] = intval($_GET['ansicht']);
+}
+if( $_SESSION['ansicht']==0 || $_SESSION['ansicht']=='') {
+	$_SESSION['ansicht']=3; // hier wird der Standard der Ansichtenwahl definiert, 1 = einspaltig 3 = 3-spaltig 6 = 6-spaltig
+}
+$get_params .= isset($_GET['page']) && $_GET['page'] > 0  ? '_'.(int)$_GET['page'] : '';
+$get_params .= isset($_GET['sort']) && $_GET['sort'] > 0 && $_GET['sort'] < 5 ? '_'.(int)$_GET['sort'] : '';
+$get_params .= isset($_SESSION['artproseite']) && $_SESSION['artproseite'] > 0 && $_SESSION['artproseite'] < 49 ? '_'.(int)$_SESSION['artproseite'] : '';
+$get_params .= isset($_SESSION['ansicht']) && $_SESSION['ansicht'] > 0 && $_SESSION['ansicht'] < 7 ? '_'.(int)$_SESSION['ansicht'] : '';
+$cache_id = $cache_id.$get_params;
 
 if ((!isset ($new_products_category_id)) || ($new_products_category_id == '0')) {
 	if (GROUP_CHECK == 'true')

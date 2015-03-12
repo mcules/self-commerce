@@ -1,0 +1,29 @@
+{if $FREE_SHIPPING}
+  <div>
+    <h4>{$FREE_SHIPPING_TITLE} {$FREE_SHIPPING_ICON}</h4>
+    <label class="option-row option-row-selected">
+      {$FREE_SHIPPING_DESCRIPTION}
+    </label>
+  </div>
+{else}
+  <div>
+    {foreach name=aussen item=module_data from=$module_content} 
+      <h4>{$module_data.icon} {$module_data.module}</h4>
+      {if $module_data.error != ''} 
+        <p class="warning-message">{$module_data.error}</p>
+      {else}
+      <ul>
+        {foreach name=aussen item=method_data from=$module_data.methods}
+          <li class="option-row {if $method_data.checked}option-row-selected{/if}">
+            <label>
+              {$method_data.radio_field}
+              {$method_data.title}
+              <span class="cost">{$method_data.price}</span>
+            </label>
+          </li>
+        {/foreach}
+      </ul>
+      {/if}
+    {/foreach}
+  </div>
+{/if}

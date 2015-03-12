@@ -1,0 +1,15 @@
+{config_load file="$language/lang_$language.conf" section="address_book_process"}
+<h1>{#heading_address#}</h1>
+{if $error!=''}<div>{$error|replace:'<tr':'<div'|replace:'</tr':'</div'|stripTags:"table,tbody,td"|replace:'class="':'class="alert alert-error '}</div>{/if} 
+{$FORM_ACTION|replace:'onsubmit="return':'class="form-horizontal" onsubmit="return"'}
+<div class="well well-small">
+{$MODULE_address_book_details}
+{if $delete=='1'}
+<h1>{#title_delete#}</h1>
+<p>{#text_delete#}</p>
+<h2>{#text_address#}</h2>
+<p>{$ADDRESS}</p>
+{/if}
+</div>
+<p>{$BUTTON_BACK|button}&nbsp;&nbsp;{$BUTTON_UPDATE|button}&nbsp;&nbsp;{$BUTTON_DELETE|button}</p>
+{$FORM_END}

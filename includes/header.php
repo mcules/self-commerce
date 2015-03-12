@@ -28,21 +28,19 @@
    ---------------------------------------------------------------------------------------*/
 
 define('DIR_SELF_INSTALLER', 'self_installer');
-
-if($_SESSION["tpl"]=="mobile" && file_exists(DIR_FS_CATALOG."templates/".$_SESSION["tpl"])) { ?>
+?>
+<?php // 06.01.2014 Karl HTML5 Doctype f¸r Template Bootstrap
+if (CURRENT_TEMPLATE == "bootstrap") { ?>
 <!DOCTYPE html>
-<html <?php echo HTML_PARAMS; ?>>
+<html lang="<?php echo $_SESSION['language_code']; ?>">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=<?php echo $_SESSION['language_charset']; ?>" />
-<meta http-equiv="Content-Style-Type" content="text/css" />
-
+<meta charset="utf-8">
 <?php } else { ?>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html <?php echo HTML_PARAMS; ?>>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=<?php echo $_SESSION['language_charset']; ?>" />
-<meta http-equiv="Content-Style-Type" content="text/css" />
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	<html <?php echo HTML_PARAMS; ?>>
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=<?php echo $_SESSION['language_charset']; ?>" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
 <?php }
 
 /*
@@ -58,6 +56,8 @@ if($_SESSION["tpl"]=="mobile" && file_exists(DIR_FS_CATALOG."templates/".$_SESSI
 ?>
 <meta name="generator" content="(c) by <?php echo PROJECT_VERSION; ?> , http://www.self-commerce.de" />
 <?php include(DIR_WS_MODULES.FILENAME_METATAGS); ?>
+<link rel="icon" href="<?php echo (($request_type == 'SSL') ? HTTPS_SERVER : HTTP_SERVER).DIR_WS_CATALOG.'templates/'.CURRENT_TEMPLATE.'/favicon.ico';?>" type="image/x-icon" />
+
 <base href="<?php echo (($request_type == 'SSL') ? HTTPS_SERVER : HTTP_SERVER) . DIR_WS_CATALOG; ?>" />
 <link rel="stylesheet" type="text/css" href="<?php echo 'templates/'.CURRENT_TEMPLATE.'/stylesheet.css'; ?>" />
 <?php if(TINY_CSS != ''){ ?>
@@ -420,7 +420,13 @@ if ( $_SESSION['account_type']=='0') {
 $smarty->assign('account',xtc_href_link(FILENAME_ACCOUNT, '', 'SSL'));
 }
 $smarty->assign('cart',xtc_href_link(FILENAME_SHOPPING_CART, '', 'SSL'));
-$smarty->assign('checkout',xtc_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL'));
+#$smarty->assign('checkout',xtc_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL'));
+$onclick = '';
+if (CHECKOUT_AJAX_STAT == 'true') {
+	$onclick = ' onclick="window.location.href=\''.xtc_href_link(FILENAME_CHECKOUT,'', 'SSL').'\'; return false;"';
+}
+$smarty->assign('checkout', '<a href="'.xtc_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL').'"'.$onclick.'>');
+#$smarty->assign('checkout',xtc_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL'));
 $smarty->assign('store_name',TITLE);
 
 $handle = opendir(DIR_FS_CATALOG."templates/");
@@ -447,12 +453,10 @@ $smarty->assign('TEMPLATE_SWITCHER', sprintf("%s%s <noscript>%s</noscript>%s</fo
 
 
 if (isset($_GET['error_message']) && xtc_not_null($_GET['error_message'])) {
-    $smarty->assign('error','
-        <table border="0" width="100%" cellspacing="0" cellpadding="2">
-          <tr class="headerError">
-            <td class="headerError">'. htmlspecialchars(urldecode($_GET['error_message'])).'</td>
-          </tr>
-        </table>');
+	$smarty->assign('error','<p class="errormessage alert alert-error">'. encode_htmlspecialchars(urldecode($_GET['error_message'])).'</p>');
+}
+if (isset($_GET['info_message']) && xtc_not_null($_GET['info_message'])) {
+	$smarty->assign('error','<p class="errormessage alert alert-warning">'.encode_htmlspecialchars($_GET['info_message']).'</p>');
 }
 
 if (isset($_GET['info_message']) && xtc_not_null($_GET['info_message'])) {

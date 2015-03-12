@@ -1,0 +1,18 @@
+{config_load file="$language/amazon.conf" section="checkout_amazon"}
+{config_load file="$language/lang_$language.conf" section="checkout_payment"}
+
+
+		<h1>
+			{#heading_checkout#}
+		</h1>
+
+    <div class="errormessage">{$smarty.const.AMZ_WALLET_INTRO}</div>
+
+<div id="walletWidgetDiv" class="walletPageWidget"></div>
+<div style="margin-top:10px; float:left;">
+    <a href="{'checkout_amazon.php'|xtc_href_link:'amazon_action=cancelOrder':'SSL'}">{$smarty.const.AMZ_CANCEL_ORDER_FROM_WALLET}</a>
+</div>
+<div style="float:right; width: 45%; text-align:right; display:none;" id="amazon_button" >
+    <a href="{'checkout_process.php'|xtc_href_link:'amz=1':'SSL'}" onclick="disableAmzWidget($('#walletWidgetDiv'));">{$BUTTON_CONTINUE}</a>
+</div>
+

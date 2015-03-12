@@ -1,0 +1,75 @@
+{config_load file="$language/lang_$language.conf" section="checkout_new_address"}
+{config_load file="$language/ajax_checkout.conf" section="create_account"}
+
+<h4>{#title_new_address#}</h4>
+<p>
+  {#text_new_address#}
+</p>
+
+<ul>
+  {if $gender}
+    <li>
+      <label for="ajax-checkout-gender-male">{#text_gender#}</label>
+      <label for="ajax-checkout-gender-male" class="inline-label">{#text_male#}</label>
+      <input type="radio" name="gender" id="ajax-checkout-gender-male" checked="checked" value="m" />
+      <label for="ajax-checkout-gender-female" class="inline-label">{#text_female#}</label>
+      <input type="radio" name="gender" id="ajax-checkout-gender-female" value="f" />
+      <sup>*</sup>
+    </li>
+  {/if}
+  <li>
+    <label for="ajax-checkout-firstname">{#text_firstname#}</label>
+    <input type="text" name="firstname" id="ajax-checkout-firstname" maxlength="255" />
+    <sup>*</sup>
+  </li>
+  <li>
+    <label for="ajax-checkout-lastname">{#text_lastname#}</label>
+    <input type="text" name="lastname" id="ajax-checkout-lastname" maxlength="255" />
+    <sup>*</sup>
+  </li>
+</ul>
+
+{if $company}
+  <ul>
+    <li>
+      <label for="ajax-checkout-company">{#text_company#}</label>
+      <input type="text" name="company" maxlength="255" id="ajax-checkout-company" />
+    </li>
+  </ul>
+{/if}
+
+<ul>
+  <li>
+    <label for="ajax-checkout-street">{#text_street#}</label>
+    <input type="text" name="street_address" maxlength="100" id="ajax-checkout-street" />
+    <sup>*</sup>
+  </li>
+  {if $suburb}
+    <li>
+      <label for="ajax-checkout-suburb">{#text_suburb#}</label>
+      <input type="text" name="suburb" maxlength="255" id="ajax-checkout-suburb" />
+    </li>
+  {/if}
+  <li>
+    <label for="ajax-checkout-postcode">{#text_code#}</label>
+    <input type="text" name="postcode" maxlength="255" id="ajax-checkout-postcode" />
+    <sup>*</sup>
+  </li>
+  <li>
+    <label for="ajax-checkout-city">{#text_city#}</label>
+    <input type="text" name="city" maxlength="255" id="ajax-checkout-city" />
+    <sup>*</sup>
+  </li>
+  <li>
+    <label for="ajax-checkout-country">{#text_country#}</label>
+    {$SELECT_COUNTRY}
+    <sup>*</sup>
+  </li>
+  {if $state}
+    <li {if !$INPUT_STATE} style="display: none"{/if}>
+      <label for="ajax-checkout-state">{#text_state#}</label>
+      <span class="ajax-checkout-state-container">{$INPUT_STATE}</span>
+      <sup>*</sup>
+    </li>
+  {/if}
+</ul>

@@ -1,0 +1,58 @@
+{config_load file="$language/lang_$language.conf" section="account_edit"} 
+<h1>{#heading_account#}</h1>
+{if $error!=''}<div>{$error|replace:'<tr':'<div'|replace:'</tr':'</div'|stripTags:"table,tbody,td"|replace:'class="':'class="alert alert-error '}</div>{/if} 
+{$FORM_ACTION|replace:'onsubmit="return':'class="form-horizontal" onsubmit="return"'}
+<div class="well well-small">
+	<h2>{#title_personal#}&nbsp;({#text_must#})</h2>
+<p>&nbsp;</p>
+  {if $csID}
+<div class="control-group row-fluid">
+    <label class="control-label">{#csID#}</label>
+    <div class="controls">{$csID}</div>
+</div>
+  {/if}
+  {if $gender=='1'} 
+<div class="control-group row-fluid">
+    <label class="control-label">{#text_gender#}</label>
+    <div class="controls"><label class="radio inline">{$INPUT_MALE}</label><label class="radio inline">{$INPUT_FEMALE}</label></div>
+</div>
+  {/if} 
+<div class="control-group row-fluid">
+    <label class="control-label">{#text_firstname#}</label>
+    <div class="controls">{$INPUT_FIRSTNAME|replace:'<input type':'<input class="span4" type'}</div>
+</div>
+<div class="control-group row-fluid">
+    <label class="control-label">{#text_lastname#}</label>
+    <div class="controls">{$INPUT_LASTNAME|replace:'<input type':'<input class="span4" type'}</div>
+</div>
+  {if $birthdate=='1'} 
+<div class="control-group row-fluid">
+    <label class="control-label">{#text_birthdate#}</label>
+    <div class="controls">{$INPUT_DOB|replace:'<input type':'<input class="span4" type'}</div>
+</div>
+  {/if} 
+<div class="control-group row-fluid">
+    <label class="control-label">{#text_email#}</label>
+    <div class="controls">{$INPUT_EMAIL|replace:'<input type':'<input class="span4" type'}</div>
+</div>
+<div class="control-group row-fluid">
+    <label class="control-label">{#text_confirm_email#}</label>
+    <div class="controls">{$INPUT_CONFIRM_EMAIL|replace:'<input type':'<input class="span4" type'}</div>
+</div>
+<div class="control-group row-fluid">
+    <label class="control-label">{#text_tel#}</label>
+    <div class="controls">{$INPUT_TEL|replace:'<input type':'<input class="span4" type'}</div>
+</div>
+<div class="control-group row-fluid">
+    <label class="control-label">{#text_fax#}</label>
+    <div class="controls">{$INPUT_FAX|replace:'<input type':'<input class="span4" type'}</div>
+</div>
+  {if $vat=='1'}
+<div class="control-group row-fluid">
+    <label class="control-label">{#text_ustid#}</label>
+    <div class="controls">{$INPUT_VAT|replace:'<input type':'<input class="span4" type'}</div>
+</div>
+  {/if}
+</div>
+<p>{$BUTTON_BACK|button}&nbsp;&nbsp;{$BUTTON_SUBMIT|button}</p>
+{$FORM_END}

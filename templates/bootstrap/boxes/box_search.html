@@ -1,0 +1,18 @@
+{config_load file="$language/lang_$language.conf" section="boxes"}
+<div class="well well-small">
+  <div class="clearfix">
+    <span class="categoryheader pull-left">{#heading_search#}</span>
+    <button class="btn btn-default btn-mini pull-right" data-toggle="collapse" data-target="#box_search"><span class="caret"></span></button>
+  </div>
+  <div id="box_search" class="collapsebox collapse">
+    <div class="boxcontent">
+  {$FORM_ACTION}
+  <fieldset>
+    {$INPUT_SEARCH}
+    {$BUTTON_SUBMIT|button}
+    <a class="btn btn-link" href="{$LINK_ADVANCED}">{#text_advanced_search#}</a>
+  </fieldset>
+  {$FORM_END}
+    </div>
+  </div>
+</div>

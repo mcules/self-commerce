@@ -1,0 +1,54 @@
+{config_load file="$language/lang_$language.conf" section="checkout_success"}
+{config_load file="$language/lang_$language.conf" section="checkout_navigation"}
+<div class="row-fluid">
+  <div class="btn disabled span3"><span class="lead">1. </span><span><strong>{#title_shipping#}</strong></span><br /><span><small>{#desc_shipping#}</small></span></div>
+  <div class="btn disabled span3"><span class="lead">2. </span><span><strong>{#title_payment#}</strong></span><br /><span><small>{#desc_payment#}</small></span></div>
+  <div class="btn disabled span3"><span class="lead">3. </span><span><strong>{#title_confirmation#}</strong></span><br /><span><small>{#desc_confirmation#}</small></span></div>
+  <div class="btn active span3"><span class="lead">4. </span><span><strong>{#title_success#}</strong></span><br /><span><small>{#desc_success#}</small></span></div>
+</div> 
+<div style="clear:both"></div>
+<br />
+{* BOF - GTB - 2010-09-15 - change Print Button to Form *}
+{*$FORM_ACTION*}
+{* EOF - GTB - 2010-09-15 - change Print Button to Form *}
+<h1>{#heading_success#}</h1>
+<div class="well well-small">
+  <p>{#text_success#}</p>
+</div>
+<h2>{#title_printorder#}</h2>
+<div class="well well-small">
+  <p>{#text_printorder#}</p>
+  <p><strong>{#text_thankyou#}</strong></p>
+{if $GV_SEND_LINK}
+<p>{#gv_has_vouchera#} {$GV_SEND_LINK} {#gv_has_voucherb#}</p>
+{/if}
+{if $MODULE_sofort_vorkasse}
+{/if}
+<p>{$MODULE_sofort_vorkasse}</p>
+{* BOF - web28 - 2010-03-27 PayPal Bezahl-Link *}
+{if $PAYPAL_LINK}
+<p><div class="alert alert-info">{$PAYPAL_LINK}</div></p>
+{/if}
+{* EOF - web28 - 2010-03-27 PayPal Bezahl-Link *}
+{* BOF - GTB - 2010-09-15 - change Print Button to Form *}
+{* <p>{$BUTTON_PRINT|button}&nbsp;{$BUTTON_CONTINUE|button}</p> *}
+</div>
+{$FORM_ACTION_PRINT}
+<div class="pull-left">{$BUTTON_PRINT|button}</div>
+{$FORM_END}
+{$FORM_ACTION}
+<div class="pull-left">&nbsp;&nbsp;{$BUTTON_CONTINUE|button}</div>
+<div style="clear:left;"></div>
+{* EOF - GTB - 2010-09-15 - change Print Button to Form *}
+{if $downloads_content neq ''}
+{if $title_downloadfiles!=''}
+<h1>{#title_downloadfiles#}</h1>
+{/if}
+{$downloads_content}
+{/if}
+{* Google Conversion-tracking start *}
+{if $google_tracking eq 'true'}
+<p>{$tracking_code}</p>
+{/if}
+{* Google Conversion-tracking end *}
+{$FORM_END}

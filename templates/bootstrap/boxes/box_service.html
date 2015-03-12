@@ -1,0 +1,20 @@
+{config_load file="$language/lang_$language.conf" section="boxes"}
+<div id="ServiceModal" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <div class="tabbable tabs-left"> <!-- Only required for left/right tabs -->
+      <ul class="nav nav-pills" id="ServiceTabs">
+        {foreach name=aussen item=data from=$service_data}
+          <li{if $smarty.foreach.aussen.first} class="active"{/if}><a href="#{$data.ID_NAME}" data-url="{$data.LINK}">{$data.NAME}</a></li>
+        {/foreach}
+      </ul>
+    </div>
+  </div>
+  <div class="modal-body">
+    <div class="tab-content">
+      {foreach name=aussen item=data from=$service_data}
+        <div class="tab-pane{if $smarty.foreach.aussen.first} first active{/if}" id="{$data.ID_NAME}">{if $smarty.foreach.aussen.first}wird geladen...{/if} </div>
+      {/foreach}
+    </div>
+  </div>
+</div>

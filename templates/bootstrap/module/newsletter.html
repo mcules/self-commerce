@@ -1,0 +1,28 @@
+{config_load file="$language/lang_$language.conf" section="newsletter"}
+<h1>{#heading_title#}</h1>
+{if $info_message!=''}<div class="alert">{$info_message}</div>{/if}
+{$FORM_ACTION|replace:'<form':'<form class="form-horizontal" '}
+<div class="well well-small">
+<div class="control-group row-fluid">
+    <label class="control-label">{#text_sec_code#}:</label>
+    <div class="controls">{$VVIMG}</div>
+</div>
+<div class="control-group row-fluid">
+    <label class="control-label">{#text_sec_code#}:</label>
+    <div class="controls">{$INPUT_CODE|replace:'<input type':'<input class="span6" type'|regex_replace:'/maxlen.*"|size.*"/':''}</div>
+</div>
+<div class="control-group row-fluid">
+    <label class="control-label">{#text_email#}:</label>
+    <div class="controls">{$INPUT_EMAIL|replace:'<input type':'<input class="span6" type'|regex_replace:'/maxlen.*"|size.*"/':''}</div>
+</div>
+<div class="control-group row-fluid">
+    <div class="controls"><label class="radio inline">{$CHECK_INP}{#text_in#}</label></div>
+</div>
+<div class="control-group row-fluid">
+    <div class="controls"><label class="radio inline">{$CHECK_DEL}{#text_out#}</label></div>
+</div>
+<div class="control-group row-fluid">
+    <div class="controls"><label>{$BUTTON_SEND|button}</label></div>
+</div>
+</div>
+{$FORM_END}

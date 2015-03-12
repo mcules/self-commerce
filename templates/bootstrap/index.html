@@ -1,0 +1,176 @@
+{config_load file="$language/lang_$language.conf" section="index"}
+{config_load file="$language/lang_$language.conf" section="boxes"}
+
+<header>
+<div id="GotoTop" class="btn">&nbsp;&nbsp;&nbsp;<i class="icon-chevron-up"></i>&nbsp;&nbsp;&nbsp;</div>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a href="{$index}"><img src="{$tpl_path}img/Logo.png" class="pull-left img-responsive" alt="{$store_name}" /></a>
+            <ul class="language nav pull-right">
+              {$box_LANGUAGES}
+            </ul>
+            <ul class="nav pull-right">
+              <li{if strstr($smarty.server.PHP_SELF, 'index') && ($smarty.get.cPath==null)} class="active"{/if}><a href="{$index}">{#link_index#}</a></li>
+              {$box_SPECIALS_HEADER}
+              {$box_WHATS_NEW_HEADER}
+              <li><a href="#ServiceModal" data-toggle="modal">{$smarty.const.SERVICE_BOX_LINK_NAME}</a></li>
+              {if $smarty.session.customers_status.customers_status_id != '1'}
+	              {if $account}
+	              <li{if strstr($smarty.server.PHP_SELF, 'account') && !strstr ($smarty.server.PHP_SELF, 'create_account')} class="active"{/if}><a href="{$account}">{#link_account#}</a></li>
+	              {/if}
+              {/if}
+              {if $smarty.session.customers_status.customers_status_id == '1'}
+              <li{if strstr($smarty.server.PHP_SELF, 'create_account')} class="active"{/if}><a href="{php}echo xtc_href_link(FILENAME_CREATE_ACCOUNT, '', 'SSL');{/php}">{#new_customer#}</a></li>
+              {/if}
+              {if $smarty.session.customer_id}
+              <li{if strstr ($smarty.server.PHP_SELF, 'logoff')} class="active"{/if}><a href="{$logoff}">{#link_logoff#}</a></li>
+              {else}
+              <li{if strstr($smarty.server.PHP_SELF, 'login')} class="active"{/if}><a href="{$login}">{#link_login#}</a></li>
+              {/if}
+            </ul>
+            <div class="right-clear">
+              {$box_SEARCH_HEADER}
+              <ul class="nav pull-right">
+              <li{if strstr($smarty.server.PHP_SELF, 'checkout')} class="active"{/if}>{$checkout}{#link_checkout#}</a></li>
+              {$box_CART_HEADER}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+</header>
+<nav>
+ <div class="container">
+  <div class="navbar">
+   <div class="navbar-inner">
+    <div class="container">
+     <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+     <span class="icon-bar"></span>
+     <span class="icon-bar"></span>
+     <span class="icon-bar"></span>
+     </a>
+      <a class="brand" href="#">{$smarty.const.NAV_BRAND}</a>
+     <div class="nav-collapse collapse navbar-responsive-collapse clearfix">
+        {$box_CATEGORIES_SUPERFISH}
+     </div><!-- /.nav-collapse -->
+    </div>
+   </div><!-- /navbar-inner -->
+  </div><!-- /navbar -->
+ </div>
+</nav>
+<section>
+  <div class="container">
+   <ol class="breadcrumb well">{$navtrail|trail}</ol>
+     <div class="row-fluid">
+      <div class="{if strpos($smarty.server.PHP_SELF, 'checkout')}span12{else}span9 desk9{/if}">
+{if strstr ($smarty.server.PHP_SELF, 'index')}
+	{if $smarty.get.cPath==null and $smarty.get.manufacturers_id==''}
+		{if $BANNER}{$BANNER}{/if}
+		{if $box_IMAGESLIDER}
+			{$box_IMAGESLIDER}
+		{else}
+	      <!-- Imageslider - Begin -->
+	      <div id="myCarousel" class="carousel carousel-fade slide img-polaroid">
+	        <ol class="carousel-indicators">
+	          <li class="active" data-target="#myCarousel" data-slide-to="0"></li>
+	          <li class="" data-target="#myCarousel" data-slide-to="1"></li>
+	          <li class="" data-target="#myCarousel" data-slide-to="2"></li>
+	          <li class="" data-target="#myCarousel" data-slide-to="3"></li>
+	      </ol>
+	      <div class="carousel-inner">
+	        <div class="item active">
+	          <a href="http://localhost/modshop3/Classic-Edition---84.html" title="Das ist Bild 1"><img class="img-responsive" src="images/imagesliders/german/bild1.jpg" alt="Das ist Bild 1" width="1000" height="500" /></a>
+	          <div class="carousel-caption text-center">
+	            <h4>Das ist Bild 1</h4>
+	            <p>Bildbeschreibung in Deutsch</p>
+	          </div>
+	        </div>
+	        <div class="item">
+	          <a href="http://localhost/modshop3/Outdoor-Edition---86.html" title="Titel Bild 2"><img class="img-responsive" src="images/imagesliders/german/bild2.jpg" alt="Titel Bild 2" width="1000" height="500" /></a>
+	          <div class="carousel-caption text-center">
+	            <h4>Titel Bild 2</h4>
+	            <p>Beschreibung Bild 2</p>
+	          </div>
+	        </div>
+	        <div class="item">
+	          <a href="http://localhost/modshop3/Digitalradio-Edition---85.html" title="Titel Bild 3"><img class="img-responsive" src="images/imagesliders/german/bild3.jpg" alt="Titel Bild 3" width="1000" height="500" /></a>
+	          <div class="carousel-caption text-center">
+	            <h4>Titel Bild 3</h4>
+	            <p>Beschreibung Bild 3</p>
+	            <p>Zeile 2</p>
+	          </div>
+	        </div>
+	        <div class="item">
+	          <a href="http://kultur-forschung.de" title="Titel Bild 4"><img class="img-responsive" src="images/imagesliders/german/bild4.jpg" alt="Titel Bild 4" width="1000" height="500" /></a>
+	          <div class="carousel-caption text-center">
+	            <h4>Titel Bild 4</h4>
+	            <p>Beschreibung Bild 4</p>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+	    <!-- Imageslider - Ende -->
+	{/if}
+	{/if}
+{/if}
+      <div class="content">
+        {$main_content}
+      </div>
+    </div><!-- /center -->
+{if !strstr ($smarty.server.PHP_SELF, 'checkout')}
+    <div class="span3 desk3">
+          {$box_ADMIN}
+          {$box_CATEGORIES}
+          {if !strstr($smarty.server.PHP_SELF, 'shopping_cart')}{$box_CART}{/if}
+          {$box_SEARCH}
+          <div class="hidden-phone">{$box_HISTORY}</div>
+          {$box_LOGIN}
+          {$box_ADD_QUICKIE}
+          <div class="hidden-phone">{$box_LAST_VIEWED}</div>
+          {$box_SPECIALS}
+          {$box_INFOBOX}
+          <div class="hidden-phone">{$box_WHATSNEW}</div>
+          {$box_BESTSELLERS}
+          {$box_CURRENCIES}
+          {$box_MANUFACTURERS_INFO}
+          {$box_MANUFACTURERS}
+    </div><!-- /sidebar -->
+{/if}
+   </div><!-- /row-fluid -->
+    {if $box_SERVICE}{$box_SERVICE}{/if}
+    <div id="modal" class="modal hide fade" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="modalLabel"></h3>
+      </div>
+      <div class="modal-body">
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="well well-small">
+   <div class="container">
+    <div class="row-fluid footer">
+      <div class="span3">{$box_CONTENT}</div>
+      <div class="span3">{$box_INFORMATION}</div>
+      <div class="span3">{$box_REVIEWS}</div>
+      <div class="span3">{$box_NEWSLETTER}</div>
+    </div>
+    <div class="text-center">
+      <p><small>{if $smarty.session.customers_status.customers_status_show_price_tax == '1'}{$smarty.const.KOSTEN_INFO}{else}{$smarty.const.KOSTEN_INFO_HAENDLER}{/if}</small></p>
+      <p class="cop_grey"><small>{$smarty.const.TITLE} &copy; {$smarty.now|date_format:"%Y"}</small></p>
+    </div>
+   </div>
+  </div>
+</footer>
+{if ($smarty.const.TRACKING_COUNT_ADMIN_ACTIVE=='true' and $smarty.session.customers_status.customers_status_id == '0')
+  or $smarty.session.customers_status.customers_status_id != '0'}
+  {if $smarty.const.TRACKING_PIWIK_ACTIVE=='true'}
+    {piwik url=$smarty.const.TRACKING_PIWIK_LOCAL_PATH id=$smarty.const.TRACKING_PIWIK_ID goal=$smarty.const.TRACKING_PIWIK_GOAL}
+  {/if}
+  {if $smarty.const.TRACKING_GOOGLEANALYTICS_ACTIVE=='true'}
+    {googleanalytics account=$smarty.const.TRACKING_GOOGLEANALYTICS_ID trackorders=true}
+  {/if}
+{/if}

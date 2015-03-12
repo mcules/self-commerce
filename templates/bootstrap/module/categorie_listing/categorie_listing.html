@@ -1,0 +1,43 @@
+{config_load file="$language/lang_$language.conf" section="categorie_listing"}
+{config_load file="$language/lang_$language.conf" section="index"}
+{if $CATEGORIES_HEADING_TITLE}
+	<h1>{$CATEGORIES_HEADING_TITLE}</h1>
+{else}
+	<h1>{$CATEGORIES_NAME}</h1>
+{/if}
+{if $CATEGORIES_IMAGE}<div class="row-fluid">
+<img class="img-responsive img-polaroid center-block bottom-buffer" src="{$CATEGORIES_IMAGE}" alt="{$CATEGORIES_NAME}" /></div>{/if}
+{if $CATEGORIES_DESCRIPTION}<div>{$CATEGORIES_DESCRIPTION}</div>{/if}
+{if $module_content !=''}{template_styler input=$module_content tpl=DEFAULT}
+<hr>                                                                                                                                                                                                                                                                                                                                                                        
+<h3>{#heading_more_categories#}</h3> 
+<div class="row-fluid">
+{if $ANSICHT_BUTTONS_CAT}
+  <div class="pull-right left-buffer hidden-phone">
+    {$ANSICHT_BUTTONS_CAT}
+  </div>                      
+{/if}
+</div>
+<div class="switcher">
+<div class="row-fluid">{foreach name=aussen item=module_data from=$module_content}
+  <div class="span {$switcher.span_cat} cat well well-small">                                                                                                                
+    {if $module_data.CATEGORIES_IMAGE!=''}<div class="div5{$switcher.div5}"><div class="bottom-buffer"><a href="{$module_data.CATEGORIES_LINK}"><img class="img-responsive center-block" src="{$module_data.CATEGORIES_IMAGE}" alt="{$module_data.CATEGORIES_NAME}" /></a></div></div>{/if}
+    <div class="div6 {$switcher.div6} text-center">
+      <p class="prod text-center {$switcher.style_cat}">
+        <a href="{$module_data.CATEGORIES_LINK}">
+          <span class="shown">{$module_data.CATEGORIES_NAME|truncate:$switcher.name_cat}</span>
+        </a>
+      </p>
+{if $switcher.desc_cat != 0 || $switcher.desc_cat === FALSE}      <p class="desc {$switcher.style2_cat}">{$module_data.CATEGORIES_DESCRIPTION|strip_tags|truncate:$switcher.desc_cat}</p>{/if}
+    </div>
+  </div>{if not $smarty.foreach.aussen.last}
+{if $smarty.foreach.aussen.iteration is div by $switcher.col_cat}</div>
+<div class="row-fluid">
+  {/if}
+  {/if}
+  {/foreach} 
+</div>                                                                                                                                                                            
+</div> 
+{/if}
+<hr>
+{$MODULE_new_products}

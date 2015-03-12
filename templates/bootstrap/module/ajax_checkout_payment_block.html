@@ -1,0 +1,32 @@
+<ul>
+  {foreach name=aussen item=module_data from=$module_content}
+  <li class="option-row {if $module_data.checked==1}option-row-selected{/if} {$module_data.value_id}">
+    <label class="clearfix">
+      {$module_data.selection} <strong>{$module_data.module}</strong> <span class="cost">{$module_data.module_cost}</span>
+    </label>
+    <div class="payment-option-body {$module_data.value_id}" {if $module_data.checked != 1 and $only_one != 1} style="display:none;"{/if}>
+      {if $module_data.description}
+        <p class="payment-description">{$module_data.description}</p>
+      {/if}
+      
+      {if $module_data.fields}
+      <table border="0" cellspacing="2" cellpadding="2" class="payment-fieldset">
+        {foreach name=aussen item=method_data from=$module_data.fields} 
+        <tr>
+          <td>{$method_data.title}</td>
+          <td>{$method_data.field}</td>
+        </tr>
+        {/foreach}
+      </table>
+      {/if}
+      
+      {if $module_data.description || $module_data.fields}
+        <div class="ajax-checkout-button">
+          <input type="image" src="{$tpl_path}buttons/{$language}/button_checkout_save.gif" alt="" />
+        </div>
+        <p class="error-message">{$module_data.error}</p>
+      {/if}
+    </div>
+  </li>
+  {/foreach}
+</ul>

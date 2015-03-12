@@ -95,7 +95,7 @@ if (!isset ($_SESSION['customer_id']))
 	$smarty->assign('LINK_LOGIN', xtc_href_link(FILENAME_LOGIN, '', 'SSL'));
 $smarty->assign('LINK_ORDERS', xtc_href_link(FILENAME_ACCOUNT_HISTORY, '', 'SSL'));
 $smarty->assign('LINK_NEWSLETTER', xtc_href_link(FILENAME_NEWSLETTER, '', 'SSL'));
-$smarty->assign('LINK_ALL', '<a href="'.xtc_href_link(FILENAME_ACCOUNT_HISTORY, '', 'SSL').'">'.xtc_image_button('button_history.gif', '').'</a>');
+$smarty->assign('BUTTON_ALL', '<a href="'.xtc_href_link(FILENAME_ACCOUNT_HISTORY, '', 'SSL').'">'.xtc_image_button('button_history.gif', IMAGE_BUTTON_BACK).'</a>');
 $smarty->assign('order_content', $order_content);
 $smarty->assign('products_history', $products_history);
 $smarty->assign('also_purchased_history', $also_purchased_history);

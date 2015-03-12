@@ -150,8 +150,12 @@ define('FILENAME_TOKEN_ADMIN', 'token_admin.php');
 // Paypal Express Modul Änderungen:
 define('FILENAME_PAYPAL','paypal.php');
 define('FILENAME_PAYPAL_CHECKOUT', 'paypal_checkout.php');
-
+// BLZ Update
 define('FILENAME_BLZ_UPDATE', 'blz_update.php');
+// Imageslider (c)2008 by Hetfield
+define('FILENAME_IMAGESLIDERS', 'imagesliders.php');
+define('TABLE_IMAGESLIDERS', 'imagesliders');
+define('TABLE_IMAGESLIDERS_INFO', 'imagesliders_info');
 
 // define the database table names used in the project
 define('TABLE_ADDRESS_BOOK', 'address_book');

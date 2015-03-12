@@ -1,0 +1,135 @@
+{config_load file="$language/lang_$language.conf" section="checkout_confirmation"} 
+{config_load file="$language/lang_$language.conf" section="checkout_navigation"}
+{config_load file="$language/lang_$language.conf" section="duty_info"} 
+<div class="row-fluid">
+  <div class="btn disabled span3"><span class="lead">1. </span><span><strong>{#title_shipping#}</strong></span><br /><span><small>{#desc_shipping#}</small></span></div>
+  <div class="btn disabled span3"><span class="lead">2. </span><span><strong>{#title_payment#}</strong></span><br /><span><small>{#desc_payment#}</small></span></div>
+  <div class="btn active span3"><span class="lead">3. </span><span><strong>{#title_confirmation#}</strong></span><br /><span><small>{#desc_confirmation#}</small></span></div>
+  <div class="btn disabled span3"><span class="lead">4. </span><span><strong>{#title_success#}</strong></span><br /><span><small>{#desc_success#}</small></span></div>
+</div> 
+<div style="clear:both"></div>
+<br />
+<h1>{#heading_confirmation#}</h1>
+<div class="well well-small">
+<div class="row-fluid">
+  <div class="{if $REVOCATION}span6{else}span12{/if}" style="text-align: justify;">
+    {#text_information#}
+    {if $IP_LOG=='true'}
+    <p>{#text_ip#}&nbsp;<strong>{$CUSTOMERS_IP}</strong></p>
+    {/if}
+  </div>
+  {if $REVOCATION}
+  <div class="span6">    
+    {$TEXT_AGB_CHECKOUT|replace:'thickbox':'contentbox'|replace:'&amp;KeepThis=true&amp;TB_iframe=true&amp;height=400&amp;width=600':''|replace:'target="_blank"':''}
+  </div>
+  {/if}
+</div>
+</div>
+<div class="row-fluid">
+  <div class="span6">
+    <h2>{#text_shipping_address#}</h2>
+    <div class="well well-small">
+      <div><a href="{$SHIPPING_ADDRESS_EDIT}">{#text_edit#}</a></div>
+      <div>{$DELIVERY_LABEL}</div>
+    </div>
+  </div>
+  {if $BILLING_LABEL}
+  <div class="span6">
+    <h2>{#text_payment_address#}</h2>
+    <div class="well well-small">
+      <div><a href="{$BILLING_ADDRESS_EDIT}">{#text_edit#}</a></div> 
+      <div>{$BILLING_LABEL}</div>
+    </div>
+  </div>
+  {/if}
+</div>
+<div class="row-fluid">
+  {if $SHIPPING_METHOD}
+  <div class="span6">
+      <h2>{#text_shipping_method#}</h2>
+      <div class="well well-small">
+       <div><a href="{$SHIPPING_EDIT}">{#text_edit#}</a></div> 
+       <p>{$SHIPPING_METHOD}</p>
+    </div>
+  </div>
+  {/if} 
+  {if $PAYMENT_METHOD!=''}
+  <div class="span6">
+      <h2>{#text_payment_method#}</h2>
+      <div class="well well-small">
+        <div><a href="{$PAYMENT_EDIT}">{#text_edit#}</a></div> 
+        <p>{$PAYMENT_METHOD}</p>
+    </div>
+  </div>
+  {/if}
+</div>  
+  {if $ORDER_COMMENTS!=''}
+  <div class="row-fluid">
+    <h2>{#text_comments#}</h2>
+    <div class="well well-small">
+      <div><a href="{$PAYMENT_EDIT}">{#text_edit#}</a></div>  
+      <div>{$ORDER_COMMENTS}</div>  
+    </div>
+  </div>
+  {/if}
+  {if $PAYMENT_INFORMATION!=''}
+    <br />
+    <h2>{#text_payment_info#}</h2>
+    <div class="well well-small">
+      <div class="row-fluid bottom-line">
+        {foreach name=aussen item=data from=$PAYMENT_INFORMATION}    
+          <div class="span3">{$data.title|stripslashes}</div>
+          <div class="span7">{if $data.field}{$data.field|stripslashes}{else}&nbsp;{/if}</div>    
+        {/foreach}
+    </div>
+  {/if}
+  
+  <h2>{#text_products#}</h2>
+  <p class="text">&nbsp;<a href="{$PRODUCTS_EDIT}">{#text_edit#}</a></p>
+  <div style="clear:both"></div>
+  
+
+
+<div class="well well-small">   
+  {* BOC PRODUCTS TABLE *}
+    {foreach name=aussen item=data from=$PRODUCTS_ARRAY}
+  <div class="row-fluid bottom-line">
+    <div class="span2">
+      <p><b>{$smarty.const.HEADER_QTY}: </b>{$data.qty}</p>
+    </div>
+    <div class="span6">
+      <p><b>{$smarty.const.HEADER_ARTICLE}: </b></p>
+        {if $smarty.const.CHECKOUT_SHOW_PRODUCTS_IMAGES == 'true'}
+        <p>{$data.image|replace:'<a':'<a title="Information"'|replace:'thickbox':'contentbox'|replace:'&amp;KeepThis=true&amp;TB_iframe=true&amp;height=450&amp;width=750':''}</p>
+        {/if}
+        <p><strong>{$data.link|replace:'<a':'<a title="Information"'|replace:'thickbox':'contentbox'|replace:'&amp;KeepThis=true&amp;TB_iframe=true&amp;height=450&amp;width=750':''}</strong></p>
+        {if $data.order_description}<p><small>{$data.order_description}</small></p>{/if}
+        {if $data.shipping_time}<p><small>{$smarty.const.SHIPPING_TIME}{$data.shipping_time}</small></p>{/if}
+        {foreach key=a_data item=attrib_data from=$data.attributes}
+          {if $attrib_data.value != ''}<p><small>&nbsp;<i> - {$attrib_data.option} : {$attrib_data.value}</i></small></p>{/if}           
+        {/foreach} 
+    </div>
+    <div class="span2">
+      <p><b>{$smarty.const.HEADER_SINGLE}: </b>{$data.price_formated}</p>
+    </div>
+    <div class="span2 text-right">
+      <p><b>{$smarty.const.HEADER_TOTAL}{#text_total#}: </b>{$data.final_price_formated}{if $ORDER_TAX_GROUPS > 1}<br />{$data.tax} %{/if}</p>
+    </div>
+  </div>
+    {/foreach}
+  {* EOC PRODUCTS TABLE *}
+  {if $TOTAL_BLOCK}
+    <div class="total">
+      <div class="text-right">
+        {$TOTAL_BLOCK|replace:'<tr>':'<p>'|replace:'</tr>':'</p>'|stripTags:"tbody,td"}
+      </div>
+    </div>
+  {/if}
+  {if $DELIVERY_DUTY_INFO == true}
+    <hr>
+    <div class="alert">{#text_duty_info#}</div>
+  {/if}
+</div>
+<div>{$CHECKOUT_FORM}<div>
+<div>{if $MODULE_BUTTONS!=''}&nbsp;&nbsp;{$MODULE_BUTTONS}{/if}&nbsp;&nbsp;{$CHECKOUT_BUTTON|button|replace:'class="':'class="pull-right '}</div>  
+

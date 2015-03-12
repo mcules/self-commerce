@@ -65,6 +65,8 @@ if(!empty($box_statistics))
 
 if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['module_newsletter'] == '1'))	$box_tools .= '<a href="' . xtc_href_link(FILENAME_MODULE_NEWSLETTER) . '" class="menuBoxContentLink"> -' . BOX_MODULE_NEWSLETTER . '</a><br />';
 if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['content_manager'] == '1'))	$box_tools .= '<a href="' . xtc_href_link(FILENAME_CONTENT_MANAGER) . '" class="menuBoxContentLink"> -' . BOX_CONTENT . '</a><br />';
+// Imageslider (c)2008 by Hetfield
+  if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['imagesliders'] == '1')) $box_tools .='<a href="' . xtc_href_link(FILENAME_IMAGESLIDERS, '', 'NONSSL') . '" class="menuBoxContentLink"> -' . BOX_IMAGESLIDERS . '</a><br />';
 if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['blacklist'] == '1'))			$box_tools .= '<a href="' . xtc_href_link(FILENAME_BLACKLIST, '', 'NONSSL') . '" class="menuBoxContentLink">' . BOX_TOOLS_BLACKLIST . '</a><br />';
 if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['backup'] == '1'))			$box_tools .= '<a href="' . xtc_href_link(FILENAME_BACKUP) . '" class="menuBoxContentLink"> -' . BOX_BACKUP . '</a><br />';
 if (($_SESSION['customers_status']['customers_status_id'] == '0') && ($admin_access['banner_manager'] == '1'))	$box_tools .= '<a href="' . xtc_href_link(FILENAME_BANNER_MANAGER) . '" class="menuBoxContentLink"> -' . BOX_BANNER_MANAGER . '</a><br />';

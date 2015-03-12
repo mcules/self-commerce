@@ -1,0 +1,25 @@
+{config_load file="$language/lang_$language.conf" section="shopping_cart"}
+<div class="well well-small">   
+  {foreach name=aussen item=module_data from=$module_content} 
+  <div class="row-fluid bottom-line">
+    <div class="span8">
+      <p><b>{#text_article#}: </b></p>
+    		<p><strong><a href="{$module_data.PRODUCTS_LINK}">{$module_data.PRODUCTS_NAME}</a></strong></p>
+	     	{if $module_data.ATTRIBUTES!=''} 
+        {foreach key=key_data item=item_data from=$module_data.ATTRIBUTES} 
+        <span class="span12"><strong>{$item_data.NAME}:&nbsp;</strong>{$item_data.VALUE_NAME}</span>
+        {/foreach} 
+        {/if}
+      <p><b>{#text_remove#}: </b>{$module_data.BUTTON_DELETE}</p>
+    </div>
+    <div class="span4 text-right">
+      <p><b>{#text_single#}: </b>{$module_data.PRODUCTS_SINGLE_PRICE}</p>
+      <span class="span12"><b>{#text_qty#}: </b>{$module_data.PRODUCTS_QTY|replace:'<input':'<input class="input-small"'}</span>
+      <p><b>{#text_total#}: </b>{$module_data.PRODUCTS_PRICE}</p>
+    </div>
+  </div>                                                                                                                                            
+  {/foreach}
+  <div class="row-fluid">
+    <div class="span12 text-right">{$UST_CONTENT}<strong>{$TOTAL_CONTENT}</strong>{if $SHIPPING_INFO}{$SHIPPING_INFO|replace:'thickbox':'contentbox'|replace:'&amp;KeepThis=true&amp;TB_iframe=true&amp;height=400&amp;width=600':''}{/if}{if $KLARNA_PPBOX}<br />{$KLARNA_PPBOX}{/if}</div>
+  </div>
+</div>

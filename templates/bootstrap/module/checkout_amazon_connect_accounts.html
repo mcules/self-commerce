@@ -1,0 +1,25 @@
+{config_load file="$language/amazon.conf" section="checkout_amazon"}
+{config_load file="$language/lang_$language.conf" section="checkout_payment"}
+
+
+<div>
+            <h1 style="text-align:center;">{$smarty.const.AMZ_CONNECT_ACCOUNTS_TITLE}</h1>
+            <div class="amzMessageWr">
+                <form method="POST" action="{'checkout_amazon_connect_accounts.php'|xtc_href_link:'':'SSL'}">
+                    <input type="hidden" name="action" value="tryConnect" />
+                    <input type="hidden" name="email" value="{$smarty.session.amzConnectEmail}" />
+                    {if $ERROR}
+                        <div class="amzError">{$smarty.const.AMZ_CONNECT_ACCOUNTS_ERROR}</div>
+                    {/if}
+                    <div>{$smarty.const.AMZ_CONNECT_ACCOUNTS_INTRO}</div>
+                    <input name="password" placeholder="{$smarty.const.AMZ_PASSWORD}" type="password" class="amzConnectPassword amzInput" />
+                    <button class="amzButton">{$smarty.const.AMZ_CONNECT_ACCOUNTS}</button>
+                </form>
+            </div>
+                
+	    
+	    
+
+
+</div>
+

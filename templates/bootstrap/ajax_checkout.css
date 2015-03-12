@@ -1,0 +1,361 @@
+
+/* ------------------- HEADLINE ------------------- */
+#ajax-checkout h1 {
+  zoom: 1; /* IE 6 */
+  position: relative;
+}
+
+#ajax-checkout h1 a {
+  line-height: 1; /* IE 6 */
+  position: absolute;
+  right: 0;
+  top: 50%;
+  line-height: 14px;
+  margin-top: -7px;
+  color: #bbb;
+}
+
+
+/* ------------------- BOXES ------------------- */
+#ajax-checkout .box-full,
+#ajax-checkout .box-half {
+  -webkit-box-shadow: 0 0 5px #333;
+  -moz-box-shadow: 0 0 5px #333;
+  box-shadow: 0 0 5px #333;
+  margin: 0 0 30px 0;
+  float: left;
+}
+
+#ajax-checkout .box-full {
+  background: #eee;
+  width: 100%;
+/*   clear: both; */
+}
+
+#ajax-checkout .box-half {
+  width: 49%;
+}
+
+#ajax-checkout .box-half.left {
+  margin-right: 2%;
+}
+
+#ajax-checkout .header {
+  background: #888 url(img/ajax_checkout_header_gradient.png) top center repeat-x;
+  color: #fff;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 4px 20px 4px 6px;
+  margin: 0;
+  position: relative;
+}
+
+#ajax-checkout .header .ajax-indicator {
+  position: absolute;
+  margin-top: -8px;
+  right: 24px;
+  top: 50%;
+  display: none;
+}
+
+#ajax-checkout .header .toggle {
+  cursor: pointer;
+  position: absolute;
+  line-height: 14px;
+  margin-top: -7px;
+  right: 6px;
+  top: 50%;
+}
+
+#ajax-checkout .header .toggle.plus {
+  display: none;
+}
+
+#ajax-checkout .header .toggle.minus {
+  display: inline;
+}
+
+#ajax-checkout .header.closed .toggle.plus {
+  display: inline;
+}
+
+#ajax-checkout .header.closed .toggle.minus {
+  display: none;
+}
+
+#ajax-checkout .content {
+  background: #eee;
+  padding: 8px;
+}
+
+
+/* ------------------- ORDER TOTAL ------------------- */
+#ajax-checkout-order-total table {
+  float: right;
+}
+
+
+/* ------------------- FORM ------------------- */
+#ajax-checkout form sup {
+  color: red;
+}
+
+#ajax-checkout form ul {
+  margin: 0 0 20px 0;
+  padding: 0;
+  list-style: none;
+}
+
+#ajax-checkout form li {
+  overflow: hidden;
+  padding: 0;
+  margin: 0 0 5px 0;
+}
+
+#ajax-checkout form label {
+  width: 150px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#ajax-checkout form .inline-label {
+  display: inline;
+  width: auto;
+}
+
+#ajax-checkout textarea {
+  height: 120px;
+  display: block;
+  width: 98%;
+  padding: 5px;
+  margin-bottom: 2px;
+}
+
+#ajax-checkout form input[type=text],
+#ajax-checkout form input[type=password],
+#ajax-checkout form select {
+  width: 150px;
+}
+
+#ajax-checkout form input[type=image] {
+  cursor: pointer;
+}
+
+#ajax-checkout form input[type=radio] {
+  margin: 4px;
+  padding: 0;
+}
+
+#ajax-checkout form h4 {
+  padding: 0;
+  margin: 0 0 10px 0;
+}
+
+#ajax-checkout label[for=agb-checkbox],
+#ajax-checkout label[for=revocation-checkbox] {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#ajax-checkout-button {
+  margin: 10px 0;
+  float: right;
+}
+
+#ajax-checkout .option-row {
+  margin-bottom: 6px;
+  background: #ddd;
+}
+
+#ajax-checkout .option-row-selected {
+  background: #E9F4FC;
+}
+
+#ajax-checkout .option-row-selected,
+#ajax-checkout .option-row-focussed {
+  outline: 1px solid #999;
+}
+
+#ajax-checkout .option-row label {
+  display: block;
+  width: auto;
+  padding: 4px;
+  cursor: pointer;
+}
+
+#ajax-checkout .option-row table,
+#ajax-checkout .option-row .payment-description,
+#ajax-checkout .option-row .ajax-checkout-button,
+#ajax-checkout .option-row .error-message {
+  margin: 5px;
+}
+
+#ajax-checkout .gift-module table,
+#ajax-checkout .gift-module td {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+#ajax-checkout .gift-module td img {
+  display: none;
+}
+
+#ajax-checkout .gift-module .moduleRow {
+  background-color: transparent !important;
+}
+
+#ajax-checkout .gift-module .moduleRow b {
+  font-weight: normal;
+  margin-right: 4px;
+}
+
+#ajax-checkout .shipping-options .warning-message {
+  margin: 5px 0 15px;
+}
+
+#ajax-checkout .shipping-options h4 {
+  margin-bottom: 5px;
+}
+
+#ajax-checkout-payment-address h4,
+#ajax-checkout-shipping-address h4 {
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+#ajax-checkout .ajax-checkout-address-dropdown {
+  margin-bottom: 20px;
+}
+
+#ajax-checkout .free-shipping-text,
+#ajax-checkout .virtual-text,
+#ajax-checkout .gvcover-text {
+  margin-bottom: 10px;
+}
+
+#ajax-checkout .no-address-anymore {
+  margin-bottom: 5px;
+}
+
+/* ------------------- PRODUCTS BLOCK ------------------- */
+#ajax-checkout-shopping-cart ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+#ajax-checkout-shopping-cart li {
+  margin: 0 0 15px;
+  padding: 0;
+}
+
+#ajax-checkout-shopping-cart li li {
+  margin-bottom: 2px;
+}
+
+#ajax-checkout-shopping-cart ul ul {
+  list-style-type: square;
+  margin: 0 0 0 15px;
+}
+
+#ajax-checkout-shopping-cart .products-shipping-time {
+  color: #666;
+}
+
+#ajax-checkout-shopping-cart .products-description {
+  background: #eee;
+  color: #666;
+  width:500px;:
+  float:right;
+}
+
+#ajax-checkout-shopping-cart .products-thumb {
+  background: #eee;
+  color: #666;
+  width:100px;
+  float:left;
+}
+
+#ajax-checkout-shopping-cart .products-shipping-time,
+#ajax-checkout-shopping-cart .products-attributes,
+#ajax-checkout-shopping-cart .products-attributes select {
+  font-size: 10px;
+}
+
+#ajax-checkout-shopping-cart .products-price2 {
+  float: right;
+}
+
+#ajax-checkout-shopping-cart .products-price {
+  float: right;
+}
+
+.modal-help-products-increase,
+.modal-help-products-decrease,
+.modal-help-products-remove,
+#ajax-checkout-shopping-cart .products-increase,
+#ajax-checkout-shopping-cart .products-decrease,
+#ajax-checkout-shopping-cart .products-remove {
+  display: none;
+  vertical-align: middle;
+  padding: 0;
+  margin: 0;
+  background: url(img/ajax_checkout_product_actions.png) no-repeat;
+  width: 14px;
+  height: 14px;
+}
+
+.modal-help-products-increase,
+.modal-help-products-decrease,
+.modal-help-products-remove,
+.js #ajax-checkout-shopping-cart .products-increase,
+.js #ajax-checkout-shopping-cart .products-decrease,
+.js #ajax-checkout-shopping-cart .products-remove {
+  display: inline-block;
+}
+
+.modal-help-products-decrease,
+#ajax-checkout-shopping-cart .products-decrease {
+  background-position: -14px 0;
+}
+
+.modal-help-products-remove,
+#ajax-checkout-shopping-cart .products-remove {
+  background-position: -28px 0;
+}
+
+
+/* ------------------- GENERAL ------------------- */
+#ajax-checkout .error-message {
+  color: red;
+}
+
+#ajax-checkout .warning-message {
+  font-style: italic;
+}
+
+#ajax-checkout address {
+  font-style: normal;
+  margin-bottom: 10px;
+}
+
+#ajax-checkout a {
+  text-decoration: underline;
+  color: blue;
+}
+
+.clearfix {
+  zoom: 1; /* IE 6 */
+}
+
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+#nyroModalContent {
+  font-family: Verdana,Arial,sans-serif;
+}

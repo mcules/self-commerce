@@ -1,0 +1,23 @@
+{foreach name=aussenpayment item=module_data from=$module_content}
+  <div class="row-fluid">
+    <div class="span6"><label class="radio">{$module_data.selection}<span class="label">{$module_data.module}</span></label></div>
+    <div class="span4">{$module_data.module_cost}</div>
+  </div>
+  {if $module_data.description!=''}
+  <div class="row-fluid">
+    <div class="span12"><label class="radio"><strong>{$module_data.description}</strong></label></div>
+  </div>
+  {/if}
+  {if $module_data.error!=''}
+  <div class="row-fluid">
+    <div class="span12"><label class="radio"><strong>{$module_data.error|replace:'class="':'class="alert alert-error '}</strong></label></div>
+   </div>
+  {elseif $module_data.fields}
+    {foreach name=aussen item=method_data from=$module_data.fields}
+  <div class="row-fluid">
+    <div class="span6"><label class="radio"><strong>{$method_data.title}</strong></label></div>
+    <div class="span4">{$method_data.field}</div>
+  </div>
+    {/foreach}
+  {/if}
+{/foreach}
