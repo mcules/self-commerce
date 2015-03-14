@@ -393,9 +393,9 @@ require_once('inc/xtc_draw_separator.inc.php');
   }
 
 $Navtrail = $breadcrumb->_trail;
-unset($Navtrail[0]);
-unset($Navtrail[1]);
-unset($Navtrail[2]);
+#unset($Navtrail[0]);
+#unset($Navtrail[1]);
+#unset($Navtrail[2]);
 $Navtrail = array_values($Navtrail);
 for ($i=0, $n=sizeof($Navtrail); $i<$n; $i++) {
     if (isset($Navtrail[$i]['link']) && xtc_not_null($Navtrail[$i]['link'])) {

@@ -90,6 +90,7 @@ class Checkout {
 
       $data_products .= '<li id="ajax-checkout-product-'.$products_id.'">';
 
+/*
       if (CHECKOUT_AJAX_PRODUCTS == 'true') {
         $html_update_qty = ' <a href="#decrease" class="products-decrease" rel="'.$products_id.'"></a>
                              <a href="#increase" class="products-increase" rel="'.$products_id.'"></a>
@@ -97,6 +98,7 @@ class Checkout {
       } else {
         $html_update_qty = '';
       }
+*/
 	  $Products_Link = xtc_href_link(FILENAME_PRODUCT_INFO, 'products_id=' . $products_id);
       $data_products .= '<strong class="products-qty">'.$products_amount.'</strong> x <strong class="products-name"><a href="'.$Products_Link.'">'.$products_name.'</a></strong>'.$html_update_qty.' <strong class="products-price">'.$products_formatted_price.'</strong>';
       $data_products .= '<div class="products-description"><small>' . (!empty($order->products[$i]['short_description'])?trim(strip_tags($order->products[$i]['short_description'])):trim(substr(strip_tags($order->products[$i]['description']),0,300))). ' [...]' . '</small></br></br></div>';
@@ -215,10 +217,10 @@ class Checkout {
 				$short_address = substr($short_address, 0, $strpos+1).' ...';
 			}
 			$dropdown .= '<option value="'.$addresses['address_book_id'].'"'.$selected.'>'.$short_address.'...</option>';
-		
+
 		}
 		$dropdown .= '</select>';
-		
+
 		return $dropdown;
 	}
 

@@ -20,30 +20,30 @@ xtc.AjaxCheckout = {
     "revocation":         "#ajax-checkout-revocation",
     "products":           "#ajax-checkout-shopping-cart"
   },
-  
+
   initialize: function() {
     this.container  = $("#ajax-checkout").addClass("js");
-    
+
     this._initBoxes();
     this._observe();
   },
-  
+
   _observe: function() {
     $(function() { $("a.help-link").nyroModal(); });
-    
+
     this.container.find(".header").live("click", function() {
       $(this).toggleClass("closed").next().slideToggle("fast");
     }).queue();
-    
+
     xtc.notifications.bind("ajax_checkout.scroll_into_view", $.proxy(function() {
       var offset = this.container.offset();
       window.scrollTo(offset.left, offset.top);
     }, this));
-    
+
     xtc.notifications.bind("ajax_checkout.submit", $.proxy(function(event, options) {
       this.ajaxSubmit(options);
     }, this));
-    
+
     xtc.notifications.bind("ajax_checkout.success", $.proxy(function(event, options) {
       if (options.alert) {
         alert(options.alert);
@@ -53,13 +53,13 @@ xtc.AjaxCheckout = {
       }
     }, this));
   },
-  
+
   _initBoxes: function() {
     $.each(this.BOX_MAPPING, $.proxy(function(key, value) {
       var obj = this.boxes[key],
           container = $(value);
       obj && obj.initialize(container);
-      
+
       // Collapse box
       if (!this.BOX_CONFIGS[key]) {
         container
@@ -67,10 +67,10 @@ xtc.AjaxCheckout = {
           .find(".header").addClass("closed");
       }
     }, this));
-    
+
     this.boxes.order_total.initialize();
   },
-  
+
   ajaxSubmit: function(options) {
     var container   = $(options.form || options.container),
         boxHeader   = container.parents(".box-full, .box-half"),
@@ -90,7 +90,7 @@ xtc.AjaxCheckout = {
               // complete handler will take care
               return;
             }
-            
+
             xtc.notifications.trigger("ajax_checkout.success", [data]);
             (options.callback || $.noop)(data);
           },
@@ -105,7 +105,7 @@ xtc.AjaxCheckout = {
             formFields.removeAttr("disabled");
           }
         };
-    
+
     if (options.form) {
       container.ajaxSubmit(ajaxOptions);
     } else {
@@ -125,10 +125,10 @@ xtc.AjaxCheckout.boxes.login = {
     this.loginLink = this.container.find(".login-link");
     this.registerLink = this.container.find(".register-link");
     this.errorMessage = this.container.find(".error-message");
-    
+
     this._observe();
   },
-  
+
   _observe: function() {
     this.loginLink.add(this.registerLink).click($.proxy(function(event) {
       this.loginForm.add(this.registerForm).toggle();
@@ -136,7 +136,7 @@ xtc.AjaxCheckout.boxes.login = {
       xtc.notifications.trigger("ajax_checkout.scroll_into_view");
       event.preventDefault();
     }, this));
-    
+
     this.loginForm.add(this.registerForm).delegate("form", "submit", $.proxy(function(event) {
       this.errorMessage.removeClass("error-message-visible").html("");
       xtc.notifications.trigger("ajax_checkout.submit", {
@@ -151,7 +151,7 @@ xtc.AjaxCheckout.boxes.login = {
       });
       event.preventDefault();
     }, this));
-    
+
     this.registerForm.delegate("select[name=country]", "change", $.proxy(function(event) {
       $.ajax({
         url: location.href,
@@ -168,7 +168,7 @@ xtc.AjaxCheckout.boxes.login = {
         }, this)
       });
     }, this));
-    
+
     // Don't show the password fields for guest accounts
     this.registerForm.delegate("input:radio[name=account_type]", "change", function() {
       if ($("#ajax-checkout-account-type-default-guest")[0].checked) {
@@ -178,10 +178,10 @@ xtc.AjaxCheckout.boxes.login = {
       }
     });
   },
-  
+
   _proceedAfterLogin: function() {
     var indicators = $("#ajax-checkout .ajax-indicator").show();
-    
+
     xtc.notifications.trigger("ajax_checkout.submit", {
       data: { ajax_action: "after_login" },
       callback: function() {
@@ -206,16 +206,16 @@ xtc.AjaxCheckout.boxes.shipping_modules = {
     this.form = this.container.find("form:first");
     this.block = this.form.find(".shipping-options");
     this.errorMessage = container.find(".error-message");
-    
+
     this._observe();
   },
-  
+
   _observe: function() {
     xtc.notifications.bind("ajax_checkout.success", $.proxy(function(event, data) {
       if (data.shipping_options) {
         this.block.html(data.shipping_options);
       }
-      
+
       if (typeof(data.is_free_shipping) != "undefined") {
         if (data.is_free_shipping) {
           this.form.hide();
@@ -225,7 +225,7 @@ xtc.AjaxCheckout.boxes.shipping_modules = {
           this.container.find(".free-shipping-text").hide();
         }
       }
-      
+
       if (typeof(data.is_virtual) != "undefined") {
         if (data.is_virtual) {
           this.form.hide();
@@ -236,7 +236,7 @@ xtc.AjaxCheckout.boxes.shipping_modules = {
         }
       }
     }, this));
-    
+
     this.form.submit($.proxy(function(event) {
       this.errorMessage.removeClass("error-message-visible").html("");
       xtc.notifications.trigger("ajax_checkout.submit", {
@@ -244,7 +244,7 @@ xtc.AjaxCheckout.boxes.shipping_modules = {
         callback: $.proxy(function(data) {
           var optionRows = this.block.find(".option-row").removeClass("option-row-selected"),
               selectedRow = optionRows.filter(":has(input:radio[checked])");
-          
+
           if (data.error) {
             selectedRow.addClass("option-row-focussed");
             this.errorMessage.addClass("error-message-visible").html(data.error);
@@ -256,7 +256,7 @@ xtc.AjaxCheckout.boxes.shipping_modules = {
       });
       event.preventDefault();
     }, this));
-    
+
     this.block.delegate("input:radio", "change", $.proxy(function() {
       this.form.submit();
     }, this));
@@ -272,14 +272,14 @@ xtc.AjaxCheckout.boxes.payment_modules = {
     this.form = container.find("form:first");
     this.block = this.form.find(".payment-options");
     this.errorMessage = container.find(".error-message:last");
-    
+
     this._observe();
-    
+
     if (xtc.AjaxCheckout.PAYMENT_FORM_DATA) {
       this._restoreState(xtc.AjaxCheckout.PAYMENT_FORM_DATA);
     }
   },
-  
+
   _storeState: function() {
     this.state = {};
     var elements = this.form[0].elements;
@@ -288,7 +288,7 @@ xtc.AjaxCheckout.boxes.payment_modules = {
       this.state[element.name] = $(element).val();
     }
   },
-  
+
   _restoreState: function(state) {
     this.state = this.state || state || {};
     var elements = this.form[0].elements;
@@ -300,7 +300,7 @@ xtc.AjaxCheckout.boxes.payment_modules = {
       $(element).val(this.state[element.name]);
     }
   },
-  
+
   _observe: function() {
     xtc.notifications.bind("ajax_checkout.success", $.proxy(function(event, data) {
       if (data.payment_options) {
@@ -328,7 +328,7 @@ xtc.AjaxCheckout.boxes.payment_modules = {
         }
       }
     }, this));
-    
+
     this.form.submit($.proxy(function(event) {
       this.block.find(".error-message").html("");
       xtc.notifications.trigger("ajax_checkout.submit", {
@@ -336,7 +336,7 @@ xtc.AjaxCheckout.boxes.payment_modules = {
         callback: $.proxy(function(data) {
           var optionRows = this.block.find(".option-row").removeClass("option-row-selected"),
               selectedRow = optionRows.length > 1 ? optionRows.filter(":has(input:radio[checked])") : optionRows.filter(":first");
-          
+
           if (data.error) {
             selectedRow
               .addClass("option-row-focussed")
@@ -349,7 +349,7 @@ xtc.AjaxCheckout.boxes.payment_modules = {
       });
       event.preventDefault();
     }, this));
-    
+
     this.block.delegate("input:radio", "change", $.proxy(function(event) {
       this.errorMessage.removeClass("error-message-visible").html("");
       var radio = $(event.currentTarget),
@@ -357,23 +357,23 @@ xtc.AjaxCheckout.boxes.payment_modules = {
           listItem = radio.parents("li"),
           paymentBody = listItem.find(".payment-option-body");
           hasDetails = !!paymentBody.find(".payment-fieldset, .payment-description").length;
-      
+
       this.block.find(".option-row").removeClass("option-row-focussed");
       listItem.addClass("option-row-focussed");
-      
+
       this.block.find(".payment-option-body").hide();
-      
+
       if (hasDetails) {
         paymentBody.slideDown();
       } else {
         this.form.submit();
       }
     }, this));
-    
+
     this.container.delegate("form.gift-module input:checkbox[name=cot_gv]", "change", function(event) {
       $(event.currentTarget).val("1").parents("form").submit();
     });
-    
+
     this.container.delegate("form.gift-module", "submit", $.proxy(function(event) {
       xtc.notifications.trigger("ajax_checkout.submit", { form: event.currentTarget });
       event.preventDefault();
@@ -389,10 +389,10 @@ xtc.AjaxCheckout.boxes.address = {
     this.container = container;
     this.errorMessage = this.container.find(".error-message");
     this.block = container.find("address.selected");
-    
+
     this._observe();
   },
-  
+
   _observe: function() {
     this.container.delegate("select.ajax-checkout-address-dropdown", "change", $.proxy(function(event) {
       var dropdown = $(event.currentTarget);
@@ -405,11 +405,11 @@ xtc.AjaxCheckout.boxes.address = {
           type: this.type
         },
         callback: $.proxy(function(data) {
-          this.container.find("input.back").trigger("click");
+          this.container.find("a.back").trigger("click");
         }, this)
       });
     }, this));
-    
+
     this.container.find("form").submit($.proxy(function(event) {
       this.errorMessage.removeClass("error-message-visible").html("");
       var form = $(event.currentTarget);
@@ -420,27 +420,27 @@ xtc.AjaxCheckout.boxes.address = {
             this.errorMessage.addClass("error-message-visible").html(data.error);
             return;
           }
-          
-          this.container.find("input.back").trigger("click");
+
+          this.container.find("a.back").trigger("click");
           form.get(0).reset();
         }, this)
       });
       event.preventDefault();
     }, this));
-    
-    this.container.delegate("input.edit, input.back", "click", $.proxy(function(event) {
+
+    this.container.delegate("a.edit, a.back", "click", $.proxy(function(event) {
       this.container.find(".change-address, .show-address").toggle();
       event.preventDefault();
     }, this));
-    
-    this.container.delegate("input.edit", "click", $.proxy(function(event) {
+
+    this.container.delegate("a.edit", "click", $.proxy(function(event) {
       xtc.notifications.trigger("ajax_checkout.submit", {
         type: "get",
         container: $(event.currentTarget),
         data: { ajax_action: "get_address_dropdown", type: this.type }
       });
     }, this));
-    
+
     this.container.delegate("select[name=country]", "change", $.proxy(function(event) {
       $.ajax({
         url: location.href,
@@ -457,13 +457,13 @@ xtc.AjaxCheckout.boxes.address = {
         }, this)
       });
     }, this));
-    
+
     xtc.notifications.bind("ajax_checkout.success", $.proxy(function(event, data) {
       var address = data[this.type + "_address"];
       if (address) {
         this.block.html(address);
       }
-      
+
       var dropdown = data[this.type + "_address_dropdown"];
       if (dropdown) {
         this.container.find("select.ajax-checkout-address-dropdown").replaceWith(dropdown);
@@ -483,10 +483,10 @@ xtc.AjaxCheckout.boxes.products = {
     this.container = container;
     this.block = container.find(".content");
     this.count = container.find(".products-amount");
-    
+
     this._observe();
   },
-  
+
   _observe: function() {
     this.container.delegate("a.products-decrease, a.products-increase", "click", function(event) {
       var link = $(this),
@@ -509,7 +509,7 @@ xtc.AjaxCheckout.boxes.products = {
       });
       event.preventDefault();
     });
-    
+
     this.container.delegate("a.products-remove", "click", function(event) {
       var link = $(this);
       xtc.notifications.trigger("ajax_checkout.submit", {
@@ -527,7 +527,7 @@ xtc.AjaxCheckout.boxes.products = {
       });
       event.preventDefault();
     });
-    
+
     this.container.delegate("select", "change", function(event) {
       var select = $(this),
           listItem = select.parents("li[id^=ajax-checkout-product]");
@@ -547,18 +547,18 @@ xtc.AjaxCheckout.boxes.products = {
         container: select.parent()
       });
     });
-    
+
     xtc.notifications.bind("ajax_checkout.success", $.proxy(function(event, data) {
       if (data.products) {
         this.block.html(data.products);
       }
-      
+
       if (data.product_prices) {
         $.each(data.product_prices, function(id, price) {
           $("ajax-checkout-product-" + id).html(price);
         });
       }
-      
+
       if (typeof(data.products_count) != "undefined") {
         this.count.html(data.products_count);
       }
@@ -576,27 +576,27 @@ xtc.AjaxCheckout.boxes.order_total = {
     this.hiddenInputs = this.form.find("#ajax-checkout-payment-data");
     this.button = this.form.find("#ajax-checkout-button");
     this.errorMessage = this.form.find(".error-message");
-    
+
     this._observe();
   },
-  
+
   _observe: function() {
     this.form.bind("submit", $.proxy(function(event) {
       event.preventDefault();
       this.errorMessage.removeClass("error-message-visible").html("");
-      
+
       var agbCheckbox = $("#agb-checkbox");
       if (agbCheckbox.length && !agbCheckbox[0].checked) {
         this.errorMessage.addClass("error-message-visible").html(xtc.AjaxCheckout.AGB_ERROR);
         return;
       }
-      
+
       var revocationCheckbox = $("#revocation-checkbox");
       if (revocationCheckbox.length && !revocationCheckbox[0].checked) {
         this.errorMessage.addClass("error-message-visible").html(xtc.AjaxCheckout.REVOCATION_ERROR);
         return;
       }
-      
+
       xtc.notifications.trigger("ajax_checkout.submit", {
         form: event.currentTarget,
         data: { ajax_action: "checkout_check", comments: $("#ajax-checkout-comments-text").val() },
@@ -613,11 +613,11 @@ xtc.AjaxCheckout.boxes.order_total = {
         }, this)
       });
     }, this));
-    
+
     xtc.notifications.bind("ajax_checkout.logged_in", $.proxy(function(event) {
       this.button.show();
     }, this));
-    
+
     xtc.notifications.bind("ajax_checkout.success", $.proxy(function(event, data) {
       if (data.order_total) {
         this.block.html(data.order_total);
@@ -645,7 +645,7 @@ xtc.SessionTimeout = {
     this.start();
     xtc.notifications.bind("ajax_checkout.success", $.proxy(this.reset, this));
   },
-  
+
   start: function() {
     this._expireTime = this.LIFETIME * 1000;
     this._setTimer();
@@ -655,7 +655,7 @@ xtc.SessionTimeout = {
     if (this._expireTime == 0 || isNaN(this._expireTime)) {
       return;
     }
-    
+
     this._timer = setTimeout($.proxy(this._expired, this), this._expireTime);
   },
 

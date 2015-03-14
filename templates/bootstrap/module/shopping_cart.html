@@ -1,17 +1,18 @@
 {config_load file="$language/lang_$language.conf" section="shopping_cart"}
+
 <h1>{#heading_cart#}</h1>
 {if $info_message!=''}<div class="alert alert-error">{$info_message}</div>{/if}
 {if $cart_empty==true}
-<div class="well well-small">
-  {#text_empty#}
-</div>
-<p>{$BUTTON_CONTINUE|button}</p>
+	<div class="well well-small">
+	  {#text_empty#}
+	</div>
+	<p>{$BUTTON_CONTINUE|button}</p>
 {else}
-{$FORM_ACTION}
-{$HIDDEN_OPTIONS}
-{$MODULE_order_details}
-{if $info_message_1!=''}<div class="alert alert-error">{$info_message_1}{$min_order}{$info_message_2}{$order_amount}</div>{/if}
-<p class="text-right">{if $CONTINUE_LINK}<a href="{$CONTINUE_LINK}">{$BUTTON_CONTINUE_SHOPPING|button}</a>&nbsp;&nbsp;{/if}{$BUTTON_RELOAD|button}&nbsp;&nbsp;{if $BUTTON_PAYPAL!=''}{$BUTTON_CHECKOUT|button}<br />{$BUTTON_PAYPAL}{else}{$BUTTON_CHECKOUT|button}{/if}</p>
-{$FORM_END}{/if}
+	{$FORM_ACTION}
+	{$HIDDEN_OPTIONS}
+	{$MODULE_order_details}
+	{if $info_message_1!=''}<div class="alert alert-error">{$info_message_1}{$min_order}{$info_message_2}{$order_amount}</div>{/if}
+	<p class="text-right">{if $CONTINUE_LINK}<a href="{$CONTINUE_LINK}">{$BUTTON_CONTINUE_SHOPPING|button}</a>&nbsp;&nbsp;{/if}{$BUTTON_RELOAD|button}&nbsp;&nbsp;{if $BUTTON_PAYPAL!=''}{$BUTTON_CHECKOUT|button}<br />{$BUTTON_PAYPAL}{else}{$BUTTON_CHECKOUT|button}{/if}</p>
+	{$FORM_END}
+{/if}
 {$MODULE_gift_cart}
-

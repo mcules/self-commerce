@@ -123,15 +123,11 @@ if ($_SESSION['cart']->count_contents() > 0) {
 	$smarty->assign('FORM_END', '</form>');
 	$hidden_options = '';
 	$_SESSION['any_out_of_stock'] = 0;
-
 	$products = $_SESSION['cart']->get_products();
-	for ($i = 0, $n = sizeof($products); $i < $n; $i ++)
-	{
+	for ($i = 0, $n = sizeof($products); $i < $n; $i ++) {
 		// Push all attributes information in an array
-		if (isset ($products[$i]['attributes']) && is_array($products[$i]['attributes']))
-		{
-			while (list ($option, $value) = each($products[$i]['attributes']))
-			{
+		if (isset ($products[$i]['attributes']) && is_array($products[$i]['attributes'])) {
+			while (list ($option, $value) = each($products[$i]['attributes'])) {
 				$hidden_options .= xtc_draw_hidden_field('id['.$products[$i]['id'].']['.$option.']', $value);
 				$Sql = "SELECT popt.products_options_name, poval.products_options_values_name, pa.options_values_price, pa.price_prefix,pa.attributes_stock,pa.products_attributes_id,pa.attributes_model
 						FROM ".TABLE_PRODUCTS_OPTIONS." popt, ".TABLE_PRODUCTS_OPTIONS_VALUES." poval, ".TABLE_PRODUCTS_ATTRIBUTES." pa
@@ -162,19 +158,16 @@ if ($_SESSION['cart']->count_contents() > 0) {
 	$smarty->assign('HIDDEN_OPTIONS', $hidden_options);
 	require DIR_WS_MODULES.'order_details_cart.php';
 	$_SESSION['allow_checkout'] = 'true';
-	if (STOCK_CHECK == 'true')
-	{
-		if ($_SESSION['any_out_of_stock'] == 1)
-		{
-			if (STOCK_ALLOW_CHECKOUT == 'true')
-			{
+	if (STOCK_CHECK == 'true') {
+		if ($_SESSION['any_out_of_stock'] == 1) {
+			if (STOCK_ALLOW_CHECKOUT == 'true') {
 				// write permission in session
 				$_SESSION['allow_checkout'] = 'true';
 
 				$smarty->assign('info_message', OUT_OF_STOCK_CAN_CHECKOUT);
 
-			} else
-			{
+			}
+			else {
 				$_SESSION['allow_checkout'] = 'false';
 				$smarty->assign('info_message', OUT_OF_STOCK_CANT_CHECKOUT);
 
@@ -215,10 +208,8 @@ if ($_SESSION['cart']->count_contents() > 0) {
 
 	// minimum/maximum order value
 	$checkout = true;
-	if ($_SESSION['cart']->show_total() > 0 )
-	{
-		if ($_SESSION['cart']->show_total() < $_SESSION['customers_status']['customers_status_min_order'] )
-		{
+	if ($_SESSION['cart']->show_total() > 0 ) {
+		if ($_SESSION['cart']->show_total() < $_SESSION['customers_status']['customers_status_min_order'] ) {
 			$_SESSION['allow_checkout'] = 'false';
 			$more_to_buy	= $_SESSION['customers_status']['customers_status_min_order'] - $_SESSION['cart']->show_total();
 			$order_amount	= $xtPrice->xtcFormat($more_to_buy, true);
@@ -228,10 +219,8 @@ if ($_SESSION['cart']->count_contents() > 0) {
 			$smarty->assign('order_amount', $order_amount);
 			$smarty->assign('min_order', $min_order);
 		}
-		if  ($_SESSION['customers_status']['customers_status_max_order'] != 0)
-		{
-			if ($_SESSION['cart']->show_total() > $_SESSION['customers_status']['customers_status_max_order'] )
-			{
+		if  ($_SESSION['customers_status']['customers_status_max_order'] != 0) {
+			if ($_SESSION['cart']->show_total() > $_SESSION['customers_status']['customers_status_max_order'] ) {
 				$_SESSION['allow_checkout'] = 'false';
 				$less_to_buy	= $_SESSION['cart']->show_total() - $_SESSION['customers_status']['customers_status_max_order'];
 				$max_order		= $xtPrice->xtcFormat($_SESSION['customers_status']['customers_status_max_order'], true);
@@ -275,17 +264,15 @@ if ($_SESSION['cart']->count_contents() > 0) {
                 AND pd.language_id='".$_SESSION['languages_id']."'";
 	$special_query = xtc_db_query($Sql);
 
-	if (xtc_db_num_rows($special_query))
-	{
+	if (xtc_db_num_rows($special_query)) {
 		$module_content = array ();
-		while ($special = xtc_db_fetch_array($special_query))
-		{
+		while ($special = xtc_db_fetch_array($special_query)) {
 			$special_image = '<a href="'.xtc_href_link(basename($PHP_SELF), xtc_get_all_get_params(array ('action')).'action=buy_now&BUYproducts_id='.$special['products_id'], 'NONSSL').'">'.xtc_image(DIR_WS_THUMBNAIL_IMAGES.$special['products_image'], $special['products_name']).'</a>';
 			$special_buy_now = '<a href="'.xtc_href_link(basename($PHP_SELF), xtc_get_all_get_params(array ('action')).'action=buy_now&BUYproducts_id='.$special['products_id'], 'NONSSL').'">'.xtc_image_button('button_buy_now.gif', TEXT_BUY.$special['products_name'].TEXT_NOW).'</a>';
 			$module_content[] = array ('SPECIAL_NAME' => $special['products_name'], 'SPECIAL_ID' => $special['products_id'], 'SPECIAL_IMAGE' => $special_image, 'SPECIAL_PRICE' => $xtPrice->xtcGetPrice($special['products_id'], $format = true, 1, $special['products_tax_class_id'], $special['products_price']), 'SPECIAL_BUY_NOW' => $special_buy_now);
 		}
-	} else
-	{
+	}
+	else {
 		$module_content = false;
 	}
 	$smarty->assign('module_content', $module_content);
@@ -293,8 +280,7 @@ if ($_SESSION['cart']->count_contents() > 0) {
 	 * Warenkorbartikel anzeigen -> Ende
 	 */
 
-	if ($_GET['info_message'])
-	{
+	if ($_GET['info_message']) {
 		$smarty->assign('info_message', str_replace('+', ' ', htmlspecialchars($_GET['info_message'])));
 	}
 	$smarty->assign('BUTTON_RELOAD', xtc_image_submit('button_update_cart.gif', IMAGE_BUTTON_UPDATE_CART));
@@ -305,13 +291,12 @@ if ($_SESSION['cart']->count_contents() > 0) {
 	}
 	$smarty->assign('BUTTON_CHECKOUT', '<a href="'.xtc_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL').'"'.$onclick.'>'.xtc_image_button('button_checkout.gif', IMAGE_BUTTON_CHECKOUT).'</a>');
 	#---- AJAX CHECKOUT PROCESS END
-} else
-{
+}
+else {
 
 	// empty cart
 	$cart_empty = true;
-	if ($_GET['info_message'])
-	{
+	if ($_GET['info_message']) {
 		$smarty->assign('info_message', str_replace('+', ' ', htmlspecialchars($_GET['info_message'])));
 	}
 	$smarty->assign('cart_empty', $cart_empty);
@@ -319,14 +304,12 @@ if ($_SESSION['cart']->count_contents() > 0) {
 
 }
 global $breadcrumb, $cPath_array, $actual_products_id;
-if (!empty($cPath_array))
-{
+if (!empty($cPath_array)) {
 	$smarty->assign('CONTINUE_NAME', $breadcrumb->_trail[count($breadcrumb->_trail)-2]['title']);
 	$smarty->assign('CONTINUE_LINK', $breadcrumb->_trail[count($breadcrumb->_trail)-2]['link']);
 	$ct_shopping = $breadcrumb->_trail[count($breadcrumb->_trail)-2]['link'];
 }
-if (!empty($actual_products_id))
-{
+if (!empty($actual_products_id)) {
 	$smarty->assign('CONTINUE_NAME', $breadcrumb->_trail[count($breadcrumb->_trail)-2]['title']);
 	$smarty->assign('CONTINUE_LINK', $breadcrumb->_trail[count($breadcrumb->_trail)-2]['link']);
 	$ct_shopping = $breadcrumb->_trail[count($breadcrumb->_trail)-2]['link'];
@@ -342,8 +325,7 @@ $smarty->assign('main_content', $main_content);
 
 $smarty->assign('language', $_SESSION['language']);
 $smarty->caching = 0;
-if (!defined(RM))
-{
+if (!defined(RM)) {
 	$smarty->loadfilter('output', 'note');
 }
 $smarty->display(CURRENT_TEMPLATE.'/index.html');

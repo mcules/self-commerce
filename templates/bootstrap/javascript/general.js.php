@@ -16,13 +16,14 @@
 ?>
 <script src="<?php echo 'templates/'.CURRENT_TEMPLATE; ?>/javascript/jquery.js" type="text/javascript"></script>
 <script src="<?php echo 'templates/'.CURRENT_TEMPLATE; ?>/javascript/bootstrap.min.js" type="text/javascript"></script>
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="<?php echo 'templates/'.CURRENT_TEMPLATE; ?>/javascript/html5shiv.js"></script>
-      <script src="<?php echo 'templates/'.CURRENT_TEMPLATE; ?>/javascript/css3-mediaqueries.js"></script>
-    <![endif]-->
+<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+  <script src="<?php echo 'templates/'.CURRENT_TEMPLATE; ?>/javascript/html5shiv.js"></script>
+  <script src="<?php echo 'templates/'.CURRENT_TEMPLATE; ?>/javascript/css3-mediaqueries.js"></script>
+<![endif]-->
+<script src="<?php echo 'templates/'.CURRENT_TEMPLATE; ?>/javascript/css_button.js" type="text/javascript"></script>
 <script type="text/javascript">
-$( document ).ready(function() {     
+$( document ).ready(function() {
 // Servicebox
 $('#ServiceTabs a').click(function (e) {e.preventDefault();var url = $(this).attr("data-url");var href = this.hash;var pane = $(this);$(href).load(url,function(result){pane.tab('show');});});
 // load first tab content
@@ -30,7 +31,7 @@ var url1 = $('#ServiceTabs li.active a').attr("data-url");$('#ServiceModal').on(
 // Bilder in Modalbox
 $('.thickbox').click(function(e){e.preventDefault();var imgPath = $(this).attr("href");$('#modal #modalLabel').html(this.title);$('#modal .modal-body').html('<img src="' +imgPath+ '" alt="" class="center-block" />');$("#modal").modal('show');$('#modal').on('hidden', function() {$(this).removeData('modal');});});
 // Content in Modalbox
-$('.contentbox').click(function(ev){ev.preventDefault();var target = $(this).attr("href");$('#modal #modalLabel').html(this.title);$('#modal').modal({remote: target});$("#modal").modal('show');$('#modal').on('hidden', function() {$(this).removeData('modal');});}); 
+$('.contentbox').click(function(ev){ev.preventDefault();var target = $(this).attr("href");$('#modal #modalLabel').html(this.title);$('#modal').modal({remote: target});$("#modal").modal('show');$('#modal').on('hidden', function() {$(this).removeData('modal');});});
 // collapse boxes in and out
 var c = document.cookie;
 $('.collapsebox').each(function () {if (this.id) { var pos = c.indexOf(this.id + "_collapse_in="); if (pos > -1) { c.substr(pos).split('=')[1].indexOf('false') ? $(this).addClass('in') : $(this).removeClass('in');}}}).on('hidden shown', function () {if (this.id) { document.cookie = this.id + "_collapse_in=" + $(this).hasClass('in');}});
@@ -49,12 +50,10 @@ $('div.accordion-body').on('shown', function () { $(this).parent("div").find(".i
 $('div.accordion-body').on('hidden', function () { $(this).parent("div").find(".icon-chevron-up").removeClass("icon-chevron-up").addClass("icon-chevron-down");});
 // GotoTop
 $(window).scroll(function() {if ($(this).scrollTop()) {$('#GotoTop').fadeIn();} else {$('#GotoTop').fadeOut();}});$("#GotoTop").click(function() {$("html, body").animate({scrollTop: 0}, 1000);});
-}); 
+});
 </script>
 <?php
 if (strstr($PHP_SELF, FILENAME_PRODUCT_INFO )) {
 ?>
 <script src="<?php echo 'templates/'.CURRENT_TEMPLATE; ?>/javascript/cloud-zoom.1.0.3.min.js" type="text/javascript"></script>
-<?php
-}
-?>
+<?php } ?>

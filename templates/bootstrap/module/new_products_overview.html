@@ -1,4 +1,4 @@
-{config_load file="$language/lang_$language.conf" section="new_products"} 
+{config_load file="$language/lang_$language.conf" section="new_products"}
 {config_load file="$language/lang_$language.conf" section="index"}
 <h1>{#heading_text#}</h1>
 {* BOF - Hetfield - 2009-08-11 - show error message if no new products exist *}
@@ -9,28 +9,28 @@
 {if $ANSICHT_BUTTONS}
   <div class="pull-right left-buffer hidden-phone">
     {$ANSICHT_BUTTONS}
-  </div>                      
+  </div>
 {/if}
 {if $ART_PRO_SEITE_DROPDOWN}
   <div class="pull-right left-buffer">
           {$ART_PRO_SEITE_DROPDOWN}
-  </div>                      
+  </div>
 {/if}
 {if $SORTING_DROPDOWN}
   <div class="pull-right left-buffer">
     {$SORTING_DROPDOWN}
-  </div>                      
+  </div>
 {/if}
 {if $MANUFACTURER_DROPDOWN}
   <div class="pull-right">
     {$MANUFACTURER_DROPDOWN}
-  </div>                      
+  </div>
 {/if}
 </div>
 {$NAVIGATION}
 <div class="switcher">
-<div class="row-fluid">{foreach name=aussen item=module_data from=$module_content}  
-  <div class="{$switcher.span} well well-small">                                                                                                                
+<div class="row-fluid">{foreach name=aussen item=module_data from=$module_content}
+  <div class="{$switcher.span} well well-small">
     {if $module_data.PRODUCTS_IMAGE!=''}<div class="div1{$switcher.div1}"><a href="{$module_data.PRODUCTS_LINK}"><img class="img-responsive center-block" src="{$module_data.PRODUCTS_IMAGE}" alt="{$module_data.PRODUCTS_NAME}" /></a></div>{/if}
     <div class="div2 {$switcher.div2} text-center">
       <p class="prod text-center {$switcher.style}">
@@ -54,14 +54,14 @@
         <a href="{$module_data.PRODUCTS_LINK}">{$RATING}&nbsp;&nbsp;<small>({$RATINGS})</small></a>
       </p>
     </div>{/if}
-      <p>{if $module_data.PRODUCTS_BUTTON_BUY_NOW}{$module_data.PRODUCTS_BUTTON_BUY_NOW|button}&nbsp;&nbsp;{/if}{$module_data.PRODUCTS_BUTTON_DETAILS|button}</p>
+      <p>{if $module_data.PRODUCTS_BUTTON_BUY_NOW}{$module_data.PRODUCTS_BUTTON_BUY_NOW|button}&nbsp;&nbsp;{/if}{$module_data.PRODUCTS_BUTTON_PRODUCT_MORE}</p>
     </div>
   </div>{if not $smarty.foreach.aussen.last}
 {if $smarty.foreach.aussen.iteration is div by $switcher.col}</div>
 <div class="row-fluid">
   {/if}
   {/if}
-  {/foreach} 
-</div>                                                                                                                                                                            
+  {/foreach}
+</div>
 </div>
 {$NAVIGATION}

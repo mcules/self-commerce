@@ -469,6 +469,10 @@ define('SESSION_RECREATE_DESC' , 'Erneuern der Session und Zuweisung einer neuen
 
 define('DISPLAY_CONDITIONS_ON_CHECKOUT_TITLE' , 'Unterzeichnen der AGB');
 define('DISPLAY_CONDITIONS_ON_CHECKOUT_DESC' , 'Anzeigen und Unterzeichnen der AGB beim Bestellvorgang');
+define('DISPLAY_REVOCATION_ON_CHECKOUT_TITLE' , 'Unterzeichnen des Widerrufrechts');
+define('DISPLAY_REVOCATION_ON_CHECKOUT_DESC' , 'Anzeigen und Unterzeichnen des Widerrufrechts beim Bestellvorgang');
+define('REVOCATION_ID_TITLE', 'ContentID Ihres Widerrufrechts');
+define('REVOCATION_ID_DESC', 'Bitte geben Sie die Content ID Ihres Widerrufrechts ein');
 
 define('META_MIN_KEYWORD_LENGTH_TITLE' , 'Minimum L&auml;nge Meta-Keywords');
 define('META_MIN_KEYWORD_LENGTH_DESC' , 'Minimum L&auml;nge der automatisch erzeugten Meta-Keywords (Artikelbeschreibung)');

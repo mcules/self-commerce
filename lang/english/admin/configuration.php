@@ -443,6 +443,10 @@ define('SESSION_RECREATE_DESC' , 'Recreate the session to generate a new session
 
 define('DISPLAY_CONDITIONS_ON_CHECKOUT_TITLE' , 'Display conditions check on checkout');
 define('DISPLAY_CONDITIONS_ON_CHECKOUT_DESC' , 'Display and Signing the Conditions in the Order Process');
+define('DISPLAY_REVOCATION_ON_CHECKOUT_TITLE' , 'Display revocations check on checkout');
+define('DISPLAY_REVOCATION_ON_CHECKOUT_DESC' , 'Display and Signing the revocations in the Order Process');
+define('REVOCATION_ID_TITLE', 'Content ID from the revocations');
+define('REVOCATION_ID_DESC', 'Please insert your revocations content ID');
 
 define('META_MIN_KEYWORD_LENGTH_TITLE' , 'Min. meta-keyword lenght');
 define('META_MIN_KEYWORD_LENGTH_DESC' , 'min. length of a single keyword (generated from products description)');

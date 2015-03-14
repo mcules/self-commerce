@@ -303,22 +303,42 @@
             <div class="standard-address"{if $IS_VIRTUAL} style="display:none;"{/if}>
               <div class="show-address">
                 <address class="selected">{$SHIPPING_ADDRESS_LABEL}</address>
-                <input type="image" src="{$tpl_path}buttons/{$language}/button_edit_account.gif" alt="" class="edit" />
+				<a href='#edit' class="edit">
+					<span class="cssButton color_0 iconright textButton buttonSize1">
+						<span class="background_hover color_1"></span>
+						<span class="animate_image gradient_0"></span>
+						<span class="buttonIcon"  title="{#text_change_address#}" style="background-image: url({$tpl_path}buttons/cssbutton_ico/icon_edit_adress.png);"></span>
+						<span class="buttonText" title="{#text_change_address#}">{#text_change_address#}</span>
+					</span>
+				</a>
               </div>
               <div class="change-address" style="display:none;">
                 <h4>{#address_old#}</h4>
                 {$SHIPPING_ADDRESS_DROPDOWN}
-                <input type="image" src="{$tpl_path}buttons/{$language}/button_confirm.gif" alt="" class="back" />
-                <br />
                 {if $IS_NEW_ADDRESS_POSSIBLE}
                   <form method="post">
                     <input type="hidden" name="ajax_action" value="update_address" />
                     <input type="hidden" name="type" value="shipping" />
                     {$MODULE_new_address}
                     <div class="ajax-checkout-button">
-                      <input type="image" src="{$tpl_path}buttons/{$language}/button_back.gif" alt="" class="back" />
+						<a href='#back' class="back">
+							<span class="cssButton color_0 iconright textButton buttonSize1">
+								<span class="background_hover color_1"></span>
+								<span class="animate_image gradient_0"></span>
+								<span class="buttonIcon"  title="{#text_chancel#}" style="background-image: url({$tpl_path}buttons/cssbutton_ico/icon_delete.png);"></span>
+								<span class="buttonText" title="{#text_chancel#}">{#text_chancel#}</span>
+							</span>
+						</a>
                       {if $IS_NEW_ADDRESS_POSSIBLE}
-                        <input type="image" src="{$tpl_path}buttons/{$language}/button_confirm.gif" alt="" class="save" />
+						<a href='#save'>
+							<span class="cssButton color_0 iconright textButton buttonSize1">
+								<span class="background_hover color_1"></span>
+								<span class="animate_image gradient_0"></span>
+								<span class="buttonIcon"  title="{#text_change_address#}" style="background-image: url({$tpl_path}buttons/cssbutton_ico/icon_update.png);"></span>
+								<span class="buttonText" title="{#text_change_address#}">{#text_change_address#}</span>
+								<input type="image" src="{$tpl_path}img/pixel_trans.gif" class="save" />
+							</span>
+						</a>
                       {/if}
                     </div>
                     <p class="error-message"></p>
@@ -349,22 +369,42 @@
           <div class="content">
             <div class="show-address">
               <address class="selected">{$PAYMENT_ADDRESS_LABEL}</address>
-              <input type="image" src="{$tpl_path}buttons/{$language}/button_edit_account.gif" alt="" class="edit" />
+				<a href='#edit' class="edit">
+					<span class="cssButton color_0 iconright textButton buttonSize1">
+						<span class="background_hover color_1"></span>
+						<span class="animate_image gradient_0"></span>
+						<span class="buttonIcon"  title="{#text_change_address#}" style="background-image: url({$tpl_path}buttons/cssbutton_ico/icon_edit_adress.png);"></span>
+						<span class="buttonText" title="{#text_change_address#}">{#text_change_address#}</span>
+					</span>
+				</a>
             </div>
             <div class="change-address" style="display:none;">
               <h4>{#address_old#}</h4>
               {$PAYMENT_ADDRESS_DROPDOWN}
-              <input type="image" src="{$tpl_path}buttons/{$language}/button_confirm.gif" alt="" class="back" />
-              <br />
               {if $IS_NEW_ADDRESS_POSSIBLE}
                 <form method="post">
                   <input type="hidden" name="ajax_action" value="update_address" />
                   <input type="hidden" name="type" value="payment" />
                   {$MODULE_new_address}
                   <div class="ajax-checkout-button">
-                    <input type="image" src="{$tpl_path}buttons/{$language}/button_back.gif" alt="" class="back" />
+						<a href='#back' class="back">
+							<span class="cssButton color_0 iconright textButton buttonSize1">
+								<span class="background_hover color_1"></span>
+								<span class="animate_image gradient_0"></span>
+								<span class="buttonIcon"  title="{#text_chancel#}" style="background-image: url({$tpl_path}buttons/cssbutton_ico/icon_delete.png);"></span>
+								<span class="buttonText" title="{#text_chancel#}">{#text_chancel#}</span>
+							</span>
+						</a>
                     {if $IS_NEW_ADDRESS_POSSIBLE}
-                      <input type="image" src="{$tpl_path}buttons/{$language}/button_confirm.gif" alt="" class="save" />
+                      <a href='#save'>
+							<span class="cssButton color_0 iconright textButton buttonSize1">
+								<span class="background_hover color_1"></span>
+								<span class="animate_image gradient_0"></span>
+								<span class="buttonIcon"  title="{#text_change_address#}" style="background-image: url({$tpl_path}buttons/cssbutton_ico/icon_update.png);"></span>
+								<span class="buttonText" title="{#text_change_address#}">{#text_change_address#}</span>
+								<input type="image" src="{$tpl_path}img/pixel_trans.gif" class="save" />
+							</span>
+						</a>
                     {/if}
                   </div>
                   <p class="error-message"></p>
@@ -457,15 +497,23 @@
     {/foreach}
   </div>
 
-  <!-- ORDER TOTAL START -->
-  <form id="ajax-checkout-total-form" action="{$FORM_ACTION_CHECKOUT}" method="post" {if !$LOGGED_IN} style="display: none;"{/if}>
-    <div id="ajax-checkout-order-total" class="clearfix">{$ORDER_TOTAL}</div>
-    <div id="ajax-checkout-payment-data">{$HIDDEN_PAYMENT}</div>
-    <div {if !$LOGGED_IN} style="display: none;"{/if} id="ajax-checkout-button" class="clearfix">
-      <input type="image" src="{$tpl_path}buttons/{$language}/button_confirm_order.gif" alt="{#button_checkout_alt#}" />
-    </div>
-    <p class="error-message"></p>
-  </form>
+	<!-- ORDER TOTAL START -->
+	<form id="ajax-checkout-total-form" action="{$FORM_ACTION_CHECKOUT}" method="post" {if !$LOGGED_IN} style="display: none;"{/if}>
+		<div id="ajax-checkout-order-total" class="clearfix">{$ORDER_TOTAL}</div>
+		<div id="ajax-checkout-payment-data">{$HIDDEN_PAYMENT}</div>
+		<div {if !$LOGGED_IN} style="display: none;"{/if} id="ajax-checkout-button" class="clearfix">
+			<a href='#save'>
+				<span class="cssButton color_0 iconright textButton buttonSize1">
+					<span class="background_hover color_1"></span>
+					<span class="animate_image gradient_0"></span>
+					<span class="buttonIcon"  title="{#button_checkout_alt#}" style="background-image: url({$tpl_path}buttons/cssbutton_ico/icon_confirm.png);"></span>
+					<span class="buttonText" title="{#button_checkout_alt#}">{#button_checkout_alt#}</span>
+					<input type="image" src="{$tpl_path}img/pixel_trans.gif" alt="{#button_checkout_alt#}" class="save" />
+				</span>
+			</a>
+		</div>
+		<p class="error-message"></p>
+	</form>
 </div>
 
 <script type="text/javascript" src="checkout.js.php?tpl={php}echo urlencode(CURRENT_TEMPLATE);{/php}&amp;v=1"></script>

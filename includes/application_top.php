@@ -167,18 +167,17 @@ require_once (DIR_FS_INC.'xtc_js_lang.php');
 xtc_db_connect() or die('Unable to connect to database server!');
 
 $configuration_query = xtc_db_query('select configuration_key as cfgKey, configuration_value as cfgValue from '.TABLE_CONFIGURATION);
-		while ($configuration = xtc_db_fetch_array($configuration_query)) {
-			// modified
-			// msslovi0 2006-11-30
-			// Template-Switcher
-			// continued after session is started
-			if($configuration['cfgKey'] == "CURRENT_TEMPLATE") {
-				$template = $configuration['cfgValue'];
-			} else {
-				define($configuration['cfgKey'], $configuration['cfgValue']);
-			}
-			// end msslovi0
-		}
+while ($configuration = xtc_db_fetch_array($configuration_query)) {
+	// continued after session is started
+	if($configuration['cfgKey'] == "CURRENT_TEMPLATE") {
+		$template = $configuration['cfgValue'];
+	} else {
+		define($configuration['cfgKey'], $configuration['cfgValue']);
+	}
+}
+
+//CSS buttons
+require_once ('templates/'.$template.'/source/inc/'.'xtc_css_button.inc.php');
 
 require_once (DIR_WS_CLASSES.'class.phpmailer.php');
 if (EMAIL_TRANSPORT == 'smtp')
@@ -186,7 +185,6 @@ if (EMAIL_TRANSPORT == 'smtp')
 require_once (DIR_FS_INC.'xtc_Security.inc.php');
 
 // set the application parameters
-
 function xtDBquery($query) {
 	if (DB_CACHE == 'true') {
 //			echo  'cached query: '.$query.'<br />';

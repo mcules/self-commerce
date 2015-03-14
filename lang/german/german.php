@@ -184,7 +184,6 @@ define('IMAGE_BUTTON_CHECKOUT', 'Kasse');
 define('IMAGE_BUTTON_CONFIRM_ORDER', 'Jetzt kaufen');
 define('IMAGE_BUTTON_CONTINUE', 'Weiter');
 define('IMAGE_BUTTON_DELETE', 'L&ouml;schen');
-define('IMAGE_BUTTON_LOGIN', 'Anmelden');
 define('IMAGE_BUTTON_IN_CART', 'In den Warenkorb');
 define('IMAGE_BUTTON_SEARCH', 'Suchen');
 define('IMAGE_BUTTON_UPDATE', 'Aktualisieren');
@@ -193,6 +192,10 @@ define('IMAGE_BUTTON_WRITE_REVIEW', 'Bewertung schreiben');
 define('IMAGE_BUTTON_ADMIN', 'Admin');
 define('IMAGE_BUTTON_PRODUCT_EDIT', 'Produkt bearbeiten');
 define('IMAGE_BUTTON_LOGIN', 'Anmelden');
+define('IMAGE_BUTTON_SEND', 'Absenden');
+define('IMAGE_BUTTON_CONTINUE_SHOPPING', 'Einkauf fortsetzen');
+define('IMAGE_BUTTON_PRODUCT_MORE', 'Details');
+define('IMAGE_BUTTON_PRODUCT_MORE', 'Details');
 
 define('SMALL_IMAGE_BUTTON_DELETE', 'L&ouml;schen');
 define('SMALL_IMAGE_BUTTON_EDIT', '&Auml;ndern');

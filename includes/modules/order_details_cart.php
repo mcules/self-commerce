@@ -65,6 +65,7 @@ for ($i = 0, $n = sizeof($products); $i < $n; $i ++)
 	$module_content[$i] = array (
 		'PRODUCTS_NAME' => $products[$i]['name'].$mark_stock,
 		'PRODUCTS_QTY'  =>  xtc_draw_input_field('cart_quantity[]',  $products[$i]['quantity'],  'size="2"').xtc_draw_hidden_field('products_id[]',  $products[$i]['id']),
+		'PRODUCTS_QUANTITY' => $products[$i]['quantity'],
 		'PRODUCTS_MODEL' => $products[$i]['model'],
 		'PRODUCTS_SHIPPING_TIME'=>$products[$i]['shipping_time'],
 		'PRODUCTS_TAX' => number_format($products[$i]['tax'], TAX_DECIMAL_PLACES),
