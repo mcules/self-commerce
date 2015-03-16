@@ -8,6 +8,8 @@
    --------------------------------------------------------------*/
 
 require('includes/application.php');
+require(DIR_FS_DOCUMENT_ROOT.'includes/configure.php');
+include('language/'.$_SESSION['language'].'.php');
 
 // include needed functions
 require_once(DIR_FS_INC.'xtc_redirect.inc.php');
@@ -19,7 +21,7 @@ include('language/'.$_SESSION['language'].'.php');
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
     <head>
-        <title>Self-Commerce Installer - STEP 2 / DB Connection</title>
+        <title>Self-Commerce Installer - STEP 1 / DB Connection</title>
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
         <style type="text/css">
             <!--
@@ -77,7 +79,7 @@ include('language/'.$_SESSION['language'].'.php');
                             <?php
                             // test database connection and write permissions
                             $db_error = false;
-                            xtc_db_connect(DB_SERVER, DB_SERVER_USERNAME, DB_SERVER_PASSWORD);
+                            xtc_db_connect_installer(DB_SERVER, DB_SERVER_USERNAME, DB_SERVER_PASSWORD);
 
                             if (!$db_error) {
                                 xtc_db_test_connection(DB_DATABASE);
@@ -101,84 +103,41 @@ include('language/'.$_SESSION['language'].'.php');
                 <table width="98%" border="0" cellpadding="0" cellspacing="0">
                     <tr>
                         <td>
-                            <?php
-                            if (!$db_error) {
-                                $Version_Query = xtc_db_query_installer("SELECT configuration_value FROM ".TABLE_CONFIGURATION." WHERE configuration_key = 'SELF_VERSION';");
-                                while ($Row = xtc_db_fetch_array($Version_Query)) {
-                                    $Self_Version = $Row['configuration_value'];
-                                }
-                            }
 
-                            if ($db_error) { ?>
-                <br />
-                <h2 class="normal"><img src="images/icons/error.gif" width="16" height="16">&nbsp;<strong><?php echo TEXT_CONNECTION_ERROR; ?></strong></h2><hr class="lineRed">
-                <p class="normal"><?php echo TEXT_DB_ERROR; ?></p>
-                <p class="h1 warning"><strong><?php echo $db_error; ?></strong></p>
-                <p class="small"><?php echo TEXT_DB_ERROR_1; ?></p>
-                <p class="small"><?php echo TEXT_DB_ERROR_2; ?></p>
-                <form name="install" action="install_step1.php" method="post">
-                    <?php
-                    reset($_POST);
-                    while (list($key, $value) = each($_POST)) {
-                        if ($key != 'x' && $key != 'y') {
-                            if (is_array($value)) {
-                                for ($i=0; $i<sizeof($value); $i++) {
-                                    echo xtc_draw_hidden_field_installer($key . '[]', $value[$i]);
-                                }
-                            } else {
-                                echo xtc_draw_hidden_field_installer($key, $value);
-                            }
-                        }
-                    }
-                    ?>
-                    <table border="0" width="100%" cellspacing="0" cellpadding="0">
-                        <tr>
-                            <td align="center"><a href="index.php"><img src="images/button_cancel.gif" border="0" alt="Cancel"></a></td>
-                            <td align="center"><input type="image" src="images/button_back.gif" border="0" alt="Back"></td>
-                        </tr>
-                    </table>
-                </form>
-            </td>
-        </tr>
-    </table>
-<?php } else { ?>
-            <span class="title"><?php echo TEXT_CONNECTION_SUCCESS; ?></span><hr class="lineRed">
-            <p class="small"><?php echo TEXT_UPDATE_1; ?></p>
-            <p class="small"><?php echo TEXT_PROCESS_2; ?></p>
-            <p class="small">
-                <?php
-                if($Self_Version == NULL) { $Self_Version = '2.0'; }
+					        <span class="title"><?php echo TEXT_CONNECTION_SUCCESS; ?></span><hr class="lineRed">
+					        <p class="small"><?php echo TEXT_UPDATE_1; ?></p>
+					        <p class="small"><?php echo TEXT_PROCESS_2; ?></p>
+					        <p class="small">
+					            <?php
+					            if($Self_Version == NULL) { $Self_Version = '2.0'; }
 
-                /* TODO Muss noch umgestellt werden fuer Livebetrieb */
-                $Sql_File = DIR_FS_CATALOG . "self_installer/update_$Self_Version.sql";
-                if(file_exists(($Sql_File))) {
-                    $Error = false;
-                    echo '<span class="green"><strong>Checking Updatefile .............................. OK</strong></span>';
-                }
-                else {
-                    $Error = true;
-                    echo '<span class="red"><strong>Checking Updatefile .............................. <font color="red">ERROR</font></strong></span>';
-                }
-                ?>
-                <br />
-                <br />
-            </p>
-            <?php if(!$Error) { ?>
-                <p class="small"><?php echo TEXT_UPDATE_2; ?></p>
-                <form name="install" action="update_step2.php" method="post">
-                    <input type="hidden" name="Version" value="<?php echo $Self_Version.'$%&§()'; ?>" />
-                    <table border="0" width="100%" cellspacing="0" cellpadding="0">
-                        <tr>
-                            <td align="center"><a href="update.php"><img src="images/button_cancel.gif" border="0" alt="Cancel"></a></td>
-                            <td align="center"><input type="image" src="images/button_continue.gif" border="0" alt="Continue"></td>
-                        </tr>
-                    </table>
-                </form>
-                <?php } ?>
-            </td>
-        </tr>
-    </table>
-<?php } ?>
+					            /* TODO Muss noch umgestellt werden fuer Livebetrieb */
+					            $Sql_File = DIR_FS_CATALOG . "self_installer/update_$Self_Version.sql";
+					            if(file_exists(($Sql_File))) {
+					                $Error = false;
+					                echo '<span class="green"><strong>Checking Updatefile .............................. OK</strong></span>';
+					            }
+					            else {
+					                $Error = true;
+					                echo '<span class="red"><strong>Checking Updatefile .............................. <font color="red">ERROR</font></strong></span>';
+					            }
+					            ?>
+					            <br />
+					            <br />
+					        </p>
+					        <?php if(!$Error) { ?>
+					            <p class="small"><?php echo TEXT_UPDATE_2; ?></p>
+					            <form name="install" action="update_step2.php" method="post">
+					                <input type="hidden" name="Version" value="<?php echo $Self_Version.'$%&§()'; ?>" />
+					                <table border="0" width="100%" cellspacing="0" cellpadding="0">
+					                    <tr>
+					                        <td align="center"><a href="update.php"><img src="images/button_cancel.gif" border="0" alt="Cancel"></a></td>
+					                        <td align="center"><input type="image" src="images/button_continue.gif" border="0" alt="Continue"></td>
+					                    </tr>
+					                </table>
+					            </form>
+					            <?php } ?>
+					        </td>
                         </tr>
                     </table>
                 </td>
