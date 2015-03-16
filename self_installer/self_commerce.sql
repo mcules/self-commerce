@@ -1,18 +1,19 @@
 # -----------------------------------------------------------------------------------------
 #  $Id: self_commerce.sql,v 1.62 2004/06/06 18:21:16 novalis Exp $#  XT-Commerce - community made shopping
-#  http://www.xt-commerce.com#  Copyright (c) 2003 XT-Commerce
-#  -----------------------------------------------------------------------------------------
-#  Third Party Contributions:
-#  Customers status v3.x (c) 2002-2003 Elari elari@free.fr
-#  Download area : www.unlockgsm.com/dload-osc/
-#  CVS : http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/elari/?sortby=date#dirlist
-#  BMC 2003 for the CC CVV Module
-#  qenta v1.0          Andreas Oberzier <xtc@netz-designer.de>
+#
+#  Self-Commerce - Fresh up your eCommerce
+#  http://www.self-commerce.de
+#
+#  Copyright (c) 2015 Self-Commerce
 #  --------------------------------------------------------------
 #  based on:
-#  (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
-#  (c) 2002-2003 osCommerce (oscommerce.sql,v 1.83); www.oscommerce.com
-#  (c) 2003  nextcommerce (nextcommerce.sql,v 1.76 2003/08/25); www.nextcommerce.org#  Released under the GNU General Public License#  --------------------------------------------------------------
+#  (c) 2000-2001	The Exchange Project  (earlier name of osCommerce)
+#  (c) 2002-2003	osCommerce (oscommerce.sql,v 1.83); www.oscommerce.com
+#  (c) 2003-2008	nextcommerce (nextcommerce.sql,v 1.76 2003/08/25); www.nextcommerce.org
+#  (c) 2008			Self-Commerce (self_commerce.sql) www.self-commerce.de
+#
+#  Released under the GNU General Public License
+#  --------------------------------------------------------------
 # NOTE: * Please make any modifications to this file by hand!
 #       * DO NOT use a mysqldump created file for new changes!
 #       * Please take note of the table structure, and use this
@@ -44,7 +45,7 @@ CREATE TABLE address_book (
   address_last_modified datetime DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (address_book_id),
   KEY idx_address_book_customers_id (customers_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS customers_memo;
 CREATE TABLE customers_memo (
@@ -55,7 +56,7 @@ CREATE TABLE customers_memo (
   memo_text text NOT NULL,
   poster_id int(11) NOT NULL default '0',
   PRIMARY KEY  (memo_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS products_xsell;
 CREATE TABLE products_xsell (
@@ -65,7 +66,7 @@ CREATE TABLE products_xsell (
   xsell_id int(10) unsigned NOT NULL default '1',
   sort_order int(10) unsigned NOT NULL default '1',
   PRIMARY KEY  (ID)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS products_xsell_grp_name;
 CREATE TABLE products_xsell_grp_name (
@@ -73,7 +74,7 @@ CREATE TABLE products_xsell_grp_name (
   xsell_sort_order int(10) NOT NULL default '0',
   language_id smallint(6) NOT NULL default '0',
   groupname varchar(255) NOT NULL default ''
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS campaigns;
 CREATE TABLE campaigns (
@@ -85,14 +86,14 @@ CREATE TABLE campaigns (
   last_modified datetime default NULL,
   PRIMARY KEY  (campaigns_id),
   KEY IDX_CAMPAIGNS_NAME (campaigns_name)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS campaigns_ip;
 CREATE TABLE  campaigns_ip (
  user_ip VARCHAR( 15 ) NOT NULL ,
  time DATETIME NOT NULL ,
  campaign VARCHAR( 32 ) NOT NULL
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS address_format;
 CREATE TABLE address_format (
@@ -100,13 +101,13 @@ CREATE TABLE address_format (
   address_format varchar(128) NOT NULL,
   address_summary varchar(48) NOT NULL,
   PRIMARY KEY (address_format_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS database_version;
 CREATE TABLE database_version (
   version varchar(32) NOT NULL
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS admin_access;
 CREATE TABLE admin_access (
@@ -184,7 +185,7 @@ CREATE TABLE admin_access (
   tiny_htacess int(1) NOT NULL default '0',
   products_expected int(1) NOT NULL default '0',
   PRIMARY KEY  (customers_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS banktransfer;
@@ -198,7 +199,7 @@ CREATE TABLE banktransfer (
   banktransfer_prz char(2) default NULL,
   banktransfer_fax char(2) default NULL,
   KEY orders_id(orders_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS banners;
@@ -216,7 +217,7 @@ CREATE TABLE banners (
   date_status_change datetime DEFAULT NULL,
   status int(1) DEFAULT '1' NOT NULL,
   PRIMARY KEY  (banners_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS banners_history;
 CREATE TABLE banners_history (
@@ -226,7 +227,7 @@ CREATE TABLE banners_history (
   banners_clicked int(5) NOT NULL DEFAULT '0',
   banners_history_date datetime NOT NULL,
   PRIMARY KEY  (banners_history_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS categories;
 CREATE TABLE categories (
@@ -247,7 +248,7 @@ CREATE TABLE categories (
   last_modified datetime,
   PRIMARY KEY (categories_id),
   KEY idx_categories_parent_id (parent_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO categories (categories_id, categories_image, parent_id, categories_status, categories_template, group_permission_0, group_permission_1, group_permission_2, group_permission_3, listing_template, sort_order, products_sorting, products_sorting2, date_added, last_modified) VALUES
 (1, NULL, 0, 0, 'categorie_listing.html', 0, 0, 0, 0, 'product_listing_v2.html', 0, 'p.products_price', 'ASC', NOW(), NULL);
@@ -264,7 +265,7 @@ CREATE TABLE categories_description (
   categories_meta_keywords varchar(255) NOT NULL,
   PRIMARY KEY (categories_id, language_id),
   KEY idx_categories_name (categories_name)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO categories_description (categories_id, language_id, categories_name, categories_heading_title, categories_description, categories_meta_title, categories_meta_description, categories_meta_keywords) VALUES
 (1, 1, 'Warenkorb', '', '', '', '', ''),
@@ -283,7 +284,7 @@ CREATE TABLE configuration (
   set_function varchar(255) NULL,
   PRIMARY KEY (configuration_id),
   KEY idx_configuration_group_id (configuration_group_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS configuration_group;
 CREATE TABLE configuration_group (
@@ -293,19 +294,19 @@ CREATE TABLE configuration_group (
   sort_order int(5) NULL,
   visible int(1) DEFAULT '1' NULL,
   PRIMARY KEY (configuration_group_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS counter;
 CREATE TABLE counter (
   startdate char(8),
   counter int(12)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS counter_history;
 CREATE TABLE counter_history (
   month char(8),
   counter int(12)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS countries;
 CREATE TABLE countries (
@@ -317,7 +318,7 @@ CREATE TABLE countries (
   status int(1) DEFAULT '1' NULL,
   PRIMARY KEY (countries_id),
   KEY IDX_COUNTRIES_NAME (countries_name)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS currencies;
 CREATE TABLE currencies (
@@ -332,7 +333,7 @@ CREATE TABLE currencies (
   value float(13,8),
   last_updated datetime NULL,
   PRIMARY KEY (currencies_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS customers;
 CREATE TABLE customers (
@@ -366,7 +367,7 @@ CREATE TABLE customers (
   login_tries VARCHAR(2) NOT NULL DEFAULT '0',
   login_time DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (customers_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS customers_basket;
 CREATE TABLE customers_basket (
@@ -377,7 +378,7 @@ CREATE TABLE customers_basket (
   final_price decimal(15,4) NOT NULL,
   customers_basket_date_added char(8),
   PRIMARY KEY (customers_basket_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS customers_basket_attributes;
 CREATE TABLE customers_basket_attributes (
@@ -387,7 +388,7 @@ CREATE TABLE customers_basket_attributes (
   products_options_id int NOT NULL,
   products_options_value_id int NOT NULL,
   PRIMARY KEY (customers_basket_attributes_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS customers_info;
 CREATE TABLE customers_info (
@@ -398,7 +399,7 @@ CREATE TABLE customers_info (
   customers_info_date_account_last_modified datetime,
   global_product_notifications int(1) DEFAULT '0',
   PRIMARY KEY (customers_info_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS customers_ip;
 CREATE TABLE customers_ip (
@@ -411,7 +412,7 @@ CREATE TABLE customers_ip (
   customers_referer_url varchar(255) default NULL,
   PRIMARY KEY  (customers_ip_id),
   KEY customers_id (customers_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS customers_status;
 CREATE TABLE customers_status (
@@ -438,7 +439,7 @@ CREATE TABLE customers_status (
   customers_status_read_reviews int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY  (customers_status_id,language_id),
   KEY idx_orders_status_name (customers_status_name)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS customers_status_history;
 CREATE TABLE customers_status_history (
@@ -449,7 +450,7 @@ CREATE TABLE customers_status_history (
   date_added datetime NOT NULL default '0000-00-00 00:00:00',
   customer_notified int(1) default '0',
   PRIMARY KEY  (customers_status_history_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS languages;
 CREATE TABLE languages (
@@ -462,7 +463,7 @@ CREATE TABLE languages (
   language_charset text NOT NULL,
   PRIMARY KEY (languages_id),
   KEY IDX_LANGUAGES_NAME (name)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS manufacturers;
@@ -474,7 +475,7 @@ CREATE TABLE manufacturers (
   last_modified datetime NULL,
   PRIMARY KEY (manufacturers_id),
   KEY IDX_MANUFACTURERS_NAME (manufacturers_name)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS manufacturers_info;
 CREATE TABLE manufacturers_info (
@@ -487,7 +488,7 @@ CREATE TABLE manufacturers_info (
   url_clicked int(5) NOT NULL default '0',
   date_last_click datetime NULL,
   PRIMARY KEY (manufacturers_id, languages_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS newsletters;
 CREATE TABLE newsletters (
@@ -500,7 +501,7 @@ CREATE TABLE newsletters (
   status int(1),
   locked int(1) DEFAULT '0',
   PRIMARY KEY (newsletters_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS newsletter_recipients;
 CREATE TABLE newsletter_recipients (
@@ -514,7 +515,7 @@ CREATE TABLE newsletter_recipients (
   mail_key varchar(32) NOT NULL default '',
   date_added datetime NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (mail_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS newsletters_history;
 CREATE TABLE newsletters_history (
@@ -522,7 +523,7 @@ CREATE TABLE newsletters_history (
   news_hist_cs int(11) NOT NULL default '0',
   news_hist_cs_date_sent date default NULL,
   PRIMARY KEY  (news_hist_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS orders;
 CREATE TABLE orders (
@@ -598,7 +599,7 @@ CREATE TABLE orders (
   conversion_type INT(1) DEFAULT '0' NOT NULL,
   orders_ident_key varchar(128),
   PRIMARY KEY (orders_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS card_blacklist;
 CREATE TABLE card_blacklist (
@@ -607,7 +608,7 @@ CREATE TABLE card_blacklist (
   date_added datetime default NULL,
   last_modified datetime default NULL,
   KEY blacklist_id (blacklist_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS orders_products;
 CREATE TABLE orders_products (
@@ -624,7 +625,7 @@ CREATE TABLE orders_products (
   allow_tax int(1) NOT NULL,
   products_shipping_time VARCHAR(32) NOT NULL,
   PRIMARY KEY (orders_products_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS orders_status;
 CREATE TABLE orders_status (
@@ -633,7 +634,7 @@ CREATE TABLE orders_status (
   orders_status_name varchar(32) NOT NULL,
   PRIMARY KEY (orders_status_id, language_id),
   KEY idx_orders_status_name (orders_status_name)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS shipping_status;
 CREATE TABLE shipping_status (
@@ -643,7 +644,7 @@ CREATE TABLE shipping_status (
   shipping_status_image varchar(32) NOT NULL,
   PRIMARY KEY (shipping_status_id, language_id),
   KEY idx_shipping_status_name (shipping_status_name)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS orders_status_history;
 CREATE TABLE orders_status_history (
@@ -654,7 +655,7 @@ CREATE TABLE orders_status_history (
   customer_notified int(1) DEFAULT '0',
   comments text,
   PRIMARY KEY (orders_status_history_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS orders_products_attributes;
 CREATE TABLE orders_products_attributes (
@@ -666,7 +667,7 @@ CREATE TABLE orders_products_attributes (
   options_values_price decimal(15,4) NOT NULL,
   price_prefix char(1) NOT NULL,
   PRIMARY KEY (orders_products_attributes_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS orders_products_download;
 CREATE TABLE orders_products_download (
@@ -677,7 +678,7 @@ CREATE TABLE orders_products_download (
   download_maxdays int(2) NOT NULL default '0',
   download_count int(2) NOT NULL default '0',
   PRIMARY KEY  (orders_products_download_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS orders_total;
 CREATE TABLE orders_total (
@@ -690,7 +691,7 @@ CREATE TABLE orders_total (
   sort_order int NOT NULL,
   PRIMARY KEY (orders_total_id),
   KEY idx_orders_total_orders_id (orders_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS orders_recalculate;
 CREATE TABLE orders_recalculate (
@@ -702,7 +703,7 @@ CREATE TABLE orders_recalculate (
   tax_rate decimal(7,4) NOT NULL default '0.0000',
   class varchar(32) NOT NULL default '',
   PRIMARY KEY  (orders_recalculate_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS products;
 CREATE TABLE products (
@@ -739,7 +740,7 @@ CREATE TABLE products (
   KEY idx_products_date_added (products_date_added),
   products_setup int(1) default '0',
   setup_price decimal(15,4) NOT NULL default '0.0000'
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS products_attributes;
 CREATE TABLE products_attributes (
@@ -755,7 +756,7 @@ CREATE TABLE products_attributes (
   weight_prefix char(1) NOT NULL,
   sortorder int(11) NULL,
   PRIMARY KEY (products_attributes_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS products_attributes_download;
 CREATE TABLE products_attributes_download (
@@ -764,7 +765,7 @@ CREATE TABLE products_attributes_download (
   products_attributes_maxdays int(2) default '0',
   products_attributes_maxcount int(2) default '0',
   PRIMARY KEY  (products_attributes_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS products_description;
 CREATE TABLE products_description (
@@ -781,7 +782,7 @@ CREATE TABLE products_description (
   products_viewed int(5) default '0',
   PRIMARY KEY  (products_id,language_id),
   KEY products_name (products_name)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS products_images;
 CREATE TABLE products_images (
@@ -790,7 +791,7 @@ CREATE TABLE products_images (
   image_nr SMALLINT NOT NULL ,
   image_name VARCHAR( 254 ) NOT NULL ,
   PRIMARY KEY ( image_id )
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS products_notifications;
 CREATE TABLE products_notifications (
@@ -798,7 +799,7 @@ CREATE TABLE products_notifications (
   customers_id int NOT NULL,
   date_added datetime NOT NULL,
   PRIMARY KEY (products_id, customers_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS products_options;
 CREATE TABLE products_options (
@@ -806,7 +807,7 @@ CREATE TABLE products_options (
   language_id int NOT NULL default '1',
   products_options_name varchar(32) NOT NULL default '',
   PRIMARY KEY  (products_options_id,language_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS products_options_values;
 CREATE TABLE products_options_values (
@@ -814,7 +815,7 @@ CREATE TABLE products_options_values (
   language_id int NOT NULL default '1',
   products_options_values_name varchar(64) NOT NULL default '',
   PRIMARY KEY  (products_options_values_id,language_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS products_options_values_to_products_options;
 CREATE TABLE products_options_values_to_products_options (
@@ -822,7 +823,7 @@ CREATE TABLE products_options_values_to_products_options (
   products_options_id int NOT NULL,
   products_options_values_id int NOT NULL,
   PRIMARY KEY (products_options_values_to_products_options_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS products_graduated_prices;
 CREATE TABLE products_graduated_prices (
@@ -830,7 +831,7 @@ CREATE TABLE products_graduated_prices (
   quantity int(11) NOT NULL default '0',
   unitprice decimal(15,4) NOT NULL default '0.0000',
   KEY products_id (products_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS products_to_categories;
@@ -839,14 +840,14 @@ CREATE TABLE products_to_categories (
   categories_id int NOT NULL,
   PRIMARY KEY  (products_id,categories_id),
   KEY categories_id (categories_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS products_vpe;
 CREATE TABLE products_vpe (
   products_vpe_id int(11) NOT NULL default '0',
   language_id int(11) NOT NULL default '0',
   products_vpe_name varchar(32) NOT NULL default ''
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS reviews;
 CREATE TABLE reviews (
@@ -859,7 +860,7 @@ CREATE TABLE reviews (
   last_modified datetime,
   reviews_read int(5) NOT NULL default '0',
   PRIMARY KEY (reviews_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS reviews_description;
 CREATE TABLE reviews_description (
@@ -867,7 +868,7 @@ CREATE TABLE reviews_description (
   languages_id int NOT NULL,
   reviews_text text NOT NULL,
   PRIMARY KEY (reviews_id, languages_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS sessions;
 CREATE TABLE sessions (
@@ -875,7 +876,7 @@ CREATE TABLE sessions (
   expiry int(11) unsigned NOT NULL,
   value text NOT NULL,
   PRIMARY KEY (sesskey)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS specials;
 CREATE TABLE specials (
@@ -889,7 +890,7 @@ CREATE TABLE specials (
   date_status_change datetime,
   status int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (specials_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS tax_class;
 CREATE TABLE tax_class (
@@ -899,7 +900,7 @@ CREATE TABLE tax_class (
   last_modified datetime NULL,
   date_added datetime NOT NULL,
   PRIMARY KEY (tax_class_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS tax_rates;
 CREATE TABLE tax_rates (
@@ -912,7 +913,7 @@ CREATE TABLE tax_rates (
   last_modified datetime NULL,
   date_added datetime NOT NULL,
   PRIMARY KEY (tax_rates_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS geo_zones;
 CREATE TABLE geo_zones (
@@ -922,7 +923,7 @@ CREATE TABLE geo_zones (
   last_modified datetime NULL,
   date_added datetime NOT NULL,
   PRIMARY KEY (geo_zone_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS whos_online;
 CREATE TABLE whos_online (
@@ -933,7 +934,7 @@ CREATE TABLE whos_online (
   time_entry varchar(14) NOT NULL,
   time_last_click varchar(14) NOT NULL,
   last_page_url varchar(255) NOT NULL
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS zones;
 CREATE TABLE zones (
@@ -942,7 +943,7 @@ CREATE TABLE zones (
   zone_code varchar(32) NOT NULL,
   zone_name varchar(32) NOT NULL,
   PRIMARY KEY (zone_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS zones_to_geo_zones;
 CREATE TABLE zones_to_geo_zones (
@@ -953,8 +954,7 @@ CREATE TABLE zones_to_geo_zones (
    last_modified datetime NULL,
    date_added datetime NOT NULL,
    PRIMARY KEY (association_id)
-);
-
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS content_manager;
 CREATE TABLE content_manager (
@@ -979,7 +979,7 @@ CREATE TABLE content_manager (
   content_meta_description text,
   content_meta_keywords text,
   PRIMARY KEY  (content_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS media_content;
 CREATE TABLE media_content (
@@ -988,7 +988,7 @@ CREATE TABLE media_content (
   new_filename text NOT NULL,
   file_comment text NOT NULL,
   PRIMARY KEY  (file_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS products_content;
 CREATE TABLE products_content (
@@ -1002,7 +1002,7 @@ CREATE TABLE products_content (
   content_read int(11) NOT NULL default '0',
   file_comment text NOT NULL,
   PRIMARY KEY  (content_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS module_newsletter;
 CREATE TABLE module_newsletter (
@@ -1014,24 +1014,21 @@ CREATE TABLE module_newsletter (
   status int(1) NOT NULL default '0',
   body text NOT NULL,
   PRIMARY KEY  (newsletter_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE if exists cm_file_flags;
 CREATE TABLE cm_file_flags (
   file_flag int(11) NOT NULL,
   file_flag_name varchar(32) NOT NULL,
   PRIMARY KEY (file_flag)
-);
-
-
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE if EXISTS payment_moneybookers_currencies;
 CREATE TABLE payment_moneybookers_currencies (
   mb_currID char(3) NOT NULL default '',
   mb_currName varchar(255) NOT NULL default '',
   PRIMARY KEY  (mb_currID)
-);
-
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE if EXISTS payment_moneybookers;
 CREATE TABLE payment_moneybookers (
@@ -1043,15 +1040,14 @@ CREATE TABLE payment_moneybookers (
   mb_STATUS tinyint(1) NOT NULL default '0',
   mb_ORDERID int(11) unsigned NOT NULL default '0',
   PRIMARY KEY  (mb_TRID)
-);
-
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE if EXISTS payment_moneybookers_countries;
 CREATE TABLE payment_moneybookers_countries (
   osc_cID int(11) NOT NULL default '0',
   mb_cID char(3) NOT NULL default '',
   PRIMARY KEY  (osc_cID)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE if EXISTS coupon_email_track;
 CREATE TABLE coupon_email_track (
@@ -1063,7 +1059,7 @@ CREATE TABLE coupon_email_track (
   emailed_to varchar(32) default NULL,
   date_sent datetime NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (unique_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE if EXISTS coupon_gv_customer;
 CREATE TABLE coupon_gv_customer (
@@ -1071,7 +1067,7 @@ CREATE TABLE coupon_gv_customer (
   amount decimal(8,4) NOT NULL default '0.0000',
   PRIMARY KEY  (customer_id),
   KEY customer_id (customer_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE if EXISTS coupon_gv_queue;
 CREATE TABLE coupon_gv_queue (
@@ -1084,7 +1080,7 @@ CREATE TABLE coupon_gv_queue (
   release_flag char(1) NOT NULL default 'N',
   PRIMARY KEY  (unique_id),
   KEY uid (unique_id,customer_id,order_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE if EXISTS coupon_redeem_track;
 CREATE TABLE coupon_redeem_track (
@@ -1095,7 +1091,7 @@ CREATE TABLE coupon_redeem_track (
   redeem_ip varchar(32) NOT NULL default '',
   order_id int(11) NOT NULL default '0',
   PRIMARY KEY  (unique_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE if EXISTS coupons;
 CREATE TABLE coupons (
@@ -1115,7 +1111,7 @@ CREATE TABLE coupons (
   date_created datetime NOT NULL default '0000-00-00 00:00:00',
   date_modified datetime NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (coupon_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE if EXISTS coupons_description;
 CREATE TABLE coupons_description (
@@ -1124,7 +1120,7 @@ CREATE TABLE coupons_description (
   coupon_name varchar(32) NOT NULL default '',
   coupon_description text,
   KEY coupon_id (coupon_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE if exists payment_qenta;
 CREATE TABLE payment_qenta (
@@ -1135,7 +1131,7 @@ CREATE TABLE payment_qenta (
   q_STATUS tinyint(1) NOT NULL default '0',
   q_ORDERID int(11) unsigned NOT NULL default '0',
   PRIMARY KEY  (q_TRID)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE if EXISTS personal_offers_by_customers_status_0;
 DROP TABLE if EXISTS personal_offers_by_customers_status_1;
@@ -1293,7 +1289,7 @@ INSERT INTO `configuration` (configuration_id,  configuration_key, configuration
 INSERT INTO `configuration` (configuration_id,  configuration_key, configuration_value, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES   ('', 'DEFAULT_CUSTOMERS_STATUS_ID_GUEST', '1',  1, 21, NULL, '', 'xtc_get_customers_status_name', 'xtc_cfg_pull_down_customers_status_list(');
 INSERT INTO `configuration` (configuration_id,  configuration_key, configuration_value, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES   ('', 'DEFAULT_CUSTOMERS_STATUS_ID', '2',  1, 23, NULL, '', 'xtc_get_customers_status_name', 'xtc_cfg_pull_down_customers_status_list(');
 INSERT INTO `configuration` (configuration_id,  configuration_key, configuration_value, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES   ('', 'ALLOW_ADD_TO_CART', 'false',  1, 24, NULL, '', NULL, 'xtc_cfg_select_option(array(\'true\', \'false\'),');
-INSERT INTO `configuration` (configuration_id,  configuration_key, configuration_value, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES   ('', 'CURRENT_TEMPLATE', 'self_grey', 1, 26, NULL, '', NULL, 'xtc_cfg_pull_down_template_sets(');
+INSERT INTO `configuration` (configuration_id,  configuration_key, configuration_value, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES   ('', 'CURRENT_TEMPLATE', 'self_default', 1, 26, NULL, '', NULL, 'xtc_cfg_pull_down_template_sets(');
 INSERT INTO `configuration` (configuration_id,  configuration_key, configuration_value, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES   ('', 'PRICE_IS_BRUTTO', 'false', 1, 27, NULL, '', NULL, 'xtc_cfg_select_option(array(\'true\', \'false\'),');
 INSERT INTO `configuration` (configuration_id,  configuration_key, configuration_value, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES   ('', 'PRICE_PRECISION', '4', 1, 28, NULL, '', NULL, '');
 INSERT INTO `configuration` (configuration_id,  configuration_key, configuration_value, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES   ('', 'CC_KEYCHAIN', 'changeme', 1, 29, NULL, '', NULL, '');
@@ -1642,7 +1638,8 @@ CREATE TABLE countries (
   status int(1) DEFAULT '1' NULL,
   PRIMARY KEY (countries_id),
   KEY IDX_COUNTRIES_NAME (countries_name)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 INSERT INTO countries VALUES (1,'Afghanistan','AF','AFG','1','1');
 INSERT INTO countries VALUES (2,'Albania','AL','ALB','1','1');
 INSERT INTO countries VALUES (3,'Algeria','DZ','DZA','1','1');
@@ -3032,7 +3029,7 @@ INSERT INTO `configuration` (configuration_key, configuration_value, configurati
 INSERT INTO `configuration` (configuration_key, configuration_value, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('TOKEN_SERVER_PORT_ACCOUNTING', '', 365, 2, NULL, NOW(), NULL, NULL);
 INSERT INTO `configuration` (configuration_key, configuration_value, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('TOKEN_SERVER_NAS_IP', '', 365, 2, NULL, NOW(), NULL, NULL);
 INSERT INTO `configuration` (configuration_key, configuration_value, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('TOKEN_SECURE_ADMIN', '0', 365, 5, NULL, NOW(), NULL, 'xtc_cfg_select_option(array(1, 0), ');
-CREATE TABLE IF NOT EXISTS token_admins (username varchar(16) NOT NULL, customers_id int(11) NOT NULL) ENGINE=MyISAM;
+CREATE TABLE IF NOT EXISTS token_admins (username varchar(16) NOT NULL, customers_id int(11) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 UPDATE admin_access SET token_admin='1' WHERE admin_access.customers_id='1';
 
 # Product Details
@@ -3041,7 +3038,7 @@ CREATE TABLE IF NOT EXISTS products_details (
   products_details_name varchar(32) NOT NULL DEFAULT '',
   products_details_title text,
   PRIMARY KEY (products_details_id)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 INSERT INTO products_details (products_details_id, products_details_name, products_details_title) VALUES (1, 'Details', '{"2":"","1":""}');
 
 # Product Details Values
@@ -3051,7 +3048,7 @@ CREATE TABLE IF NOT EXISTS products_details_values (
   products_details_value varchar(75) NOT NULL,
   language_id int(11) NOT NULL,
   KEY products_id (products_id)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 # PDF Rechnung
 ALTER TABLE orders ADD bill_nr INT( 10 ) NULL ;
@@ -3124,7 +3121,7 @@ CREATE TABLE IF NOT EXISTS `imagesliders` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `sorting` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`imagesliders_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 INSERT INTO `imagesliders` (`imagesliders_id`, `imagesliders_name`, `date_added`, `last_modified`, `status`, `sorting`) VALUES
 (1, 'Bild 1', '2014-01-10 11:31:07', '2014-01-18 17:39:32', 0, 0),
@@ -3146,7 +3143,7 @@ CREATE TABLE IF NOT EXISTS `imagesliders_info` (
   `imagesliders_indicator_class` int(1) NOT NULL DEFAULT '0',
   `imagesliders_caption_class` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`imagesliders_id`,`languages_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `imagesliders_info` (`imagesliders_id`, `languages_id`, `imagesliders_title`, `imagesliders_url`, `imagesliders_url_target`, `imagesliders_url_typ`, `imagesliders_description`, `imagesliders_image`, `url_clicked`, `date_last_click`, `imagesliders_indicator_class`, `imagesliders_caption_class`) VALUES
 (1, 2, 'Das ist Bild 1', '84', 0, 3, '<h4>Hier der Titel</h4>\r\n<p>Bildbeschreibung in Deutsch</p>', 'imagesliders/german/bild1.jpg', 0, NULL, 0, 0),
@@ -3162,51 +3159,35 @@ ALTER TABLE `admin_access` ADD `imagesliders` INT( 1 ) NOT NULL DEFAULT '0';
 UPDATE `admin_access` SET `imagesliders` = 1 WHERE customers_id = '1';
 
 CREATE TABLE `scart` (
-   `scartid` INT( 11 ) NOT NULL AUTO_INCREMENT, `customers_id` INT( 11 ) NOT NULL UNIQUE, `dateadded` VARCHAR( 8 ) NOT NULL, `datemodified` VARCHAR( 8 ) NOT NULL, PRIMARY KEY ( `scartid` ));
-INSERT INTO `configuration_group` ( `configuration_group_id` , `configuration_group_title` , `configuration_group_description` , `sort_order` , `visible` )
-   VALUES ('33', 'Recover Cart Sales', 'Recover Cart Sales (RCS) Configuration Values', '33', '1');
-INSERT INTO `configuration` ( `configuration_id` , `configuration_key` , `configuration_value` , `configuration_group_id` , `sort_order` , `last_modified` , `date_added` , `use_function` , `set_function` )
-   VALUES ('', 'RCS_BASE_DAYS', '30', 33, 10, NULL, NOW(), '', '');
-INSERT INTO `configuration` ( `configuration_id` , `configuration_key` , `configuration_value` , `configuration_group_id` , `sort_order` , `last_modified` , `date_added` , `use_function` , `set_function` )
-   VALUES ('', 'RCS_REPORT_DAYS', '90', 33, 15, NULL, NOW(), '', '');
-INSERT INTO `configuration` ( `configuration_id` , `configuration_key` , `configuration_value` , `configuration_group_id` , `sort_order` , `last_modified` , `date_added` , `use_function` , `set_function` )
-   VALUES ('', 'RCS_EMAIL_TTL', '90', 33, 20, NULL, NOW(), '', '');
-INSERT INTO `configuration` ( `configuration_id` , `configuration_key` , `configuration_value` , `configuration_group_id` , `sort_order` , `last_modified` , `date_added` , `use_function` , `set_function` )
-   VALUES ('', 'RCS_EMAIL_FRIENDLY', 'true', 33, 30, NULL, NOW(), '', "xtc_cfg_select_option(array('true', 'false'),");
-INSERT INTO `configuration` ( `configuration_id` , `configuration_key` , `configuration_value` , `configuration_group_id` , `sort_order` , `last_modified` , `date_added` , `use_function` , `set_function` )
-   VALUES ('', 'RCS_EMAIL_COPIES_TO', '', 33, 35, NULL, NOW(), '', '');
-INSERT INTO `configuration` ( `configuration_id` , `configuration_key` , `configuration_value` , `configuration_group_id` , `sort_order` , `last_modified` , `date_added` , `use_function` , `set_function` )
-   VALUES ('', 'RCS_SHOW_ATTRIBUTES', 'false',  33, 40, NULL, NOW(), '', "xtc_cfg_select_option(array('true', 'false'),");
-INSERT INTO `configuration` ( `configuration_id` , `configuration_key` , `configuration_value` , `configuration_group_id` , `sort_order` , `last_modified` , `date_added` , `use_function` , `set_function` )
-   VALUES ('', 'RCS_CHECK_SESSIONS', 'false', 33, 40, NULL, NOW(), '', "xtc_cfg_select_option(array('true', 'false'),");
-INSERT INTO `configuration` ( `configuration_id` , `configuration_key` , `configuration_value` , `configuration_group_id` , `sort_order` , `last_modified` , `date_added` , `use_function` , `set_function` )
-   VALUES ('', 'RCS_CURCUST_COLOR', '0000FF', 33, 50, NULL, NOW(), '', '');
-INSERT INTO `configuration` ( `configuration_id` , `configuration_key` , `configuration_value` , `configuration_group_id` , `sort_order` , `last_modified` , `date_added` , `use_function` , `set_function` )
-   VALUES ('', 'RCS_UNCONTACTED_COLOR', '9FFF9F', 33, 60, NULL, NOW(), '', '');
-INSERT INTO `configuration` ( `configuration_id` , `configuration_key` , `configuration_value` , `configuration_group_id` , `sort_order` , `last_modified` , `date_added` , `use_function` , `set_function` )
-   VALUES ('', 'RCS_CONTACTED_COLOR', 'FF9F9F', 33, 70, NULL, NOW(), '', '');
-INSERT INTO `configuration` ( `configuration_id` , `configuration_key` , `configuration_value` , `configuration_group_id` , `sort_order` , `last_modified` , `date_added` , `use_function` , `set_function` )
-   VALUES ('', 'RCS_MATCHED_ORDER_COLOR', '9FFFFF', 33, 72, NULL, NOW(), '', '');
-INSERT INTO `configuration` ( `configuration_id` , `configuration_key` , `configuration_value` , `configuration_group_id` , `sort_order` , `last_modified` , `date_added` , `use_function` , `set_function` )
-   VALUES ('', 'RCS_SKIP_MATCHED_CARTS', 'true', 33, 80, NULL, NOW(), '', "xtc_cfg_select_option(array('true', 'false'),");
-INSERT INTO `configuration` ( `configuration_id` , `configuration_key` , `configuration_value` , `configuration_group_id` , `sort_order` , `last_modified` , `date_added` , `use_function` , `set_function` )
-   VALUES ('', 'RCS_AUTO_CHECK', 'true', 33, 82, NULL, NOW(), '', "xtc_cfg_select_option(array('true', 'false'),");
-INSERT INTO `configuration` ( `configuration_id` , `configuration_key` , `configuration_value` , `configuration_group_id` , `sort_order` , `last_modified` , `date_added` , `use_function` , `set_function` )
-   VALUES ('', 'RCS_CARTS_MATCH_ALL_DATES', 'true', 33, 84, NULL, NOW(), '', "xtc_cfg_select_option(array('true', 'false'),");
-INSERT INTO `configuration` ( `configuration_id` , `configuration_key` , `configuration_value` , `configuration_group_id` , `sort_order` , `last_modified` , `date_added` , `use_function` , `set_function` )
-   VALUES ('', 'RCS_PENDING_SALE_STATUS', '1', 33, 85, NULL, NOW(), 'xtc_get_order_status_name', 'xtc_cfg_pull_down_order_statuses(');
-INSERT INTO `configuration` ( `configuration_id` , `configuration_key` , `configuration_value` , `configuration_group_id` , `sort_order` , `last_modified` , `date_added` , `use_function` , `set_function` )
-   VALUES ('', 'RCS_REPORT_EVEN_STYLE', 'dataTableRow', 33, 90, NULL, NOW(), '', '');
-INSERT INTO `configuration` ( `configuration_id` , `configuration_key` , `configuration_value` , `configuration_group_id` , `sort_order` , `last_modified` , `date_added` , `use_function` , `set_function` )
-   VALUES ('', 'RCS_REPORT_ODD_STYLE', '', 33, 92, NULL, NOW(), '', '');
-INSERT INTO `configuration` ( `configuration_id` , `configuration_key` , `configuration_value` , `configuration_group_id` , `sort_order` , `last_modified` , `date_added` , `use_function` , `set_function` )
-   VALUES ('', 'RCS_SHOW_BRUTTO_PRICE', 'true', 33, 94, NULL, NOW(), '', "xtc_cfg_select_option(array('true', 'false'),");
-INSERT INTO `configuration` ( `configuration_id` , `configuration_key` , `configuration_value` , `configuration_group_id` , `sort_order` , `last_modified` , `date_added` , `use_function` , `set_function` )
-   VALUES ('', 'DEFAULT_RCS_SHIPPING', '', 33, 95, NULL, NOW(), '', '');
-INSERT INTO `configuration` ( `configuration_id` , `configuration_key` , `configuration_value` , `configuration_group_id` , `sort_order` , `last_modified` , `date_added` , `use_function` , `set_function` )
-   VALUES ('', 'DEFAULT_RCS_PAYMENT', '', 33, 96, NULL, NOW(), '', '');
-INSERT INTO `configuration` ( `configuration_id` , `configuration_key` , `configuration_value` , `configuration_group_id` , `sort_order` , `last_modified` , `date_added` , `use_function` , `set_function` )
-   VALUES ('', 'RCS_DELETE_COMPLETED_ORDERS', 'true', 33, 97, NULL, NOW(), '', "xtc_cfg_select_option(array('true', 'false'),");
+	`scartid` INT( 11 ) NOT NULL AUTO_INCREMENT,
+	`customers_id` INT( 11 ) NOT NULL UNIQUE,
+	`dateadded` VARCHAR( 8 ) NOT NULL,
+	`datemodified` VARCHAR( 8 ) NOT NULL,
+	PRIMARY KEY ( `scartid` )
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `configuration_group` ( `configuration_group_id` , `configuration_group_title` , `configuration_group_description` , `sort_order` , `visible` ) VALUES ('33', 'Recover Cart Sales', 'Recover Cart Sales (RCS) Configuration Values', '33', '1');
+INSERT INTO `configuration` ( `configuration_id` , `configuration_key` , `configuration_value` , `configuration_group_id` , `sort_order` , `last_modified` , `date_added` , `use_function` , `set_function` ) VALUES ('', 'RCS_BASE_DAYS', '30', 33, 10, NULL, NOW(), '', '');
+INSERT INTO `configuration` ( `configuration_id` , `configuration_key` , `configuration_value` , `configuration_group_id` , `sort_order` , `last_modified` , `date_added` , `use_function` , `set_function` ) VALUES ('', 'RCS_REPORT_DAYS', '90', 33, 15, NULL, NOW(), '', '');
+INSERT INTO `configuration` ( `configuration_id` , `configuration_key` , `configuration_value` , `configuration_group_id` , `sort_order` , `last_modified` , `date_added` , `use_function` , `set_function` ) VALUES ('', 'RCS_EMAIL_TTL', '90', 33, 20, NULL, NOW(), '', '');
+INSERT INTO `configuration` ( `configuration_id` , `configuration_key` , `configuration_value` , `configuration_group_id` , `sort_order` , `last_modified` , `date_added` , `use_function` , `set_function` ) VALUES ('', 'RCS_EMAIL_FRIENDLY', 'true', 33, 30, NULL, NOW(), '', "xtc_cfg_select_option(array('true', 'false'),");
+INSERT INTO `configuration` ( `configuration_id` , `configuration_key` , `configuration_value` , `configuration_group_id` , `sort_order` , `last_modified` , `date_added` , `use_function` , `set_function` ) VALUES ('', 'RCS_EMAIL_COPIES_TO', '', 33, 35, NULL, NOW(), '', '');
+INSERT INTO `configuration` ( `configuration_id` , `configuration_key` , `configuration_value` , `configuration_group_id` , `sort_order` , `last_modified` , `date_added` , `use_function` , `set_function` ) VALUES ('', 'RCS_SHOW_ATTRIBUTES', 'false',  33, 40, NULL, NOW(), '', "xtc_cfg_select_option(array('true', 'false'),");
+INSERT INTO `configuration` ( `configuration_id` , `configuration_key` , `configuration_value` , `configuration_group_id` , `sort_order` , `last_modified` , `date_added` , `use_function` , `set_function` ) VALUES ('', 'RCS_CHECK_SESSIONS', 'false', 33, 40, NULL, NOW(), '', "xtc_cfg_select_option(array('true', 'false'),");
+INSERT INTO `configuration` ( `configuration_id` , `configuration_key` , `configuration_value` , `configuration_group_id` , `sort_order` , `last_modified` , `date_added` , `use_function` , `set_function` ) VALUES ('', 'RCS_CURCUST_COLOR', '0000FF', 33, 50, NULL, NOW(), '', '');
+INSERT INTO `configuration` ( `configuration_id` , `configuration_key` , `configuration_value` , `configuration_group_id` , `sort_order` , `last_modified` , `date_added` , `use_function` , `set_function` ) VALUES ('', 'RCS_UNCONTACTED_COLOR', '9FFF9F', 33, 60, NULL, NOW(), '', '');
+INSERT INTO `configuration` ( `configuration_id` , `configuration_key` , `configuration_value` , `configuration_group_id` , `sort_order` , `last_modified` , `date_added` , `use_function` , `set_function` ) VALUES ('', 'RCS_CONTACTED_COLOR', 'FF9F9F', 33, 70, NULL, NOW(), '', '');
+INSERT INTO `configuration` ( `configuration_id` , `configuration_key` , `configuration_value` , `configuration_group_id` , `sort_order` , `last_modified` , `date_added` , `use_function` , `set_function` ) VALUES ('', 'RCS_MATCHED_ORDER_COLOR', '9FFFFF', 33, 72, NULL, NOW(), '', '');
+INSERT INTO `configuration` ( `configuration_id` , `configuration_key` , `configuration_value` , `configuration_group_id` , `sort_order` , `last_modified` , `date_added` , `use_function` , `set_function` ) VALUES ('', 'RCS_SKIP_MATCHED_CARTS', 'true', 33, 80, NULL, NOW(), '', "xtc_cfg_select_option(array('true', 'false'),");
+INSERT INTO `configuration` ( `configuration_id` , `configuration_key` , `configuration_value` , `configuration_group_id` , `sort_order` , `last_modified` , `date_added` , `use_function` , `set_function` ) VALUES ('', 'RCS_AUTO_CHECK', 'true', 33, 82, NULL, NOW(), '', "xtc_cfg_select_option(array('true', 'false'),");
+INSERT INTO `configuration` ( `configuration_id` , `configuration_key` , `configuration_value` , `configuration_group_id` , `sort_order` , `last_modified` , `date_added` , `use_function` , `set_function` ) VALUES ('', 'RCS_CARTS_MATCH_ALL_DATES', 'true', 33, 84, NULL, NOW(), '', "xtc_cfg_select_option(array('true', 'false'),");
+INSERT INTO `configuration` ( `configuration_id` , `configuration_key` , `configuration_value` , `configuration_group_id` , `sort_order` , `last_modified` , `date_added` , `use_function` , `set_function` ) VALUES ('', 'RCS_PENDING_SALE_STATUS', '1', 33, 85, NULL, NOW(), 'xtc_get_order_status_name', 'xtc_cfg_pull_down_order_statuses(');
+INSERT INTO `configuration` ( `configuration_id` , `configuration_key` , `configuration_value` , `configuration_group_id` , `sort_order` , `last_modified` , `date_added` , `use_function` , `set_function` ) VALUES ('', 'RCS_REPORT_EVEN_STYLE', 'dataTableRow', 33, 90, NULL, NOW(), '', '');
+INSERT INTO `configuration` ( `configuration_id` , `configuration_key` , `configuration_value` , `configuration_group_id` , `sort_order` , `last_modified` , `date_added` , `use_function` , `set_function` ) VALUES ('', 'RCS_REPORT_ODD_STYLE', '', 33, 92, NULL, NOW(), '', '');
+INSERT INTO `configuration` ( `configuration_id` , `configuration_key` , `configuration_value` , `configuration_group_id` , `sort_order` , `last_modified` , `date_added` , `use_function` , `set_function` ) VALUES ('', 'RCS_SHOW_BRUTTO_PRICE', 'true', 33, 94, NULL, NOW(), '', "xtc_cfg_select_option(array('true', 'false'),");
+INSERT INTO `configuration` ( `configuration_id` , `configuration_key` , `configuration_value` , `configuration_group_id` , `sort_order` , `last_modified` , `date_added` , `use_function` , `set_function` ) VALUES ('', 'DEFAULT_RCS_SHIPPING', '', 33, 95, NULL, NOW(), '', '');
+INSERT INTO `configuration` ( `configuration_id` , `configuration_key` , `configuration_value` , `configuration_group_id` , `sort_order` , `last_modified` , `date_added` , `use_function` , `set_function` ) VALUES ('', 'DEFAULT_RCS_PAYMENT', '', 33, 96, NULL, NOW(), '', '');
+INSERT INTO `configuration` ( `configuration_id` , `configuration_key` , `configuration_value` , `configuration_group_id` , `sort_order` , `last_modified` , `date_added` , `use_function` , `set_function` ) VALUES ('', 'RCS_DELETE_COMPLETED_ORDERS', 'true', 33, 97, NULL, NOW(), '', "xtc_cfg_select_option(array('true', 'false'),");
 
 ALTER TABLE `customers_basket` ADD `checkout_site` ENUM( 'cart', 'shipping', 'payment', 'confirm' ) NOT NULL DEFAULT 'cart';
 ALTER TABLE `customers_basket` ADD `language` VARCHAR(32) NULL DEFAULT NULL;

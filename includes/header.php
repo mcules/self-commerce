@@ -30,7 +30,7 @@
 define('DIR_SELF_INSTALLER', 'self_installer');
 ?>
 <?php // 06.01.2014 Karl HTML5 Doctype f¸r Template Bootstrap
-if (CURRENT_TEMPLATE == "bootstrap") { ?>
+if (CURRENT_TEMPLATE == "self_default") { ?>
 <!DOCTYPE html>
 <html lang="<?php echo $_SESSION['language_code']; ?>">
 <head>

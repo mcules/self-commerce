@@ -1,9 +1,9 @@
 <?php
 /* -----------------------------------------------------------------------------------------
-   based on: 
+   based on:
    (c) 2003	 nextcommerce (metatags.php,v 1.7 2003/08/14); www.nextcommerce.org
 
-   Released under the GNU General Public License 
+   Released under the GNU General Public License
    ---------------------------------------------------------------------------------------*/
 
 // ---------------------------------------------------------------------------------------
@@ -542,7 +542,7 @@ switch(basename($PHP_SELF)) {
 */
 // 06.01.2014 Prüfen, ob Bootstrap als Template gewählt ist und Variable html5 setzen
 // in den folgenden Abfragen werden nur HTML5 konforme Metadaten zugelassen
-if (CURRENT_TEMPLATE == "bootstrap") { $html5 = true; }
+if (CURRENT_TEMPLATE == "self_default") { $html5 = true; }
 
 if (metaClean($meta_title) != '') {
   echo '<title>'. metaClean($meta_title) .'</title>'."\n";
