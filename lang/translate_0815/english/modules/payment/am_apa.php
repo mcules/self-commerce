@@ -1,0 +1,206 @@
+<?php
+/* --------------------------------------------------------------
+   Amazon Advanced Payment APIs Modul  V2.00
+   am_apa.php 2014-06-03
+
+   alkim media
+   http://www.alkim.de
+
+   patworx multimedia GmbH
+   http://www.patworx.de/
+
+   Released under the GNU General Public License
+   --------------------------------------------------------------
+*/
+DEFINE ('BOX_CONFIGURATION_777', 'Amazon Advanced Payment APIs options');
+DEFINE('MODULE_PAYMENT_AM_APA_TEXT_TITLE', 'Amazon Advanced Payment APIs');
+DEFINE('MODULE_PAYMENT_AM_APA_STATUS_TITLE', 'Activate module?');
+DEFINE('MODULE_PAYMENT_AM_APA_STATUS_DESC', 'You can activate and deactivate Pay with Amazon - Advanced Payment APIs by selecting the appropriate setting.');
+DEFINE('MODULE_PAYMENT_AM_APA_MERCHANTID_TITLE', 'Amazon Merchant ID');
+DEFINE('MODULE_PAYMENT_AM_APA_MERCHANTID_DESC', 'Your Amazon Merchant ID');
+DEFINE('MODULE_PAYMENT_AM_APA_MARKETPLACEID_TITLE', 'Amazon Marketplace ID');
+DEFINE('MODULE_PAYMENT_AM_APA_MARKETPLACEID_DESC', 'Your Amazon Marketplace ID');
+DEFINE('MODULE_PAYMENT_AM_APA_ACCESKEY_TITLE', 'MWS Access Key');
+DEFINE('MODULE_PAYMENT_AM_APA_ACCESKEY_DESC', 'This is used for communication and authentication with the Amazon Advanced Payment APIs.');
+DEFINE('MODULE_PAYMENT_AM_APA_SECRETKEY_TITLE', 'Secret Key');
+DEFINE('MODULE_PAYMENT_AM_APA_SECRETKEY_DESC', 'This is used for communication and authentication with the Amazon Advanced Payment APIs.');
+define('MODULE_PAYMENT_AM_APA_ALLOWED_TITLE', 'Allowed zones');
+define('MODULE_PAYMENT_AM_APA_ALLOWED_DESC', 'Please enter <b>individual</b> zones that shall be allowed for this module.');
+DEFINE('MODULE_PAYMENT_AM_APA_MODE_TITLE', 'Operation mode');
+DEFINE('MODULE_PAYMENT_AM_APA_MODE_DESC', '');
+DEFINE('MODULE_PAYMENT_AM_APA_PROVOCATION_TITLE', 'Provoke errors (sandbox only)');
+DEFINE('MODULE_PAYMENT_AM_APA_PROVOCATION_DESC', 'Allows the administrator to simulate Amazon rejecting a buyer or a payment.');
+DEFINE('MODULE_PAYMENT_AM_APA_ORDER_STATUS_OK_TITLE', 'Order status for successfully authorized payments');
+DEFINE('MODULE_PAYMENT_AM_APA_ORDER_STATUS_OK_DESC', 'This status willl be set after Amazon successfully authorized a payment');
+DEFINE ('MODULE_PAYMENT_AM_APA_ALLOW_GUESTS_TITLE','Allow guest orders?');
+DEFINE ('MODULE_PAYMENT_AM_APA_ALLOW_GUESTS_DESC','Customers can pay with Amazon Advanced Payment APIs also if they do not have a customer account in your shop.');
+define('AMZ_YES', 'Yes');
+define('AMZ_NO', 'No');
+define('AMZ_SANDBOX', 'Sandbox (test) mode');
+define('AMZ_LIVE', 'Live mode');
+define('AMZ_AUTHORIZATION_CONFIG_TITLE', 'When / how is the authorization going to happen');
+define('AMZ_AUTHORIZATION_CONFIG_DESC', 'Decline risk is slightly higher with immediate authorizations. You should use it if you are selling digital goods (downloads) and therefore need an immediate confirmation, or if you want to give your customer an immediate feedback about authorization success.<br />br />After a successful authorization you have 30 days to ship the order and charge the buyer. Amazon guarantees that a charge will be successful for the first seven days.');
+define('AMZ_CAPTURE_CONFIG_TITLE', 'When / how is the payment going to happen');
+define('AMZ_CAPTURE_CONFIG_DESC', 'Please be aware that Amazon does not allow an immediate charge on order. You should contact Amazon first before activating this option and get approval to do so!');
+define('AMZ_FAST_AUTH', 'During the checkout / when placing the order');
+define('AMZ_AUTH_AFTER_CHECKOUT', 'Immediately after the order was placed');
+define('AMZ_CAPTURE_AFTER_AUTH', 'Immediately after successful automatic authorization');
+define('AMZ_AFTER_SHIPPING', 'After shipping');
+define('AMZ_MANUALLY', 'Manually');
+define('AMZ_SHIPPED_STATUS_TITLE', 'Order status for shipped orders');
+define('AMZ_SHIPPED_STATUS_DESC', 'Important for charging the buyer when shipped');
+define('AMZ_REVOCATION_ID_TITLE', 'Content ID for cancellation policy');
+define('AMZ_AGB_ID_TITLE', 'Content ID for general business terms');
+define('AMZ_BUTTON_COLOR_ORANGE', 'Amazon-style yellow');
+define('AMZ_BUTTON_COLOR_TAN', 'Gray');
+define('AMZ_BUTTON_SIZE_MEDIUM', 'Medium');
+define('AMZ_BUTTON_SIZE_LARGE', 'Large');
+define('AMZ_BUTTON_SIZE_XLARGE', 'Very large');
+define('AMZ_TX_TYPE_HEADING', 'Transaction type');
+define('AMZ_TX_TIME_HEADING', 'Time');
+define('AMZ_TX_STATUS_HEADING', 'Status');
+define('AMZ_TX_LAST_CHANGE_HEADING', 'Last change');
+define('AMZ_TX_ID_HEADING', 'Amazon transaction ID');
+define('AMZ_AUTH_TEXT', 'Authorization');
+define('AMZ_ORDER_TEXT', 'Order');
+define('AMZ_CAPTURE_TEXT', 'Capture');
+define('AMZ_REFUND_TEXT', 'Refund');
+define('AMZ_TX_AMOUNT_HEADING', 'Amount');
+define('AMZ_IPN_URL_TITLE', 'URL for Amazon IPN');
+define('AMZ_TX_EXPIRATION_HEADING', 'Valid until');
+define('AMZ_HISTORY', 'Amazon Payments history');
+define('AMZ_ORDER_AUTH_TOTAL', 'Authorized total');
+define('AMZ_ORDER_CAPTURE_TOTAL', 'Captured total');
+define('AMZ_SUMMARY', 'Amazon summary');
+define('AMZ_ACTIONS', 'Amazon actions');
+define('AMZ_CAPTURE_FROM_AUTH_HEADING', 'Capture authorized payments');
+define('AMZ_TX_ACTION_HEADING', 'Actions');
+define('AMZ_CAPTURE_TOTAL_FROM_AUTH', 'Capture complete amount');
+define('AMZ_AUTHORIZE', 'Authorize payment');
+define('AMZ_AUTHORIZATION_SUCCESSFULLY_REQUESTED', 'Authorization request successful');
+define('AMZ_AUTHORIZATION_REQUEST_FAILED', 'Authorization request failed');
+define('AMZ_CAPTURE_SUCCESS', 'Capture successful');
+define('AMZ_CAPTURE_FAILED', 'Capture failed');
+define('AMZ_AMOUNT_LEFT_TO_OVER_AUTHORIZE', 'Additional amount that can be authorized');
+define('AMZ_AMOUNT_LEFT_TO_AUTHORIZE', 'Standard authorization');
+define('AMZ_TYPE', 'Type');
+define('AMZ_REFUNDS', 'Refunds');
+define('AMZ_REFUND', 'Refund');
+define('AMZ_REFUND_SUCCESS', 'Refund successful');
+define('AMZ_REFUND_FAILED', 'Refund failed');
+define('AMZ_REFRESH', 'Refresh');
+define('AMZ_CAPTURE_AMOUNT_FROM_AUTH', 'Capture partial amount');
+define('AMZ_REFUND_TOTAL', 'Refund total amount');
+define('AMZ_REFUND_AMOUNT', 'Refund partial amount');
+define('AMZ_TX_AMOUNT_REFUNDED_HEADING', 'Refunded');
+define('AMZ_TX_SUM', 'Sum');
+define('AMZ_TX_AMOUNT_REFUNDABLE_HEADING', 'Possible to refund');
+define('AMZ_TX_AMOUNT_POSSIBLE_HEADING', 'Maximum possible');
+define('AMZ_AUTHORIZE_AMOUNT', 'Authorize partial amount');
+define('AMZ_TX_AMOUNT_NOT_AUTHORIZED_YET_HEADING', 'Amount not authorized yet');
+define('AMZ_REFUND_OVER_AMOUNT', 'Refund more');
+define('AMZ_FINISHED_REFRESHING_ORDER', 'Order refreshed');
+define('AMZ_OVER_AUTHORIZE_AMOUNT', 'Authorize more');
+define('MODULE_PAYMENT_AM_APA_IPN_STATUS_TITLE', 'Receive status updates via IPN');
+define('AMZ_CRON_URL_TITLE', 'Cron job URL');
+define('MODULE_PAYMENT_AM_APA_CRON_STATUS_TITLE', 'Activate cron job for status updates');
+define('AMZ_AGB_DISPLAY_MODE_TITLE', 'Show general business terms and cancellation policy');
+define('AMZ_AGB_DISPLAY_MODE_SHORT', 'Only notice');
+define('AMZ_AGB_DISPLAY_MODE_LONG', 'Complete description with checkbox');
+define('AMZ_CRON_PW_TITLE', 'Password for cron job');
+define('AMZ_SOFT_DECLINE_SUBJECT_TITLE', 'Email subject for declined payment');
+define('AMZ_PAYMENT_NAME_TITLE', 'Email sender name');
+define('AMZ_PAYMENT_EMAIL_TITLE', 'Email sender address');
+define('AMZ_HARD_DECLINE_SUBJECT_TITLE', 'Email subject for declined orders');
+define('AMZ_SEND_MAILS_ON_DECLINE_TITLE', 'Automatically update customer about a declined authorization');
+define('AMZ_FASTAUTH_SOFT_DECLINED', 'Please choose a different payment method');
+define('AMZ_FASTAUTH_HARD_DECLINED', 'Your payment was declined by Amazon - please select a different payment method');
+define('AMZ_UNKNOWN_ERROR', 'Your order could not be processed - please try again using a different payment method');
+define('AMZ_CANCEL_ORDER', 'Cancel Amazon payment process');
+define('AMZ_CLOSE_ORDER', 'Close order');
+define('AMZ_ORDER_CANCELLED', 'Amazon payment process cancelled');
+define('AMZ_ORDER_CLOSED', 'Order closed');
+define('AMZ_SHOW_ON_CHECKOUT_PAYMENT_TITLE', 'Show Amazon button in normal checkout');
+define('AMZ_DEBUG_MODE_TITLE', 'debug mode');
+define('AMZ_DEBUG_MODE_DESC', 'When using debug mode, the payment through the Amazon Advanced Payment APIs is only visible for Admins');
+define('AMZ_EXCLUDED_SHIPPING_TITLE', 'exclude shipping options');
+define('AMZ_NEW_VERSION_AVAILABLE', 'A new version of this module is available');
+define('AMZ_VERSION_IS_GOOD', 'Your module version is up to date');
+define('AMZ_EXCLUDE_PRODUCTS', 'Exclude products');
+define('AMZ_SEARCH', 'Search');
+define('AMZ_EXCLUDED_PRODUCTS', 'Excluded products');
+define('AMZ_SEARCH_RESULT', 'Search result');
+define('AMZ_EXCLUDED_PRODUCTS_TITLE', 'Exclude products from payment with Amazon');
+define('AMZ_EXCLUDED_PRODUCTS_OPEN', ' Open');
+define('AMZ_ALL_MANUFACTURERS', 'All manufacturers');
+define('AMZ_INCLUDE_ALL_PRODUCTS', 'Remove all');
+define('AMZ_EXCLUDE_ALL_PRODUCTS', 'Exclude all');
+define('AMZ_TEMPLATE_1', 'Template 1');
+define('AMZ_TEMPLATE_2', 'Template 2');
+define('AMZ_TEMPLATE_TITLE', 'Select a template');
+define('AMZ_CANCEL_ORDER_FROM_WALLET', 'Cancel the payment with Amazon Payments');
+define('AMZ_WALLET_INTRO', 'The chosen payment method is unfortunately currently unavailable. Please select a different payment method.');
+define('AMZ_DOWNLOAD_ONLY_TITLE', 'In this store only virtual items are sold');
+define('AMZ_DOWNLOAD_ONLY_DESC', 'If you select yes, no shipping address is queried, when you select the authorization during the checkout process.');
+define('AMZ_HEADING_AMAZON_PAYMENTS_ACCOUNT', 'Amazon Payments Account');
+define('AMZ_HEADING_GENERAL_SETTINGS', 'General Settings');
+define('AMZ_HEADING_DESIGN_SETTINGS', 'Design Settings');
+define('AMZ_HEADING_IPN_SETTINGS', 'IPN Settings');
+define('AMZ_HEADING_CRONJOB_SETTINGS', 'Cronjob Settings');
+define('AMZ_HEADING_MAIL_SETTINGS', 'E-Mail Settings');
+
+# Update V2.01
+define('AMZ_DB_UPDATE_WARNING', 'You updated the module. You have to update the database now.');
+define('AMZ_DB_UPDATE_BUTTON_TEXT', 'Update database');
+define('AMZ_IPN_PW_TITLE', 'IPN password');
+define('AMZ_SET_SELLER_ORDER_ID_TITLE', 'Submit order-number to Amazon');
+define('AMZ_SET_SELLER_ORDER_ID_DESC', 'Attention: There can be gaps in the order-numbers caused by order-cancellations.');
+define('AMZ_ORDER_REF_HEADING', 'Amazon Order-Reference');
+define('AMZ_ORDERS_ID_HEADING', 'Shop order');
+define('AMZ_TRANSACTION_HISTORY', 'Amazon Transaction-Protocol');
+define('AMZ_BACK', 'Back');
+define('AMZ_MERCHANT_ID_INVALID', 'No actions possible. Your Amazon Merchant-ID is not matching');
+define('AMZ_STATUS_NONAUTHORIZED_TITLE', 'Status for orders which are not authorized');
+
+# Update V2.10
+define('MODULE_PAYMENT_AM_APA_LPA_MODE_TITLE', 'Mode Login/Pay');
+define('MODULE_PAYMENT_AM_APA_LPA_MODE_DESC', '');
+define('MODULE_PAYMENT_AM_APA_CLIENTID_TITLE', 'Client-ID for Login &amp; Pay');
+define('MODULE_PAYMENT_AM_APA_CLIENTID_DESC', 'This is used for communication and authentication with Login &amp; Pay by Amazon');
+define('AMZ_SET_ADDRESS_TITLE', 'Thank you for logging in with Amazon Payments');
+define('AMZ_SET_ADDRESS_INTRO', 'To continue, we require a standard address. During the checkout you can always choose a shipping address.');
+define('AMZ_CONNECT_ACCOUNTS_TITLE', 'Thank you for logging in with Amazon Payments');
+define('AMZ_CONNECT_ACCOUNTS_INTRO', 'We found an account with your email address in our shop. Please enter the password for this shop to connect the account with your Amazon account.');
+define('AMZ_PASSWORD', 'Your password');
+define('AMZ_CONNECT_ACCOUNTS', 'Connect accounts');
+define('AMZ_CONNECT_ACCOUNTS_ERROR', 'Error: Wrong password');
+define('MODULE_PAYMENT_AM_APA_POPUP_TITLE', 'If possible Amazon-Login in Popup');
+define('MODULE_PAYMENT_AM_APA_POPUP_DESC', 'Should the Amazon-Login preferably be displayed in a Popup? Otherwise the customer is redirected to Amazon for login and returns after the successful login to your shop. Login in a Popup is only supported, if the whole Shop is protected by SSL.');
+define('AMZ_LOGIN_PROCESSING_TITLE', 'Thank you for logging in with Amazon Payments');
+define('AMZ_LOGIN_PROCESSING_INTRO', 'You will be forwarded in a few seconds...');
+define('AMZ_BUTTON_SIZE_TITLE', 'Amazon checkout button size  (pay-Mode)');
+define('AMZ_BUTTON_SIZE_TITLE_LPA', 'Amazon checkout button size  (Login/Login&amp;Pay-Mode)');
+define('AMZ_BUTTON_COLOR_TITLE', 'Amazon checkout button color (pay-Mode)');
+define('AMZ_BUTTON_COLOR_TITLE_LPA', 'Amazon checkout button color (Login/Login&amp;Pay-Modus)');
+define('AMZ_BUTTON_COLOR_TAN_LIGHT', 'LightGray');
+define('AMZ_BUTTON_COLOR_TAN_DARK', 'DarkGray');
+define('AMZ_BUTTON_SIZE_SMALL', 'Small');
+define('AMZ_BUTTON_TYPE_LOGIN_TITLE', 'Button Type Login');
+define('AMZ_BUTTON_TYPE_PAY_TITLE', 'Button Type Pay');
+define('AMZ_BUTTON_TYPE_LOGIN_LWA', 'Login with Amazon');
+define('AMZ_BUTTON_TYPE_LOGIN_LOGIN', 'Login');
+define('AMZ_BUTTON_TYPE_LOGIN_A', 'Only a "A"');
+define('AMZ_BUTTON_TYPE_PAY_PWA', 'Pay with Amazon');
+define('AMZ_BUTTON_TYPE_PAY_PAY', 'Pay');
+define('AMZ_BUTTON_TYPE_PAY_A', 'Only a "A"');
+define('AMZ_SAVE', 'Save');
+define('AMZ_CONFIGURATION', 'Configuration');
+define('AMZ_PROTOCOL', 'Transaction protocol');
+define('AMZ_CLOSE_ORDER_ON_COMPLETE_CAPTURE_TITLE', 'Mark orders as Closed after charging the complete amount');
+define('AMZ_CLOSE_ORDER_ON_COMPLETE_CAPTURE_DESC', '');
+define('AMZ_BUTTON_TYPE_PAY_DESC', 'Only available in the operating mode "Login & Pay"');
+define('AMZ_INVALID_SECRET', 'Your Secret Key is invalid');
+define('AMZ_INVALID_MERCHANT_ID', 'Your Amazon Merchant ID is invalid');
+define('AMZ_INVALID_ACCESS_KEY', 'Your MWS Access Key is invalid');
+define('AMZ_CREDENTIALS_SUCCESS', 'Your credentials are valid');
+?>
