@@ -1,6 +1,6 @@
 <?php
 /* --------------------------------------------------------------
-   $Id: english.php 1213 2005-09-14 11:34:50Z mz $   
+   $Id: english.php 1213 2005-09-14 11:34:50Z mz $
 
    Self-Commerce - community made shopping
    http://www.xt-commerce.com
@@ -9,12 +9,12 @@
    --------------------------------------------------------------
    based on:
    (c) 2003	 nextcommerce (english.php,v 1.8 2003/08/13); www.nextcommerce.org
-   
-   Released under the GNU General Public License 
+
+   Released under the GNU General Public License
    --------------------------------------------------------------*/
 // Global
-define('TEXT_FOOTER','Copyright  &copy; 2007 <a href="http://www.self-commerce.de">Self-Commerce</a> based on <a href="http://www.xtcommerce.de" target="_blank">XT:Commerce</a><br />Self-Commerce provides no warranty and is redistributable under the <a href="http://www.fsf.org/licenses/gpl.txt" target="_blank">GNU General Public License</a>'); 
-   
+define('TEXT_FOOTER','Copyright  &copy; 2007 <a href="http://www.self-commerce.de">Self-Commerce</a> based on <a href="http://www.xtcommerce.de" target="_blank">XT:Commerce</a><br />Self-Commerce provides no warranty and is redistributable under the <a href="http://www.fsf.org/licenses/gpl.txt" target="_blank">GNU General Public License</a>');
+
 // Box names
 define('BOX_LANGUAGE','Language');
 define('BOX_DB_CONNECTION','DB Connection') ;
@@ -66,16 +66,16 @@ define('PULL_DOWN_DEFAULT','Please select a Country!');
 	define('SELECT_GRADUATED_ERROR2','Graduated Prices -Default');
 	define('SELECT_PRICE_ERROR2','Show Price -Default');
 	define('SELECT_TAX_ERROR2','Show Tax -Default');
-	
-	
 
 
-	
-	
+
+
+
+
 // index.php
 define('TITLE_SELECT_LANGUAGE','Select your language!');
 
-define('TEXT_WELCOME_INDEX','<b>Welcome to Self-Commerce</b><br /><br />Self-Commerce is an open source e-commerce solution under on going development by the Self-Commerce Team and its <a href="http://www.self-commerce.de">community.</a><br /> Its feature packed out-of-the-box installation allows store owners to setup, run, and maintain their online stores with minimum effort and with no costs involved.<br /> Self-Commerce combines open source solutions to provide a free and open development platform, which includes the powerful PHP web scripting language, the stable Apache web server, and the fast MySQL database server.<br /><br />With no restrictions or special requirements, Self-Commerce can be installed on any PHP4 enabled web server, on any environment that PHP and MySQL supports, which includes Linux, Solaris, BSD, and Microsoft Windows environments.<br /><br /><b>Willkommen zu Self-Commerce</b><br /><br />Self-Commerce ist eine Open-Source e-commerce Lösung, die ständig vom Self-Commerce Team und einer grossen <a href="http://www.self-commerce.de">Gemeinschaft</a> weiterentwickelt wird.<br /> Seine out-of-the-box Installation erlaubt es dem Shop-Besitzer seinen Online-Shop mit einem Minimum an Aufwand und Kosten zu installieren, zu betreiben und zu verwalten.<br /><br />Self-Commerce ist auf jedem System lauffähig, welches eine PHP Umgebung (ab PHP 4.1) und mySQL zur Verfügung stellt, wie zum Beispiel Linux, Solaris, BSD, und Microsoft Windows.');
+define('TEXT_WELCOME_INDEX','<b>Welcome to Self-Commerce</b><br /><br />Self-Commerce is an open source e-commerce solution under on going development by the Self-Commerce Team and its <a href="http://www.self-commerce.de">community.</a><br /> Its feature packed out-of-the-box installation allows store owners to setup, run, and maintain their online stores with minimum effort and with no costs involved.<br /> Self-Commerce combines open source solutions to provide a free and open development platform, which includes the powerful PHP web scripting language, the stable Apache web server, and the fast MySQL database server.<br /><br />With no restrictions or special requirements, Self-Commerce can be installed on any PHP4 enabled web server, on any environment that PHP and MySQL supports, which includes Linux, Solaris, BSD, and Microsoft Windows environments.<br /><br /><b>Willkommen zu Self-Commerce</b><br /><br />Self-Commerce ist eine Open-Source e-commerce LÃ¶sung, die stÃ¤ndig vom Self-Commerce Team und einer grossen <a href="http://www.self-commerce.de">Gemeinschaft</a> weiterentwickelt wird.<br /> Seine out-of-the-box Installation erlaubt es dem Shop-Besitzer seinen Online-Shop mit einem Minimum an Aufwand und Kosten zu installieren, zu betreiben und zu verwalten.<br /><br />Self-Commerce ist auf jedem System lauffÃ¤hig, welches eine PHP Umgebung (ab PHP 4.1) und mySQL zur VerfÃ¼gung stellt, wie zum Beispiel Linux, Solaris, BSD, und Microsoft Windows.');
 define('TEXT_WELCOME_STEP1','<b>Main database and webserver settings</b><br /><br />Please enter your Database and webserver settings.<br />');
 define('TEXT_WELCOME_STEP2','<b>Install database</b><br /><br />The Self-Commerce installer will automatically install the Self-Commerce database.');
 define('TEXT_WELCOME_STEP3','<b>Database import.</b><br /><br />');
@@ -170,7 +170,7 @@ define('TEXT_REQU_INFORMATION','* required information');
 define('TEXT_FIRSTNAME','First Name:');
 define('TEXT_LASTNAME','Last Name:');
 define('TEXT_EMAIL','E-Mail Address:');
-define('TEXT_EMAIL_LONG','(for receiving orders)');				
+define('TEXT_EMAIL_LONG','(for receiving orders)');
 define('TEXT_STREET','Street Address:');
 define('TEXT_POSTCODE','Post Code:');
 define('TEXT_CITY','City:');
@@ -220,5 +220,5 @@ define('TITLE_CHMOD','Setting rights on files');
 
 define('TEXT_SHOP_CONFIG_SUCCESS','<strong>Self-Commerce</strong> Shop configuration was successful.');
 define('TEXT_TEAM','The Self-Commerce dev Team.<br /><a href="http://www.xt-commerce.com">Self-Commerce support site</a>');
-   
+
  ?>

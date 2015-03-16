@@ -1,24 +1,22 @@
 <?php
   /* --------------------------------------------------------------
-   $Id: install_step4.php 899 2005-04-29 02:40:57Z hhgag $   
+   $Id: install_step4.php 899 2005-04-29 02:40:57Z hhgag $
 
-   XT-Commerce - community made shopping
-   http://www.xt-commerce.com
+   Self-Commerce - Fresh up your eCommerce
+   http://www.self-commerce.de
 
-   Copyright (c) 2003 XT-Commerce
+   Copyright (c) 2015 Self-Commerce
    --------------------------------------------------------------
-   based on: 
-   (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
-   (c) 2002-2003 osCommerce(install_4.php,v 1.9 2002/08/19); www.oscommerce.com
-   (c) 2003	 nextcommerce (install_step4.php,v 1.14 2003/08/17); www.nextcommerce.org
+   based on:
+   (c) 2000-2001	The Exchange Project  (earlier name of osCommerce)
+   (c) 2002-2003	osCommerce(install_4.php,v 1.9 2002/08/19); www.oscommerce.com
+   (c) 2003-2008	nextcommerce (install_step4.php,v 1.14 2003/08/17); www.nextcommerce.org
+   (c) 2008			Self-Commerce (install_step4.php) www.self-commerce.de
 
-   Released under the GNU General Public License 
+   Released under the GNU General Public License
    --------------------------------------------------------------*/
    require('includes/application.php');
-
    include('language/'.$_SESSION['language'].'.php');
-  
-
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -56,40 +54,37 @@ UL.liste {font-family: Verdana, Arial, Helvetica, san-serif; font-size: 10px; co
 -->
 </style>
 </head>
-
 <body>
 <table class="mainTable" border="0" align="center" cellpadding="0" cellspacing="0">
-	<tr> 
+	<tr>
 		<td colspan="2" >
-    		
     		<table width="100%" border="0" cellpadding="0" cellspacing="0">
 				<tr>
           			<td class="logo"></td>
           			<td class="code"></td>
         		</tr>
       		</table>
-      		
       	</td>
 	</tr>
-	<tr> 
+	<tr>
 		<td class="frame1" width="180" valign="top" >
       		<table width="180" border="0" cellspacing="0" cellpadding="0">
 				<tr>
 					<td colspan="2" height="17" class="blocktitle" align="center">Self-Commerce Install</td>
 				</tr>
-        		<tr> 
+        		<tr>
 					<td class="left_top2" width="135" ><img src="images/icons/arrow02.gif" width="13" height="6" alt="Arrow" /><?php echo BOX_LANGUAGE; ?></td>
                 	<td class="left_top2" width="35"><img src="images/icons/ok.gif" alt="OK" /></td>
               	</tr>
-              	<tr> 
+              	<tr>
                 	<td class="left_top2" width="135" ><img src="images/icons/arrow02.gif" width="13" height="6" alt="Arrow" /><?php echo BOX_DB_CONNECTION; ?></td>
                		<td class="left_top2" width="35"><img src="images/icons/ok.gif" alt="OK" /></td>
               	</tr>
-              	<tr> 
+              	<tr>
                 	<td class="left_top2">&nbsp;&nbsp;&nbsp;<img src="images/icons/arrow02.gif" width="13" height="6" alt="Arrow" /><?php echo BOX_DB_IMPORT; ?></td>
                 	<td class="left_top2"><img src="images/icons/ok.gif" alt="OK" /></td>
               	</tr>
-              	<tr> 
+              	<tr>
                 	<td colspan="2" class="left_top2"><img src="images/icons/arrow02.gif" width="13" height="6" alt="Arrow" /><?php echo BOX_WEBSERVER_SETTINGS; ?></td>
                 </tr>
               	<tr>
@@ -97,16 +92,14 @@ UL.liste {font-family: Verdana, Arial, Helvetica, san-serif; font-size: 10px; co
 	            </tr>
            </table>
 		</td>
-		<td align="right" valign="top" class="frame2"> 
-      		
+		<td align="right" valign="top" class="frame2">
       		<h2 class="welcome"><?php echo TEXT_WELCOME_STEP4; ?></h2><hr class="lineBlue" />
 			<table width="98%" border="0" cellpadding="0" cellspacing="0">
         		<tr>
           			<td>
-          			
 	          			<span class="title"><?php echo TITLE_WEBSERVER_CONFIGURATION; ?></span><hr class="lineRed" />
 			            <?php
-			 				 if ( ( (file_exists(DIR_FS_CATALOG . 'includes/configure.php')) && (!is_writeable(DIR_FS_CATALOG . 'includes/configure.php')) ) || ( (file_exists(DIR_FS_CATALOG . 'admin/includes/configure.php')) && (!is_writeable(DIR_FS_CATALOG . 'admin/includes/configure.php')) ) || ( (file_exists(DIR_FS_CATALOG . 'admin/includes/local/configure.php')) && (!is_writeable(DIR_FS_CATALOG . 'admin/includes/local/configure.php')) ) || ( (file_exists(DIR_FS_CATALOG . 'includes/local/configure.php')) && (!is_writeable(DIR_FS_CATALOG . 'includes/local/configure.php')) )) {
+			 				 if(((file_exists(DIR_FS_CATALOG . 'includes/configure.php')) && (!is_writeable(DIR_FS_CATALOG . 'includes/configure.php'))) || ((file_exists(DIR_FS_CATALOG . 'admin/includes/configure.php')) && (!is_writeable(DIR_FS_CATALOG . 'admin/includes/configure.php'))) || ((file_exists(DIR_FS_CATALOG . 'admin/includes/local/configure.php')) && (!is_writeable(DIR_FS_CATALOG . 'admin/includes/local/configure.php'))) || ((file_exists(DIR_FS_CATALOG . 'includes/local/configure.php')) && (!is_writeable(DIR_FS_CATALOG . 'includes/local/configure.php')))) {
 						?>
 	            		<h2 class="normal"><img src="images/icons/error.gif" width="16" height="16" alt="Error" /><strong><font color="#FF0000" size="2"><?php echo TITLE_STEP4_ERROR; ?></font></strong></h2><hr class="lineRed" />
 	            		<p class="small"><?php echo TEXT_STEP4_ERROR; ?>
@@ -122,40 +115,36 @@ UL.liste {font-family: Verdana, Arial, Helvetica, san-serif; font-size: 10px; co
 								<li>chmod 706 configure.php</li>
                   				<li>chmod 706 configure.org.php</li>
               				</ul>
-            			
-            
 						<p class="noteBox"><?php echo TEXT_STEP4_ERROR_1; ?></p>
 			            <p class="noteBox"><?php echo TEXT_STEP4_ERROR_2; ?></p>
-            
 						<form name="install" action="install_step4.php" method="post">
 							<p class="small">
-			              <?php
-			    reset($_POST);
-			    while (list($key, $value) = each($_POST)) {
-			      if ($key != 'x' && $key != 'y') {
-			        if (is_array($value)) {
-			          for ($i=0; $i<sizeof($value); $i++) {
-			            echo xtc_draw_hidden_field_installer($key . '[]', $value[$i]);
-			          }
-			        } else {
-			          echo xtc_draw_hidden_field_installer($key, $value);
-			        }
-			      }
-			    }
-			?>
+							<?php
+							reset($_POST);
+							while (list($key, $value) = each($_POST)) {
+								if ($key != 'x' && $key != 'y') {
+									if (is_array($value)) {
+										for ($i=0; $i<sizeof($value); $i++) {
+											echo xtc_draw_hidden_field_installer($key . '[]', $value[$i]);
+										}
+									}
+									else {
+										echo xtc_draw_hidden_field_installer($key, $value);
+									}
+								}
+							}
+							?>
 							</p>
 							<table border="0" width="100%" cellspacing="0" cellpadding="0">
-			                	<tr> 
+			                	<tr>
 			                  		<td align="center"><a href="index.php"><img src="images/button_cancel.gif" border="0" alt="Cancel" /></a></td>
 			                  		<td align="center"><input type="image" src="images/button_retry.gif" alt="Retry" /></td>
 			                	</tr>
 			              	</table>
 						</form>
-            
 <?php
   } else {
 ?>
-            
 						<form name="install" action="install_step5.php" method="post">
 							<p class="small"><?php echo TEXT_VALUES; ?><br /><br />
 				                includes/configure.php<br />
@@ -170,7 +159,7 @@ UL.liste {font-family: Verdana, Arial, Helvetica, san-serif; font-size: 10px; co
 				            <p class="small"><strong><?php echo TEXT_HTTPS; ?></strong><br />
 				                <?php echo xtc_draw_input_field_installer('HTTPS_SERVER', 'https://' . getenv('HTTP_HOST')); ?><br />
 				                <span class="note"><?php echo TEXT_HTTPS_LONG; ?></span></p>
-				            <p class="small"><?php echo xtc_draw_checkbox_field_installer('ENABLE_SSL', 'true'); ?> 
+				            <p class="small"><?php echo xtc_draw_checkbox_field_installer('ENABLE_SSL', 'true'); ?>
 				                <strong><font color="red"><?php echo TEXT_SSL; ?></font></strong><br />
 				                <span class="note"><?php echo TEXT_SSL_LONG; ?></span></p>
 				            <p class="small"><strong><?php echo TEXT_WS_ROOT; ?></strong><br />
@@ -188,7 +177,6 @@ UL.liste {font-family: Verdana, Arial, Helvetica, san-serif; font-size: 10px; co
 				            <p class="small"><strong><?php echo TEXT_WS_ADMINTOOL; ?></strong><br />
 				                <?php echo xtc_draw_input_field_installer('DIR_WS_ADMIN'); ?><br />
 				                <span class="note"><?php echo TEXT_WS_ADMINTOOL_LONG; ?></span></p>
-			              
 							<span class="title"><?php echo TITLE_CHECK_DATABASE; ?></span><hr class="lineRed" />
 			              	<p class="small"><strong><?php echo TEXT_DATABASE_SERVER; ?></strong><br />
 			                	<?php echo xtc_draw_input_field_installer('DB_SERVER'); ?><br />
@@ -202,15 +190,14 @@ UL.liste {font-family: Verdana, Arial, Helvetica, san-serif; font-size: 10px; co
 			              	<p class="small"><strong><?php echo TEXT_DATABASE; ?></strong><br />
 			                	<?php echo xtc_draw_input_field_installer('DB_DATABASE'); ?><br />
 			                	<span class="note"><?php echo TEXT_DATABASE_LONG; ?></span></p>
-			              	<p class="small"><?php echo xtc_draw_checkbox_field_installer('USE_PCONNECT', 'true'); ?> 
+			              	<p class="small"><?php echo xtc_draw_checkbox_field_installer('USE_PCONNECT', 'true'); ?>
 			                	<strong><?php echo TEXT_PERSIST; ?></strong><br />
 			                	<span class="note"><?php echo TEXT_PERSIST_LONG; ?></span></p>
-			              	<p class="small"><?php echo xtc_draw_radio_field_installer('STORE_SESSIONS', 'files'); ?> 
+			              	<p class="small"><?php echo xtc_draw_radio_field_installer('STORE_SESSIONS', 'files'); ?>
 			                	<strong><?php echo TEXT_SESS_FILE; ?></strong><br />
-			                	<?php echo xtc_draw_radio_field_installer('STORE_SESSIONS', 'mysql', true); ?> 
+			                	<?php echo xtc_draw_radio_field_installer('STORE_SESSIONS', 'mysql', true); ?>
 			                	<strong><?php echo TEXT_SESS_DB; ?></strong><br />
 			                <span class="note"><?php echo TEXT_SESS_LONG; ?></span></p>
-			
 							<table border="0" width="100%" cellspacing="0" cellpadding="0">
 								<tr>
 							  		<td align="center"><a href="index.php"><img src="images/button_cancel.gif" border="0" alt="Cancel" /></a></td>
@@ -218,13 +205,10 @@ UL.liste {font-family: Verdana, Arial, Helvetica, san-serif; font-size: 10px; co
                                     <input type="image" src="images/button_continue.gif" alt="Continue" /></td>
 							  	</tr>
 							</table>
-			
 						</form>
-
 <?php
   }
 ?>
-                  
 					</td>
 				</tr>
 			</table>

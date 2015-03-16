@@ -2,13 +2,14 @@
   /* --------------------------------------------------------------
    $Id: index.php 1220 2005-09-16 15:53:13Z mz $
 
-   XT-Commerce - community made shopping
-   http://www.xt-commerce.com
+   Self-Commerce - Fresh up your eCommerce
+   http://www.self-commerce.de
 
-   Copyright (c) 2003 XT-Commerce
+   Copyright (c) 2015 Self-Commerce
    --------------------------------------------------------------
    based on:
-   (c) 2003	 nextcommerce (index.php,v 1.18 2003/08/17); www.nextcommerce.org
+   (c) 2003-2008	nextcommerce (index.php,v 1.18 2003/08/17); www.nextcommerce.org
+   (c) 2008			Self-Commerce (index.php) www.self-commerce.de
 
    Released under the GNU General Public License
    --------------------------------------------------------------*/
@@ -66,6 +67,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
 .frame2 {border: 1px solid #d9e7f9; border-left: 0px;}
 .green {border: 1px solid #66CC33; background-color: #CCFF99; padding: 2px; font-family: Verdana, Arial, Helvetica, san-serif; font-size: 10px;}
 .red {border: 1px solid #ff6600; background-color: #FFCC99; padding: 2px; font-family: Verdana, Arial, Helvetica, san-serif; font-size: 10px;}
+.grey {border: 1px solid #ff6600; background-color: lightgrey; padding: 2px; font-family: Verdana, Arial, Helvetica, san-serif; font-size: 10px;}
 .h1 {font-family: Verdana, Arial, Helvetica, san-serif; font-size: 12px;}
 .h1:hover {color: #ff6600;}
 h2 {font-family: Verdana, Arial, Helvetica, san-serif; font-size: 10px; font-weight: normal;}
@@ -261,6 +263,17 @@ $ok_message .= 'GDlib GIF-Support .............................. ' . $status . '
 if ($ErrorFlag == true) {
 	echo '<strong>Attention:</strong><br />';
 	echo $message;
+}
+?>
+</td></tr>
+<tr>
+<?php
+if($Message2 != "") {
+	echo '<td class="grey">';
+	echo "Sie k&ouml;nnen einfach diese Befehle auf der Kommandozeile ausf&uuml;hren um die Berechtigungen zu korrigieren:";
+	echo '<hr class="lineGreen">';
+	echo $Message2;
+	echo '</td>';
 }
 ?>
 </td></tr>

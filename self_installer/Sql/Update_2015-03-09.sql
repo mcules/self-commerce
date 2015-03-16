@@ -1,4 +1,3 @@
-ALTER TABLE `orders_products` ADD `products_shipping_time` VARCHAR(32) NOT NULL;
 INSERT INTO `".TABLE_CONFIGURATION."` (configuration_key, configuration_value, configuration_group_id, sort_order, set_function) VALUES ('CHECKOUT_AJAX_STAT', 'true', 333, 0, '".addslashes("xtc_cfg_select_option(array('true', 'false'),")."');
 INSERT INTO `".TABLE_CONFIGURATION."` (configuration_key, configuration_value, configuration_group_id, sort_order, set_function) VALUES ('CHECKOUT_AJAX_PRODUCTS', 'true', 333, 1, '".addslashes("xtc_cfg_select_option(array('true', 'false'),")."');
 INSERT INTO `".TABLE_CONFIGURATION."` (configuration_key, configuration_value, configuration_group_id, sort_order, set_function) VALUES ('CHECKOUT_AJAX_FULL_BOXES', 'false', 333, 2, '".addslashes("xtc_cfg_select_option(array('true', 'false'),")."');

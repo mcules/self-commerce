@@ -155,19 +155,19 @@ h2 {font-family: Verdana, Arial, Helvetica, san-serif; font-size: 10px; font-wei
         		<td>
 	        		<span class="title"><?php echo TITLE_WEBSERVER_SETTINGS; ?></span><hr class="lineRed">
 	              	<p class="small"><strong><?php echo TEXT_WS_ROOT; ?></strong><br />
-	                	<?php echo xtc_draw_input_field_installer('DIR_FS_DOCUMENT_ROOT', $dir_fs_www_root,'text','size=60'); ?><br />
+	                	<?php echo xtc_draw_input_field_installer('DIR_FS_DOCUMENT_ROOT', $dir_fs_www_root, 'text', 'size=60'); ?><br />
 	                	<?php echo TEXT_WS_ROOT_LONG; ?></p>
 	              	<p class="small"><strong><?php echo TEXT_WS_XTC; ?></strong><br />
-	                	<?php echo xtc_draw_input_field_installer('DIR_FS_CATALOG', $local_install_path,'text','size=60'); ?><br />
+	                	<?php echo xtc_draw_input_field_installer('DIR_FS_CATALOG', $dir_ws_www_root . '/', 'text','size=60'); ?><br />
 	                	<?php echo TEXT_WS_XTC_LONG; ?></p>
 	              	<p class="small"><strong><?php echo TEXT_WS_ADMIN; ?></strong><br />
-	                	<?php echo xtc_draw_input_field_installer('DIR_FS_ADMIN', $local_install_path.'admin/','text','size=60'); ?><br />
+	                	<?php echo xtc_draw_input_field_installer('DIR_FS_ADMIN', $dir_ws_www_root.'/admin/', 'text', 'size=60'); ?><br />
 	               		<?php echo TEXT_WS_ADMIN_LONG; ?></p>
 	              	<p class="small"><strong><?php echo TEXT_WS_CATALOG; ?></strong><br />
-	                	<?php echo xtc_draw_input_field_installer('DIR_WS_CATALOG', $dir_ws_www_root . '/','text','size=60'); ?><br />
+	                	<?php echo xtc_draw_input_field_installer('DIR_WS_CATALOG', $dir_ws_www_root . '/', 'text', 'size=60'); ?><br />
 	                 	<?php echo TEXT_WS_CATALOG_LONG; ?></p>
 	              	<p class="small"><strong><?php echo TEXT_WS_ADMINTOOL; ?></strong><br />
-	                	<?php echo xtc_draw_input_field_installer('DIR_WS_ADMIN', $dir_ws_www_root . '/admin/','text','size=60'); ?><br />
+	                	<?php echo xtc_draw_input_field_installer('DIR_WS_ADMIN', $dir_ws_www_root . '/admin/', 'text', 'size=60'); ?><br />
 	                 	<?php echo TEXT_WS_ADMINTOOL_LONG; ?></p>
                  </td>
 			</tr>

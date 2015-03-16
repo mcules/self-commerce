@@ -2,31 +2,38 @@
 /* --------------------------------------------------------------
    $Id: application.php 1119 2005-07-25 22:19:50Z novalis $
 
-   XT-Commerce - community made shopping
-   http://www.xt-commerce.com
+   Self-Commerce - Fresh up your eCommerce
+   http://www.self-commerce.de
 
-   Copyright (c) 2003 XT-Commerce
+   Copyright (c) 2015 Self-Commerce
    --------------------------------------------------------------
    based on:
-   (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
-   (c) 2002-2003 osCommerce(application.php,v 1.4 2002/11/29); www.oscommerce.com
-   (c) 2003	 nextcommerce (application.php,v 1.16 2003/08/13); www.nextcommerce.org
+   (c) 2000-2001	The Exchange Project  (earlier name of osCommerce)
+   (c) 2002-2003	osCommerce(application.php,v 1.4 2002/11/29); www.oscommerce.com
+   (c) 2003-2008	nextcommerce (application.php,v 1.16 2003/08/13); www.nextcommerce.org
+   (c) 2008			Self-Commerce (application.php) www.self-commerce.de
 
    Released under the GNU General Public License
    --------------------------------------------------------------*/
+
 // Some FileSystem Directories
+$Pfad = $_SERVER['DOCUMENT_ROOT'];
+foreach (explode("/", $_SERVER['SCRIPT_NAME']) as $Var) {
+	if ($Var == 'self_installer') { break; }
+	else { $Pfad = $Pfad . $Var . "/"; }
+}
 
 if (!defined('DIR_FS_DOCUMENT_ROOT')) {
-	define('DIR_FS_DOCUMENT_ROOT', $_SERVER['DOCUMENT_ROOT'] . "/");
+	define('DIR_FS_DOCUMENT_ROOT', $Pfad);
 }
 if (!defined('DIR_FS_INSTALLER_PATH')) {
-	define('DIR_FS_INSTALLER_PATH', $_SERVER['DOCUMENT_ROOT'] . '/self_installer/');
+	define('DIR_FS_INSTALLER_PATH', DIR_FS_DOCUMENT_ROOT . '/self_installer/');
 }
 if (!defined('DIR_FS_INC')) {
 	define('DIR_FS_INC', DIR_FS_DOCUMENT_ROOT . '/inc/');
 }
 if (!defined('DIR_FS_CATALOG')) {
-	define('DIR_FS_CATALOG', $_SERVER['DOCUMENT_ROOT'] . '/');
+	define('DIR_FS_CATALOG', DIR_FS_DOCUMENT_ROOT);
 }
 
 // include
